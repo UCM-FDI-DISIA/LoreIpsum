@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{0a06564c-5027-4da6-8117-0b2b2e0fb7e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{55046ff7-8f89-476c-a3c2-db850e294203}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Auxiliares">
+      <UniqueIdentifier>{20f3bd3b-8bf3-419d-99f2-a3f06b2e9145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Auxiliares">
+      <UniqueIdentifier>{bf5a5c79-0e63-4c8a-99fb-ec4d1b4f76d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\GameObjects">
+      <UniqueIdentifier>{07690e90-c710-4b0b-a3a6-d1c8b2e9bc21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\GameStates">
+      <UniqueIdentifier>{5a1d73ca-f3cf-4767-ba3a-2b62ce686d1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\GameObjects">
+      <UniqueIdentifier>{51108b49-c1e6-476f-a74b-5e7d90bc4436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\GameStates">
+      <UniqueIdentifier>{62ed8841-0587-46e0-ad3a-0c0a65967e44}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\InvadersError.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
+    <ClInclude Include="src\texture.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vector2D.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
+    <ClInclude Include="src\checkML.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameList.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject.h">
+      <Filter>Archivos de encabezado\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MainMenuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStateMachine.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Button.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventHandler.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Font.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\texture.cpp">
+      <Filter>Archivos de origen\Auxiliares</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MainMenuState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject.cpp">
+      <Filter>Archivos de origen\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Button.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Font.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateMachine.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
