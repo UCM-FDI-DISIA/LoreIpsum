@@ -58,8 +58,9 @@
 - Hito final
 <!-- ## Arquitectura -->
 ## GDD
-<p style="text-align: center">Paula Alemany, Nieves Alonso, Samuel García, Andrés García, Pablo Iglesias, Luis Parres, Inés Primo, Ariadna Ruiz, Paula Sierra, Cynthia Tristán, Jaime Vicente</p>
-
+<p align="center">
+  Paula Alemany, Nieves Alonso, Samuel García, Andrés García, Pablo Iglesias, Luis Parres, Inés Primo, Ariadna Ruiz, Paula Sierra, Cynthia Tristán, Jaime Vicente
+</p>
 1. ### Ficha técnica <a name="id1"></a>
 
 | **Título:** HÖLLENHAUS | **Rating:** +12 |
