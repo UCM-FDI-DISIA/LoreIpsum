@@ -1,6 +1,5 @@
 <h1 align="center"><b>HÖLLENHAUS</b></h1>
 <h3 align="center"><b>Lore Ipsum</b></h1>
-<!--<p align="center">Paula Alemany, Nieves Alonso, Samuel García, Andrés García, Pablo Iglesias, Luis Parres, Inés Primo, Ariadna Ruiz, Paula Sierra, Cynthia Tristán, Jaime Vicente</p>-->
 
 ## Índice
 - [Proyecto](#Proyecto)
@@ -59,16 +58,18 @@
 - Hito final
 <!-- ## Arquitectura -->
 ## GDD
-1. #### Ficha técnica <a name="id1"></a>
+<p style="text-align: center">Paula Alemany, Nieves Alonso, Samuel García, Andrés García, Pablo Iglesias, Luis Parres, Inés Primo, Ariadna Ruiz, Paula Sierra, Cynthia Tristán, Jaime Vicente</p>
+
+1. ### Ficha técnica <a name="id1"></a>
 
 | **Título:** HÖLLENHAUS | **Rating:** +12 |
 |:---:|:---:|
 | **Target:** Público joven con interés en juegos de cartas y/o bizarros | **Modos de juego:** 1 jugador (Modo historia), 2 jugadores (Modo VS.) |
 
-2. #### Descripción <a name="id2"></a>
+2. ### Descripción <a name="id2"></a>
 **HÖLLENHAUS** es un juego de cartas en el que el jugador —un fantasma en el limbo que busca un nuevo hogar en el infierno— lucha contra su adversario por sumar la mayor cantidad de puntos en las casillas de un tablero. El jugador se enfrentará a diversos personajes a lo largo de la historia, ganando las almas necesarias para costearse un hogar en el infierno.
 
-3. #### Ciclo de juego <a name="id3"></a>
+3. ### Ciclo de juego <a name="id3"></a>
 ![Core Loop](/docs/GDD/images/image1.png)
 
 El juego está dividido en distintos casos o niveles que se tendrán que ir resolviendo. Cada nivel culmina en un combate de cartas contra una médium a través de la cual se determinará la victoria o la derrota del caso particular. 
@@ -120,7 +121,7 @@ El jugador consigue su nuevo pisito en el infierno, o no.
 > 8. El jugador vuelve a editar su mazo para intentar ganar a la médium.
 > 9. El jugador se enfrenta a la médium y gana, obtiene almas y acaba el caso, como no tiene suficientes almas todavía, vuelve a empezar otro caso.
 
-4. #### Juego de cartas <a name="id5"></a>
+4. ### Juego de cartas <a name="id5"></a>
 ![Elementos del combate básicos](/docs/GDD/images/image2.png)
 
 El juego de cartas se desarrolla por turnos en los que los jugadores van colocando cartas en un tablero cuadriculado de dimensión variable. Cada carta que se coloque en el tablero le sumará al jugador la cantidad de puntos especificada en la carta, así como aplicar los efectos (si es que los tiene) de la carta. Estos efectos pueden variar tanto la puntuación, la posición o el efecto de otras cartas del tablero. Los efectos varían según el tipo de carta.
@@ -145,7 +146,7 @@ Finalmente, también existe la mecánica de **terreno**: una de las casillas del
 | ![](/docs/GDD/images/picto2.png) | Activa su efecto si se encuentra en el centro | ![](/docs/GDD/images/picto4.png) | Su efecto se aplica todas las cartas en la dirección a la que apunta |
 | ![](/docs/GDD/images/picto5.png) | No le afectan modificadores | ![](/docs/GDD/images/picto6.png) | Anula la habilidad de la carta adyacente en la dirección en la que apunta (ha de ir acompañada de un pictograma de flecha) |
 
-5. #### UI <a name="id7"></a>
+5. ### UI <a name="id7"></a>
    1. Menús <a name="id8"></a>
       1. Inicio <a name="id9"></a>\
       Botones para modo historia, modo versus, opciones y salir.
@@ -180,13 +181,13 @@ Las batallas normales son batallas en la mente y la de la pitonisa en la oficina
    Información pertinente a la historia y resolución de esa batalla/caso en forma de texto en prosa, diálogo…, y un botón para seguir.
 ![Diagrama de menú de resolución de batalla](/docs/GDD/images/image12.png)
 
-6. #### Estética <a name="id17"></a>
+6. ### Estética <a name="id17"></a>
    1. Visual <a name="id18"></a>\
 Estética referenciada en los primeros juegos en 3D, con gráficos pre-renderizados (se hace un modelo en 3D y luego se renderiza como imágenes o vídeos). Colores oscuros, desaturados y lúgubres, y una luz muy dura.
       1. Paleta <a name="id19"></a>\
          La paleta de colores se basa en una gama de colores sepia y unos cuantos colores para destacar determinados objetos o personajes (amarillo para objetos importantes, morado para la médium etc.).
          ![Paleta de colores](/docs/GDD/images/image13.png)
-      3. Referencias <a name="id20"></a>
+      2. Referencias <a name="id20"></a>
       
 | Referencia | Imagen | Referencia | Imagen |
 |:---:|:---:|:---:|:---:|
@@ -196,9 +197,10 @@ Estética referenciada en los primeros juegos en 3D, con gráficos pre-renderiza
 | Santerías  | ![](/docs/GDD/images/image17.png) | Lost in Vivo | ![](/docs/GDD/images/image22.png) |
 | Elation for the Wonderbox 6000 | ![](/docs/GDD/images/image19.png) | Iron Lung | ![](/docs/GDD/images/image24.png) |
 
-   3. Musical <a name="id21"></a>\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ii. Musical <a name="id21"></a>\
    La música estará dividida en varios temas capaces de mantenerse en bucle representando las distintas fases del juego: menú, deckbuilder, ciudad/oficina/tienda y batalla. La estética general de la música será jazz tétrico y oscuro pero calmado, a lo música de ascensor pero menos feliz.
-7. #### Contenido <a name="id22"></a>
+
+7. ### Contenido <a name="id22"></a>
    1. Narrativa <a name="id23"></a>\
       La historia se basa en que tú, como jugador, has muerto y para trascender al infierno debes pagar la entrada a un piso en primera línea de playa en el más allá. Para ello te apoyas en tus habilidades paranormales y montas una agencia de sustos; los clientes te contratan y usan su alma como moneda de pago, eligen una víctima y tú investigas por la ciudad qué les asusta.
 ![](/docs/GDD/images/image25.png)
@@ -210,7 +212,7 @@ Una vez estás seguro de que sabes cómo asustar a la susodicha persona llamas a
 
 ![Paleta de colores](/docs/GDD/images/image27.png)
 
-8. #### Referencias <a name="id25"></a>
+8. ### Referencias <a name="id25"></a>
    1. Mecánicas <a name="id26"></a>
 - [Gwent](https://www.playgwent.com/en) - CD Projekt RED (2017)
 - [Marvel Snap](https://www.marvelsnap.com/) - Nuverse, Second Dinner Studios (2022)
