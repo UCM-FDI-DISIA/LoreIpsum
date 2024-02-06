@@ -186,15 +186,15 @@ Estética referenciada en los primeros juegos en 3D, con gráficos pre-renderiza
       1. Paleta <a name="id19"></a>\
          La paleta de colores se basa en una gama de colores sepia y unos cuantos colores para destacar determinados objetos o personajes (amarillo para objetos importantes, morado para la médium etc.).
          ![Paleta de colores](/docs/GDD/images/image13.png)
-      3. Referencias <a name="id20"></a>\
+      3. Referencias <a name="id20"></a>
+      
 | Referencia | Imagen | Referencia | Imagen |
-|---|---|---|---|
-| | | | |
-|Call of cthulhu: DCOTE|![](/docs/GDD/images/image14.png)|Inscryption|![](/docs/GDD/images/image20.png)|
-|Rule of rose|![](/docs/GDD/images/image15.png)|World Of Horror|![](/docs/GDD/images/image21.png)|
-|Paratopic|![](/docs/GDD/images/image17.png)|De tres al cuatro|![](/docs/GDD/images/image22.png)|
-|Santerías|![](/docs/GDD/images/image18.png)|Lost in Vivo|![](/docs/GDD/images/image23.png)|
-|Elation for the Wonderbox 6000|![](/docs/GDD/images/image19.png)|Iron Lung|![](/docs/GDD/images/image24.png)|
+|:---:|:---:|:---:|:---:|
+| Call of Cthulhu: Dark Corners of the Earth | ![](/docs/GDD/images/image14.png) | Inscryption | ![](/docs/GDD/images/image21.png) |
+| Rule of Rose | ![](/docs/GDD/images/image18.png) | World Of Horror | ![](/docs/GDD/images/image23.png) |
+| Paratopic | ![](/docs/GDD/images/image15.png) | De tres al cuarto | ![](/docs/GDD/images/image20.png) |
+| Santerías  | ![](/docs/GDD/images/image17.png) | Lost in Vivo | ![](/docs/GDD/images/image22.png) |
+| Elation for the Wonderbox 6000 | ![](/docs/GDD/images/image19.png) | Iron Lung | ![](/docs/GDD/images/image24.png) |
 
    3. Musical <a name="id21"></a>\
    La música estará dividida en varios temas capaces de mantenerse en bucle representando las distintas fases del juego: menú, deckbuilder, ciudad/oficina/tienda y batalla. La estética general de la música será jazz tétrico y oscuro pero calmado, a lo música de ascensor pero menos feliz.
