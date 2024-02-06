@@ -71,6 +71,7 @@
 **HÖLLENHAUS** es un juego de cartas en el que el jugador —un fantasma en el limbo que busca un nuevo hogar en el infierno— lucha contra su adversario por sumar la mayor cantidad de puntos en las casillas de un tablero. El jugador se enfrentará a diversos personajes a lo largo de la historia, ganando las almas necesarias para costearse un hogar en el infierno.
 
 3. #### Ciclo de juego <a name="id3"></a>
+
 ![Core Loop](/docs/GDD/images/image1.png)
 
 El juego está dividido en distintos casos o niveles que se tendrán que ir resolviendo. Cada nivel culmina en un combate de cartas contra una médium a través de la cual se determinará la victoria o la derrota del caso particular. 
@@ -148,42 +149,36 @@ Finalmente, también existe la mecánica de **terreno**: una de las casillas del
 
 5. #### UI <a name="id7"></a>
    1. Menús <a name="id8"></a>
-      1. Inicio <a name="id9"></a>
-      
+      1. Inicio <a name="id9"></a>\
       Botones para modo historia, modo versus, opciones y salir.
       
-      2. Opciones <a name="id10"></a>
-      
+      2. Opciones <a name="id10"></a>\
       Sliders para cambiar el volumen de los sonidos y música.
       
-      3. Pausa <a name="id11"></a>
-      
+      3. Pausa <a name="id11"></a>\
       Botones para continuar la partida, guardarla, abrir las opciones y salir del juego. Se podrá guardar siempre que no se esté en mitad de un combate.
       ![](/docs/GDD/images/image7.png)
 
-   3. Ciudad <a name="id12"></a>
-   
+   2. Ciudad <a name="id12"></a>\
    El jugador puede moverse en horizontal en la ciudad para ir a distintas ubicaciones con point and click disponibles como la tienda, la oficina etc, así como interactuar con ciertos NPCs para entrar en batallas menores.
     ![](/docs/GDD/images/image8.png)
 
-   4. Tienda <a name="id13"></a>
+   3. Tienda <a name="id13"></a>\
    Se te muestran las cartas que puedes comprar y tu cartera. Al seleccionar una carta adquirible se te marcan las monedas que te va a costar. Botón para volver a la zona principal.
     ![](/docs/GDD/images/image9.png)
 
-   5. Oficina <a name="id14"></a>
+   4. Oficina <a name="id14"></a>\
    Puedes pulsar un cajón/corcho o el teléfono. El cajón te lleva al tablero donde podrás fijar las cartas que tendrá tu mazo mientras que en la parte de abajo se te muestran todas las cartas posibles. En la parte inferior están todas las cartas y en el corcho con estilo de corcho de detective irás poniendo las cartas que quieres en tu mazo. El teléfono te lleva al diálogo con la pitonisa y al combate con ella.
   ![](/docs/GDD/images/image10.png)
 
-   6. Batalla <a name="id15"></a>
+   5. Batalla <a name="id15"></a>\
    Al inicio de la batalla se hace zoom desde arriba a la mesa para que solo aparezca el tablero y mazos. 
 Abajo se verá la mano y cuando se pulse sobre ella habrá una transición hacia abajo para verlas mejor.
 A la derecha se verá parte del libro donde se explica lo que hace cada carta. Cuando sobre una carta haces click en el icono de la habilidad se lleva mediante transición al libro.
 Para la pausa se deshace el zoom del principio y que se vea a los jugadores enteros, y para quitarla volver a hacerlo. 
-
 Las batallas normales son batallas en la mente y la de la pitonisa en la oficina. La decoración entre ambas cambia. Para representar los puntos de acción se usarán velas que se irán apagando cuando uses cartas según su coste.
 ![Disposición de los elementos del menú de gestión del mazo](/docs/GDD/images/image11.png)
-
-   6. Resolución <a name="id16"></a>
+   6. Resolución <a name="id16"></a>\
    Información pertinente a la historia y resolución de esa batalla/caso en forma de texto en prosa, diálogo…, y un botón para seguir.
 ![Diagrama de menú de resolución de batalla](/docs/GDD/images/image12.png)
 
@@ -194,17 +189,18 @@ Estética referenciada en los primeros juegos en 3D, con gráficos pre-renderiza
          La paleta de colores se basa en una gama de colores sepia y unos cuantos colores para destacar determinados objetos o personajes (amarillo para objetos importantes, morado para la médium etc.).
          ![Paleta de colores](/docs/GDD/images/image13.png)
       3. Referencias <a name="id20"></a>
-   2. Musical <a name="id21"></a>\
+   3. Musical <a name="id21"></a>\
    La música estará dividida en varios temas capaces de mantenerse en bucle representando las distintas fases del juego: menú, deckbuilder, ciudad/oficina/tienda y batalla. La estética general de la música será jazz tétrico y oscuro pero calmado, a lo música de ascensor pero menos feliz.
 7. #### Contenido <a name="id22"></a>
    1. Narrativa <a name="id23"></a>\
-      La historia se basa en que tú, como jugador, has muerto y para trascender al infierno debes pagar la entrada a un piso en primera línea de playa en el más allá. Para ello te apoyas en tus habilidades paranormales y montas una agencia de sustos; los clientes te contratan y usan su alma como moneda de pago, eligen una víctima y tú investigas por la ciudad qué les asusta. 
+      La historia se basa en que tú, como jugador, has muerto y para trascender al infierno debes pagar la entrada a un piso en primera línea de playa en el más allá. Para ello te apoyas en tus habilidades paranormales y montas una agencia de sustos; los clientes te contratan y usan su alma como moneda de pago, eligen una víctima y tú investigas por la ciudad qué les asusta.
 ![Paleta de colores](/docs/GDD/images/image25.png)
 Una vez estás seguro de que sabes cómo asustar a la susodicha persona llamas a una médium y a través de ella materializas tu ataque en forma de un duelo de cartas. Si el ataque te sale bien cobras en almas. Una vez se han resuelto todos los casos, triunfas o fracasas en tu pacto inmobiliario con el demonio en función de las almas que poseas al final del juego.
 ![Paleta de colores](/docs/GDD/images/image26.png)
 
-   3. Cartas <a name="id24"></a>\
+   2. Cartas <a name="id24"></a>\
       Los distintos tipos de cartas varían en coste, valor y habilidad según suman/restan en horizontal, vertical o adyacentemente.
+
 ![Paleta de colores](/docs/GDD/images/image27.png)
 
 8. #### Referencias <a name="id25"></a>
