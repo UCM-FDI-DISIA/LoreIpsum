@@ -57,8 +57,7 @@
 - Hito 1
 - Hito 2
 - Hito final
-## Arquitectura
-
+<!-- ## Arquitectura -->
 ## GDD
 1. #### Ficha técnica <a name="id1"></a>
 
@@ -66,19 +65,19 @@
 |:---:|:---:|
 | **Target:** Público joven con interés en juegos de cartas y/o bizarros | **Modos de juego:** 1 jugador (Modo historia), 2 jugadores (Modo VS.) |
 
-
 2. #### Descripción <a name="id2"></a>
 **HÖLLENHAUS** es un juego de cartas en el que el jugador —un fantasma en el limbo que busca un nuevo hogar en el infierno— lucha contra su adversario por sumar la mayor cantidad de puntos en las casillas de un tablero. El jugador se enfrentará a diversos personajes a lo largo de la historia, ganando las almas necesarias para costearse un hogar en el infierno.
 
 3. #### Ciclo de juego <a name="id3"></a>
-
 ![Core Loop](/docs/GDD/images/image1.png)
 
 El juego está dividido en distintos casos o niveles que se tendrán que ir resolviendo. Cada nivel culmina en un combate de cartas contra una médium a través de la cual se determinará la victoria o la derrota del caso particular. 
+
 **Objetivo a largo plazo:** Ahorrar suficientes almas para comprar un piso en el infierno. 
+
 **Objetivo a corto plazo:** Triunfar en la resolución del caso para el que ha sido contratado.
 
-**ESTADOS EN UN CICLO DE JUEGO**
+#### **ESTADOS EN UN CICLO DE JUEGO**
 | ESTADO DE JUEGO | (0) INFORMACIÓN DEL CASO | (1) CIUDAD | (2) MÉDIUM | (3) RESOLUCIÓN | (4) FINAL DE JUEGO |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | | ANTICIPACIÓN | ANTICIPACIÓN | DESAFÍO | DESCARGA | 
@@ -122,7 +121,6 @@ El jugador consigue su nuevo pisito en el infierno, o no.
 > 9. El jugador se enfrenta a la médium y gana, obtiene almas y acaba el caso, como no tiene suficientes almas todavía, vuelve a empezar otro caso.
 
 4. #### Juego de cartas <a name="id5"></a>
-
 ![Elementos del combate básicos](/docs/GDD/images/image2.png)
 
 El juego de cartas se desarrolla por turnos en los que los jugadores van colocando cartas en un tablero cuadriculado de dimensión variable. Cada carta que se coloque en el tablero le sumará al jugador la cantidad de puntos especificada en la carta, así como aplicar los efectos (si es que los tiene) de la carta. Estos efectos pueden variar tanto la puntuación, la posición o el efecto de otras cartas del tablero. Los efectos varían según el tipo de carta.
@@ -139,7 +137,7 @@ Finalmente, también existe la mecánica de **terreno**: una de las casillas del
 
 ![Carta tipo y sus diferentes propiedades](/docs/GDD/images/image3.png)
 
-   1. Habilidades <a name="id6"></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i. Habilidades <a name="id6"></a>
 
 | Pictograma | Descripción | Pictograma | Descripción |
 |:---:|:---:|:---:|:---:|
@@ -188,15 +186,24 @@ Estética referenciada en los primeros juegos en 3D, con gráficos pre-renderiza
       1. Paleta <a name="id19"></a>\
          La paleta de colores se basa en una gama de colores sepia y unos cuantos colores para destacar determinados objetos o personajes (amarillo para objetos importantes, morado para la médium etc.).
          ![Paleta de colores](/docs/GDD/images/image13.png)
-      3. Referencias <a name="id20"></a>
+      3. Referencias <a name="id20"></a>\
+| Referencia | Imagen | Referencia | Imagen |
+|---|---|---|---|
+| | | | |
+|Call of cthulhu: DCOTE|![](/docs/GDD/images/image14.png)|Inscryption|![](/docs/GDD/images/image20.png)|
+|Rule of rose|![](/docs/GDD/images/image15.png)|World Of Horror|![](/docs/GDD/images/image21.png)|
+|Paratopic|![](/docs/GDD/images/image17.png)|De tres al cuatro|![](/docs/GDD/images/image22.png)|
+|Santerías|![](/docs/GDD/images/image18.png)|Lost in Vivo|![](/docs/GDD/images/image23.png)|
+|Elation for the Wonderbox 6000|![](/docs/GDD/images/image19.png)|Iron Lung|![](/docs/GDD/images/image24.png)|
+
    3. Musical <a name="id21"></a>\
    La música estará dividida en varios temas capaces de mantenerse en bucle representando las distintas fases del juego: menú, deckbuilder, ciudad/oficina/tienda y batalla. La estética general de la música será jazz tétrico y oscuro pero calmado, a lo música de ascensor pero menos feliz.
 7. #### Contenido <a name="id22"></a>
    1. Narrativa <a name="id23"></a>\
       La historia se basa en que tú, como jugador, has muerto y para trascender al infierno debes pagar la entrada a un piso en primera línea de playa en el más allá. Para ello te apoyas en tus habilidades paranormales y montas una agencia de sustos; los clientes te contratan y usan su alma como moneda de pago, eligen una víctima y tú investigas por la ciudad qué les asusta.
-![Paleta de colores](/docs/GDD/images/image25.png)
+![](/docs/GDD/images/image25.png)
 Una vez estás seguro de que sabes cómo asustar a la susodicha persona llamas a una médium y a través de ella materializas tu ataque en forma de un duelo de cartas. Si el ataque te sale bien cobras en almas. Una vez se han resuelto todos los casos, triunfas o fracasas en tu pacto inmobiliario con el demonio en función de las almas que poseas al final del juego.
-![Paleta de colores](/docs/GDD/images/image26.png)
+![](/docs/GDD/images/image26.png)
 
    2. Cartas <a name="id24"></a>\
       Los distintos tipos de cartas varían en coste, valor y habilidad según suman/restan en horizontal, vertical o adyacentemente.
