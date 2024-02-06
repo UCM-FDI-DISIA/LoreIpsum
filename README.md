@@ -4,10 +4,10 @@
 
 ## Índice
 - [Proyecto](#Proyecto)
-  - [Descripción](#descripcion)
-  - [Capturas](#capturas)
-  - [Vídeo](#video)
-  - [Página](#pagina)
+  - [Descripción](#Descripcion)
+  - [Capturas](#Capturas)
+  - [Vídeo](#Video)
+  - [Página](#Pagina)
 - [Presentaciones](#Presentaciones)
 - [Arquitectura](#Arquitectura)
 - [GDD](#GDD)
