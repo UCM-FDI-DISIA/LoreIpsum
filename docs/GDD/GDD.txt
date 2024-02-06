@@ -1,0 +1,310 @@
+﻿HÖLLENHAUS
+Paula Alemany, Nieves Alonso, Samuel García, Andrés García, Pablo Iglesias, Luis Parres, Inés Primo, Ariadna Ruiz, Paula Sierra, Cynthia Tristán, Jaime Vicente 
+
+
+Grupo 4 - LoreIpsum
+
+
+1. Ficha técnica        0
+2. Descripción        0
+3. Ciclo de juego        0
+3.1. Partida genérica        0
+4. Juego de cartas        0
+4.1. Habilidades        0
+5. UI        0
+5.1. Menús        0
+5.1.1. Inicio        0
+5.1.2. Opciones        0
+5.1.3. Pausa        0
+5.2. Ciudad        0
+5.3. Tienda        0
+5.4. Oficina        0
+5.5. Batalla        0
+5.6. Resolución        0
+6. Estética        0
+6.1. Visual        0
+6.1.1. Paleta        0
+6.1.2. Referencias        0
+6.2. Musical        0
+7. Contenido        0
+7.1. Narrativa        0
+7.2. Cartas        0
+8. Referencias        0
+8.1. Mecánicas        0
+8.2. Artísticas        0
+1. Ficha técnica
+Título: HÖLLENHAUS
+	Rating: +12
+	Género: Cartas, gestión de mazos
+	Plataforma: Windows
+	Target: 
+Público joven con interés en juegos de cartas y/o bizarros
+	Modos de juego:
+1 jugador (Modo historia)
+2 jugadores (Modo VS.)
+	
+
+
+
+2. Descripción
+        HÖLLENHAUS es un juego de cartas en el que el jugador —un fantasma en el limbo que busca un nuevo hogar en el infierno— lucha contra su adversario por sumar la mayor cantidad de puntos en las casillas de un tablero. El jugador se enfrentará a diversos personajes a lo largo de la historia, ganando las almas necesarias para costearse un hogar en el infierno.
+
+
+3. Ciclo de juego
+
+
+  
+
+Diagrama del core / compulsion loop.
+
+
+El juego está dividido en distintos casos o niveles que se tendrán que ir resolviendo. Cada nivel culmina en un combate de cartas contra una médium a través de la cual se determinará la victoria o la derrota del caso particular. 
+Objetivo a largo plazo: Ahorrar suficientes almas para comprar un piso en el infierno. 
+Objetivo a corto plazo: Triunfar en la resolución del caso para el que ha sido contratado.
+
+
+ESTADOS EN UN CICLO DE JUEGO
+
+
+ESTADO DE JUEGO
+	(0) INFORMACIÓN DEL CASO
+	(1)
+CIUDAD
+	(2)
+MÉDIUM
+	(3)
+RESOLUCIÓN
+	(4)
+FINAL DE JUEGO
+	
+
+	ANTICIPACIÓN
+	DESAFÍO
+	DESCARGA
+	
+
+	
+
+(0) INFORMACIÓN DEL CASO
+Es el comienzo del nivel. Se define el número de almas que vas a ganar si lo resuelves con éxito. Te dan la información sobre el caso y se fija objetivo: Derrotar a la médium.
+(1) CIUDAD
+El jugador puede realizar las siguientes acciones:
+* Desplazarse por la ciudad: Estética implementada para acceder al resto de acciones disponibles. 
+
+
+* Comprar cartas nuevas: Con el dinero  ganado de los combates menores, el jugador podrá ir a una tienda y comprar nuevas cartas para añadirlas a  su mazo.
+
+
+* Gestionar su mazo: Añadir y quitar cartas del mazo que el jugador usará en su próximo enfrentamiento.
+
+
+* Desafiar a un personaje: Enfrentamiento menor, de corta duración, contra un personaje del juego. Te puede otorgar pistas, cartas o dinero. 
+
+
+* Desafiar a la médium: Pasas al estado de juego (2)
+
+
+
+
+(2) MEDIUM
+
+
+Enfrentamiento complejo, de larga duración (se trata del “boss” del nivel) contra la médium.
+
+
+(3) RESOLUCIÓN
+* Si el jugador pierde el enfrentamiento, vuelve al estado (1). 
+* Ganar el enfrentamiento le proporciona cartas especiales, dinero, y almas para el objetivo final. Además, puede pasar al estado (0) o al estado (4).
+   * Si no tiene suficientes almas todavía, vuelve al estado (0) con un nuevo caso.
+   * Si ha conseguido el objetivo final de almas, pasa al estado (4)
+
+
+(4) FINAL DE JUEGO
+El jugador consigue su nuevo pisito en el infierno
+
+
+   1. Partida genérica
+
+
+1. El jugador recibe un caso de un cliente (lore).
+2. El jugador se enfrenta a un personaje menor y obtiene una nueva carta.
+3. El jugador se enfrenta a otro personaje menor y obtiene dinero.
+4. El jugador usa el dinero que ha ganado para comprar una nueva carta.
+5. El jugador va a la oficina y edita su mazo.
+6. El jugador se enfrenta a la médium y pierde.
+7. El jugador hace más combates menores y obtiene nuevas cartas y más dinero.
+8. El jugador vuelve a editar su mazo para intentar ganar a la médium.
+9. El jugador se enfrenta a la médium y gana, obtiene almas y acaba el caso, como no tiene suficientes almas todavía, vuelve a empezar otro caso.
+
+
+4.  Juego de cartas 
+  
+
+Elementos del combate básicos.
+El juego de cartas se desarrolla por turnos en los que los jugadores van colocando cartas en un tablero cuadriculado de dimensión variable. Cada carta que se coloque en el tablero le sumará al jugador la cantidad de puntos especificada en la carta, así como aplicar los efectos (si es que los tiene) de la carta. Estos efectos pueden variar tanto la puntuación, la posición o el efecto de otras cartas del tablero. Los efectos varían según el tipo de carta.
+El objetivo del juego es sumar más puntos que el rival cuando acaba la partida mediante la colocación espacial de las cartas, las cuales se afectarán entre sí sumando o restando puntos.
+Cada jugador tiene 4 puntos de acción que puede utilizar en su turno para hacer distintas acciones. Las acciones principales que puede hacer el jugador son: robar carta del mazo, con un coste constante de 2 puntos, y colocar una carta en el tablero, con un coste variable según lo que indique la carta.
+Todas las cartas están compuestas por tres características: valor, coste y habilidad. Las dos primeras son un valor numérico entero que indica la cantidad de puntos a sumar a la puntuación del jugador que la haya colocado y la cantidad de puntos a gastar de los puntos de acción, respectivamente. La habilidad de cada carta indica una acción extra que efectúa la carta al ser colocada en el tablero.
+Las habilidades de las cartas podrán modificar los valores numéricos en distintas zonas del tablero según la especificación de la carta. Una carta podrá aumentar o disminuir el valor de puntuación que proporciona y el que proporcionan otras cartas en un área de efecto. Este área de efecto también estará especificada en la propia carta y podrá influir a las cartas adyacentes en cruz, a las filas, a las columnas, a las esquinas o al centro del tablero. Las cartas pueden tener coste 0, valor 0 y/o habilidad que no afecte a nada.
+Finalmente, también existe la mecánica de terreno: una de las casillas del tablero puede tener algún tipo de modificador que afecte a las cartas que se coloquen en esa casilla, como sumar, restar, multiplicar el  valor de la carta sobre ella.
+  
+
+Carta tipo y sus diferentes partes.
+   2. Habilidades
+
+
+PICTOGRAMA
+	DESCRIPCIÓN
+	PICTOGRAMA
+	DESCRIPCIÓN
+	  
+
+	Activa su efecto si se encuentra en las esquinas
+	  
+
+	Su efecto se aplica a la carta adyacente en la dirección a la que apunta
+	  
+
+	Activa su efecto si se encuentra en el centro
+	  
+
+	Su efecto se aplica todas las cartas en la dirección a la que apunta
+	  
+
+	No le afectan modificadores
+	  
+
+	Anula la habilidad de la carta adyacente en la dirección en la que apunta 
+
+
+(ha de ir acompañada de un pictograma de flecha)
+	
+
+5. UI
+   1. Menús
+      1. Inicio
+Botones para modo historia, modo versus, opciones y salir.
+      2. Opciones
+Sliders para cambiar el volumen de los sonidos y música.
+      3. Pausa
+Botones para continuar la partida, guardarla, abrir las opciones y salir del juego. Se podrá guardar siempre que no se esté en mitad de un combate.
+
+
+  
+
+Disposición genérica de los botones de los diferentes menús. 
+   2. Ciudad
+El jugador puede moverse en horizontal en la ciudad para ir a distintas ubicaciones con point and click disponibles como la tienda, la oficina etc, así como interactuar con ciertos NPCs para entrar en batallas menores.
+  
+
+Diagrama de la vista de la ciudad. 
+   3. Tienda
+Se te muestran las cartas que puedes comprar y tu cartera. Al seleccionar una carta adquirible se te marcan las monedas que te va a costar. Botón para volver a la zona principal.
+
+
+  
+
+Disposición de los elementos de la tienda.
+
+
+   4. Oficina
+Puedes pulsar un cajón/corcho o el teléfono. El cajón te lleva al tablero donde podrás fijar las cartas que tendrá tu mazo mientras que en la parte de abajo se te muestran todas las cartas posibles. En la parte inferior están todas las cartas y en el corcho con estilo de corcho de detective irás poniendo las cartas que quieres en tu mazo. El teléfono te lleva al diálogo con la pitonisa y al combate con ella.
+  
+
+Disposición de los elementos del menú de gestión del mazo
+   5. Batalla
+  
+
+Disposición de los elementos básicos del combate.
+
+
+Al inicio de la batalla se hace zoom desde arriba a la mesa para que solo aparezca el tablero y mazos. 
+Abajo se verá la mano y cuando se pulse sobre ella habrá una transición hacia abajo para verlas mejor.
+A la derecha se verá parte del libro donde se explica lo que hace cada carta. Cuando sobre una carta haces click en el icono de la habilidad se lleva mediante transición al libro.
+Para la pausa se deshace el zoom del principio y que se vea a los jugadores enteros, y para quitarla volver a hacerlo. 
+
+
+Las batallas normales son batallas en la mente y la de la pitonisa en la oficina. La decoración entre ambas cambia. Para representar los puntos de acción se usarán velas que se irán apagando cuando uses cartas según su coste.
+   6. Resolución
+Información pertinente a la historia y resolución de esa batalla/caso en forma de texto en prosa, diálogo…, y un botón para seguir.
+  
+
+Diagrama del menú de resolución de batalla. 
+6. Estética
+   1. Visual
+Estética referenciada en los primeros juegos en 3D, con gráficos pre-renderizados (se hace un modelo en 3D y luego se renderiza como imágenes o vídeos). Colores oscuros, desaturados y lúgubres, y una luz muy dura.
+      4.  Paleta
+La paleta de colores se basa en una gama de colores sepia y unos cuantos colores para destacar determinados objetos o personajes (amarillo para objetos importantes, morado para la médium etc.).
+  
+
+      5.  Referencias
+Las referencias visuales principales son:
+* “Call of cthulhu: DCOTE”:  
+  
+
+   * “Rule of rose”:  
+
+
+      * “Paratopic”:  
+
+
+         * Santerías:  
+
+
+
+
+            * “Elation for the Wonderbox 6000”:  
+
+
+               * “Inscryption”:  
+
+
+                  * “World Of Horror:”  
+
+
+
+
+                     * “de tres al cuatro”:  
+
+
+                        * “Lost in Vivo”:  
+                           * “Iron Lung”:  
+
+
+                              2. Musical
+La música estará dividida en varios temas capaces de mantenerse en bucle representando las distintas fases del juego: menú, deckbuilder, ciudad/oficina/tienda y batalla. La estética general de la música será jazz tétrico y oscuro pero calmado, a lo música de ascensor pero menos feliz.
+                              7. Contenido
+                              1. Narrativa
+La historia se basa en que tú, como jugador, has muerto y para trascender al infierno debes pagar la entrada a un piso en primera línea de playa en el más allá. Para ello te apoyas en tus habilidades paranormales y montas una agencia de sustos; los clientes te contratan y usan su alma como moneda de pago, eligen una víctima y tú investigas por la ciudad qué les asusta. 
+  
+
+Arte conceptual de la oficina. 
+Una vez estás seguro de que sabes cómo asustar a la susodicha persona llamas a una médium y a través de ella materializas tu ataque en forma de un duelo de cartas. Si el ataque te sale bien cobras en almas. Una vez se han resuelto todos los casos, triunfas o fracasas en tu pacto inmobiliario con el demonio en función de las almas que poseas al final del juego.
+  
+
+Arte conceptual de tarjeta de negocios.
+                              2. Cartas
+Los distintos tipos de cartas varían en coste, valor y habilidad según suman/restan en horizontal, vertical o adyacentemente.
+  
+
+Cartas tipo creadas para QA inicial en la etapa de diseño. 
+
+
+                              8. Referencias
+                              1. Mecánicas
+                              * Gwent - CD Projekt RED (2017)
+                              * Marvel Snap - Nuverse, Second Dinner Studios (2022)
+                              * Dioses! El Juego de Cartas - Pascu y Rodri (2023)
+                              * Adventure Time Card Wars - Cryptozoic Entertainment (2014)
+                              * Inscryption - Daniel Mullins Games (2021)
+                              * BeatCop - Pixel Crow (2017)
+                              * De Tres al Cuarto - Deconstructeam (2022)
+                              * WORLD OF HORROR - Panstasz (2023)
+                              1. Artísticas
+                              * Call of Cthulhu: Dark Corners of the Earth - Headfirst Productions (2006)
+                              * Paratopic - Arbitrary Metric (2018)
+                              * Rule of Rose - Punchline, Shirogumi (2006)
+                              * Elation For The Wonder Box 6000 - Digital Tchotchkes (TBA)
+                              * Santerías
+                              * Iron Lung - David Szymanski (2022)
+                              * Lost in Vivo - KIRA (2018)
