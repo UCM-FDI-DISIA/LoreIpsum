@@ -4,12 +4,12 @@
 
 ## Índice
 - [Proyecto](#Proyecto)
-  - [Descripción](#Descripcion)
-  - [Capturas](#Capturas)
-  - [Vídeo](#Video)
-  - [Página](#Pagina)
-- [Presentaciones](#Presentaciones)
-- [Arquitectura](#Arquitectura)
+  - [Descripción](#descripción)
+  <!-- - [Capturas](#Capturas) -->
+  <!-- - [Vídeo](#Video) -->
+  <!-- - [Página](#Pagina) -->
+- [Presentaciones](#presentaciones)
+<!-- [Arquitectura](#Arquitectura) -->
 - [GDD](#GDD)
   1. [Ficha técnica](#id1)
   2. [Descripción](#id2)
