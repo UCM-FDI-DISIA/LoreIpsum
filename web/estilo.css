@@ -1,14 +1,48 @@
 h1 {
   text-align: center;
-  color: rgb(8, 69, 71);
+  color: rgb(251, 248, 243);
 }
 
 .clase {
   text-align: center;
-  color: rgb(90, 47, 170);
+  color: rgb(251, 248, 243);
 }
 
 body {
   text-align: center;
-  background-color: rgb(101, 136, 123);
+  background-color: rgb(14, 14, 14);
+}
+
+ul { /* estrellitas en la lista */
+  list-style: none;
+}
+
+ul li::before {
+  content: "\269D";
+  color: rgb(251, 248, 243);
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+ul li li::before {
+  content: "\2661";
+  color: rgb(251, 248, 243);
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+/* Footer */
+footer p {
+  /*font-size: 0.8rem;*/
+  padding: 0.5rem;
+}
+
+footer {
+  margin: 5rem 2rem 2rem 2rem;
+  padding: 10px;
+  background-color: rgb(89, 89, 89);
+  color: rgb(251, 248, 243);
+  border-radius: 15px;
 }
