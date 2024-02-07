@@ -207,7 +207,7 @@ Estética referenciada en los primeros juegos en 3D, con gráficos pre-renderiza
    1. #### Narrativa <a name="id23"></a>
       La historia se basa en que tú, como jugador, has muerto y para trascender al infierno debes pagar la entrada a un piso en primera línea de playa en el más allá. Para ello te apoyas en tus habilidades paranormales y montas una agencia de sustos; los clientes te contratan y usan su alma como moneda de pago, eligen una víctima y tú investigas por la ciudad qué les asusta.
 ![](/docs/GDD/images/image25.png)
-Una vez estás seguro de que sabes cómo asustar a la susodicha persona llamas a una médium y a través de ella materializas tu ataque en forma de un duelo de cartas. Si el ataque te sale bien cobras en almas. Una vez se han resuelto todos los casos, triunfas o fracasas en tu pacto inmobiliario con el demonio en función de las almas que poseas al final del juego.
+Una vez estás seguro de que sabes cómo asustar a la susodicha persona llamas a una médium y a través de ella materializas tu ataque en forma de un duelo de cartas. Si el ataque te sale bien cobras en almas. Una vez se han resuelto todos los casos, triunfas o fracasas en tu pacto inmobiliario con el demonio en función de las almas que poseas al final del juego.\
 ![](/docs/GDD/images/image26.png)
 
    2. #### Cartas <a name="id24"></a>
