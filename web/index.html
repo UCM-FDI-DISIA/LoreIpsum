@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Jueguito de plataformas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="estilo.css"> <!-- Esto cargaria un archivo de estilo, pero no es necesario en Fiddle porque lo hace automáticamente -->
+  <script src="./lib/phaser.js"></script> <!--Aquí podriamos cargar los scripts, también se puede en el <body>, y pasa lo mismo que con el css de antes, en verdad aquí no estamos cargando nada-->
+</head>
+
+<body>
+  <h1>Práctica de súper mario</h1>
+  <div>
+    <h2 class=clase>voy un poco tarde pero bueno</h2>
+
+    <p class=clase id="magico"> así practico un poco de html xd</p>
+    <a href="https://www.ucm.es/" target="_blank">
+      <img src="https://www.ucm.es/themes/ucm16/media/img/logo.png" alt="Si la imagen no se carga, se ve esto"><!--Modifica el atributo src y verás como se muestra el mensaje, pero el link (etiqueta <a>) seguirá funcionando al ser un hijo -->
+    </a>
+  </div>
+  <div>
+
+    <!--Cargamos el canvas -->
+    <script src="./src/game.js" type="module"></script>
+
+    <button onclick="alert(devuelveTextoDeAlerta())">Soy un botón de Alerta</button>
+  </div>
+  <div>
+    <button onclick="document.getElementById('magico').style.visibility='hidden'"> Desaparece!!! </button>
+    <button onclick="desaparece('magico')"> Desaparece!!! (pero usando una función) </button>
+  </div>
+</body>
+</html>
