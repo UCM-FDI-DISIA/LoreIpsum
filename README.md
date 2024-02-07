@@ -52,7 +52,7 @@
 ...
 -->
 ## Presentaciones
-- [Hito 0](https://docs.google.com/document/d/1nzUwn2zeJeuQBZWjjvqF6Tlv1n-C4KZrPEBRIF91SRE/edit?usp=sharing)
+- [Hito 0](https://docs.google.com/presentation/d/14X1H2WW96c6soYmThStQAicIRp_3ZJsN-hTsZ-rOBvw/edit?usp=drive_link)
 - Hito 1
 - Hito 2
 - Hito final
