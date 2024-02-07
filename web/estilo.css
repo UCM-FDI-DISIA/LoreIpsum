@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "averia";
+  src: url('../tipografias/Averia_Serif_Libre/AveriaSerifLibre-Regular.ttf');
+}
+
+/* imagen de fondo */
+html { 
+  
+  font-family: 'averia';
+}
+
 h1 {
   text-align: center;
   color: rgb(251, 248, 243);
@@ -13,7 +24,8 @@ body {
   background-color: rgb(14, 14, 14);
 }
 
-ul { /* estrellitas en la lista */
+/* estrellitas en la lista */
+ul { 
   list-style: none;
 }
 
