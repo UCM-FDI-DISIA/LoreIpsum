@@ -12,12 +12,12 @@ html {
 
 h1 {
   text-align: center;
-  color: rgb(251, 248, 243);
+  color: rgb(231, 217, 194);
 }
 
 .clase {
   text-align: center;
-  color: rgb(251, 248, 243);
+  color: rgb(231, 217, 194);
 }
 
 body {
@@ -36,7 +36,7 @@ ul {
 
 ul li::before {
   content: "\269D";
-  color: rgb(251, 248, 243);
+  color: rgb(231, 217, 194);
   display: inline-block;
   width: 1em;
   margin-left: -1em;
@@ -44,7 +44,7 @@ ul li::before {
 
 ul li li::before {
   content: "\2661";
-  color: rgb(251, 248, 243);
+  color: rgb(231, 217, 194);
   display: inline-block;
   width: 1em;
   margin-left: -1em;
@@ -61,6 +61,6 @@ footer {
   margin: 10rem 2rem 2rem 2rem;
   padding: 5px;
   background-color: rgb(89, 89, 89);
-  color: rgb(251, 248, 243);
+  color: rgb(231, 217, 194);
   border-radius: 15px;
 }
