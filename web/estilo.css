@@ -7,21 +7,26 @@
 html { 
   
   font-family: 'averia';
+  font-size: 1.2rem;
 }
 
 h1 {
   text-align: center;
-  color: rgb(251, 248, 243);
+  color: rgb(231, 217, 194);
 }
 
 .clase {
   text-align: center;
-  color: rgb(251, 248, 243);
+  color: rgb(231, 217, 194);
 }
 
 body {
   text-align: center;
   background-color: rgb(14, 14, 14);
+}
+
+#link {
+  color: #a4ba20;
 }
 
 /* estrellitas en la lista */
@@ -31,7 +36,7 @@ ul {
 
 ul li::before {
   content: "\269D";
-  color: rgb(251, 248, 243);
+  color: rgb(231, 217, 194);
   display: inline-block;
   width: 1em;
   margin-left: -1em;
@@ -39,7 +44,7 @@ ul li::before {
 
 ul li li::before {
   content: "\2661";
-  color: rgb(251, 248, 243);
+  color: rgb(231, 217, 194);
   display: inline-block;
   width: 1em;
   margin-left: -1em;
@@ -47,14 +52,15 @@ ul li li::before {
 
 /* Footer */
 footer p {
-  /*font-size: 0.8rem;*/
+  font-size: 0.75rem;
   padding: 0.5rem;
+  line-height: 0;
 }
 
 footer {
-  margin: 5rem 2rem 2rem 2rem;
-  padding: 10px;
+  margin: 10rem 2rem 2rem 2rem;
+  padding: 5px;
   background-color: rgb(89, 89, 89);
-  color: rgb(251, 248, 243);
+  color: rgb(231, 217, 194);
   border-radius: 15px;
 }
