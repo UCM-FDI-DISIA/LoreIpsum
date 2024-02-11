@@ -1,0 +1,79 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "contributorsPerLine": 7,
+  "contributorsSortAlphabetically": false,
+  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square)](#contributors)",
+  "skipCi": true,
+  "contributors": [
+    {
+      "login": "Madour",
+      "name": "Modar Nasser",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11854124?v=4",
+      "profile": "http://madour.github.io",
+      "contributions": [
+        "bug",
+        "infra",
+        "doc"
+      ]
+    },
+    {
+      "login": "nightroy99",
+      "name": "nightroy99",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35336823?v=4",
+      "profile": "https://github.com/nightroy99",
+      "contributions": [
+        "translation",
+        "review"
+      ]
+    },
+    {
+      "login": "eXpl0it3r",
+      "name": "Lukas Dürrenberger",
+      "avatar_url": "https://avatars.githubusercontent.com/u/920861?v=4",
+      "profile": "https://my-gate.net/",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "gamepopper",
+      "name": "Tim Stoddard",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6163825?v=4",
+      "profile": "http://gamepopper.co.uk/",
+      "contributions": [
+        "code",
+        "bug",
+        "test"
+      ]
+    },
+    {
+      "login": "Dead-Deus",
+      "name": "Dead-Deus",
+      "avatar_url": "https://avatars.githubusercontent.com/u/89898198?v=4",
+      "profile": "https://github.com/Dead-Deus",
+      "contributions": [
+        "infra",
+        "bug"
+      ]
+    },
+    {
+      "login": "JonathSpirit",
+      "name": "GuillaumeG.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48102745?v=4",
+      "profile": "https://github.com/JonathSpirit",
+      "contributions": [
+        "bug",
+        "test",
+        "code",
+        "ideas"
+      ]
+    }
+  ],
+  "projectName": "Candle",
+  "projectOwner": "MiguelMJ",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
