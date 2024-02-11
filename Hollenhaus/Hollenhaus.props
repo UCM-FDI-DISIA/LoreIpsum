@@ -5,7 +5,7 @@
   <PropertyGroup>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <TargetName>$(ProjectName)$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)Libraries\SDL2\include;$(SolutionDir)Libraries\SDL2_image\include;$(SolutionDir)Libraries\SDL2_mixer\include;$(SolutionDir)Libraries\SDL2_ttf\include;$(SolutionDir)Libraries\SFML-2.5.1\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\SDL2\include;$(SolutionDir)Libraries\SDL2_image\include;$(SolutionDir)Libraries\SDL2_mixer\include;$(SolutionDir)Libraries\SDL2_ttf\include;$(SolutionDir)Libraries\SFML-2.5.1\include;$(SolutionDir)Libraries\Candle-1.0.2\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\SDL2\lib;$(SolutionDir)Libraries\SDL2_image\lib;$(SolutionDir)Libraries\SDL2_mixer\lib\x64;$(SolutionDir)Libraries\SDL2_ttf\lib;$(SolutionDir)Libraries\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
     <LocalDebuggerEnvironment>PATH=$(SolutionDir)Libraries\SDL2\lib;$(SolutionDir)Libraries\SDL2_image\lib;$(SolutionDir)Libraries\SDL2_mixer\lib\x64;$(SolutionDir)Libraries\SDL2_ttf\lib;%PATH%;$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
   </PropertyGroup>
