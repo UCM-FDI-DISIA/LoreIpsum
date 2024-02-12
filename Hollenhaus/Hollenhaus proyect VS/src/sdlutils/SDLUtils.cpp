@@ -117,6 +117,12 @@ void SDLUtils::loadReasources(std::string filename) {
 	// Load JSON configuration file. We use a unique pointer since we
 	// can exit the method in different ways, this way we guarantee that
 	// it is always deleted
+
+	if (filename == "") {
+		std::cout << "No hay ruta de recursos, por lo que no se cargan" << '\n';
+		return;
+	}
+
 	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
 
 	// check it was loaded correctly
