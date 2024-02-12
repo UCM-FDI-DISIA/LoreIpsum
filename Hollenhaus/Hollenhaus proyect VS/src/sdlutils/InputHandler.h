@@ -10,11 +10,17 @@
 
 // Instead of a Singleton class, we could make it part of
 // SDLUtils as well.
+	
+// std::unordered_map<int, std::list<callbacks>> uwu;
 
 class InputHandler: public Singleton<InputHandler> {
 
 	friend Singleton<InputHandler> ;
 
+
+
+	// recibe un enumerado y una funcion y añade esa funcion a es clave -> público
+	
 public:
 	enum MOUSEBUTTON : uint8_t {
 		LEFT = 0, MIDDLE, RIGHT, _LAST_MOUSEBUTTON_VALUE
@@ -23,7 +29,7 @@ public:
 	virtual ~InputHandler() {
 	}
 
-	// clear the state
+	// clear the state -> pone a false todos los eventos
 	inline void clearState() {
 		isCloseWindoEvent_ = false;
 		isKeyDownEvent_ = false;
@@ -35,27 +41,27 @@ public:
 		isMouseMotionEvent_ = false;
 	}
 
-	// update the state with a new event
+	// actualiza el estado con un nuvo evento
 	inline void update(const SDL_Event &event) {
 		switch (event.type) {
-		case SDL_KEYDOWN:
-			onKeyDown(event);
-			break;
-		case SDL_KEYUP:
-			onKeyUp(event);
-			break;
-		case SDL_MOUSEMOTION:
-			onMouseMotion(event);
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			onMouseButtonDown(event);
-			break;
-		case SDL_MOUSEBUTTONUP:
-			onMouseButtonUp(event);
-			break;
-		case SDL_WINDOWEVENT:
-			handleWindowEvent(event);
-			break;
+			case SDL_KEYDOWN:
+				onKeyDown(event);
+				break;
+			case SDL_KEYUP:
+				onKeyUp(event);
+				break;
+			case SDL_MOUSEMOTION:
+				onMouseMotion(event);
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				onMouseButtonDown(event);
+				break;
+			case SDL_MOUSEBUTTONUP:
+				onMouseButtonUp(event);
+				break;
+			case SDL_WINDOWEVENT:
+				handleWindowEvent(event);
+				break;
 		default:
 			break;
 		}
@@ -70,12 +76,15 @@ public:
 			update(event);
 	}
 
-	// close window event
+	// devuelve el bool evento activo
+#pragma region DEF. EVENTOS
+
+// WINDOW EVENTS
 	inline bool closeWindowEvent() {
 		return isCloseWindoEvent_;
 	}
 
-	// keyboard
+// KEYBOARD EVENTS
 	inline bool keyDownEvent() {
 		return isKeyDownEvent_;
 	}
@@ -100,7 +109,7 @@ public:
 		return isKeyUp(SDL_GetScancodeFromKey(key));
 	}
 
-	// mouse
+// MOUSE EVENTS
 	inline bool mouseMotionEvent() {
 		return isMouseMotionEvent_;
 	}
@@ -126,15 +135,19 @@ public:
 		return mbState_[b];
 	}
 
-	// TODO add support for Joystick, see Chapter 4 of
-	// the book 'SDL Game Development'
+#pragma endregion
 
 private:
 	InputHandler() {
-		kbState_ = SDL_GetKeyboardState(0);
+		// estado del teclado en ese momento -> qué tecla/s se está pulsando
+		// devuelve un puntero a un array de key states -> si un elemento del array es 1 PULSADO / 0 NO PULSADO
+		kbState_ = SDL_GetKeyboardState(0); 
+
+		// limpia estado
 		clearState();
 	}
 
+#pragma region SETTEA EVENTOS A TRUE
 	inline void onKeyDown(const SDL_Event&) {
 		isKeyDownEvent_ = true;
 	}
@@ -147,7 +160,6 @@ private:
 		isMouseMotionEvent_ = true;
 		mousePos_.first = event.motion.x;
 		mousePos_.second = event.motion.y;
-
 	}
 
 	inline void onMouseButtonDown(const SDL_Event &event) {
@@ -193,22 +205,30 @@ private:
 			break;
 		}
 	}
+#pragma endregion
 
+	// eventos
 	bool isCloseWindoEvent_;
 	bool isKeyUpEvent_;
 	bool isKeyDownEvent_;
 	bool isMouseMotionEvent_;
 	bool isMouseButtonUpEvent_;
 	bool isMouseButtonDownEvent_;
-	std::pair<Sint32, Sint32> mousePos_;
-	std::array<bool, 3> mbState_;
-	const Uint8 *kbState_;
-}
-;
 
-// This macro defines a compact way for using the singleton InputHandler, instead of
-// writing InputHandler::instance()->method() we write ih().method()
-//
+	// posicion del cursor en pantalla
+	std::pair<Sint32, Sint32> mousePos_;
+
+	// estados de raton
+	std::array<bool, 3> mbState_;
+
+	// puntero a estado de teclado
+	const Uint8 *kbState_;
+};
+
+// --------
+// forma de usar el singleton InputHandler
+// InputHandler::instance()->method() / EN VEZ DE ESTO
+// ih().method() / ESCRIBIR ESTO
 inline InputHandler& ih() {
 	return *InputHandler::instance();
 }
