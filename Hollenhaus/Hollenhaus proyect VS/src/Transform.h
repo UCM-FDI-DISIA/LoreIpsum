@@ -1,16 +1,17 @@
 #pragma once
-#include "game/Component.h"
+#include "game/ComponentUpdate.h"
 #include "utils/Vector2D.h"
 class Transform :
-    public Component
+    public ComponentUpdate
 {
 public:
-    Transform() : parent() {
-        if (parent != nullptr) parent;
+    Transform() : parent(), angle() {
+        if (parent != nullptr);
     };
     ~Transform() {};
 
     Transform& operator+(const Transform& t);
+    Transform& operator=(const Transform& t);
 private:
     Transform* parent;
 
