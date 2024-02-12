@@ -31,6 +31,12 @@
     <Filter Include="Utilidades\SDL_Utils">
       <UniqueIdentifier>{89c3e0e1-445c-4819-9e4d-922dd97fd1a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Componentes">
+      <UniqueIdentifier>{9789e4c5-3acd-4c60-acf8-9a21cd875d51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Componentes">
+      <UniqueIdentifier>{5659784e-72f8-48f5-92c6-b846ce7fd0d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\Game.cpp">
@@ -73,6 +79,12 @@
       <Filter>Utilidades\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Data.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Transform.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Card.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -149,9 +161,19 @@
     <ClInclude Include="src\utils\Vector2D.h">
       <Filter>Utilidades\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\Component.h" />
-    <ClInclude Include="src\game\ComponentRender.h" />
     <ClInclude Include="Data.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Component.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\ComponentRender.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Transform.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Card.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

@@ -289,15 +289,15 @@ void SDLUtils::loadReasources(std::string filename) {
 					// TODO: parsear bien que no todo soin strings (skills pueden ser objs?)
 					JSONObject vObj = v->AsObject();
 					std::string key = vObj["id"]->AsString();
-					double cost = vObj["cost"]->AsNumber();
-					double value = vObj["value"]->AsNumber();
+					int cost = vObj["cost"]->AsNumber();
+					int value = vObj["value"]->AsNumber();
 					std::string sprite = vObj["sprite"]->AsString();
 					//std::string skills = vObj["skills"]->AsString();
 #ifdef _DEBUG
 					std::cout << "Loading cards with id: " << key << std::endl;
 #endif
-					// TODO: ESTO
-					//musics_.emplace(key, Music(file));
+					cards_.emplace(key, Card(cost, value, sprite));
+
 				} else {
 					throw "'cards' array in '" + filename
 							+ "' includes and invalid value";

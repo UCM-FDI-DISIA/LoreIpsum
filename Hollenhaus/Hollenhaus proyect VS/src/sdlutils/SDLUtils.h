@@ -14,7 +14,7 @@
 #include "Texture.h"
 #include "VirtualTimer.h"
 
-//#include "Card.h"
+#include "../Card.h"
 
 class SDLUtils: public Singleton<SDLUtils> {
 
@@ -196,7 +196,7 @@ private:
 	sdl_resource_table<Texture> msgs_; // textures map (string -> texture)
 	sdl_resource_table<SoundEffect> sounds_; // sounds map (string -> sound)
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
-	//sdl_resource_table<Card> cards_; // musics map (string -> card)
+	sdl_resource_table<Card> cards_; // cards map (string -> card)
 
 	map_access_wrapper<Font> fontsAccessWrapper_;
 	map_access_wrapper<Texture> imagesAccessWrapper_;

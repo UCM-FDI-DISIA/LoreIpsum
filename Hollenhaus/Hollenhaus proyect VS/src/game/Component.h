@@ -16,7 +16,7 @@ public:
 		ent_ = ent;
 	}
 
-	// Se invoca al añadir un componente a una entidad.
+	// Se invoca al anyadir un componente a una entidad.
 	// Para inicializar el componenete si es necesario.
 	virtual void initCompomnent() {};
 
