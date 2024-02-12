@@ -72,6 +72,9 @@
     <ClCompile Include="src\utils\Vector2D.cpp">
       <Filter>Utilidades\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Data.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -146,7 +149,13 @@
     <ClInclude Include="src\utils\Vector2D.h">
       <Filter>Utilidades\Utils</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
     <ClInclude Include="src\game\Component.h" />
     <ClInclude Include="src\game\ComponentRender.h" />
+=======
+    <ClInclude Include="Data.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+>>>>>>> Stashed changes
   </ItemGroup>
 </Project>
