@@ -1,15 +1,15 @@
 #pragma once
 
-class Entity;
+#include "Component.h"
 
-class Component
-{
+class ComponentUpdate : public Component {
+
 public:
-	Component() :
+	ComponentUpdate() :
 		ent_()
 	{}
 
-	virtual ~Component() {};
+	virtual ~ComponentUpdate() {};
 
 	// Para pasarle un puntero a su entidad
 	inline void setContext(Entity* ent) {
@@ -19,6 +19,9 @@ public:
 	// Se invoca al añadir un componente a una entidad.
 	// Para inicializar el componenete si es necesario.
 	virtual void initCompomnent() {};
+
+	// Para actualizar el estado
+	virtual void update() {};
 
 protected:
 	Entity* ent_;

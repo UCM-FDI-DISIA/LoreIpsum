@@ -20,9 +20,6 @@ public:
 	// Para inicializar el componenete si es necesario.
 	virtual void initCompomnent() {};
 
-	// Para actualizar el estado
-	virtual void update() {};
-
 	// Para renderizar el estado
 	virtual void render() const {};
 
