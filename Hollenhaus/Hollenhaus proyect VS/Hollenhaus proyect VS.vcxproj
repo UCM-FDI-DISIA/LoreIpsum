@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Data.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
@@ -35,6 +36,7 @@
     <ClCompile Include="U:\hlocal\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Data.h" />
     <ClInclude Include="src\game\checkML.h" />
     <ClInclude Include="src\game\Component.h" />
     <ClInclude Include="src\game\ComponentRender.h" />

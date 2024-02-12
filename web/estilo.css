@@ -10,6 +10,12 @@ html {
   font-size: 1.2rem;
 }
 
+p{
+  font-family: 'averia';
+  font-size: 1.2rem;
+  color:  rgb(231, 217, 194);
+}
+
 h1 {
   text-align: center;
   color: rgb(231, 217, 194);
@@ -30,10 +36,31 @@ body {
 }
 
 /* pestañas */
-.carta {
+.extra {
+  position:absolute;
+  top: 250px;
+  left : 700px;
+  z-index: 1;
+}
+
+.info {
+  position:absolute;
+  top: 250px;
+  left : 1000px;
+  z-index: 1;
+}
+
+.videos {
   position:absolute;
   top: 500px;
   left : 700px;
+  z-index: 1;
+}
+
+.release {
+  position:absolute;
+  top: 500px;
+  left : 1000px;
   z-index: 1;
 }
 
