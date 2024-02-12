@@ -35,6 +35,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\checkML.h" />
+    <ClInclude Include="src\game\Component.h" />
+    <ClInclude Include="src\game\ComponentRender.h" />
     <ClInclude Include="src\game\Game.h" />
     <ClInclude Include="src\game\GameState.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
