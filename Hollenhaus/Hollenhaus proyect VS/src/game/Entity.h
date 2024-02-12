@@ -14,11 +14,16 @@ class Entity {
 public:
 
 	Entity(GameState* gs) :
-		gameState(gs), cmpsU_(), currCmpsU_(), alive_() {
+		gameState(gs), cmpsU_(), currCmpsU_(), cmpsR_(), currCmpsR_(), alive_() {
 		currCmpsU_.reserve(ecs::maxComponentUId);
+		currCmpsR_.reserve(ecs::maxComponentRId);
 	}
+
 	virtual ~Entity() {
 		for (auto c : currCmpsU_) {
+			delete c;
+		}
+		for (auto c : currCmpsR_) {
 			delete c;
 		}
 	}
@@ -32,6 +37,7 @@ private:
 
 	bool alive_;
 	GameState* gameState;
+
 	std::vector<ComponentUpdate*> currCmpsU_;
 	std::array<ComponentUpdate*, ecs::maxComponentUId> cmpsU_;
 
@@ -55,7 +61,9 @@ public:
 		return c;
 	}
 
-	inline void removeComponent(ecs::cmpId_t cId) {
+	template<typename T>
+	inline void removeComponent() {
+		constexpr cmpId_t cId = T::id;
 		if (cmpsU_[cId] != nullptr) {
 			auto iter = std::find(currCmpsU_.begin(),
 				currCmpsU_.end(),
@@ -67,11 +75,15 @@ public:
 	}
 
 	template<typename T>
-	inline T* getComponent(ecs::cmpId_t cId) {
+	inline T* getComponent() {
+		constexpr cmpId_t cId = T::id;
+
 		return static_cast<T*>(cmps_[cId]);
 	}
 
-	inline bool hasComponent(ecs::cmpId_t cId) {
+	template<typename T>
+	inline bool hasComponent() {
+		constexpr cmpId_t cId = T::id;
 		return cmpsU_[cId] != nullptr;
 	}
 

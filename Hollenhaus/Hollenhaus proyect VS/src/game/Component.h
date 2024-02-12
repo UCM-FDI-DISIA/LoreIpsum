@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ecs.h"
+
 class Entity;
 
 class Component
@@ -22,5 +24,7 @@ public:
 
 protected:
 	Entity* ent_;
+
+	constexpr static ecs::cmpId_t id = 0;
 };
 
