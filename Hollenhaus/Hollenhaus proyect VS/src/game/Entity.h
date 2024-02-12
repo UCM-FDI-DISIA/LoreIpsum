@@ -14,11 +14,11 @@ class Entity {
 public:
 
 	Entity(GameState* gs) :
-		gameState(gs), cmps_(), currCmps_(), alive_() {
-		currCmps_.reserve(ecs::maxComponentId);
+		gameState(gs), cmpsU_(), currCmpsU_(), alive_() {
+		currCmpsU_.reserve(ecs::maxComponentUId);
 	}
 	virtual ~Entity() {
-		for (auto c : currCmps_) {
+		for (auto c : currCmpsU_) {
 			delete c;
 		}
 	}
@@ -31,7 +31,7 @@ public:
 private:
 
 	bool alive_;
-	GameState* gameState´;
+	GameState* gameState;
 	std::vector<ComponentUpdate*> currCmpsU_;
 	std::array<ComponentUpdate*, ecs::maxComponentUId> cmpsU_;
 
@@ -41,8 +41,8 @@ private:
 public:
 
 	template<typename T, typename ...Ts>
-	inline T* addComponent(Ts&& …args) {
-		T* c = new T(std::forward<Ts>(args)…);
+	inline T* addComponent(Ts&&...args) {
+		T* c = new T(std::forward<Ts>(args)...);
 
 		constexpr cmpId_t cId = T::id;
 		static_assert(cId < maxComponentId);
@@ -56,13 +56,13 @@ public:
 	}
 
 	inline void removeComponent(ecs::cmpId_t cId) {
-		if (cmps_[cId] != nullptr) {
-			auto iter = std::find(currCmps_.begin(),
-				currCmps_.end(),
-				cmps_[cId]);
-			currCmps_.erase(iter);
-			delete cmps_[cId];
-			cmps_[cId] = nullptr;
+		if (cmpsU_[cId] != nullptr) {
+			auto iter = std::find(currCmpsU_.begin(),
+				currCmpsU_.end(),
+				cmpsU_[cId]);
+			currCmpsU_.erase(iter);
+			delete cmpsU_[cId];
+			cmpsU_[cId] = nullptr;
 		}
 	}
 
@@ -72,18 +72,18 @@ public:
 	}
 
 	inline bool hasComponent(ecs::cmpId_t cId) {
-		return cmps_[cId] != nullptr;
+		return cmpsU_[cId] != nullptr;
 	}
 
 	inline void update() {
-		auto n = currCmps_.size();
-		for (auto i = 0u; i < n; i++)
-			currCmps_[i]->update();
+		auto n = currCmpsU_.size();
+		for (auto i = 0u; i < n; i++){}
+			//currCmpsU_[i]->update();
 	}
 
 	inline void render() {
-		auto n = currCmps_.size();
-		for (auto i = 0u; i < n; i++)
-			currCmps_[i]->render();
+		auto n = currCmpsU_.size();
+		for (auto i = 0u; i < n; i++){}
+			//currCmpsU_[i]->render();
 	}
 };
