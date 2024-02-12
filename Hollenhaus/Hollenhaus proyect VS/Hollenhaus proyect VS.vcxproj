@@ -19,32 +19,45 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Button.h" />
-    <ClInclude Include="src\checkML.h" />
-    <ClInclude Include="src\EventHandler.h" />
-    <ClInclude Include="src\Font.h" />
-    <ClInclude Include="src\Game.h" />
-    <ClInclude Include="src\gameList.h" />
-    <ClInclude Include="src\GameObject.h" />
-    <ClInclude Include="src\GameState.h" />
-    <ClInclude Include="src\GameStateMachine.h" />
-    <ClInclude Include="src\InvadersError.h" />
-    <ClInclude Include="src\MainMenuState.h" />
-    <ClInclude Include="src\PlayState.h" />
-    <ClInclude Include="src\texture.h" />
-    <ClInclude Include="src\Vector2D.h" />
+    <ClCompile Include="src\game\Game.cpp" />
+    <ClCompile Include="src\game\GameState.cpp" />
+    <ClCompile Include="src\game\GameStateMachine.cpp" />
+    <ClCompile Include="src\game\main.cpp" />
+    <ClCompile Include="src\json\JSON.cpp" />
+    <ClCompile Include="src\json\JSONValue.cpp" />
+    <ClCompile Include="src\json\json_demo.cpp" />
+    <ClCompile Include="src\sdlutils\SDLUtils.cpp" />
+    <ClCompile Include="src\sdlutils\sdlutils_demo.cpp" />
+    <ClCompile Include="src\sdlutils\SoundEffect.cpp" />
+    <ClCompile Include="src\sdlutils\Texture.cpp" />
+    <ClCompile Include="src\utils\Collisions.cpp" />
+    <ClCompile Include="src\utils\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Button.cpp" />
-    <ClCompile Include="src\Font.cpp" />
-    <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\GameObject.cpp" />
-    <ClCompile Include="src\GameState.cpp" />
-    <ClCompile Include="src\GameStateMachine.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\MainMenuState.cpp" />
-    <ClCompile Include="src\PlayState.cpp" />
-    <ClCompile Include="src\texture.cpp" />
+    <ClInclude Include="src\game\checkML.h" />
+    <ClInclude Include="src\game\Game.h" />
+    <ClInclude Include="src\game\GameState.h" />
+    <ClInclude Include="src\game\GameStateMachine.h" />
+    <ClInclude Include="src\json\JSON.h" />
+    <ClInclude Include="src\json\JSONValue.h" />
+    <ClInclude Include="src\json\json_demo.h" />
+    <ClInclude Include="src\sdlutils\Font.h" />
+    <ClInclude Include="src\sdlutils\InputHandler.h" />
+    <ClInclude Include="src\sdlutils\macros.h" />
+    <ClInclude Include="src\sdlutils\Music.h" />
+    <ClInclude Include="src\sdlutils\RandomNumberGenerator.h" />
+    <ClInclude Include="src\sdlutils\SDLNetUtils.h" />
+    <ClInclude Include="src\sdlutils\SDLUtils.h" />
+    <ClInclude Include="src\sdlutils\sdlutils_demo.h" />
+    <ClInclude Include="src\sdlutils\SoundEffect.h" />
+    <ClInclude Include="src\sdlutils\Texture.h" />
+    <ClInclude Include="src\sdlutils\VirtualTimer.h" />
+    <ClInclude Include="src\utils\Collisions.h" />
+    <ClInclude Include="src\utils\DynamicBitSet.h" />
+    <ClInclude Include="src\utils\mpl.h" />
+    <ClInclude Include="src\utils\ptr_iterator.h" />
+    <ClInclude Include="src\utils\Singleton.h" />
+    <ClInclude Include="src\utils\Vector2D.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -13,93 +13,138 @@
     <Filter Include="Archivos de origen\Auxiliares">
       <UniqueIdentifier>{bf5a5c79-0e63-4c8a-99fb-ec4d1b4f76d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado\GameObjects">
-      <UniqueIdentifier>{07690e90-c710-4b0b-a3a6-d1c8b2e9bc21}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Archivos de encabezado\GameStates">
       <UniqueIdentifier>{5a1d73ca-f3cf-4767-ba3a-2b62ce686d1d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de origen\GameObjects">
-      <UniqueIdentifier>{51108b49-c1e6-476f-a74b-5e7d90bc4436}</UniqueIdentifier>
     </Filter>
     <Filter Include="Archivos de origen\GameStates">
       <UniqueIdentifier>{62ed8841-0587-46e0-ad3a-0c0a65967e44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilidades">
+      <UniqueIdentifier>{b73a3906-c27a-44e6-b0d0-b9c8cfb9572b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilidades\JSON">
+      <UniqueIdentifier>{3df34b59-ca06-46d0-be00-c2d8de518fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilidades\Utils">
+      <UniqueIdentifier>{9a4f1541-d856-4d06-86cb-bf06f3c1697f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilidades\SDL_Utils">
+      <UniqueIdentifier>{89c3e0e1-445c-4819-9e4d-922dd97fd1a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\InvadersError.h">
-      <Filter>Archivos de encabezado\Auxiliares</Filter>
-    </ClInclude>
-    <ClInclude Include="src\texture.h">
-      <Filter>Archivos de encabezado\Auxiliares</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Vector2D.h">
-      <Filter>Archivos de encabezado\Auxiliares</Filter>
-    </ClInclude>
-    <ClInclude Include="src\checkML.h">
-      <Filter>Archivos de encabezado\Auxiliares</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameList.h">
-      <Filter>Archivos de encabezado\Auxiliares</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject.h">
-      <Filter>Archivos de encabezado\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MainMenuState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PlayState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Game.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameStateMachine.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Button.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EventHandler.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Font.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
+    <ClCompile Include="src\game\Game.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\GameStateMachine.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\GameState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json\JSON.cpp">
+      <Filter>Utilidades\JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json\json_demo.cpp">
+      <Filter>Utilidades\JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json\JSONValue.cpp">
+      <Filter>Utilidades\JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdlutils\SDLUtils.cpp">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdlutils\sdlutils_demo.cpp">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdlutils\SoundEffect.cpp">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdlutils\Texture.cpp">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\Collisions.cpp">
+      <Filter>Utilidades\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\Vector2D.cpp">
+      <Filter>Utilidades\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\texture.cpp">
-      <Filter>Archivos de origen\Auxiliares</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MainMenuState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PlayState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject.cpp">
-      <Filter>Archivos de origen\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Button.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Font.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Game.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameStateMachine.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
+    <ClInclude Include="src\game\Game.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\checkML.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\GameState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\GameStateMachine.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\json\JSON.h">
+      <Filter>Utilidades\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="src\json\json_demo.h">
+      <Filter>Utilidades\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="src\json\JSONValue.h">
+      <Filter>Utilidades\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\Font.h">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\InputHandler.h">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\macros.h">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\Music.h">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\RandomNumberGenerator.h">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\SDLNetUtils.h">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\SDLUtils.h">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\sdlutils_demo.h">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\SoundEffect.h">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\Texture.h">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\VirtualTimer.h">
+      <Filter>Utilidades\SDL_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Collisions.h">
+      <Filter>Utilidades\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\DynamicBitSet.h">
+      <Filter>Utilidades\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\mpl.h">
+      <Filter>Utilidades\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\ptr_iterator.h">
+      <Filter>Utilidades\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Singleton.h">
+      <Filter>Utilidades\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Vector2D.h">
+      <Filter>Utilidades\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
