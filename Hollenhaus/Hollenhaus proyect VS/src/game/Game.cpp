@@ -5,7 +5,7 @@
 
 Game::Game()
 {
-	SDLUtils::init("Hollenhaus", 800, 600,"");
+	SDLUtils::init("Hollenhaus", 800, 600, "./resources/config/resources.json");
 
 	gameStateMachine = new GameStateMachine();
 }

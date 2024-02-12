@@ -289,10 +289,10 @@ void SDLUtils::loadReasources(std::string filename) {
 					// TODO: parsear bien que no todo soin strings (skills pueden ser objs?)
 					JSONObject vObj = v->AsObject();
 					std::string key = vObj["id"]->AsString();
-					std::string cost = vObj["cost"]->AsString();
-					std::string value = vObj["value"]->AsString();
+					double cost = vObj["cost"]->AsNumber();
+					double value = vObj["value"]->AsNumber();
 					std::string sprite = vObj["sprite"]->AsString();
-					std::string skills = vObj["skills"]->AsString();
+					//std::string skills = vObj["skills"]->AsString();
 #ifdef _DEBUG
 					std::cout << "Loading cards with id: " << key << std::endl;
 #endif
@@ -304,7 +304,7 @@ void SDLUtils::loadReasources(std::string filename) {
 				}
 			}
 		} else {
-			throw "'musics' is not an array";
+			throw "'cards' is not an array";
 		}
 	}
 }
