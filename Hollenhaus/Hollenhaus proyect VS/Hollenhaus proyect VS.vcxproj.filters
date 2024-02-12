@@ -146,5 +146,7 @@
     <ClInclude Include="src\utils\Vector2D.h">
       <Filter>Utilidades\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\Component.h" />
+    <ClInclude Include="src\game\ComponentRender.h" />
   </ItemGroup>
 </Project>
