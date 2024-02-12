@@ -6,6 +6,8 @@
 #include <SDL.h>
 #include <iostream>
 #include <list>
+#include <string>
+//poli: hola estoy usando los apuntes del t5 de tpv1 para esto uwu 
 
 class GameState {
 
@@ -18,9 +20,13 @@ public:
 
 	virtual ~GameState() {};
 	
-	virtual void Render() const ;
-
+	virtual void Render() const;
 	virtual void Update();
+
+	virtual bool onEnter() = 0;
+	virtual bool onExit() = 0;
+
+	virtual std::string getStateID() const = 0;
 
 };
 
