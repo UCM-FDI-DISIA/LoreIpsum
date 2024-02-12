@@ -9,5 +9,5 @@ class Card // : Entity
 	std::string sprite, skills;
 public:
 	Card() = default;
-	Card(int, int, std::string&);
+	Card(int, int, std::string&, std::string&);
 };
