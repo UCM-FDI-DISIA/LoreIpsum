@@ -274,6 +274,39 @@ void SDLUtils::loadReasources(std::string filename) {
 		}
 	}
 
+
+
+
+	/// CARD PARSING
+	///	Samir (feat. Cynthia)
+	jValue = root["cards"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			musics_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto &v : jValue->AsArray()) {
+				if (v->IsObject()) {
+
+					// TODO: parsear bien que no todo soin strings (skills pueden ser objs?)
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString();
+					std::string cost = vObj["cost"]->AsString();
+					std::string value = vObj["value"]->AsString();
+					std::string sprite = vObj["sprite"]->AsString();
+					std::string skills = vObj["skills"]->AsString();
+#ifdef _DEBUG
+					std::cout << "Loading cards with id: " << key << std::endl;
+#endif
+					// TODO: ESTO
+					//musics_.emplace(key, Music(file));
+				} else {
+					throw "'cards' array in '" + filename
+							+ "' includes and invalid value";
+				}
+			}
+		} else {
+			throw "'musics' is not an array";
+		}
+	}
 }
 
 void SDLUtils::closeSDLExtensions() {
