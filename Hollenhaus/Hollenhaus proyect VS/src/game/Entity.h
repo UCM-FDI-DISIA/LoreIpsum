@@ -1,9 +1,11 @@
 #pragma once
 
+#include "ecs.h"
 #include <array>
 #include <vector>
 
-class Component;
+class ComponentUpdate;
+class ComponentRender;
 class GameState;
 
 class Entity {
@@ -20,6 +22,7 @@ public:
 			delete c;
 		}
 	}
+
 	inline bool isAlive() { return alive_; }
 	inline void setAlive(bool alive) { alive_ = alive; }
 	GameState* getGameState() { return gameState; }
@@ -28,10 +31,12 @@ public:
 private:
 
 	bool alive_;
-	GameState* gameState;
-	std::vector<Component*> currCmps_;
-	std::array<Component*, ecs::maxComponentId> cmps_;
+	GameState* gameState´;
+	std::vector<ComponentUpdate*> currCmpsU_;
+	std::array<ComponentUpdate*, ecs::maxComponentUId> cmpsU_;
 
+	std::vector<ComponentRender*> currCmpsR_;
+	std::array<ComponentRender*, ecs::maxComponentRId> cmpsR_;
 
 public:
 
@@ -50,7 +55,7 @@ public:
 		return c;
 	}
 
-	inline void removeComponent(cmpId_t cId) {
+	inline void removeComponent(ecs::cmpId_t cId) {
 		if (cmps_[cId] != nullptr) {
 			auto iter = std::find(currCmps_.begin(),
 				currCmps_.end(),
@@ -62,11 +67,11 @@ public:
 	}
 
 	template<typename T>
-	inline T* getComponent(cmpId_t cId) {
+	inline T* getComponent(ecs::cmpId_t cId) {
 		return static_cast<T*>(cmps_[cId]);
 	}
 
-	inline bool hasComponent(cmpId_t cId) {
+	inline bool hasComponent(ecs::cmpId_t cId) {
 		return cmps_[cId] != nullptr;
 	}
 
@@ -79,6 +84,6 @@ public:
 	inline void render() {
 		auto n = currCmps_.size();
 		for (auto i = 0u; i < n; i++)
-			currCmps_[I]->render();
+			currCmps_[i]->render();
 	}
 };
