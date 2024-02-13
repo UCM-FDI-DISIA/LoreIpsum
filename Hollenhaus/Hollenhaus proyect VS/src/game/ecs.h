@@ -5,18 +5,20 @@
 #include <cstdint>
 
 
+#pragma region Define lists
+
 
 // Components Update list - must have at least one element
 //
 #define _CMPS_U_LIST_ \
 	TRANSFORM, \
 	IMAGE
-
 // Components Render list - must have at least one element
 //
 #define _CMPS_R_LIST_ \
 	TRANSFORM, \
 	IMAGE
+
 // Groups list - must have at least one element
 //
 #define _GRPS_LIST_ \
@@ -34,6 +36,8 @@
 #define _SYS_LIST_ \
     COLLISION, \
 	RENDER
+
+#pragma endregion
 
 
 namespace ecs {
@@ -113,6 +117,7 @@ enum sysId : hdlrId_t {
 };
 }
 
+//IDs max
 constexpr cmpId_t maxComponentUId = cmp::cmpUId::_LAST_CMP_ID;
 constexpr cmpId_t maxComponentRId = cmp::cmpRId::_LAST_CMP_ID;
 constexpr cmpId_t maxGroupId = grp::grpId::_LAST_GRP_ID;

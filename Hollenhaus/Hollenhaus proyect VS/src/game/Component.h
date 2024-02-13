@@ -25,6 +25,10 @@ public:
 protected:
 	Entity* ent_;
 
+
 	constexpr static ecs::cmpId_t id = 0;
+	// 2 opciones(segun sea un componentne de render o de update):
+	//ecs::cmp::cmpUId::COMPONENT_ID
+	//ecs::cmp::cmpRId::COMPONENT_ID
 };
 

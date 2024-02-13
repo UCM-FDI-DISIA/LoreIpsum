@@ -8,17 +8,30 @@ class ComponentUpdate;
 class ComponentRender;
 class GameState;
 
+
+/// <summary>
+/// Clase entity vista en clase con algunas modificiaciones:
+/// Usamos 2 listas de componentes, una de ComponentUpdate y otra de ComponentRender
+/// Se gestionan las listas por separado
+/// Necesitamos las 2 listas para tener un orden de renderizado y que los componentes no tengan
+/// funciones vacias
+/// </summary>
+
 class Entity {
 
 
 public:
 
+	//Constructora, inicializamos todas las variables
 	Entity(GameState* gs) :
 		gameState(gs), cmpsU_(), currCmpsU_(), cmpsR_(), currCmpsR_(), alive_() {
+		
+		//reservamos la memoria para las listas de componentes
 		currCmpsU_.reserve(ecs::maxComponentUId);
 		currCmpsR_.reserve(ecs::maxComponentRId);
 	}
 
+	//eliminamos los componentes de las 2 listas
 	virtual ~Entity() {
 		for (auto c : currCmpsU_) {
 			delete c;
@@ -28,8 +41,11 @@ public:
 		}
 	}
 
+	//funciones publicas para consultar y cambiar el el estado de la entidad
 	inline bool isAlive() { return alive_; }
 	inline void setAlive(bool alive) { alive_ = alive; }
+
+	//consulta el gameState al que pertenece la entidad
 	GameState* getGameState() { return gameState; }
 
 
@@ -38,26 +54,60 @@ private:
 	bool alive_;
 	GameState* gameState;
 
+	//lista de componentes que tienen update
 	std::vector<ComponentUpdate*> currCmpsU_;
 	std::array<ComponentUpdate*, ecs::maxComponentUId> cmpsU_;
 
+	//lista de componentes que tienen render
 	std::vector<ComponentRender*> currCmpsR_;
 	std::array<ComponentRender*, ecs::maxComponentRId> cmpsR_;
 
 public:
 
+	//añadir un componente a una entidad
 	template<typename T, typename ...Ts>
 	inline T* addComponent(Ts&&...args) {
+		//creamos el componente
 		T* c = new T(std::forward<Ts>(args)...);
 
-		constexpr cmpId_t cId = T::id;
-		static_assert(cId < maxComponentId);
+		//guardamos el ID
+		constexpr ecs::cmpId_t cId = T::id;
 
-		removeComponent<T>();
-		currCmps_.push_back(c);
-		cmps_[cId] = c;
-		c->setContext(this);
-		c->initComponent();
+		//vemos si es un componente de tipo Update o no
+		//Nota: consideramos que si no es de tipo Update es de tipo Render
+		ComponentUpdate* p = dynamic_cast<ComponentUpdate*>(c);
+
+		//si es de tipo update
+		if (p != nullptr) {
+
+			//nos aseguramos que no salimos del array
+			static_assert(cId < ecs::maxComponentUId);
+			//elimiamos este componente por si ya lo teniamos
+			removeComponent<T>();
+			//añadimos el componente a la lista y al array
+			currCmpsU_.push_back(c);
+			cmpsU_[cId] = c;
+
+			//seteamos el contexto e inicializamos el componente
+			c->setContext(this);
+			c->initComponent();
+		}
+		else {//si es de tipo de render
+
+			//nos aseguramos que no salimos del array
+			static_assert(cId < ecs::maxComponentRId);
+
+			//elimiamos este componente por si ya lo teniamos
+			removeComponent<T>();
+			//añadimos el componente a la lista y al array
+			currCmpsR_.push_back(c);
+			cmpsR_[cId] = c;
+
+			//seteamos el contexto e inicializamos el componente
+			c->setContext(this);
+			c->initComponent();
+		}
+
 		return c;
 	}
 
