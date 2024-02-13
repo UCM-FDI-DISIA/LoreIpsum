@@ -1,4 +1,4 @@
-// This file is part of the course TPV2@UCM - Samir Genaim
+// Basado en el codigo para TPV2@UCM - Samir Genaim
 
 #pragma once
 
@@ -62,7 +62,8 @@ using hdlrId_t = uint8_t;
 using sysId_t = uint8_t;
 
 // we use a name space for the components enum to avoid conflicts
-namespace cmp {
+namespace cmpU {
+
 // list of component identifiers - note that we rely on that the
 // first number is 0 in C/C++ standard
 enum cmpUId : cmpId_t {
@@ -71,6 +72,9 @@ enum cmpUId : cmpId_t {
 	// do not remove this
 	_LAST_CMP_ID
 };
+}
+
+namespace cmpR {
 
 // list of component identifiers - note that we rely on that the
 // first number is 0 in C/C++ standard
@@ -80,8 +84,8 @@ enum cmpRId : cmpId_t {
 	// do not remove this
 	_LAST_CMP_ID
 };
-
 }
+
 
 namespace grp {
 // list of group identifiers - note that we rely on that the
@@ -118,8 +122,8 @@ enum sysId : hdlrId_t {
 }
 
 //IDs max
-constexpr cmpId_t maxComponentUId = cmp::cmpUId::_LAST_CMP_ID;
-constexpr cmpId_t maxComponentRId = cmp::cmpRId::_LAST_CMP_ID;
+constexpr cmpId_t maxComponentUId = cmpU::cmpUId::_LAST_CMP_ID;
+constexpr cmpId_t maxComponentRId = cmpR::cmpRId::_LAST_CMP_ID;
 constexpr cmpId_t maxGroupId = grp::grpId::_LAST_GRP_ID;
 constexpr hdlrId_t maxHandlerId = hdlr::hdlrId::_LAST_HDLR_ID;
 constexpr sysId_t maxSystemId = sys::sysId::_LAST_SYS_ID;

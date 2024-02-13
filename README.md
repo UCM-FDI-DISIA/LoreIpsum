@@ -113,15 +113,15 @@ Enfrentamiento complejo, de larga duración (se trata del “boss” del nivel) 
 El jugador consigue su nuevo pisito en el infierno, o no.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i. **Partida genérica** <a name="id4"></a>
-> 1. El jugador recibe un caso de un cliente (lore).
-> 2. El jugador se enfrenta a un personaje menor y obtiene una nueva carta.
+> 1. El jugador recibe un caso de un cliente por el teléfono (lore).
+> 2. El jugador se enfrenta a un personaje menor en la ciudad y obtiene una nueva carta.
 > 3. El jugador se enfrenta a otro personaje menor y obtiene dinero.
-> 4. El jugador usa el dinero que ha ganado para comprar una nueva carta.
+> 4. El jugador usa el dinero que ha ganado para comprar una nueva carta en la tienda.
 > 5. El jugador va a la oficina y edita su mazo.
 > 6. El jugador se enfrenta a la médium y pierde.
-> 7. El jugador hace más combates menores y obtiene nuevas cartas y más dinero.
+> 7. El jugador hace más combates menores, obtiene más dinero y nuevas cartas.
 > 8. El jugador vuelve a editar su mazo para intentar ganar a la médium.
-> 9. El jugador se enfrenta a la médium y gana, obtiene almas y acaba el caso, como no tiene suficientes almas todavía, vuelve a empezar otro caso.
+> 9. El jugador se enfrenta a la médium y gana, obtiene almas y acaba el caso. Como no tiene suficientes almas todavía para costearse el piso en el infierno, vuelve a empezar otro caso para conseguirlas.
 
 4. ### Juego de cartas <a name="id5"></a>
 ![Elementos del combate básicos](/docs/GDD/images/image2.png)
@@ -173,15 +173,15 @@ Finalmente, también existe la mecánica de **terreno**: una de las casillas del
   ![](/docs/GDD/images/image10.png)
 
    5. #### Batalla <a name="id15"></a>
-   Al inicio de la batalla se hace zoom desde arriba a la mesa para que solo aparezca el tablero y mazos. 
+   Al inicio de la batalla habrá una transición de zoom desde arriba a la mesa para que solo aparezca el tablero y mazos. 
 Abajo se verá la mano y cuando se pulse sobre ella habrá una transición hacia abajo para verlas mejor.
-A la derecha se verá parte del libro donde se explica lo que hace cada carta. Cuando sobre una carta haces click en el icono de la habilidad se lleva mediante transición al libro.
-Para la pausa se deshace el zoom del principio y que se vea a los jugadores enteros, y para quitarla volver a hacerlo. 
-Las batallas normales son batallas en la mente y la de la pitonisa en la oficina. La decoración entre ambas cambia. Para representar los puntos de acción se usarán velas que se irán apagando cuando uses cartas según su coste.
+A la derecha se verá parte del libro donde se explica lo que hace cada carta. Al hacer clic sobre una carta en su icono de habilidad, se lleva mediante una transición al libro.
+Para la pausa se deshace el zoom del principio, de forma que se ven a los jugadores enteros. Al volver al juego, se deshace la transición. 
+Los combates se diferencian en dos tipos: las batallas menores en la ciudad, que ocurren en la mente, y la de la pitonisa en la oficina. La decoración cambia según el tipo de enfrentamiento. Los puntos de acción están representados por velas; si se ha utilizado un número de puntos de acción, se apagan ese número de velas.
 ![Disposición de los elementos del menú de gestión del mazo](/docs/GDD/images/image11.png)
 
    6. #### Resolución <a name="id16"></a>
-   Información pertinente a la historia y resolución de esa batalla/caso en forma de texto en prosa, diálogo…, y un botón para seguir.
+   Se encontrará la información pertinente a la historia y resolución de la batalla o caso correspondiente, en forma de texto en prosa o diálogo y un botón para seguir.
 ![Diagrama de menú de resolución de batalla](/docs/GDD/images/image12.png)
 
 7. ### Estética <a name="id17"></a>
@@ -201,13 +201,13 @@ Estética referenciada en los primeros juegos en 3D, con gráficos pre-renderiza
 | Elation for the Wonderbox 6000 | ![](/docs/GDD/images/image19.png) | Iron Lung | ![](/docs/GDD/images/image24.png) |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ii. **Musical** <a name="id21"></a>\
-   La música estará dividida en varios temas capaces de mantenerse en bucle representando las distintas fases del juego: menú, deckbuilder, ciudad/oficina/tienda y batalla. La estética general de la música será jazz tétrico y oscuro pero calmado, a lo música de ascensor pero menos feliz.
+   La música estará dividida en varios temas capaces de mantenerse en bucle representando las distintas fases del juego: menú, deckbuilder, ciudad/oficina/tienda y batalla. La estética general de la música será jazz tétrico y oscuro pero calmado. Un buen ejemplo sería música de ascensor pero menos feliz.
 
 7. ### Contenido <a name="id22"></a>
    1. #### Narrativa <a name="id23"></a>
-      La historia se basa en que tú, como jugador, has muerto y para trascender al infierno debes pagar la entrada a un piso en primera línea de playa en el más allá. Para ello te apoyas en tus habilidades paranormales y montas una agencia de sustos; los clientes te contratan y usan su alma como moneda de pago, eligen una víctima y tú investigas por la ciudad qué les asusta.
+      La historia se basa en que el personaje principal —el jugador— ha muerto y para trascender al infierno debe pagar la entrada a un piso en primera línea de playa en el más allá. Para ello se apoyas en sus habilidades paranormales y monta una agencia de sustos; los clientes le contratan y usan su alma como moneda de pago, eligen una víctima y el personaje principal investigará por la ciudad qué les asusta.
 ![](/docs/GDD/images/image25.png)
-Una vez estás seguro de que sabes cómo asustar a la susodicha persona llamas a una médium y a través de ella materializas tu ataque en forma de un duelo de cartas. Si el ataque te sale bien cobras en almas. Una vez se han resuelto todos los casos, triunfas o fracasas en tu pacto inmobiliario con el demonio en función de las almas que poseas al final del juego.\
+Una vez está seguro de que sabe cómo asustar a la susodicha persona, llama a una médium y a través de ella materializa su ataque en forma de un duelo de cartas. Si el ataque le sale bien, cobra en almas. Una vez se han resuelto todos los casos, triunfa o fracasa en tu pacto inmobiliario con el demonio en función de las almas que poseas al final del juego.\
 ![](/docs/GDD/images/image26.png)
 
    2. #### Cartas <a name="id24"></a>

@@ -48,9 +48,6 @@
     <ClCompile Include="src\game\GameStateMachine.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\GameState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="src\json\JSON.cpp">
       <Filter>Utilidades\JSON</Filter>
     </ClCompile>
@@ -161,7 +158,6 @@
     <ClInclude Include="src\utils\Vector2D.h">
       <Filter>Utilidades\Utils</Filter>
     </ClInclude>
-
     <ClInclude Include="Data.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -177,9 +173,14 @@
     <ClInclude Include="src\Card.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-
-    <ClInclude Include="src\game\ComponentUpdate.h" />
-    <ClInclude Include="src\game\Entity.h" />
-    <ClInclude Include="src\game\ecs.h" />
+    <ClInclude Include="src\game\Entity.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\ComponentUpdate.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\ecs.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

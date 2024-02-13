@@ -1,10 +1,10 @@
 
 #pragma once
 #include "checkML.h"
+#include <SDL.h>
 
 
-#include "GameStateMachine.h"
-#include "../sdlutils/InputHandler.h"
+class GameStateMachine;
 
 class Game {
 public:
