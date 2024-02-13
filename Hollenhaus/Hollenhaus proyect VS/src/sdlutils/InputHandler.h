@@ -1,25 +1,36 @@
-// This file is part of the course TPV2@UCM - Samir Genaim
+// Basado en el codigo para TPV2@UCM - Samir Genaim
 
 #pragma once
 
 #include <iostream>
 #include <SDL.h>
 #include <array>
+#include <map>
+#include <functional>
 
+// Instead of a Singleton class, we could make it part of SDLUtils as well
 #include "../utils/Singleton.h"
 
-// Instead of a Singleton class, we could make it part of
-// SDLUtils as well.
-	
-// std::unordered_map<int, std::list<callbacks>> uwu;
+
+// utiliza callbacks funcionales de tipo <void(void)>
+using SDLEventCallback = std::function<void(void)>;
+
+SDLEventCallback funcCallback;
+
+enum inputState {
+	// definir los diferentes eventos de input
+};
+
+// lista de funciones a llamar cuando sucede un evento
+std::list<SDLEventCallback> inputCallbacks;
+
+// map <clave: ENUM de eventos (int -> índice del enum), valor: lista de callbacks>
+std::map<inputState, std::list<SDLEventCallback>> inputMap;
 
 class InputHandler: public Singleton<InputHandler> {
+private:
 
 	friend Singleton<InputHandler> ;
-
-
-
-	// recibe un enumerado y una funcion y añade esa funcion a es clave -> público
 	
 public:
 	enum MOUSEBUTTON : uint8_t {
@@ -74,6 +85,17 @@ public:
 		clearState();
 		while (SDL_PollEvent(&event))
 			update(event);
+	}
+
+	// recibe una clave (indice del enum de eventos) y una funcion, inserta esa funcion en el hueco correspondiente a su clave
+	void insertFunction(int clave, SDLEventCallback funcCallback) {
+		// añade el callback a la lista correspondiente a su clave
+		// en ese indice hacer pushback del callback a su lista correspondiente
+	}
+
+	// funcion para quitar funciones del map con la clave
+	void clearFunction() {
+
 	}
 
 	// devuelve el bool evento activo
