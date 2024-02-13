@@ -5,7 +5,7 @@
 #include "../sdlutils/SDLUtils.h"
 #include "../sdlutils/InputHandler.h"
 
-
+#include "GameStateMachine.h"
 
 Game::Game()
 {
@@ -41,7 +41,7 @@ void Game::Run()
 
 	
 	//version suspendiendo el programa,consume menos recursos	
-	while (!InputHandler::instance()->closeWindowEvent() && !gameStateMachine->Empty()) {
+	while (!ih().closeWindowEvent() && !gameStateMachine->Empty()) {
 		//actualizar el start time
 		startTime = SDL_GetTicks();
 
@@ -77,5 +77,5 @@ void Game::Update()
 
 void Game::HandleEvents()
 {
-	InputHandler::instance()->refresh();	
+	ih().refresh();	
 }

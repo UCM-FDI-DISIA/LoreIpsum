@@ -173,8 +173,14 @@
     <ClInclude Include="src\Card.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\ComponentUpdate.h" />
-    <ClInclude Include="src\game\Entity.h" />
-    <ClInclude Include="src\game\ecs.h" />
+    <ClInclude Include="src\game\Entity.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\ComponentUpdate.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\ecs.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
