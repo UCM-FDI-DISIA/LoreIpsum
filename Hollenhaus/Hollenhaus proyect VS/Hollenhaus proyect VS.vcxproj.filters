@@ -161,6 +161,7 @@
     <ClInclude Include="src\utils\Vector2D.h">
       <Filter>Utilidades\Utils</Filter>
     </ClInclude>
+
     <ClInclude Include="Data.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -176,5 +177,9 @@
     <ClInclude Include="src\Card.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+
+    <ClInclude Include="src\game\ComponentUpdate.h" />
+    <ClInclude Include="src\game\Entity.h" />
+    <ClInclude Include="src\game\ecs.h" />
   </ItemGroup>
 </Project>

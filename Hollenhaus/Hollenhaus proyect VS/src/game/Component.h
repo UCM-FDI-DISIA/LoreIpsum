@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ecs.h"
+
 class Entity;
 
 class Component
@@ -21,6 +23,14 @@ public:
 	virtual void initCompomnent() {};
 
 protected:
+
+	//puntero a la entidad a la que pertenece el componente
 	Entity* ent_;
+
+
+	constexpr static ecs::cmpId_t id = 0;
+	// 2 opciones(segun sea un componentne de render o de update):
+	//ecs::cmp::cmpUId::COMPONENT_ID
+	//ecs::cmp::cmpRId::COMPONENT_ID
 };
 
