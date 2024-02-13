@@ -23,6 +23,8 @@ public:
 	virtual void initCompomnent() {};
 
 protected:
+
+	//puntero a la entidad a la que pertenece el componente
 	Entity* ent_;
 
 
