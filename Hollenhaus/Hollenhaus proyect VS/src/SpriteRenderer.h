@@ -6,13 +6,13 @@
 class SpriteRenderer : public ComponentRender
 {
 public:
-	SpriteRenderer(Texture* _text) {};
+	SpriteRenderer(Texture* _text);
 
 	// Para inicializar el componenete si es necesario.
-	void initCompomnent() override {};
+	void initCompomnent() override;
 
 	// Para renderizar el estado
-	void render() const override {};
+	void render() const override;
 
 private:
 	// Componente transform

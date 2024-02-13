@@ -12,5 +12,5 @@ void SpriteRenderer::initCompomnent() {
 
 // Para renderizar el estado
 void SpriteRenderer::render() const {
-	texture->render()
+	//texture->render()
 };
