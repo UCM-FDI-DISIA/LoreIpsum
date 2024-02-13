@@ -1,6 +1,10 @@
 #include "checkML.h"
 #include "Game.h"
+
+
 #include "../sdlutils/SDLUtils.h"
+#include "../sdlutils/InputHandler.h"
+
 
 
 Game::Game()
@@ -35,6 +39,7 @@ void Game::Run()
 	}
 	*/
 
+	
 	//version suspendiendo el programa,consume menos recursos	
 	while (!InputHandler::instance()->closeWindowEvent() && !gameStateMachine->Empty()) {
 		//actualizar el start time

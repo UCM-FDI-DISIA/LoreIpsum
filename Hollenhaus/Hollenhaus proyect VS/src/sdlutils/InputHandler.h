@@ -12,23 +12,23 @@
 #include "../utils/Singleton.h"
 
 
-// utiliza callbacks funcionales de tipo <void(void)>
-using SDLEventCallback = std::function<void(void)>;
-
-SDLEventCallback funcCallback;
-
-enum inputState {
-	// definir los diferentes eventos de input
-};
-
-// lista de funciones a llamar cuando sucede un evento
-std::list<SDLEventCallback> inputCallbacks;
-
-// map <clave: ENUM de eventos (int -> índice del enum), valor: lista de callbacks>
-std::map<inputState, std::list<SDLEventCallback>> inputMap;
 
 class InputHandler: public Singleton<InputHandler> {
 private:
+	// utiliza callbacks funcionales de tipo <void(void)>
+	using SDLEventCallback = std::function<void(void)>;
+
+	SDLEventCallback funcCallback;
+
+	enum inputState {
+		// definir los diferentes eventos de input
+	};
+
+	// lista de funciones a llamar cuando sucede un evento
+	std::list<SDLEventCallback> inputCallbacks;
+
+	// map <clave: ENUM de eventos (int -> índice del enum), valor: lista de callbacks>
+	std::map<inputState, std::list<SDLEventCallback>> inputMap;
 
 	friend Singleton<InputHandler> ;
 	

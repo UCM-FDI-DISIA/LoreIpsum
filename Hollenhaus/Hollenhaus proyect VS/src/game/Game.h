@@ -4,7 +4,6 @@
 
 
 #include "GameStateMachine.h"
-#include "../sdlutils/InputHandler.h"
 
 class Game {
 public:
