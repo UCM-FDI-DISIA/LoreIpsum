@@ -13,8 +13,11 @@
 
 
 class GameStateMachine {
+	//preguntar: usamos vector de estados o stack? 
+	// stack no usa onEnter / onExit
 
-	std::stack<GameState*> gameStack;	
+	std::stack<GameState*> gameStack; // container de los states
+	//std::vector<GameState*> m_gameStates; // (lo q usa en las diapos)
 
 	std::list<GameState*> toBeDeleted;
 
@@ -27,9 +30,9 @@ public:
 	~GameStateMachine();
 
 
-	void pushState(GameState* state);
-	void replaceState(GameState* state);
-	void popState();
+	void pushState(GameState* state); // adds state without removing the previous
+	void replaceState(GameState* state); // removes the previous state before adding another
+	void popState(); // removes state without adding another
 
 	void Render()const;
 	void Update();
