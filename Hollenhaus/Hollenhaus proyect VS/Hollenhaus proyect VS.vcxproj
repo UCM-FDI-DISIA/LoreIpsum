@@ -22,7 +22,6 @@
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="src\Card.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
-    <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
     <ClCompile Include="src\game\main.cpp" />
     <ClCompile Include="src\json\JSON.cpp" />
