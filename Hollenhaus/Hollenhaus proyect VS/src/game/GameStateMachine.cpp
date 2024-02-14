@@ -34,8 +34,6 @@ void GameStateMachine::Update() {
 	gameStack.top()->Update();
 }
 
-
-
 void GameStateMachine::pushState(GameState* state) {
 	gameStack.push(state);
 }

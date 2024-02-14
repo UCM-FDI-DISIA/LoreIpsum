@@ -2,6 +2,7 @@
 #define GameState_H_
 
 #include  "checkML.h"
+#include "Entity.h"
 
 #include <SDL.h>
 #include <iostream>
@@ -12,26 +13,18 @@
 class GameState {
 
 protected:
-
+	std::vector<Entity*> ents_; //vector de entidades de cada estado
 
 public:
 
-	GameState(){};
-
-	virtual ~GameState() {};
+	GameState();
+	virtual ~GameState();
 	
-	virtual void Render() = 0;
-	virtual void Update() = 0;
-
-	virtual bool onEnter() = 0;
-	virtual bool onExit() = 0;
-
-	virtual std::string getStateID() const = 0; // each state will need to define this function and
-												//return its own staticconst ID
-
+	Entity* addEntity(); //entidades en cada estado
+	void refresh(); //borra entidades no vivas
+	void update(); //
+	void render();
 };
-
-
 
 #endif // !GameState_H_
 
