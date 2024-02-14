@@ -1,27 +1,37 @@
 #include "Transform.h"
 
 void
+Transform::update() {
+	if (isChild_) {
+		relativeAngle_ += parent_->globalAngle_;
+		relativeScale_ = relativeScale_ + parent_->globalScale_;
+		globalPos_ = parent_->globalPos_ + relativePos_;
+	}
+}
+
+void
 Transform::addParent(Transform* p) {
 	if (!isChild_) {
 		parent_ = p;
-		pos_ = pos_ - parent_->pos_; // Pos realtiva al padre
+		relativePos_ = globalPos_ - parent_->globalPos_; // Pos relativa al padre
 		isChild_ = true;
 	}
 }
 
 void
-Transform::update() {
-	if (isChild_);
-		// Movimiento con padre
-	else;
-		// Sin padre
+Transform::removeParent() {
+	if (isChild_) {
+		parent_ = nullptr;
+		relativePos_ = Vector2D(0, 0);
+		isChild_ = false;
+	}
 }
 
 Transform& 
 Transform::operator+(const Transform& t) {
-	pos_ = pos_ + t.pos_;
-	scale_ = scale_ + t.scale_;
-	angle_ += t.angle_;
+	globalPos_ = globalPos_ + t.globalPos_;
+	globalScale_ = globalScale_ + t.globalScale_;
+	globalAngle_ += t.globalAngle_;
 	vel_ = vel_ + t.vel_;
 
 	return *this;
@@ -29,9 +39,9 @@ Transform::operator+(const Transform& t) {
 
 Transform&
 Transform::operator-(const Transform& t) {
-	pos_ = pos_ - t.pos_;
-	scale_ = scale_ - t.scale_;
-	angle_ -= t.angle_;
+	globalPos_ = globalPos_ - t.globalPos_;
+	globalScale_ = globalScale_ - t.globalScale_;
+	globalAngle_ -= t.globalAngle_;
 	vel_ = vel_ - t.vel_;
 
 	return *this;
@@ -39,9 +49,9 @@ Transform::operator-(const Transform& t) {
 
 Transform&
 Transform::operator=(const Transform& t) {
-	pos_ = t.pos_;
-	scale_ = t.scale_;
-	angle_ = t.angle_;
+	globalPos_ = t.globalPos_;
+	globalScale_ = t.globalScale_;
+	globalAngle_ = t.globalAngle_;
 	vel_ = t.vel_;
 
 	return *this;

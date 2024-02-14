@@ -5,7 +5,7 @@ class Transform :
     public ComponentUpdate
 {
 public:
-    Transform() : parent_(), angle_(), isChild_(false) {};
+    Transform() : parent_(), globalAngle_(0), relativeAngle_(0), isChild_(false) {};
     ~Transform() {
         delete parent_;
         parent_ = nullptr;
@@ -13,18 +13,23 @@ public:
 
     void update() override;
 
+    // LOGICA DE JERARQUIA
     // Añadir un padre
     void addParent(Transform* p);
-    // Getters
-    Vector2D getPos() { 
-        if (isChild_)
-            return pos_ + parent_->pos_;
-        else
-            return pos_;
-    };
-    Vector2D getScale() { return scale_; };
-    float getAngle() { return angle_; };
+    // Quitar padre
+    void removeParent();
 
+    // GETTERS
+    // Globales
+    Vector2D getGlobalPos() { return globalPos_; };
+    Vector2D getGlobalScale() { return globalScale_; };
+    float getGlobalAngle() { return globalAngle_; };
+    // Relativos
+    Vector2D getRelativePos() { return relativePos_; };
+    Vector2D getRealativeScale() { return relativeScale_; };
+    float getRelativeAngle() { return relativeAngle_; };
+    
+    // OPERADORES
     Transform& operator+(const Transform& t);
     Transform& operator-(const Transform& t);
     Transform& operator=(const Transform& t);
@@ -32,9 +37,12 @@ private:
     Transform* parent_;
     bool isChild_;
 
-    Vector2D pos_,
-             vel_,
-             scale_;
-    float angle_;
+    Vector2D globalPos_,
+             globalScale_,
+             relativePos_,
+             relativeScale_,
+             vel_;
+    float globalAngle_,
+          relativeAngle_;
 };
 
