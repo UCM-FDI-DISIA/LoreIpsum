@@ -21,7 +21,9 @@
   <ItemGroup>
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="src\Card.cpp" />
+    <ClCompile Include="src\game\CityState.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
+    <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
     <ClCompile Include="src\game\main.cpp" />
     <ClCompile Include="src\json\JSON.cpp" />
@@ -40,6 +42,7 @@
     <ClInclude Include="Data.h" />
     <ClInclude Include="src\Card.h" />
     <ClInclude Include="src\game\checkML.h" />
+    <ClInclude Include="src\game\CityState.h" />
     <ClInclude Include="src\game\Component.h" />
     <ClInclude Include="src\game\ComponentRender.h" />
     <ClInclude Include="src\game\ComponentUpdate.h" />
