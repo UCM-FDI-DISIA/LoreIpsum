@@ -18,19 +18,19 @@ public:
 	Texture& operator=(const Texture&) = delete;
 
 	// can be moved
-	Texture& operator=(Texture &&other) noexcept;
-	Texture(Texture &&other) noexcept;
+	Texture& operator=(Texture&& other) noexcept;
+	Texture(Texture&& other) noexcept;
 
 	// Construct from image
-	Texture(SDL_Renderer *renderer, const std::string &fileName);
+	Texture(SDL_Renderer* renderer, const std::string& fileName);
 
 	// Construct from text
-	Texture(SDL_Renderer *renderer, const std::string &text, const Font &font,
-			const SDL_Color &fgColor);
+	Texture(SDL_Renderer* renderer, const std::string& text, const Font& font,
+		const SDL_Color& fgColor);
 
 	// Construct from text with background
-	Texture(SDL_Renderer *renderer, const std::string &text, const Font &font,
-			const SDL_Color &fgColor, const SDL_Color &bgColor);
+	Texture(SDL_Renderer* renderer, const std::string& text, const Font& font,
+		const SDL_Color& fgColor, const SDL_Color& bgColor);
 
 
 	virtual ~Texture() {
@@ -53,9 +53,9 @@ public:
 	// according to the value of flip. If 'p'is nullptr, the rotation is done
 	// wrt. the center
 	//
-	inline void render(const SDL_Rect &src, const SDL_Rect &dest, double angle,
-			const SDL_Point *p = nullptr,
-			SDL_RendererFlip flip = SDL_FLIP_NONE) {
+	inline void render(const SDL_Rect& src, const SDL_Rect& dest, double angle,
+		const SDL_Point* p = nullptr,
+		SDL_RendererFlip flip = SDL_FLIP_NONE) {
 		assert(texture_ != nullptr);
 		SDL_RenderCopyEx(renderer_, texture_, &src, &dest, angle, p, flip);
 	}
@@ -66,7 +66,7 @@ public:
 	// It can be implemented by calling the previous render method as well,
 	// but we use SDL_RenderCopy directly since it does less checks so it
 	// saves some checks ...
-	inline void render(const SDL_Rect &src, const SDL_Rect &dest) {
+	inline void render(const SDL_Rect& src, const SDL_Rect& dest) {
 		assert(texture_ != nullptr);
 		SDL_RenderCopy(renderer_, texture_, &src, &dest);
 	}
@@ -78,27 +78,40 @@ public:
 	}
 
 	// renders the complete texture at a destination rectangle (dest)
-	inline void render(const SDL_Rect &dest) {
+	inline void render(const SDL_Rect& dest) {
 		SDL_Rect src = { 0, 0, width_, height_ };
 		render(src, dest);
 	}
 
 	// renders the complete texture at a destination rectangle (dest),
 	// with rotation
-	inline void render(const SDL_Rect &dest, float rotation) {
+	inline void render(const SDL_Rect& dest, float rotation) {
 		SDL_Rect src = { 0, 0, width_, height_ };
 		render(src, dest, rotation);
+	}
+
+	/// <summary>
+	///  render the complete texture at position (x,y) and anlge (angle)
+	/// </summary>
+	/// <param name="x">Pos x</param>
+	/// <param name="y">Pos y</param>
+	/// <param name="mulScaleX">escala x</param>
+	/// <param name="mulScaleY">escala y</param>
+	/// <param name="angle">Angle</param>
+	inline void render(int x, int y, int mulScaleX, int mulScaleY, float angle) {
+		SDL_Rect dest = { x, y, width_ * mulScaleX, height_ * mulScaleY };
+		render(dest, angle);
 	}
 
 private:
 
 	// Construct from text
-	void constructFromText(SDL_Renderer *renderer, const std::string &text,
-			const Font &font, const SDL_Color *fgColor,
-			const SDL_Color *bgColor = nullptr);
+	void constructFromText(SDL_Renderer* renderer, const std::string& text,
+		const Font& font, const SDL_Color* fgColor,
+		const SDL_Color* bgColor = nullptr);
 
-	SDL_Texture *texture_;
-	SDL_Renderer *renderer_;
+	SDL_Texture* texture_;
+	SDL_Renderer* renderer_;
 	int width_;
 	int height_;
 };
