@@ -1,13 +1,15 @@
 #include "CityState.h"
-const std::string CityState::s_cityID = "CITY";
-void CityState::Update()
+void CityState::update()
 {
-	// nothing for now
 }
-void CityState::Render()
+void CityState::render()
 {
-	// nothing for now
 }
+void CityState::refresh()
+{
+}
+
+
 bool CityState::onEnter()
 {
 	std::cout << "entering CityState\n";

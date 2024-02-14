@@ -26,15 +26,13 @@ GameStateMachine::~GameStateMachine() {
 
 void GameStateMachine::Render() const{
 	if (Empty()) return;
-	gameStack.top()->Render();
+	gameStack.top()->render();
 }
 
 void GameStateMachine::Update() {
 	if (Empty()) return;
-	gameStack.top()->Update();
+	gameStack.top()->update();
 }
-
-
 
 void GameStateMachine::pushState(GameState* state) {
 	gameStack.push(state);
