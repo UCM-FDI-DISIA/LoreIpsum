@@ -1,16 +1,20 @@
 #include "SpriteRenderer.h"
 
-SpriteRenderer::SpriteRenderer(Texture* _text): texture(_text)
-{};
+SpriteRenderer::SpriteRenderer(const std::string & _textPath): texturePath(_textPath)
+{
+	initCompomnent();
+};
 
 // Para inicializar el componenete si es necesario.
 void SpriteRenderer::initCompomnent() {
-	rect.h = texture->height();
-	rect.w = texture->width();
-
+	texture = new Texture(sdl.renderer(), texturePath);
 };
 
 // Para renderizar el estado
 void SpriteRenderer::render() const {
-	//texture->render()
+	texture->render(transform->getPos().getX(),
+		transform->getPos().getY(),
+		transform->getScale().getX(),
+		transform->getScale().getY(),
+		transform->getAngle());
 };
