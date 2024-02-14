@@ -13,7 +13,6 @@
 
 class GameState;
 
-
 /// <summary>
 /// Clase entity vista en clase con algunas modificiaciones:
 /// Usamos 2 listas de componentes, una de ComponentUpdate y otra de ComponentRender
@@ -21,6 +20,8 @@ class GameState;
 /// Necesitamos las 2 listas para tener un orden de renderizado y que los componentes no tengan
 /// funciones vacias
 /// </summary>
+
+
 class Entity {
 
 
@@ -205,4 +206,5 @@ public:
 			currCmpsR_[i]->render();
 		}
 	}
+
 };

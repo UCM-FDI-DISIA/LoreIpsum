@@ -4,7 +4,7 @@
 // del vector de entidades
 GameState::GameState() : ents_()
 {
-        ents_.reserve(100);
+    ents_.reserve(100);
 }
 
 //borra todas las entidades
@@ -14,8 +14,6 @@ GameState::~GameState()
         delete e;
     }
 }
-
-
 
 Entity* GameState::addEntity()
 {

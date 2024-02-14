@@ -5,11 +5,13 @@
 
 
 #include "GameStateMachine.h"
+#include "MainMenuState.h"
 
 //constructor
 GameStateMachine::GameStateMachine()  {
 
 	//inicializamos la pila con el estado del menu inicial
+	pushState(new MainMenuState());
 }
 
 //destructor
