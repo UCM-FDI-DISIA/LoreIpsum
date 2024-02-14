@@ -11,7 +11,6 @@
 #include "ComponentUpdate.h"
 #include "ComponentRender.h"
 
-class GameState;
 
 /// <summary>
 /// Clase entity vista en clase con algunas modificiaciones:
@@ -22,13 +21,17 @@ class GameState;
 /// </summary>
 
 
+namespace ecs {
+
+class Manager;
+
 class Entity {
 
 
 public:
 
 	//Constructora, inicializamos todas las variables
-	Entity(GameState* gs) :
+	Entity(Manager* gs) :
 		gameState(gs), cmpsU_(), currCmpsU_(), cmpsR_(), currCmpsR_(), alive_() {
 		
 		//reservamos la memoria para las listas de componentes
@@ -51,13 +54,13 @@ public:
 	inline void setAlive(bool alive) { alive_ = alive; }
 
 	//consulta el gameState al que pertenece la entidad
-	GameState* getGameState() { return gameState; }
+	Manager* getGameState() { return gameState; }
 
 
 private:
 
 	bool alive_;
-	GameState* gameState;
+	Manager* gameState;
 
 	//lista de componentes que tienen update
 	std::vector<ComponentUpdate*> currCmpsU_;
@@ -207,4 +210,8 @@ public:
 		}
 	}
 
+
+	friend Manager;
 };
+
+}

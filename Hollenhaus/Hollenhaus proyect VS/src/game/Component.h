@@ -4,6 +4,9 @@
 
 class Entity;
 
+namespace ecs {
+
+
 class Component
 {
 public:
@@ -34,3 +37,4 @@ protected:
 	//ecs::cmp::cmpRId::COMPONENT_ID
 };
 
+}

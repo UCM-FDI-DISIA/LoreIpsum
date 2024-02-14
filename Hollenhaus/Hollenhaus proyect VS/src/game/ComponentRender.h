@@ -2,7 +2,7 @@
 
 #include "Component.h"
 
-class ComponentRender : public Component {
+class ComponentRender : public ecs::Component {
 
 public:
 	ComponentRender() : Component() {}
