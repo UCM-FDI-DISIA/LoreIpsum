@@ -13,4 +13,5 @@ private:
 	//Input para mover el fondo
 	//Cambio a tienda y oficina
 	//Cambio a NPC
+	//Dialogo NPC -> Cambio estado combate
 };

@@ -26,6 +26,9 @@
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
     <ClCompile Include="src\game\main.cpp" />
+    <ClCompile Include="src\game\MainMenuState.cpp" />
+    <ClCompile Include="src\game\OfficeState.cpp" />
+    <ClCompile Include="src\game\ShopState.cpp" />
     <ClCompile Include="src\json\JSON.cpp" />
     <ClCompile Include="src\json\JSONValue.cpp" />
     <ClCompile Include="src\json\json_demo.cpp" />
@@ -51,6 +54,9 @@
     <ClInclude Include="src\game\Game.h" />
     <ClInclude Include="src\game\GameState.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
+    <ClInclude Include="src\game\MainMenuState.h" />
+    <ClInclude Include="src\game\OfficeState.h" />
+    <ClInclude Include="src\game\ShopState.h" />
     <ClInclude Include="src\json\JSON.h" />
     <ClInclude Include="src\json\JSONValue.h" />
     <ClInclude Include="src\json\json_demo.h" />
