@@ -2,36 +2,32 @@
 #define GameState_H_
 
 #include  "checkML.h"
+#include "Entity.h"
 
 #include <SDL.h>
 #include <iostream>
 #include <list>
 #include <string>
-//poli: hola estoy usando los apuntes del t5 de tpv1 para esto uwu 
+//poli: hola estoy usando los apuntes designpatterns.ecs.ver1 de tpv2 uwu
+/// <summary>
+/// Clase GameState (o Manager) vista en clase
+/// </summary>
 
 class GameState {
 
 protected:
-
+	std::vector<Entity*> ents_; //vector de entidades de cada estado
 
 public:
 
-	GameState(){};
-
-	virtual ~GameState() {};
+	GameState();
+	virtual ~GameState();
 	
-	virtual void Render() = 0;
-	virtual void Update() = 0;
-
-	virtual bool onEnter() = 0;
-	virtual bool onExit() = 0;
-
-	virtual std::string getStateID() const = 0; // each state will need to define this function and
-												//return its own staticconst ID
-
+	Entity* addEntity(); //entidades en cada estado
+	virtual void refresh(); //borra entidades no vivas
+	virtual void update(); //
+	virtual void render();
 };
-
-
 
 #endif // !GameState_H_
 
