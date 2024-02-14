@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Data.cpp" />
     <ClCompile Include="src\Card.cpp" />
+    <ClCompile Include="src\game\Data.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
     <ClCompile Include="src\game\main.cpp" />
@@ -37,12 +37,12 @@
     <ClCompile Include="src\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data.h" />
     <ClInclude Include="src\Card.h" />
     <ClInclude Include="src\game\checkML.h" />
     <ClInclude Include="src\game\Component.h" />
     <ClInclude Include="src\game\ComponentRender.h" />
     <ClInclude Include="src\game\ComponentUpdate.h" />
+    <ClInclude Include="src\game\Data.h" />
     <ClInclude Include="src\game\ecs.h" />
     <ClInclude Include="src\game\Entity.h" />
     <ClInclude Include="src\game\Game.h" />

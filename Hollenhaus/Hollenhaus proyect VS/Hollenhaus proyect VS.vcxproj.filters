@@ -75,13 +75,14 @@
     <ClCompile Include="src\utils\Vector2D.cpp">
       <Filter>Utilidades\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Data.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\Transform.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\Card.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpriteRenderer.cpp" />
+    <ClCompile Include="src\game\Data.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -158,9 +159,6 @@
     <ClInclude Include="src\utils\Vector2D.h">
       <Filter>Utilidades\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Data.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\Component.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
@@ -181,6 +179,10 @@
     </ClInclude>
     <ClInclude Include="src\game\ecs.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpriteRenderer.h" />
+    <ClInclude Include="src\game\Data.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
