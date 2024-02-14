@@ -127,7 +127,7 @@ public:
 
 		//vemos si es un componente de tipo Update o no
 		//Nota: consideramos que si no es de tipo Update es de tipo Render
-		ComponentUpdate* p = dynamic_cast<ComponentUpdate*>(c);
+		ComponentUpdate* p = dynamic_cast<ComponentUpdate*>(T);
 
 		//si es de tipo update
 		if (p != nullptr) {
@@ -155,11 +155,11 @@ public:
 	//obetener un componente de la entidad
 	template<typename T>
 	inline T* getComponent() {
-		constexpr cmpId_t cId = T::id;
+		constexpr ecs::cmpId_t cId = T::id;
 
 		//vemos si es un componente de tipo Update o no
 		//Nota: consideramos que si no es de tipo Update es de tipo Render
-		ComponentUpdate* p = dynamic_cast<ComponentUpdate*>(c);
+		ComponentUpdate* p = dynamic_cast<ComponentUpdate*>(T);
 
 		//si es de tipo update
 		if (p != nullptr) {
@@ -174,11 +174,11 @@ public:
 	//ver si la entidad tiene o no un componente
 	template<typename T>
 	inline bool hasComponent() {
-		constexpr cmpId_t cId = T::id;
+		constexpr ecs::cmpId_t cId = T::id;
 
 		//vemos si es un componente de tipo Update o no
 		//Nota: consideramos que si no es de tipo Update es de tipo Render
-		ComponentUpdate* p = dynamic_cast<ComponentUpdate*>(c);
+		ComponentUpdate* p = dynamic_cast<ComponentUpdate*>(T);
 
 		//si es de tipo update
 		if (p != nullptr) {
