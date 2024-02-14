@@ -42,7 +42,7 @@ void GameState::refresh()
                 delete e;
                 return true;
             }
-            }), //
+            }),
         ents_.end());
 }
 

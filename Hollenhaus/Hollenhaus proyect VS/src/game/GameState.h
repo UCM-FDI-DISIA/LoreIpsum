@@ -8,7 +8,10 @@
 #include <iostream>
 #include <list>
 #include <string>
-//poli: hola estoy usando los apuntes del t5 de tpv1 para esto uwu 
+//poli: hola estoy usando los apuntes designpatterns.ecs.ver1 de tpv2 uwu
+/// <summary>
+/// Clase GameState (o Manager) vista en clase
+/// </summary>
 
 class GameState {
 
@@ -21,9 +24,9 @@ public:
 	virtual ~GameState();
 	
 	Entity* addEntity(); //entidades en cada estado
-	void refresh(); //borra entidades no vivas
-	void update(); //
-	void render();
+	virtual void refresh(); //borra entidades no vivas
+	virtual void update(); //
+	virtual void render();
 };
 
 #endif // !GameState_H_
