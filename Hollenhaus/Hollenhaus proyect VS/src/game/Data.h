@@ -9,7 +9,9 @@ class Data
 {
 private:
 
-	int currentMoney, currentCase, currentSouls;
+	int currentMoney = 0,
+		currentCase = 0,
+		currentSouls = 0;
 	list<int> maze;
 	list<int> drawer;
 	list<int> defeatedNPCS;
@@ -39,17 +41,26 @@ public:
 
 	//------Getters:
 	//----Mazo:
-	void GetMaze();
+	list<int> GetMaze(int id) { return maze; }
 	//----Cajon:
-	void GetDrawer();
+	list<int> GetDrawer(int id) { return drawer; }
 	//----NPCs:
-	void GetDefeatedNPC();
+	list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
 	//----Dinero:
 	int GetMoney() { return currentMoney; }
 	//----Almas:
 	int GetSouls() { return currentSouls; };
 	//----Caso:
 	int GetCurrentCase() { return currentCase; };
+	
+	//------Busqueda:
+	//----Mazo:
+	bool IdIsInMaze(int id);
+	//----Cajon:
+	bool IdIsInDrawer(int id);
+	//----NPCs:
+	bool IdIsInDefeatedNPC(int id);
+
 	//------Escritura:
 	void Write(/*ofstream& fil*/);
 };
