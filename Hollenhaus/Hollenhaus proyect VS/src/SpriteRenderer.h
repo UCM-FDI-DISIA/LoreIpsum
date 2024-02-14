@@ -1,7 +1,8 @@
 #pragma once
 #include "game/ComponentRender.h"
 #include "sdlutils/SDLUtils.h"
-#include "Transform.h"
+
+class Transform;
 
 class SpriteRenderer : public ComponentRender
 {

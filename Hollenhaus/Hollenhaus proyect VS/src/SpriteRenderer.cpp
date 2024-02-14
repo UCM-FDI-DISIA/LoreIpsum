@@ -1,4 +1,5 @@
 #include "SpriteRenderer.h"
+#include "Transform.h"
 
 SpriteRenderer::SpriteRenderer(const std::string & _textPath): texturePath(_textPath)
 {
@@ -12,9 +13,11 @@ void SpriteRenderer::initCompomnent() {
 
 // Para renderizar el estado
 void SpriteRenderer::render() const {
-	texture->render(transform->getPos().getX(),
-		transform->getPos().getY(),
-		transform->getScale().getX(),
-		transform->getScale().getY(),
-		transform->getAngle());
+	
+	texture->render(transform->getGlobalPos().getX(),
+		transform->getGlobalPos().getY(),
+		transform->getGlobalScale().getX(),
+		transform->getGlobalScale().getY(),
+		transform->getGlobalAngle());
+	
 };
