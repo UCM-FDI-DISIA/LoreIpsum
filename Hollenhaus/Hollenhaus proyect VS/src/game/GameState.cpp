@@ -1,5 +1,5 @@
 #include "GameState.h"
-
+#include "Manager.h"
 
 
 GameState::GameState() 
@@ -16,17 +16,17 @@ GameState::~GameState()
 //decir las que han salido del juego en la última iteración
 void GameState::refresh()
 {
-
+    mngr->refresh();
 }
 
 void GameState::update()
 {
-   
+    mngr->update();
 }
 
 void GameState::render()
 {
-    
+    mngr->render();
 }
 
 

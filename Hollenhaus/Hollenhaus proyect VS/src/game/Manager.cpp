@@ -27,8 +27,8 @@ void Manager::refresh()
         //Para cada elemento de ents_, remove_if llama a la función
         //(lambda expression) para decider si borrarlo o no, aprovechamos
         //para liberar la memoria también
-        std::remove_if(ents_.begin(), ents_.end(), [](Entity* e) {
-            if (e->isAlive()) {
+        std::remove_if(ents_.begin(), ents_.end(), [this](Entity* e) {
+            if (isAlive(e)) {
                 return false;
             }
             else {
@@ -37,20 +37,6 @@ void Manager::refresh()
             }
             }),
         ents_.end());
-}
-
-void Manager::update()
-{
-    auto n = ents_.size();
-    for (auto i = 0u; i < n; i++)
-        ents_[i]->update();
-}
-
-void Manager::render()
-{
-    auto n = ents_.size();
-    for (auto i = 0u; i < n; i++)
-        ents_[i]->render();
 }
 
 }

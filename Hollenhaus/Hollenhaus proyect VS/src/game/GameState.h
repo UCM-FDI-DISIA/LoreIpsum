@@ -5,6 +5,7 @@
 
 #include <SDL.h>
 #include <iostream>
+#include "ecs.h"
 
 /// <summary>
 /// Clase GameState (o Manager) vista en clase
@@ -13,6 +14,7 @@ class GameState {
 
 protected:
 
+	ecs::Manager* mngr;
 
 public:
 

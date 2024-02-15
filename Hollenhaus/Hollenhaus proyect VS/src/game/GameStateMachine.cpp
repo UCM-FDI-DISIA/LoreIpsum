@@ -34,6 +34,14 @@ void GameStateMachine::Render() const{
 void GameStateMachine::Update() {
 	if (Empty()) return;
 	gameStack.top()->update();
+
+	//para el manager
+	Refresh();
+}
+
+void GameStateMachine::Refresh()
+{
+	gameStack.top()->refresh();
 }
 
 void GameStateMachine::pushState(GameState* state) {

@@ -24,9 +24,6 @@ public:
 	virtual ~Manager();
 
 	virtual void refresh(); //borra entidades no vivas
-	virtual void update(); //
-	virtual void render();
-
 	
 	// Adding an entity simply creates an instance of Entity, adds
 	// it to the list of entities and returns it to the caller.
@@ -225,8 +222,7 @@ public:
 			assert(cId < ecs::maxComponentRId);
 
 			return e->cmpsR_[cId] != nullptr;
-		}
-		
+		}	
 	}
 
 	// returns the entity's group 'gId'

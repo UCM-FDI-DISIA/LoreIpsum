@@ -32,6 +32,7 @@ public:
 
 	void Render()const;
 	void Update();
+	void Refresh();
 
 	bool Empty() const { return gameStack.empty(); }
 
