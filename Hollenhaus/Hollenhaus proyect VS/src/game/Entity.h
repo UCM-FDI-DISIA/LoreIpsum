@@ -35,8 +35,8 @@ public:
 		gId_(gId), cmpsU_(), currCmpsU_(), cmpsR_(), currCmpsR_(), alive_() {
 		
 		//reservamos la memoria para las listas de componentes
-		currCmpsU_.reserve(ecs::maxComponentUId);
-		currCmpsR_.reserve(ecs::maxComponentRId);
+		currCmpsU_.reserve(ecs::maxComponentUpdateId);
+		currCmpsR_.reserve(ecs::maxComponentRenderId);
 	}
 
 	//eliminamos los componentes de las 2 listas
@@ -56,11 +56,11 @@ private:
 
 	//lista de componentes que tienen update
 	std::vector<ComponentUpdate*> currCmpsU_;
-	std::array<ComponentUpdate*, ecs::maxComponentUId> cmpsU_;
+	std::array<ComponentUpdate*, ecs::maxComponentUpdateId> cmpsU_;
 
 	//lista de componentes que tienen render
 	std::vector<ComponentRender*> currCmpsR_;
-	std::array<ComponentRender*, ecs::maxComponentRId> cmpsR_;
+	std::array<ComponentRender*, ecs::maxComponentRenderId> cmpsR_;
 
 	//layer para el orden de renderizado
 	int layer = 0;

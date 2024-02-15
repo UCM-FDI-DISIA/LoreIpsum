@@ -12,11 +12,13 @@
 
 namespace ecs {
 
+	using entity_t = Entity*;
+
 class Manager {
 
-	using entity_t = Entity*;
+
 protected:
-	std::vector<Entity*> ents_; //vector de entidades de cada estado
+	std::vector<entity_t> ents_; //vector de entidades de cada estado
 
 public:
 
@@ -76,12 +78,15 @@ public:
 	template<typename T, typename ...Ts>
 	inline T* addComponent(entity_t e, Ts &&... args) {
 
-		// the component id
-		constexpr cmpId_t cId = cmpId<T>;
 
+		
 
 		if (std::is_base_of<ComponentUpdate, T>::value) {
-			static_assert(cId < ecs::maxComponentUId);
+
+			// the component id
+			cmpId_t cId = cmpUpdateId<T>;
+
+			assert(cId < ecs::maxComponentUpdateId);
 
 			// delete the current component, if any
 			//
@@ -93,14 +98,20 @@ public:
 			c->setContext(e, this);
 			c->initComponent();
 
-			e->cmpsU_[cId] = c;
-			e->currCmpsU_.push_back(c);
+			ComponentUpdate* p = static_cast<ComponentUpdate*>(c);
+
+			e->cmpsU_[cId] = p;
+			e->currCmpsU_.push_back(p);
 
 			// return it to the user so i can be initialised if needed
 			return static_cast<T*>(c);
 		}
 		else {
-			static_assert(cId < ecs::maxComponentRId);
+
+			// the component id
+			cmpId_t cId = cmpRenderId<T>;
+
+			assert(cId < ecs::maxComponentRenderId);
 
 			// delete the current component, if any
 			//
@@ -112,8 +123,9 @@ public:
 			c->setContext(e, this);
 			c->initComponent();
 
-			e->cmpsR_[cId] = c;
-			e->currCmpsR_.push_back(c);
+			ComponentRender* p = static_cast<ComponentRender*>(c);
+			e->cmpsR_[cId] = p;
+			e->currCmpsR_.push_back(p);
 
 			// return it to the user so i can be initialised if needed
 			return static_cast<T*>(c);
@@ -128,11 +140,15 @@ public:
 	template<typename T>
 	inline void removeComponent(entity_t e) {
 
-		// the component id
-		constexpr cmpId_t cId = ecs::cmpId<T>;
+
+		
 
 		if (std::is_base_of<ComponentUpdate, T>::value) {
-			static_assert(cId < ecs::maxComponentUId);
+
+			// the component id
+			cmpId_t cId = cmpUpdateId<T>;
+
+			assert(cId < ecs::maxComponentUpdateId);
 
 			if (e->cmpsU_[cId] != nullptr) {
 
@@ -157,7 +173,11 @@ public:
 			}
 		}
 		else {
-			static_assert(cId < ecs::maxComponentRId);
+
+			// the component id
+			cmpId_t cId = cmpRenderId<T>;
+
+			assert(cId < ecs::maxComponentRenderId);
 
 			if (e->cmpsR_[cId] != nullptr) {
 
@@ -192,16 +212,23 @@ public:
 	template<typename T>
 	inline T* getComponent(entity_t e) {
 
-		// the component id
-		constexpr cmpId_t cId = cmpId<T>;
-
 		if (std::is_base_of<ComponentUpdate, T>::value) {
-			static_assert(cId < ecs::maxComponentUId);
-			return static_cast<T*>(e->cmpsU_[cId]);
+
+			// the component id
+			cmpId_t cId = cmpUpdateId<T>;
+
+			assert(cId < ecs::maxComponentUpdateId);
+
+			return dynamic_cast<T*>(e->cmpsU_[cId]);
 		}
 		else {
-			static_assert(cId < ecs::maxComponentRId);
-			return static_cast<T*>(e->cmpsR_[cId]);
+
+			// the component id
+			cmpId_t cId = cmpRenderId<T>;
+
+			assert(cId < ecs::maxComponentRenderId);
+
+			return dynamic_cast<T*>(e->cmpsR_[cId]);
 		}
 
 	}
@@ -211,15 +238,21 @@ public:
 	template<typename T>
 	inline bool hasComponent(entity_t e) {
 
-		constexpr cmpId_t cId = T::id;
+		
 
 		if (std::is_base_of<ComponentUpdate, T>::value) {
-			assert(cId < ecs::maxComponentUId);
+
+			cmpId_t cId = cmpUpdateId<T>;
+
+			assert(cId < ecs::maxComponentUpdateId);
 
 			return e->cmpsU_[cId] != nullptr;
 		}
 		else {
-			assert(cId < ecs::maxComponentRId);
+
+			cmpId_t cId = cmpRenderId<T>;
+
+			assert(cId < ecs::maxComponentRenderId);
 
 			return e->cmpsR_[cId] != nullptr;
 		}	

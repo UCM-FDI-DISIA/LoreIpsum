@@ -25,6 +25,7 @@
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
+    <ClCompile Include="src\game\GenID.cpp" />
     <ClCompile Include="src\game\main.cpp" />
     <ClCompile Include="src\game\MainMenuState.cpp" />
     <ClCompile Include="src\game\Manager.cpp" />
@@ -55,6 +56,7 @@
     <ClInclude Include="src\game\Game.h" />
     <ClInclude Include="src\game\GameState.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
+    <ClInclude Include="src\game\GenID.h" />
     <ClInclude Include="src\game\MainMenuState.h" />
     <ClInclude Include="src\game\Manager.h" />
     <ClInclude Include="src\game\OfficeState.h" />

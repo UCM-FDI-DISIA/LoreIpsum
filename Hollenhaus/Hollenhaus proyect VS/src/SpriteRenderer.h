@@ -14,7 +14,7 @@ public:
 	SpriteRenderer(const std::string &_textPath);
 
 	// Para inicializar el componenete si es necesario.
-	void initCompomnent() override;
+	void initComponent() override;
 
 	// Para renderizar el estado
 	void render() const override;

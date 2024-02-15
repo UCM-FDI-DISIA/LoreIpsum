@@ -3,11 +3,11 @@
 
 SpriteRenderer::SpriteRenderer(const std::string & _textPath): texturePath(_textPath)
 {
-	initCompomnent();
+	initComponent();
 };
 
 // Para inicializar el componenete si es necesario.
-void SpriteRenderer::initCompomnent() {
+void SpriteRenderer::initComponent() {
 	texture = new Texture(sdl.renderer(), texturePath);
 };
 
