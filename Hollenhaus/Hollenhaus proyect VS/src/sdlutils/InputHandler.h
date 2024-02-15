@@ -11,21 +11,15 @@
 // Instead of a Singleton class, we could make it part of SDLUtils as well
 #include "../utils/Singleton.h"
 
-
 class InputHandler: public Singleton<InputHandler> {
 private:
 	// utiliza callbacks funcionales de tipo <void(void)>
 	using SDLEventCallback = std::function<void(void)>;
 
-	//SDLEventCallback funcCallback;
-
-	// lista de funciones a llamar cuando sucede un evento
-	std::list<SDLEventCallback> inputCallbacks;
-
 	// map <clave: ENUM de eventos (int -> índice del enum), valor: lista de callbacks>
 	std::unordered_map<int, std::list<SDLEventCallback>> inputMap;
 
-	friend Singleton<InputHandler> ;
+	friend Singleton<InputHandler>;
 	
 public:
 	enum MOUSEBUTTON : uint8_t {
@@ -49,6 +43,7 @@ public:
 
 	// actualiza el estado con un nuvo evento
 	inline void update(const SDL_Event &event) {
+
 		switch (event.type) {
 			case SDL_KEYDOWN:
 				onKeyDown(event);
@@ -72,8 +67,27 @@ public:
 			break;
 		}
 
-		// busqueda
-		// while(queden eventos en la lista??? a pensar je)
+		// llama a todas las funciones registradas en un evento especifico
+		for (SDLEventCallback callback : inputMap.at(event.type))
+			callback();
+	}
+
+	// FUNCION PARA SUSCRIBIRSE A EVENTOS
+	// recibe una clave (indice del enum dado por SDLEvent) y una funcion, inserta esa funcion en el hueco correspondiente a su clave
+	inline void insertFunction(int clave, SDLEventCallback funcCallback) {
+
+		// accede a la lista de callbacks correspondiente a esa clave y añades la funcion a la lista
+		inputMap.at(clave).push_back(funcCallback);
+	}
+
+	// funcion para quitar funciones del map con la clave
+	inline void clearFunction(int clave, SDLEventCallback funcCallback) {
+
+		// busca la funcion en la lista de callbacks correspondiente a esa clave y guarda la pos en un iterador
+		//auto it = std::find(inputMap.at(clave).begin(), inputMap.at(clave).end(), funcCallback);
+
+		// borra la funcion guardada donde el iterador
+		//inputMap.at(clave).erase(it);
 	}
 
 	// refresh
@@ -85,23 +99,9 @@ public:
 			update(event);
 	}
 
-	// recibe una clave (indice del enum dado por SDLEvent) y una funcion, inserta esa funcion en el hueco correspondiente a su clave
-	inline void insertFunction(int clave, SDLEventCallback funcCallback) {
-
-		// accede a la lista de callbacks correspondiente a esa clave y añades la funcion a la lista
-		inputMap.at(clave).push_back(funcCallback);
-	}
-
-	// funcion para quitar funciones del map con la clave
-	inline void clearFunction(int clave, SDLEventCallback funcCallback) {
-
-		// lista de iteradores a eliminar??? no se xd
-		//auto it = std::find(inputMap.at(clave).begin(), inputMap.at(clave).end());
-		//inputMap.at(clave).erase(funcCallback);
-	}
+#pragma region DEF. EVENTOS
 
 	// devuelve el bool evento activo
-#pragma region DEF. EVENTOS
 
 // WINDOW EVENTS
 	inline bool closeWindowEvent() {
