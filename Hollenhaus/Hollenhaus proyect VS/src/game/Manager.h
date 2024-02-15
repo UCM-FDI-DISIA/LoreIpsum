@@ -5,6 +5,8 @@
 #include <array>
 #include <cassert>
 #include <type_traits>
+#include <map>
+#include <list>
 
 #include "Component.h"
 #include "ecs.h"
@@ -18,6 +20,8 @@ class Manager {
 protected:
 	std::vector<Entity*> ents_; //vector de entidades de cada estado
 
+	std::map<int, std::list<Entity*>> ordenRendering; //map de layers y lista de entidades
+
 public:
 
 	Manager();
@@ -25,6 +29,26 @@ public:
 
 	virtual void refresh(); //borra entidades no vivas
 	
+	//añade una entidad al mapa
+	void AddEntityMap(int layer, Entity* e) {
+		ordenRendering[layer].push_back(e);
+	}
+	
+	void DeleteEntityMap(int layer, Entity* e) {
+		auto it = ordenRendering[layer].begin();
+
+		while (e != (*it)) {
+			it++;
+		}
+
+		ordenRendering[layer].erase(it);
+	}
+
+	void ChangeLayer(int previousLayer, int nextLayer, Entity* e) {
+		DeleteEntityMap(previousLayer, e);
+		AddEntityMap(previousLayer, e);
+	}
+
 	// Adding an entity simply creates an instance of Entity, adds
 	// it to the list of entities and returns it to the caller.
 	//
