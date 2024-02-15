@@ -4,6 +4,7 @@
 #include <vector>
 #include <array>
 #include <cassert>
+#include <type_traits>
 
 #include "Component.h"
 #include "ecs.h"
@@ -22,12 +23,11 @@ public:
 	Manager();
 	virtual ~Manager();
 
-	Entity* addEntity(); //entidades en cada estado
 	virtual void refresh(); //borra entidades no vivas
 	virtual void update(); //
 	virtual void render();
 
-	/*
+	
 	// Adding an entity simply creates an instance of Entity, adds
 	// it to the list of entities and returns it to the caller.
 	//
@@ -81,22 +81,49 @@ public:
 
 		// the component id
 		constexpr cmpId_t cId = cmpId<T>;
-		static_assert(cId < ecs::maxComponentId);
 
-		// delete the current component, if any
-		//
-		removeComponent<T>(e);
 
-		// create, initialise and install the new component
-		//
-		Component *c = new T(std::forward<Ts>(args)...);
-		c->setContext(e, this);
-		c->initComponent();
-		e->cmps_[cId] = c;
-		e->currCmps_.push_back(c);
+		if (std::is_base_of<ComponentUpdate, T>::value) {
+			static_assert(cId < ecs::maxComponentUId);
 
-		// return it to the user so i can be initialised if needed
-		return static_cast<T*>(c);
+			// delete the current component, if any
+			//
+			removeComponent<T>(e);
+
+			// create, initialise and install the new component
+			//
+			Component* c = new T(std::forward<Ts>(args)...);
+			c->setContext(e, this);
+			c->initComponent();
+
+			e->cmpsU_[cId] = c;
+			e->currCmpsU_.push_back(c);
+
+			// return it to the user so i can be initialised if needed
+			return static_cast<T*>(c);
+		}
+		else {
+			static_assert(cId < ecs::maxComponentRId);
+
+			// delete the current component, if any
+			//
+			removeComponent<T>(e);
+
+			// create, initialise and install the new component
+			//
+			Component* c = new T(std::forward<Ts>(args)...);
+			c->setContext(e, this);
+			c->initComponent();
+
+			e->cmpsR_[cId] = c;
+			e->currCmpsR_.push_back(c);
+
+			// return it to the user so i can be initialised if needed
+			return static_cast<T*>(c);
+		}
+	
+
+		
 	}
 
 	// Removes the component T, from the entity.
@@ -105,30 +132,60 @@ public:
 	inline void removeComponent(entity_t e) {
 
 		// the component id
-		constexpr cmpId_t cId = cmpId<T>;
-		static_assert(cId < ecs::maxComponentId);
+		constexpr cmpId_t cId = ecs::cmpId<T>;
 
-		if (e->cmps_[cId] != nullptr) {
+		if (std::is_base_of<ComponentUpdate, T>::value) {
+			static_assert(cId < ecs::maxComponentUId);
 
-			// find the element that is equal tocmps_[cId] (returns an iterator)
-			//
-			auto iter = std::find(e->currCmps_.begin(), e->currCmps_.end(),
-					e->cmps_[cId]);
+			if (e->cmpsU_[cId] != nullptr) {
 
-			// must have such a component
-			assert(iter != e->currCmps_.end());
+				// find the element that is equal tocmps_[cId] (returns an iterator)
+				//
+				auto iter = std::find(e->currCmpsU_.begin(), e->currCmpsU_.end(),
+					e->cmpsU_[cId]);
 
-			// and then remove it
-			e->currCmps_.erase(iter);
+				// must have such a component
+				assert(iter != e->currCmpsU_.end());
 
-			// destroy it
-			//
-			delete e->cmps_[cId];
+				// and then remove it
+				e->currCmpsU_.erase(iter);
 
-			// remove the pointer
-			//
-			e->cmps_[cId] = nullptr;
+				// destroy it
+				//
+				delete e->cmpsU_[cId];
+
+				// remove the pointer
+				//
+				e->cmpsU_[cId] = nullptr;
+			}
 		}
+		else {
+			static_assert(cId < ecs::maxComponentRId);
+
+			if (e->cmpsR_[cId] != nullptr) {
+
+				// find the element that is equal tocmps_[cId] (returns an iterator)
+				//
+				auto iter = std::find(e->currCmpsR_.begin(), e->currCmpsR_.end(),
+					e->cmpsR_[cId]);
+
+				// must have such a component
+				assert(iter != e->currCmpsR_.end());
+
+				// and then remove it
+				e->currCmpsR_.erase(iter);
+
+				// destroy it
+				//
+				delete e->cmpsR_[cId];
+
+				// remove the pointer
+				//
+				e->cmpsR_[cId] = nullptr;
+			}
+		}
+
+		
 	}
 
 	// Returns the component, of the entity, that corresponds to position T,
@@ -140,9 +197,16 @@ public:
 
 		// the component id
 		constexpr cmpId_t cId = cmpId<T>;
-		static_assert(cId < ecs::maxComponentId);
 
-		return static_cast<T*>(e->cmps_[cId]);
+		if (std::is_base_of<ComponentUpdate, T>::value) {
+			static_assert(cId < ecs::maxComponentUId);
+			return static_cast<T*>(e->cmpsU_[cId]);
+		}
+		else {
+			static_assert(cId < ecs::maxComponentRId);
+			return static_cast<T*>(e->cmpsR_[cId]);
+		}
+
 	}
 
 	// return true if there is a component with identifier T::id in the entity
@@ -151,9 +215,18 @@ public:
 	inline bool hasComponent(entity_t e) {
 
 		constexpr cmpId_t cId = T::id;
-		assert(cId < ecs::maxComponentId);
 
-		return e->cmps_[cId] != nullptr;
+		if (std::is_base_of<ComponentUpdate, T>::value) {
+			assert(cId < ecs::maxComponentUId);
+
+			return e->cmpsU_[cId] != nullptr;
+		}
+		else {
+			assert(cId < ecs::maxComponentRId);
+
+			return e->cmpsR_[cId] != nullptr;
+		}
+		
 	}
 
 	// returns the entity's group 'gId'
@@ -186,11 +259,38 @@ public:
 	// components
 	//
 	inline void update(entity_t e) {
-		auto n = e->currCmps_.size();
+		auto n = e->currCmpsU_.size();
 		for (auto i = 0u; i < n; i++)
-			e->currCmps_[i]->update();
+			e->currCmpsU_[i]->update();
 	}
-	*/
+	// Rendering an entity simply calls the render of all
+	// components
+	//
+	inline void render(entity_t e) {
+		auto n = e->currCmpsR_.size();
+		for (auto i = 0u; i < n; i++)
+			e->currCmpsR_[i]->render();
+	}
+
+	// update all entities
+	//
+	void update() {
+		for (auto& ents : entsByGroup_) {
+			auto n = ents.size();
+			for (auto i = 0u; i < n; i++)
+				update(ents[i]);
+		}
+	}
+
+	// render all entities
+	//
+	void render() {
+		for (auto& ents : entsByGroup_) {
+			auto n = ents.size();
+			for (auto i = 0u; i < n; i++)
+				render(ents[i]);
+		}
+	}
 
 
 

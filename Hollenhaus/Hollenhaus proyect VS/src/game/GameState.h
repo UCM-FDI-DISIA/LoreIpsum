@@ -5,10 +5,6 @@
 
 #include <SDL.h>
 #include <iostream>
-#include <list>
-#include <string>
-
-#include "Entity.h"
 
 /// <summary>
 /// Clase GameState (o Manager) vista en clase

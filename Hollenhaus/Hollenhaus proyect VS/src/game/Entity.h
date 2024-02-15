@@ -31,8 +31,8 @@ class Entity {
 public:
 
 	//Constructora, inicializamos todas las variables
-	Entity(Manager* gs) :
-		gameState(gs), cmpsU_(), currCmpsU_(), cmpsR_(), currCmpsR_(), alive_() {
+	Entity(grpId_t gId) :
+		gId_(gId), cmpsU_(), currCmpsU_(), cmpsR_(), currCmpsR_(), alive_() {
 		
 		//reservamos la memoria para las listas de componentes
 		currCmpsU_.reserve(ecs::maxComponentUId);
@@ -53,14 +53,12 @@ public:
 	inline bool isAlive() { return alive_; }
 	inline void setAlive(bool alive) { alive_ = alive; }
 
-	//consulta el gameState al que pertenece la entidad
-	Manager* getGameState() { return gameState; }
 
 
 private:
 
 	bool alive_;
-	Manager* gameState;
+	grpId_t gId_;
 
 	//lista de componentes que tienen update
 	std::vector<ComponentUpdate*> currCmpsU_;

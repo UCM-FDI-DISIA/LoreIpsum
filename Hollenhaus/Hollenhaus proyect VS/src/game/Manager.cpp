@@ -18,14 +18,6 @@ Manager::~Manager()
     }
 }
 
-Entity* Manager::addEntity()
-{
-    Entity* e = new Entity(nullptr);   // crea la entidad
-    e->setAlive(true);              // inicializa la entidad
-    ents_.push_back(e);             // se añade a la lista de entidades
-
-    return e;
-}
 
 //Su objetivo es borrar todas las entidades muertas, es
 //decir las que han salido del juego en la última iteración
