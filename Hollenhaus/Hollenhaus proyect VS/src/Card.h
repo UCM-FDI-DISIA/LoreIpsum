@@ -10,4 +10,16 @@ class Card // : Entity
 public:
 	Card() = default;
 	Card(int, int, std::string&, std::string&);
+
+	int getCost() {
+		return cost;
+	}
+
+	int getValue() {
+		return value;
+	}
+
+	std::string getSkill() {
+		return skills;
+	}
 };

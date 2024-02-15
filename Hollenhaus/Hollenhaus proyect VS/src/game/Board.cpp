@@ -2,20 +2,23 @@
 
 Board::Board()
 {
-
+	IniciaTablero();
 
 }
 
 void Board::PaintBoard()
 {
+
+
 }
 
 std::string Board::GetCard(Card* card)
 {
-	int i = 0;
+	std::string info = "[" + std::to_string(card->getValue()) + "/" 
+						   + std::to_string(card->getCost()) + "/"
+						   + getEffect(card) + "]";
 
-	std::string a = "[]";
-	return "yippieeeeeeeeeeeeeeeeeeee";
+	return info;
 }
 
 std::string Board::getEffect(Card* card)
@@ -25,6 +28,10 @@ std::string Board::getEffect(Card* card)
 
 void Board::IniciaTablero()
 {
+	std::string skill = "->+2";
+	std::string sprite = "yippie";
+	Card carta = Card(1, 2, sprite, skill);
 
+	mazo.push_back(&carta);
 
 }
