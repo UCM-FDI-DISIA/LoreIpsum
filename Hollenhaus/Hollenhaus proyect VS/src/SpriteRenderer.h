@@ -1,12 +1,17 @@
 #pragma once
 #include "game/ComponentRender.h"
 #include "sdlutils/SDLUtils.h"
-#include "Transform.h"
+
+class Transform;
 
 class SpriteRenderer : public ComponentRender
 {
 public:
-	SpriteRenderer(Texture* _text);
+	/// <summary>
+	/// Constructora que busca la textura
+	/// </summary>
+	/// <param name="_textPath"> Path a la textura </param>
+	SpriteRenderer(const std::string &_textPath);
 
 	// Para inicializar el componenete si es necesario.
 	void initCompomnent() override;
@@ -15,11 +20,18 @@ public:
 	void render() const override;
 
 private:
-	// Componente transform
+	// Instancia del singleton
+	SDLUtils& sdl = *SDLUtils::instance();
+
+	// Puntero al componente transform
 	Transform* transform = nullptr;
 
+	// Path a la textura
+	std::string texturePath;
+
+	// Puntero a la textura
 	Texture* texture = nullptr;
-	SDL_Rect rect;
+
 
 };
 

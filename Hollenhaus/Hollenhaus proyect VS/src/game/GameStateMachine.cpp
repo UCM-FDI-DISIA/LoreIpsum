@@ -5,11 +5,13 @@
 
 
 #include "GameStateMachine.h"
+#include "MainMenuState.h"
 
 //constructor
 GameStateMachine::GameStateMachine()  {
 
 	//inicializamos la pila con el estado del menu inicial
+	pushState(new MainMenuState());
 }
 
 //destructor
@@ -26,12 +28,20 @@ GameStateMachine::~GameStateMachine() {
 
 void GameStateMachine::Render() const{
 	if (Empty()) return;
-	gameStack.top()->Render();
+	gameStack.top()->render();
 }
 
 void GameStateMachine::Update() {
 	if (Empty()) return;
-	gameStack.top()->Update();
+	gameStack.top()->update();
+
+	//para el manager
+	Refresh();
+}
+
+void GameStateMachine::Refresh()
+{
+	gameStack.top()->refresh();
 }
 
 void GameStateMachine::pushState(GameState* state) {

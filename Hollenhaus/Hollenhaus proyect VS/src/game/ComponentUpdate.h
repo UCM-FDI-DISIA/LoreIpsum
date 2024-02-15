@@ -2,7 +2,7 @@
 
 #include "Component.h"
 
-class ComponentUpdate : public Component {
+class ComponentUpdate : public ecs::Component {
 
 public:
 	ComponentUpdate() : Component() {}

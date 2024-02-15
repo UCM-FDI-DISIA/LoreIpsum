@@ -2,11 +2,16 @@
 class CityState : public GameState
 {
 public:
-	virtual void Update();
-	virtual void Render();
-	virtual bool onEnter();
-	virtual bool onExit();
-	virtual std::string getStateID() const { return s_cityID; }
+	void update() override;
+	void render() override;
+	void refresh() override;
+	bool onEnter();
+	bool onExit();
 private:
-	static const std::string s_cityID;
-};
+
+	//Velocidad del fondo (mov)
+	//Input para mover el fondo
+	//Cambio a tienda y oficina
+	//Cambio a NPC
+	//Dialogo NPC -> Cambio estado combate
+};

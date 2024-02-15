@@ -115,13 +115,13 @@ El jugador consigue su nuevo pisito en el infierno, o no.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i. **Partida genérica** <a name="id4"></a>
 > 1. El jugador recibe un caso de un cliente por el teléfono (lore).
 > 2. El jugador se enfrenta a un personaje menor en la ciudad y obtiene una nueva carta.
-> 3. El jugador se enfrenta a otro personaje menor y obtiene dinero.
+> 3. El jugador se enfrenta a otro personaje menor en la ciudad y obtiene dinero.
 > 4. El jugador usa el dinero que ha ganado para comprar una nueva carta en la tienda.
-> 5. El jugador va a la oficina y edita su mazo.
+> 5. El jugador va a la oficina y edita su mazo si lo desea.
 > 6. El jugador se enfrenta a la médium y pierde.
 > 7. El jugador hace más combates menores, obtiene más dinero y nuevas cartas.
 > 8. El jugador vuelve a editar su mazo para intentar ganar a la médium.
-> 9. El jugador se enfrenta a la médium y gana, obtiene almas y acaba el caso. Como no tiene suficientes almas todavía para costearse el piso en el infierno, vuelve a empezar otro caso para conseguirlas.
+> 9. El jugador se enfrenta a la médium y gana, obtiene almas y acaba el caso. No tiene suficientes almas todavía para el piso en el infierno, vuelve a empezar otro caso para conseguir más almas.
 
 4. ### Juego de cartas <a name="id5"></a>
 ![Elementos del combate básicos](/docs/GDD/images/image2.png)
@@ -161,15 +161,26 @@ Finalmente, también existe la mecánica de **terreno**: una de las casillas del
       ![](/docs/GDD/images/image7.png)
 
    2. #### Ciudad <a name="id12"></a>
-   El jugador puede moverse en horizontal en la ciudad para ir a distintas ubicaciones con point and click disponibles como la tienda, la oficina etc, así como interactuar con ciertos NPCs para entrar en batallas menores.
+   El jugador tiene capacidad de movimiento horizontal en la ciudad mediante point and click. Así también hay posibilidad de interactuar con el entorno. Se podrá acceder a la tienda y a la oficina clicando sus respectivas puertas.
+   Por otra parte, se encontrarán NPCs, que hablarán al jugador una vez le haya clicado, y dándole la posibilidad de entrar o no en una batalla menor con este.
+El movimiento por la ciudad se realizará dando clics en la calle. El personaje del jugador quedará centrado. Se podrá explorar la ciudad gracias al scroll lateral del entorno.
+
     ![](/docs/GDD/images/image8.png)
 
    3. #### Tienda <a name="id13"></a>
-   Se te muestran las cartas que puedes comprar y tu cartera. Al seleccionar una carta adquirible se te marcan las monedas que te va a costar. Botón para volver a la zona principal.
+   Como se muestra en la imagen, el jugador podrá comprar las cartas que estén disponibles en el estante de venta. Al seleccionar una carta adquirible se te marcan las monedas que te va a costar.
+   
+  Por otro lado, se tiene el dinero disponible a gastar y un botón para regresar a la ciudad.
+
     ![](/docs/GDD/images/image9.png)
 
    4. #### Oficina <a name="id14"></a>
-   Puedes pulsar un cajón/corcho o el teléfono. El cajón te lleva al tablero donde podrás fijar las cartas que tendrá tu mazo mientras que en la parte de abajo se te muestran todas las cartas posibles. En la parte inferior están todas las cartas y en el corcho con estilo de corcho de detective irás poniendo las cartas que quieres en tu mazo. El teléfono te lleva al diálogo con la pitonisa y al combate con ella.
+   En la sección de oficina existen dos acciones principales que el jugador puede realizar: hablar con la médium mediante un teléfono y/o administrar el mazo de cartas.
+
+  Para acceder a la conversación con la médium, se clica en el teléfono. Informa del caso correspondiente a completar, o da acceso a repetir un caso fallido. También, en cierto punto de la partida, da opción para combatir contra ella.
+
+  Por otra parte, para administrar el mazo, el jugador puede pulsar el cajón. Esto le mostrará el tablero con las cartas que tiene en el mazo de juego, al estilo de corcho de detective. Debajo del tablero, aparecen las cartas que tiene disponibles o que ha comprado previamente en la tienda. Estas cartas se pueden intercambiar con el mazo de juego, y así probar distintas cartas o estrategias a la hora de combatir.
+
   ![](/docs/GDD/images/image10.png)
 
    5. #### Batalla <a name="id15"></a>
@@ -181,7 +192,7 @@ Los combates se diferencian en dos tipos: las batallas menores en la ciudad, que
 ![Disposición de los elementos del menú de gestión del mazo](/docs/GDD/images/image11.png)
 
    6. #### Resolución <a name="id16"></a>
-   Se encontrará la información pertinente a la historia y resolución de la batalla o caso correspondiente, en forma de texto en prosa o diálogo y un botón para seguir.
+   Se encuentra información pertinente a la historia y la resolución de la batalla o caso correspondiente, en forma de texto en prosa o diálogo. Se encuentra un botón para continuar.
 ![Diagrama de menú de resolución de batalla](/docs/GDD/images/image12.png)
 
 7. ### Estética <a name="id17"></a>
@@ -207,7 +218,7 @@ Estética referenciada en los primeros juegos en 3D, con gráficos pre-renderiza
    1. #### Narrativa <a name="id23"></a>
       La historia se basa en que el personaje principal —el jugador— ha muerto y para trascender al infierno debe pagar la entrada a un piso en primera línea de playa en el más allá. Para ello se apoyas en sus habilidades paranormales y monta una agencia de sustos; los clientes le contratan y usan su alma como moneda de pago, eligen una víctima y el personaje principal investigará por la ciudad qué les asusta.
 ![](/docs/GDD/images/image25.png)
-Una vez está seguro de que sabe cómo asustar a la susodicha persona, llama a una médium y a través de ella materializa su ataque en forma de un duelo de cartas. Si el ataque le sale bien, cobra en almas. Una vez se han resuelto todos los casos, triunfa o fracasa en tu pacto inmobiliario con el demonio en función de las almas que poseas al final del juego.\
+  Una vez se está seguro de qué le da miedo, y de cómo asustar a la susodicha persona, se llama a una médium y a través de ella se materializa el ataque en forma de un duelo de cartas. Si el ataque termina bien se cobra en almas. Una vez se han resuelto todos los casos, se habrá triunfado o fracasado en el pacto inmobiliario con el demonio en función de las almas que se posean al final del juego.\
 ![](/docs/GDD/images/image26.png)
 
    2. #### Cartas <a name="id24"></a>

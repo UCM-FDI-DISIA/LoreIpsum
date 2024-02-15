@@ -43,19 +43,33 @@ void Data::AddCurrentCase() {
 	currentCase++;
 }
 
-/*//------Getters:
+//------Busqueda:
 //----Mazo:
-void Data::GetMaze();
+bool Data::IdIsInMaze(int id) {
+	auto it = std::find(maze.begin(), maze.end(), id);
+
+	return (it != maze.end()) ? true : false;
+
+	/*if (it != maze.end()) {
+		return true;
+	}
+	else {
+		return false;
+	}*/
+}
+;
 //----Cajon:
-void Data::GetDrawer();
+bool Data::IdIsInDrawer(int id) {
+	auto it = std::find(drawer.begin(), drawer.end(), id);
+
+	return (it != drawer.end()) ? true : false;
+};
 //----NPCs:
-void Data::GetDefeatedNPC();
-//----Dinero:
-int Data::GetMoney() {}
-//----Almas:
-int Data::GetSouls() {};
-//----Caso:
-int Data::GetCurrentCase() {};*/
+bool Data::IdIsInDefeatedNPC(int id) {
+	auto it = std::find(defeatedNPCS.begin(), defeatedNPCS.end(), id);
+
+	return (it != defeatedNPCS.end()) ? true : false;
+};
 
 //------Escribir en el archivo:
 void Data::Write(/*ofstream& fil*/) {

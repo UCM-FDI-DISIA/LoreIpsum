@@ -12,23 +12,18 @@
 #include "../utils/Singleton.h"
 
 
-
 class InputHandler: public Singleton<InputHandler> {
 private:
 	// utiliza callbacks funcionales de tipo <void(void)>
 	using SDLEventCallback = std::function<void(void)>;
 
-	SDLEventCallback funcCallback;
-
-	enum inputState {
-		// definir los diferentes eventos de input
-	};
+	//SDLEventCallback funcCallback;
 
 	// lista de funciones a llamar cuando sucede un evento
 	std::list<SDLEventCallback> inputCallbacks;
 
 	// map <clave: ENUM de eventos (int -> índice del enum), valor: lista de callbacks>
-	std::map<inputState, std::list<SDLEventCallback>> inputMap;
+	std::unordered_map<int, std::list<SDLEventCallback>> inputMap;
 
 	friend Singleton<InputHandler> ;
 	
@@ -76,6 +71,9 @@ public:
 		default:
 			break;
 		}
+
+		// busqueda
+		// while(queden eventos en la lista??? a pensar je)
 	}
 
 	// refresh
@@ -87,15 +85,19 @@ public:
 			update(event);
 	}
 
-	// recibe una clave (indice del enum de eventos) y una funcion, inserta esa funcion en el hueco correspondiente a su clave
-	void insertFunction(int clave, SDLEventCallback funcCallback) {
-		// añade el callback a la lista correspondiente a su clave
-		// en ese indice hacer pushback del callback a su lista correspondiente
+	// recibe una clave (indice del enum dado por SDLEvent) y una funcion, inserta esa funcion en el hueco correspondiente a su clave
+	inline void insertFunction(int clave, SDLEventCallback funcCallback) {
+
+		// accede a la lista de callbacks correspondiente a esa clave y añades la funcion a la lista
+		inputMap.at(clave).push_back(funcCallback);
 	}
 
 	// funcion para quitar funciones del map con la clave
-	void clearFunction() {
+	inline void clearFunction(int clave, SDLEventCallback funcCallback) {
 
+		// lista de iteradores a eliminar??? no se xd
+		//auto it = std::find(inputMap.at(clave).begin(), inputMap.at(clave).end());
+		//inputMap.at(clave).erase(funcCallback);
 	}
 
 	// devuelve el bool evento activo
