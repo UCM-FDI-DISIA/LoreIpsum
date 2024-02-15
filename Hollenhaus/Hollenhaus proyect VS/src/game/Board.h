@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <list>
+#include <vector>
 #include "../Card.h"
 
 
@@ -26,9 +26,11 @@ public:
 private:
 
 	// lista con las cartas del mazo
-	std::list<Card*> mazo;
+	std::vector<Card*> mazo;
 
 
 	// inicia un tablero (se crea cada carta aqui)
 	void IniciaTablero();
+
+	int width, height;
 };
