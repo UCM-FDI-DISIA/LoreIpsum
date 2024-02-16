@@ -14,7 +14,6 @@ class GameState {
 
 protected:
 
-	ecs::Manager* mngr;
 
 public:
 

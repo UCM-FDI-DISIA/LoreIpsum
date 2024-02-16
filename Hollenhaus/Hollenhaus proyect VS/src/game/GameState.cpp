@@ -4,11 +4,15 @@
 #include "../Transform.h"
 #include "../SpriteRenderer.h"
 #include "../sdlutils/InputHandler.h"
+#include "GameStateMachine.h"
+
 GameState::GameState() 
 {
-    mngr = new ecs::Manager();
-       
+    
+    
     /*
+    auto mngr = GameStateMachine::instance()->getMngr();
+    
     auto entityPrueba = mngr->addEntity();
     std::cout << ((mngr->getComponent<Transform>(entityPrueba)) != nullptr) << std::endl;
     auto componentPrueba = mngr->addComponent<Transform>(entityPrueba);
@@ -17,6 +21,8 @@ GameState::GameState()
     std::cout << ((mngr->hasComponent<Transform>(entityPrueba))) << std::endl;
     std::cout << ((mngr->hasComponent<SpriteRenderer>(entityPrueba))) << std::endl;
     */
+    
+    
 
     //ih().insertFunction(0, [this] {PruebaInput(); });
 
@@ -27,9 +33,7 @@ GameState::GameState()
 //borra todas las entidades
 GameState::~GameState()
 {
-    mngr->Free();
-    //delete del manager(provisional)
-    delete mngr;
+    GameStateMachine::instance()->getMngr()->Free();
 }
 
 
@@ -37,16 +41,17 @@ GameState::~GameState()
 //decir las que han salido del juego en la última iteración
 void GameState::refresh()
 {
-    mngr->refresh();
+    GameStateMachine::instance()->getMngr()->refresh();
 }
 
 void GameState::update()
 {
-    mngr->update();
+    ecs::Manager* a = GameStateMachine::instance()->getMngr();
+
 }
 
 void GameState::render()
 {
-    mngr->render();
+    GameStateMachine::instance()->getMngr()->render();
 }
 
