@@ -20,7 +20,6 @@ class Manager {
 
 
 protected:
-	std::vector<entity_t> ents_; //vector de entidades de cada estado
 
 	std::map<int, std::list<Entity*>> ordenRendering; //map de layers y lista de entidades
 
@@ -28,6 +27,8 @@ public:
 
 	Manager();
 	virtual ~Manager();
+
+	virtual void Free();
 
 	virtual void refresh(); //borra entidades no vivas
 	

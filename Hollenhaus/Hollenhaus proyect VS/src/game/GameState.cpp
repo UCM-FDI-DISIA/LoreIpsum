@@ -6,11 +6,10 @@
 #include "../sdlutils/InputHandler.h"
 GameState::GameState() 
 {
-
-    
     mngr = new ecs::Manager();
-    auto entityPrueba = mngr->addEntity();
+       
     /*
+    auto entityPrueba = mngr->addEntity();
     std::cout << ((mngr->getComponent<Transform>(entityPrueba)) != nullptr) << std::endl;
     auto componentPrueba = mngr->addComponent<Transform>(entityPrueba);
     std::cout << ((mngr->getComponent<Transform>(entityPrueba)) != nullptr) << std::endl;
@@ -21,14 +20,16 @@ GameState::GameState()
 
     //ih().insertFunction(0, [this] {PruebaInput(); });
 
-    ih().insertFunction(InputHandler::MOUSE_LEFT_CLICK, [this] {PruebaInput(); });
+    //ih().insertFunction(InputHandler::MOUSE_LEFT_CLICK, [this] {PruebaInput(); });
     //ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK, [this] {PruebaInput(); });
 }
 
 //borra todas las entidades
 GameState::~GameState()
 {
-  
+    mngr->Free();
+    //delete del manager(provisional)
+    delete mngr;
 }
 
 
@@ -48,11 +49,4 @@ void GameState::render()
 {
     mngr->render();
 }
-
-void GameState::PruebaInput()
-{
-    std::cout << "se llama aquii" << std::endl;
-}
-
-
 
