@@ -37,6 +37,9 @@
     <Filter Include="Archivos de encabezado\Componentes">
       <UniqueIdentifier>{5659784e-72f8-48f5-92c6-b846ce7fd0d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\COJONES">
+      <UniqueIdentifier>{86fa502f-4ba9-429d-a051-acba0ce04c91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\Game.cpp">
@@ -81,9 +84,6 @@
     <ClCompile Include="src\Card.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\Data.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\CityState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
@@ -108,8 +108,12 @@
     <ClCompile Include="src\game\GenID.cpp">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\BoxCollider.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
+    <ClCompile Include="MatchManager.cpp" />
+    <ClCompile Include="src\game\Board.cpp" />
+    <ClCompile Include="src\game\BoardState.cpp" />
+    <ClCompile Include="src\BoxCollider.cpp" />
+    <ClCompile Include="src\game\Data.cpp">
+      <Filter>Archivos de origen\COJONES</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,8 +234,9 @@
     <ClInclude Include="src\game\GenID.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\BoxCollider.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
+    <ClInclude Include="MatchManager.h" />
+    <ClInclude Include="src\game\Board.h" />
+    <ClInclude Include="src\game\BoardState.h" />
+    <ClInclude Include="src\BoxCollider.h" />
   </ItemGroup>
 </Project>
