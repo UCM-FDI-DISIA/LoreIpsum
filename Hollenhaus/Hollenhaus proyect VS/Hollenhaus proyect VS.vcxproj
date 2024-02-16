@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -27,6 +27,7 @@
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
+    <ClCompile Include="src\game\GenID.cpp" />
     <ClCompile Include="src\game\main.cpp" />
     <ClCompile Include="src\game\MainMenuState.cpp" />
     <ClCompile Include="src\game\Manager.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
     <ClCompile Include="src\Transform.cpp" />
+    <ClCompile Include="U:\hlocal\Andres\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\BoxCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.h" />
@@ -59,6 +61,7 @@
     <ClInclude Include="src\game\Game.h" />
     <ClInclude Include="src\game\GameState.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
+    <ClInclude Include="src\game\GenID.h" />
     <ClInclude Include="src\game\MainMenuState.h" />
     <ClInclude Include="src\game\Manager.h" />
     <ClInclude Include="src\game\OfficeState.h" />
@@ -85,6 +88,7 @@
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
     <ClInclude Include="src\Transform.h" />
+    <ClInclude Include="U:\hlocal\Andres\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\BoxCollider.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

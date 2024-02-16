@@ -11,14 +11,27 @@
 
 #include "GameState.h"
 
+#include "../utils/Singleton.h"
 
-class GameStateMachine {
+namespace ecs {
+	class Manager;
+}
+
+class GameStateMachine : public Singleton<GameStateMachine> {
 	std::stack<GameState*> gameStack; // container de los states
 
 	std::list<GameState*> toBeDeleted;
 
+	friend Singleton<GameStateMachine>;
+
+	ecs::Manager* mngr_;
+
 public:
 
+	inline ecs::Manager* getMngr() {
+		return mngr_;
+	}
+	void init();
 	//constructor
 	GameStateMachine();
 

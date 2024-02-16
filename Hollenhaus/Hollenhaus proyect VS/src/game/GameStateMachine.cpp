@@ -6,12 +6,22 @@
 
 #include "GameStateMachine.h"
 #include "MainMenuState.h"
+#include "Manager.h"
+
+
+void GameStateMachine::init()
+{
+	mngr_ = new ecs::Manager();
+	pushState(new MainMenuState());
+
+}
 
 //constructor
 GameStateMachine::GameStateMachine()  {
 
+	//init();
 	//inicializamos la pila con el estado del menu inicial
-	pushState(new MainMenuState());
+
 }
 
 //destructor
@@ -23,6 +33,7 @@ GameStateMachine::~GameStateMachine() {
 		gameStack.pop();
 	}
 
+	delete mngr_;
 }
 
 

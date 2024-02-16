@@ -14,7 +14,6 @@ class GameState {
 
 protected:
 
-	ecs::Manager* mngr;
 
 public:
 
@@ -22,8 +21,9 @@ public:
 	virtual ~GameState();
 
 	virtual void refresh(); //borra entidades no vivas
-	virtual void update(); //
-	virtual void render();
+	virtual void update(); //update de las entidades
+	virtual void render(); // render de las entidades
+
 };
 
 #endif // !GameState_H_

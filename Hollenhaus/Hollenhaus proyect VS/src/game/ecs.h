@@ -4,6 +4,7 @@
 
 #include <cstdint>
 
+#include "GenID.h"
 
 #pragma region Define lists
 
@@ -121,16 +122,22 @@ enum sysId : hdlrId_t {
 };
 }
 
+// GetID stuff
+
+constexpr cmpId_t maxComponentUpdateId = 100;
+template<typename T>
+cmpId_t cmpUpdateId = GenID::getUpdateId<T>();
+
+constexpr cmpId_t maxComponentRenderId = 100;
+template<typename T>
+cmpId_t cmpRenderId = GenID::getRenderId<T>();
+
+
 //IDs max
-constexpr cmpId_t maxComponentUId = cmpU::cmpUId::_LAST_CMP_ID;
-constexpr cmpId_t maxComponentRId = cmpR::cmpRId::_LAST_CMP_ID;
 constexpr cmpId_t maxGroupId = grp::grpId::_LAST_GRP_ID;
 constexpr hdlrId_t maxHandlerId = hdlr::hdlrId::_LAST_HDLR_ID;
 constexpr sysId_t maxSystemId = sys::sysId::_LAST_SYS_ID;
 
-// a template variable to obtain the component id.
-template<typename T>
-constexpr cmpId_t cmpId = T::id;
 
 // a template variable to obtain the system id.
 template<typename T>

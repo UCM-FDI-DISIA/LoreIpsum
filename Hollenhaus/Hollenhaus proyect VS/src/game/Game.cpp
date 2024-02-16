@@ -11,12 +11,13 @@ Game::Game()
 {
 	SDLUtils::init("Hollenhaus", 800, 600, "./resources/config/resources.json");
 
-	gameStateMachine = new GameStateMachine();
+	GameStateMachine::instance()->init();
+	gameStateMachine = GameStateMachine::instance();
+	
 }
 
 Game::~Game()
 {
-	delete gameStateMachine;
 }
 
 void Game::Run()
