@@ -105,14 +105,20 @@
     <ClCompile Include="src\game\GenID.cpp">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="MatchManager.cpp" />
-    <ClCompile Include="src\game\Board.cpp" />
-    <ClCompile Include="src\game\BoardState.cpp" />
     <ClCompile Include="src\game\Data.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\BoxCollider.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Board.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="MatchManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\BoardState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,11 +239,17 @@
     <ClInclude Include="src\game\GenID.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="MatchManager.h" />
-    <ClInclude Include="src\game\Board.h" />
-    <ClInclude Include="src\game\BoardState.h" />
     <ClInclude Include="src\BoxCollider.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="MatchManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Board.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\BoardState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
