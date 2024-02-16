@@ -108,7 +108,7 @@
     <ClCompile Include="src\game\GenID.cpp">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="U:\hlocal\Andres\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\BoxCollider.cpp">
+    <ClCompile Include="src\BoxCollider.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -230,7 +230,7 @@
     <ClInclude Include="src\game\GenID.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="U:\hlocal\Andres\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\BoxCollider.h">
+    <ClInclude Include="src\BoxCollider.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
