@@ -37,9 +37,6 @@
     <Filter Include="Archivos de encabezado\Componentes">
       <UniqueIdentifier>{5659784e-72f8-48f5-92c6-b846ce7fd0d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de origen\COJONES">
-      <UniqueIdentifier>{86fa502f-4ba9-429d-a051-acba0ce04c91}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\Game.cpp">
