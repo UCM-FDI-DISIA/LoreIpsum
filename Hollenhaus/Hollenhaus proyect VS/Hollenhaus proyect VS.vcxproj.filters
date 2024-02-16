@@ -37,6 +37,9 @@
     <Filter Include="Archivos de encabezado\Componentes">
       <UniqueIdentifier>{5659784e-72f8-48f5-92c6-b846ce7fd0d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Cartas-tablero">
+      <UniqueIdentifier>{00509d17-24a8-4908-be79-c567886b722a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\Game.cpp">
@@ -242,14 +245,14 @@
     <ClInclude Include="src\BoxCollider.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="MatchManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\Board.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\game\BoardState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MatchManager.h">
+      <Filter>Archivos de encabezado\Cartas-tablero</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
