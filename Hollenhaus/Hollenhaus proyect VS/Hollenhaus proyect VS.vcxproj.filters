@@ -40,6 +40,9 @@
     <Filter Include="Archivos de encabezado\Cartas-tablero">
       <UniqueIdentifier>{00509d17-24a8-4908-be79-c567886b722a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Cartas-tablero">
+      <UniqueIdentifier>{b6785bf7-8d58-4265-8d01-3d93d0990921}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\Game.cpp">
@@ -81,9 +84,6 @@
     <ClCompile Include="src\Transform.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\Card.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\CityState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
@@ -114,14 +114,17 @@
     <ClCompile Include="src\BoxCollider.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\Board.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="MatchManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\BoardState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Board.cpp">
+      <Filter>Archivos de origen\Cartas-tablero</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Card.cpp">
+      <Filter>Archivos de origen\Cartas-tablero</Filter>
+    </ClCompile>
+    <ClCompile Include="MatchManager.cpp">
+      <Filter>Archivos de origen\Cartas-tablero</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -206,9 +209,6 @@
     <ClInclude Include="src\Transform.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\Card.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\Entity.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -245,13 +245,16 @@
     <ClInclude Include="src\BoxCollider.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\Board.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\BoardState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="MatchManager.h">
+      <Filter>Archivos de encabezado\Cartas-tablero</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Board.h">
+      <Filter>Archivos de encabezado\Cartas-tablero</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Card.h">
       <Filter>Archivos de encabezado\Cartas-tablero</Filter>
     </ClInclude>
   </ItemGroup>
