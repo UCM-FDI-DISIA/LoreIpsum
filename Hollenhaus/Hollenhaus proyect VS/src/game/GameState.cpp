@@ -46,8 +46,7 @@ void GameState::refresh()
 
 void GameState::update()
 {
-    ecs::Manager* a = GameStateMachine::instance()->getMngr();
-
+    GameStateMachine::instance()->getMngr()->update();
 }
 
 void GameState::render()
