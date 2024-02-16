@@ -25,7 +25,7 @@ public:
 	enum MOUSEBUTTON : uint8_t {
 		LEFT = 0, MIDDLE, RIGHT, _LAST_MOUSEBUTTON_VALUE
 	};
-
+	
 	virtual ~InputHandler() {
 	}
 
@@ -67,17 +67,25 @@ public:
 			break;
 		}
 
-		// llama a todas las funciones registradas en un evento especifico
-		for (SDLEventCallback callback : inputMap.at(event.type))
-			callback();
+		if (inputMap.find(event.type) != inputMap.end()) {
+			// llama a todas las funciones registradas en un evento especifico
+			for (SDLEventCallback callback : inputMap.at(event.type))
+				callback();
+		}
 	}
 
 	// FUNCION PARA SUSCRIBIRSE A EVENTOS
 	// recibe una clave (indice del enum dado por SDLEvent) y una funcion, inserta esa funcion en el hueco correspondiente a su clave
 	inline void insertFunction(int clave, SDLEventCallback funcCallback) {
 
+		auto it = inputMap.find(clave);
+		if (it == inputMap.end()) {
+			inputMap.insert({ 0,std::list<SDLEventCallback>() });
+		}
+
 		// accede a la lista de callbacks correspondiente a esa clave y añades la funcion a la lista
 		inputMap.at(clave).push_back(funcCallback);
+		std::cout << " tu vieja se inserta" << std::endl;
 	}
 
 	// funcion para quitar funciones del map con la clave
@@ -86,8 +94,21 @@ public:
 		// busca la funcion en la lista de callbacks correspondiente a esa clave y guarda la pos en un iterador
 		//auto it = std::find(inputMap.at(clave).begin(), inputMap.at(clave).end(), funcCallback);
 
+
+
 		// borra la funcion guardada donde el iterador
-		//inputMap.at(clave).erase(it);
+		//inputMap.at(clave).erase(std::remove(inputMap.at(clave).begin(), inputMap.at(clave).end(), funcCallback));
+		
+		auto it = inputMap.find(clave);
+		if (it == inputMap.end()) {
+			return;
+		}
+
+		inputMap.at(clave).erase(std::remove_if(inputMap.at(clave).begin(), inputMap.at(clave).end(), [&](const SDLEventCallback& cb) {
+			return cb.target<void()>() == funcCallback.target<void()>(); 
+			}), inputMap.at(clave).end());
+
+		std::cout << " tu vieja se quita" << std::endl;
 	}
 
 	// refresh
@@ -167,6 +188,7 @@ private:
 		// devuelve un puntero a un array de key states -> si un elemento del array es 1 PULSADO / 0 NO PULSADO
 		kbState_ = SDL_GetKeyboardState(0); 
 
+		
 		// limpia estado
 		clearState();
 	}

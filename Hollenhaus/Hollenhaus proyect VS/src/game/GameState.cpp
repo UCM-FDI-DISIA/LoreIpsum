@@ -3,6 +3,7 @@
 
 #include "../Transform.h"
 #include "../SpriteRenderer.h"
+#include "../sdlutils/InputHandler.h"
 GameState::GameState() 
 {
     mngr = new ecs::Manager();
@@ -14,6 +15,8 @@ GameState::GameState()
     std::cout << ((mngr->hasComponent<Transform>(entityPrueba))) << std::endl;
     std::cout << ((mngr->hasComponent<SpriteRenderer>(entityPrueba))) << std::endl;
 
+    ih().insertFunction(0, [this] {update(); });
+    ih().clearFunction(0, [this] {update(); });
 }
 
 //borra todas las entidades
