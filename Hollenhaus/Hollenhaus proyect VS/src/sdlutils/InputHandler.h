@@ -26,6 +26,13 @@ public:
 		LEFT = 0, MIDDLE, RIGHT, _LAST_MOUSEBUTTON_VALUE
 	};
 	
+	/// <summary>
+	/// Enum con los eventos que queremos que tengan una lista de callBacks
+	/// </summary>
+	enum INPUT_EVENTES : uint8_t {
+		MOUSE_LEFT_CLICK
+	};
+
 	virtual ~InputHandler() {
 	}
 
@@ -44,6 +51,7 @@ public:
 	// actualiza el estado con un nuvo evento
 	inline void update(const SDL_Event &event) {
 
+		//UPDATE BASICO DEL INPUT HANDLER
 		switch (event.type) {
 			case SDL_KEYDOWN:
 				onKeyDown(event);
@@ -67,48 +75,80 @@ public:
 			break;
 		}
 
-		if (inputMap.find(event.type) != inputMap.end()) {
+		//UPDATE PARA EL MANEJO DE EVENTOS POR LISTA DE CALLBACKS
+
+		//Obtenemos el indice de nuestro enumerado, segun el evento actual
+		//si el evento no está registrado esto devuelve -1s
+		int mapIndex = getInputEvent(event);
+
+		//si el evento está registrado
+		if (inputMap.find(mapIndex) != inputMap.end()) {
 			// llama a todas las funciones registradas en un evento especifico
-			for (SDLEventCallback callback : inputMap.at(event.type))
+			for (SDLEventCallback callback : inputMap.at(mapIndex)) {
 				callback();
+			}
 		}
 	}
 
 	// FUNCION PARA SUSCRIBIRSE A EVENTOS
-	// recibe una clave (indice del enum dado por SDLEvent) y una funcion, inserta esa funcion en el hueco correspondiente a su clave
+	// recibe una clave (indice del enum propio de la clase) y una funcion, inserta esa funcion en el hueco correspondiente a su clave
 	inline void insertFunction(int clave, SDLEventCallback funcCallback) {
 
+		//buscamos la clave
 		auto it = inputMap.find(clave);
+		//si la clave no está la insertamos
 		if (it == inputMap.end()) {
-			inputMap.insert({ 0,std::list<SDLEventCallback>() });
+			it = inputMap.insert({ clave,std::list<SDLEventCallback>() }).first;
 		}
 
+		//nos hemos asegurado de que la clave está
+
 		// accede a la lista de callbacks correspondiente a esa clave y añades la funcion a la lista
-		inputMap.at(clave).push_back(funcCallback);
-		std::cout << " tu vieja se inserta" << std::endl;
+		(*it).second.push_back(funcCallback);
+
+		//debug
+		std::cout << "se inserta" << std::endl;
 	}
 
-	// funcion para quitar funciones del map con la clave
-	inline void clearFunction(int clave, SDLEventCallback funcCallback) {
-
-		// busca la funcion en la lista de callbacks correspondiente a esa clave y guarda la pos en un iterador
-		//auto it = std::find(inputMap.at(clave).begin(), inputMap.at(clave).end(), funcCallback);
-
-
-
-		// borra la funcion guardada donde el iterador
-		//inputMap.at(clave).erase(std::remove(inputMap.at(clave).begin(), inputMap.at(clave).end(), funcCallback));
-		
+	// funcion para quitar funciones del map con la clave(enum de esta clase)
+	inline void clearFunction(int clave, SDLEventCallback Callback) {
+	
+		//buscamos la lista de callbacks para ese evento
 		auto it = inputMap.find(clave);
+		//si no hay ninguna lista,lanzar error y no hacer nada
 		if (it == inputMap.end()) {
+			//throw error...
 			return;
 		}
 
-		inputMap.at(clave).erase(std::remove_if(inputMap.at(clave).begin(), inputMap.at(clave).end(), [&](const SDLEventCallback& cb) {
-			return cb.target<void()>() == funcCallback.target<void()>(); 
-			}), inputMap.at(clave).end());
+		//alias, puntero a la lista de callBacks para este evento
+		auto& list = (*it).second;
 
-		std::cout << " tu vieja se quita" << std::endl;
+		//si la lista sí está, recorremos la lista y eliminamos la funcion que nos han pasado
+		list.erase(std::remove_if(list.begin(), list.end(), 
+			[&](const SDLEventCallback& cb) {
+					return cb.target<void()>() == Callback.target<void()>(); 
+			}), list.end());
+
+		//debug
+		std::cout << "se quita" << std::endl;
+	}
+
+	//devuelve el enumerado correspondiente al evento de SDL
+	//si se añade un nuevo valor al enum, hay que actualizar esta funcion para que 
+	//detecte el evento concreto que queramos tratar
+	int getInputEvent(const SDL_Event& event) {
+
+		//EVENTO DE CLICK_IZQ
+		if (event.type == SDL_MOUSEBUTTONDOWN) {
+			if (event.button.button == SDL_BUTTON_LEFT) {
+				return MOUSE_LEFT_CLICK;
+			}
+		}
+		
+
+		//si no es ninguno de los eventos del enumerado devolvemos -1
+		return -1;
 	}
 
 	// refresh

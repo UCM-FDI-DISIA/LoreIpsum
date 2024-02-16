@@ -100,10 +100,7 @@ public:
 	// and the list of arguments (if any) to be passed to the constructor.
 	//
 	template<typename T, typename ...Ts>
-	inline T* addComponent(entity_t e, Ts &&... args) {
-
-
-		
+	inline T* addComponent(entity_t e, Ts &&... args) {	
 
 		if (std::is_base_of<ComponentUpdate, T>::value) {
 
@@ -162,10 +159,7 @@ public:
 	// Removes the component T, from the entity.
 	//
 	template<typename T>
-	inline void removeComponent(entity_t e) {
-
-
-		
+	inline void removeComponent(entity_t e) {	
 
 		if (std::is_base_of<ComponentUpdate, T>::value) {
 

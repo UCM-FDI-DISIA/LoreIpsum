@@ -24,6 +24,8 @@ public:
 	virtual void refresh(); //borra entidades no vivas
 	virtual void update(); //
 	virtual void render();
+
+	void PruebaInput();
 };
 
 #endif // !GameState_H_

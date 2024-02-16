@@ -11,7 +11,7 @@
 GameStateMachine::GameStateMachine()  {
 
 	//inicializamos la pila con el estado del menu inicial
-	pushState(new MainMenuState());
+	pushState(new GameState());
 }
 
 //destructor
