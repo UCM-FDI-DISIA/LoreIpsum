@@ -111,9 +111,11 @@
     <ClCompile Include="MatchManager.cpp" />
     <ClCompile Include="src\game\Board.cpp" />
     <ClCompile Include="src\game\BoardState.cpp" />
-    <ClCompile Include="src\BoxCollider.cpp" />
     <ClCompile Include="src\game\Data.cpp">
-      <Filter>Archivos de origen\COJONES</Filter>
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BoxCollider.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +239,8 @@
     <ClInclude Include="MatchManager.h" />
     <ClInclude Include="src\game\Board.h" />
     <ClInclude Include="src\game\BoardState.h" />
-    <ClInclude Include="src\BoxCollider.h" />
+    <ClInclude Include="src\BoxCollider.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

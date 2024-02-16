@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MatchManager.cpp" />
+    <ClCompile Include="src\BoxCollider.cpp" />
     <ClCompile Include="src\Card.cpp" />
     <ClCompile Include="src\game\Board.cpp" />
     <ClCompile Include="src\game\BoardState.cpp" />
@@ -45,11 +46,11 @@
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
     <ClCompile Include="src\Transform.cpp" />
-    <ClCompile Include="U:\hlocal\Andres\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\BoxCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.h" />
     <ClInclude Include="MatchManager.h" />
+    <ClInclude Include="src\BoxCollider.h" />
     <ClInclude Include="src\Card.h" />
     <ClInclude Include="src\game\Board.h" />
     <ClInclude Include="src\game\BoardState.h" />
@@ -90,7 +91,6 @@
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
     <ClInclude Include="src\Transform.h" />
-    <ClInclude Include="U:\hlocal\Andres\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\BoxCollider.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
