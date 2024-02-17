@@ -83,9 +83,9 @@ void Board::PaintBoard()
 			if (tablero[i][j]->IsActive()) {
 				// gestiona el color
 				if (tablero[i][j]->getCard()->getPlayer() == 1) { 
-					SetConsoleTextAttribute(hConsole, 150); }	
+					SetConsoleTextAttribute(hConsole, 33); }	
 				else if(tablero[i][j]->getCard()->getPlayer() == 2){
-					SetConsoleTextAttribute(hConsole, 200); }				
+					SetConsoleTextAttribute(hConsole, 26); }				
 
 				// pinta la carta
 				std::cout << GetCard(tablero[i][j]->getCard());
