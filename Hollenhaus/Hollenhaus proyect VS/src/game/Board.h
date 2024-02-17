@@ -10,6 +10,7 @@ class Board {
 public: 
 
 	Board();
+	~Board();
 
 	// pinta el tablero
 	void PaintBoard();
@@ -30,11 +31,15 @@ public:
 	}
 
 	Cell* getCell(int x, int y) {
-		return &tablero[x][y];
+		return tablero[x][y];
 	}
 	
 
 private:
+
+	Cell* cell1;
+	Cell* cell2;
+	Cell* cell3;
 
 	// inicia un tablero (se crea cada carta aqui)
 	void IniciaTablero();
@@ -45,5 +50,6 @@ private:
 	std::vector<Card*> mazo;
 
 	// lista bidimensional para el tablero (vector de vectores)
-	std::vector<std::vector<Cell>> tablero;
+	std::vector<std::vector<Cell*>> tablero;
+
 };

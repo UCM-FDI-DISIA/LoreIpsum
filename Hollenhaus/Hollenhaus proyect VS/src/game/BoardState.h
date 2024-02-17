@@ -22,6 +22,8 @@ private:
 
 	// puntero al tablero
 	Board* board;
+
+	
 	
 };
 

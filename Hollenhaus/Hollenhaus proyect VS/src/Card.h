@@ -7,10 +7,10 @@ class Card // : Entity
 	// lo de adelante es placeholder! para comprobar que funca bien el parseado de jsons que todavia no hay entities ni componentes
 	int cost, value;
 	std::string sprite, skills;
-	bool player; // Ines: lo añado porque me hace falta pero no se si lo quereis asi
+	int player; // 0 nadie; 1 player; 2 enemigo
 public:
 	Card() = default;
-	Card(int, int, std::string&, std::string&);
+	Card(int, int, std::string&, std::string&, int);
 
 	int getCost() {
 		return cost;
@@ -24,7 +24,9 @@ public:
 		return skills;
 	}
 
-	bool getPlayer() {
+	int getPlayer() {
 		return player;
 	}
+
+	
 };

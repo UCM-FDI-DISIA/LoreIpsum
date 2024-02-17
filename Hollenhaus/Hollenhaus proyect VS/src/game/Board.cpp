@@ -9,9 +9,20 @@ Board::Board()
 
 	IniciaTablero();
 
+	cell1 = nullptr;
+	cell2 = nullptr;
+	cell3 = nullptr;
+
 	// prepara el color para consola con Windows.h
 	//HANDLE console_color = GetStdHandle(STD_OUTPUT_HANDLE);
 
+}
+
+Board::~Board()
+{
+	delete cell1;
+	delete cell2;
+	delete cell3;
 }
 
 void Board::PaintBoard()
@@ -67,7 +78,7 @@ void Board::PaintBoard()
 
 
 			// si la casilla no esta vacia
-			if (tablero[i][j].IsActive()) {
+			if (tablero[i][j]->IsActive()) {
 				// gestiona el color
 				if (card->getPlayer()) { system("Color E0"); }	// player color amarillo
 				else { system("Color B0"); }					// npc color azulito
@@ -104,30 +115,48 @@ std::string Board::getEffect(Card* card)
 
 void Board::IniciaTablero()
 {
+	std::string effect1 = "->+2";
+	std::string effect2 = "<--1";
+	std::string sprite = "yippie";
+	Card* card1 = new Card(1,2,sprite, effect2, 0);
+	Card* card2 = new Card(0, 3, sprite, effect1, 0);
+		
+	std::vector<Cell*> line;
 
+	cell1 = new Cell(card1);
 	
 
-	tablero[0].push_back(Cell());
-	tablero[0].push_back(Cell());
-	tablero[0].push_back(Cell());
-	tablero[0].push_back(Cell());
+	line.push_back(cell1);
+	line.push_back(cell1);
+	line.push_back(cell1);
+	line.push_back(cell1);
 
-	tablero[1].push_back(Cell());
-	tablero[1].push_back(Cell());
-	tablero[1].push_back(Cell());
-	tablero[1].push_back(Cell());
+	tablero.push_back(line);
+	line.clear();
 
-	tablero[2].push_back(Cell());
-	tablero[2].push_back(Cell());
-	tablero[2].push_back(Cell());
-	tablero[2].push_back(Cell());
+	line.push_back(cell1);
+	line.push_back(cell1);
+	line.push_back(cell1);
+	line.push_back(cell1);
 
-	tablero[3].push_back(Cell());
-	tablero[3].push_back(Cell());
-	tablero[3].push_back(Cell());
-	tablero[3].push_back(Cell());
+	//tablero.push_back(line);
+	//line.clear();
 
-	
+	//line.push_back(&Cell(nullptr));
+	//line.push_back(&Cell(nullptr));
+	//line.push_back(&Cell(card1));
+	//line.push_back(&Cell(nullptr));
+
+	//tablero.push_back(line);
+	//line.clear();
+
+	//line.push_back(&Cell(nullptr));
+	//line.push_back(&Cell(nullptr));
+	//line.push_back(&Cell(nullptr));
+	//line.push_back(&Cell(card2));
+
+	//tablero.push_back(line);
+	//line.clear();
 
 
 	
