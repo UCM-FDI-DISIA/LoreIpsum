@@ -80,8 +80,12 @@ void Board::PaintBoard()
 			// si la casilla no esta vacia
 			if (tablero[i][j]->IsActive()) {
 				// gestiona el color
-				if (tablero[i][j]->getCard()->getPlayer()) { system("Color E0"); }	// player color amarillo
-				else { system("Color B0"); }					// npc color azulito
+				if (tablero[i][j]->getCard()->getPlayer()) { 
+					//system("Color E0"); 
+				}	// player color amarillo
+				else { 
+					//system("Color B0"); 
+				}					// npc color azulito
 
 				// pinta la carta
 				std::cout << GetCard(tablero[i][j]->getCard());
