@@ -2,6 +2,8 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <windows.h>
 #include "../Card.h"
 #include "../Cell.h"
 

@@ -70,6 +70,8 @@ void Board::PaintBoard()
 	}
 	*/
 
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, 15);
 
 	// recorre todas las casillas del tablero y pinta las cartas
 	for (int i = 0; i < height; i++) {
@@ -80,18 +82,16 @@ void Board::PaintBoard()
 			// si la casilla no esta vacia
 			if (tablero[i][j]->IsActive()) {
 				// gestiona el color
-				if (tablero[i][j]->getCard()->getPlayer()) { 
-					//system("Color E0"); 
-				}	// player color amarillo
-				else { 
-					//system("Color B0"); 
-				}					// npc color azulito
+				if (tablero[i][j]->getCard()->getPlayer() == 1) { 
+					SetConsoleTextAttribute(hConsole, 150); }	
+				else if(tablero[i][j]->getCard()->getPlayer() == 2){
+					SetConsoleTextAttribute(hConsole, 200); }				
 
 				// pinta la carta
 				std::cout << GetCard(tablero[i][j]->getCard());
 
-
-				system("Color 07");	// vuelve al negro
+				SetConsoleTextAttribute(hConsole, 15);
+				//system("Color 07");	// vuelve al negro
 			}
 			// si la casilla esta vacia
 			else {
@@ -124,8 +124,8 @@ void Board::IniciaTablero()
 	std::string effect1 = "->+2";
 	std::string effect2 = "<--1";
 	std::string sprite = "yippie";
-	Card* card1 = new Card(1,2,sprite, effect2, 0);
-	Card* card2 = new Card(0, 3, sprite, effect1, 0);
+	Card* card1 = new Card(1,2,sprite, effect2, 1);
+	Card* card2 = new Card(0, 3, sprite, effect1, 2);
 		
 	std::vector<Cell*> line;
 

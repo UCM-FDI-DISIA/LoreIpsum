@@ -15,8 +15,11 @@ BoardState::~BoardState()
 
 void BoardState::update()
 {
+	
 
-	//system("CLS");
+	std::cin >> input;
+
+	
 
 }
 

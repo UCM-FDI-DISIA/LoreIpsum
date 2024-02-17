@@ -23,7 +23,7 @@ private:
 	// puntero al tablero
 	Board* board;
 
-	
+	int input;
 	
 };
 
