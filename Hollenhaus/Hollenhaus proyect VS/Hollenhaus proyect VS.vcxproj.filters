@@ -126,6 +126,9 @@
     <ClCompile Include="MatchManager.cpp">
       <Filter>Archivos de origen\Cartas-tablero</Filter>
     </ClCompile>
+    <ClCompile Include="Cell.cpp">
+      <Filter>Archivos de origen\Cartas-tablero</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -255,6 +258,9 @@
       <Filter>Archivos de encabezado\Cartas-tablero</Filter>
     </ClInclude>
     <ClInclude Include="src\Card.h">
+      <Filter>Archivos de encabezado\Cartas-tablero</Filter>
+    </ClInclude>
+    <ClInclude Include="Cell.h">
       <Filter>Archivos de encabezado\Cartas-tablero</Filter>
     </ClInclude>
   </ItemGroup>

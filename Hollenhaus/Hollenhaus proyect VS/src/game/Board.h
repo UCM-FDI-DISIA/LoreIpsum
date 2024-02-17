@@ -11,8 +11,7 @@ public:
 
 	Board();
 
-
-	// pinta el tamblero
+	// pinta el tablero
 	void PaintBoard();
 
 	// devuelve la informacion de la carra en el formato:
@@ -27,7 +26,6 @@ private:
 
 	// lista con las cartas del mazo
 	std::vector<Card*> mazo;
-
 
 	// inicia un tablero (se crea cada carta aqui)
 	void IniciaTablero();
