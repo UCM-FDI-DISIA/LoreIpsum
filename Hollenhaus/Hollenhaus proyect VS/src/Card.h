@@ -8,9 +8,14 @@ class Card // : Entity
 	int cost, value;
 	std::string sprite, skills;
 	int player; // 0 nadie; 1 player; 2 enemigo
+	std::string effectHistory;
+
 public:
 	Card() = default;
 	Card(int, int, std::string&, std::string&, int);
+
+	// añade un efecto al historial de efectos
+	void AddEffect(std::string newEffect);
 
 	int getCost() {
 		return cost;
@@ -26,6 +31,10 @@ public:
 
 	int getPlayer() {
 		return player;
+	}
+
+	std::string getEffectHistory() {
+		return effectHistory;
 	}
 
 	

@@ -116,7 +116,7 @@ std::string Board::GetCard(Card* card)
 
 std::string Board::getEffect(Card* card)
 {
-	return "YIIPIEE";
+	return card->getEffectHistory();
 }
 
 void Board::IniciaTablero()
