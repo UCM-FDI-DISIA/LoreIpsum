@@ -80,11 +80,11 @@ void Board::PaintBoard()
 			// si la casilla no esta vacia
 			if (tablero[i][j]->IsActive()) {
 				// gestiona el color
-				if (card->getPlayer()) { system("Color E0"); }	// player color amarillo
+				if (tablero[i][j]->getCard()->getPlayer()) { system("Color E0"); }	// player color amarillo
 				else { system("Color B0"); }					// npc color azulito
 
 				// pinta la carta
-				std::cout << GetCard(card);
+				std::cout << GetCard(tablero[i][j]->getCard());
 
 
 				system("Color 07");	// vuelve al negro
@@ -93,6 +93,8 @@ void Board::PaintBoard()
 			else {
 				std::cout << "[ -/-/---- ]";
 			}
+
+			std::cout << "  ";
 		}
 		std::cout << "\n";
 	}
@@ -123,7 +125,9 @@ void Board::IniciaTablero()
 		
 	std::vector<Cell*> line;
 
-	cell1 = new Cell(card1);
+	cell1 = new Cell();
+	cell2 = new Cell(card2);
+	cell3 = new Cell(card1);
 	
 
 	line.push_back(cell1);
@@ -135,28 +139,28 @@ void Board::IniciaTablero()
 	line.clear();
 
 	line.push_back(cell1);
+	line.push_back(cell2);
 	line.push_back(cell1);
 	line.push_back(cell1);
+
+	tablero.push_back(line);
+	line.clear();
+
+	line.push_back(cell3);
+	line.push_back(cell1);
+	line.push_back(cell1);
+	line.push_back(cell2);
+
+	tablero.push_back(line);
+	line.clear();
+
+	line.push_back(cell1);
+	line.push_back(cell1);
+	line.push_back(cell3);
 	line.push_back(cell1);
 
-	//tablero.push_back(line);
-	//line.clear();
-
-	//line.push_back(&Cell(nullptr));
-	//line.push_back(&Cell(nullptr));
-	//line.push_back(&Cell(card1));
-	//line.push_back(&Cell(nullptr));
-
-	//tablero.push_back(line);
-	//line.clear();
-
-	//line.push_back(&Cell(nullptr));
-	//line.push_back(&Cell(nullptr));
-	//line.push_back(&Cell(nullptr));
-	//line.push_back(&Cell(card2));
-
-	//tablero.push_back(line);
-	//line.clear();
+	tablero.push_back(line);
+	line.clear();
 
 
 	

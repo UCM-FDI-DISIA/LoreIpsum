@@ -27,6 +27,10 @@ public:
 		return isActive;
 	}
 
+	Card* getCard() {
+		return card;
+	}
+
 	Cell& operator=(const Cell& o) {
 		// delete current list in data;
 		// deep copy o.data to data here;
