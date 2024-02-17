@@ -24,6 +24,8 @@ void Board::PaintBoard()
 	// despues poner de vuelta el 
 	// system("Color 07") para blanco y negro
 
+
+	/*
 	// hasta 16 porque es un 4x4 en principio
 	for (int i = 0; i < (height*width); i++) {
 
@@ -55,6 +57,34 @@ void Board::PaintBoard()
 		}
 
 	}
+	*/
+
+
+	// recorre todas las casillas del tablero y pinta las cartas
+	for (int i = 0; i < height; i++) {
+
+		for (int j = 0; j < width; j++) {
+
+
+			// si la casilla no esta vacia
+			if (tablero[i][j].IsActive()) {
+				// gestiona el color
+				if (card->getPlayer()) { system("Color E0"); }	// player color amarillo
+				else { system("Color B0"); }					// npc color azulito
+
+				// pinta la carta
+				std::cout << GetCard(card);
+
+
+				system("Color 07");	// vuelve al negro
+			}
+			// si la casilla esta vacia
+			else {
+				std::cout << "[ -/-/---- ]";
+			}
+		}
+		std::cout << "\n";
+	}
 
 }
 
@@ -74,6 +104,33 @@ std::string Board::getEffect(Card* card)
 
 void Board::IniciaTablero()
 {
+
+	
+
+	tablero[0].push_back(Cell());
+	tablero[0].push_back(Cell());
+	tablero[0].push_back(Cell());
+	tablero[0].push_back(Cell());
+
+	tablero[1].push_back(Cell());
+	tablero[1].push_back(Cell());
+	tablero[1].push_back(Cell());
+	tablero[1].push_back(Cell());
+
+	tablero[2].push_back(Cell());
+	tablero[2].push_back(Cell());
+	tablero[2].push_back(Cell());
+	tablero[2].push_back(Cell());
+
+	tablero[3].push_back(Cell());
+	tablero[3].push_back(Cell());
+	tablero[3].push_back(Cell());
+	tablero[3].push_back(Cell());
+
+	
+
+
+	
 
 	/*
 	std::string skill = "->+2";

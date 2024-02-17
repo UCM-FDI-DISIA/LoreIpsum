@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include "../Card.h"
-
+#include "../Cell.h"
 
 class Board {
 
@@ -22,13 +22,28 @@ public:
 	// ->+2  ;;; ->/<-/^/v   ;;;; +/-    ;;;; 
 	std::string getEffect(Card *card);
 
-private:
+	int getWidth() {
+		return width;
+	}
+	int getHeight() {
+		return height;
+	}
 
-	// lista con las cartas del mazo
-	std::vector<Card*> mazo;
+	Cell* getCell(int x, int y) {
+		return &tablero[x][y];
+	}
+	
+
+private:
 
 	// inicia un tablero (se crea cada carta aqui)
 	void IniciaTablero();
 
 	int width, height;
+
+	// lista con las cartas del mazo
+	std::vector<Card*> mazo;
+
+	// lista bidimensional para el tablero (vector de vectores)
+	std::vector<std::vector<Cell>> tablero;
 };
