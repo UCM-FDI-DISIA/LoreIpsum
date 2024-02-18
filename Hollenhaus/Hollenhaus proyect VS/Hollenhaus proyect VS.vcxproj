@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MatchManager.cpp" />
+    <ClCompile Include="src\MatchManager.cpp" />
     <ClCompile Include="src\BoxCollider.cpp" />
     <ClCompile Include="src\Card.cpp" />
     <ClCompile Include="src\Cell.cpp" />
@@ -49,8 +49,8 @@
     <ClCompile Include="src\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data.h" />
-    <ClInclude Include="MatchManager.h" />
+    <ClInclude Include="src\Data.h" />
+    <ClInclude Include="src\MatchManager.h" />
     <ClInclude Include="src\BoxCollider.h" />
     <ClInclude Include="src\Card.h" />
     <ClInclude Include="src\Cell.h" />

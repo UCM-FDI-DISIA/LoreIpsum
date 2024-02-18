@@ -2,26 +2,34 @@
 #include "BoxCollider.h"
 #include "game/Manager.h"
 
-BoxCollider::BoxCollider() :
+BoxCollider::BoxCollider() :BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
+{}
+BoxCollider::BoxCollider(Vector2D posOffset, Vector2D size) :
 	transform_(),
-	spriteRenderer_(),
 	collider_(),
-	offset_() 
+	posOffset_(posOffset),
+	size_(size)
 {
 	initComponent();
 }
 
 void BoxCollider::initComponent() {
 	transform_ = mngr_->getComponent<Transform>(ent_);
-	spriteRenderer_ = mngr_->getComponent<SpriteRenderer>(ent_);
 
-	if (spriteRenderer_ != nullptr) {
-		collider_.h = spriteRenderer_->getTexture()->height();
-		collider_.w = spriteRenderer_->getTexture()->width();
-	}
+	collider_.w = size_.getX();
+	collider_.h = size_.getY();
+
 }
 
 void BoxCollider::update() {
-	collider_.x = transform_->getGlobalPos().getX() + offset_.getX();
-	collider_.y = transform_->getGlobalPos().getY() + offset_.getY();
+	collider_.x = transform_->getGlobalPos().getX() + posOffset_.getX();
+	collider_.y = transform_->getGlobalPos().getY() + posOffset_.getY();
+}
+
+void BoxCollider::setPosOffset(Vector2D newPosOffset) {
+	posOffset_ = newPosOffset;
+}
+
+void BoxCollider::setSize(Vector2D newSizOffset) {
+	newSizOffset = newSizOffset;
 }
