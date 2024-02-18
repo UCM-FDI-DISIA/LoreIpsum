@@ -1,8 +1,10 @@
 #pragma once
 #include <string>
-// #include "Entity.h"
+#include "game/Entity.h"
 
-class Card // : Entity
+
+
+class Card //: public ecs::Entity
 {
 	// lo de adelante es placeholder! para comprobar que funca bien el parseado de jsons que todavia no hay entities ni componentes
 	int cost, value;
@@ -11,7 +13,7 @@ class Card // : Entity
 	std::string effectHistory;
 
 public:
-	Card() = default;
+	Card();
 	Card(int, int, std::string&, std::string&, int);
 
 	// añade un efecto al historial de efectos

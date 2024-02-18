@@ -49,7 +49,7 @@
     <ClCompile Include="src\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Data.h" />
+    <ClInclude Include="src\game\Data.h" />
     <ClInclude Include="src\MatchManager.h" />
     <ClInclude Include="src\BoxCollider.h" />
     <ClInclude Include="src\Card.h" />

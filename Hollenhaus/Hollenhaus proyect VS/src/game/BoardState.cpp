@@ -29,7 +29,6 @@ void BoardState::render()
 	system("CLS");
 
 	board->PaintBoard();
-
 }
 
 void BoardState::refresh()

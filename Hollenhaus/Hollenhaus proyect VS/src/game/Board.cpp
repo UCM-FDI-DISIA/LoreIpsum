@@ -27,7 +27,6 @@ Board::~Board()
 
 void Board::PaintBoard()
 {
-
 	Card* card = nullptr;
 	// para colorear poner 
 	// system("Color E4");
