@@ -108,9 +108,7 @@
     <ClCompile Include="src\game\GenID.cpp">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\BoxCollider.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
+    <ClCompile Include="src\BoxCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -230,8 +228,6 @@
     <ClInclude Include="src\game\GenID.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\BoxCollider.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
+    <ClInclude Include="src\BoxCollider.h" />
   </ItemGroup>
 </Project>
