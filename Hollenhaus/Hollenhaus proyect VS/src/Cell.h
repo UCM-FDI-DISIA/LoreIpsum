@@ -2,40 +2,56 @@
 
 #include "Card.h"
 
+enum Owner
+{
+	NONE,
+	PLAYER1,
+	PLAYER2,
+	NULO
+};
+
+enum Direction
+{
+	Arriba,
+	Derecha,
+	Abajo,
+	Izquierda
+};
+
 class Cell
 {
-	bool isActive;
-
-	// true si la casilla contiene una carta puesta por el player
-	int player; // Nieves: he dejado el de la carta porq no se si ines lo estaba usando
-	// 0 nadie; 1 player; 2 enemigo
-
-	Card* card;
-
+	bool active; // si en la celda se pueden jugar cartas o no
+	Owner player; // a que jugador pertenece
+	Card* card; // carta posicionada en esta celda
+	std::vector<Cell*> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
+	std::string effectHistory;
+	// falta effect history/effect list
 public:
-
-	Cell(Card* card);
-	Cell(Cell& cell);
 	Cell();
+	Cell(Cell& cell); // ctor. por copia
+	Cell(Card* card, Owner);
+	~Cell();
 
+	void addEffect(std::string);
+	void initAdjacents(); // sets pointers to adjacents
 
-	bool getPlayer() {
-		return player;
-	}
+	// getters
+	bool getActive() const { return active; }
+	Owner getPlayer() const{ return player; }
+	Card* getCard() const { return card; }
+	std::string getEffectHistory() { return effectHistory; }
 
-	bool IsActive() {
-		return isActive;
-	}
+	// setters
+	void setActive(bool v) { active = v; }
+	void setPlayer(Owner o) { player = o; }
+	void setCard(Card* c) { card = c; }
+	void setCard(Card* c, Owner o);
+	void deleteCard() const { delete card; } // ???
 
-	Card* getCard() {
-		return card;
-	}
-
-	Cell& operator=(const Cell& o) {
+	Cell& operator=(const Cell& o)
+	{
 		// delete current list in data;
 		// deep copy o.data to data here;
 		return *this;
 	}
-
 };
-

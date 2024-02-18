@@ -1,29 +1,38 @@
 #include "Cell.h"
 
-Cell::Cell(Card* card) : card(card)
+Cell::Cell(Card* card, Owner own) : active(true), player(own), card(card)
 {
-	if (card != nullptr) isActive = true;
-	else isActive = false;
+}
 
-	if (card != nullptr)
-		player = card->getPlayer();
-	else
-		player = 0;
-	
-
+Cell::~Cell()
+{
+	delete card;
 }
 
 Cell::Cell(Cell& cell)
 {
 	card = cell.card;
-	isActive = cell.isActive;
+	active = cell.active;
 	player = cell.player;
+	adjacents = cell.adjacents;
+	effectHistory = cell.effectHistory;
 }
 
 Cell::Cell()
 {
 	card = nullptr;
-	isActive = false;
-	player = 0;
+	active = false;
+	player = NONE;
+}
+
+void Cell::addEffect(std::string)
+{
+
+}
+
+void Cell::setCard(Card* c, Owner o)
+{
+	card = c;
+	player = o;
 }
 

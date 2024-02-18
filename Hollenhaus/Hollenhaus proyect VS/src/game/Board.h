@@ -8,50 +8,38 @@
 #include "../Cell.h"
 
 class Board {
-
-public: 
-
-	Board();
-	~Board();
-
-	// pinta el tablero
-	void PaintBoard();
-
-	// devuelve la informacion de la carra en el formato:
-	// [valor/coste/efecto]
-	std::string GetCard(Card *card);
-
-	// devuelve la informacion del efecto en el formato:
-	// ->+2  ;;; ->/<-/^/v   ;;;; +/-    ;;;; 
-	std::string getEffect(Card *card);
-
-	int getWidth() {
-		return width;
-	}
-	int getHeight() {
-		return height;
-	}
-
-	Cell* getCell(int x, int y) {
-		return tablero[x][y];
-	}
-	
-
-private:
-
+	int width, height;
+	// lista con las cartas del mazo
+	std::vector<Card*> mazo;
+	// lista bidimensional para el grid (vector de vectores)
+	std::vector<std::vector<Cell*>> grid;
 	Cell* cell1;
 	Cell* cell2;
 	Cell* cell3;
 
-	// inicia un tablero (se crea cada carta aqui)
+	// inicia un grid (se crea cada carta aqui)
 	void IniciaTablero();
 
-	int width, height;
+public: 
+	Board();
+	~Board();
 
-	// lista con las cartas del mazo
-	std::vector<Card*> mazo;
+	// getters
+	int getWidth() const { return width; }
+	int getHeight() const { return height; }
+	Cell* getCell(int x, int y) const { return grid[x][y]; }
 
-	// lista bidimensional para el tablero (vector de vectores)
-	std::vector<std::vector<Cell*>> tablero;
+	// setters
+	void setCell(int x, int y, Cell* c) { grid[x][y] = c; }
+	bool setCard(int x, int y, Card* c, Owner o); // true si pudo poner carta (no había otra ya antes)
 
+	// devuelve la informacion de la carra en el formato:
+	// [valor/coste/efecto]
+	std::string getCellInfo(Cell *cell);
+
+	// devuelve la informacion del efecto en el formato:
+	// ->+2  ;;; ->/<-/^/v   ;;;; +/-    ;;;; 
+	std::string getEffects(Cell *cell);
+
+	void PaintBoard(); // pinta el grid
 };

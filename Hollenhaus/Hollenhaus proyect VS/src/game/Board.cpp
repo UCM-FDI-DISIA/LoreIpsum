@@ -15,14 +15,13 @@ Board::Board()
 
 	// prepara el color para consola con Windows.h
 	//HANDLE console_color = GetStdHandle(STD_OUTPUT_HANDLE);
-
 }
 
 Board::~Board()
 {
-	delete cell1;
-	delete cell2;
-	delete cell3;
+	for (int j = 0; j < height; j++)
+		for (int i = 0; i < width; i++)
+			delete grid[j][i];
 }
 
 void Board::PaintBoard()
@@ -34,111 +33,102 @@ void Board::PaintBoard()
 	// despues poner de vuelta el 
 	// system("Color 07") para blanco y negro
 
-
-	/*
-	// hasta 16 porque es un 4x4 en principio
-	for (int i = 0; i < (height*width); i++) {
-
-		// recoge la carta
-		card = mazo[i];
-
-
-		// si no hay carta
-		if (card == nullptr) {
-
-			std::cout << "[ -/-/---- ]";
-		}
-		// si hay carta
-		else {
-			// gestiona el color
-			if (card->getPlayer()) { system("Color E0"); }	// player color amarillo
-			else { system("Color B0"); }					// npc color azulito
-
-			// pinta la carta
-			std::cout << GetCard(card);
-
-
-			system("Color 07");	// vuelve al negro
-		}
-
-		// cada 4 hace un salto de linea
-		if (i % 4 == 0) {
-			std::cout << "\n";
-		}
-
-	}
-	*/
-
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, 15);
 
-	// recorre todas las casillas del tablero y pinta las cartas
-	for (int i = 0; i < height; i++) {
-
-		for (int j = 0; j < width; j++) {
-
-
+	// recorre todas las casillas del grid y pinta las cartas
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
 			// si la casilla no esta vacia
-			if (tablero[i][j]->IsActive()) {
-				// gestiona el color
-				if (tablero[i][j]->getCard()->getPlayer() == 1) { 
-					SetConsoleTextAttribute(hConsole, 33); }	
-				else if(tablero[i][j]->getCard()->getPlayer() == 2){
-					SetConsoleTextAttribute(hConsole, 26); }				
+			if (grid[i][j]->getCard() != nullptr)
+			{
+				if (grid[i][j]->getPlayer() == PLAYER1) // gestiona el color
+					SetConsoleTextAttribute(hConsole, 33);
+				else if (grid[i][j]->getPlayer() == PLAYER2)
+					SetConsoleTextAttribute(hConsole, 26);
 
-				// pinta la carta
-				std::cout << GetCard(tablero[i][j]->getCard());
+				std::cout << getCellInfo(grid[i][j]); // pinta la carta
 
 				SetConsoleTextAttribute(hConsole, 15);
 				//system("Color 07");	// vuelve al negro
 			}
-			// si la casilla esta vacia
-			else {
+			else // si la casilla esta vacia
+			{
 				std::cout << "[ -/-/---- ]";
 			}
-
 			std::cout << "  ";
 		}
 		std::cout << "\n";
 	}
-
 }
 
-std::string Board::GetCard(Card* card)
+bool Board::setCard(int x, int y, Card* c, Owner o)
 {
-	std::string info = "[" + std::to_string(card->getValue()) + "/" 
-						   + std::to_string(card->getCost()) + "/"
-						   + getEffect(card) + "]";
+	Cell* cell = grid[y][x];
+	if (cell->getCard() != nullptr)
+		return false;
+	cell->setCard(c, o);
+	return true;
+}
+
+std::string Board::getCellInfo(Cell* cell)
+{
+	std::string info = "["
+		+ std::to_string(cell->getCard()->getCost()) + "/"
+		+ std::to_string(cell->getCard()->getValue()) + "/"
+		+ cell->getCard()->getSkill()
+		+ "]";
 
 	return info;
 }
 
-std::string Board::getEffect(Card* card)
+std::string Board::getEffects(Cell* cell)
 {
-	return card->getEffectHistory();
+	return cell->getEffectHistory();
 }
 
 void Board::IniciaTablero()
 {
 	std::string effect1 = "->+2";
 	std::string effect2 = "<--1";
-	std::string sprite = "yippie";
-	Card* card1 = new Card(1,2,sprite, effect2, 1);
-	Card* card2 = new Card(0, 3, sprite, effect1, 2);
-		
+
 	std::vector<Cell*> line;
+	// todas las casillas se inicializan como propias
+	for (int j = 0; j < height; j++)
+	{
+		for (int i = 0; i < width; i++)
+		{
+			line.push_back(new Cell());
+		}
+		grid.push_back(line);
+		line.clear();
+	}
+
+
+	// añado cartas a posiciones aleatorias
+	grid[0][2]->setCard(new Card(0, 1, effect1), PLAYER1);
+	grid[2][0]->setCard(new Card(1, 2), PLAYER1);
+	grid[0][3]->setCard(new Card(2, 3, effect2), PLAYER2);
+	grid[1][0]->setCard(new Card(3, 4), PLAYER2);
+
+	/*
+	std::string sprite = "yippie";
+	auto card1 = new Card(1, 2, sprite, effect2);
+	auto card2 = new Card(0, 3, sprite, effect1);
+
 
 	cell1 = new Cell();
-	cell2 = new Cell(card2);
-	cell3 = new Cell(card1);
-	
+	cell2 = new Cell(card2, PLAYER1);
+	cell3 = new Cell(card1, PLAYER2);
 
 	line.push_back(cell1);
 	line.push_back(cell1);
 	line.push_back(cell1);
 	line.push_back(cell1);
 
-	tablero.push_back(line);
+	grid.push_back(line);
 	line.clear();
 
 	line.push_back(cell1);
@@ -146,7 +136,7 @@ void Board::IniciaTablero()
 	line.push_back(cell1);
 	line.push_back(cell1);
 
-	tablero.push_back(line);
+	grid.push_back(line);
 	line.clear();
 
 	line.push_back(cell3);
@@ -154,7 +144,7 @@ void Board::IniciaTablero()
 	line.push_back(cell1);
 	line.push_back(cell2);
 
-	tablero.push_back(line);
+	grid.push_back(line);
 	line.clear();
 
 	line.push_back(cell1);
@@ -162,17 +152,15 @@ void Board::IniciaTablero()
 	line.push_back(cell3);
 	line.push_back(cell1);
 
-	tablero.push_back(line);
+	grid.push_back(line);
 	line.clear();
 
-
-	
 
 	/*
 	std::string skill = "->+2";
 	std::string sprite = "yippie";
 	Card carta = Card(1, 2, sprite, skill);
 
-	mazo.push_back(&carta);*/
-
+	mazo.push_back(&carta);
+	*/
 }

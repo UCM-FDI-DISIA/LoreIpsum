@@ -18,11 +18,13 @@ public:
 	void refresh() override;
 	bool onEnter();
 	bool onExit();
+
+	// input roñoso
+	void inputCard();
 private:
 
-	// puntero al tablero
+	// puntero al grid
 	Board* board;
-	int input;
 };
 
 
