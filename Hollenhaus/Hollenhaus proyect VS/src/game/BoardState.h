@@ -15,7 +15,7 @@ public:
 	~BoardState();
 	void update() override;
 	void render() override;
-	void refresh() override;
+	//void refresh() override;
 	bool onEnter();
 	bool onExit();
 private:

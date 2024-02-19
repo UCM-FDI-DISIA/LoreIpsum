@@ -109,6 +109,11 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\BoxCollider.cpp" />
+    <ClCompile Include="src\game\Board.cpp" />
+    <ClCompile Include="src\game\BoardState.cpp" />
+    <ClCompile Include="src\HandComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -229,5 +234,10 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\BoxCollider.h" />
+    <ClInclude Include="src\game\Board.h" />
+    <ClInclude Include="src\game\BoardState.h" />
+    <ClInclude Include="src\HandComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
