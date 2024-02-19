@@ -1,9 +1,15 @@
 #pragma once
 #include <string>
 #include "game/Entity.h"
+#include <functional>
+
+// utiliza callbacks funcionales de tipo <void(void)>
+using SDLEventCallback = std::function<void(void)>;
+
+#include "game/ComponentUpdate.h"
 
 
-class Card //: public ecs::Entity
+class Card : public ComponentUpdate
 {
 	// lo de adelante es placeholder! para comprobar que funca bien el parseado de jsons que todavia no hay entities ni componentes
 	int cost, value;
@@ -14,6 +20,8 @@ public:
 	Card(int, int);
 	Card(int, int, std::string&);
 	Card(int, int, std::string&, std::string&);
+
+	// Card(int, int, std::string&, std::string&);
 
 	// adds a skill to the skills of the card
 	void addSkill(std::string& s) { skills += " " + s; }

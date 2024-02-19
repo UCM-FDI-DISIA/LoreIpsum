@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EffectCollection.cpp" />
+    <ClCompile Include="src\EffectCollection.cpp" />
     <ClCompile Include="src\MatchManager.cpp" />
     <ClCompile Include="src\BoxCollider.cpp" />
     <ClCompile Include="src\Card.cpp" />
@@ -50,7 +50,7 @@
     <ClCompile Include="src\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EffectCollection.h" />
+    <ClInclude Include="src\EffectCollection.h" />
     <ClInclude Include="src\game\Data.h" />
     <ClInclude Include="src\MatchManager.h" />
     <ClInclude Include="src\BoxCollider.h" />

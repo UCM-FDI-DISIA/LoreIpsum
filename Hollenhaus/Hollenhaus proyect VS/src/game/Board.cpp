@@ -113,7 +113,7 @@ void Board::IniciaTablero()
 		line.clear();
 	}
 
-
+	
 	// añado cartas a posiciones aleatorias
 	grid[0][2]->setCard(new Card(0, 1, effect1), PLAYER1);
 	grid[2][0]->setCard(new Card(1, 2), PLAYER1);

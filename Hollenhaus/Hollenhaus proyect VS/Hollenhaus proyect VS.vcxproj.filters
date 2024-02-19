@@ -129,7 +129,7 @@
     <ClCompile Include="src\MatchManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="EffectCollection.cpp">
+    <ClCompile Include="src\EffectCollection.cpp">
       <Filter>Archivos de origen\Cartas-tablero</Filter>
     </ClCompile>
   </ItemGroup>
@@ -266,7 +266,7 @@
     <ClInclude Include="src\game\Data.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="EffectCollection.h">
+    <ClInclude Include="src\EffectCollection.h">
       <Filter>Archivos de encabezado\Cartas-tablero</Filter>
     </ClInclude>
   </ItemGroup>
