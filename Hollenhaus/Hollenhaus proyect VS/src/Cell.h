@@ -1,8 +1,11 @@
 #pragma once
 
 #include <vector>
-
 #include "Card.h"
+#include <functional>
+
+// utiliza callbacks funcionales de tipo <void(void)>
+using SDLEventCallback = std::function<void(void)>;
 
 enum Owner
 {
@@ -29,6 +32,9 @@ class Cell
 	std::vector<Cell*> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
 	std::string effectHistory;
 	// falta effect history/effect list
+
+	std::list<SDLEventCallback> cellEffectCallbacks; // lista de los efectos que tiene una carta concreta
+
 public:
 	Cell();
 	Cell(Cell& cell); // ctor. por copia
