@@ -15,7 +15,7 @@ Game::Game()
 	gameStateMachine = GameStateMachine::instance();
 
 	//Colocamos el primer estado del juego
-	gameStateMachine->pushState(new MainMenuState(game));
+	gameStateMachine->pushState(new CityState(game));
 	
 }
 
