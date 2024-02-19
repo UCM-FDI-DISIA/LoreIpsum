@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "Card.h"
 
 enum Owner
@@ -34,7 +36,7 @@ public:
 	~Cell();
 
 	void addEffect(std::string);
-	void initAdjacents(); // sets pointers to adjacents
+
 	void addTotal(int add);
 
 	// getters
@@ -42,15 +44,18 @@ public:
 	Owner getPlayer() const{ return player; }
 	Card* getCard() const { return card; }
 	std::string getEffectHistory() { return effectHistory; }
-	int getTotalValue() { return totalValue; }
+
 	bool isCorner() { return true; }
 	bool isCenter() { return true; }
+	std::vector<Cell*> getAdjacents() { return adjacents; } // sets pointers to adjacent
+	int getTotalValue() const { return totalValue; }
 
 	// setters
 	void setActive(bool v) { active = v; }
 	void setPlayer(Owner o) { player = o; }
 	void setCard(Card* c) { card = c; }
 	void setCard(Card* c, Owner o);
+	void setAdjacents(std::vector<Cell*>& a) { adjacents = a; }
 	void deleteCard() const { delete card; } // ???
 
 	Cell& operator=(const Cell& o)

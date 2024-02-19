@@ -15,8 +15,7 @@ BoardState::~BoardState()
 
 void BoardState::update()
 {
-	//if (ih().isKeyDown(SDL_SCANCODE_RETURN))
-		inputCard();
+	inputCard();
 }
 
 void BoardState::render()
