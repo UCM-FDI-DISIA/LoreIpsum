@@ -17,7 +17,6 @@ public:
 
 	void render()const  override;
 
-	void render() override;
 	//void refresh() override;
 	bool onEnter();
 	bool onExit();
