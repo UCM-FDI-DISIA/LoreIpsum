@@ -108,6 +108,7 @@
     <ClCompile Include="src\BoxCollider.cpp" />
     <ClCompile Include="src\game\Board.cpp" />
     <ClCompile Include="src\game\BoardState.cpp" />
+
     <ClCompile Include="src\game\CardStateManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -117,6 +118,11 @@
     <ClCompile Include="src\game\SamuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
+
+    <ClCompile Include="src\HandComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -244,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="src\game\SamuState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HandComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
