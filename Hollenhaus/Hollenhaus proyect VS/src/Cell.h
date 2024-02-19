@@ -35,6 +35,7 @@ public:
 
 	void addEffect(std::string);
 	void initAdjacents(); // sets pointers to adjacents
+	void addTotal(int add);
 
 	// getters
 	bool getActive() const { return active; }
@@ -42,6 +43,8 @@ public:
 	Card* getCard() const { return card; }
 	std::string getEffectHistory() { return effectHistory; }
 	int getTotalValue() { return totalValue; }
+	bool isCorner() { return true; }
+	bool isCenter() { return true; }
 
 	// setters
 	void setActive(bool v) { active = v; }

@@ -1,6 +1,10 @@
 #pragma once
 #include <string>
 #include "game/Entity.h"
+#include <functional>
+
+// utiliza callbacks funcionales de tipo <void(void)>
+using SDLEventCallback = std::function<void(void)>;
 
 
 class Card //: public ecs::Entity
@@ -13,6 +17,9 @@ public:
 	Card();
 	Card(int, int);
 	Card(int, int, std::string&);
+	Card(int, int, std::string&, std::string&);
+
+	// 
 	Card(int, int, std::string&, std::string&);
 
 	// adds a skill to the skills of the card
