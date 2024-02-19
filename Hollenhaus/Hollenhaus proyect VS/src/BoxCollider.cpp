@@ -10,7 +10,6 @@ BoxCollider::BoxCollider(Vector2D posOffset, Vector2D size) :
 	posOffset_(posOffset),
 	size_(size)
 {
-	initComponent();
 }
 
 void BoxCollider::initComponent() {
