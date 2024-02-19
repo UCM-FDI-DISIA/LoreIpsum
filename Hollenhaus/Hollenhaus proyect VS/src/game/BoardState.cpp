@@ -5,18 +5,22 @@
 BoardState::BoardState()
 {
 	board = new Board();
+	score = new MatchManager(board);
 	std::cout << "board state";
 }
 
 BoardState::~BoardState()
 {
 	delete board;
+	delete score;
 }
 
 void BoardState::update()
 {
 	//if (ih().isKeyDown(SDL_SCANCODE_RETURN))
 		inputCard();
+
+	
 }
 
 void BoardState::render()
@@ -24,7 +28,9 @@ void BoardState::render()
 	// limpia la consola
 	system("CLS");
 
-	board->PaintBoard();
+	std::cout << "PLAYER 1: " << score->getPlayer1Points() << " PLAYER 2: " << score->getPlayer1Points() << "\n";
+	board->paintBoard();
+
 }
 
 void BoardState::refresh()
@@ -65,4 +71,7 @@ void BoardState::inputCard()
 	y = std::clamp(y, 0, board->getHeight() - 1);
 
 	board->setCard(x, y, new Card(cost, value, skill), owner);
+
+	// actualiza el score siempre que se ponga una carta
+	score->updateScore();
 }

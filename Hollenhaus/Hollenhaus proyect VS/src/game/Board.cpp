@@ -7,9 +7,6 @@ Board::Board()
 	width = 4;
 	height = 4;
 
-	pPlayer1 = 0;
-	pPlayer2 = 0;
-
 	IniciaTablero();
 
 	cell1 = nullptr;
@@ -27,24 +24,8 @@ Board::~Board()
 			delete grid[j][i];
 }
 
-void Board::CountPoints()
-{
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
 
-			// si es del jugador 1
-			if (grid[i][j]->getPlayer() == PLAYER1) {
-				pPlayer1 += grid[i][j]->getCard()->getValue(); //getTotalValue();
-			}
-			// si es el jugador 2 (normalmente npc)
-			else if (grid[i][j]->getPlayer() == PLAYER2) {
-				pPlayer2 += grid[i][j]->getCard()->getValue();
-			}
-		}
-	}
-}
-
-void Board::PaintBoard()
+void Board::paintBoard()
 {
 	Card* card = nullptr;
 	// para colorear poner 
@@ -55,8 +36,6 @@ void Board::PaintBoard()
 
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, 15);
-
-	std::cout << "PLAYER 1: " << pPlayer1 << " PLAYER 2: " << pPlayer2 <<"\n";
 
 	// recorre todas las casillas del grid y pinta las cartas
 	for (int i = 0; i < height; i++)
@@ -85,6 +64,12 @@ void Board::PaintBoard()
 		std::cout << "\n";
 	}
 }
+
+bool Board::isPlayer(int i, int j, Owner player)
+{
+	return grid[i][j]->getPlayer() == player;
+}
+
 
 bool Board::setCard(int x, int y, Card* c, Owner o)
 {

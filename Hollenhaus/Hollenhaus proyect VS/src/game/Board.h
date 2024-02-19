@@ -14,8 +14,6 @@ class Board {
 	// lista bidimensional para el grid (vector de vectores)
 	std::vector<std::vector<Cell*>> grid;
 
-	int pPlayer1, pPlayer2;
-
 	// cells temporales
 	Cell* cell1;
 	Cell* cell2;
@@ -32,8 +30,6 @@ public:
 	int getWidth() const { return width; }
 	int getHeight() const { return height; }
 	Cell* getCell(int x, int y) const { return grid[x][y]; }
-	int getP1Points() { return pPlayer1; }
-	int getP2Points() { return pPlayer2; }
 
 	// setters
 	void setCell(int x, int y, Cell* c) { grid[x][y] = c; }
@@ -47,6 +43,7 @@ public:
 	// ->+2  ;;; ->/<-/^/v   ;;;; +/-    ;;;; 
 	std::string getEffects(Cell *cell);
 
-	void CountPoints();					// cuenta la puntuacion de ambos jugadores
-	void PaintBoard();					// pinta el grid
+	void countPoints();							//cuenta la puntuacion de ambos jugadores
+	void paintBoard();							// pinta el grid
+	bool isPlayer(int i, int j, Owner player);	// devuelve si en la posicion indicada esta ocupada por el player indicado
 };
