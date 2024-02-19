@@ -36,3 +36,7 @@ void Cell::setCard(Card* c, Owner o)
 	player = o;
 }
 
+void Cell::setAdjacents()
+{
+}
+

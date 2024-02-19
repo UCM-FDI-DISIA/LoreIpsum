@@ -1,9 +1,8 @@
 #pragma once
 #include <string>
-#include "game/Entity.h"
+#include "game/ComponentUpdate.h"
 
-
-class Card //: public ecs::Entity
+class Card : public ComponentUpdate
 {
 	// lo de adelante es placeholder! para comprobar que funca bien el parseado de jsons que todavia no hay entities ni componentes
 	int cost, value;
