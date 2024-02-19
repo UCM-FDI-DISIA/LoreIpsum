@@ -11,7 +11,12 @@ public:
 	/// Constructora que busca la textura
 	/// </summary>
 	/// <param name="_textPath"> Path a la textura </param>
-	SpriteRenderer(const std::string &_textPath);
+	SpriteRenderer(const std::string& _textPath);
+	/// <summary>
+	/// Constructora usa textura json
+	/// </summary>
+	/// <param name="textID"> ID de la textura en el Json </param>
+	SpriteRenderer(const char* _textID);
 
 	// Para inicializar el componenete si es necesario.
 	void initComponent() override;
@@ -25,6 +30,8 @@ public:
 	}
 
 private:
+	void initFindTexture();
+
 	// Instancia del singleton
 	SDLUtils& sdl_ = *SDLUtils::instance();
 
@@ -32,7 +39,9 @@ private:
 	Transform* transform_ = nullptr;
 
 	// Path a la textura
-	std::string texturePath_;
+	std::string texturePath_; 
+	// ID de la textura
+	char* textID_;
 
 	// Puntero a la textura
 	Texture* texture_ = nullptr;
