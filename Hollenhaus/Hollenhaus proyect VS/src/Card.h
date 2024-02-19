@@ -8,12 +8,13 @@ using SDLEventCallback = std::function<void(void)>;
 
 #include "game/ComponentUpdate.h"
 
-
 class Card : public ComponentUpdate
 {
 	// lo de adelante es placeholder! para comprobar que funca bien el parseado de jsons que todavia no hay entities ni componentes
 	int cost, value;
 	std::string sprite, skills;
+
+	std::list<SDLEventCallback> cardEffectCallbacks; // lista de los efectos que tiene una carta concreta
 
 public:
 	Card();
