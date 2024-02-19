@@ -21,13 +21,13 @@ public:
 
     // GETTERS
     // Globales
-    Vector2D getGlobalPos() { return globalPos_; };
-    Vector2D getGlobalScale() { return globalScale_; };
-    float getGlobalAngle() { return globalAngle_; };
+    Vector2D& getGlobalPos() { return globalPos_; };
+    Vector2D& getGlobalScale() { return globalScale_; };
+    float& getGlobalAngle() { return globalAngle_; };
     // Relativos
-    Vector2D getRelativePos() { return relativePos_; };
-    Vector2D getRealativeScale() { return relativeScale_; };
-    float getRelativeAngle() { return relativeAngle_; };
+    Vector2D& getRelativePos() { return relativePos_; };
+    Vector2D& getRealativeScale() { return relativeScale_; };
+    float& getRelativeAngle() { return relativeAngle_; };
     
     // OPERADORES
     Transform& operator+(const Transform& t);

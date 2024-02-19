@@ -2,7 +2,7 @@
 void CityState::update()
 {
 }
-void CityState::render()
+void CityState::render() const 
 {
 }
 void CityState::refresh()

@@ -4,7 +4,7 @@
 class MainMenuState : public GameState
 {
 	void update() override;
-	void render() override;
+	void render() const override;
 	void refresh() override;
 	bool onEnter();
 	bool onExit();

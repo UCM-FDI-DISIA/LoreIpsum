@@ -18,7 +18,7 @@ void BoardState::update()
 
 }
 
-void BoardState::render()
+void BoardState::render() const 
 {
 
 

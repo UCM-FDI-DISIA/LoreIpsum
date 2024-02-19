@@ -2,14 +2,13 @@
 #include "game/Manager.h"
 #include "Transform.h"
 
-SpriteRenderer::SpriteRenderer(const std::string & _textPath): texturePath_(_textPath)
-{
-	initComponent();
-};
+
+SpriteRenderer::SpriteRenderer(const std::string _textID) : textID_(_textID) {
+}
 
 // Para inicializar el componenete si es necesario.
 void SpriteRenderer::initComponent() {
-	texture_ = new Texture(sdl_.renderer(), texturePath_);
+	texture_ = &sdl_.images().at(textID_);
 	transform_ = mngr_->getComponent<Transform>(ent_);
 };
 
