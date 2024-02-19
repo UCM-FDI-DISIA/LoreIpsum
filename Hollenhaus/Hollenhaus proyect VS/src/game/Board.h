@@ -13,6 +13,10 @@ class Board {
 	std::vector<Card*> mazo;
 	// lista bidimensional para el grid (vector de vectores)
 	std::vector<std::vector<Cell*>> grid;
+
+	int pPlayer1, pPlayer2;
+
+	// cells temporales
 	Cell* cell1;
 	Cell* cell2;
 	Cell* cell3;
@@ -28,6 +32,8 @@ public:
 	int getWidth() const { return width; }
 	int getHeight() const { return height; }
 	Cell* getCell(int x, int y) const { return grid[x][y]; }
+	int getP1Points() { return pPlayer1; }
+	int getP2Points() { return pPlayer2; }
 
 	// setters
 	void setCell(int x, int y, Cell* c) { grid[x][y] = c; }
@@ -41,5 +47,6 @@ public:
 	// ->+2  ;;; ->/<-/^/v   ;;;; +/-    ;;;; 
 	std::string getEffects(Cell *cell);
 
-	void PaintBoard(); // pinta el grid
+	void CountPoints();					// cuenta la puntuacion de ambos jugadores
+	void PaintBoard();					// pinta el grid
 };

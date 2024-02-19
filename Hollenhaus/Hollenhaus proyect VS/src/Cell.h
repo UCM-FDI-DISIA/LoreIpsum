@@ -21,6 +21,7 @@ enum Direction
 class Cell
 {
 	bool active; // si en la celda se pueden jugar cartas o no
+	int totalValue; // puntuacion con los efectos aplicados
 	Owner player; // a que jugador pertenece
 	Card* card; // carta posicionada en esta celda
 	std::vector<Cell*> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
@@ -40,6 +41,7 @@ public:
 	Owner getPlayer() const{ return player; }
 	Card* getCard() const { return card; }
 	std::string getEffectHistory() { return effectHistory; }
+	int getTotalValue() { return totalValue; }
 
 	// setters
 	void setActive(bool v) { active = v; }
