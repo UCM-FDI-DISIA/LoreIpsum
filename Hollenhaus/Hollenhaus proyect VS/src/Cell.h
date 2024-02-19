@@ -51,8 +51,8 @@ public:
 	Card* getCard() const { return card; }
 	std::string getEffectHistory() { return effectHistory; }
 
-	bool isCorner() { return true; }
-	bool isCenter() { return true; }
+	bool isCorner() const { return true; }
+	bool isCenter() const { return true; }
 	std::vector<Cell*> getAdjacents() { return adjacents; } // sets pointers to adjacent
 	int getTotalValue() const { return totalValue; }
 
