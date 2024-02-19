@@ -2,6 +2,7 @@
 
 #include "GameState.h"
 #include "Board.h"
+#include "../MatchManager.h"
 
 /// <summary>
 /// Estado para probar la logica de la batalla de cartas
@@ -25,6 +26,9 @@ private:
 
 	// puntero al grid
 	Board* board;
+
+	// puntero al score
+	MatchManager* score;
 };
 
 
