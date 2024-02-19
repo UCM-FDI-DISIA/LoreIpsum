@@ -10,15 +10,20 @@
 /// <summary>
 /// Clase GameState (o Manager) vista en clase
 /// </summary>
+class Game;
 class GameState {
 
 protected:
 
+	Game* game;			//Puntero al juego
+	
+	//Hace falta una lista de objetos del juego??
+	//Manejadores de eventos
 
 public:
 
-	GameState();
-	virtual ~GameState();
+	GameState(Game* g);				//Constructora
+	virtual ~GameState();		//Destructora
 
 	virtual void refresh(); //borra entidades no vivas
 	virtual void update(); //update de las entidades

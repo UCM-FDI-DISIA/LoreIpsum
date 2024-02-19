@@ -12,7 +12,7 @@
 void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
-	pushState(new MainMenuState());
+	//pushState(new MainMenuState());
 
 }
 

@@ -1,6 +1,7 @@
 
 #pragma once
 #include "checkML.h"
+#include "MainMenuState.h"
 #include <SDL.h>
 
 
@@ -26,6 +27,8 @@ private:
 
 #pragma region Maquina de estados
 
+	Game* game = this;
+
 	GameStateMachine* gameStateMachine;
 
 	//Enum de estados del juego
@@ -36,9 +39,6 @@ private:
 		SHOP,
 		PLAY
 	};
-
-	//Estado actual del juego
-	int _state;
 #pragma endregion
 
 	//Texturas

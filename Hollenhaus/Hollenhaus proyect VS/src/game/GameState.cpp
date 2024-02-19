@@ -6,13 +6,13 @@
 #include "../sdlutils/InputHandler.h"
 #include "GameStateMachine.h"
 
-GameState::GameState() 
+GameState::GameState(Game* g)
 {
-    
-    
+    game = g;
+
     /*
     auto mngr = GameStateMachine::instance()->getMngr();
-    
+
     auto entityPrueba = mngr->addEntity();
     std::cout << ((mngr->getComponent<Transform>(entityPrueba)) != nullptr) << std::endl;
     auto componentPrueba = mngr->addComponent<Transform>(entityPrueba);
@@ -21,8 +21,8 @@ GameState::GameState()
     std::cout << ((mngr->hasComponent<Transform>(entityPrueba))) << std::endl;
     std::cout << ((mngr->hasComponent<SpriteRenderer>(entityPrueba))) << std::endl;
     */
-    
-    
+
+
 
     //ih().insertFunction(0, [this] {PruebaInput(); });
 

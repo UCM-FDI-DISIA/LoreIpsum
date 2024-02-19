@@ -1,5 +1,11 @@
 #include "MainMenuState.h"
 
+MainMenuState::MainMenuState(Game* game)
+	: GameState(game)
+{
+	onEnter();
+}
+
 void MainMenuState::update()
 {
 }
@@ -12,9 +18,9 @@ void MainMenuState::refresh()
 {
 }
 
-bool MainMenuState::onEnter()
+void MainMenuState::onEnter()
 {
-	return false;
+	std::cout << "menu";
 }
 
 bool MainMenuState::onExit()
