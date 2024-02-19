@@ -1,4 +1,9 @@
 #include "CityState.h"
+CityState::CityState(Game* game)
+	:GameState(game)
+{
+	onEnter();
+}
 void CityState::update()
 {
 }
@@ -10,10 +15,9 @@ void CityState::refresh()
 }
 
 
-bool CityState::onEnter()
+void CityState::onEnter()
 {
 	std::cout << "entering CityState\n";
-	return true;
 }
 bool CityState::onExit()
 {

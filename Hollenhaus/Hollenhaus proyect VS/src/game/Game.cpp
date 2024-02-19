@@ -82,4 +82,5 @@ void Game::Update()
 void Game::HandleEvents()
 {
 	ih().refresh();	
+
 }

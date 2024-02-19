@@ -2,10 +2,13 @@
 class CityState : public GameState
 {
 public:
+
+	CityState(Game* game);			//Constructora
+
 	void update() override;
 	void render() override;
 	void refresh() override;
-	bool onEnter();
+	void onEnter();
 	bool onExit();
 private:
 
