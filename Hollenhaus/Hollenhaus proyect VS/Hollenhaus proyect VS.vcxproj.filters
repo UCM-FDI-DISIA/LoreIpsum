@@ -81,9 +81,6 @@
     <ClCompile Include="src\Card.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\Data.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\CityState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
@@ -105,8 +102,18 @@
     <ClCompile Include="src\game\Manager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\BoxCollider.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Card.cpp">
+      <Filter>Archivos de origen\Cartas-tablero</Filter>
+    </ClCompile>
     <ClCompile Include="src\game\GenID.cpp">
-      <Filter>Archivos de encabezado\Componentes</Filter>
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Data.cpp" />
+    <ClCompile Include="HandComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\BoxCollider.cpp" />
     <ClCompile Include="src\game\Board.cpp" />
@@ -209,9 +216,6 @@
     <ClInclude Include="src\game\ecs.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="Data.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\SpriteRenderer.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
@@ -236,6 +240,13 @@
     <ClInclude Include="src\BoxCollider.h" />
     <ClInclude Include="src\game\Board.h" />
     <ClInclude Include="src\game\BoardState.h" />
+    <ClInclude Include="src\BoxCollider.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Card.h">
+      <Filter>Archivos de encabezado\Cartas-tablero</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.h" />
     <ClInclude Include="src\HandComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>

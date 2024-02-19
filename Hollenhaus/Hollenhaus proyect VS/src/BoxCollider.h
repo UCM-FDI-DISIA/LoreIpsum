@@ -37,7 +37,6 @@ public:
 
 private:
 	Transform* transform_;
-	SpriteRenderer* spriteRenderer_;
 	SDL_Rect collider_;
 	Vector2D posOffset_;
 	Vector2D size_;

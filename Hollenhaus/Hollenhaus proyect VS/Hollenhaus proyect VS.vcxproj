@@ -23,8 +23,8 @@
     <ClCompile Include="src\Card.cpp" />
     <ClCompile Include="src\game\Board.cpp" />
     <ClCompile Include="src\game\BoardState.cpp" />
+    <ClCompile Include="src\Data.cpp" />
     <ClCompile Include="src\game\CityState.cpp" />
-    <ClCompile Include="src\game\Data.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
@@ -48,11 +48,11 @@
     <ClCompile Include="src\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data.h" />
     <ClInclude Include="src\BoxCollider.h" />
     <ClInclude Include="src\Card.h" />
     <ClInclude Include="src\game\Board.h" />
     <ClInclude Include="src\game\BoardState.h" />
+    <ClInclude Include="src\Data.h" />
     <ClInclude Include="src\game\checkML.h" />
     <ClInclude Include="src\game\CityState.h" />
     <ClInclude Include="src\game\Component.h" />
@@ -91,6 +91,7 @@
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
     <ClInclude Include="src\Transform.h" />
+    <ClInclude Include="src\HandComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
