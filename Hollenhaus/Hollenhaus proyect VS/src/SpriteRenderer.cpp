@@ -4,7 +4,7 @@
 
 SpriteRenderer::SpriteRenderer(const std::string & _textPath): texturePath_(_textPath)
 {
-	initComponent();
+	//initComponent();
 };
 
 // Para inicializar el componenete si es necesario.
