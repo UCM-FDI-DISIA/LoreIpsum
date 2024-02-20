@@ -28,6 +28,7 @@
     <ClCompile Include="src\game\CardStateManager.cpp" />
     <ClCompile Include="src\Data.cpp" />
     <ClCompile Include="src\game\CityState.cpp" />
+    <ClCompile Include="src\game\ColliderRender.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
@@ -62,6 +63,7 @@
     <ClInclude Include="src\Data.h" />
     <ClInclude Include="src\game\checkML.h" />
     <ClInclude Include="src\game\CityState.h" />
+    <ClInclude Include="src\game\ColliderRender.h" />
     <ClInclude Include="src\game\Component.h" />
     <ClInclude Include="src\game\ComponentRender.h" />
     <ClInclude Include="src\game\ComponentUpdate.h" />

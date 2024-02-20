@@ -6,7 +6,8 @@
 
 #include "../SpriteRenderer.h"
 #include "../Transform.h"
-
+#include "../BoxCollider.h"
+#include "ColliderRender.h"
 SamuState::SamuState() : GameState() {
 
 	auto mngr = GameStateMachine::instance()->getMngr();
@@ -15,6 +16,8 @@ SamuState::SamuState() : GameState() {
 	
 	mngr->addComponent<Transform>(card);
 	mngr->addComponent<SpriteRenderer>(card, "card");
+	mngr->addComponent<BoxCollider>(card);
+	mngr->addComponent<ColliderRender>(card);
 
 
 	auto cardTransform = mngr->getComponent<Transform>(card);
@@ -22,6 +25,7 @@ SamuState::SamuState() : GameState() {
 	cardTransform->getGlobalScale().set(0.3, 0.3);
 	cardTransform->getGlobalPos().set(100, 100);
 
+	
 
 }
 
@@ -39,6 +43,7 @@ void SamuState::update()
 {
 	GameState::update();
 
+	
 }
 
 void SamuState::render() const

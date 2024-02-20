@@ -102,7 +102,6 @@
     <ClCompile Include="src\game\Manager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-
     <ClCompile Include="src\BoxCollider.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -112,15 +111,9 @@
     <ClCompile Include="src\game\GenID.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\Data.cpp" />
-    <ClCompile Include="HandComponent.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-
     <ClCompile Include="src\BoxCollider.cpp" />
     <ClCompile Include="src\game\Board.cpp" />
     <ClCompile Include="src\game\BoardState.cpp" />
-
     <ClCompile Include="src\game\CardStateManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -130,11 +123,15 @@
     <ClCompile Include="src\game\SamuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-
     <ClCompile Include="src\HandComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-
+    <ClCompile Include="src\game\BoardManager.cpp" />
+    <ClCompile Include="src\game\CellManager.cpp" />
+    <ClCompile Include="src\Data.cpp" />
+    <ClCompile Include="src\game\ColliderRender.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -251,7 +248,6 @@
     <ClInclude Include="src\game\GenID.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\BoxCollider.h" />
     <ClInclude Include="src\game\Board.h" />
     <ClInclude Include="src\game\BoardState.h" />
     <ClInclude Include="src\game\CardStateManager.h">
@@ -266,8 +262,16 @@
     <ClInclude Include="src\Card.h">
       <Filter>Archivos de encabezado\Cartas-tablero</Filter>
     </ClInclude>
-    <ClInclude Include="Data.h" />
     <ClInclude Include="src\HandComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\BoardManager.h" />
+    <ClInclude Include="src\game\CellManager.h" />
+    <ClInclude Include="src\Data.h" />
+    <ClInclude Include="src\BoxCollider.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\ColliderRender.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>

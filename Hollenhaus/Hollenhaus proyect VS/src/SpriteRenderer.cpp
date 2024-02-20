@@ -9,7 +9,12 @@ SpriteRenderer::SpriteRenderer(const std::string _textID) : textID_(_textID) {
 // Para inicializar el componenete si es necesario.
 void SpriteRenderer::initComponent() {
 	texture_ = &sdl_.images().at(textID_);
+
+	//requiere component?
 	transform_ = mngr_->getComponent<Transform>(ent_);
+	if (transform_ == nullptr) {
+		transform_ = mngr_->addComponent<Transform>(ent_);
+	}
 };
 
 // Para renderizar el estado
