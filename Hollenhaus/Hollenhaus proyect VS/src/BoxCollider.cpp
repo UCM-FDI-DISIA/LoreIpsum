@@ -8,13 +8,15 @@
 
 BoxCollider::BoxCollider() :BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
 {}
+
 BoxCollider::BoxCollider(Vector2D posOffset, Vector2D size) :
 	transform_(),
+	spriteRenderer_(),
 	collider_(),
 	posOffset_(posOffset),
 	size_(size)
 {
-	
+
 }
 
 void BoxCollider::initComponent() {
@@ -24,12 +26,18 @@ void BoxCollider::initComponent() {
 	collider_.h = size_.getY();
 
 
-	SpriteRenderer* spriteRenderer = mngr_->getComponent<SpriteRenderer>(ent_);
+	spriteRenderer_ = mngr_->getComponent<SpriteRenderer>(ent_);
 
-
-	if (spriteRenderer != nullptr) {
-		size_.set(spriteRenderer->getTexture()->width(), spriteRenderer->getTexture()->height());
+	anchoredToSprite_ = spriteRenderer_ != nullptr;
+	/*
+	if (spriteRenderer_ != nullptr) {
+		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
+		anchoredToSprite_ = true;
 	}
+	else
+	{
+		anchoredToSprite_ = false;
+	}*/
 
 #ifdef _DEBUG
 	mngr_->addComponent<ColliderRender>(ent_);
@@ -40,6 +48,14 @@ void BoxCollider::initComponent() {
 void BoxCollider::update() {
 	collider_.x = transform_->getGlobalPos().getX() + posOffset_.getX();
 	collider_.y = transform_->getGlobalPos().getY() + posOffset_.getY();
+
+	if (anchoredToSprite_) {
+
+		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
+	}
+
+	collider_.w = -size_.getX() * transform_->getGlobalScale().getX();
+	collider_.w = -size_.getY() * transform_->getGlobalScale().getY();
 }
 
 void BoxCollider::setPosOffset(Vector2D newPosOffset) {

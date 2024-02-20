@@ -33,12 +33,26 @@ public:
 	Vector2D getSize() { return size_; }
 	SDL_Rect* getRect() { return &collider_; }
 
+	/// <summary>
+	/// Settea si el tamaño del collider depende del sprite, si tiene spriterenderer, por defecto está en true
+	/// </summary>
+	/// <param name="_anchored"></param>
+	void setAnchoredToSprite(bool _anchored) { anchoredToSprite_ = _anchored; }
+
 	void update() override;
 
 private:
-	Transform* transform_;
+	// El tamano depende del sprite?
+	bool anchoredToSprite_;
+
+	// Puntero al transform
+	Transform* transform_; 
+	SpriteRenderer* spriteRenderer_;
 	SDL_Rect collider_;
+
+	// Offset de la posicion
 	Vector2D posOffset_;
+	// Tamano del collider, depende de la escala del transform
 	Vector2D size_;
 };
 

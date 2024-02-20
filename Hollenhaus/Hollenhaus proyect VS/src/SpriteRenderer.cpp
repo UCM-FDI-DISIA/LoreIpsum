@@ -24,8 +24,8 @@ void SpriteRenderer::render() const {
 	
 	texture_->render(transform_->getGlobalPos().getX(),
 		transform_->getGlobalPos().getY(),
-		transform_->getGlobalScale().getX(),
-		transform_->getGlobalScale().getY(),
+		transform_->getGlobalScale().getX()*texture_->width(),
+		transform_->getGlobalScale().getY()*texture_->height(),
 		transform_->getGlobalAngle());
 	
 	
