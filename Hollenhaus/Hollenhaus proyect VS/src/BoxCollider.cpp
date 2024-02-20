@@ -1,6 +1,8 @@
 #pragma once
 #include "BoxCollider.h"
 #include "game/Manager.h"
+#include "SpriteRenderer.h"
+#include "Transform.h"
 
 BoxCollider::BoxCollider() :BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
 {}
@@ -10,7 +12,7 @@ BoxCollider::BoxCollider(Vector2D posOffset, Vector2D size) :
 	posOffset_(posOffset),
 	size_(size)
 {
-
+	
 }
 
 void BoxCollider::initComponent() {
@@ -19,6 +21,13 @@ void BoxCollider::initComponent() {
 	collider_.w = size_.getX();
 	collider_.h = size_.getY();
 
+
+	SpriteRenderer* spriteRenderer = mngr_->getComponent<SpriteRenderer>(ent_);
+
+
+	if (spriteRenderer != nullptr) {
+		size_.set(spriteRenderer->getTexture()->width(), spriteRenderer->getTexture()->height());
+	}
 }
 
 void BoxCollider::update() {
@@ -31,5 +40,5 @@ void BoxCollider::setPosOffset(Vector2D newPosOffset) {
 }
 
 void BoxCollider::setSize(Vector2D newSizOffset) {
-	newSizOffset = newSizOffset;
+	size_ = newSizOffset;
 }

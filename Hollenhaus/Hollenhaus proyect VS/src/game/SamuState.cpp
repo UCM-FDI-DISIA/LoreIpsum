@@ -25,6 +25,13 @@ SamuState::SamuState() : GameState() {
 	cardTransform->getGlobalScale().set(0.3, 0.3);
 	cardTransform->getGlobalPos().set(100, 100);
 
+	auto cardCollider = mngr->getComponent<BoxCollider>(card);
+	auto cardSpriteRenderer = mngr->getComponent<SpriteRenderer>(card);
+
+	Vector2D newSize = Vector2D(cardSpriteRenderer->getTexture()->width() * cardTransform->getGlobalScale().getX(),
+		cardSpriteRenderer->getTexture()->height() * cardTransform->getGlobalScale().getY());
+
+	cardCollider->setSize(newSize);
 	
 
 }
