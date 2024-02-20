@@ -17,7 +17,7 @@ SamuState::SamuState() : GameState() {
 	mngr->addComponent<Transform>(card);
 	mngr->addComponent<SpriteRenderer>(card, "card");
 	mngr->addComponent<BoxCollider>(card);
-	mngr->addComponent<ColliderRender>(card);
+	//mngr->addComponent<ColliderRender>(card);
 
 
 	auto cardTransform = mngr->getComponent<Transform>(card);

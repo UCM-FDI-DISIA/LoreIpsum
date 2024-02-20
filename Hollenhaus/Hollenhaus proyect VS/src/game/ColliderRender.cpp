@@ -30,7 +30,9 @@ void ColliderRender::render() const
 								myBoxCollider->getSize().getX(),//width
 								myBoxCollider->getSize().getY());//heigth
 
+	
 	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 255, 0, 255);
 	SDL_RenderDrawRect(sdlutils().renderer(), &rect);
 	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 0, 255);
+
 }

@@ -3,6 +3,8 @@
 #include "game/Manager.h"
 #include "SpriteRenderer.h"
 #include "Transform.h"
+#include "game/Manager.h"
+#include "game/ColliderRender.h"
 
 BoxCollider::BoxCollider() :BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
 {}
@@ -28,6 +30,11 @@ void BoxCollider::initComponent() {
 	if (spriteRenderer != nullptr) {
 		size_.set(spriteRenderer->getTexture()->width(), spriteRenderer->getTexture()->height());
 	}
+
+#ifdef _DEBUG
+	mngr_->addComponent<ColliderRender>(ent_);
+#endif // DEBUG
+
 }
 
 void BoxCollider::update() {
