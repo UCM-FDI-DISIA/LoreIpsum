@@ -54,8 +54,8 @@ void BoxCollider::update() {
 		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
 	}
 
-	collider_.w = -size_.getX() * transform_->getGlobalScale().getX();
-	collider_.w = -size_.getY() * transform_->getGlobalScale().getY();
+	collider_.w = size_.getX() * transform_->getGlobalScale().getX();
+	collider_.h = size_.getY() * transform_->getGlobalScale().getY();
 }
 
 void BoxCollider::setPosOffset(Vector2D newPosOffset) {

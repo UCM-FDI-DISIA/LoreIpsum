@@ -22,7 +22,7 @@ SamuState::SamuState() : GameState() {
 
 	auto cardTransform = mngr->getComponent<Transform>(card);
 
-	cardTransform->getGlobalScale().set(0.3, 0.3);
+	cardTransform->getGlobalScale().set(0.4, 0.4);
 	cardTransform->getGlobalPos().set(100, 100);
 
 	auto cardCollider = mngr->getComponent<BoxCollider>(card);

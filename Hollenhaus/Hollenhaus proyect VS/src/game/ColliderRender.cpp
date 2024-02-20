@@ -26,10 +26,7 @@ void ColliderRender::render() const
 
 	Vector2D pos = myTransform->getGlobalPos() + myBoxCollider->getPosOffset();
 	//render debug
-	SDL_Rect rect = build_sdlrect(pos,//pos
-								myBoxCollider->getSize().getX(),//width
-								myBoxCollider->getSize().getY());//heigth
-
+	SDL_Rect rect = myBoxCollider->getRect();
 	
 	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 255, 0, 255);
 	SDL_RenderDrawRect(sdlutils().renderer(), &rect);
