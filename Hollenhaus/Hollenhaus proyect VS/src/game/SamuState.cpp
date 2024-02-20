@@ -14,10 +14,15 @@ SamuState::SamuState() : GameState() {
 	card = mngr->addEntity();
 	
 	mngr->addComponent<Transform>(card);
-	mngr->addComponent<SpriteRenderer>(card, "./resources/images/card.png");
-	mngr->getComponent<Transform>(card)->getRealativeScale().set(1.0, 1.0);
+	mngr->addComponent<SpriteRenderer>(card, "card");
 
-	std::cout << mngr->getComponent<Transform>(card)->getRealativeScale() << std::endl;
+
+	auto cardTransform = mngr->getComponent<Transform>(card);
+
+	cardTransform->getGlobalScale().set(0.3, 0.3);
+	cardTransform->getGlobalPos().set(100, 100);
+
+
 }
 
 SamuState::~SamuState()

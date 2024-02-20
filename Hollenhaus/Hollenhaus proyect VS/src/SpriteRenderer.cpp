@@ -15,10 +15,13 @@ void SpriteRenderer::initComponent() {
 // Para renderizar el estado
 void SpriteRenderer::render() const {
 	
+
+	
 	texture_->render(transform_->getGlobalPos().getX(),
 		transform_->getGlobalPos().getY(),
 		transform_->getGlobalScale().getX(),
 		transform_->getGlobalScale().getY(),
 		transform_->getGlobalAngle());
+	
 	
 };
