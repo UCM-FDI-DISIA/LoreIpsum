@@ -3,8 +3,8 @@
 void
 Transform::update() {
 	if (isChild_) {
-		relativeAngle_ += parent_->globalAngle_;
-		relativeScale_ = relativeScale_ + parent_->globalScale_;
+		globalAngle_ += parent_->globalAngle_;
+		globalScale_ = relativeScale_ * parent_->globalScale_.magnitude();
 		globalPos_ = parent_->globalPos_ + relativePos_;
 	}
 }
