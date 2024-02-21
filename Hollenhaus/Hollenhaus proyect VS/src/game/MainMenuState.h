@@ -8,7 +8,7 @@ public:
 	MainMenuState(Game* game);		//Constructora
 
 	void update() override;
-	void render() override;
+	void render() const override;
 	void refresh() override;
 	void onEnter();
 	bool onExit();

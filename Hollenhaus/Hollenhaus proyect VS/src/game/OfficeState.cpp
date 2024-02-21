@@ -4,7 +4,7 @@ void OfficeState::update()
 {
 }
 
-void OfficeState::render()
+void OfficeState::render() const
 {
 }
 

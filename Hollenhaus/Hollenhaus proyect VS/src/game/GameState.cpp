@@ -49,7 +49,7 @@ void GameState::update()
     GameStateMachine::instance()->getMngr()->update();
 }
 
-void GameState::render()
+void GameState::render() const 
 {
     GameStateMachine::instance()->getMngr()->render();
 }

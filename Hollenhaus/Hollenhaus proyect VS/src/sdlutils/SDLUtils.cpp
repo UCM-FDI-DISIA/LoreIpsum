@@ -66,7 +66,7 @@ void SDLUtils::initWindow() {
 	assert(renderer_ != nullptr);
 
 	// hide cursor by default
-	hideCursor();
+	//hideCursor();
 
 }
 

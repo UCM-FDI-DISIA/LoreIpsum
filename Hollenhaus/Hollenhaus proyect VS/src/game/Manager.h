@@ -118,12 +118,13 @@ public:
 			//
 			Component* c = new T(std::forward<Ts>(args)...);
 			c->setContext(e, this);
-			c->initComponent();
 
 			ComponentUpdate* p = static_cast<ComponentUpdate*>(c);
 
 			e->cmpsU_[cId] = p;
 			e->currCmpsU_.push_back(p);
+
+			c->initComponent();
 
 			// return it to the user so i can be initialised if needed
 			return static_cast<T*>(c);
@@ -143,11 +144,13 @@ public:
 			//
 			Component* c = new T(std::forward<Ts>(args)...);
 			c->setContext(e, this);
-			c->initComponent();
 
 			ComponentRender* p = static_cast<ComponentRender*>(c);
 			e->cmpsR_[cId] = p;
 			e->currCmpsR_.push_back(p);
+
+
+			c->initComponent();
 
 			// return it to the user so i can be initialised if needed
 			return static_cast<T*>(c);

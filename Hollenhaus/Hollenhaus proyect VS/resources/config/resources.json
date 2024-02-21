@@ -28,7 +28,11 @@
     {
       "id": "rice",
       "file": "./resources/images/rice.png"
+    },
+    {
+      "id": "card",
+      "file": "resources/images/card.png"
+
     }
   ]
-
 }

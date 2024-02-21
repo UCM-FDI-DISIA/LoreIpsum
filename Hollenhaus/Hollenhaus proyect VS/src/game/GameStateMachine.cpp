@@ -6,13 +6,18 @@
 
 #include "GameStateMachine.h"
 #include "MainMenuState.h"
+#include "SamuState.h"
 #include "Manager.h"
 
 
 void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
+
 	//pushState(new MainMenuState());
+
+	//pushState(new SamuState());
+
 
 }
 

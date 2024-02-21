@@ -76,7 +76,9 @@ void Game::Run()
 
 void Game::Render() const
 {
+	sdlutils().clearRenderer();
 	gameStateMachine->Render();
+	sdlutils().presentRenderer();
 }
 
 void Game::Update()

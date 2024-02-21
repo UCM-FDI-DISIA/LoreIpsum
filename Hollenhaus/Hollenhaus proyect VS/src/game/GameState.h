@@ -27,7 +27,7 @@ public:
 
 	virtual void refresh(); //borra entidades no vivas
 	virtual void update(); //update de las entidades
-	virtual void render(); // render de las entidades
+	virtual void render() const; // render de las entidades
 
 };
 

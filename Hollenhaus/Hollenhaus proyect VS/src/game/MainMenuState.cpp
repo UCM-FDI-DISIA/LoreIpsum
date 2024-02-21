@@ -10,7 +10,7 @@ void MainMenuState::update()
 {
 }
 
-void MainMenuState::render()
+void MainMenuState::render() const 
 {
 }
 
