@@ -12,12 +12,12 @@ void ShopState::refresh()
 {
 }
 
-bool ShopState::onEnter()
+void ShopState::onEnter() const
 {
-	return false;
+	std::cout << "\nenter shop\n";
 }
 
-bool ShopState::onExit()
+void ShopState::onExit() const
 {
-	return false;
+	std::cout << "\nexit shop\n";
 }

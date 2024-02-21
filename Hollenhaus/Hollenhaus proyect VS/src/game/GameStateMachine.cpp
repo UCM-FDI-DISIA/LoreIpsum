@@ -79,11 +79,26 @@ void GameStateMachine::setState(int state)
 	switch (state)
 	{
 	case MAINMENU:
-
-
+		newState = mainMenuState;
+		break;
+	case CITY:
+		newState = cityState;
+		break;
+	case OFFICE:
+		newState = officeState;
+		break;
+	case SHOP:
+		newState = shopState;
+		break;
+	case BOARD:
+		newState = boardState;
+		break;
 	default:
 		break;
 	}
+
+	//Hacemos el exit del estado actual
+	
 }
 
 void GameStateMachine::pushState(GameState* state) {

@@ -10,8 +10,9 @@ public:
 	void update() override;
 	void render() const override;
 	void refresh() override;
-	void onEnter();
-	bool onExit();
+
+	void onEnter() const override;
+	void onExit() const override;
 
 private:
 

@@ -18,12 +18,13 @@ void MainMenuState::refresh()
 {
 }
 
-void MainMenuState::onEnter()
+void MainMenuState::onEnter() const
 {
-	std::cout << "menu";
+	std::cout << "\nenter menu\n";
 }
 
-bool MainMenuState::onExit()
+void MainMenuState::onExit() const
 {
-	return false;
+	std::cout << "\nexit menu\n";
 }
+

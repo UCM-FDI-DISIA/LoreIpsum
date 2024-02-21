@@ -26,6 +26,10 @@ public:
 	virtual void update(); //update de las entidades
 	virtual void render() const; // render de las entidades
 
+	//Para testeo de estrada y salida de estados
+	virtual void onEnter() const = 0;
+	virtual void onExit() const = 0;
+
 };
 
 #endif // !GameState_H_

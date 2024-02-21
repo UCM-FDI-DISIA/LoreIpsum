@@ -13,13 +13,12 @@ void CityState::refresh()
 {
 }
 
-
-void CityState::onEnter()
+void CityState::onEnter() const
 {
-	std::cout << "entering CityState\n";
+	std::cout << "\nentering CityState\n";
 }
-bool CityState::onExit()
+
+void CityState::onExit() const
 {
-	std::cout << "exiting CityState\n";
-	return true;
+	std::cout << "\nexiting CityState\n";
 }

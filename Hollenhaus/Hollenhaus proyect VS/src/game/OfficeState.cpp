@@ -12,12 +12,13 @@ void OfficeState::refresh()
 {
 }
 
-bool OfficeState::onEnter()
+void OfficeState::onEnter() const
 {
-	return false;
+	std::cout << "\nenter office\n";
 }
 
-bool OfficeState::onExit()
+void OfficeState::onExit() const
 {
-	return false;
+	std::cout << "\nexit office\n";
 }
+
