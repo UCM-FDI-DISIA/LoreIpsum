@@ -63,6 +63,7 @@ public:
 	void setCard(Card* c, Owner o);
 	void setAdjacents(std::vector<Cell*>& a) { adjacents = a; }
 	void deleteCard() const { delete card; } // ???
+	void blockEffects(Card* c);
 
 	Cell& operator=(const Cell& o)
 	{

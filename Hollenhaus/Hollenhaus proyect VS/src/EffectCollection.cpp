@@ -1,32 +1,37 @@
 #include "EffectCollection.h"
 
 
-void EffectCollection::addValueAdj(Cell* cardCell, Direction direction, int add, bool ultimateArrow)
+void EffectCollection::addValueAdj(Cell* thisCardCell, Direction direction, int add, bool ultimateArrow)
 {
-	if (ultimateArrow) {
-		cardCell->getAdjacents()[direction]->addTotal(add);
+	if (ultimateArrow && (thisCardCell->getAdjacents()[direction] != nullptr)) {
+		thisCardCell->getAdjacents()[direction]->addTotal(add);
 	}
 	else {
 
 	}
 }
 
-void EffectCollection::addValueCenter(int add, Cell* cardCell)
+void EffectCollection::addValueCenter(Cell* thisCardCell, int add)
 {
-	if (cardCell->isCenter()) {
+	if (thisCardCell->isCenter()) {
 
-		cardCell->addTotal(add);
+		thisCardCell->addTotal(add);
 	}
 }
 
-void EffectCollection::addValueCorner()
+void EffectCollection::addValueCorner(Cell* thisCardCell, int add)
 {
-
+	if (thisCardCell->isCorner()) {
+		thisCardCell->addTotal(add);
+	}
 }
 
-void EffectCollection::blockCard(Direction direction)
+void EffectCollection::blockCard(Cell* thisCardCell, Direction direction)
 {
+	if (thisCardCell->getAdjacents()[direction] != nullptr) {
 
+		thisCardCell->getAdjacents()[direction]->blockEffects(thisCardCell->getCard());
+	}
 }
 
 

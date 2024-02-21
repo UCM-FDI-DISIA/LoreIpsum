@@ -34,6 +34,7 @@ public:
 	int getValue() const { return value; }
 	std::string getSkill() { return skills; }
 	SDLEventCallback getEffect() { return effectCallback; }
+	std::list<SDLEventCallback> getCardEffects() { return cardEffectCallbacks;  }
 
 	// setters
 	void setCost(int v) { cost = v; }
