@@ -62,5 +62,3 @@ void Cell::blockEffects(Card* c)
 {
 	c->getCardEffects().clear();
 }
-
-

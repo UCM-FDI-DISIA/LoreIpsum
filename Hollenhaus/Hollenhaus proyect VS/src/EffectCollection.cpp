@@ -3,11 +3,16 @@
 
 void EffectCollection::addValueAdj(Cell* thisCardCell, Direction direction, int add, bool ultimateArrow)
 {
-	if (ultimateArrow && (thisCardCell->getAdjacents()[direction] != nullptr)) {
-		thisCardCell->getAdjacents()[direction]->addTotal(add);
+	if (ultimateArrow) {
+		while (thisCardCell->getAdjacents()[direction] != nullptr) {
+
+			// sobrescribes la celda que mirar
+			thisCardCell = thisCardCell->getAdjacents()[direction];
+			thisCardCell->getAdjacents()[direction]->addTotal(add);
+		}
 	}
 	else {
-
+		thisCardCell->getAdjacents()[direction]->addTotal(add);
 	}
 }
 
@@ -33,7 +38,6 @@ void EffectCollection::blockCard(Cell* thisCardCell, Direction direction)
 		thisCardCell->getAdjacents()[direction]->blockEffects(thisCardCell->getCard());
 	}
 }
-
 
 bool EffectCollection::unblockable()
 {
