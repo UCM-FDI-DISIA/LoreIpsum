@@ -13,14 +13,8 @@ Game::Game()
 
 	GameStateMachine::instance()->init();
 	gameStateMachine = GameStateMachine::instance();
-
-	//Colocamos el primer estado del juego
-	//gameStateMachine->pushState(new CityState(game));
 	
 	auto& sdl = *SDLUtils::instance();
-	auto& arroz = sdl.images().at("rice");
-
-	arroz.render(10, 10);
 	sdl.presentRenderer();
 }
 

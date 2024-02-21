@@ -16,7 +16,7 @@ void GameStateMachine::init()
 
 	//pushState(new MainMenuState());
 
-	//pushState(new SamuState());
+	pushState(new SamuState());
 
 
 }
