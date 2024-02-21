@@ -9,7 +9,7 @@ class BoxCollider :public ComponentUpdate
 {
 public:
 	/// <summary>
-	/// constructora vacía, por defecto posOffset = (0,0) / size = (1,1)
+	/// constructora vacï¿½a, por defecto posOffset = (0,0) / size = (1,1)
 	/// </summary>
 	BoxCollider();
 	/// <param name="posOffset"> Por defecto esta a 0</param>
@@ -26,7 +26,7 @@ public:
 	Vector2D getPosOffset() { return posOffset_; }
 
 	/// <summary>
-	/// Para cambiar el tamaño del collider
+	/// Para cambiar el tamaï¿½o del collider
 	/// </summary>
 	/// <param name="newPosOffset"></param>
 	void setSize(Vector2D newSize);
@@ -34,7 +34,7 @@ public:
 	SDL_Rect* getRect() { return &collider_; }
 
 	/// <summary>
-	/// Settea si el tamaño del collider depende del sprite, si tiene spriterenderer, por defecto está en true
+	/// Settea si el tamaï¿½o del collider depende del sprite, si tiene spriterenderer, por defecto estï¿½ en true
 	/// </summary>
 	/// <param name="_anchored"></param>
 	void setAnchoredToSprite(bool _anchored) { anchoredToSprite_ = _anchored; }
@@ -42,12 +42,14 @@ public:
 	void update() override;
 
 private:
+
 	// El tamano depende del sprite?
 	bool anchoredToSprite_;
 
 	// Puntero al transform
 	Transform* transform_; 
 	SpriteRenderer* spriteRenderer_;
+	
 	SDL_Rect collider_;
 
 	// Offset de la posicion

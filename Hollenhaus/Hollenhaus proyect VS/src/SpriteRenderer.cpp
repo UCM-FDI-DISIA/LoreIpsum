@@ -11,6 +11,7 @@ void SpriteRenderer::initComponent() {
 	texture_ = &sdl_.images().at(textID_);
 
 	//requiere component? // si no tiene transform, crea uno 
+
 	transform_ = mngr_->getComponent<Transform>(ent_);
 	if (transform_ == nullptr) {
 		transform_ = mngr_->addComponent<Transform>(ent_);
