@@ -31,7 +31,7 @@ public:
 	/// <param name="newPosOffset"></param>
 	void setSize(Vector2D newSize);
 	Vector2D getSize() { return size_; }
-	SDL_Rect getRect() { return collider_; }
+	SDL_Rect* getRect() { return &collider_; }
 
 	/// <summary>
 	/// Settea si el tamaño del collider depende del sprite, si tiene spriterenderer, por defecto está en true

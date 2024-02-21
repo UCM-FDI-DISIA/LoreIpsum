@@ -29,6 +29,9 @@ void BoxCollider::initComponent() {
 	spriteRenderer_ = mngr_->getComponent<SpriteRenderer>(ent_);
 
 	anchoredToSprite_ = spriteRenderer_ != nullptr;
+
+	size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
+
 	/*
 	if (spriteRenderer_ != nullptr) {
 		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
@@ -49,10 +52,12 @@ void BoxCollider::update() {
 	collider_.x = transform_->getGlobalPos().getX() + posOffset_.getX();
 	collider_.y = transform_->getGlobalPos().getY() + posOffset_.getY();
 
+	/*
 	if (anchoredToSprite_) {
 
-		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
+		//size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
 	}
+	*/
 
 	collider_.w = size_.getX() * transform_->getGlobalScale().getX();
 	collider_.h = size_.getY() * transform_->getGlobalScale().getY();

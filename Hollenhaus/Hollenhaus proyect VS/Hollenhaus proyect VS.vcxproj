@@ -29,6 +29,7 @@
     <ClCompile Include="src\Data.cpp" />
     <ClCompile Include="src\game\CityState.cpp" />
     <ClCompile Include="src\game\ColliderRender.cpp" />
+    <ClCompile Include="src\game\Drag.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="src\game\Component.h" />
     <ClInclude Include="src\game\ComponentRender.h" />
     <ClInclude Include="src\game\ComponentUpdate.h" />
+    <ClInclude Include="src\game\Drag.h" />
     <ClInclude Include="src\game\ecs.h" />
     <ClInclude Include="src\game\Entity.h" />
     <ClInclude Include="src\game\Game.h" />

@@ -8,6 +8,8 @@
 #include "../Transform.h"
 #include "../BoxCollider.h"
 #include "ColliderRender.h"
+#include "Drag.h"
+
 SamuState::SamuState() : GameState() {
 
 	auto mngr = GameStateMachine::instance()->getMngr();
@@ -17,22 +19,13 @@ SamuState::SamuState() : GameState() {
 	mngr->addComponent<Transform>(card);
 	mngr->addComponent<SpriteRenderer>(card, "card");
 	mngr->addComponent<BoxCollider>(card);
-	//mngr->addComponent<ColliderRender>(card);
-
+	mngr->addComponent<Drag>(card);
 
 	auto cardTransform = mngr->getComponent<Transform>(card);
 
 	cardTransform->getGlobalScale().set(0.4, 0.4);
-	cardTransform->getGlobalPos().set(100, 100);
+	cardTransform->getGlobalPos().set(100, 100);	
 
-	auto cardCollider = mngr->getComponent<BoxCollider>(card);
-	auto cardSpriteRenderer = mngr->getComponent<SpriteRenderer>(card);
-
-	Vector2D newSize = Vector2D(cardSpriteRenderer->getTexture()->width() * cardTransform->getGlobalScale().getX(),
-		cardSpriteRenderer->getTexture()->height() * cardTransform->getGlobalScale().getY());
-
-	cardCollider->setSize(newSize);
-	
 
 }
 
