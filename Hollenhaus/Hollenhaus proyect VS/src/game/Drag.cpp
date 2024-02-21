@@ -44,15 +44,12 @@ void Drag::update()
 void Drag::OnLeftClickDown()
 {
 	Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
-	
-	SDL_Rect mouseRect = build_sdlrect(mousePos, 1, 1);
-	
-	if (SDL_HasIntersection(myBoxCollider->getRect(), &mouseRect)&& conditionsValid()) {
+
+	if (myBoxCollider->isCursorOver() && conditionsValid()) {
 		isDraged = true;
 		initialMousePos = mousePos;
 		initialTransformPos = myTransform->getGlobalPos();
 	}
-
 }
 
 void Drag::OnLeftClickUp()
