@@ -1,9 +1,32 @@
 {
 
-  "cards" : [
-    { "id" : "card01", "cost" : 1, "value" : 2, "sprite" : "sprite01", "skills" : "zero" },
-    { "id" : "card02", "cost" : 3, "value" : 4, "sprite" : "sprite02", "skills" : "one" },
-    { "id" : "card03", "cost" : 5, "value" : 6, "sprite" : "sprite03", "skills" : "two" }
+  "cards": [
+    {
+      "id": "card01",
+      "cost": 1,
+      "value": 2,
+      "sprite": "sprite01",
+      "skills": "zero"
+    },
+    {
+      "id": "card02",
+      "cost": 3,
+      "value": 4,
+      "sprite": "sprite02",
+      "skills": "one"
+    },
+    {
+      "id": "card03",
+      "cost": 5,
+      "value": 6,
+      "sprite": "sprite03",
+      "skills": "two"
+    }
+  ],
+  "images": [
+    {
+      "id": "card",
+      "file": "resources/images/card.png"
+    }
   ]
-
 }

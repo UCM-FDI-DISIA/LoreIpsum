@@ -24,7 +24,7 @@ void BoardState::update()
 	inputCard();
 }
 
-void BoardState::render()
+void BoardState::render() const 
 {
 	// limpia la consola
 	system("CLS");

@@ -6,6 +6,7 @@
 
 #include "GameStateMachine.h"
 #include "MainMenuState.h"
+#include "SamuState.h"
 #include "Manager.h"
 
 #include "BoardState.h"
@@ -14,7 +15,9 @@
 void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
-	pushState(new BoardState());
+	//pushState(new BoardState());
+	//pushState(new SamuState());
+
 }
 
 //constructor

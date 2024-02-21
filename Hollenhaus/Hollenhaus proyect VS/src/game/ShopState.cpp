@@ -4,7 +4,7 @@ void ShopState::update()
 {
 }
 
-void ShopState::render()
+void ShopState::render() const  
 {
 }
 

@@ -8,10 +8,10 @@ class SpriteRenderer : public ComponentRender
 {
 public:
 	/// <summary>
-	/// Constructora que busca la textura
+	/// Constructora usa textura json
 	/// </summary>
-	/// <param name="_textPath"> Path a la textura </param>
-	SpriteRenderer(const std::string &_textPath);
+	/// <param name="textID"> ID de la textura en el Json </param>
+	SpriteRenderer(const std::string _textID);
 
 	// Para inicializar el componenete si es necesario.
 	void initComponent() override;
@@ -25,14 +25,15 @@ public:
 	}
 
 private:
+
 	// Instancia del singleton
 	SDLUtils& sdl_ = *SDLUtils::instance();
 
 	// Puntero al componente transform
 	Transform* transform_ = nullptr;
 
-	// Path a la textura
-	std::string texturePath_;
+	// ID de la textura
+	std::string textID_;
 
 	// Puntero a la textura
 	Texture* texture_ = nullptr;

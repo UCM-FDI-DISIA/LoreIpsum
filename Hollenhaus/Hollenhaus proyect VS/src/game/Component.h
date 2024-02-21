@@ -21,7 +21,7 @@ public:
 	// Para pasarle un puntero a su entidad
 	inline void setContext(Entity* ent, Manager* mngr) {
 		ent_ = ent;
-		mngr = mngr;
+		mngr_ = mngr;
 	}
 
 	// Se invoca al anyadir un componente a una entidad.
