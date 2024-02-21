@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "GameStateMachine.h"
 #include "Manager.h"
+#include "GameState.h"
 
 #include "../SpriteRenderer.h"
 #include "../Transform.h"
@@ -11,7 +12,7 @@
 #include "Drag.h"
 #include "CardStateManager.h"
 
-SamuState::SamuState() : GameState() {
+SamuState::SamuState() {
 
 	auto mngr = GameStateMachine::instance()->getMngr();
 

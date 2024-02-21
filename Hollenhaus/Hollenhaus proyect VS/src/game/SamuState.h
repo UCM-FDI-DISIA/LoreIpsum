@@ -4,7 +4,6 @@
 
 
 class Entity;
-class GameState;
 
 class SamuState :
     public GameState

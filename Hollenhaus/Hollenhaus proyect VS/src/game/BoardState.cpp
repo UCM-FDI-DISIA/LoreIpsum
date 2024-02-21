@@ -1,6 +1,6 @@
 #include "BoardState.h"
 
-BoardState::BoardState()
+BoardState::BoardState() : GameState()
 {
 
 

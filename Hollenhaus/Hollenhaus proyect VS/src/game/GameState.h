@@ -23,6 +23,7 @@ protected:
 public:
 
 	GameState(Game* g);				//Constructora
+	GameState() = default;
 	virtual ~GameState();		//Destructora
 
 	virtual void refresh(); //borra entidades no vivas
