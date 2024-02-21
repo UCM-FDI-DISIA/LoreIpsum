@@ -1,7 +1,8 @@
 #pragma once
 #include "ComponentUpdate.h"
 #include "../utils/Vector2D.h"
-
+#include <vector>
+#include  <functional>
 class Transform;
 class BoxCollider;
 
@@ -25,11 +26,18 @@ private:
     Vector2D initialMousePos;
     Vector2D initialTransformPos;
 
+    std::vector<std::function<bool(void)>> conditions;
 
     bool isDraged = false;
 
     void OnLeftClickDown();
 
     void OnLeftClickUp();
+
+    bool conditionsValid();
+
+public:
+
+    void addCondition(std::function<bool(void)> condition);
 };
 

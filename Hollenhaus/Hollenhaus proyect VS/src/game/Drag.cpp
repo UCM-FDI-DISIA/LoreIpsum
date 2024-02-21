@@ -26,16 +26,10 @@ void Drag::initComponent()
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 
 
-
 }
 
 void Drag::update()
 {
-	
-	//std::cout << isDraged << std::endl;
-
-	//std::cout << mousePos.getX() << "," << mousePos.getY() << std::endl;
-
 	if (isDraged) {
 
 		Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
@@ -53,7 +47,7 @@ void Drag::OnLeftClickDown()
 	
 	SDL_Rect mouseRect = build_sdlrect(mousePos, 1, 1);
 	
-	if (SDL_HasIntersection(myBoxCollider->getRect(), &mouseRect)) {
+	if (SDL_HasIntersection(myBoxCollider->getRect(), &mouseRect)&& conditionsValid()) {
 		isDraged = true;
 		initialMousePos = mousePos;
 		initialTransformPos = myTransform->getGlobalPos();
@@ -63,7 +57,26 @@ void Drag::OnLeftClickDown()
 
 void Drag::OnLeftClickUp()
 {
-	isDraged = false;
+	if (isDraged) {
+		isDraged = false;
+		myTransform->getGlobalPos().set(initialTransformPos);//quitar? poner en otro component?
+	}
 
-	myTransform->getGlobalPos().set(initialTransformPos);
+}
+
+bool Drag::conditionsValid()
+{
+	if (conditions.size() == 0) return true;
+	
+
+	auto it = conditions.begin();
+
+	while (it != conditions.end() && (*it)()) ++it;
+
+	return it == conditions.end();
+}
+
+void Drag::addCondition(std::function<bool(void)> condition)
+{
+	conditions.push_back(condition);
 }
