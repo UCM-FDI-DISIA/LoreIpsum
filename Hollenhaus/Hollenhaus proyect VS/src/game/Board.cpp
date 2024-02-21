@@ -2,32 +2,19 @@
 #include <iostream>
 #include <stdLib.h>
 
-Board::Board()
+Board::Board(int s) : size(s)
 {
-	width = 4;
-	height = 4;
-
-	IniciaTablero();
-
-	cell1 = nullptr;
-	cell2 = nullptr;
-	cell3 = nullptr;
-
-	// prepara el color para consola con Windows.h
-	//HANDLE console_color = GetStdHandle(STD_OUTPUT_HANDLE);
+	initGrid();
 }
 
 Board::~Board()
 {
-	for (int j = 0; j < height; j++)
-		for (int i = 0; i < width; i++)
-			delete grid[j][i];
+	deleteGrid();
 }
 
-
+/// DEBUG ONLY: Pinta el tablero en consola
 void Board::paintBoard()
 {
-	Card* card = nullptr;
 	// para colorear poner 
 	// system("Color E4");
 	// siendo E el color de fondo y 4 el del texto
@@ -38,9 +25,9 @@ void Board::paintBoard()
 	SetConsoleTextAttribute(hConsole, 15);
 
 	// recorre todas las casillas del grid y pinta las cartas
-	for (int i = 0; i < height; i++)
+	for (int i = 0; i < size; i++)
 	{
-		for (int j = 0; j < width; j++)
+		for (int j = 0; j < size; j++)
 		{
 			// si la casilla no esta vacia
 			if (grid[i][j]->getCard() != nullptr)
@@ -65,12 +52,13 @@ void Board::paintBoard()
 	}
 }
 
+/// Devuelve si una carta dada por las coordenadas i, j es controlada por el jugador 'player'
 bool Board::isPlayer(int i, int j, Owner player)
 {
-	return grid[i][j]->getPlayer() == player;
+	return grid[j][i]->getPlayer() == player;
 }
 
-
+///  Juega una carta del jugador 'o' en la celda de posicion x, y del tablero
 bool Board::setCard(int x, int y, Card* c, Owner o)
 {
 	Cell* cell = grid[y][x];
@@ -82,7 +70,9 @@ bool Board::setCard(int x, int y, Card* c, Owner o)
 	return true;
 }
 
-std::string Board::getCellInfo(Cell* cell)
+
+/// DEBUG ONLY: Devuelve un string con los datos de la carta de la celda;
+std::string Board::getCellInfo(Cell* cell) const
 {
 	std::string info = "["
 		+ std::to_string(cell->getCard()->getCost()) + "/"
@@ -93,89 +83,48 @@ std::string Board::getCellInfo(Cell* cell)
 	return info;
 }
 
-std::string Board::getEffects(Cell* cell)
+/// Devuelve los efectos aplicados en una celda dada
+std::string Board::getEffects(Cell* cell) const
 {
 	return cell->getEffectHistory();
 }
 
-void Board::IniciaTablero()
-{
-	std::string effect1 = "->+2";
-	std::string effect2 = "<--1";
 
+/// Metodo para generar un tablero ejemplo inicial
+void Board::initGrid()
+{
+	resetGrid();
+	std::string effect1 = "+2->";
+	std::string effect2 = "-1<-";
+
+
+	setCard(0, 2, new Card(0, 1, effect1), PLAYER1);
+	setCard(2, 0, new Card(1, 2), PLAYER1);
+	setCard(0, 3, new Card(2, 3, effect2), PLAYER2);
+	setCard(1, 0, new Card(3, 4), PLAYER2);
+}
+
+
+/// Metodo que borra el tablero y lo reinicializa con casillas vacias
+void Board::resetGrid()
+{
+	grid.clear();
 	std::vector<Cell*> line;
-	// todas las casillas se inicializan como propias
-	for (int j = 0; j < height; j++)
+	for (int j = 0; j < size; j++)
 	{
-		for (int i = 0; i < width; i++)
+		for (int i = 0; i < size; i++)
 		{
 			line.push_back(new Cell());
 		}
 		grid.push_back(line);
 		line.clear();
 	}
+}
 
-	
-	setCard(0, 2, new Card(0, 1, effect1), PLAYER1);
-	setCard(2, 0, new Card(1, 2), PLAYER1);
-	setCard(0, 3, new Card(2, 3, effect2), PLAYER2);
-	setCard(1, 0, new Card(3, 4), PLAYER2);
-
-
-	// añado cartas a posiciones aleatorias
-	//grid[0][2]->setCard(new Card(0, 1, effect1), PLAYER1);
-	//grid[2][0]->setCard(new Card(1, 2), PLAYER1);
-	//grid[0][3]->setCard(new Card(2, 3, effect2), PLAYER2);
-	//grid[1][0]->setCard(new Card(3, 4), PLAYER2);*/
-
-	/*
-	std::string sprite = "yippie";
-	auto card1 = new Card(1, 2, sprite, effect2);
-	auto card2 = new Card(0, 3, sprite, effect1);
-
-
-	cell1 = new Cell();
-	cell2 = new Cell(card2, PLAYER1);
-	cell3 = new Cell(card1, PLAYER2);
-
-	line.push_back(cell1);
-	line.push_back(cell1);
-	line.push_back(cell1);
-	line.push_back(cell1);
-
-	grid.push_back(line);
-	line.clear();
-
-	line.push_back(cell1);
-	line.push_back(cell2);
-	line.push_back(cell1);
-	line.push_back(cell1);
-
-	grid.push_back(line);
-	line.clear();
-
-	line.push_back(cell3);
-	line.push_back(cell1);
-	line.push_back(cell1);
-	line.push_back(cell2);
-
-	grid.push_back(line);
-	line.clear();
-
-	line.push_back(cell1);
-	line.push_back(cell1);
-	line.push_back(cell3);
-	line.push_back(cell1);
-
-	grid.push_back(line);
-	line.clear();
-
-
-	/*
-	std::string skill = "->+2";
-	std::string sprite = "yippie";
-	Card carta = Card(1, 2, sprite, skill);
-
-	mazo.push_back(&carta);
-	*/
+/// Metodo para borrar todas las celdas del tablero
+void Board::deleteGrid() const
+{
+	for (int j = 0; j < size; j++)
+		for (int i = 0; i < size; i++)
+			delete grid[j][i];
 }

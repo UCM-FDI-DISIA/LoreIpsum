@@ -4,18 +4,15 @@
 
 BoardState::BoardState()
 {
-	board = new Board();
-	score = new MatchManager(board);
+	board = new Board(4);
+	matchManager = new MatchManager(board);
 	std::cout << "board state";
-
-
-
 }
 
 BoardState::~BoardState()
 {
 	delete board;
-	delete score;
+	delete matchManager;
 }
 
 void BoardState::update()
@@ -24,14 +21,15 @@ void BoardState::update()
 	inputCard();
 }
 
-void BoardState::render() const 
+void BoardState::render() const
 {
 	// limpia la consola
 	system("CLS");
 
-	std::cout << "PLAYER 1: " << score->getPlayer1Points() << " PLAYER 2: " << score->getPlayer2Points() << "\n";
+	std::cout << "PLAYER 1: " << matchManager->getPlayer1Points()
+			  << " PLAYER 2: " << matchManager->getPlayer2Points()
+			  << "\n";
 	board->paintBoard();
-
 }
 
 void BoardState::refresh()
@@ -40,7 +38,6 @@ void BoardState::refresh()
 
 void BoardState::inputCard()
 {
-	render();
 	int x, y;
 	int cost, value;
 	int player;
@@ -63,16 +60,18 @@ void BoardState::inputCard()
 	player = std::clamp(player, 0, 2);
 	switch (player)
 	{
-	case 1: owner = PLAYER1; break;
-	case 2: owner = PLAYER2; break;
+	case 1: owner = PLAYER1;
+		break;
+	case 2: owner = PLAYER2;
+		break;
 	default: break;
 	}
 
-	x = std::clamp(x, 0, board->getWidth() - 1);
-	y = std::clamp(y, 0, board->getHeight() - 1);
+	x = std::clamp(x, 0, board->getSize() - 1);
+	y = std::clamp(y, 0, board->getSize() - 1);
 
 	board->setCard(x, y, new Card(cost, value, skill), owner);
 
-	// actualiza el score siempre que se ponga una carta
-	score->updateScore();
+	// actualiza el matchManager siempre que se ponga una carta
+	matchManager->updateScore();
 }

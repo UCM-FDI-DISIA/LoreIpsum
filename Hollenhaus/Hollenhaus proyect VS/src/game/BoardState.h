@@ -10,28 +10,23 @@
 
 class BoardState : public GameState
 {
+	Board* board;
+	MatchManager* matchManager;
+
 public:
 
 	BoardState();
-	~BoardState();
+	~BoardState() override;
+
 	void update() override;
-
 	void render()const  override;
-
-	//void refresh() override;
-	bool onEnter();
-	bool onExit();
 	void refresh() override;
 
-	// input roñoso
+	bool onEnter();
+	bool onExit();
+
+	// input ronyoso
 	void inputCard();
-private:
-
-	// puntero al grid
-	Board* board;
-
-	// puntero al score
-	MatchManager* score;
 };
 
 

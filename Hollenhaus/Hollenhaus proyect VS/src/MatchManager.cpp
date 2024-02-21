@@ -24,8 +24,8 @@ void MatchManager::updateScore()
 	pPlayer2 = 0;
 
 	// hace recuento de valores
-	for (int i = 0; i < board->getHeight(); i++) {
-		for (int j = 0; j < board->getWidth(); j++) {
+	for (int i = 0; i < board->getSize(); i++) {
+		for (int j = 0; j < board->getSize(); j++) {
 				//si es del jugador 1
 			if (board->isPlayer(i,j, PLAYER1)) {
 				pPlayer1 += board->getCell(i,j)->getTotalValue();

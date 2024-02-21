@@ -5,7 +5,7 @@
 class MatchManager
 {
 private:
-	// score player 1 & 2
+	// matchManager player 1 & 2
 	int pPlayer1 = 0;
 	int pPlayer2 = 0;
 	int matchResult;
