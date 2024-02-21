@@ -42,7 +42,7 @@ public:
 	~Cell();
 
 	void addEffect(std::string);
-
+	void applyValue(Card* card);
 	void addTotal(int add);
 
 	// getters

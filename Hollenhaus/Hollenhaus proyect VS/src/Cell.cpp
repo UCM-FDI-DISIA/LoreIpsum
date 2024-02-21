@@ -37,6 +37,14 @@ void Cell::addEffect(std::string)
 
 }
 
+void Cell::applyValue(Card* card)
+{
+	// aplica el valor base
+	totalValue = card->getValue();
+
+	// aplica el efecto ???
+}
+
 void Cell::addTotal(int add)
 {
 	totalValue += add;

@@ -26,7 +26,7 @@ void BoardState::render()
 	// limpia la consola
 	system("CLS");
 
-	std::cout << "PLAYER 1: " << score->getPlayer1Points() << " PLAYER 2: " << score->getPlayer1Points() << "\n";
+	std::cout << "PLAYER 1: " << score->getPlayer1Points() << " PLAYER 2: " << score->getPlayer2Points() << "\n";
 	board->paintBoard();
 
 }

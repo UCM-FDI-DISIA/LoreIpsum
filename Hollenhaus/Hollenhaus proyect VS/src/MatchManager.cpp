@@ -19,6 +19,11 @@ int MatchManager::whoWon()
 
 void MatchManager::updateScore()
 {
+	// reinicia los valores
+	pPlayer1 = 0;
+	pPlayer2 = 0;
+
+	// hace recuento de valores
 	for (int i = 0; i < board->getHeight(); i++) {
 		for (int j = 0; j < board->getWidth(); j++) {
 				//si es del jugador 1
