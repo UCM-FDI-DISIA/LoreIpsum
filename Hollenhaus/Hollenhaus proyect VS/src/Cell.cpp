@@ -34,7 +34,9 @@ Cell::Cell()
 
 void Cell::addEffect(SDLEventCallback effectCallback)
 {
-
+	if (card != nullptr) {
+		cellEffectCallbacks.push_back(card->getEffect());
+	}
 }
 
 void Cell::applyValue(Card* card)

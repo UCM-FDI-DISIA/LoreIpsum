@@ -33,6 +33,7 @@ public:
 	int getCost() const { return cost; }
 	int getValue() const { return value; }
 	std::string getSkill() { return skills; }
+	SDLEventCallback getEffect() { return effectCallback; }
 
 	// setters
 	void setCost(int v) { cost = v; }
