@@ -84,7 +84,6 @@
     <ClCompile Include="src\Transform.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    </ClCompile>
     <ClCompile Include="src\game\CityState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
@@ -269,6 +268,7 @@
     </ClInclude>
     <ClInclude Include="src\EffectCollection.h">
       <Filter>Archivos de encabezado\Cartas-tablero</Filter>
+    </ClInclude>
     <ClInclude Include="src\game\CardStateManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>

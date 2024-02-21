@@ -21,6 +21,7 @@ public:
 	//void refresh() override;
 	bool onEnter();
 	bool onExit();
+	void refresh() override;
 
 	// input roñoso
 	void inputCard();

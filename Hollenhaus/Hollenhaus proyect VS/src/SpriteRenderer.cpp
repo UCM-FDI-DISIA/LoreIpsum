@@ -2,11 +2,6 @@
 #include "game/Manager.h"
 #include "Transform.h"
 
-SpriteRenderer::SpriteRenderer(const std::string& _textPath): texturePath_(_textPath)
-{
-	initComponent();
-};
-
 SpriteRenderer::SpriteRenderer(const std::string _textID) : textID_(_textID) {
 }
 

@@ -15,9 +15,8 @@
 void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
-	//pushState(new BoardState());
+	pushState(new BoardState());
 	//pushState(new SamuState());
-
 }
 
 //constructor
