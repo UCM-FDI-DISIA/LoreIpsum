@@ -98,7 +98,7 @@ public:
 	/// <param name="mulScaleX">escala x</param>
 	/// <param name="mulScaleY">escala y</param>
 	/// <param name="angle">Angle</param>
-	inline void render(int x, int y, int mulScaleX, int mulScaleY, float angle) {
+	inline void render(int x, int y, float mulScaleX, float mulScaleY, float angle) {
 		SDL_Rect dest = { x, y, width_ * mulScaleX, height_ * mulScaleY };
 		render(dest, angle);
 	}

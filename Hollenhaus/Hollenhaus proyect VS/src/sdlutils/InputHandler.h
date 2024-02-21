@@ -30,7 +30,8 @@ public:
 	/// Enum con los eventos que queremos que tengan una lista de callBacks
 	/// </summary>
 	enum INPUT_EVENTES : uint8_t {
-		MOUSE_LEFT_CLICK
+		MOUSE_LEFT_CLICK_DOWN,
+		MOUSE_LEFT_CLICK_UP
 	};
 
 	virtual ~InputHandler() {
@@ -139,13 +140,19 @@ public:
 	//detecte el evento concreto que queramos tratar
 	int getInputEvent(const SDL_Event& event) {
 
-		//EVENTO DE CLICK_IZQ
+		//EVENTO DE CLICK_IZQ PULSADO
 		if (event.type == SDL_MOUSEBUTTONDOWN) {
 			if (event.button.button == SDL_BUTTON_LEFT) {
-				return MOUSE_LEFT_CLICK;
+				return MOUSE_LEFT_CLICK_DOWN;
 			}
 		}
-		
+
+		//EVENTO DE CLICK_IZQ LEVANTADO
+		if (event.type == SDL_MOUSEBUTTONUP) {
+			if (event.button.button == SDL_BUTTON_LEFT) {
+				return MOUSE_LEFT_CLICK_UP;
+			}
+		}
 
 		//si no es ninguno de los eventos del enumerado devolvemos -1
 		return -1;
