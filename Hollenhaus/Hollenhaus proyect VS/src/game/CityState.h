@@ -3,7 +3,7 @@ class CityState : public GameState
 {
 public:
 
-	CityState(Game* game);			//Constructora
+	CityState();			//Constructora
 
 	void update() override;
 	void render() const override;

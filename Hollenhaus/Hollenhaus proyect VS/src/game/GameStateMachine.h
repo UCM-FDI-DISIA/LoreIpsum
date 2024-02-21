@@ -26,6 +26,23 @@ class GameStateMachine : public Singleton<GameStateMachine> {
 
 	ecs::Manager* mngr_;
 
+	//Enum de estados del juego
+	enum game_states {
+		MAINMENU = 0,
+		CITY,
+		OFFICE,
+		SHOP,
+		BOARD
+	};
+
+	//Creación de los distintos estados del juego
+	GameState* currentState;
+	GameState* mainMenuState;
+	GameState* cityState;
+	GameState* officeState;
+	GameState* shopState;
+	GameState* boardState;
+
 public:
 
 	inline ecs::Manager* getMngr() {
@@ -46,6 +63,8 @@ public:
 	void Render()const;
 	void Update();
 	void Refresh();
+
+	void setState(int state);
 
 	bool Empty() const { return gameStack.empty(); }
 

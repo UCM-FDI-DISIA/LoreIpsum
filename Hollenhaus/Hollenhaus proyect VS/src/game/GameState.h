@@ -15,14 +15,10 @@ class GameState {
 
 protected:
 
+	//A lo mejor deja de hacer falta
 	Game* game;			//Puntero al juego
-	
-	//Hace falta una lista de objetos del juego??
-	//Manejadores de eventos
 
 public:
-
-	GameState(Game* g);				//Constructora
 	GameState() = default;
 	virtual ~GameState();		//Destructora
 

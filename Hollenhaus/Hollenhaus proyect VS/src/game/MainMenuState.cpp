@@ -1,7 +1,7 @@
 #include "MainMenuState.h"
 
-MainMenuState::MainMenuState(Game* game)
-	: GameState(game)
+MainMenuState::MainMenuState()
+	 
 {
 	onEnter();
 }

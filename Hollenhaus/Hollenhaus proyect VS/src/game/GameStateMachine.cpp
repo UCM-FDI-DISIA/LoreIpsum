@@ -6,6 +6,10 @@
 
 #include "GameStateMachine.h"
 #include "MainMenuState.h"
+#include "CityState.h"
+#include "OfficeState.h"
+#include "ShopState.h"
+#include "BoardState.h"
 #include "SamuState.h"
 #include "Manager.h"
 
@@ -14,9 +18,17 @@ void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
 
-	//pushState(new MainMenuState());
+	mainMenuState = new MainMenuState();
+	cityState = new CityState();
+	officeState = new OfficeState();
+	shopState = new ShopState();
+	boardState = new BoardState();
 
-	pushState(new SamuState());
+	//Ponemos el estado actual
+	currentState = mainMenuState;
+
+	//Estado incial
+	pushState(currentState);
 
 
 }
@@ -58,6 +70,20 @@ void GameStateMachine::Update() {
 void GameStateMachine::Refresh()
 {
 	gameStack.top()->refresh();
+}
+
+void GameStateMachine::setState(int state)
+{
+	GameState* newState;
+
+	switch (state)
+	{
+	case MAINMENU:
+
+
+	default:
+		break;
+	}
 }
 
 void GameStateMachine::pushState(GameState* state) {

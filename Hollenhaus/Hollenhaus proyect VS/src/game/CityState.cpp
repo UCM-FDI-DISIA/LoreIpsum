@@ -1,6 +1,5 @@
 #include "CityState.h"
-CityState::CityState(Game* game)
-	:GameState(game)
+CityState::CityState()
 {
 	onEnter();
 }

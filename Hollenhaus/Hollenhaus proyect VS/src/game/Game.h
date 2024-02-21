@@ -28,24 +28,7 @@ private:
 	const Uint8 FRAME_RATE = 20;
 #pragma endregion
 
-#pragma region Maquina de estados
-
-	Game* game = this;
-
 	GameStateMachine* gameStateMachine;
-
-	//Enum de estados del juego
-	enum game_states {
-		MAINMENU = 0,
-		CITY,
-		OFFICE,
-		SHOP,
-		PLAY
-	};
-#pragma endregion
-
-	//Texturas
-	//TODO
 
 	//Haría falta un booleano de salida
 
