@@ -7,6 +7,9 @@ BoardState::BoardState()
 	board = new Board();
 	score = new MatchManager(board);
 	std::cout << "board state";
+
+
+
 }
 
 BoardState::~BoardState()

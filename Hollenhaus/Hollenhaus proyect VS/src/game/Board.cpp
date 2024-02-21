@@ -115,11 +115,17 @@ void Board::IniciaTablero()
 	}
 
 	
+	setCard(0, 2, new Card(0, 1, effect1), PLAYER1);
+	setCard(2, 0, new Card(1, 2), PLAYER1);
+	setCard(0, 3, new Card(2, 3, effect2), PLAYER2);
+	setCard(1, 0, new Card(3, 4), PLAYER2);
+
+
 	// añado cartas a posiciones aleatorias
-	grid[0][2]->setCard(new Card(0, 1, effect1), PLAYER1);
-	grid[2][0]->setCard(new Card(1, 2), PLAYER1);
-	grid[0][3]->setCard(new Card(2, 3, effect2), PLAYER2);
-	grid[1][0]->setCard(new Card(3, 4), PLAYER2);
+	//grid[0][2]->setCard(new Card(0, 1, effect1), PLAYER1);
+	//grid[2][0]->setCard(new Card(1, 2), PLAYER1);
+	//grid[0][3]->setCard(new Card(2, 3, effect2), PLAYER2);
+	//grid[1][0]->setCard(new Card(3, 4), PLAYER2);*/
 
 	/*
 	std::string sprite = "yippie";
