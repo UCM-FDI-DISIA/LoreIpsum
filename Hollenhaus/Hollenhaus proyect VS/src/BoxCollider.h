@@ -26,7 +26,7 @@ public:
 	Vector2D getPosOffset() { return posOffset_; }
 
 	/// <summary>
-	/// Para cambiar el tama�o del collider
+	/// Para cambiar el tamano del collider
 	/// </summary>
 	/// <param name="newPosOffset"></param>
 	void setSize(Vector2D newSize);
@@ -34,10 +34,16 @@ public:
 	SDL_Rect* getRect() { return &collider_; }
 
 	/// <summary>
-	/// Settea si el tama�o del collider depende del sprite, si tiene spriterenderer, por defecto est� en true
+	/// Settea si el tamano del collider depende del sprite, si tiene spriterenderer, por defecto est� en true
 	/// </summary>
 	/// <param name="_anchored"></param>
 	void setAnchoredToSprite(bool _anchored) { anchoredToSprite_ = _anchored; }
+
+	/// <summary>
+	/// Devuelve true si el cursor esta sobre el collider
+	/// </summary>
+	/// <returns></returns>
+	bool isCursorOver();
 
 	void update() override;
 

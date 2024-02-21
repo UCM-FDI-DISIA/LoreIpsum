@@ -52,5 +52,11 @@ public:
 };
 
 
-
+// --------
+// forma de usar el singleton Manager
+// GameStateMachine::instance()->getMngr()->method() / EN VEZ DE ESTO
+// mngr().method() / ESCRIBIR ESTO
+inline ecs::Manager& mngr() {
+	return *GameStateMachine::instance()->getMngr();
+}
 #endif // !GameStateMachine_H_

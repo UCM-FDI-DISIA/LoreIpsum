@@ -14,22 +14,21 @@
 
 SamuState::SamuState() {
 
-	auto mngr = GameStateMachine::instance()->getMngr();
 
-	card = mngr->addEntity();
+	card = mngr().addEntity();
 	
-	mngr->addComponent<Transform>(card);
-	mngr->addComponent<SpriteRenderer>(card, "card");
-	mngr->addComponent<BoxCollider>(card);
-	mngr->addComponent<Drag>(card);
-	mngr->addComponent<CardStateManager>(card);
+	mngr().addComponent<Transform>(card);
+	mngr().addComponent<SpriteRenderer>(card, "card");
+	mngr().addComponent<BoxCollider>(card);
+	mngr().addComponent<Drag>(card);
+	mngr().addComponent<CardStateManager>(card);
 
-	auto cardTransform = mngr->getComponent<Transform>(card);
+	auto cardTransform = mngr().getComponent<Transform>(card);
 
 	cardTransform->getGlobalScale().set(0.4, 0.4);
 	cardTransform->getGlobalPos().set(100, 100);	
 
-	auto cardDrag = mngr->getComponent<Drag>(card);
+	auto cardDrag = mngr().getComponent<Drag>(card);
 
 
 	cardDrag->addCondition([this]() {
@@ -40,7 +39,7 @@ SamuState::SamuState() {
 			return state == CardStateManager::ON_HAND;
 		});
 
-	auto cardCardStateManager = mngr->getComponent<CardStateManager>(card);
+	auto cardCardStateManager = mngr().getComponent<CardStateManager>(card);
 
 	cardCardStateManager->setState(CardStateManager::ON_HAND);
 }
