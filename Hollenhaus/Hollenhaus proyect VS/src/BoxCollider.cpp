@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include "game/Manager.h"
 #include "game/ColliderRender.h"
+#include "sdlutils/InputHandler.h"
 
 BoxCollider::BoxCollider() :BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
 {}
@@ -69,4 +70,12 @@ void BoxCollider::setPosOffset(Vector2D newPosOffset) {
 
 void BoxCollider::setSize(Vector2D newSizOffset) {
 	size_ = newSizOffset;
+}
+
+bool BoxCollider::isCursorOver() {
+	Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
+	
+	SDL_Rect mouseRect = build_sdlrect(mousePos, 1, 1);
+	
+	return SDL_HasIntersection(&collider_, &mouseRect);
 }
