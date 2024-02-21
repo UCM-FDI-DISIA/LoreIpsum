@@ -18,3 +18,7 @@ Card::Card(int cost, int value, std::string& sprite, std::string& skills)
 {
 }
 
+Card::Card(int cost, int value, std::string& sprite, SDLEventCallback& effectCallback)
+	: cost(cost), value(value), sprite(sprite), effectCallback(effectCallback)
+{
+}

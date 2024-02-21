@@ -29,8 +29,8 @@ class Cell
 	int totalValue; // puntuacion con los efectos aplicados
 	Owner player; // a que jugador pertenece
 	Card* card; // carta posicionada en esta celda
-	std::vector<Cell*> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
 	std::string effectHistory;
+	std::vector<Cell*> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
 	// falta effect history/effect list
 
 	std::list<SDLEventCallback> cellEffectCallbacks; // lista de los efectos que tiene una carta concreta
@@ -41,7 +41,7 @@ public:
 	Cell(Card* card, Owner);
 	~Cell();
 
-	void addEffect(std::string);
+	void addEffect(SDLEventCallback effectCallback);
 	void applyValue(Card* card);
 	void addTotal(int add);
 

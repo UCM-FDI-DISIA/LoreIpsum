@@ -16,13 +16,15 @@ class Card : public ComponentUpdate
 
 	std::list<SDLEventCallback> cardEffectCallbacks; // lista de los efectos que tiene una carta concreta
 
+	SDLEventCallback effectCallback;
+
 public:
 	Card();
 	Card(int, int);
 	Card(int, int, std::string&);
 	Card(int, int, std::string&, std::string&);
 
-	// Card(int, int, std::string&, std::string&);
+	Card(int, int, std::string&, SDLEventCallback &effectCallback);
 
 	// adds a skill to the skills of the card
 	void addSkill(std::string& s) { skills += " " + s; }

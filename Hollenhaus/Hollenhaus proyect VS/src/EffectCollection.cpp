@@ -1,12 +1,17 @@
 #include "EffectCollection.h"
 
 
-void EffectCollection::addValueAdj(Direction, int add, bool ultimateArrow)
+void EffectCollection::addValueAdj(Cell* cardCell, Direction direction, int add, bool ultimateArrow)
 {
+	if (ultimateArrow) {
+		cardCell->getAdjacents()[direction]->addTotal(add);
+	}
+	else {
 
+	}
 }
 
-void EffectCollection::addValueCenter(int boardSide, int add, Cell* cardCell)
+void EffectCollection::addValueCenter(int add, Cell* cardCell)
 {
 	if (cardCell->isCenter()) {
 
@@ -18,6 +23,12 @@ void EffectCollection::addValueCorner()
 {
 
 }
+
+void EffectCollection::blockCard(Direction direction)
+{
+
+}
+
 
 bool EffectCollection::unblockable()
 {

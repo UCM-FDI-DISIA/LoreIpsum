@@ -32,7 +32,7 @@ Cell::Cell()
 	player = NONE;
 }
 
-void Cell::addEffect(std::string)
+void Cell::addEffect(SDLEventCallback effectCallback)
 {
 
 }
