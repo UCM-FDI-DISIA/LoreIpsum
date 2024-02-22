@@ -6,6 +6,7 @@ BoardState::BoardState()
 {
 	board = new Board(4);
 	matchManager = new MatchManager(board);
+	
 	std::cout << "board state";
 }
 
@@ -13,6 +14,7 @@ BoardState::~BoardState()
 {
 	delete board;
 	delete matchManager;
+	delete collection;
 }
 
 void BoardState::update()
@@ -70,7 +72,11 @@ void BoardState::inputCard()
 	x = std::clamp(x, 0, board->getSize() - 1);
 	y = std::clamp(y, 0, board->getSize() - 1);
 
-	board->setCard(x, y, new Card(cost, value, skill), owner);
+	//board->setCard(x, y, new Card(cost, value, skill), owner);
+
+	//SDLEventCallback effect = collection->addValueCenter(board->getCell(x, y), std::stoi(skill))
+
+	board->setCard(x, y, new Card(cost, value, 1 owner);
 
 	// actualiza el matchManager siempre que se ponga una carta
 	matchManager->updateScore();

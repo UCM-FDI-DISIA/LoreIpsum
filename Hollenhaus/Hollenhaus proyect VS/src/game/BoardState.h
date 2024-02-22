@@ -2,6 +2,7 @@
 
 #include "GameState.h"
 #include "Board.h"
+#include "../EffectCollection.h"
 #include "../MatchManager.h"
 
 /// <summary>
@@ -12,6 +13,7 @@ class BoardState : public GameState
 {
 	Board* board;
 	MatchManager* matchManager;
+	EffectCollection* collection;
 
 public:
 
