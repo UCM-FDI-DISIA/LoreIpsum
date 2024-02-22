@@ -30,6 +30,7 @@
     <ClCompile Include="src\game\CityState.cpp" />
     <ClCompile Include="src\game\ColliderRender.cpp" />
     <ClCompile Include="src\game\Data.cpp" />
+    <ClCompile Include="src\game\DeckComponent.cpp" />
     <ClCompile Include="src\game\Drag.cpp" />
     <ClCompile Include="src\game\DragManager.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="src\game\ComponentRender.h" />
     <ClInclude Include="src\game\ComponentUpdate.h" />
     <ClInclude Include="src\game\Data.h" />
+    <ClInclude Include="src\game\DeckComponent.h" />
     <ClInclude Include="src\game\Drag.h" />
     <ClInclude Include="src\game\DragManager.h" />
     <ClInclude Include="src\game\ecs.h" />
