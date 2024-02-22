@@ -17,7 +17,9 @@ public:
 
     void update() override;
 
-    void AddCard(ecs::entity_t card, int posX, int posY);
+    bool AddCard(ecs::entity_t card, int posX, int posY);
+
+    bool IsFull();
 
 private:
     const int WIDTH = 4;
