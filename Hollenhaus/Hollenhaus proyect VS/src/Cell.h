@@ -26,14 +26,14 @@ enum Direction
 class Cell
 {
 	bool active; // si en la celda se pueden jugar cartas o no
+	bool corner;
+	bool center;
 	int totalValue; // puntuacion con los efectos aplicados
 	Owner player; // a que jugador pertenece
 	Card* card; // carta posicionada en esta celda
 	std::string effectHistory;
 	std::vector<Cell*> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
-	// falta effect history/effect list
-
-	std::list<SDLEventCallback> cellEffectCallbacks; // lista de los efectos que tiene una carta concreta
+	std::list<SDLEventCallback> effectCallbacks; // lista de los efectos que tiene una carta concreta
 
 public:
 	Cell();
@@ -47,22 +47,24 @@ public:
 
 	// getters
 	bool getActive() const { return active; }
+	bool getCorner() const { return corner; }
+	bool getCenter() const { return center; }
+	int getTotalValue() const { return totalValue; }
 	Owner getPlayer() const{ return player; }
 	Card* getCard() const { return card; }
-	std::string getEffectHistory() { return effectHistory; }
-
-	bool isCorner() const { return true; }
-	bool isCenter() const { return true; }
-	std::vector<Cell*> getAdjacents() { return adjacents; } // sets pointers to adjacent
-	int getTotalValue() const { return totalValue; }
+	std::string& getEffectHistory() { return effectHistory; }
+	std::vector<Cell*>& getAdjacents() { return adjacents; } // sets pointers to adjacent
+	std::list<SDLEventCallback> getEffects() const { return effectCallbacks; }
 
 	// setters
 	void setActive(bool v) { active = v; }
+	void setCorner(bool v) { corner = v; }
+	void setCenter(bool v) { center = v; }
+	void setTotalValue(int v) { totalValue = v;}
 	void setPlayer(Owner o) { player = o; }
-	void setCard(Card* c) { card = c; }
 	void setCard(Card* c, Owner o);
-	void setAdjacents(std::vector<Cell*>& a) { adjacents = a; }
 	void deleteCard() const { delete card; } // ???
+	void setAdjacents(std::vector<Cell*>& a) { adjacents = a; }
 	void blockEffects(Card* c);
 
 	Cell& operator=(const Cell& o)

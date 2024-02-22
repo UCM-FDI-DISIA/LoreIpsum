@@ -1,18 +1,7 @@
 #include "Cell.h"
 
-Cell::Cell(Card* card, Owner own) : active(true), player(own), card(card)
+Cell::Cell() : active(false), corner(false), center(false), totalValue(0), player(NONE), card(nullptr)
 {
-	// si NO hay carta en la casilla 
-	if (card == nullptr) {
-		totalValue = 0;
-	}
-	// si hay carta
-	else totalValue = card->getValue();
-}
-
-Cell::~Cell()
-{
-	delete card;
 }
 
 Cell::Cell(Cell& cell)
@@ -25,17 +14,27 @@ Cell::Cell(Cell& cell)
 	totalValue = cell.totalValue;
 }
 
-Cell::Cell()
+Cell::Cell(Card* card, Owner own) : active(true), player(own), card(card)
 {
-	card = nullptr;
-	active = false;
-	player = NONE;
+	// si NO hay carta en la casilla 
+	if (card == nullptr)
+		totalValue = 0;
+	// si hay carta
+	else totalValue = card->getValue();
 }
+
+
+Cell::~Cell()
+{
+	delete card;
+}
+
 
 void Cell::addEffect(SDLEventCallback effectCallback)
 {
-	if (card != nullptr) {
-		cellEffectCallbacks.push_back(card->getEffect());
+	if (card != nullptr)
+	{
+		effectCallbacks.push_back(card->getEffect());
 	}
 }
 

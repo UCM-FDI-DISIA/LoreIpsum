@@ -38,13 +38,16 @@ void Board::paintBoard()
 					SetConsoleTextAttribute(hConsole, 26);
 
 				std::cout << getCellInfo(grid[i][j]); // pinta la carta
-
+				std::cout << grid[i][j]->getCorner();
+				std::cout << grid[i][j]->getCenter();
 				SetConsoleTextAttribute(hConsole, 15);
 				//system("Color 07");	// vuelve al negro
 			}
 			else // si la casilla esta vacia
 			{
 				std::cout << "[ -/-/---- ]";
+				std::cout << grid[i][j]->getCorner();
+				std::cout << grid[i][j]->getCenter();
 			}
 			std::cout << "  ";
 		}
@@ -109,21 +112,57 @@ void Board::initGrid()
 void Board::resetGrid()
 {
 	grid.clear();
+
+	// rellena el tablero de casillas vacias
 	std::vector<Cell*> line;
 	for (int j = 0; j < size; j++)
 	{
 		for (int i = 0; i < size; i++)
-		{
 			line.push_back(new Cell());
-		}
 		grid.push_back(line);
 		line.clear();
+	}
+
+	// asigna valores de esquina, centro y adyacentes
+	for (int j = 0; j < size; j++)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			/// CENTRO:
+			///		SIZE PAR: n/2 && n/2 - 1
+			///		SIZE IMPAR: floor(n/2)
+			if (size % 2 == 0) // es un tablero par
+			{
+				// esta en ambos ejes en el centro (2x2 casillas posibles)
+				if ((j == size / 2 || j == size / 2 - 1)
+					&& (i == size / 2 || i == size / 2 - 1))
+					grid[j][i]->setCenter(true);
+			}
+			else // es un tablero impar
+			{// esta en ambos ejes en el centro (1 unica casilla posible)
+				// como ambos son ints, la division devuelve el entero redondeando hacia abajo siempre!
+				if (j == size / 2 && i == size / 2)
+					grid[j][i]->setCenter(true);
+			}
+
+			/// ESQUINA:
+			int n = size - 1;
+			if ((j == 0 && i == 0)  // 0,0
+			 || (j == 0 && i == n)  // 0,n
+			 || (j == n && i == n) // n,n
+			 || (j == n && i == 0)) // n,0
+				grid[j][i]->setCorner(true);
+
+			/// ADYACENTES:
+			///	WIP
+		}
 	}
 }
 
 /// Metodo para borrar todas las celdas del tablero
-void Board::deleteGrid() const
+void Board::deleteGrid()
 {
+	grid.clear();
 	for (int j = 0; j < size; j++)
 		for (int i = 0; i < size; i++)
 			delete grid[j][i];

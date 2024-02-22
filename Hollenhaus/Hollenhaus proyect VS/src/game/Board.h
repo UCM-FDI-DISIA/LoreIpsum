@@ -17,7 +17,7 @@ class Board {
 	// inicia un grid (se crea cada carta aqui)
 	void initGrid();
 	void resetGrid();
-	void deleteGrid() const;
+	void deleteGrid();
 
 public:
 	Board() = default;
