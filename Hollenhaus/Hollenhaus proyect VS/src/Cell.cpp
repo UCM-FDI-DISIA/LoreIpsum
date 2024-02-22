@@ -1,6 +1,6 @@
 #include "Cell.h"
 
-Cell::Cell() : active(false), corner(false), center(false), totalValue(0), player(NONE), card(nullptr)
+Cell::Cell() : active(true), corner(false), center(false), totalValue(0), player(NONE), card(nullptr)
 {
 }
 

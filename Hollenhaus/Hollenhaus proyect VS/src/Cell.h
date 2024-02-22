@@ -26,8 +26,8 @@ enum Direction
 class Cell
 {
 	bool active; // si en la celda se pueden jugar cartas o no
-	bool corner;
-	bool center;
+	bool corner; // si la celda es esquina de tablero o no
+	bool center; // si la celda es centro de trablero o no
 	int totalValue; // puntuacion con los efectos aplicados
 	Owner player; // a que jugador pertenece
 	Card* card; // carta posicionada en esta celda
