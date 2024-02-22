@@ -368,12 +368,12 @@ inline void Entity::removeComponent() {
 }
 template<typename T>
 inline T* Entity::getComponent() {
-	return mngr().getComponent<T>();
+	return mngr().getComponent<T>(this);
 }
 
 template<typename T>
 inline bool Entity::hasComponent() {
-	return mngr().hasComponent<T>();
+	return mngr().hasComponent<T>(this);
 }
 
 inline ecs::grpId_t Entity::groupId() {

@@ -92,7 +92,4 @@ void DragManager::OnLeftClickUp()
 	}
 
 
-
-	
-
 }

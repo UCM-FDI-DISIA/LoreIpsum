@@ -19,7 +19,7 @@ ecs::entity_t CardFactory_v0::createCard()
 	card->addComponent<BoxCollider>();
 	card->addComponent<CardStateManager>();
 	
-	auto cardTransform = mngr().getComponent<Transform>(card);
+	auto cardTransform = card->getComponent<Transform>();
 
 	cardTransform->getGlobalScale().set(0.4, 0.4);
 
@@ -36,7 +36,7 @@ ecs::entity_t CardFactory_v0::createCard()
 	
 	*/
 
-	auto cardCardStateManager = mngr().getComponent<CardStateManager>(card);
+	auto cardCardStateManager = card->getComponent<CardStateManager>();
 
 	cardCardStateManager->setState(CardStateManager::ON_HAND);
 	
@@ -44,13 +44,15 @@ ecs::entity_t CardFactory_v0::createCard()
 }
 
 
-ecs::entity_t CardFactory_v0::createDropDetector()
+ecs::entity_t CardFactory_v0::createDropDetector(Vector2D pos)
 {	
-	ecs::entity_t dropDect = mngr().addEntity(ecs::grp::DROPS);
+	ecs::entity_t dropDect = Instantiate(ecs::grp::DROPS);
 
-	mngr().addComponent<Transform>(dropDect);
-	mngr().addComponent<BoxCollider>(dropDect);
-	mngr().addComponent<DropDetector>(dropDect);
+	dropDect->addComponent<Transform>()->getGlobalPos().set(pos);
+	dropDect->addComponent<BoxCollider>();
+	dropDect->addComponent<DropDetector>();
+
+	dropDect->getComponent<BoxCollider>()->setSize(Vector2D(120,180));
 
 	return dropDect;
 }
