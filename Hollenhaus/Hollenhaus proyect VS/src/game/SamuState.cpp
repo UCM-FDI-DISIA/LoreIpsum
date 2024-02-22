@@ -20,10 +20,6 @@ SamuState::SamuState() : GameState() {
 
 	card = factory->createCard();
 
-	
-	
-
-
 
 }
 

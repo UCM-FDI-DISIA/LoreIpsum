@@ -22,7 +22,9 @@ private:
 
     Vector2D initialPos;
 
+    void OnLeftClickDown();
 
+    void OnLeftClickUp();
 
 };
 
