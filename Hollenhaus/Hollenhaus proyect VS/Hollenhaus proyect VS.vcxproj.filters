@@ -166,6 +166,13 @@
     <ClCompile Include="src\game\CardFactory_v0.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
+    <ClCompile Include="src\MatchManager.cpp" />
+    <ClCompile Include="src\EffectCollection.cpp">
+      <Filter>Archivos de origen\Cartas-tablero</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cell.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -249,9 +256,6 @@
     <ClInclude Include="src\Transform.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\Card.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\Entity.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -303,9 +307,6 @@
     <ClInclude Include="src\game\ColliderRender.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\Board.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\Data.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -337,14 +338,20 @@
     <ClInclude Include="src\game\CardFactory_v0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\Cell.h">
-      <Filter>Archivos de encabezado\Cartas-tablero</Filter>
-    </ClInclude>
     <ClInclude Include="src\MatchManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\EffectCollection.h">
       <Filter>Archivos de encabezado\Cartas-tablero</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Board.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Card.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cell.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

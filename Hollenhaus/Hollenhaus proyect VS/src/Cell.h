@@ -32,7 +32,7 @@ class Cell
 	Owner player; // a que jugador pertenece
 	Card* card; // carta posicionada en esta celda
 	std::string effectHistory;
-	std::vector<Cell*> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
+	std::array<Cell*, 4> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
 	std::list<SDLEventCallback> effectCallbacks; // lista de los efectos que tiene una carta concreta
 
 public:
@@ -53,7 +53,7 @@ public:
 	Owner getPlayer() const{ return player; }
 	Card* getCard() const { return card; }
 	std::string& getEffectHistory() { return effectHistory; }
-	std::vector<Cell*>& getAdjacents() { return adjacents; } // sets pointers to adjacent
+	std::array<Cell*, 4>& getAdjacents() { return adjacents; } // sets pointers to adjacent
 	std::list<SDLEventCallback> getEffects() const { return effectCallbacks; }
 
 	// setters
@@ -64,7 +64,7 @@ public:
 	void setPlayer(Owner o) { player = o; }
 	void setCard(Card* c, Owner o);
 	void deleteCard() const { delete card; } // ???
-	void setAdjacents(std::vector<Cell*>& a) { adjacents = a; }
+	void setAdjacents(std::array<Cell*, 4>& a) { adjacents = a; }
 	void blockEffects(Card* c);
 
 	Cell& operator=(const Cell& o)

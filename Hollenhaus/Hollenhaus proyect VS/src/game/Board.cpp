@@ -124,7 +124,6 @@ void Board::resetGrid()
 	}
 
 	// asigna valores de esquina, centro y adyacentes
-	// grid[i][j] -> 
 	for (int j = 0; j < size; j++)
 	{
 		for (int i = 0; i < size; i++)
@@ -157,7 +156,21 @@ void Board::resetGrid()
 
 			/// ADYACENTES:
 			///	!!WIP!!
+			std::array<Cell*, 4> adj;
+			// inicializa a nullptr
+			for (int i = 0; i < 4; i++)
+				adj[i] = nullptr;
 			
+			if (j > 0)
+				adj[Arriba]		= grid[i][j - 1];
+			if (i < n)
+				adj[Derecha]	= grid[i + 1][j];
+			if (j < n)
+				adj[Abajo]		= grid[i][j + 1];
+			if (i > 0)
+				adj[Izquierda]	= grid[i - 1][j];
+
+			grid[i][j]->setAdjacents(adj);
 		}
 	}
 }
