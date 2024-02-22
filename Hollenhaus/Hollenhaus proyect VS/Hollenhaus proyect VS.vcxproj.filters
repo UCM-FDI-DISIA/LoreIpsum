@@ -145,6 +145,7 @@
     <ClCompile Include="src\game\Drag.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="U:\hlocal\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\game\JimboState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -300,5 +301,7 @@
     <ClInclude Include="src\game\Drag.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\HandComponent.h" />
+    <ClInclude Include="U:\hlocal\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\game\JimboState.h" />
   </ItemGroup>
 </Project>

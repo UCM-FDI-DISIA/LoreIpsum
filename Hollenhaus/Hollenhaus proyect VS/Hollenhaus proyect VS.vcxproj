@@ -52,7 +52,7 @@
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
     <ClCompile Include="src\Transform.cpp" />
-    <ClCompile Include="U:\hlocal\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\game\JimboState.cpp" />
+    <ClCompile Include="src\game\JimboState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BoxCollider.h" />
@@ -105,7 +105,7 @@
     <ClInclude Include="src\utils\Vector2D.h" />
     <ClInclude Include="src\Transform.h" />
     <ClInclude Include="src\HandComponent.h" />
-    <ClInclude Include="U:\hlocal\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\game\JimboState.h" />
+    <ClInclude Include="src\game\JimboState.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
