@@ -7,6 +7,7 @@
 #include "GameStateMachine.h"
 #include "MainMenuState.h"
 #include "SamuState.h"
+#include "JimboState.h"
 #include "Manager.h"
 
 #include "BoardState.h"

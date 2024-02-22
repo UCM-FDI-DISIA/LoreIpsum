@@ -22,8 +22,9 @@ void BoardManager::initComponent()
 	// Cada elemento de la matriz tiene un nuevo Cell (entidad) vacío
 	for (int i = 0; i < WIDTH; i++) {
 		for (int j = 0; j < HEIGTH; j++) {
-			_board[i][j] = GameStateMachine::instance()->getMngr()->addEntity();
-			GameStateMachine::instance()->getMngr()->addComponent<CellManager>(_board[i][j]);
+			_board[i][j] = mngr().addEntity();
+			auto cellCmp = mngr().addComponent<CellManager>(_board[i][j]);
+			cellCmp->setPosOnBoard(i, j);
 		}
 	}
 	// Esto hay que sustituirlo por una factoría
@@ -33,11 +34,22 @@ void BoardManager::update()
 {
 }
 
-void BoardManager::AddCard(ecs::entity_t card, int posX, int posY)
+bool BoardManager::AddCard(ecs::entity_t card, int posX, int posY)
 {
 	ecs::entity_t cell = _board[posX][posY];
-	GameStateMachine::instance()->getMngr()->getComponent<CellManager>(cell)->SetCard(card);
 
-	
-	
+	auto cellCmp = mngr().getComponent<CellManager>(cell);
+
+	bool cardAdded = cellCmp->SetCard(card);
+
+	if (cardAdded) {
+		cardsOnBoard++;
+		return true;
+	}
+	else return false;
+}
+
+bool BoardManager::IsFull()
+{
+	return cardsOnBoard == WIDTH * HEIGTH;
 }

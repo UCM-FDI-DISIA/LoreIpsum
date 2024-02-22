@@ -21,7 +21,5 @@ public:
 private:
     ecs::entity_t card;
 
-
-
 };
 
