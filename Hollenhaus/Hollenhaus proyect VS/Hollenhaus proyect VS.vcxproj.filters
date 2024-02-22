@@ -292,9 +292,6 @@
     <ClInclude Include="src\Card.h">
       <Filter>Archivos de encabezado\Cartas-tablero</Filter>
     </ClInclude>
-    <ClInclude Include="src\HandComponent.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\BoxCollider.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
