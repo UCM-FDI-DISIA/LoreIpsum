@@ -20,7 +20,8 @@ private:
     
     Transform* dragTransform;
 
-    Vector2D initialPos;
+    Vector2D initialMousePos;
+    Vector2D initialTransformPos;
 
     void OnLeftClickDown();
 

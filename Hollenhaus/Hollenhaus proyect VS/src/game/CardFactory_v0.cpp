@@ -12,12 +12,12 @@
 
 ecs::entity_t CardFactory_v0::createCard()
 {
-    ecs::entity_t card = mngr().addEntity();
+    ecs::entity_t card = mngr().addEntity(ecs::grp::CARDS);
 
 	mngr().addComponent<Transform>(card);
 	mngr().addComponent<SpriteRenderer>(card, "card");
 	mngr().addComponent<BoxCollider>(card);
-	mngr().addComponent<Drag>(card);
+	//mngr().addComponent<Drag>(card);
 	mngr().addComponent<CardStateManager>(card);
 
 	auto cardTransform = mngr().getComponent<Transform>(card);
@@ -29,6 +29,7 @@ ecs::entity_t CardFactory_v0::createCard()
 
 
 
+	/*
 	cardDrag->addCondition([card]() {
 
 		auto state = mngr().getComponent<CardStateManager>(card)->getState();
@@ -36,6 +37,7 @@ ecs::entity_t CardFactory_v0::createCard()
 		return state == CardStateManager::ON_HAND;
 		});
 	
+	*/
 
 	auto cardCardStateManager = mngr().getComponent<CardStateManager>(card);
 

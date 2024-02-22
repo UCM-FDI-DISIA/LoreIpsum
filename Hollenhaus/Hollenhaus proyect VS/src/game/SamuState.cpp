@@ -10,6 +10,7 @@
 #include "ColliderRender.h"
 #include "Drag.h"
 #include "CardStateManager.h"
+#include "DragManager.h"
 
 #include "CardFactory_v0.h"
 
@@ -20,6 +21,8 @@ SamuState::SamuState() : GameState() {
 
 	card = factory->createCard();
 
+	ecs::entity_t ent = mngr().addEntity();
+	mngr().addComponent<DragManager>(ent);
 
 }
 
