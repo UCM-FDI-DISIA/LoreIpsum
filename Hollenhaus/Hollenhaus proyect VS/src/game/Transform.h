@@ -1,6 +1,6 @@
 #pragma once
-#include "game/ComponentUpdate.h"
-#include "utils/Vector2D.h"
+#include "ComponentUpdate.h"
+#include "../utils/Vector2D.h"
 
 class Transform :
     public ComponentUpdate

@@ -4,7 +4,7 @@
 #include "GameStateMachine.h"
 #include "Manager.h"
 
-#include "../Transform.h"
+#include "Transform.h"
 
 JimboState::JimboState() : GameState() {
 	auto mngr = GameStateMachine::instance()->getMngr();

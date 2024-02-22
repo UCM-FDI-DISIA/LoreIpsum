@@ -1,5 +1,5 @@
 #include "SpriteRenderer.h"
-#include "game/Manager.h"
+#include "Manager.h"
 #include "Transform.h"
 
 

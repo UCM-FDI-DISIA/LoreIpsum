@@ -1,8 +1,8 @@
 #include "ColliderRender.h"
 #include "../sdlutils/SDLUtils.h"
 #include "Manager.h"
-#include "../Transform.h"
-#include "../BoxCollider.h"
+#include "Transform.h"
+#include "BoxCollider.h"
 
 
 

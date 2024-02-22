@@ -1,11 +1,10 @@
 #pragma once
 #include "BoxCollider.h"
-#include "game/Manager.h"
+#include "Manager.h"
 #include "SpriteRenderer.h"
 #include "Transform.h"
-#include "game/Manager.h"
-#include "game/ColliderRender.h"
-#include "sdlutils/InputHandler.h"
+#include "ColliderRender.h"
+#include "../sdlutils/InputHandler.h"
 
 BoxCollider::BoxCollider() :BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
 {}

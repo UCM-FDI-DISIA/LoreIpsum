@@ -2,8 +2,8 @@
 #include "Manager.h"
 #include "../sdlutils/InputHandler.h"
 
-#include "../BoxCollider.h"
-#include "../Transform.h"
+#include "BoxCollider.h"
+#include "Transform.h"
 
 
 Drag::Drag()

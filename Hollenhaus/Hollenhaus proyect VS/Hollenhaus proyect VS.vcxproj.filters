@@ -81,12 +81,6 @@
     <ClCompile Include="src\utils\Vector2D.cpp">
       <Filter>Utilidades\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\Transform.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Card.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\CityState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
@@ -96,20 +90,11 @@
     <ClCompile Include="src\game\MainMenuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\OfficeState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\ShopState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\SpriteRenderer.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\Manager.cpp">
       <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\BoxCollider.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\Card.cpp">
       <Filter>Archivos de origen\Cartas-tablero</Filter>
@@ -126,9 +111,6 @@
     </ClCompile>
     <ClCompile Include="src\game\SamuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\HandComponent.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\ColliderRender.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
@@ -151,14 +133,32 @@
     <ClCompile Include="src\game\JimboState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\Data.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\DragManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\CardFactory_v0.cpp">
       <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\BoxCollider.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\HandComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\SpriteRenderer.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Transform.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Card.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Data.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\OfficeState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -240,12 +240,6 @@
     <ClInclude Include="src\game\ComponentRender.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\Transform.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Card.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\Entity.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -255,13 +249,7 @@
     <ClInclude Include="src\game\ecs.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\SpriteRenderer.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\MainMenuState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\OfficeState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\game\ShopState.h">
@@ -282,14 +270,8 @@
     <ClInclude Include="src\game\SamuState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\BoxCollider.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\Card.h">
       <Filter>Archivos de encabezado\Cartas-tablero</Filter>
-    </ClInclude>
-    <ClInclude Include="src\HandComponent.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\BoxCollider.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
@@ -298,9 +280,6 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\Board.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Data.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\game\CellManager.h">
@@ -330,6 +309,27 @@
     </ClInclude>
     <ClInclude Include="src\game\CardFactory_v0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Transform.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\SpriteRenderer.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\HandComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\BoxCollider.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Card.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Data.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\OfficeState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

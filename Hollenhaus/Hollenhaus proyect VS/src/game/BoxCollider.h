@@ -1,9 +1,9 @@
 #pragma once
-#include "game/ComponentUpdate.h"
+#include "ComponentUpdate.h"
 #include "SDL.h"
 #include "Transform.h"
 #include "SpriteRenderer.h"
-#include "utils/Vector2D.h"
+#include "../utils/Vector2D.h"
 
 class BoxCollider :public ComponentUpdate
 {
