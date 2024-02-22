@@ -25,9 +25,9 @@ void Board::paintBoard()
 	SetConsoleTextAttribute(hConsole, 15);
 
 	// recorre todas las casillas del grid y pinta las cartas
-	for (int i = 0; i < size; i++)
+	for (int j = 0; j < size; j++)
 	{
-		for (int j = 0; j < size; j++)
+		for (int i = 0; i < size; i++)
 		{
 			// si la casilla no esta vacia
 			if (grid[i][j]->getCard() != nullptr)
@@ -64,7 +64,7 @@ bool Board::isPlayer(int i, int j, Owner player)
 ///  Juega una carta del jugador 'o' en la celda de posicion x, y del tablero
 bool Board::setCard(int x, int y, Card* c, Owner o)
 {
-	Cell* cell = grid[y][x];
+	Cell* cell = grid[x][y];
 	if (cell->getCard() != nullptr)
 		return false;
 	cell->setCard(c, o);
@@ -124,6 +124,7 @@ void Board::resetGrid()
 	}
 
 	// asigna valores de esquina, centro y adyacentes
+	// grid[i][j] -> 
 	for (int j = 0; j < size; j++)
 	{
 		for (int i = 0; i < size; i++)
@@ -154,7 +155,7 @@ void Board::resetGrid()
 				grid[j][i]->setCorner(true);
 
 			/// ADYACENTES:
-			///	WIP
+			
 		}
 	}
 }
