@@ -48,8 +48,29 @@ public:
 		}
 	}
 
+	//TEMPLATES PARA COMPONENTES
+	//Se declaran en el manager.h
+
 	template<typename T,typename ...Ts>
 	T* addComponent(Ts &&... args);
+
+	template<typename T>
+	inline void removeComponent();
+
+	template<typename T>
+	inline T* getComponent();
+
+	template<typename T>
+	inline bool hasComponent();
+
+	inline ecs::grpId_t groupId();
+
+	inline void setAlive(bool alive);
+
+	inline bool isAlive();
+
+	inline void setHandler(hdlrId_t hId);
+
 
 private:
 
