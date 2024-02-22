@@ -22,8 +22,6 @@ BoxCollider::BoxCollider(Vector2D posOffset, Vector2D size) :
 void BoxCollider::initComponent() {
 	transform_ = mngr_->getComponent<Transform>(ent_);
 
-	collider_.w = size_.getX();
-	collider_.h = size_.getY();
 
 
 	spriteRenderer_ = mngr_->getComponent<SpriteRenderer>(ent_);
@@ -36,6 +34,10 @@ void BoxCollider::initComponent() {
 	else {
 		size_.set(100, 100);
 	}
+
+
+	collider_.w = size_.getX();
+	collider_.h = size_.getY();
 	/*
 	if (spriteRenderer_ != nullptr) {
 		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());

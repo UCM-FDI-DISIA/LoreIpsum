@@ -12,7 +12,10 @@
 #include "ecs.h"
 #include "Entity.h"
 
+//CUIDADO CON DEPENDENCIAS
 #include "GameStateMachine.h"
+#include "../utils/Vector2D.h"
+#include "Transform.h"
 
 namespace ecs {
 
@@ -365,7 +368,7 @@ inline void Entity::removeComponent() {
 }
 template<typename T>
 inline T* Entity::getComponent() {
-	return mngr().addComponent<T>();
+	return mngr().getComponent<T>();
 }
 
 template<typename T>
@@ -393,4 +396,16 @@ inline void Entity::setHandler(hdlrId_t hId) {
 #pragma endregion
 
 
+
+}
+
+
+inline ecs::entity_t Instantiate(ecs::grpId_t gId = ecs::grp::DEFAULT) {
+	return mngr().addEntity(gId);
+}
+
+inline ecs::entity_t Instantiate(Vector2D pos, ecs::grpId_t gId = ecs::grp::DEFAULT) {
+	ecs::entity_t ent = Instantiate(gId);
+	ent->addComponent<Transform>()->getGlobalPos().set(pos);
+	return ent;
 }
