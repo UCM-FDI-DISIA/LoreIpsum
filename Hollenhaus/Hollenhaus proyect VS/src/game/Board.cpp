@@ -140,7 +140,8 @@ void Board::resetGrid()
 					grid[j][i]->setCenter(true);
 			}
 			else // es un tablero impar
-			{// esta en ambos ejes en el centro (1 unica casilla posible)
+			{
+				// esta en ambos ejes en el centro (1 unica casilla posible)
 				// como ambos son ints, la division devuelve el entero redondeando hacia abajo siempre!
 				if (j == size / 2 && i == size / 2)
 					grid[j][i]->setCenter(true);
@@ -148,13 +149,14 @@ void Board::resetGrid()
 
 			/// ESQUINA:
 			int n = size - 1;
-			if ((j == 0 && i == 0)  // 0,0
-			 || (j == 0 && i == n)  // 0,n
-			 || (j == n && i == n) // n,n
-			 || (j == n && i == 0)) // n,0
+			if ((j == 0 && i == 0) // 0,0
+				|| (j == 0 && i == n) // 0,n
+				|| (j == n && i == n) // n,n
+				|| (j == n && i == 0)) // n,0
 				grid[j][i]->setCorner(true);
 
 			/// ADYACENTES:
+			///	!!WIP!!
 			
 		}
 	}
