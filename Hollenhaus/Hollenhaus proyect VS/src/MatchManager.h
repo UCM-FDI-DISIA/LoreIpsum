@@ -23,9 +23,9 @@ public:
 		TIE = 2
 	};
 
-	int getMatchResult() { return matchResult; }
-	int getPlayer1Points() { return pPlayer1; }
-	int getPlayer2Points() { return pPlayer2; }
+	int getMatchResult() const { return matchResult; }
+	int getPlayer1Points() const { return pPlayer1; }
+	int getPlayer2Points() const { return pPlayer2; }
 
 	// aumenta la puntuacion del jugador
 	void increasePlayerScore(int add) {
