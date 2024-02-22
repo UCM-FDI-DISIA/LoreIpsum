@@ -34,6 +34,7 @@ class Cell
 	std::string effectHistory;
 	std::array<Cell*, 4> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
 	std::list<SDLEventCallback> effectCallbacks; // lista de los efectos que tiene una carta concreta
+	std::list<SDLEventCallback>::iterator listIT;
 
 public:
 	Cell();

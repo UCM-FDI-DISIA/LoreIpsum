@@ -45,8 +45,9 @@ void Cell::applyValue(Card* card)
 
 	// aplica el efecto ???
 	// recorre la lista de callbacks
-	for (int i = 0; i < effectCallbacks.size(); i++) {
+	for (listIT = effectCallbacks.begin(); listIT != effectCallbacks.end(); ++listIT) {
 		// ejecuta los callbacks
+		
 	}
 }
 
