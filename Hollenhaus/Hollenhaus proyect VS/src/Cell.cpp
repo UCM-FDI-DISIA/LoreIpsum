@@ -62,7 +62,7 @@ void Cell::setCard(Card* c, Owner o)
 	player = o;
 }
 
-void Cell::blockEffects(Card* c)
+void Cell::blockEffects(Cell* c)
 {
-	c->getCardEffects().clear();
+	c->getEffects().clear();
 }

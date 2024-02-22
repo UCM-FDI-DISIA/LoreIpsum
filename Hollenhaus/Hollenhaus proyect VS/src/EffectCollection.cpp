@@ -35,7 +35,7 @@ void EffectCollection::blockCard(Cell* thisCardCell, Direction direction)
 {
 	if (thisCardCell->getAdjacents()[direction] != nullptr) {
 
-		thisCardCell->getAdjacents()[direction]->blockEffects(thisCardCell->getCard());
+		thisCardCell->getAdjacents()[direction]->blockEffects(thisCardCell);
 	}
 }
 
