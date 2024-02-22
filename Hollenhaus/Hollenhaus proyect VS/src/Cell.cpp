@@ -47,7 +47,7 @@ void Cell::applyValue(Card* card)
 	// recorre la lista de callbacks
 	for (listIT = effectCallbacks.begin(); listIT != effectCallbacks.end(); ++listIT) {
 		// ejecuta los callbacks
-		
+		(*listIT)(); // jimbo es muuuuuuy c++ superior
 	}
 }
 
