@@ -313,7 +313,6 @@
     <ClInclude Include="src\game\Drag.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\HandComponent.h" />
     <ClInclude Include="src\game\JimboState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
