@@ -24,12 +24,14 @@
     <ClCompile Include="src\Card.cpp" />
     <ClCompile Include="src\game\Board.cpp" />
     <ClCompile Include="src\game\BoardState.cpp" />
+    <ClCompile Include="src\game\CardFactory_v0.cpp" />
     <ClCompile Include="src\game\CellManager.cpp" />
     <ClCompile Include="src\game\CardStateManager.cpp" />
     <ClCompile Include="src\Data.cpp" />
     <ClCompile Include="src\game\CityState.cpp" />
     <ClCompile Include="src\game\ColliderRender.cpp" />
     <ClCompile Include="src\game\Drag.cpp" />
+    <ClCompile Include="src\game\DragManager.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
@@ -60,6 +62,8 @@
     <ClInclude Include="src\game\Board.h" />
     <ClInclude Include="src\game\BoardManager.h" />
     <ClInclude Include="src\game\BoardState.h" />
+    <ClInclude Include="src\game\CardFactory.h" />
+    <ClInclude Include="src\game\CardFactory_v0.h" />
     <ClInclude Include="src\game\CellManager.h" />
     <ClInclude Include="src\game\CardStateManager.h" />
     <ClInclude Include="src\Data.h" />
@@ -70,6 +74,7 @@
     <ClInclude Include="src\game\ComponentRender.h" />
     <ClInclude Include="src\game\ComponentUpdate.h" />
     <ClInclude Include="src\game\Drag.h" />
+    <ClInclude Include="src\game\DragManager.h" />
     <ClInclude Include="src\game\ecs.h" />
     <ClInclude Include="src\game\Entity.h" />
     <ClInclude Include="src\game\Game.h" />

@@ -11,36 +11,20 @@
 #include "Drag.h"
 #include "CardStateManager.h"
 
+#include "CardFactory_v0.h"
+
 SamuState::SamuState() : GameState() {
 
 
-	card = mngr().addEntity();
+	CardFactory_v0* factory = new CardFactory_v0();
+
+	card = factory->createCard();
+
 	
-	mngr().addComponent<Transform>(card);
-	mngr().addComponent<SpriteRenderer>(card, "card");
-	mngr().addComponent<BoxCollider>(card);
-	mngr().addComponent<Drag>(card);
-	mngr().addComponent<CardStateManager>(card);
-
-	auto cardTransform = mngr().getComponent<Transform>(card);
-
-	cardTransform->getGlobalScale().set(0.4, 0.4);
-	cardTransform->getGlobalPos().set(100, 100);	
-
-	auto cardDrag = mngr().getComponent<Drag>(card);
+	
 
 
-	cardDrag->addCondition([this]() {
-			auto mngr =  GameStateMachine::instance()->getMngr(); 
-			
-			auto state = mngr->getComponent<CardStateManager>(card)->getState();
 
-			return state == CardStateManager::ON_HAND;
-		});
-
-	auto cardCardStateManager = mngr().getComponent<CardStateManager>(card);
-
-	cardCardStateManager->setState(CardStateManager::ON_HAND);
 }
 
 SamuState::~SamuState()

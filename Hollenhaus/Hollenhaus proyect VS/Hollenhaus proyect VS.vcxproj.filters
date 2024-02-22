@@ -130,9 +130,6 @@
     <ClCompile Include="src\game\Board.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Data.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\CellManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -145,7 +142,16 @@
     <ClCompile Include="src\game\Drag.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="U:\hlocal\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\game\JimboState.cpp" />
+    <ClCompile Include="src\game\JimboState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Data.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\DragManager.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\CardFactory_v0.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -302,6 +308,16 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\HandComponent.h" />
-    <ClInclude Include="U:\hlocal\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\game\JimboState.h" />
+    <ClInclude Include="src\game\JimboState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HandComponent.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\DragManager.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\CardFactory.h" />
+    <ClInclude Include="src\game\CardFactory_v0.h" />
   </ItemGroup>
 </Project>
