@@ -4,9 +4,9 @@
 #include "GameStateMachine.h"
 #include "Manager.h"
 
-#include "../SpriteRenderer.h"
-#include "../Transform.h"
-#include "../BoxCollider.h"
+#include "SpriteRenderer.h"
+#include "Transform.h"
+#include "BoxCollider.h"
 #include "ColliderRender.h"
 #include "Drag.h"
 #include "CardStateManager.h"
