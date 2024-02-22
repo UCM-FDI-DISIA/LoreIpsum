@@ -37,6 +37,12 @@
     <Filter Include="Archivos de encabezado\Componentes">
       <UniqueIdentifier>{5659784e-72f8-48f5-92c6-b846ce7fd0d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Factories">
+      <UniqueIdentifier>{675ba0a4-6b78-44b9-ba0b-fd6fad62f8a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Factories">
+      <UniqueIdentifier>{0e3c1dcb-18ab-4f81-ba65-ac0e2df5d76f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\Game.cpp">
@@ -130,9 +136,6 @@
     <ClCompile Include="src\game\Board.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Data.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\CellManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -144,6 +147,18 @@
     </ClCompile>
     <ClCompile Include="src\game\Drag.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\JimboState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Data.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\DragManager.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\CardFactory_v0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -299,6 +314,22 @@
     </ClInclude>
     <ClInclude Include="src\game\Drag.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HandComponent.h" />
+    <ClInclude Include="src\game\JimboState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HandComponent.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\DragManager.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\CardFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\CardFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
