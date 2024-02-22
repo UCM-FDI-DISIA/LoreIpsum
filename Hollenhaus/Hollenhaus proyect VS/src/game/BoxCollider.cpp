@@ -30,8 +30,12 @@ void BoxCollider::initComponent() {
 
 	anchoredToSprite_ = spriteRenderer_ != nullptr;
 
-	size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
-
+	if (anchoredToSprite_) {
+		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
+	}
+	else {
+		size_.set(100, 100);
+	}
 	/*
 	if (spriteRenderer_ != nullptr) {
 		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());

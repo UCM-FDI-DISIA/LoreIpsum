@@ -21,6 +21,10 @@ SamuState::SamuState() : GameState() {
 
 	card = factory->createCard();
 
+	factory->createDropDetector();
+
+	card->addComponent<BoxCollider>();
+
 	ecs::entity_t ent = mngr().addEntity();
 	mngr().addComponent<DragManager>(ent);
 

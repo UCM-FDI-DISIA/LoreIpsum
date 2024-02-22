@@ -12,6 +12,8 @@
 #include "ecs.h"
 #include "Entity.h"
 
+#include "GameStateMachine.h"
+
 namespace ecs {
 
 	using entity_t = Entity*;
@@ -349,6 +351,11 @@ private:
 	std::array<entity_t, ecs::maxHandlerId> hdlrs_;
 	std::array<std::vector<entity_t>, ecs::maxGroupId> entsByGroup_;
 };
+
+template<typename T,typename ...Ts>
+T* Entity::addComponent(Ts &&... args) {
+	return mngr().addComponent<T>(this, std::forward<Ts>(args)...);
+}
 
 
 }

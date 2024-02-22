@@ -11,7 +11,6 @@
 #include "ComponentUpdate.h"
 #include "ComponentRender.h"
 
-
 /// <summary>
 /// Clase entity vista en clase con algunas modificiaciones:
 /// Usamos 2 listas de componentes, una de ComponentUpdate y otra de ComponentRender
@@ -48,6 +47,9 @@ public:
 			delete c;
 		}
 	}
+
+	template<typename T,typename ...Ts>
+	T* addComponent(Ts &&... args);
 
 private:
 

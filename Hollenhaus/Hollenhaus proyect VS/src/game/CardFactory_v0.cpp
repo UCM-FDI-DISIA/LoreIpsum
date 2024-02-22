@@ -8,17 +8,26 @@
 #include "Drag.h"
 #include "CardStateManager.h"
 
+#include "DropDetector.h"
+
 
 
 ecs::entity_t CardFactory_v0::createCard()
 {
     ecs::entity_t card = mngr().addEntity(ecs::grp::CARDS);
 
-	mngr().addComponent<Transform>(card);
-	mngr().addComponent<SpriteRenderer>(card, "card");
-	mngr().addComponent<BoxCollider>(card);
+	card->addComponent<Transform>();
+	card->addComponent<SpriteRenderer>("card");
+	card->addComponent<BoxCollider>();
+	card->addComponent<CardStateManager>();
+
+
+	//GameStateMachine::instance()->getMngr()->addComponent<Transform>(card);
+	//mngr().addComponent<Transform>(card);
+	//mngr().addComponent<SpriteRenderer>(card, "card");
+	//mngr().addComponent<BoxCollider>(card);
 	//mngr().addComponent<Drag>(card);
-	mngr().addComponent<CardStateManager>(card);
+	//mngr().addComponent<CardStateManager>(card);
 
 	auto cardTransform = mngr().getComponent<Transform>(card);
 
@@ -45,4 +54,17 @@ ecs::entity_t CardFactory_v0::createCard()
 
 
     return card;
+}
+
+ecs::entity_t CardFactory_v0::createDropDetector()
+{
+	ecs::entity_t dropDect = mngr().addEntity(ecs::grp::DROPS);
+
+	mngr().addComponent<Transform>(dropDect);
+	mngr().addComponent<BoxCollider>(dropDect);
+	mngr().addComponent<DropDetector>(dropDect);
+
+		
+
+	return ecs::entity_t();
 }

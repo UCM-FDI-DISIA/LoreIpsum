@@ -4,6 +4,7 @@
 #include "Manager.h"
 #include "GameStateMachine.h"
 #include "BoxCollider.h"
+#include "DropDetector.h"
 
 
 
@@ -53,8 +54,11 @@ void DragManager::OnLeftClickDown()
 		
 		//se guarda la posicion/ transform de como estaba la carta
 		dragTransform = mngr().getComponent<Transform>((*it));
-		initialMousePos.set(Vector2D(ih().getMousePos().first, ih().getMousePos().second));
+
 		initialTransformPos.set(dragTransform->getGlobalPos());
+		initialMousePos.set(Vector2D(ih().getMousePos().first, ih().getMousePos().second));
+
+		dragTransform->getGlobalPos().set(ih().getMousePos().first, ih().getMousePos().second);
 	}
 
 }
@@ -76,10 +80,10 @@ void DragManager::OnLeftClickUp()
 		
 		//si tenemos una colision con el drop detector, cambiamos la posicion de la carta por la que guarde el drop
 		if (it != drops.end()) {
-
+			dragTransform->getGlobalPos().set(mngr().getComponent<DropDetector>((*it))->getCardPos());
 		}
 		else {//sino, devolvemos la carta a su posicion inicial
-
+			dragTransform->getGlobalPos().set(initialTransformPos);
 		}
 
 		//en cualquier caso, ya no tenemos carta drageada
