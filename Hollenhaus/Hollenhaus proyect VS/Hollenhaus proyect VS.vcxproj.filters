@@ -37,16 +37,17 @@
     <Filter Include="Archivos de encabezado\Componentes">
       <UniqueIdentifier>{5659784e-72f8-48f5-92c6-b846ce7fd0d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado\Cartas-tablero">
-      <UniqueIdentifier>{00509d17-24a8-4908-be79-c567886b722a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de origen\Cartas-tablero">
-      <UniqueIdentifier>{b6785bf7-8d58-4265-8d01-3d93d0990921}</UniqueIdentifier>
     <Filter Include="Archivos de encabezado\Factories">
       <UniqueIdentifier>{675ba0a4-6b78-44b9-ba0b-fd6fad62f8a0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Archivos de origen\Factories">
       <UniqueIdentifier>{0e3c1dcb-18ab-4f81-ba65-ac0e2df5d76f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Cartas-tablero">
+      <UniqueIdentifier>{00509d17-24a8-4908-be79-c567886b722a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Cartas-tablero">
+      <UniqueIdentifier>{b6785bf7-8d58-4265-8d01-3d93d0990921}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +90,9 @@
     <ClCompile Include="src\Transform.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\Card.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
     <ClCompile Include="src\game\CityState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
@@ -116,6 +120,10 @@
     <ClCompile Include="src\Card.cpp">
       <Filter>Archivos de origen\Cartas-tablero</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\GenID.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BoxCollider.cpp" />
     <ClCompile Include="src\game\CardStateManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -241,6 +249,9 @@
     <ClInclude Include="src\Transform.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\Card.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
     <ClInclude Include="src\game\Entity.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -271,26 +282,20 @@
     <ClInclude Include="src\game\GenID.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\BoardState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cell.h">
-      <Filter>Archivos de encabezado\Cartas-tablero</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MatchManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EffectCollection.h">
-      <Filter>Archivos de encabezado\Cartas-tablero</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\CardStateManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\SamuState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="src\BoxCollider.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
     <ClInclude Include="src\Card.h">
       <Filter>Archivos de encabezado\Cartas-tablero</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HandComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\BoxCollider.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
@@ -307,12 +312,16 @@
     <ClInclude Include="src\game\CellManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\BoardState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
     <ClInclude Include="src\game\BoardManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\Drag.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\HandComponent.h" />
     <ClInclude Include="src\game\JimboState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
@@ -327,6 +336,15 @@
     </ClInclude>
     <ClInclude Include="src\game\CardFactory_v0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cell.h">
+      <Filter>Archivos de encabezado\Cartas-tablero</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MatchManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EffectCollection.h">
+      <Filter>Archivos de encabezado\Cartas-tablero</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
