@@ -58,7 +58,7 @@ void Board::paintBoard()
 /// Devuelve si una carta dada por las coordenadas i, j es controlada por el jugador 'player'
 bool Board::isPlayer(int i, int j, Owner player)
 {
-	return grid[j][i]->getPlayer() == player;
+	return grid[i][j]->getPlayer() == player;
 }
 
 ///  Juega una carta del jugador 'o' en la celda de posicion x, y del tablero
@@ -101,10 +101,12 @@ void Board::initGrid()
 	std::string effect2 = "-1<-";
 
 
-	setCard(0, 2, new Card(0, 1, effect1), PLAYER1);
-	setCard(2, 0, new Card(1, 2), PLAYER1);
-	setCard(0, 3, new Card(2, 3, effect2), PLAYER2);
-	setCard(1, 0, new Card(3, 4), PLAYER2);
+	//setCard(0, 2, new Card(0, 1, effect1), PLAYER1);
+	//setCard(2, 0, new Card(1, 2), PLAYER1);
+	//setCard(0, 3, new Card(2, 3, effect2), PLAYER2);
+	//setCard(1, 0, new Card(3, 4), PLAYER2);
+
+	grid;
 }
 
 

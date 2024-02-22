@@ -44,6 +44,10 @@ void Cell::applyValue(Card* card)
 	totalValue = card->getValue();
 
 	// aplica el efecto ???
+	// recorre la lista de callbacks
+	for (int i = 0; i < effectCallbacks.size(); i++) {
+		// ejecuta los callbacks
+	}
 }
 
 void Cell::addTotal(int add)
