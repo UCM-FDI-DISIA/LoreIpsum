@@ -70,7 +70,7 @@ public:
 	void setCard(Card* c, Owner o);
 	void deleteCard() const { delete card; } // ???
 	void setAdjacents(std::array<Cell*, 4>& a) { adjacents = a; }
-	void blockEffects(Cell c);
+	void blockEffects(Cell* c);
 
 	Cell& operator=(const Cell& o)
 	{
