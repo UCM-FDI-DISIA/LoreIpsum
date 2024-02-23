@@ -1,6 +1,11 @@
 #include "EffectCollection.h"
 
 
+EffectCollection::EffectCollection()
+{
+
+}
+
 void EffectCollection::addValueAdj(Cell* thisCardCell, Direction direction, int add, bool ultimateArrow)
 {
 	if (ultimateArrow) {

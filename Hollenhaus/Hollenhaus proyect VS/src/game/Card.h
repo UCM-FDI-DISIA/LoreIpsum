@@ -1,12 +1,12 @@
 #pragma once
 #include <string>
-#include "game/Entity.h"
+#include "Entity.h"
 #include <functional>
 
 // utiliza callbacks funcionales de tipo <void(void)>
 using SDLEventCallback = std::function<void(void)>;
 
-#include "game/ComponentUpdate.h"
+#include "ComponentUpdate.h"
 
 class Card : public ComponentUpdate
 {
@@ -25,6 +25,7 @@ public:
 	Card(int, int, std::string&, std::string&);
 
 	Card(int, int, std::string&, SDLEventCallback &effectCallback);
+	Card(int, int, std::string, SDLEventCallback& effectCallback);
 
 	// adds a skill to the skills of the card
 	void addSkill(std::string& s) { skills += " " + s; }

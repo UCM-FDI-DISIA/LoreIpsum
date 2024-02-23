@@ -6,12 +6,15 @@
 class EffectCollection
 {
 private:
-	Card* card;
+	/*Card* card;
 	Board* board;
-	Cell* cell;
+	Cell* cell;*/
 
 
 public:
+
+	EffectCollection();
+
 	// ---- TIPOS DE EFECTOS ----
 	// añade valor a algunas o todas sus adyacentes
 	void addValueAdj(Cell* thisCardCell, Direction direction, int add, bool ultimateArrow);

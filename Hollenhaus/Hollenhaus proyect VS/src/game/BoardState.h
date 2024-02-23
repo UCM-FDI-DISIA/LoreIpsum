@@ -13,7 +13,7 @@ class BoardState : public GameState
 {
 	Board* board;
 	MatchManager* matchManager;
-	EffectCollection* collection;
+	EffectCollection collection;
 
 public:
 
