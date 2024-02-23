@@ -76,12 +76,13 @@ void BoardState::inputCard()
 
 	//SDLEventCallback effect = collection->addValueCenter(board->getCell(x, y), std::stoi(skill))
 
+	/*
 	board->setCard(x, y, new Card(cost, value, skill), owner);
 
 	board->setCard(x, y, new Card(cost, value, skill,
-		collection.addValueCenter(board->getCell(x, y), std::stoi(skill))),
+		collection.addValueCenter(board->getCell(x, y)), std::stoi(skill))),
 		owner);
-
+	*/
 
 
 	// actualiza el matchManager siempre que se ponga una carta

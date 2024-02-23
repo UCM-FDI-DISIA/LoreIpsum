@@ -1,7 +1,15 @@
 #include "Cell.h"
 
+void Cell::emit() const
+{
+	// llama a todas las funciones registradas
+	for (SDLEventCallback cellCallback : effectCallbacks)
+		cellCallback();
+}
+
 Cell::Cell() : active(true), corner(false), center(false), totalValue(0), player(NONE), card(nullptr)
 {
+
 }
 
 Cell::Cell(Cell& cell)
@@ -32,9 +40,13 @@ Cell::~Cell()
 
 void Cell::addEffect(SDLEventCallback effectCallback)
 {
+	// desde fuera usar:
+	// card->addEffect([this]() { efecto(); });
+
 	if (card != nullptr)
 	{
-		effectCallbacks.push_back(card->getEffect());
+		// el effect callback a pasar debera ser el efecto que tenga la carta: card->getEffect()
+		effectCallbacks.push_back(effectCallback);
 	}
 }
 
@@ -66,3 +78,4 @@ void Cell::blockEffects(Cell* c)
 {
 	c->getEffects().clear();
 }
+

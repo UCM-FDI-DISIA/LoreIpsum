@@ -28,3 +28,8 @@ Card::Card(int, int, std::string, SDLEventCallback& effectCallback)
 {
 }
 
+void Card::addCardEffect(SDLEventCallback effectCallback)
+{
+	// el efecto a hacer push back deberia ser un metodo especifico de la coleccion
+	cardEffectCallbacks.push_back(effectCallback);
+}

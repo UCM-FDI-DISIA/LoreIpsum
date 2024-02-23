@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "Card.h"
+#include "../game/Card.h"
 #include <functional>
 
 // utiliza callbacks funcionales de tipo <void(void)>
@@ -33,8 +33,11 @@ class Cell
 	Card* card; // carta posicionada en esta celda
 	std::string effectHistory;
 	std::array<Cell*, 4> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
-	std::list<SDLEventCallback> effectCallbacks; // lista de los efectos que tiene una carta concreta
+	std::list<SDLEventCallback> effectCallbacks; // lista de los efectos que tiene una celda concreta
 	std::list<SDLEventCallback>::iterator listIT;
+
+
+	void emit() const;
 
 public:
 	Cell();

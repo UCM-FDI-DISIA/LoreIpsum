@@ -23,12 +23,12 @@ public:
 	Card(int, int);
 	Card(int, int, std::string&);
 	Card(int, int, std::string&, std::string&);
-
-	Card(int, int, std::string&, SDLEventCallback &effectCallback);
-	Card(int, int, std::string, SDLEventCallback& effectCallback);
+	Card(int, int, std::string);
 
 	// adds a skill to the skills of the card
 	void addSkill(std::string& s) { skills += " " + s; }
+
+	void addCardEffect(SDLEventCallback buttonCallback);
 
 	// getters
 	int getCost() const { return cost; }
