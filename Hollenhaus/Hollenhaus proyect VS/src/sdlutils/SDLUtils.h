@@ -14,7 +14,7 @@
 #include "Texture.h"
 #include "VirtualTimer.h"
 
-#include "../Card.h"
+#include "../game/Card.h"
 
 class SDLUtils: public Singleton<SDLUtils> {
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/ComponentUpdate.h"
+#include "ComponentUpdate.h"
 #include "Card.h"
 #include <list>
 #include <algorithm>
@@ -16,10 +16,10 @@ public:
 	Card* drawCard();
 
 private:
-	std::list<Card> deck;
+	std::list<Card*> deck;
 
 	void shuffle();
 	void removeCard(Card* c);
-	void addCardsOnBottom(std::list<Card> h);
+	void addCardsOnBottom(std::list<Card*> h);
 };
 

@@ -4,12 +4,13 @@
 #include "GameStateMachine.h"
 #include "Manager.h"
 
-#include "../SpriteRenderer.h"
-#include "../Transform.h"
-#include "../BoxCollider.h"
+#include "SpriteRenderer.h"
+#include "Transform.h"
+#include "BoxCollider.h"
 #include "ColliderRender.h"
 #include "Drag.h"
 #include "CardStateManager.h"
+#include "DragManager.h"
 
 #include "CardFactory_v0.h"
 
@@ -20,6 +21,13 @@ SamuState::SamuState() : GameState() {
 
 	card = factory->createCard();
 
+	factory->createDropDetector(Vector2D(100,100));
+	factory->createDropDetector(Vector2D(200,200));
+
+
+
+	ecs::entity_t ent = mngr().addEntity();
+	mngr().addComponent<DragManager>(ent);
 
 }
 

@@ -1,8 +1,8 @@
 #include "GameState.h"
 #include "Manager.h"
 
-#include "../Transform.h"
-#include "../SpriteRenderer.h"
+#include "Transform.h"
+#include "SpriteRenderer.h"
 #include "../sdlutils/InputHandler.h"
 #include "GameStateMachine.h"
 

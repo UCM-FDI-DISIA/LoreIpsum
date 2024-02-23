@@ -4,8 +4,8 @@
 #include <vector>
 #include <iostream>
 #include <windows.h>
-#include "../Card.h"
 #include "../Cell.h"
+#include "Card.h"
 
 class Board {
 	int size;
@@ -30,7 +30,7 @@ public:
 
 	// setters
 	void setCell(int x, int y, Cell* c) { grid[x][y] = c; }
-	bool setCard(int x, int y, Card* c, Owner o); // true si pudo poner carta (no había otra ya antes)
+	bool setCard(int x, int y, Card* c, Owner o); // true si pudo poner carta (no habï¿½a otra ya antes)
 
 	// devuelve la informacion de la carra en el formato:
 	// [valor/coste/efecto]

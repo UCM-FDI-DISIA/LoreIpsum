@@ -1,11 +1,10 @@
 #pragma once
 #include "BoxCollider.h"
-#include "game/Manager.h"
+#include "Manager.h"
 #include "SpriteRenderer.h"
 #include "Transform.h"
-#include "game/Manager.h"
-#include "game/ColliderRender.h"
-#include "sdlutils/InputHandler.h"
+#include "ColliderRender.h"
+#include "../sdlutils/InputHandler.h"
 
 BoxCollider::BoxCollider() :BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
 {}
@@ -23,16 +22,22 @@ BoxCollider::BoxCollider(Vector2D posOffset, Vector2D size) :
 void BoxCollider::initComponent() {
 	transform_ = mngr_->getComponent<Transform>(ent_);
 
-	collider_.w = size_.getX();
-	collider_.h = size_.getY();
 
 
 	spriteRenderer_ = mngr_->getComponent<SpriteRenderer>(ent_);
 
 	anchoredToSprite_ = spriteRenderer_ != nullptr;
 
-	size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
+	if (anchoredToSprite_) {
+		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
+	}
+	else {
+		size_.set(100, 100);
+	}
 
+
+	collider_.w = size_.getX();
+	collider_.h = size_.getY();
 	/*
 	if (spriteRenderer_ != nullptr) {
 		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());

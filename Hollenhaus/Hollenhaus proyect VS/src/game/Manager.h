@@ -12,6 +12,11 @@
 #include "ecs.h"
 #include "Entity.h"
 
+//CUIDADO CON DEPENDENCIAS
+#include "GameStateMachine.h"
+#include "../utils/Vector2D.h"
+#include "Transform.h"
+
 namespace ecs {
 
 	using entity_t = Entity*;
@@ -350,5 +355,57 @@ private:
 	std::array<std::vector<entity_t>, ecs::maxGroupId> entsByGroup_;
 };
 
+#pragma region Entity templates
 
+
+template<typename T,typename ...Ts>
+T* Entity::addComponent(Ts &&... args) {
+	return mngr().addComponent<T>(this, std::forward<Ts>(args)...);
+}
+template<typename T>
+inline void Entity::removeComponent() {
+	mngr().removeComponent<T>(this);
+}
+template<typename T>
+inline T* Entity::getComponent() {
+	return mngr().getComponent<T>(this);
+}
+
+template<typename T>
+inline bool Entity::hasComponent() {
+	return mngr().hasComponent<T>(this);
+}
+
+inline ecs::grpId_t Entity::groupId() {
+	return mngr().groupId(this);
+}
+
+inline void Entity::setAlive(bool alive) {
+	mngr().setAlive(this,alive);
+}
+
+inline bool Entity::isAlive() {
+	return mngr().isAlive(this);
+}
+
+inline void Entity::setHandler(hdlrId_t hId) {
+	mngr().setHandler(hId, this);
+}
+
+
+#pragma endregion
+
+
+
+}
+
+
+inline ecs::entity_t Instantiate(ecs::grpId_t gId = ecs::grp::DEFAULT) {
+	return mngr().addEntity(gId);
+}
+
+inline ecs::entity_t Instantiate(Vector2D pos, ecs::grpId_t gId = ecs::grp::DEFAULT) {
+	ecs::entity_t ent = Instantiate(gId);
+	ent->addComponent<Transform>()->getGlobalPos().set(pos);
+	return ent;
 }
