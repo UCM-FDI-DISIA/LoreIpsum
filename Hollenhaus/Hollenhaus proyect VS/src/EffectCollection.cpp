@@ -23,7 +23,7 @@ void EffectCollection::addValueAdj(Cell* thisCardCell, Direction direction, int 
 
 void EffectCollection::addValueCenter(Cell* thisCardCell, int add)
 {
-	if (thisCardCell->getCorner()) {
+	if (thisCardCell->getCenter()) {
 
 		thisCardCell->addTotal(add);
 	}
