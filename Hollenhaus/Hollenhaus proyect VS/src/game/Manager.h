@@ -354,10 +354,11 @@ public:
 	// render all entities
 	//
 	void render() {
-		for (auto& ents : entsByGroup_) {
-			auto n = ents.size();
-			for (auto i = 0u; i < n; i++)
-				render(ents[i]);
+
+		for (auto& ents : ordenRendering) {
+			for (auto& ent : ents.second) {
+				render(ent);
+			}
 		}
 	}
 
@@ -491,6 +492,8 @@ inline void Entity::setHandler(hdlrId_t hId) {
 } //end namespace ecs
 
 
+//FUNCIONES GLOBALES
+
 inline ecs::entity_t Instantiate(ecs::grpId_t gId = ecs::grp::DEFAULT) {
 	return mngr().addEntity(gId);
 }
@@ -500,6 +503,19 @@ inline ecs::entity_t Instantiate(Vector2D pos, ecs::grpId_t gId = ecs::grp::DEFA
 	ent->addComponent<Transform>()->getGlobalPos().set(pos);
 	return ent;
 }
+
+
+
+
+inline ecs::entity_t mouseRaycast() {
+	return mngr().mouseRaycast();
+}
+
+inline ecs::entity_t mouseRaycast(ecs::grpId_t gId) {
+	return mngr().mouseRaycast(gId);
+}
+
+
 
 inline void TuVieja(std::string message) {
 	std::cout << message << std::endl;

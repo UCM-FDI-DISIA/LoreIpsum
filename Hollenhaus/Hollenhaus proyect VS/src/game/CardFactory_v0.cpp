@@ -11,9 +11,9 @@
 
 
 
-ecs::entity_t CardFactory_v0::createCard()
+ecs::entity_t CardFactory_v0::createCard(Vector2D pos)
 {
-	ecs::entity_t card = Instantiate(Vector2D(400,400), ecs::grp::CARDS);
+	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
 
 	card->addComponent<SpriteRenderer>("card");
 	card->addComponent<BoxCollider>();
@@ -81,5 +81,17 @@ void CardFactory_v0::createBoard()
 	createDropDetector(Vector2D(initX, initY +(2*yOffset)));
 	createDropDetector(Vector2D(initX + xOffset, initY + (2 * yOffset)));
 	createDropDetector(Vector2D(initX + (2 * xOffset), initY + (2 * yOffset)));
+}
+
+void CardFactory_v0::createHand()
+{
+	int initY = 400;
+	int initX = 200;
+	int offSetX = 50;
+	
+	createCard(Vector2D(initX, initY))->setLayer(1);
+	createCard(Vector2D(initX + offSetX, initY))->setLayer(1);
+	createCard(Vector2D(initX + offSetX*2, initY))->setLayer(2);
+	createCard(Vector2D(initX + offSetX*3, initY))->setLayer(1);
 }
 

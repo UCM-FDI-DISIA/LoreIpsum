@@ -28,6 +28,8 @@ public:
 	// Para inicializar el componenete si es necesario.
 	virtual void initComponent() {};
 
+	Entity* getEntity() { return ent_; }
+
 protected:
 
 	//puntero a la entidad a la que pertenece el componente
