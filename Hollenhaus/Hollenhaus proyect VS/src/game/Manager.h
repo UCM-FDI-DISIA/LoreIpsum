@@ -57,7 +57,7 @@ public:
 
 	void ChangeLayer(int previousLayer, int nextLayer, Entity* e) {
 		DeleteEntityMap(previousLayer, e);
-		AddEntityMap(previousLayer, e);
+		AddEntityMap(nextLayer, e);
 	}
 
 	#pragma endregion

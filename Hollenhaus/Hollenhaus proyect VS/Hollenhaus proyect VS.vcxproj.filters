@@ -167,6 +167,10 @@
     </ClCompile>
     <ClCompile Include="src\game\ColliderRender.cpp">
       <Filter>Archivos de origen\Componentes\ComponentesBasicos</Filter>
+
+    <ClCompile Include="src\game\Entity.cpp">
+      <Filter>Archivos de origen</Filter>
+
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

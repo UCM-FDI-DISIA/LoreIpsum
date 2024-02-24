@@ -71,6 +71,11 @@ public:
 
 	inline void setHandler(hdlrId_t hId);
 
+	void setLayer(int nextLayer);
+
+	int getLayer() {
+		return layer;
+	};
 
 private:
 
