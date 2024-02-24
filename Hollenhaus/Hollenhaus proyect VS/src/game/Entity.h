@@ -30,13 +30,7 @@ class Entity {
 public:
 
 	//Constructora, inicializamos todas las variables
-	Entity(grpId_t gId) :
-		gId_(gId), cmpsU_(), currCmpsU_(), cmpsR_(), currCmpsR_(), alive_() {
-		
-		//reservamos la memoria para las listas de componentes
-		currCmpsU_.reserve(ecs::maxComponentUpdateId);
-		currCmpsR_.reserve(ecs::maxComponentRenderId);
-	}
+	Entity(grpId_t gId);
 
 	//eliminamos los componentes de las 2 listas
 	virtual ~Entity() {
@@ -71,6 +65,11 @@ public:
 
 	inline void setHandler(hdlrId_t hId);
 
+	void setLayer(int nextLayer);
+
+	int getLayer() {
+		return layer;
+	};
 
 private:
 

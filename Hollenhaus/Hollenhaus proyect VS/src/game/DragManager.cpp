@@ -5,6 +5,7 @@
 #include "GameStateMachine.h"
 #include "BoxCollider.h"
 #include "DropDetector.h"
+#include "CardStateManager.h"
 
 
 
@@ -41,19 +42,15 @@ void DragManager::update()
 
 void DragManager::OnLeftClickDown()
 {
-	//buscar una colision con una entidad del grupo carta( FALTA :teniendo en cuenta el order in layer)
+	//buscar una colision con una entidad del grupo carta
 
-	auto cards = mngr().getEntities(ecs::grp::CARDS);
+	auto card = mouseRaycast(ecs::grp::CARDS);
 
-	auto it = cards.begin();
+	if (card != nullptr && //si hay carta y esta en la mano
+		card->getComponent<CardStateManager>()->getState() == CardStateManager::ON_HAND) {
 
-	while (it != cards.end() && !mngr().getComponent<BoxCollider>((*it))->isCursorOver()) ++it;
-
-	//si encuentra una, esa entidad pasa a ser el transform draged
-	if (it != cards.end()) {
-		
 		//se guarda la posicion/ transform de como estaba la carta
-		dragTransform = mngr().getComponent<Transform>((*it));
+		dragTransform = card->getComponent<Transform>();
 
 		initialTransformPos.set(dragTransform->getGlobalPos());
 		initialMousePos.set(Vector2D(ih().getMousePos().first, ih().getMousePos().second));
@@ -61,6 +58,7 @@ void DragManager::OnLeftClickDown()
 		dragTransform->getGlobalPos().set(ih().getMousePos().first, ih().getMousePos().second);
 	}
 
+	
 }
 
 void DragManager::OnLeftClickUp()
@@ -70,17 +68,13 @@ void DragManager::OnLeftClickUp()
 	//si, sí la tenemos, verifcamos colisiones con el grupo DropDetector
 	if (dragTransform != nullptr) {
 
-		//verifcamos colisiones con el grupo DropDetector
-		auto drops = mngr().getEntities(ecs::grp::DROPS);
+		auto drag = mouseRaycast(ecs::grp::DROPS);
 
-		auto it = drops.begin();
-
-		while (it != drops.end() && !mngr().getComponent<BoxCollider>((*it))->isCursorOver())++it;
-
-		
 		//si tenemos una colision con el drop detector, cambiamos la posicion de la carta por la que guarde el drop
-		if (it != drops.end()) {
-			dragTransform->getGlobalPos().set(mngr().getComponent<DropDetector>((*it))->getCardPos());
+		if (drag != nullptr) {
+			dragTransform->getGlobalPos().set(mngr().getComponent<DropDetector>(drag)->getCardPos());
+			
+			dragTransform->getEntity()->getComponent<CardStateManager>()->setState(CardStateManager::ON_CELL);
 		}
 		else {//sino, devolvemos la carta a su posicion inicial
 			dragTransform->getGlobalPos().set(initialTransformPos);
