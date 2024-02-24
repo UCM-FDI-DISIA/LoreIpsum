@@ -41,8 +41,7 @@ Cell::~Cell()
 void Cell::addEffect(SDLEventCallback effectCallback)
 {
 	// desde fuera usar:
-	// card->addEffect([this, x]() { efecto(x); });
-	// x si hiciera falta algun parametro para el metodo
+	// card->addEffect([this]() { efecto(); });
 
 	if (card != nullptr)
 	{

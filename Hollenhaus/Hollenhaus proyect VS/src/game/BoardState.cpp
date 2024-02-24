@@ -81,9 +81,17 @@ void BoardState::inputCard()
 
 	// [] -> contexto para los corchetes del lambda, pasar no solo el this si no las 
 	// variables que necesites para el metodo
-	cardPH->addCardEffect( 
+	
+	// ejemplo base
+	//cardPH->addCardEffect( 
+	//	[this, x, y, skillv]() {
+	//		collection.addValueCenter(board->getCell(x, y), skillv);
+	//	}
+	//);
+
+	cardPH->addCardEffect(
 		[this, x, y, skillv]() {
-			collection.addValueCenter(board->getCell(x, y), skillv);
+			collection.addValueAdj(board->getCell(x, y), Abajo, skillv, false);
 		}
 	);
 
