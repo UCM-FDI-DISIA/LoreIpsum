@@ -16,7 +16,7 @@
 #include "GameStateMachine.h"
 #include "../utils/Vector2D.h"
 #include "Transform.h"
-
+#include "BoxCollider.h"
 namespace ecs {
 
 	using entity_t = Entity*;
@@ -363,18 +363,83 @@ public:
 
 	#pragma endregion
 
+	#pragma region MouseRaycast
 
+	//returns first entity with box colider that collides with mouse 
 	entity_t mouseRaycast() {
 
+		//iterador del map, (lo recorremos al reves)
+		std::map<int,std::list<Entity*>>::reverse_iterator itMap = ordenRendering.rbegin();
 
-		return nullptr;
+		entity_t collision = nullptr;
+
+		//mientras no hayamos recorrido todo el map y no hayamos encontrado una colision 
+		while (itMap != ordenRendering.rend() && (collision == nullptr ) ) {
+
+			//lista de este valor de la layer
+			auto list = (*itMap).second;
+
+			//iterador de la lista (la recorremos al reves)
+			std::list<Entity*>::reverse_iterator itList = list.rbegin();
+
+			while (itList != list.rend() && (collision == nullptr)) {
+				
+				auto boxCollider = (*itList)->getComponent<BoxCollider>();
+				//si tenemos collider y el cursor está encima
+				if (boxCollider != nullptr && boxCollider->isCursorOver()) {
+					collision = (*itList);
+				}
+
+				++itList;
+			}
+			
+			++itMap;
+		}
+
+		return collision;
 	}
 
+
+	//returns first entity with box colider that collides with mouse in the given group
 	entity_t mouseRaycast(grpId_t gId) {
 		
+		//iterador del map, (lo recorremos al reves)
+		std::map<int, std::list<Entity*>>::reverse_iterator itMap = ordenRendering.rbegin();
 
-		return nullptr;
+		entity_t collision = nullptr;
+
+		//mientras no hayamos recorrido todo el map y no hayamos encontrado una colision 
+		while (itMap != ordenRendering.rend() && (collision == nullptr)) {
+
+			//lista de este valor de la layer
+			auto list = (*itMap).second;
+
+			//iterador de la lista (la recorremos al reves)
+			std::list<Entity*>::reverse_iterator itList = list.rbegin();
+
+			while (itList != list.rend() && (collision == nullptr)) {
+
+				if ((*itList)->gId_ == gId) {
+
+					auto boxCollider = (*itList)->getComponent<BoxCollider>();
+					//si tenemos collider y el cursor está encima
+					if (boxCollider != nullptr && boxCollider->isCursorOver()) {
+						collision = (*itList);
+					}
+				}
+
+				++itList;
+			}
+
+			++itMap;
+		}
+
+		return collision;
+
 	}
+
+	#pragma endregion
+
 
 private:
 	std::array<entity_t, ecs::maxHandlerId> hdlrs_;
@@ -434,4 +499,8 @@ inline ecs::entity_t Instantiate(Vector2D pos, ecs::grpId_t gId = ecs::grp::DEFA
 	ecs::entity_t ent = Instantiate(gId);
 	ent->addComponent<Transform>()->getGlobalPos().set(pos);
 	return ent;
+}
+
+inline void TuVieja(std::string message) {
+	std::cout << message << std::endl;
 }

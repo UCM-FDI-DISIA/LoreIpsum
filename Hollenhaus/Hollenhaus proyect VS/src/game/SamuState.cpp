@@ -19,8 +19,10 @@ SamuState::SamuState() : GameState() {
 
 	CardFactory_v0* factory = new CardFactory_v0();
 
-	factory->createCard();
+	card = factory->createCard();
 	factory->createBoard();
+
+	card->setLayer(1);
 
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
@@ -40,7 +42,7 @@ void SamuState::update()
 {
 	GameState::update();
 
-	
+	std::cout << mngr().mouseRaycast(ecs::grp::DROPS)<< std::endl;
 }
 
 void SamuState::render() const
