@@ -54,7 +54,7 @@ public:
 
 	void ChangeLayer(int previousLayer, int nextLayer, Entity* e) {
 		DeleteEntityMap(previousLayer, e);
-		AddEntityMap(previousLayer, e);
+		AddEntityMap(nextLayer, e);
 	}
 
 	// Adding an entity simply creates an instance of Entity, adds

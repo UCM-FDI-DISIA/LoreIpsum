@@ -34,6 +34,7 @@
     <ClCompile Include="src\game\Drag.cpp" />
     <ClCompile Include="src\game\DragManager.cpp" />
     <ClCompile Include="src\game\DropDetector.cpp" />
+    <ClCompile Include="src\game\Entity.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
