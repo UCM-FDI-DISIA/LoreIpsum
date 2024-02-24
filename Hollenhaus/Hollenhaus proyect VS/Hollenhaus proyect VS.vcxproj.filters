@@ -168,6 +168,9 @@
     <ClCompile Include="src\game\DropDetector.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\EffectCollection.cpp" />
+    <ClCompile Include="src\MatchManager.cpp" />
+    <ClCompile Include="src\Cell.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -299,9 +302,6 @@
     <ClInclude Include="src\game\JimboState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\HandComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\DragManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
@@ -323,9 +323,6 @@
     <ClInclude Include="src\game\BoxCollider.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\Card.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\Data.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -337,6 +334,21 @@
     </ClInclude>
     <ClInclude Include="src\game\DropDetector.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cell.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EffectCollection.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MatchManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Card.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BoxCollider.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

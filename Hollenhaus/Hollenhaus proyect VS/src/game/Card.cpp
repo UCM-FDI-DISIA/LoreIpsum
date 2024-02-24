@@ -1,6 +1,8 @@
 #include "Card.h"
 #include <string>
 
+
+
 Card::Card() 
 {
 }
@@ -18,15 +20,7 @@ Card::Card(int cost, int value, std::string& sprite, std::string& skills)
 {
 }
 
-Card::Card(int cost, int value, std::string& sprite, SDLEventCallback& effectCallback)
-	: cost(cost), value(value), sprite(sprite), effectCallback(effectCallback)
-{
-}
 
-Card::Card(int, int, std::string, SDLEventCallback& effectCallback)
-	: cost(cost), value(value), effectCallback(effectCallback)
-{
-}
 
 void Card::addCardEffect(SDLEventCallback effectCallback)
 {

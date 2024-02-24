@@ -1,14 +1,14 @@
 #pragma once
-#include "Card.h"
+#include "game/Card.h"
 #include "Cell.h"
 #include "game/Board.h"
 
 class EffectCollection
 {
 private:
-	/*Card* card;
+	Card* card;
 	Board* board;
-	Cell* cell;*/
+	Cell* cell;
 
 
 public:

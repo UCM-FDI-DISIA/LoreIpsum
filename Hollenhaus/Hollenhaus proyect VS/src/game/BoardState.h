@@ -15,6 +15,8 @@ class BoardState : public GameState
 	MatchManager* matchManager;
 	EffectCollection collection;
 
+	Card* cardPH;
+
 public:
 
 	BoardState();

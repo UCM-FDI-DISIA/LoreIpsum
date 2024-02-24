@@ -1,7 +1,8 @@
 #pragma once
 
 #include <vector>
-#include "../game/Card.h"
+//#include "../game/Card.h"
+#include "game/Card.h"
 #include <functional>
 
 // utiliza callbacks funcionales de tipo <void(void)>

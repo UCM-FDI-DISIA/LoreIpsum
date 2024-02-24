@@ -15,6 +15,7 @@ BoardState::~BoardState()
 {
 	delete board;
 	delete matchManager;
+	delete cardPH;
 }
 
 void BoardState::update()
@@ -74,7 +75,7 @@ void BoardState::inputCard()
 
 	//board->setCard(x, y, new Card(cost, value, skill), owner);
 
-	//SDLEventCallback effect = collection->addValueCenter(board->getCell(x, y), std::stoi(skill))
+	//SDLEventCallback effect = collection.addValueCenter(board->getCell(x, y), std::stoi(skill));
 
 	/*
 	board->setCard(x, y, new Card(cost, value, skill), owner);
@@ -84,7 +85,23 @@ void BoardState::inputCard()
 		owner);
 	*/
 
+	// [this]() { nuevaPartida(); }
 
+	cardPH = new Card(cost, value);
+	int skillv = std::stoi(skill);
+
+
+	// [] -> contexto para los corchetes del lambda, pasar no solo el this si no las 
+	// variables que necesites para el metodo
+	cardPH->addCardEffect( 
+		[this, x, y, skillv]() {
+			collection.addValueCenter(board->getCell(x, y), skillv);
+		}
+	);
+
+
+	board->setCard(x, y, cardPH, owner);
+	
 	// actualiza el matchManager siempre que se ponga una carta
 	matchManager->updateScore();
 }
