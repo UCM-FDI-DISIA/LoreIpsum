@@ -17,8 +17,9 @@ class Card : public ComponentUpdate
 	std::string sprite, skills;
 
 	std::list<SDLEventCallback> cardEffectCallbacks; // lista de los efectos que tiene una carta concreta
+	std::list<SDLEventCallback>::iterator cardEffectIT;
 
-	SDLEventCallback effectCallback;
+	//SDLEventCallback effectCallback;
 
 public:
 	Card();
@@ -36,7 +37,13 @@ public:
 	int getCost() const { return cost; }
 	int getValue() const { return value; }
 	std::string getSkill() { return skills; }
-	SDLEventCallback getEffect() { return effectCallback; }
+	SDLEventCallback getEffect(int i) {
+
+		cardEffectIT = cardEffectCallbacks.begin();
+		std::next(cardEffectIT, i);	// avanza x posiciones
+
+		return *(cardEffectIT);
+	}
 
 	// setters
 	void setCost(int v) { cost = v; }

@@ -73,19 +73,7 @@ void BoardState::inputCard()
 	x = std::clamp(x, 0, board->getSize() - 1);
 	y = std::clamp(y, 0, board->getSize() - 1);
 
-	//board->setCard(x, y, new Card(cost, value, skill), owner);
 
-	//SDLEventCallback effect = collection.addValueCenter(board->getCell(x, y), std::stoi(skill));
-
-	/*
-	board->setCard(x, y, new Card(cost, value, skill), owner);
-
-	board->setCard(x, y, new Card(cost, value, skill,
-		collection.addValueCenter(board->getCell(x, y)), std::stoi(skill))),
-		owner);
-	*/
-
-	// [this]() { nuevaPartida(); }
 
 	cardPH = new Card(cost, value);
 	int skillv = std::stoi(skill);
