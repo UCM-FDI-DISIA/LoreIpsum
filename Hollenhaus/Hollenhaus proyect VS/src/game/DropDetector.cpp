@@ -10,6 +10,7 @@ DropDetector::~DropDetector()
 
 void DropDetector::initComponent()
 {
+
 }
 
 void DropDetector::update()
