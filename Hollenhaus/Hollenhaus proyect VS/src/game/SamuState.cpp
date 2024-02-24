@@ -20,11 +20,6 @@ SamuState::SamuState() : GameState() {
 	CardFactory_v0* factory = new CardFactory_v0();
 
 	factory->createCard();
-
-	//factory->createDropDetector(Vector2D(100,100));
-	//factory->createDropDetector(Vector2D(200,100));
-	//factory->createDropDetector(Vector2D(300,100));
-
 	factory->createBoard();
 
 	ecs::entity_t ent = Instantiate();

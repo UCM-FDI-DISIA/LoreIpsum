@@ -37,6 +37,9 @@ public:
 
 	virtual void refresh(); //borra entidades no vivas
 	
+	#pragma region MapEntities
+
+
 	//añade una entidad al mapa
 	void AddEntityMap(int layer, Entity* e) {
 		ordenRendering[layer].push_back(e);
@@ -56,6 +59,8 @@ public:
 		DeleteEntityMap(previousLayer, e);
 		AddEntityMap(previousLayer, e);
 	}
+
+	#pragma endregion
 
 	// Adding an entity simply creates an instance of Entity, adds
 	// it to the list of entities and returns it to the caller.
@@ -101,6 +106,8 @@ public:
 	inline bool isAlive(entity_t e) {
 		return e->alive_;
 	}
+
+	#pragma region Templates components
 
 	// Adds a component to an entity. It receives the type T (to be created),
 	// and the list of arguments (if any) to be passed to the constructor.
@@ -285,6 +292,8 @@ public:
 		}	
 	}
 
+#pragma endregion
+
 	// returns the entity's group 'gId'
 	//
 	inline ecs::grpId_t groupId(entity_t e) {
@@ -310,6 +319,10 @@ public:
 		assert(hId < ecs::maxHandlerId);
 		return hdlrs_[hId];
 	}
+
+
+	#pragma region update y render
+
 
 	// Updating  an entity simply calls the update of all
 	// components
@@ -348,7 +361,20 @@ public:
 		}
 	}
 
+	#pragma endregion
 
+
+	entity_t mouseRaycast() {
+
+
+		return nullptr;
+	}
+
+	entity_t mouseRaycast(grpId_t gId) {
+		
+
+		return nullptr;
+	}
 
 private:
 	std::array<entity_t, ecs::maxHandlerId> hdlrs_;
@@ -397,7 +423,7 @@ inline void Entity::setHandler(hdlrId_t hId) {
 
 
 
-}
+} //end namespace ecs
 
 
 inline ecs::entity_t Instantiate(ecs::grpId_t gId = ecs::grp::DEFAULT) {
