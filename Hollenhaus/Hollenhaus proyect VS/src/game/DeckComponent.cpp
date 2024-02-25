@@ -2,9 +2,16 @@
 
 void
 DeckComponent::shuffle() {
+	std::random_device rd;
+	std::mt19937 rnd(rd);
+
 	// Puede que miki llore con esto no lo se no conozco el coste de estos algoritmos confio en c++
-	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-	//std::shuffle(deck.begin(), deck.end(), std::default_random_engine(seed));
+	for (auto i = std::prev(deck.end()); i != deck.begin(); --i) {
+		std::uniform_int_distribution<int> u(0, std::distance(deck.begin(), i));
+		auto randomIndex = u(rnd);
+
+		std::iter_swap(i, std::next(deck.begin(), randomIndex));
+	}
 }
 
 void 
