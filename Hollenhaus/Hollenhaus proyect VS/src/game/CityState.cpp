@@ -20,5 +20,5 @@ void CityState::onEnter() const
 
 void CityState::onExit() const
 {
-	std::cout << "\nexiting CityState\n";
+	std::cout << "\nexit CityState\n";
 }

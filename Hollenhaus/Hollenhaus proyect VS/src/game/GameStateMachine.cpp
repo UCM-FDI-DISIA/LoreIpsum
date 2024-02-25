@@ -26,7 +26,7 @@ void GameStateMachine::init()
 	boardState = new BoardState();
 
 	//Ponemos el estado actual
-	currentState = cityState;
+	currentState = mainMenuState;
 
 	//Estado incial
 	pushState(currentState);
