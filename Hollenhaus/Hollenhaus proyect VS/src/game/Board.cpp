@@ -80,7 +80,6 @@ std::string Board::getCellInfo(Cell* cell) const
 	std::string info = "["
 		+ std::to_string(cell->getCard()->getCost()) + "/"
 		+ std::to_string(cell->getCard()->getValue()) + "/"
-		+ cell->getCard()->getSkill()
 		+ "]";
 
 	return info;
@@ -97,16 +96,7 @@ std::string Board::getEffects(Cell* cell) const
 void Board::initGrid()
 {
 	resetGrid();
-	std::string effect1 = "+2->";
-	std::string effect2 = "-1<-";
-
-
-	//setCard(0, 2, new Card(0, 1, effect1), PLAYER1);
-	//setCard(2, 0, new Card(1, 2), PLAYER1);
-	//setCard(0, 3, new Card(2, 3, effect2), PLAYER2);
-	//setCard(1, 0, new Card(3, 4), PLAYER2);
-
-	grid;
+	//...;
 }
 
 
@@ -157,7 +147,6 @@ void Board::resetGrid()
 				grid[j][i]->setCorner(true);
 
 			/// ADYACENTES:
-			///	!!WIP!!
 			std::array<Cell*, 4> adj;
 			// inicializa a nullptr
 			for (int i = 0; i < 4; i++)

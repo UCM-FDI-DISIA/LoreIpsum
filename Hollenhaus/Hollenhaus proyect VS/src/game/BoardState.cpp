@@ -92,9 +92,6 @@ void BoardState::inputCard()
 		}
 	);
 
-
 	board->setCard(x, y, cardPH, owner);
-	
-	// actualiza el matchManager siempre que se ponga una carta
-	matchManager->updateScore();
+	matchManager->updateScore(); // actualiza el matchManager siempre que se ponga una carta
 }

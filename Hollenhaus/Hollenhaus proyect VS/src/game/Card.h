@@ -39,5 +39,5 @@ public:
 	void setValue(int v) { value = v; }
 	void setSprite(const std::string& v) { sprite = v; }
 
-	void addCardEffect(SDLEventCallback buttonCallback);s
+	void addCardEffect(SDLEventCallback buttonCallback);
 };

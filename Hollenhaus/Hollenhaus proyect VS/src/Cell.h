@@ -55,11 +55,7 @@ public:
 	bool getCorner() const { return corner; }
 	bool getCenter() const { return center; }
 	int getTotalValue() const { return totalValue; }
-	Owner getPlayer() const{ 
-		player;
-		return player; 
-	
-	}
+	Owner getPlayer() const { return player; }
 	Card* getCard() const { return card; }
 	std::string& getEffectHistory() { return effectHistory; }
 	std::array<Cell*, 4>& getAdjacents() { return adjacents; } // sets pointers to adjacent
