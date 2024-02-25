@@ -77,7 +77,7 @@ bool Board::setCard(int x, int y, Card* c, Owner o)
 /// DEBUG ONLY: Devuelve un string con los datos de la carta de la celda;
 std::string Board::getCellInfo(Cell* cell) const
 {
-	auto card = cell->getCard();
+	const auto card = cell->getCard();
 	int diff = cell->getTotalValue() - card->getValue();
 	char sign = '+';
 	if (diff < 0)

@@ -1,12 +1,5 @@
 #include "Cell.h"
 
-void Cell::emit() const
-{
-	// llama a todas las funciones registradas
-	for (SDLEventCallback cellCallback : effectCallbacks)
-		cellCallback();
-}
-
 Cell::Cell() : active(true), corner(false), center(false), totalValue(0), player(NONE), card(nullptr)
 {
 
@@ -81,3 +74,9 @@ void Cell::blockEffects(Cell* c)
 	c->getEffects().clear();
 }
 
+void Cell::emit() const
+{
+	// llama a todas las funciones registradas
+	for (SDLEventCallback cellCallback : effectCallbacks)
+		cellCallback();
+}
