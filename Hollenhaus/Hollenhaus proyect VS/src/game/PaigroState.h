@@ -1,10 +1,15 @@
 #pragma once
 #include "checkML.h"
 #include "GameState.h"
+#include "NPC.h"
+#include  "Entity.h"
+#include "Manager.h"
 
 class PaigroState : public GameState
 {
 public:
+	PaigroState();
+
 	void update() override;
 	void render() const override;
 	void refresh() override;

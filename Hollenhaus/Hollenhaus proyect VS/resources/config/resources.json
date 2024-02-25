@@ -24,15 +24,25 @@
     }
   ],
 
-  "images": [
-    {
-      "id": "rice",
-      "file": "./resources/images/rice.png"
-    },
-    {
-      "id": "card",
-      "file": "resources/images/card.png"
+    "images": [
+        {
+            "id": "rice",
+            "file": "./resources/images/rice.png"
+        },
+        {
+            "id": "card",
+            "file": "resources/images/card.png"
 
-    }
-  ]
+        },
+        {
+            "id": "ciudad",
+            "file": "resources/images/ciudad.png"
+
+        },
+        {
+            "id": "npc",
+            "file": "resources/images/npc.png"
+
+        }
+    ]
 }
