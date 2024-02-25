@@ -28,7 +28,7 @@ void GameStateMachine::init()
 	paigroState = new PaigroState();
 
 	//Ponemos el estado actual
-	currentState = cityState;
+	currentState = paigroState;
 
 	//Estado incial
 	pushState(currentState);

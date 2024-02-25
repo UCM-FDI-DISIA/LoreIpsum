@@ -43,6 +43,11 @@
             "id": "npc",
             "file": "resources/images/npc.png"
 
+        },
+        {
+            "id": "boton",
+            "file": "resources/images/boton.png"
+
         }
     ]
 }

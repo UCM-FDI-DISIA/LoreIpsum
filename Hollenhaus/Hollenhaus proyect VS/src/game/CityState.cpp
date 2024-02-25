@@ -19,13 +19,15 @@ void CityState::refresh()
 void CityState::onEnter() const
 {
 	std::cout << "\nentering CityState\n";
-
+	
+	//-----Ciudad provisional de fondo:
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudad");
 	fondo->getComponent<Transform>()->getGlobalScale().set(1.2f, 0.6f);
 	fondo->getComponent<Transform>()->getGlobalPos().set(0, 0);
 
+	//------NPCs que demomento son Caitlyns: (da error cuando pulsas sobre ellas porque la transcion creo que no esta hecha todavia).
 	ecs::entity_t npc1 = Instantiate();
 	npc1->addComponent<Transform>();
 	npc1->addComponent<SpriteRenderer>("npc");

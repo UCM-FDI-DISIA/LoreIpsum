@@ -8,6 +8,7 @@
 
 
 
+
 class NPC : public ComponentUpdate
 {
 public:
