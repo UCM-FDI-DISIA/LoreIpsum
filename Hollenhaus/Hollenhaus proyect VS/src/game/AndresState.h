@@ -19,7 +19,7 @@ public:
     void render() const override;
 
 private:
-    ecs::entity_t card;
+    ecs::entity_t hand_;
 
 };
 

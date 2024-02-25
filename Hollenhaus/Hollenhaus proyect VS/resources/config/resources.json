@@ -27,6 +27,10 @@
     {
       "id": "card",
       "file": "resources/images/card.png"
+    },
+    {
+      "id": "hand",
+      "file": "resources/images/hand.png"
     }
   ]
 }

@@ -8,8 +8,8 @@ class Transform :
 public:
     Transform() : parent_(), globalAngle_(0), globalScale_(1, 1), relativeAngle_(0), isChild_(false) {};
     ~Transform() {
-        delete parent_;
-        parent_ = nullptr;
+        //delete parent_;
+        //parent_ = nullptr;
     };
 
     void update() override;

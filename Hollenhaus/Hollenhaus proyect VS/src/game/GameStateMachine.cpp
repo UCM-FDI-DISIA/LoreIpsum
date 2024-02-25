@@ -8,6 +8,7 @@
 #include "MainMenuState.h"
 #include "SamuState.h"
 #include "JimboState.h"
+#include "AndresState.h"
 #include "Manager.h"
 
 
@@ -15,6 +16,7 @@ void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
 	//pushState(new JimboState());
+	//pushState(new AndresState());
 
 	pushState(new SamuState());
 }
