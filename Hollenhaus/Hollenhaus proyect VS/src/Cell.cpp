@@ -59,7 +59,6 @@ void Cell::applyValue(Card* card)
 	// recorre la lista de callbacks
 	listIT = effectCallbacks.begin();
 	while (listIT != effectCallbacks.end() && (*listIT) != nullptr) {
-
 		(*listIT)();
 		++listIT;
 	}
@@ -67,7 +66,8 @@ void Cell::applyValue(Card* card)
 
 void Cell::addTotal(int add)
 {
-	totalValue += add;
+	if (card != nullptr)
+		totalValue += add;
 }
 
 void Cell::setCard(Card* c, Owner o)

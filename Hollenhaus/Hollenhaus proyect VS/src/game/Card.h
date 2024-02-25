@@ -25,7 +25,6 @@ public:
 	SDLEventCallback getEffect(int i) {
 		cardEffectIT = cardEffectCallbacks.begin();
 		std::next(cardEffectIT, i);	// avanza x posiciones
-
 		return *(cardEffectIT);
 	}
 

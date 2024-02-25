@@ -64,7 +64,7 @@ bool Board::isPlayer(int i, int j, Owner player)
 ///  Juega una carta del jugador 'o' en la celda de posicion x, y del tablero
 bool Board::setCard(int x, int y, Card* c, Owner o)
 {
-	Cell* cell = grid[x][y];
+	const auto cell = grid[x][y];
 	if (cell->getCard() != nullptr)
 		return false;
 	cell->setCard(c, o);
@@ -128,14 +128,14 @@ void Board::resetGrid()
 				// esta en ambos ejes en el centro (2x2 casillas posibles)
 				if ((j == size / 2 || j == size / 2 - 1)
 					&& (i == size / 2 || i == size / 2 - 1))
-					grid[j][i]->setCenter(true);
+					grid[i][j]->setCenter(true);
 			}
 			else // es un tablero impar
 			{
 				// esta en ambos ejes en el centro (1 unica casilla posible)
 				// como ambos son ints, la division devuelve el entero redondeando hacia abajo siempre!
 				if (j == size / 2 && i == size / 2)
-					grid[j][i]->setCenter(true);
+					grid[i][j]->setCenter(true);
 			}
 
 			/// ESQUINA:
@@ -144,7 +144,7 @@ void Board::resetGrid()
 				|| (j == 0 && i == n) // 0,n
 				|| (j == n && i == n) // n,n
 				|| (j == n && i == 0)) // n,0
-				grid[j][i]->setCorner(true);
+				grid[i][j]->setCorner(true);
 
 			/// ADYACENTES:
 			std::array<Cell*, 4> adj;

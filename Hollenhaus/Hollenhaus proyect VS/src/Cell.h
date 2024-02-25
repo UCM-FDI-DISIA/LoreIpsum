@@ -1,12 +1,10 @@
 #pragma once
-
 #include <vector>
-//#include "../game/Card.h"
 #include "game/Card.h"
 #include <functional>
 
 // utiliza callbacks funcionales de tipo <void(void)>
-using SDLEventCallback = std::function<void(void)>;
+using SDLEventCallback = std::function<void()>;
 
 enum Owner
 {
@@ -49,23 +47,23 @@ public:
 	void addTotal(int add);
 
 	// getters
-	bool getActive() const { return active; }
-	bool getCorner() const { return corner; }
-	bool getCenter() const { return center; }
-	int getTotalValue() const { return totalValue; }
-	Owner getPlayer() const { return player; }
-	Card* getCard() const { return card; }
+	bool getActive() const		{ return active; }
+	bool getCorner() const		{ return corner; }
+	bool getCenter() const		{ return center; }
+	int getTotalValue() const	{ return totalValue; }
+	Owner getPlayer() const		{ return player; }
+	Card* getCard() const		{ return card; }
 	std::array<Cell*, 4>& getAdjacents() { return adjacents; } // sets pointers to adjacent
 	std::list<SDLEventCallback> getEffects() const { return effectCallbacks; }
 
 	// setters
-	void setActive(bool v) { active = v; }
-	void setCorner(bool v) { corner = v; }
-	void setCenter(bool v) { center = v; }
-	void setTotalValue(int v) { totalValue = v;}
-	void setPlayer(Owner o) { player = o; }
+	void setActive(bool v)		{ active = v; }
+	void setCorner(bool v)		{ corner = v; }
+	void setCenter(bool v)		{ center = v; }
+	void setTotalValue(int v)	{ totalValue = v;}
+	void setPlayer(Owner o)		{ player = o; }
 	void setCard(Card* c, Owner o);
-	void deleteCard() const { delete card; } // ???
+	void deleteCard() const		{ delete card; } // ???
 	void setAdjacents(std::array<Cell*, 4>& a) { adjacents = a; }
 	void blockEffects(Cell* c);
 
