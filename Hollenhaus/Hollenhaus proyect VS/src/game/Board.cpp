@@ -45,7 +45,7 @@ void Board::paintBoard()
 			}
 			else // si la casilla esta vacia
 			{
-				std::cout << "[ -/-/---- ]";
+				std::cout << "[ -/-/-- ]";
 				std::cout << grid[i][j]->getCorner();
 				std::cout << grid[i][j]->getCenter();
 			}
@@ -77,10 +77,12 @@ bool Board::setCard(int x, int y, Card* c, Owner o)
 /// DEBUG ONLY: Devuelve un string con los datos de la carta de la celda;
 std::string Board::getCellInfo(Cell* cell) const
 {
-	std::string info = "["
-		+ std::to_string(cell->getCard()->getCost()) + "/"
-		+ std::to_string(cell->getCard()->getValue()) + "/"
-		+ "]";
+	auto card = cell->getCard();
+	std::string info = "[ "
+		+ std::to_string(card->getCost()) + "/"
+		+ std::to_string(card->getValue()) + "/+"
+		+ std::to_string(cell->getTotalValue() - card->getValue()) + 
+		" ]";
 
 	return info;
 }
