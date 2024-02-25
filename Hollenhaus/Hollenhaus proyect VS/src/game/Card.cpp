@@ -11,15 +11,10 @@ Card::Card(int cost, int value) : cost(cost), value(value)
 {
 }
 
-Card::Card(int cost, int value, std::string& skill) : cost(cost), value(value), skills(skill)
+Card::Card(int cost, int value, std::string& sprite) 
+	: cost(cost), value(value), sprite(sprite)
 {
 }
-
-Card::Card(int cost, int value, std::string& sprite, std::string& skills) 
-	: cost(cost), value(value), sprite(sprite), skills(skills)
-{
-}
-
 
 
 void Card::addCardEffect(SDLEventCallback effectCallback)

@@ -73,21 +73,18 @@ void BoardState::inputCard()
 	x = std::clamp(x, 0, board->getSize() - 1);
 	y = std::clamp(y, 0, board->getSize() - 1);
 
-
-
 	cardPH = new Card(cost, value);
-	int skillv = std::stoi(skill);
+	int skillv = std::stoi(skill); // string a int
 
-
-	// [] -> contexto para los corchetes del lambda, pasar no solo el this si no las 
-	// variables que necesites para el metodo
+	/* [] -> contexto para los corchetes del lambda, pasar no solo el this si no las 
+	 variables que necesites para el metodo
 	
-	// ejemplo base
-	//cardPH->addCardEffect( 
-	//	[this, x, y, skillv]() {
-	//		collection.addValueCenter(board->getCell(x, y), skillv);
-	//	}
-	//);
+	 ejemplo base
+	cardPH->addCardEffect( 
+		[this, x, y, skillv]() {
+			collection.addValueCenter(board->getCell(x, y), skillv);
+		}
+	);*/
 
 	cardPH->addCardEffect(
 		[this, x, y, skillv]() {
