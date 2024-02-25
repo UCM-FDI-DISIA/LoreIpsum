@@ -6,7 +6,7 @@ BoardState::BoardState()
 {
 	board = new Board(4);
 	matchManager = new MatchManager(board);
-	collection = EffectCollection();
+	effectCollection = EffectCollection();
 	
 	std::cout << "board state";
 }
@@ -82,13 +82,13 @@ void BoardState::inputCard()
 	 ejemplo base
 	cardPH->addCardEffect( 
 		[this, x, y, skillv]() {
-			collection.addValueCenter(board->getCell(x, y), skillv);
+			effectCollection.addValueCenter(board->getCell(x, y), skillv);
 		}
 	);*/
 
 	cardPH->addCardEffect(
 		[this, x, y, skillv]() {
-			collection.addValueAdj(board->getCell(x, y), Abajo, skillv, false);
+			effectCollection.addValueAdj(board->getCell(x, y), Abajo, skillv, false);
 		}
 	);
 

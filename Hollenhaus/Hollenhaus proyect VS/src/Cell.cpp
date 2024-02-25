@@ -18,7 +18,6 @@ Cell::Cell(Cell& cell)
 	active = cell.active;
 	player = cell.player;
 	adjacents = cell.adjacents;
-	effectHistory = cell.effectHistory;
 	totalValue = cell.totalValue;
 }
 

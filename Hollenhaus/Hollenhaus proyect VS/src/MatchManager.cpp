@@ -13,8 +13,8 @@ MatchManager::~MatchManager()
 int MatchManager::whoWon()
 {
 	if (pPlayer1 > pPlayer2) { return matchResult = PLAYERWON; } // gana player
-	else if (pPlayer2 > pPlayer1) { return matchResult = OPPONENTWON; } // gana opponent
-	else if (pPlayer1 = pPlayer2) { return matchResult = TIE; } // empate
+	if (pPlayer2 > pPlayer1) { return matchResult = OPPONENTWON; } // gana opponent
+	if (pPlayer1 == pPlayer2) { return matchResult = TIE; } // empate
 }
 
 void MatchManager::updateScore()

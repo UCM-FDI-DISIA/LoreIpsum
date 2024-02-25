@@ -32,11 +32,9 @@ class Cell
 	int totalValue; // puntuacion con los efectos aplicados
 	Owner player; // a que jugador pertenece
 	Card* card; // carta posicionada en esta celda
-	std::string effectHistory;
 	std::array<Cell*, 4> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
 	std::list<SDLEventCallback> effectCallbacks; // lista de los efectos que tiene una celda concreta
 	std::list<SDLEventCallback>::iterator listIT;
-
 
 	void emit() const;
 
@@ -57,7 +55,6 @@ public:
 	int getTotalValue() const { return totalValue; }
 	Owner getPlayer() const { return player; }
 	Card* getCard() const { return card; }
-	std::string& getEffectHistory() { return effectHistory; }
 	std::array<Cell*, 4>& getAdjacents() { return adjacents; } // sets pointers to adjacent
 	std::list<SDLEventCallback> getEffects() const { return effectCallbacks; }
 

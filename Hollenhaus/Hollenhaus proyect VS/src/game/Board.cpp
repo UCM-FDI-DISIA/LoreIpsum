@@ -86,9 +86,9 @@ std::string Board::getCellInfo(Cell* cell) const
 }
 
 /// Devuelve los efectos aplicados en una celda dada
-std::string Board::getEffects(Cell* cell) const
+std::list<SDLEventCallback> Board::getEffects(Cell* cell) const
 {
-	return cell->getEffectHistory();
+	return cell->getEffects();
 }
 
 

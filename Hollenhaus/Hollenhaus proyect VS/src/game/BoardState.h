@@ -1,5 +1,4 @@
 #pragma once
-
 #include "GameState.h"
 #include "Board.h"
 #include "../EffectCollection.h"
@@ -13,9 +12,9 @@ class BoardState : public GameState
 {
 	Board* board;
 	MatchManager* matchManager;
-	EffectCollection collection;
+	EffectCollection effectCollection;
 
-	Card* cardPH;
+	Card* cardPH; // placeholder
 
 public:
 
