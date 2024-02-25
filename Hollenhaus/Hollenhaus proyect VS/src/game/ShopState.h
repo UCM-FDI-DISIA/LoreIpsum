@@ -4,6 +4,9 @@
 class ShopState : public GameState
 {
 public: 
+
+	ShopState();	//Constructora
+
 	void update() override;
 	void render() const override;
 	void refresh() override;

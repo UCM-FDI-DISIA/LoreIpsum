@@ -1,5 +1,10 @@
 #include "ShopState.h"
 
+ShopState::ShopState()
+{
+	std::cout << "\nLoading Shop";
+}
+
 void ShopState::update()
 {
 }
@@ -14,10 +19,10 @@ void ShopState::refresh()
 
 void ShopState::onEnter() const
 {
-	std::cout << "\nenter shop\n";
+	std::cout << "\nEnter shop\n";
 }
 
 void ShopState::onExit() const
 {
-	std::cout << "\nexit shop\n";
+	std::cout << "\nExit shop\n";
 }

@@ -1,7 +1,7 @@
 #include "CityState.h"
 CityState::CityState()
 {
-	onEnter();
+	std::cout << "\nLoading City";
 }
 void CityState::update()
 {

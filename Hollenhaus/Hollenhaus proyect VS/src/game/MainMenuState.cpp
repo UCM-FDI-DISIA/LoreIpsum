@@ -3,7 +3,8 @@
 MainMenuState::MainMenuState()
 	 
 {
-	onEnter();
+	
+	std::cout << "\nLoading Menu";
 }
 
 void MainMenuState::update()
@@ -20,11 +21,11 @@ void MainMenuState::refresh()
 
 void MainMenuState::onEnter() const
 {
-	std::cout << "\nenter menu\n";
+	std::cout << "\nEnter menu\n";
 }
 
 void MainMenuState::onExit() const
 {
-	std::cout << "\nexit menu\n";
+	std::cout << "\nExit menu\n";
 }
 

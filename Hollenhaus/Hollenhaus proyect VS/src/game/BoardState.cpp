@@ -3,7 +3,7 @@
 BoardState::BoardState() : GameState()
 {
 
-
+	std::cout << "\nLoading Board";
 }
 
 BoardState::~BoardState()

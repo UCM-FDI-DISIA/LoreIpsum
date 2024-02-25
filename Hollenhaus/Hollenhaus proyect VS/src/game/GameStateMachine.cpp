@@ -26,7 +26,7 @@ void GameStateMachine::init()
 	boardState = new BoardState();
 
 	//Ponemos el estado actual
-	currentState = mainMenuState;
+	currentState = cityState;
 
 	//Estado incial
 	pushState(currentState);
@@ -73,7 +73,7 @@ void GameStateMachine::Refresh()
 
 void GameStateMachine::setState(int state)
 {
-	GameState* newState;
+	GameState* newState = nullptr;
 
 	switch (state)
 	{
@@ -96,12 +96,15 @@ void GameStateMachine::setState(int state)
 		break;
 	}
 
-	//Hacemos el exit del estado actual
+	replaceState(newState);
 	
 }
 
 void GameStateMachine::pushState(GameState* state) {
-	gameStack.push(state);
+	
+	gameStack.push(state);		//Colocamos el nuevo GameState
+	currentState = state;		//Lo convertimos en el actual
+	currentState->onEnter();	//Hacemos el onEnter del nuevo estado
 }
 
 void GameStateMachine::replaceState(GameState* state) {
@@ -110,6 +113,7 @@ void GameStateMachine::replaceState(GameState* state) {
 }
 
 void GameStateMachine::popState() {
+	currentState->onExit();	//Antes de eliminarlo hacemos el onExit del estado
 	toBeDeleted.push_back(gameStack.top());
 	gameStack.pop();
 }
