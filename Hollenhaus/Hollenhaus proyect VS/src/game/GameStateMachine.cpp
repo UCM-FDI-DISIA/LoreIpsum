@@ -11,6 +11,7 @@
 #include "ShopState.h"
 #include "BoardState.h"
 #include "SamuState.h"
+#include "JimboState.h"
 #include "Manager.h"
 
 
@@ -31,6 +32,7 @@ void GameStateMachine::init()
 	pushState(currentState);
 
 
+	pushState(new SamuState());
 }
 
 //constructor

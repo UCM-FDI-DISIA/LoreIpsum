@@ -1,6 +1,6 @@
 #pragma once
-#include "game/ComponentRender.h"
-#include "sdlutils/SDLUtils.h"
+#include "ComponentRender.h"
+#include "../sdlutils/SDLUtils.h"
 
 class Transform;
 

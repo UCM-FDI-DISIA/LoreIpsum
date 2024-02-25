@@ -1,11 +1,12 @@
 #pragma once
-#include "game/ComponentUpdate.h"
-#include "utils/Vector2D.h"
+#include "ComponentUpdate.h"
+#include "../utils/Vector2D.h"
+
 class Transform :
     public ComponentUpdate
 {
 public:
-    Transform() : parent_(), globalAngle_(0), relativeAngle_(0), isChild_(false) {};
+    Transform() : parent_(), globalAngle_(0), globalScale_(1, 1), relativeAngle_(0), isChild_(false) {};
     ~Transform() {
         delete parent_;
         parent_ = nullptr;
@@ -13,28 +14,44 @@ public:
 
     void update() override;
 
-    // LOGICA DE JERARQUIA
-    // Añadir un padre
+    // Añade un padre
+    //
     void addParent(Transform* p);
-    // Quitar padre
+
+    // Quitar un padre
+    //
     void removeParent();
 
-    // GETTERS
-    // Globales
+    // Posicion global
+    //
     Vector2D& getGlobalPos() { return globalPos_; };
+
+    // Escala global
+    //
     Vector2D& getGlobalScale() { return globalScale_; };
+
+    // Rotacion global
+    //
     float& getGlobalAngle() { return globalAngle_; };
-    // Relativos
+
+    // Posicion relativa al padre
+    //
     Vector2D& getRelativePos() { return relativePos_; };
-    Vector2D& getRealativeScale() { return relativeScale_; };
+
+    // Escala relativa al padre
+    //
+    Vector2D& getRelativeScale() { return relativeScale_; };
+
+    // Rotacion relativa al padre
+    //
     float& getRelativeAngle() { return relativeAngle_; };
     
-    // OPERADORES
     Transform& operator+(const Transform& t);
     Transform& operator-(const Transform& t);
     Transform& operator=(const Transform& t);
 private:
     Transform* parent_;
+
     bool isChild_;
 
     Vector2D globalPos_,

@@ -2,8 +2,8 @@
 #include "Manager.h"
 #include "../sdlutils/InputHandler.h"
 
-#include "../BoxCollider.h"
-#include "../Transform.h"
+#include "BoxCollider.h"
+#include "Transform.h"
 
 
 Drag::Drag()
@@ -56,7 +56,13 @@ void Drag::OnLeftClickUp()
 {
 	if (isDraged) {
 		isDraged = false;
-		myTransform->getGlobalPos().set(initialTransformPos);//quitar? poner en otro component?
+
+
+		SDL_Rect windowRect = build_sdlrect(0, 0, sdlutils().width(), sdlutils().height());
+		if (!SDL_HasIntersection(myBoxCollider->getRect(),&windowRect )) {
+			myTransform->getGlobalPos().set(initialTransformPos);//quitar? poner en otro component?
+
+		}
 	}
 
 }
