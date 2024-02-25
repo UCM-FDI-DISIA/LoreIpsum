@@ -30,9 +30,6 @@ void GameStateMachine::init()
 
 	//Estado incial
 	pushState(currentState);
-
-
-	pushState(new SamuState());
 }
 
 //constructor
