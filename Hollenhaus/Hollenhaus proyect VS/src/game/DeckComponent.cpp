@@ -3,7 +3,7 @@
 void
 DeckComponent::shuffle() {
 	std::random_device rd;
-	std::mt19937 rnd(rd);
+	std::mt19937 rnd(rd());
 
 	// Puede que miki llore con esto no lo se no conozco el coste de estos algoritmos confio en c++
 	for (auto i = std::prev(deck.end()); i != deck.begin(); --i) {
