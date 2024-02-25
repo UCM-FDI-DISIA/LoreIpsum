@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\AndresState.cpp" />
     <ClCompile Include="src\game\BoardManager.cpp" />
     <ClCompile Include="src\game\Board.cpp" />
     <ClCompile Include="src\game\BoardState.cpp" />
@@ -60,6 +61,7 @@
     <ClCompile Include="src\game\JimboState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\AndresState.h" />
     <ClInclude Include="src\game\Board.h" />
     <ClInclude Include="src\game\BoardManager.h" />
     <ClInclude Include="src\game\BoardState.h" />
