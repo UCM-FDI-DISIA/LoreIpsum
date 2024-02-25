@@ -43,7 +43,9 @@
     <ClCompile Include="src\game\main.cpp" />
     <ClCompile Include="src\game\MainMenuState.cpp" />
     <ClCompile Include="src\game\Manager.cpp" />
+    <ClCompile Include="src\game\NPC.cpp" />
     <ClCompile Include="src\game\OfficeState.cpp" />
+    <ClCompile Include="src\game\PaigroState.cpp" />
     <ClCompile Include="src\game\SamuState.cpp" />
     <ClCompile Include="src\game\ShopState.cpp" />
     <ClCompile Include="src\game\SpriteRenderer.cpp" />
@@ -89,7 +91,9 @@
     <ClInclude Include="src\game\HandComponent.h" />
     <ClInclude Include="src\game\MainMenuState.h" />
     <ClInclude Include="src\game\Manager.h" />
+    <ClInclude Include="src\game\NPC.h" />
     <ClInclude Include="src\game\OfficeState.h" />
+    <ClInclude Include="src\game\PaigroState.h" />
     <ClInclude Include="src\game\SamuState.h" />
     <ClInclude Include="src\game\ShopState.h" />
     <ClInclude Include="src\game\SpriteRenderer.h" />

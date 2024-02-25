@@ -173,6 +173,12 @@
     <ClCompile Include="src\game\Entity.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\PaigroState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\NPC.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -339,6 +345,13 @@
     </ClInclude>
     <ClInclude Include="src\game\ColliderRender.h">
       <Filter>Archivos de encabezado\Componentes\Componentes Basicos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HandComponent.h" />
+    <ClInclude Include="src\game\PaigroState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\NPC.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
