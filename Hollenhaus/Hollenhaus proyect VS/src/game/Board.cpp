@@ -78,10 +78,15 @@ bool Board::setCard(int x, int y, Card* c, Owner o)
 std::string Board::getCellInfo(Cell* cell) const
 {
 	auto card = cell->getCard();
+	int diff = cell->getTotalValue() - card->getValue();
+	char sign = '+';
+	if (diff < 0)
+		sign = '-';
 	std::string info = "[ "
 		+ std::to_string(card->getCost()) + "/"
-		+ std::to_string(card->getValue()) + "/+"
-		+ std::to_string(cell->getTotalValue() - card->getValue()) + 
+		+ std::to_string(card->getValue()) + "/"
+		+ sign
+		+ std::to_string(diff) + 
 		" ]";
 
 	return info;
