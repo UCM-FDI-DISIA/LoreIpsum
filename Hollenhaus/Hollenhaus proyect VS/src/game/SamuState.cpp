@@ -11,6 +11,7 @@
 #include "ColliderRender.h"
 #include "Drag.h"
 #include "CardStateManager.h"
+#include "DragManager.h"
 
 #include "CardFactory_v0.h"
 
@@ -19,9 +20,12 @@ SamuState::SamuState() : GameState() {
 
 	CardFactory_v0* factory = new CardFactory_v0();
 
-	card = factory->createCard();
+	factory->createBoard();
+	factory->createHand();
+	//card->setLayer(1);
 
-
+	ecs::entity_t ent = Instantiate();
+	ent->addComponent<DragManager>();
 }
 
 SamuState::~SamuState()
@@ -38,7 +42,7 @@ void SamuState::update()
 {
 	GameState::update();
 
-	
+	//std::cout << mouseRaycast()<< std::endl;
 }
 
 void SamuState::render() const

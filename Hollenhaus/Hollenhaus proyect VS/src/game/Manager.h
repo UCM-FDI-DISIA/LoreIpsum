@@ -12,6 +12,11 @@
 #include "ecs.h"
 #include "Entity.h"
 
+//CUIDADO CON DEPENDENCIAS
+#include "GameStateMachine.h"
+#include "../utils/Vector2D.h"
+#include "Transform.h"
+#include "BoxCollider.h"
 namespace ecs {
 
 	using entity_t = Entity*;
@@ -32,6 +37,9 @@ public:
 
 	virtual void refresh(); //borra entidades no vivas
 	
+	#pragma region MapEntities
+
+
 	//añade una entidad al mapa
 	void AddEntityMap(int layer, Entity* e) {
 		ordenRendering[layer].push_back(e);
@@ -49,8 +57,10 @@ public:
 
 	void ChangeLayer(int previousLayer, int nextLayer, Entity* e) {
 		DeleteEntityMap(previousLayer, e);
-		AddEntityMap(previousLayer, e);
+		AddEntityMap(nextLayer, e);
 	}
+
+	#pragma endregion
 
 	// Adding an entity simply creates an instance of Entity, adds
 	// it to the list of entities and returns it to the caller.
@@ -96,6 +106,8 @@ public:
 	inline bool isAlive(entity_t e) {
 		return e->alive_;
 	}
+
+	#pragma region Templates components
 
 	// Adds a component to an entity. It receives the type T (to be created),
 	// and the list of arguments (if any) to be passed to the constructor.
@@ -280,6 +292,8 @@ public:
 		}	
 	}
 
+#pragma endregion
+
 	// returns the entity's group 'gId'
 	//
 	inline ecs::grpId_t groupId(entity_t e) {
@@ -305,6 +319,10 @@ public:
 		assert(hId < ecs::maxHandlerId);
 		return hdlrs_[hId];
 	}
+
+
+	#pragma region update y render
+
 
 	// Updating  an entity simply calls the update of all
 	// components
@@ -336,13 +354,92 @@ public:
 	// render all entities
 	//
 	void render() {
-		for (auto& ents : entsByGroup_) {
-			auto n = ents.size();
-			for (auto i = 0u; i < n; i++)
-				render(ents[i]);
+
+		for (auto& ents : ordenRendering) {
+			for (auto& ent : ents.second) {
+				render(ent);
+			}
 		}
 	}
 
+	#pragma endregion
+
+	#pragma region MouseRaycast
+
+	//returns first entity with box colider that collides with mouse 
+	entity_t mouseRaycast() {
+
+		//iterador del map, (lo recorremos al reves)
+		std::map<int,std::list<Entity*>>::reverse_iterator itMap = ordenRendering.rbegin();
+
+		entity_t collision = nullptr;
+
+		//mientras no hayamos recorrido todo el map y no hayamos encontrado una colision 
+		while (itMap != ordenRendering.rend() && (collision == nullptr ) ) {
+
+			//lista de este valor de la layer
+			auto list = (*itMap).second;
+
+			//iterador de la lista (la recorremos al reves)
+			std::list<Entity*>::reverse_iterator itList = list.rbegin();
+
+			while (itList != list.rend() && (collision == nullptr)) {
+				
+				auto boxCollider = (*itList)->getComponent<BoxCollider>();
+				//si tenemos collider y el cursor está encima
+				if (boxCollider != nullptr && boxCollider->isCursorOver()) {
+					collision = (*itList);
+				}
+
+				++itList;
+			}
+			
+			++itMap;
+		}
+
+		return collision;
+	}
+
+
+	//returns first entity with box colider that collides with mouse in the given group
+	entity_t mouseRaycast(grpId_t gId) {
+		
+		//iterador del map, (lo recorremos al reves)
+		std::map<int, std::list<Entity*>>::reverse_iterator itMap = ordenRendering.rbegin();
+
+		entity_t collision = nullptr;
+
+		//mientras no hayamos recorrido todo el map y no hayamos encontrado una colision 
+		while (itMap != ordenRendering.rend() && (collision == nullptr)) {
+
+			//lista de este valor de la layer
+			auto list = (*itMap).second;
+
+			//iterador de la lista (la recorremos al reves)
+			std::list<Entity*>::reverse_iterator itList = list.rbegin();
+
+			while (itList != list.rend() && (collision == nullptr)) {
+
+				if ((*itList)->gId_ == gId) {
+
+					auto boxCollider = (*itList)->getComponent<BoxCollider>();
+					//si tenemos collider y el cursor está encima
+					if (boxCollider != nullptr && boxCollider->isCursorOver()) {
+						collision = (*itList);
+					}
+				}
+
+				++itList;
+			}
+
+			++itMap;
+		}
+
+		return collision;
+
+	}
+
+	#pragma endregion
 
 
 private:
@@ -350,5 +447,76 @@ private:
 	std::array<std::vector<entity_t>, ecs::maxGroupId> entsByGroup_;
 };
 
+#pragma region Entity templates
 
+
+template<typename T,typename ...Ts>
+T* Entity::addComponent(Ts &&... args) {
+	return mngr().addComponent<T>(this, std::forward<Ts>(args)...);
+}
+template<typename T>
+inline void Entity::removeComponent() {
+	mngr().removeComponent<T>(this);
+}
+template<typename T>
+inline T* Entity::getComponent() {
+	return mngr().getComponent<T>(this);
+}
+
+template<typename T>
+inline bool Entity::hasComponent() {
+	return mngr().hasComponent<T>(this);
+}
+
+inline ecs::grpId_t Entity::groupId() {
+	return mngr().groupId(this);
+}
+
+inline void Entity::setAlive(bool alive) {
+	mngr().setAlive(this,alive);
+}
+
+inline bool Entity::isAlive() {
+	return mngr().isAlive(this);
+}
+
+inline void Entity::setHandler(hdlrId_t hId) {
+	mngr().setHandler(hId, this);
+}
+
+
+#pragma endregion
+
+
+
+} //end namespace ecs
+
+
+//FUNCIONES GLOBALES
+
+inline ecs::entity_t Instantiate(ecs::grpId_t gId = ecs::grp::DEFAULT) {
+	return mngr().addEntity(gId);
+}
+
+inline ecs::entity_t Instantiate(Vector2D pos, ecs::grpId_t gId = ecs::grp::DEFAULT) {
+	ecs::entity_t ent = Instantiate(gId);
+	ent->addComponent<Transform>()->getGlobalPos().set(pos);
+	return ent;
+}
+
+
+
+
+inline ecs::entity_t mouseRaycast() {
+	return mngr().mouseRaycast();
+}
+
+inline ecs::entity_t mouseRaycast(ecs::grpId_t gId) {
+	return mngr().mouseRaycast(gId);
+}
+
+
+
+inline void TuVieja(std::string message) {
+	std::cout << message << std::endl;
 }

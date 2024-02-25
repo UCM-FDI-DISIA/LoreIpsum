@@ -11,7 +11,6 @@
 #include "ComponentUpdate.h"
 #include "ComponentRender.h"
 
-
 /// <summary>
 /// Clase entity vista en clase con algunas modificiaciones:
 /// Usamos 2 listas de componentes, una de ComponentUpdate y otra de ComponentRender
@@ -31,13 +30,7 @@ class Entity {
 public:
 
 	//Constructora, inicializamos todas las variables
-	Entity(grpId_t gId) :
-		gId_(gId), cmpsU_(), currCmpsU_(), cmpsR_(), currCmpsR_(), alive_() {
-		
-		//reservamos la memoria para las listas de componentes
-		currCmpsU_.reserve(ecs::maxComponentUpdateId);
-		currCmpsR_.reserve(ecs::maxComponentRenderId);
-	}
+	Entity(grpId_t gId);
 
 	//eliminamos los componentes de las 2 listas
 	virtual ~Entity() {
@@ -48,6 +41,35 @@ public:
 			delete c;
 		}
 	}
+
+	//TEMPLATES PARA COMPONENTES
+	//Se declaran en el manager.h
+
+	template<typename T,typename ...Ts>
+	T* addComponent(Ts &&... args);
+
+	template<typename T>
+	inline void removeComponent();
+
+	template<typename T>
+	inline T* getComponent();
+
+	template<typename T>
+	inline bool hasComponent();
+
+	inline ecs::grpId_t groupId();
+
+	inline void setAlive(bool alive);
+
+	inline bool isAlive();
+
+	inline void setHandler(hdlrId_t hId);
+
+	void setLayer(int nextLayer);
+
+	int getLayer() {
+		return layer;
+	};
 
 private:
 

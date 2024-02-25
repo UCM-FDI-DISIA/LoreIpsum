@@ -33,6 +33,8 @@
     <ClCompile Include="src\game\DeckComponent.cpp" />
     <ClCompile Include="src\game\Drag.cpp" />
     <ClCompile Include="src\game\DragManager.cpp" />
+    <ClCompile Include="src\game\DropDetector.cpp" />
+    <ClCompile Include="src\game\Entity.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
@@ -77,6 +79,7 @@
     <ClInclude Include="src\game\DeckComponent.h" />
     <ClInclude Include="src\game\Drag.h" />
     <ClInclude Include="src\game\DragManager.h" />
+    <ClInclude Include="src\game\DropDetector.h" />
     <ClInclude Include="src\game\ecs.h" />
     <ClInclude Include="src\game\Entity.h" />
     <ClInclude Include="src\game\Game.h" />
