@@ -1,14 +1,5 @@
 #include "SamuState.h"
 
-#include "Entity.h"
-#include "GameStateMachine.h"
-#include "Manager.h"
-#include "GameState.h"
-
-#include "SpriteRenderer.h"
-#include "Transform.h"
-#include "BoxCollider.h"
-#include "ColliderRender.h"
 #include "Drag.h"
 #include "CardStateManager.h"
 #include "DragManager.h"
@@ -17,15 +8,8 @@
 
 SamuState::SamuState() : GameState() {
 
-
-	CardFactory_v0* factory = new CardFactory_v0();
-
-	factory->createBoard();
-	factory->createHand();
-	//card->setLayer(1);
-
-	ecs::entity_t ent = Instantiate();
-	ent->addComponent<DragManager>();
+	
+	TuVieja("\nloading SAmuState");
 }
 
 SamuState::~SamuState()
@@ -48,4 +32,24 @@ void SamuState::update()
 void SamuState::render() const
 {
 	GameState::render();
+}
+
+void SamuState::onEnter() const
+{
+	TuVieja("\nEntering in SamuState");
+	//GameStateMachine::instance();
+	CardFactory_v0* factory = new CardFactory_v0();
+
+	factory->createBoard();
+	factory->createHand();
+	//card->setLayer(1);
+
+
+	ecs::entity_t ent = Instantiate();
+	ent->addComponent<DragManager>();
+}
+
+void SamuState::onExit() const
+{
+	TuVieja("\nExit SamuState");
 }

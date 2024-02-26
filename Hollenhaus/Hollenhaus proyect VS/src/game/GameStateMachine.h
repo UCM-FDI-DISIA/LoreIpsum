@@ -18,33 +18,6 @@ namespace ecs {
 }
 
 class GameStateMachine : public Singleton<GameStateMachine> {
-	std::stack<GameState*> gameStack; // container de los states
-
-	std::list<GameState*> toBeDeleted;
-
-	friend Singleton<GameStateMachine>;
-
-	ecs::Manager* mngr_;
-
-	//Enum de estados del juego
-	enum game_states {
-		MAINMENU = 0,
-		CITY,
-		OFFICE,
-		SHOP,
-		BOARD,
-		PAIGRO
-	};
-
-	//Creación de los distintos estados del juego
-	GameState* currentState;
-	GameState* mainMenuState;
-	GameState* cityState;
-	GameState* officeState;
-	GameState* shopState;
-	GameState* boardState;
-	GameState* paigroState;
-
 public:
 
 	inline ecs::Manager* getMngr() {
@@ -66,9 +39,70 @@ public:
 	void Update();
 	void Refresh();
 
-	void setState(int state);
+	inline void setState(int state) {
+		GameState* newState = nullptr;
 
+
+		switch (state)
+		{
+		case MAINMENU:
+			newState = mainMenuState;
+			break;
+		case CITY:
+			newState = cityState;
+			break;
+		case OFFICE:
+			newState = officeState;
+			break;
+		case SHOP:
+			newState = shopState;
+			break;
+		case BOARD:
+			newState = boardState;
+			break;
+		case PAIGRO:
+			newState = paigroState;
+			break;
+		case SAMU:
+			newState = samuState;
+			break;
+		default:
+			break;
+		}
+
+		replaceState(newState);
+	};
 	bool Empty() const { return gameStack.empty(); }
+
+private:
+	std::stack<GameState*> gameStack; // container de los states
+
+	std::list<GameState*> toBeDeleted;
+
+	friend Singleton<GameStateMachine>;
+
+	ecs::Manager* mngr_;
+
+	//Enum de estados del juego
+	enum game_states {
+		MAINMENU = 0,
+		CITY,
+		OFFICE,
+		SHOP,
+		BOARD,
+		PAIGRO,
+		SAMU
+	};
+
+	//Creación de los distintos estados del juego
+	GameState *currentState;
+	GameState *mainMenuState;
+	GameState *cityState;
+	GameState *officeState;
+	GameState *shopState;
+	GameState *boardState;
+	GameState *paigroState;
+	GameState* samuState;
 
 };
 

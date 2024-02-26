@@ -2,23 +2,32 @@
 #include "Entity.h"
 #include "Manager.h"
 
-NPC::NPC() :myBoxCollider() {
-
+NPC::NPC()
+{
+	
 }
+
 NPC::~NPC() {
 
 }
-void NPC::initComponent() {
+void NPC::initComponent() 
+{
+	myBoxCollider = mngr_->getComponent<BoxCollider>(ent_);
+	click = false;
+
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
-	myBoxCollider = ent_->getComponent<BoxCollider>();
+	
 }
 void NPC::OnLeftClickDown() {
 	Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
 
-	if (myBoxCollider->isCursorOver()) {
-		//GameStateMachine().setState(5); // Demomento pasa de CityState a PaigroState que es el 5 (creo).
-		TuVieja("Cambio de escena");
+	if (myBoxCollider->isCursorOver() && !click) {
+		
+		GameStateMachine::instance()->setState(6); // Demomento pasa de CityState a PaigroState que es el 5 (creo).
+		
+		click = true;
 	}
+	TuVieja("Cambio de escena");
 }
 void NPC::update() {
 

@@ -13,6 +13,7 @@ Game::Game()
 
 	GameStateMachine::instance()->init();
 	gameStateMachine = GameStateMachine::instance();
+	//gameStateMachine->init();
 	
 	auto& sdl = *SDLUtils::instance();
 	sdl.presentRenderer();

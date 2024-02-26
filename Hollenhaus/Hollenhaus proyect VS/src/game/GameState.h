@@ -16,10 +16,11 @@ class GameState {
 protected:
 
 	//A lo mejor deja de hacer falta
-	Game* game;			//Puntero al juego
+	//Game* game;			//Puntero al juego
 
 public:
-	GameState() = default;
+	//LAS ENTIDADES ¡NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT 
+	GameState() {};
 	virtual ~GameState();		//Destructora
 
 	virtual void refresh(); //borra entidades no vivas

@@ -18,6 +18,34 @@
 
 void GameStateMachine::init()
 {
+	//mngr_ = new ecs::Manager();
+
+	//mainMenuState = new MainMenuState();
+	//cityState = new CityState();
+	//officeState = new OfficeState();
+	//shopState = new ShopState();
+	//boardState = new BoardState();
+	//paigroState = new PaigroState();
+
+	////Ponemos el estado actual
+	//currentState = paigroState;
+
+	//Estado incial
+	pushState(currentState);
+	
+}
+
+//constructor
+GameStateMachine::GameStateMachine()  {
+
+	/*currentState = nullptr;
+	mainMenuState = nullptr;
+	cityState = nullptr;
+	officeState = nullptr;
+	shopState = nullptr;
+	boardState = nullptr;
+	paigroState = nullptr;*/
+
 	mngr_ = new ecs::Manager();
 
 	mainMenuState = new MainMenuState();
@@ -26,19 +54,13 @@ void GameStateMachine::init()
 	shopState = new ShopState();
 	boardState = new BoardState();
 	paigroState = new PaigroState();
+	samuState = new SamuState();
 
 	//Ponemos el estado actual
 	currentState = paigroState;
 
 	//Estado incial
-	pushState(currentState);
-}
-
-//constructor
-GameStateMachine::GameStateMachine()  {
-
-	//init();
-	//inicializamos la pila con el estado del menu inicial
+	//pushState(currentState);
 
 }
 
@@ -73,37 +95,6 @@ void GameStateMachine::Refresh()
 	gameStack.top()->refresh();
 }
 
-void GameStateMachine::setState(int state)
-{
-	GameState* newState = nullptr;
-
-	switch (state)
-	{
-	case MAINMENU:
-		newState = mainMenuState;
-		break;
-	case CITY:
-		newState = cityState;
-		break;
-	case OFFICE:
-		newState = officeState;
-		break;
-	case SHOP:
-		newState = shopState;
-		break;
-	case BOARD:
-		newState = boardState;
-		break;
-	case PAIGRO:
-		newState = paigroState;
-		break;
-	default:
-		break;
-	}
-
-	replaceState(newState);
-	
-}
 
 void GameStateMachine::pushState(GameState* state) {
 	
