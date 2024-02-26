@@ -32,10 +32,10 @@ void DragManager::update()
 	if (dragTransform != nullptr) {
 		//actualizamos su posicion teniendo en cuenta la posicion del raton
 
-		Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
+		Vector2D mousePos (ih().getMousePos().first, ih().getMousePos().second);
 		Vector2D posAct = (mousePos - initialMousePos) + initialTransformPos;
 
-		dragTransform->getGlobalPos().set(posAct);
+		dragTransform->setGlobalPos(posAct);
 	}
 	
 }
@@ -65,19 +65,19 @@ void DragManager::OnLeftClickUp()
 {
 	//si no tenemos carta drageada, no hacemos nada
 
-	//si, sí la tenemos, verifcamos colisiones con el grupo DropDetector
+	//si, sï¿½ la tenemos, verifcamos colisiones con el grupo DropDetector
 	if (dragTransform != nullptr) {
 
 		auto drag = mouseRaycast(ecs::grp::DROPS);
 
 		//si tenemos una colision con el drop detector, cambiamos la posicion de la carta por la que guarde el drop
 		if (drag != nullptr) {
-			dragTransform->getGlobalPos().set(mngr().getComponent<DropDetector>(drag)->getCardPos());
+			dragTransform->setGlobalPos(mngr().getComponent<DropDetector>(drag)->getCardPos());
 			
 			dragTransform->getEntity()->getComponent<CardStateManager>()->setState(CardStateManager::ON_CELL);
 		}
 		else {//sino, devolvemos la carta a su posicion inicial
-			dragTransform->getGlobalPos().set(initialTransformPos);
+			dragTransform->setGlobalPos(initialTransformPos);
 		}
 
 		//en cualquier caso, ya no tenemos carta drageada

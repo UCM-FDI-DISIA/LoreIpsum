@@ -31,6 +31,14 @@
     {
       "id": "hand",
       "file": "resources/images/hand.png"
+    },
+    {
+      "id": "picto1",
+      "file": "resources/images/picto1.png"
+    },
+    {
+      "id": "key",
+      "file": "resources/images/libreta.png"
     }
   ]
 }

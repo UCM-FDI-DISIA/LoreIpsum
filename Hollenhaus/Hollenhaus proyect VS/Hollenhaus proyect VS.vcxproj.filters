@@ -176,6 +176,8 @@
     </ClCompile>
     <ClCompile Include="src\game\BoardFactory.cpp" />
     <ClCompile Include="src\game\LuisState.cpp" />
+    <ClCompile Include="src\game\KeyManager.cpp" />
+
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -343,10 +345,14 @@
     <ClInclude Include="src\game\AndresState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
+
     <ClInclude Include="src\game\Factory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
     <ClInclude Include="src\game\BoardFactory.h" />
     <ClInclude Include="src\game\LuisState.h" />
+
+    <ClInclude Include="src\game\KeyManager.h" />
+
   </ItemGroup>
 </Project>

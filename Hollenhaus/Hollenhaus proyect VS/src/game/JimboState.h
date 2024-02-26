@@ -18,9 +18,6 @@ public:
     void render() const override;
 
 private:
-    ecs::entity_t card_;
-    ecs::entity_t card2_;
-    Transform* transform;
-    Transform* transform2;
+    ecs::entity_t legend_;
 };
 

@@ -23,9 +23,9 @@ AndresState::AndresState() :
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
 
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		ecs::entity_t card = factory->createCard(Vector2D(400 + (i * 10), 400));
+		ecs::entity_t card = factory->createCard(Vector2D(0, 0));
 		card->setLayer(i + 1);
 		hand_->getComponent<HandComponent>()->addCard(card);
 	}

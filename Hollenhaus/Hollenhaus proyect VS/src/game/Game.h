@@ -23,7 +23,7 @@ private:
 	const Uint8 FRAME_RATE = 20;
 
 	void Render() const;
-	void Update();
+	void Update(); // cleon:  "NO TENEMOS CONTROL DE TIEMPO" (== "este avión no tiene piloto")
 
 	void HandleEvents();
 

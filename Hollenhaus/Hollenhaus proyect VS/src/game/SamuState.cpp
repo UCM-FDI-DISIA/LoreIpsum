@@ -31,7 +31,7 @@ SamuState::~SamuState()
 {
 
 }
-
+//cleon: si está vacío se llama directamente al padre
 void SamuState::refresh()
 {
 	GameState::refresh();
