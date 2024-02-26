@@ -42,6 +42,7 @@
     <ClCompile Include="src\game\GameStateMachine.cpp" />
     <ClCompile Include="src\game\GenID.cpp" />
     <ClCompile Include="src\game\HandComponent.cpp" />
+    <ClCompile Include="src\game\KeyManager.cpp" />
     <ClCompile Include="src\game\LuisState.cpp" />
     <ClCompile Include="src\game\main.cpp" />
     <ClCompile Include="src\game\MainMenuState.cpp" />
@@ -61,7 +62,6 @@
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
     <ClCompile Include="src\game\JimboState.cpp" />
-    <ClCompile Include="U:\hlocal\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\game\KeyManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\AndresState.h" />
@@ -93,6 +93,7 @@
     <ClInclude Include="src\game\GameStateMachine.h" />
     <ClInclude Include="src\game\GenID.h" />
     <ClInclude Include="src\game\HandComponent.h" />
+    <ClInclude Include="src\game\KeyManager.h" />
     <ClInclude Include="src\game\LuisState.h" />
     <ClInclude Include="src\game\MainMenuState.h" />
     <ClInclude Include="src\game\Manager.h" />
@@ -122,7 +123,6 @@
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
     <ClInclude Include="src\game\JimboState.h" />
-    <ClInclude Include="U:\hlocal\LoreIpsum\Hollenhaus\Hollenhaus proyect VS\src\game\KeyManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
