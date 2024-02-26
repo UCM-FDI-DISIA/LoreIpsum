@@ -16,11 +16,9 @@ Cell::Cell(Cell& cell)
 
 Cell::Cell(Card* card, Owner own) : active(true), player(own), card(card)
 {
-	// si NO hay carta en la casilla 
-	if (card == nullptr)
+	if (card == nullptr) // si NO hay carta en la casilla 
 		totalValue = 0;
-	// si hay carta
-	else totalValue += card->getValue();
+	else totalValue += card->getValue(); // si hay carta
 }
 
 
@@ -45,44 +43,34 @@ void Cell::addEffect(SDLEventCallback effectCallback)
 
 void Cell::applyValue(Card* card)
 {
-	// aplica el valor base
-	totalValue += card->getValue();
-
-	// 'emite' los efectos que tienen la carta de esta celda
-	emit();
-
+	totalValue += card->getValue(); // aplica el valor base
+	emit(); // 'emite' los efectos que tienen la carta de esta celda
 }
 
 void Cell::addTotal(int add)
 {
-	// si la carta existe, se le añade el valor indicado al valor acumulado de la celda
-	if (card != nullptr)
+	if (card != nullptr) // si la carta existe, se le anyade el valor indicado al valor acumulado de la celda
 		totalValue += add;
 }
 
 void Cell::cleanEffectList()
 {
-	// limpia la lista de esta celda
-	effectCallbacks.clear();
+	effectCallbacks.clear(); // limpia la lista de esta celda
 }
 
 void Cell::setCard(Card* c, Owner o)
 {
-	// le pone la carta indicada a la celda
-	card = c;
-	// le pone el player indicado a la celda, a quien le pertenece la carta
-	player = o;
+	card = c; // le pone la carta indicada a la celda
+	player = o; // le pone el player indicado a la celda, a quien le pertenece la carta
 }
 
 void Cell::blockEffects(Cell* c)
 {
-	// elimina todos los efectos de la celda
-	 c->cleanEffectList();
+	 c->cleanEffectList(); // elimina todos los efectos de la celda
 }
 
 void Cell::emit() const
 {
-	// llama a todas las funciones registradas
 	for (SDLEventCallback cellCallback : effectCallbacks)
-		cellCallback();
+		cellCallback(); // llama a todas las funciones registradas
 }

@@ -48,13 +48,13 @@ void Board::paintBoard()
 }
 
 /// Devuelve si una carta dada por las coordenadas i, j es controlada por el jugador 'player'
-bool Board::isPlayer(int i, int j, Owner player)
+bool Board::isPlayer(int i, int j, Owner player) const
 {
 	return grid[i][j]->getPlayer() == player;
 }
 
 ///  Juega una carta del jugador 'o' en la celda de posicion x, y del tablero
-bool Board::setCard(int x, int y, Card* c, Owner o)
+bool Board::setCard(int x, int y, Card* c, Owner o) 
 {
 	const auto cell = grid[x][y];
 	if (cell->getCard() != nullptr)
@@ -149,10 +149,10 @@ void Board::resetGrid()
 				grid[i][j]->setCorner(true);
 
 			/// ADYACENTES:
-			std::array<Cell*, 4> adj;
+			std::array<Cell*, ADJACENTS> adj;
 			// inicializa a nullptr
-			for (int i = 0; i < 4; i++)
-				adj[i] = nullptr;
+			for (int m = 0; m < ADJACENTS; m++)
+				adj[m] = nullptr;
 
 			if (j > 0)
 				adj[Arriba] = grid[i][j - 1];
@@ -177,28 +177,17 @@ void Board::deleteGrid()
 			delete grid[j][i];
 }
 
+
+/// Reaplica todos los efectos de cada celda
 void Board::applyAllEffects() const
 {
 	for (int j = 0; j < size; j++)
-	{
 		for (int i = 0; i < size; i++)
-		{
 			if (grid[j][i]->getCard() != nullptr)
-			{
 				grid[j][i]->setTotalValue(0);
-			}
-		}
-	}
 
-	//
 	for (int j = 0; j < size; j++)
-	{
 		for (int i = 0; i < size; i++)
-		{
 			if (grid[j][i]->getCard() != nullptr)
-			{
 				grid[j][i]->applyValue(grid[j][i]->getCard());
-			}
-		}
-	}
 }

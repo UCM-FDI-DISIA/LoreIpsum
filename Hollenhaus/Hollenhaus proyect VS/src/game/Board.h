@@ -9,11 +9,10 @@
 
 class Board {
 	int size;
-	// lista bidimensional para el grid (vector de vectores)
+	// lista bidimensional para el tablero (vector de vectores)
 	std::vector<std::vector<Cell*>> grid;
 
-	// inicia un grid (se crea cada carta aqui)
-	void initGrid();		// inicia
+	void initGrid();
 	void resetGrid();
 	void deleteGrid();
 	void applyAllEffects() const;
@@ -31,10 +30,9 @@ public:
 
 	// setters
 	void setCell(int x, int y, Cell* c) { grid[x][y] = c; }
-	bool setCard(int x, int y, Card* c, Owner o); // true si pudo poner carta (no hab�a otra ya antes)
+	bool setCard(int x, int y, Card* c, Owner o); // true si pudo poner carta (no habia otra ya antes)
 
 	///
-	void countPoints();							//cuenta la puntuacion de ambos jugadores
-	void paintBoard();							// pinta el grid
-	bool isPlayer(int i, int j, Owner player);	// devuelve si en la posicion indicada esta ocupada por el player indicado
+	void paintBoard();									// pinta el grid
+	bool isPlayer(int i, int j, Owner player) const;	// devuelve si en la posicion indicada esta ocupada por el player indicado
 };

@@ -7,7 +7,6 @@ MatchManager::MatchManager(Board* board) : board(board)
 
 MatchManager::~MatchManager()
 {
-	delete board;
 }
 
 int MatchManager::whoWon()

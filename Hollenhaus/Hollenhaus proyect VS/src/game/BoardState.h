@@ -12,7 +12,7 @@ class BoardState : public GameState
 {
 	Board* board;
 	MatchManager* matchManager;
-	EffectCollection effectCollection;
+	EffectCollection* effectCollection;
 
 	Card* cardPH; // placeholder
 

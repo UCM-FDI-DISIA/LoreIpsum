@@ -6,7 +6,7 @@ BoardState::BoardState()
 {
 	board = new Board(4);
 	matchManager = new MatchManager(board);
-	effectCollection = EffectCollection();
+	effectCollection = new EffectCollection();
 	
 	std::cout << "board state";
 }
@@ -15,6 +15,7 @@ BoardState::~BoardState()
 {
 	delete board;
 	delete matchManager;
+	delete effectCollection;
 	delete cardPH;
 }
 
@@ -43,8 +44,9 @@ void BoardState::inputCard()
 {
 	int x, y;
 	int cost, value;
-	int player, blockint;
-	bool block;
+	int player = 0,
+		blockint = 0;
+	bool block = false;
 	int typecard;
 	std::string skill;
 	std::string sprite = "yippieeee";
@@ -77,12 +79,8 @@ void BoardState::inputCard()
 	default: break;
 	}
 
-	if (blockint == 0) {
-		block = false;
-	}
-	else if (blockint == 1) {
+	if (blockint == 1)
 		block = true;
-	}
 
 	x = std::clamp(x, 0, board->getSize() - 1);
 	y = std::clamp(y, 0, board->getSize() - 1);
@@ -90,31 +88,14 @@ void BoardState::inputCard()
 	cardPH = new Card(cost, value, sprite, block);
 	int skillv = std::stoi(skill); // string a int
 
-	/* [] -> contexto para los corchetes del lambda, pasar no solo el this si no las 
-	 variables que necesites para el metodo
-	
-	 ejemplo base
-	cardPH->addCardEffect( 
-		[this, x, y, skillv]() {
-			effectCollection.addValueCenter(board->getCell(x, y), skillv);
-		}
-	);*/
-
-	if (typecard == 0) {
-		cardPH->addCardEffect(
-			[this, x, y, skillv]() {
-				effectCollection.blockCard(board->getCell(x, y), Abajo);
-			}
-		);
-	}
-	else if (typecard == 1) {
-		cardPH->addCardEffect(
-			[this, x, y, skillv]() {
-				effectCollection.addValueAdj(board->getCell(x, y), Abajo, skillv, false);
-			}
-		);
-	}
-
+	if (typecard == 0) 
+		cardPH->addCardEffect([this, x, y] {
+				effectCollection->blockCard(board->getCell(x, y), Abajo);
+		});
+	else if (typecard == 1) 
+		cardPH->addCardEffect([this, x, y, skillv] {
+				effectCollection->addValueAdj(board->getCell(x, y), Abajo, skillv, false);
+		});
 
 	board->setCard(x, y, cardPH, owner);
 	matchManager->updateScore(); // actualiza el matchManager siempre que se ponga una carta
