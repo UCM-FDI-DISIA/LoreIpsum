@@ -45,6 +45,7 @@ void BoardState::inputCard()
 	int cost, value;
 	int player, blockint;
 	bool block;
+	int typecard;
 	std::string skill;
 	std::string sprite = "yippieeee";
 
@@ -62,6 +63,9 @@ void BoardState::inputCard()
 	std::cin >> skill;
 	std::cout << "Unblockeable: ";
 	std::cin >> blockint;
+	std::cout << "card (0 -> block, 1-> addcorner): ";
+	std::cin >> typecard;
+
 
 	Owner owner = NONE;
 	player = std::clamp(player, 0, 2);
@@ -75,10 +79,10 @@ void BoardState::inputCard()
 	}
 
 	if (blockint == 0) {
-		block = true;
+		block = false;
 	}
 	else if (blockint == 1) {
-		block = false;
+		block = true;
 	}
 
 	x = std::clamp(x, 0, board->getSize() - 1);
@@ -97,11 +101,26 @@ void BoardState::inputCard()
 		}
 	);*/
 
-	cardPH->addCardEffect(
-		[this, x, y, skillv]() {
-			effectCollection.addValueAdj(board->getCell(x, y), Abajo, skillv, true);
-		}
-	);
+	if (typecard == 0) {
+		cardPH->addCardEffect(
+			[this, x, y, skillv]() {
+				effectCollection.blockCard(board->getCell(x, y), Abajo);
+			}
+		);
+	}
+	else if (typecard == 1) {
+		cardPH->addCardEffect(
+			[this, x, y, skillv]() {
+				effectCollection.addValueCorner(board->getCell(x, y), skillv);
+			}
+		);
+	}
+
+	//*cardPH->addCardEffect(
+	//	[this, x, y, skillv]() {
+	//		effectCollection.blockCard(board->getCell(x, y), Abajo);
+	//	}
+	//);
 
 	board->setCard(x, y, cardPH, owner);
 	matchManager->updateScore(); // actualiza el matchManager siempre que se ponga una carta
