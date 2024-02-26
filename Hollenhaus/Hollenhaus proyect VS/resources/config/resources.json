@@ -45,8 +45,13 @@
 
         },
         {
-            "id": "boton",
-            "file": "resources/images/boton.png"
+          "id": "boton",
+          "file": "resources/images/boton.png"
+
+        },
+        {
+          "id": "cityExample",
+          "file": "resources/images/cityExample.png"
 
         }
     ]

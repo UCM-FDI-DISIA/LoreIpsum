@@ -33,7 +33,8 @@ class GameStateMachine : public Singleton<GameStateMachine> {
 		OFFICE,
 		SHOP,
 		BOARD,
-		PAIGRO
+		PAIGRO,
+		MOVEMENT
 	};
 
 	//Creación de los distintos estados del juego
@@ -44,6 +45,7 @@ class GameStateMachine : public Singleton<GameStateMachine> {
 	GameState* shopState;
 	GameState* boardState;
 	GameState* paigroState;
+	GameState* movementState;
 
 public:
 

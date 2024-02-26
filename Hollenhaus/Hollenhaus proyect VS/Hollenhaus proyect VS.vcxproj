@@ -43,6 +43,8 @@
     <ClCompile Include="src\game\main.cpp" />
     <ClCompile Include="src\game\MainMenuState.cpp" />
     <ClCompile Include="src\game\Manager.cpp" />
+    <ClCompile Include="src\game\MovementState.cpp" />
+    <ClCompile Include="src\game\MoveOnClick.cpp" />
     <ClCompile Include="src\game\NPC.cpp" />
     <ClCompile Include="src\game\OfficeState.cpp" />
     <ClCompile Include="src\game\PaigroState.cpp" />
@@ -91,6 +93,8 @@
     <ClInclude Include="src\game\HandComponent.h" />
     <ClInclude Include="src\game\MainMenuState.h" />
     <ClInclude Include="src\game\Manager.h" />
+    <ClInclude Include="src\game\MovementState.h" />
+    <ClInclude Include="src\game\MoveOnClick.h" />
     <ClInclude Include="src\game\NPC.h" />
     <ClInclude Include="src\game\OfficeState.h" />
     <ClInclude Include="src\game\PaigroState.h" />

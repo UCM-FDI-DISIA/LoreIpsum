@@ -14,6 +14,7 @@
 #include "JimboState.h"
 #include "Manager.h"
 #include "PaigroState.h"
+#include "MovementState.h"
 
 
 void GameStateMachine::init()
@@ -26,9 +27,10 @@ void GameStateMachine::init()
 	shopState = new ShopState();
 	boardState = new BoardState();
 	paigroState = new PaigroState();
+	movementState = new MovementState();
 
 	//Ponemos el estado actual
-	currentState = paigroState;
+	currentState = movementState;
 
 	//Estado incial
 	pushState(currentState);
@@ -96,6 +98,9 @@ void GameStateMachine::setState(int state)
 		break;
 	case PAIGRO:
 		newState = paigroState;
+		break;
+	case MOVEMENT:
+		newState = movementState;
 		break;
 	default:
 		break;
