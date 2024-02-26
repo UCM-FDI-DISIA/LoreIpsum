@@ -1,7 +1,13 @@
 #include "BoardManager.h"
-#include "CellManager.h"
 #include "GameStateMachine.h"
 #include "Manager.h"
+
+#include "Transform.h"
+#include "SpriteRenderer.h"
+#include "BoxCollider.h"
+#include "DropDetector.h"
+#include "CellManager.h"
+
 BoardManager::BoardManager() :
 	cardsOnBoard(0)
 {
@@ -22,8 +28,17 @@ void BoardManager::initComponent()
 	// Cada elemento de la matriz tiene un nuevo Cell (entidad) vacío
 	for (int i = 0; i < WIDTH; i++) {
 		for (int j = 0; j < HEIGTH; j++) {
-			_board[i][j] = mngr().addEntity();
-			auto cellCmp = mngr().addComponent<CellManager>(_board[i][j]);
+			_board[i][j] = Instantiate(Vector2D(200 + i*100, 100 + j*100), ecs::grp::DROPS);
+			auto cellCmp = _board[i][j]->addComponent<CellManager>();
+			_board[i][j]->addComponent<BoxCollider>();
+
+
+			_board[i][j]->addComponent<DropDetector>()->getCardPos().set(Vector2D(200 + i * 100, 100 + j * 100));
+
+
+			_board[i][j]->getComponent<BoxCollider>()->setSize(
+				Vector2D(sdlutils().images().at("card").width() * 0.25,
+					(sdlutils().images().at("card").height()) * 0.25));
 			cellCmp->setPosOnBoard(i, j);
 		}
 	}

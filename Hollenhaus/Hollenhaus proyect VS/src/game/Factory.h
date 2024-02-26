@@ -11,30 +11,32 @@ class Factory
 {
 public:
 
-	Factory(BoardFactory* bf, CardFactory* cf, HandFactory* hf) :
-		boardFactory(bf),
-		cardFactory(cf),
-		handFactory(hf)
-	{}
-	Factory(BoardFactory* bf) :
-		boardFactory(bf),
-		cardFactory(nullptr),
-		handFactory(nullptr)
-	{}
-	Factory(CardFactory* cf) :
-		boardFactory(nullptr),
-		cardFactory(cf),
-		handFactory(nullptr)
-	{}
-	Factory(HandFactory* hf) :
-		boardFactory(nullptr),
-		cardFactory(nullptr),
-		handFactory(hf)
+
+	template<typename T, typename ...Ts>
+	Factory(BoardFactory* bf, Ts &&... args) {
+		boardFactory = bf;
+		Factory(std::forward<Ts>(args)...);
+	}
+
+	template<typename T, typename ...Ts>
+	Factory(CardFactory* bf, Ts &&... args) {
+		boardFactory = bf;
+		Factory(std::forward<Ts>(args)...);
+	}
+
+	template<typename T, typename ...Ts>
+	Factory(HandFactory* bf, Ts &&... args) {
+		boardFactory = bf;
+		Factory(std::forward<Ts>(args)...);
+	}
+
+	Factory()
 	{}
 
-	virtual ecs::entity_t createCard(Vector2D pos) {};
 
-	virtual ecs::entity_t createDropDetector(Vector2D pos) {};
+	virtual ecs::entity_t createCard(Vector2D pos) { return nullptr; };
+
+	virtual ecs::entity_t createDropDetector(Vector2D pos) { return nullptr; };
 
 	virtual void createHand() {};
 	virtual void createBoard() {};
