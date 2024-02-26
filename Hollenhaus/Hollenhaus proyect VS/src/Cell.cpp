@@ -50,13 +50,6 @@ void Cell::applyValue(Card* card)
 
 	emit();
 
-	//// aplica el efecto ???
-	//// recorre la lista de callbacks
-	//listIT = effectCallbacks.begin();
-	//while (listIT != effectCallbacks.end() && (*listIT) != nullptr) {
-	//	(*listIT)();
-	//	++listIT;
-	//}
 }
 
 void Cell::addTotal(int add)
@@ -67,6 +60,7 @@ void Cell::addTotal(int add)
 
 void Cell::cleanEffectList()
 {
+	// limpia la lista de esta celda
 	effectCallbacks.clear();
 }
 
