@@ -10,7 +10,7 @@ using SDLEventCallback = std::function<void()>;
 class Card : public ComponentUpdate
 {
 	int cost, value;	// coste y valor de la carta
-	std::string sprite; // esto será posteriormente un Texture*
+	std::string sprite; // esto será posteriormente un puntero a Texture
 	bool unblockable;	// indica si esta carta se puede bloquear o no
 	std::list<SDLEventCallback> cardEffectCallbacks;	// lista de los efectos que tiene una carta concreta
 	std::list<SDLEventCallback>::iterator cardEffectIT;	// iterador para recorrer la lista de efectos de la carta

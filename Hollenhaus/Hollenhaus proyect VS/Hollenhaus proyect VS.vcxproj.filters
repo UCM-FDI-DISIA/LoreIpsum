@@ -186,7 +186,6 @@
     <ClCompile Include="src\game\BoardFactory.cpp" />
     <ClCompile Include="src\game\LuisState.cpp" />
     <ClCompile Include="src\game\KeyManager.cpp" />
-
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -360,20 +359,17 @@
     <ClInclude Include="src\game\ColliderRender.h">
       <Filter>Archivos de encabezado\Componentes\Componentes Basicos</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\Card.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\AndresState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-
     <ClInclude Include="src\game\Factory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\BoardFactory.h" />
     <ClInclude Include="src\game\LuisState.h" />
-
     <ClInclude Include="src\game\KeyManager.h" />
-
+    <ClInclude Include="src\game\CardFactory.h" />
+    <ClInclude Include="src\game\BoardFactory.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

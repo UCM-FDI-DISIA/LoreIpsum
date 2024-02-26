@@ -68,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EffectCollection.h" />
-    <ClInclude Include="src\game\Card.h" />
     <ClInclude Include="src\MatchManager.h" />
     <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\game\AndresState.h" />
@@ -78,7 +77,6 @@
     <ClInclude Include="src\game\BoardState.h" />
     <ClInclude Include="src\game\BoxCollider.h" />
     <ClInclude Include="src\game\CardFactory.h" />
-    <ClInclude Include="src\game\Card.h" />
     <ClInclude Include="src\game\CardFactory_v0.h" />
     <ClInclude Include="src\game\CellManager.h" />
     <ClInclude Include="src\game\CardStateManager.h" />
