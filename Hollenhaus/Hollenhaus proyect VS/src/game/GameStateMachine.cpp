@@ -18,7 +18,7 @@ void GameStateMachine::init()
 	//pushState(new JimboState());
 	//pushState(new AndresState());
 
-	pushState(new AndresState());
+	pushState(new JimboState());
 }
 
 //constructor

@@ -5,12 +5,12 @@ DeckComponent::shuffle() {
 	std::random_device rd;
 	std::mt19937 rnd(rd());
 
-	// Puede que miki llore con esto no lo se no conozco el coste de estos algoritmos confio en c++
+	// Puede que miki llore con esto no lo se confio en c++
 	for (auto i = std::prev(deck.end()); i != deck.begin(); --i) {
 		std::uniform_int_distribution<int> u(0, std::distance(deck.begin(), i));
 		auto randomIndex = u(rnd);
 
-		std::iter_swap(i, std::next(deck.begin(), randomIndex));
+		std::swap(*i, *std::next(deck.begin(), randomIndex));
 	}
 }
 

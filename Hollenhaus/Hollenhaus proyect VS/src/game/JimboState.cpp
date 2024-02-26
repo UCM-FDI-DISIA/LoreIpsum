@@ -5,22 +5,13 @@
 #include "Manager.h"
 
 #include "Transform.h"
+#include "KeyManager.h"
 
 JimboState::JimboState() : GameState() {
-	auto mngr = GameStateMachine::instance()->getMngr();
+	legend_ = Instantiate(Vector2D(0, 0));
 
-	card_ = mngr->addEntity();
-	card2_ = mngr->addEntity();
-	
-	mngr->addComponent<Transform>(card_);
-	mngr->addComponent<Transform>(card2_);
-
-	transform = mngr->getComponent<Transform>(card_);
-	transform2 = mngr->getComponent<Transform>(card2_);
-	transform->addParent(transform2);
-	transform->getRelativePos().set(1, 1);
-	//transform->getRelativePos().set(1, 1);
-
+	legend_->addComponent<KeyManager>()->initComponent();
+	legend_->addComponent<SpriteRenderer>("key")->initComponent();
 }
 
 JimboState::~JimboState() {
@@ -34,8 +25,6 @@ JimboState::refresh() {
 void 
 JimboState::update() {
 	GameState::update();
-	std::cout << "GLOBAL: " << transform->getGlobalPos() << std::endl;
-	std::cout << "RELATIVA: " << transform->getRelativePos() << std::endl;
 }
 
 void 
