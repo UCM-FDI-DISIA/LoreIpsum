@@ -45,6 +45,7 @@ public:
 	void addEffect(SDLEventCallback effectCallback);
 	void applyValue(Card* card);
 	void addTotal(int add);
+	void cleanEffectList();
 
 	// getters
 	bool getActive() const		{ return active; }
@@ -54,7 +55,7 @@ public:
 	Owner getPlayer() const		{ return player; }
 	Card* getCard() const		{ return card; }
 	std::array<Cell*, 4>& getAdjacents() { return adjacents; } // sets pointers to adjacent
-	std::list<SDLEventCallback> getEffects() const { return effectCallbacks; }
+	std::list<SDLEventCallback> getEffects() { return effectCallbacks; }
 
 	// setters
 	void setActive(bool v)		{ active = v; }
