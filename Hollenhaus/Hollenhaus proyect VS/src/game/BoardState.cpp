@@ -43,8 +43,10 @@ void BoardState::inputCard()
 {
 	int x, y;
 	int cost, value;
-	int player;
+	int player, blockint;
+	bool block;
 	std::string skill;
+	std::string sprite = "yippieeee";
 
 	std::cout << "Coordenada X: ";
 	std::cin >> x;
@@ -58,6 +60,8 @@ void BoardState::inputCard()
 	std::cin >> player;
 	std::cout << "Habilidad: ";
 	std::cin >> skill;
+	std::cout << "Unblockeable: ";
+	std::cin >> blockint;
 
 	Owner owner = NONE;
 	player = std::clamp(player, 0, 2);
@@ -70,10 +74,17 @@ void BoardState::inputCard()
 	default: break;
 	}
 
+	if (blockint == 0) {
+		block = true;
+	}
+	else if (blockint == 1) {
+		block = false;
+	}
+
 	x = std::clamp(x, 0, board->getSize() - 1);
 	y = std::clamp(y, 0, board->getSize() - 1);
 
-	cardPH = new Card(cost, value);
+	cardPH = new Card(cost, value, sprite, block);
 	int skillv = std::stoi(skill); // string a int
 
 	/* [] -> contexto para los corchetes del lambda, pasar no solo el this si no las 
@@ -88,7 +99,7 @@ void BoardState::inputCard()
 
 	cardPH->addCardEffect(
 		[this, x, y, skillv]() {
-			effectCollection.addValueAdj(board->getCell(x, y), Abajo, skillv, false);
+			effectCollection.addValueAdj(board->getCell(x, y), Abajo, skillv, true);
 		}
 	);
 
