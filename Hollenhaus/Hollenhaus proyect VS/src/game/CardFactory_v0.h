@@ -1,8 +1,8 @@
 #pragma once
 
-#include "CardFactory.h"
+#include "Factory.h"
 
-class CardFactory_v0 : public CardFactory {
+class CardFactory_v0 : public Factory {
 
 	float cardScale = 0.25f;
 public:
