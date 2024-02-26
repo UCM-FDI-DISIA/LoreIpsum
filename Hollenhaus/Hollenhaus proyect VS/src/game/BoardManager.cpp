@@ -44,12 +44,12 @@ bool BoardManager::AddCard(ecs::entity_t card, int posX, int posY)
 
 	if (cardAdded) {
 		cardsOnBoard++;
-		return true;
 	}
-	else return false;
+
+	return cardAdded;
 }
 
 bool BoardManager::IsFull()
 {
-	return cardsOnBoard == WIDTH * HEIGTH;
+	return cardsOnBoard == WIDTH * HEIGTH; // recordad que os mataré
 }

@@ -78,7 +78,7 @@ void BoxCollider::setSize(Vector2D newSizOffset) {
 }
 
 bool BoxCollider::isCursorOver() {
-	Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
+	Vector2D mousePos(ih().getMousePos().first, ih().getMousePos().second);
 	
 	SDL_Rect mouseRect = build_sdlrect(mousePos, 1, 1);
 	

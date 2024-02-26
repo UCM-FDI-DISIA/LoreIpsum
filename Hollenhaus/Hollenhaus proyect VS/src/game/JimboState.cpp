@@ -34,6 +34,7 @@ JimboState::refresh() {
 void 
 JimboState::update() {
 	GameState::update();
+	// que esto no llegue al release, poned #if DEBUG
 	std::cout << "GLOBAL: " << transform->getGlobalPos() << std::endl;
 	std::cout << "RELATIVA: " << transform->getRelativePos() << std::endl;
 }

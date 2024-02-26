@@ -32,7 +32,7 @@ void DragManager::update()
 	if (dragTransform != nullptr) {
 		//actualizamos su posicion teniendo en cuenta la posicion del raton
 
-		Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
+		Vector2D mousePos (ih().getMousePos().first, ih().getMousePos().second);
 		Vector2D posAct = (mousePos - initialMousePos) + initialTransformPos;
 
 		dragTransform->setGlobalPos(posAct);
