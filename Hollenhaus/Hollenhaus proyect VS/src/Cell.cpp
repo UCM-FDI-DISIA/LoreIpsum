@@ -46,15 +46,17 @@ void Cell::addEffect(SDLEventCallback effectCallback)
 void Cell::applyValue(Card* card)
 {
 	// aplica el valor base
-	totalValue = card->getValue();
+	totalValue += card->getValue();
 
-	// aplica el efecto ???
-	// recorre la lista de callbacks
-	listIT = effectCallbacks.begin();
-	while (listIT != effectCallbacks.end() && (*listIT) != nullptr) {
-		(*listIT)();
-		++listIT;
-	}
+	emit();
+
+	//// aplica el efecto ???
+	//// recorre la lista de callbacks
+	//listIT = effectCallbacks.begin();
+	//while (listIT != effectCallbacks.end() && (*listIT) != nullptr) {
+	//	(*listIT)();
+	//	++listIT;
+	//}
 }
 
 void Cell::addTotal(int add)

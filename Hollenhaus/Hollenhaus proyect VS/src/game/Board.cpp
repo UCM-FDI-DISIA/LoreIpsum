@@ -69,7 +69,7 @@ bool Board::setCard(int x, int y, Card* c, Owner o)
 		return false;
 	cell->setCard(c, o);
 	cell->addEffect(c->getEffect(0));
-	cell->applyValue(c);
+	applyAllEffects();
 	return true;
 }
 
@@ -180,4 +180,24 @@ void Board::deleteGrid()
 	for (int j = 0; j < size; j++)
 		for (int i = 0; i < size; i++)
 			delete grid[j][i];
+}
+
+void Board::applyAllEffects()
+{
+	for (int j = 0; j < size; j++) {
+		for (int i = 0; i < size; i++) {
+			if (grid[j][i]->getCard() != nullptr) {
+				grid[j][i]->setTotalValue(0);
+			}
+		}
+	}
+
+	//
+	for (int j = 0; j < size; j++) {
+		for (int i = 0; i < size; i++) {
+			if (grid[j][i]->getCard() != nullptr) {
+				grid[j][i]->applyValue(grid[j][i]->getCard());
+			}
+		}
+	}
 }

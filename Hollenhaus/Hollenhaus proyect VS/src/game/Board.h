@@ -18,6 +18,7 @@ class Board {
 	void initGrid();
 	void resetGrid();
 	void deleteGrid();
+	void applyAllEffects();
 
 public:
 	Board() = default;
