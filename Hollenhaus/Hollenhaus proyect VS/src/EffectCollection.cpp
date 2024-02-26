@@ -11,12 +11,11 @@ void EffectCollection::addValueAdj(Cell* thisCardCell, Direction direction, int 
 	{
 		if (ultimateArrow)
 		{
-			while (thisCardCell->getAdjacents()[direction] != nullptr || thisCardCell->getAdjacents()[direction]->
-			                                                             getCard()->getIsUnblockable() != true)
+			while (thisCardCell->getAdjacents()[direction] != nullptr)
 			{
 				// sobrescribes la celda que mirar
-				thisCardCell = thisCardCell->getAdjacents()[direction];
 				thisCardCell->getAdjacents()[direction]->addTotal(add);
+				thisCardCell = thisCardCell->getAdjacents()[direction];
 			}
 		}
 		else if (thisCardCell->getAdjacents()[direction] != nullptr)

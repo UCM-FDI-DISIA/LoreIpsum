@@ -88,7 +88,7 @@ void BoardState::inputCard()
 
 	cardPH->addCardEffect(
 		[this, x, y, skillv]() {
-			effectCollection.addValueAdj(board->getCell(x, y), Abajo, skillv, false);
+			effectCollection.addValueAdj(board->getCell(x, y), Abajo, skillv, true);
 		}
 	);
 
