@@ -7,8 +7,6 @@ BoardState::BoardState()
 	board = new Board(4);
 	matchManager = new MatchManager(board);
 	effectCollection = new EffectCollection();
-	
-	std::cout << "board state";
 }
 
 BoardState::~BoardState()
@@ -21,7 +19,6 @@ BoardState::~BoardState()
 
 void BoardState::update()
 {
-	//if (ih().isKeyDown(SDL_SCANCODE_RETURN))
 	inputCard();
 }
 
