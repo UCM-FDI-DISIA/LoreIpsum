@@ -177,18 +177,7 @@ void Board::deleteGrid()
 			delete grid[j][i];
 }
 
-//// cleon: card no se cambija, así que puede ser const
-//std::string Board::GetCard(Card* card)
-//{
-//	// cleon: no con "+"
-//	std::string info = "[" + std::to_string(card->getValue()) + "/" 
-//						   + std::to_string(card->getCost()) + "/"
-//						   + getEffect(card) + "]";
-//
-//	return info;
-//}
-
-void Board::applyAllEffects()
+void Board::applyAllEffects() const
 {
 	for (int j = 0; j < size; j++)
 	{
