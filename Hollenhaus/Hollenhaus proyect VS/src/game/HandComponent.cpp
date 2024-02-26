@@ -1,6 +1,7 @@
 #include "HandComponent.h"
 #include "Manager.h"
 #include "Entity.h"
+#include "SpriteRenderer.h"
 
 HandComponent::HandComponent() :
 	transform_(),
@@ -16,15 +17,6 @@ void HandComponent::initComponent() {
 
 	transform_ = ent_->getComponent<Transform>();
 	transform_->getGlobalPos().set(400, 400);
-	//transform_->getGlobalScale().set(1, 1);
-	//for (int i = 0; i < MAX_HAND_CARDS; i++)
-	//{
-	//	ecs::entity_t ent = Instantiate();
-	//	ent->addComponent<Transform>();
-	//	ent->getComponent<Transform>()->addParent(transform_);
-
-	//	transformsHand_.push_back(ent);
-	//}
 }
 
 void HandComponent::update() {
@@ -41,6 +33,7 @@ bool HandComponent::addCard(ecs::entity_t card) {
 		card->getComponent<Transform>()->addParent(transform_);
 		card->getComponent<Transform>()->getRelativeScale().set(.25, .25);
 		card->getComponent<Transform>()->getRelativePos().set(0, 0);
+		card->getComponent<SpriteRenderer>()->setTexture("hand");
 		cardsInHand_.push_back(card);
 		refreshPositions();
 		//transform_->getGlobalAngle() = 90;
@@ -57,13 +50,12 @@ void HandComponent::refreshPositions() {
 		//float posx = cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getX() + (i * 10);
 		//cardsInHand_[i]->getComponent<Transform>()->getRelativePos().setX(posx);
 		//cardsInHand_[i]->getComponent<Transform>()->getGlobalAngle() = calculateAngle(i);
-		//cardsInHand_[i]->addComponent<Transform>()->getRelativePos().set(0, 0);
 
 		// Ecuaciones del semi circulo?
 		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(
-			100 * cos(((360 / cardsInHand_.size()) * i) + 90),
-			100 * sin(((360 / cardsInHand_.size()) * i) + 90));
-		
+			100 * cos((((360 / MAX_HAND_CARDS) * i)) + 180),
+			100 * sin(((360 / MAX_HAND_CARDS) * i)) + 180);
+
 		// Ecuaciones del circulo
 		/*cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(
 			100 * cos(((360 / cardsInHand_.size()) * i) + 90),
