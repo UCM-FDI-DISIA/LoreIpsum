@@ -9,13 +9,11 @@
 
 class Board {
 	int size;
-	// lista con las cartas del mazo
-	std::vector<Card*> mazo;
 	// lista bidimensional para el grid (vector de vectores)
 	std::vector<std::vector<Cell*>> grid;
 
 	// inicia un grid (se crea cada carta aqui)
-	void initGrid();
+	void initGrid();		// inicia
 	void resetGrid();
 	void deleteGrid();
 	void applyAllEffects();

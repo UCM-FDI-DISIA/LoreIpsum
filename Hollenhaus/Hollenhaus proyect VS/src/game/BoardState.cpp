@@ -110,16 +110,11 @@ void BoardState::inputCard()
 	else if (typecard == 1) {
 		cardPH->addCardEffect(
 			[this, x, y, skillv]() {
-				effectCollection.addValueCorner(board->getCell(x, y), skillv);
+				effectCollection.addValueAdj(board->getCell(x, y), Abajo, skillv, false);
 			}
 		);
 	}
 
-	//*cardPH->addCardEffect(
-	//	[this, x, y, skillv]() {
-	//		effectCollection.blockCard(board->getCell(x, y), Abajo);
-	//	}
-	//);
 
 	board->setCard(x, y, cardPH, owner);
 	matchManager->updateScore(); // actualiza el matchManager siempre que se ponga una carta
