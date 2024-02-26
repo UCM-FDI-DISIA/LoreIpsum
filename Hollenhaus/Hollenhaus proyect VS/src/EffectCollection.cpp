@@ -9,7 +9,7 @@ EffectCollection::EffectCollection()
 void EffectCollection::addValueAdj(Cell* thisCardCell, Direction direction, int add, bool ultimateArrow)
 {
 	if (ultimateArrow) {
-		while (thisCardCell->getAdjacents()[direction] != nullptr) {
+		while (thisCardCell->getAdjacents()[direction] != nullptr || thisCardCell->getAdjacents()[direction]->getCard()->getIsUnblockable() != true) {
 
 			// sobrescribes la celda que mirar
 			thisCardCell = thisCardCell->getAdjacents()[direction];
@@ -17,7 +17,10 @@ void EffectCollection::addValueAdj(Cell* thisCardCell, Direction direction, int 
 		}
 	}
 	else {
-		thisCardCell->getAdjacents()[direction]->addTotal(add);
+		if (thisCardCell->getAdjacents()[direction] != nullptr && thisCardCell->getAdjacents()[direction]->getCard()->getIsUnblockable() != true) {
+
+			thisCardCell->getAdjacents()[direction]->addTotal(add);
+		}
 	}
 }
 
@@ -38,13 +41,15 @@ void EffectCollection::addValueCorner(Cell* thisCardCell, int add)
 
 void EffectCollection::blockCard(Cell* thisCardCell, Direction direction)
 {
-	if (thisCardCell->getAdjacents()[direction] != nullptr) {
+	if (thisCardCell->getAdjacents()[direction] != nullptr && thisCardCell->getAdjacents()[direction]->getCard()->getIsUnblockable() != true) {
 
 		thisCardCell->getAdjacents()[direction]->blockEffects(thisCardCell);
 	}
 }
 
-bool EffectCollection::unblockable()
+void EffectCollection::unblockable(Cell* thisCardCell, bool isUnblockable)
 {
-	return true;
+	if (thisCardCell != nullptr) {
+		thisCardCell->getCard()->setUnblockable(isUnblockable);
+	}
 }

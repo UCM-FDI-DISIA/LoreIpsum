@@ -29,6 +29,6 @@ public:
 	void blockCard(Cell* thisCardCell, Direction direction);
 
 	// indica que esta carta no se puede bloquear
-	bool unblockable();								
+	void unblockable(Cell* thisCardCell, bool isUnblockable);
 };
 
