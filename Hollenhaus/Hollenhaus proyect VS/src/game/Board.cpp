@@ -36,20 +36,12 @@ void Board::paintBoard()
 					SetConsoleTextAttribute(hConsole, 33);
 				else if (grid[i][j]->getPlayer() == PLAYER2)
 					SetConsoleTextAttribute(hConsole, 26);
-
-				std::cout << getCellInfo(grid[i][j]); // pinta la carta
-				std::cout << grid[i][j]->getCorner();
-				std::cout << grid[i][j]->getCenter();
-				SetConsoleTextAttribute(hConsole, 15);
-				//system("Color 07");	// vuelve al negro
 			}
-			else // si la casilla esta vacia
-			{
-				std::cout << "[ -/-/-- ]";
-				std::cout << grid[i][j]->getCorner();
-				std::cout << grid[i][j]->getCenter();
-			}
+			std::cout << getCellInfo(grid[i][j]);
+			std::cout << grid[i][j]->getCorner();
+			std::cout << grid[i][j]->getCenter();
 			std::cout << "  ";
+			SetConsoleTextAttribute(hConsole, 15);
 		}
 		std::cout << "\n";
 	}
@@ -77,19 +69,22 @@ bool Board::setCard(int x, int y, Card* c, Owner o)
 /// DEBUG ONLY: Devuelve un string con los datos de la carta de la celda;
 std::string Board::getCellInfo(Cell* cell) const
 {
-	const auto card = cell->getCard();
-	int diff = cell->getTotalValue() - card->getValue();
-	char sign = '+';
-	if (diff < 0)
-		sign = '-';
-	std::string info = "[ "
-		+ std::to_string(card->getCost()) + "/"
-		+ std::to_string(card->getValue()) + "/"
-		+ sign
-		+ std::to_string(diff) + 
-		" ]";
-
-	return info;
+	std::stringstream buffer;
+	buffer << "[ ";
+	if (cell->getCard() != nullptr)
+	{
+		const auto card = cell->getCard();
+		int diff = cell->getTotalValue() - card->getValue();
+		char sign = '+';
+		if (diff < 0)
+			sign = '-';
+		buffer << card->getCost() << "/"
+			<< card->getValue() << "/"
+			<< sign << diff;
+	}
+	else buffer << "-/-/--";
+	buffer << " ]";
+	return buffer.str();
 }
 
 /// Devuelve los efectos aplicados en una celda dada
@@ -158,15 +153,15 @@ void Board::resetGrid()
 			// inicializa a nullptr
 			for (int i = 0; i < 4; i++)
 				adj[i] = nullptr;
-			
+
 			if (j > 0)
-				adj[Arriba]		= grid[i][j - 1];
+				adj[Arriba] = grid[i][j - 1];
 			if (i < n)
-				adj[Derecha]	= grid[i + 1][j];
+				adj[Derecha] = grid[i + 1][j];
 			if (j < n)
-				adj[Abajo]		= grid[i][j + 1];
+				adj[Abajo] = grid[i][j + 1];
 			if (i > 0)
-				adj[Izquierda]	= grid[i - 1][j];
+				adj[Izquierda] = grid[i - 1][j];
 
 			grid[i][j]->setAdjacents(adj);
 		}
@@ -184,18 +179,24 @@ void Board::deleteGrid()
 
 void Board::applyAllEffects()
 {
-	for (int j = 0; j < size; j++) {
-		for (int i = 0; i < size; i++) {
-			if (grid[j][i]->getCard() != nullptr) {
+	for (int j = 0; j < size; j++)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			if (grid[j][i]->getCard() != nullptr)
+			{
 				grid[j][i]->setTotalValue(0);
 			}
 		}
 	}
 
 	//
-	for (int j = 0; j < size; j++) {
-		for (int i = 0; i < size; i++) {
-			if (grid[j][i]->getCard() != nullptr) {
+	for (int j = 0; j < size; j++)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			if (grid[j][i]->getCard() != nullptr)
+			{
 				grid[j][i]->applyValue(grid[j][i]->getCard());
 			}
 		}

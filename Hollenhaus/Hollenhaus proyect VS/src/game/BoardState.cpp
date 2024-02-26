@@ -66,7 +66,6 @@ void BoardState::inputCard()
 	std::cout << "card (0 -> block, 1-> addcorner): ";
 	std::cin >> typecard;
 
-
 	Owner owner = NONE;
 	player = std::clamp(player, 0, 2);
 	switch (player)
