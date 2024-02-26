@@ -6,21 +6,24 @@
       "cost": 1,
       "value": 2,
       "sprite": "sprite01",
-      "skills": "zero"
+      "skills": "zero",
+      "unblockable": false
     },
     {
       "id": "card02",
       "cost": 3,
       "value": 4,
       "sprite": "sprite02",
-      "skills": "one"
+      "skills": "one",
+      "unblockable": false
     },
     {
       "id": "card03",
       "cost": 5,
       "value": 6,
       "sprite": "sprite03",
-      "skills": "two"
+      "skills": "two",
+      "unblockable": false
     }
   ],
   "images": [
