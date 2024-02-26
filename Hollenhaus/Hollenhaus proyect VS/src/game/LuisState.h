@@ -1,16 +1,17 @@
 #pragma once
-#include "GameState.h"
 #include "checkML.h"
+#include "GameState.h"
+
 
 class Entity;
-class Transform;
+class GameState;
 
-class JimboState :
+class LuisState :
     public GameState
 {
 public:
-    JimboState();
-    virtual ~JimboState();
+    LuisState();
+    virtual ~LuisState();
 
 
     void refresh() override;
@@ -18,6 +19,7 @@ public:
     void render() const override;
 
 private:
-    ecs::entity_t legend_;
+    ecs::entity_t card;
+
 };
 

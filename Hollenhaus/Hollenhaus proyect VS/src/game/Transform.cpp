@@ -27,7 +27,14 @@ Transform::removeParent() {
 	}
 }
 
-Transform& 
+void 
+Transform::setGlobalPos(Vector2D& pos) {
+	globalPos_ = pos;
+	if (isChild_)
+		relativePos_ = globalPos_ - parent_->globalPos_;
+}
+
+Transform&
 Transform::operator+(const Transform& t) {
 	globalPos_ = globalPos_ + t.globalPos_;
 	globalScale_ = globalScale_ + t.globalScale_;

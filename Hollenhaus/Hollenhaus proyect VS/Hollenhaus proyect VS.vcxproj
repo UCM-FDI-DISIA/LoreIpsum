@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="src\EffectCollection.cpp" />
     <ClCompile Include="src\MatchManager.cpp" />
+    <ClCompile Include="src\game\AndresState.cpp" />
+    <ClCompile Include="src\game\BoardFactory.cpp" />
     <ClCompile Include="src\game\BoardManager.cpp" />
     <ClCompile Include="src\game\Board.cpp" />
     <ClCompile Include="src\game\BoardState.cpp" />
@@ -43,6 +45,8 @@
     <ClCompile Include="src\game\GameStateMachine.cpp" />
     <ClCompile Include="src\game\GenID.cpp" />
     <ClCompile Include="src\game\HandComponent.cpp" />
+    <ClCompile Include="src\game\KeyManager.cpp" />
+    <ClCompile Include="src\game\LuisState.cpp" />
     <ClCompile Include="src\game\main.cpp" />
     <ClCompile Include="src\game\MainMenuState.cpp" />
     <ClCompile Include="src\game\Manager.cpp" />
@@ -67,11 +71,14 @@
     <ClInclude Include="src\game\Card.h" />
     <ClInclude Include="src\MatchManager.h" />
     <ClInclude Include="src\Cell.h" />
+    <ClInclude Include="src\game\AndresState.h" />
     <ClInclude Include="src\game\Board.h" />
+    <ClInclude Include="src\game\BoardFactory.h" />
     <ClInclude Include="src\game\BoardManager.h" />
     <ClInclude Include="src\game\BoardState.h" />
     <ClInclude Include="src\game\BoxCollider.h" />
     <ClInclude Include="src\game\CardFactory.h" />
+    <ClInclude Include="src\game\Card.h" />
     <ClInclude Include="src\game\CardFactory_v0.h" />
     <ClInclude Include="src\game\CellManager.h" />
     <ClInclude Include="src\game\CardStateManager.h" />
@@ -88,11 +95,14 @@
     <ClInclude Include="src\game\DropDetector.h" />
     <ClInclude Include="src\game\ecs.h" />
     <ClInclude Include="src\game\Entity.h" />
+    <ClInclude Include="src\game\Factory.h" />
     <ClInclude Include="src\game\Game.h" />
     <ClInclude Include="src\game\GameState.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
     <ClInclude Include="src\game\GenID.h" />
     <ClInclude Include="src\game\HandComponent.h" />
+    <ClInclude Include="src\game\KeyManager.h" />
+    <ClInclude Include="src\game\LuisState.h" />
     <ClInclude Include="src\game\MainMenuState.h" />
     <ClInclude Include="src\game\Manager.h" />
     <ClInclude Include="src\game\OfficeState.h" />

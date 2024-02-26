@@ -7,10 +7,7 @@ class Transform :
 {
 public:
     Transform() : parent_(), globalAngle_(0), globalScale_(1, 1), relativeAngle_(0), isChild_(false) {};
-    ~Transform() {
-        delete parent_;
-        parent_ = nullptr;
-    };
+    ~Transform() {};
 
     void update() override;
 
@@ -45,6 +42,8 @@ public:
     // Rotacion relativa al padre
     //
     float& getRelativeAngle() { return relativeAngle_; };
+
+    void setGlobalPos(Vector2D& v);
     
     Transform& operator+(const Transform& t);
     Transform& operator-(const Transform& t);

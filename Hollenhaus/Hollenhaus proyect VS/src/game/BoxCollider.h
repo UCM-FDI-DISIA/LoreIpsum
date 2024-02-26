@@ -1,8 +1,8 @@
 #pragma once
 #include "ComponentUpdate.h"
+#include "SpriteRenderer.h"
 #include "SDL.h"
 #include "Transform.h"
-#include "SpriteRenderer.h"
 #include "../utils/Vector2D.h"
 
 class BoxCollider :public ComponentUpdate

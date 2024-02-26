@@ -1,4 +1,4 @@
-#include "SamuState.h"
+#include "LuisState.h"
 
 #include "Entity.h"
 #include "GameStateMachine.h"
@@ -14,12 +14,14 @@
 
 #include "CardFactory_v0.h"
 
-SamuState::SamuState() : GameState() {
+#include "BoardFactory.h"
+
+LuisState::LuisState() : GameState() {
 
 
 	CardFactory_v0* factory = new CardFactory_v0();
-
-	factory->createBoard();
+	BoardFactory* boardFactory = new BoardFactory(4, 4);
+	boardFactory->createBoard();
 	factory->createHand();
 	//card->setLayer(1);
 
@@ -27,24 +29,23 @@ SamuState::SamuState() : GameState() {
 	ent->addComponent<DragManager>();
 }
 
-SamuState::~SamuState()
+LuisState::~LuisState()
 {
 
 }
-//cleon: si está vacío se llama directamente al padre
-void SamuState::refresh()
+
+void LuisState::refresh()
 {
 	GameState::refresh();
 }
 
-void SamuState::update()
+void LuisState::update()
 {
 	GameState::update();
 
-	//std::cout << mouseRaycast()<< std::endl;
 }
 
-void SamuState::render() const
+void LuisState::render() const
 {
 	GameState::render();
 }

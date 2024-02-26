@@ -42,8 +42,16 @@ void Board::paintBoard()
 			std::cout << grid[i][j]->getCenter();
 			std::cout << "  ";
 			SetConsoleTextAttribute(hConsole, 15);
+
+		// recoge la carta
+		card = mazo[i];
+		// si no hay carta
+		if (card == nullptr) {
+			// WAT
+			std::cout << "[ -/-/---- ]";
 		}
 		std::cout << "\n";
+		}
 	}
 }
 
@@ -176,6 +184,17 @@ void Board::deleteGrid()
 		for (int i = 0; i < size; i++)
 			delete grid[j][i];
 }
+
+//// cleon: card no se cambija, así que puede ser const
+//std::string Board::GetCard(Card* card)
+//{
+//	// cleon: no con "+"
+//	std::string info = "[" + std::to_string(card->getValue()) + "/" 
+//						   + std::to_string(card->getCost()) + "/"
+//						   + getEffect(card) + "]";
+//
+//	return info;
+//}
 
 void Board::applyAllEffects()
 {

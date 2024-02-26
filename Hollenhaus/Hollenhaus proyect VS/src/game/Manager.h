@@ -46,6 +46,8 @@ public:
 	}
 	
 	void DeleteEntityMap(int layer, Entity* e) {
+
+		// cleon: para buscar, mirad la librería estándar
 		auto it = ordenRendering[layer].begin();
 
 		while (e != (*it)) {
@@ -500,7 +502,7 @@ inline ecs::entity_t Instantiate(ecs::grpId_t gId = ecs::grp::DEFAULT) {
 
 inline ecs::entity_t Instantiate(Vector2D pos, ecs::grpId_t gId = ecs::grp::DEFAULT) {
 	ecs::entity_t ent = Instantiate(gId);
-	ent->addComponent<Transform>()->getGlobalPos().set(pos);
+	ent->addComponent<Transform>()->setGlobalPos(pos);
 	return ent;
 }
 
