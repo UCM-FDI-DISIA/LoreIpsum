@@ -9,8 +9,8 @@ Card::Card(int cost, int value) : cost(cost), value(value)
 {
 }
 
-Card::Card(int cost, int value, std::string& sprite) 
-	: cost(cost), value(value), sprite(sprite)
+Card::Card(int cost, int value, std::string& sprite, bool unblockable) 
+	: cost(cost), value(value), sprite(sprite), unblockable(unblockable)
 {
 }
 
