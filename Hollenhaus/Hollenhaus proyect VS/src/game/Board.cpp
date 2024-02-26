@@ -42,16 +42,8 @@ void Board::paintBoard()
 			std::cout << grid[i][j]->getCenter();
 			std::cout << "  ";
 			SetConsoleTextAttribute(hConsole, 15);
-
-		// recoge la carta
-		card = mazo[i];
-		// si no hay carta
-		if (card == nullptr) {
-			// WAT
-			std::cout << "[ -/-/---- ]";
 		}
 		std::cout << "\n";
-		}
 	}
 }
 
