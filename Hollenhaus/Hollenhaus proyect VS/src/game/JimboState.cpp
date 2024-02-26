@@ -17,6 +17,7 @@ JimboState::JimboState() : GameState() {
 
 	transform = mngr->getComponent<Transform>(card_);
 	transform2 = mngr->getComponent<Transform>(card2_);
+	transform->addParent(transform2);
 	transform->getRelativePos().set(1, 1);
 	//transform->getRelativePos().set(1, 1);
 

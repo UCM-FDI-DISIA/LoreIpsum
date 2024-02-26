@@ -35,7 +35,7 @@ void DragManager::update()
 		Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
 		Vector2D posAct = (mousePos - initialMousePos) + initialTransformPos;
 
-		dragTransform->getGlobalPos().set(posAct);
+		dragTransform->setGlobalPos(posAct);
 	}
 	
 }
