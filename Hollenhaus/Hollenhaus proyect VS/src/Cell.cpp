@@ -48,12 +48,14 @@ void Cell::applyValue(Card* card)
 	// aplica el valor base
 	totalValue += card->getValue();
 
+	// 'emite' los efectos que tienen la carta de esta celda
 	emit();
 
 }
 
 void Cell::addTotal(int add)
 {
+	// si la carta existe, se le añade el valor indicado al valor acumulado de la celda
 	if (card != nullptr)
 		totalValue += add;
 }
@@ -66,12 +68,15 @@ void Cell::cleanEffectList()
 
 void Cell::setCard(Card* c, Owner o)
 {
+	// le pone la carta indicada a la celda
 	card = c;
+	// le pone el player indicado a la celda, a quien le pertenece la carta
 	player = o;
 }
 
 void Cell::blockEffects(Cell* c)
 {
+	// elimina todos los efectos de la celda
 	 c->cleanEffectList();
 }
 
