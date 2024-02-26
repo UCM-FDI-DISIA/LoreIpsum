@@ -29,6 +29,7 @@ public:
 		return *(cardEffectIT);
 	}
 	bool getIsUnblockable() const { return unblockable;  }
+	int getEffectSize() const { return cardEffectCallbacks.size(); }
 
 	// setters
 	void setCost(int v) { cost = v; }
