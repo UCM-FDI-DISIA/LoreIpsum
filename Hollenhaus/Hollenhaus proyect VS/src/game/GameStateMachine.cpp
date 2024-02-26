@@ -9,6 +9,7 @@
 #include "SamuState.h"
 #include "JimboState.h"
 #include "AndresState.h"
+#include "LuisState.h"
 #include "Manager.h"
 
 
@@ -18,7 +19,7 @@ void GameStateMachine::init()
 	//pushState(new JimboState());
 	//pushState(new AndresState());
 
-	pushState(new SamuState());
+	pushState(new LuisState());
 }
 
 //constructor
