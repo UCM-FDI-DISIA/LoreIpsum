@@ -6,6 +6,8 @@
 // utiliza callbacks funcionales de tipo <void(void)>
 using SDLEventCallback = std::function<void()>;
 
+constexpr int ADJACENTS = 4;
+
 enum Owner
 {
 	NONE,
@@ -30,7 +32,7 @@ class Cell
 	int totalValue; // puntuacion con los efectos aplicados
 	Owner player; // a que jugador pertenece
 	Card* card; // carta posicionada en esta celda
-	std::array<Cell*, 4> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
+	std::array<Cell*, ADJACENTS> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
 	std::list<SDLEventCallback> effectCallbacks; // lista de los efectos que tiene una celda concreta
 	std::list<SDLEventCallback>::iterator listIT;
 
