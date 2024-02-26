@@ -65,6 +65,11 @@ void Cell::addTotal(int add)
 		totalValue += add;
 }
 
+void Cell::cleanEffectList()
+{
+	effectCallbacks.clear();
+}
+
 void Cell::setCard(Card* c, Owner o)
 {
 	card = c;
@@ -73,22 +78,7 @@ void Cell::setCard(Card* c, Owner o)
 
 void Cell::blockEffects(Cell* c)
 {
-
-	auto lista = c->getEffects();
-	lista.clear();
-	//listIT = c->getEffects().begin();
-
-	//while (listIT != effectCallbacks.end() && (*listIT) != nullptr) {
-	//	c->getEffects().remove(*listIT);
-	//	++listIT;
-	//}
-
-	///*
-	//for (int i = 0; i < c->getEffects().size(); i++) {
-
-	//	c->getEffects().clear();
-	//}
-	//*/
+	 c->cleanEffectList();
 }
 
 void Cell::emit() const
