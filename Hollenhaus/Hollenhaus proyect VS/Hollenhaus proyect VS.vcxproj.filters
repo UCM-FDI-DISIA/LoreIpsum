@@ -43,12 +43,6 @@
     <Filter Include="Archivos de origen\Factories">
       <UniqueIdentifier>{0e3c1dcb-18ab-4f81-ba65-ac0e2df5d76f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado\Cartas-tablero">
-      <UniqueIdentifier>{00509d17-24a8-4908-be79-c567886b722a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de origen\Cartas-tablero">
-      <UniqueIdentifier>{b6785bf7-8d58-4265-8d01-3d93d0990921}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Archivos de encabezado\Componentes\Componentes Basicos">
       <UniqueIdentifier>{d589cee1-2132-48c7-9b03-936d3c3930d6}</UniqueIdentifier>
     </Filter>
@@ -162,9 +156,6 @@
     <ClCompile Include="src\game\DropDetector.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\EffectCollection.cpp" />
-    <ClCompile Include="src\MatchManager.cpp" />
-    <ClCompile Include="src\Cell.cpp" />
     <ClCompile Include="src\game\Transform.cpp">
       <Filter>Archivos de origen\Componentes\ComponentesBasicos</Filter>
     </ClCompile>
@@ -183,9 +174,24 @@
     <ClCompile Include="src\game\AndresState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\BoardFactory.cpp" />
-    <ClCompile Include="src\game\LuisState.cpp" />
-    <ClCompile Include="src\game\KeyManager.cpp" />
+    <ClCompile Include="src\Cell.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EffectCollection.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\KeyManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\BoardFactory.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MatchManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\LuisState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -365,11 +371,17 @@
     <ClInclude Include="src\game\Factory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\LuisState.h" />
-    <ClInclude Include="src\game\KeyManager.h" />
-    <ClInclude Include="src\game\CardFactory.h" />
     <ClInclude Include="src\game\BoardFactory.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\CardFactory.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\KeyManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\LuisState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
