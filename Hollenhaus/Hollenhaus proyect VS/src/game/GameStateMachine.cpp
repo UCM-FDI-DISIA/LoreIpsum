@@ -14,6 +14,7 @@
 #include "JimboState.h"
 #include "Manager.h"
 #include "PaigroState.h"
+#include "MovementState.h"
 
 
 void GameStateMachine::init()
@@ -55,9 +56,11 @@ GameStateMachine::GameStateMachine()  {
 	boardState = new BoardState();
 	paigroState = new PaigroState();
 	samuState = new SamuState();
+	movementState = new MovementState();
+
 
 	//Ponemos el estado actual
-	currentState = paigroState;
+	currentState = movementState;
 
 	//Estado incial
 	//pushState(currentState);
