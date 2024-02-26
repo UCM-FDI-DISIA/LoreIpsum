@@ -43,8 +43,9 @@ void EffectCollection::addValueCorner(Cell* thisCardCell, int add)
 
 void EffectCollection::blockCard(Cell* thisCardCell, Direction direction)
 {
-	if (thisCardCell->getAdjacents()[direction] != nullptr && thisCardCell->getAdjacents()[direction]->getCard()->
-		getIsUnblockable() != true)
+	if (thisCardCell->getAdjacents()[direction] != nullptr 
+		&& thisCardCell->getAdjacents()[direction]->getCard() != nullptr
+		&& thisCardCell->getAdjacents()[direction]->getCard()->getIsUnblockable() != true)
 	{
 		thisCardCell->blockEffects(thisCardCell->getAdjacents()[direction]);
 	}
