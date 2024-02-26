@@ -33,7 +33,7 @@ void Board::PaintBoard()
 
 		// si no hay carta
 		if (card == nullptr) {
-
+			// WAT
 			std::cout << "[ -/-/---- ]";
 		}
 		// si hay carta
@@ -58,8 +58,10 @@ void Board::PaintBoard()
 
 }
 
+// cleon: card no se cambija, así que puede ser const
 std::string Board::GetCard(Card* card)
 {
+	// cleon: no con "+"
 	std::string info = "[" + std::to_string(card->getValue()) + "/" 
 						   + std::to_string(card->getCost()) + "/"
 						   + getEffect(card) + "]";

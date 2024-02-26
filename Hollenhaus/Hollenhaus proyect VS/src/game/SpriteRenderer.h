@@ -3,6 +3,7 @@
 #include "../sdlutils/SDLUtils.h"
 
 class Transform;
+class BoxCollider;
 
 class SpriteRenderer : public ComponentRender
 {
@@ -12,6 +13,8 @@ public:
 	/// </summary>
 	/// <param name="textID"> ID de la textura en el Json </param>
 	SpriteRenderer(const std::string _textID);
+
+	void setTexture(const std::string _textID);
 
 	// Para inicializar el componenete si es necesario.
 	void initComponent() override;

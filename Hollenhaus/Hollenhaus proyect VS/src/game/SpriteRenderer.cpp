@@ -1,6 +1,7 @@
-#include "SpriteRenderer.h"
+#include "BoxCollider.h"
 #include "Manager.h"
 #include "Transform.h"
+#include "SpriteRenderer.h"
 
 
 SpriteRenderer::SpriteRenderer(const std::string _textID) : textID_(_textID) {
@@ -17,6 +18,11 @@ void SpriteRenderer::initComponent() {
 		transform_ = mngr_->addComponent<Transform>(ent_);
 	}
 };
+
+void SpriteRenderer::setTexture(const std::string _textID) {
+	textID_ = _textID;
+	texture_ = &sdl_.images().at(textID_);
+}
 
 // Para renderizar el estado
 void SpriteRenderer::render() const {

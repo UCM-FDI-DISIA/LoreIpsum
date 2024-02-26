@@ -1,7 +1,7 @@
 #pragma once
 #include "BoxCollider.h"
-#include "Manager.h"
 #include "SpriteRenderer.h"
+#include "Manager.h"
 #include "Transform.h"
 #include "ColliderRender.h"
 #include "../sdlutils/InputHandler.h"
@@ -58,12 +58,12 @@ void BoxCollider::update() {
 	collider_.x = transform_->getGlobalPos().getX() + posOffset_.getX();
 	collider_.y = transform_->getGlobalPos().getY() + posOffset_.getY();
 
-	/*
+	
 	if (anchoredToSprite_) {
 
-		//size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
+		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
 	}
-	*/
+	
 
 	collider_.w = size_.getX() * transform_->getGlobalScale().getX();
 	collider_.h = size_.getY() * transform_->getGlobalScale().getY();
@@ -78,7 +78,7 @@ void BoxCollider::setSize(Vector2D newSizOffset) {
 }
 
 bool BoxCollider::isCursorOver() {
-	Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
+	Vector2D mousePos(ih().getMousePos().first, ih().getMousePos().second);
 	
 	SDL_Rect mouseRect = build_sdlrect(mousePos, 1, 1);
 	

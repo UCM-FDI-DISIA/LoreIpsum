@@ -46,6 +46,8 @@ public:
 	}
 	
 	void DeleteEntityMap(int layer, Entity* e) {
+
+		// cleon: para buscar, mirad la librería estándar
 		auto it = ordenRendering[layer].begin();
 
 		while (e != (*it)) {
