@@ -33,11 +33,11 @@ void GameStateMachine::init()
 
 	//Estado incial
 	pushState(currentState);
-	
+
 }
 
 //constructor
-GameStateMachine::GameStateMachine()  {
+GameStateMachine::GameStateMachine() {
 
 	/*currentState = nullptr;
 	mainMenuState = nullptr;
@@ -60,7 +60,7 @@ GameStateMachine::GameStateMachine()  {
 
 
 	//Ponemos el estado actual
-	currentState = movementState;
+	currentState = cityState;
 
 	//Estado incial
 	//pushState(currentState);
@@ -80,13 +80,18 @@ GameStateMachine::~GameStateMachine() {
 }
 
 
-void GameStateMachine::Render() const{
+void GameStateMachine::Render() const {
 	if (Empty()) return;
 	gameStack.top()->render();
 }
 
 void GameStateMachine::Update() {
 	if (Empty()) return;
+
+	/*for (auto it : toBeDeleted)
+	{
+		delete it;
+	}*/
 	gameStack.top()->update();
 
 	//para el manager
@@ -100,7 +105,7 @@ void GameStateMachine::Refresh()
 
 
 void GameStateMachine::pushState(GameState* state) {
-	
+
 	gameStack.push(state);		//Colocamos el nuevo GameState
 	currentState = state;		//Lo convertimos en el actual
 	currentState->onEnter();	//Hacemos el onEnter del nuevo estado

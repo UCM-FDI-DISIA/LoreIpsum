@@ -21,6 +21,7 @@ public:
 	void OnLeftClickDown();
 private:
 	int _id;
+	bool click;
 	
 	BoxCollider* myBoxCollider;
 };
