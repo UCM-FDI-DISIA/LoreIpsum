@@ -4,7 +4,9 @@
 #include "Transform.h"
 #include "BoxCollider.h"
 
-const unsigned int MAX_HAND_CARDS = 7;
+const unsigned int	MAX_HAND_CARDS = 7,
+					CARD_SEPARATION = 30,
+					ARCH_AMPLITUDE=1000;
 
 class HandComponent :
 	public ComponentUpdate
@@ -30,20 +32,12 @@ public:
 
 private:
 	void refreshPositions();
-	/// <summary>
-	/// Metodo para calcular el angulo de una carta en la mano.
-	/// </summary>
-	/// <param name="numCarta">Numero de carta de izquierda a derecha</param>
-	/// <returns>devuelve el angulo de rotacion en grados</returns>
-	float calculateAngle(int numCarta);
 
 	// Transform de la mano
 	Transform* transform_;
 	// Collider de la mano
 	//BoxCollider* collider;
 
-	// Cartas en mano
-	unsigned int numCards_;
 	// Vector cartas en la mano
 	std::vector<ecs::entity_t> cardsInHand_;
 };

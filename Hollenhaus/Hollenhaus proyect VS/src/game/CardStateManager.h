@@ -23,6 +23,8 @@ public:
 
 	void setState(CardState newState);
 
+	void putOnBoard();
+
 	CardState getState() { return currentState; }
 
 private:

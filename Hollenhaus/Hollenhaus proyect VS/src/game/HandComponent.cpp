@@ -4,8 +4,7 @@
 #include "SpriteRenderer.h"
 
 HandComponent::HandComponent() :
-	transform_(),
-	numCards_(0)
+	transform_()
 {
 
 }/*
@@ -27,43 +26,51 @@ void HandComponent::update() {
 
 bool HandComponent::addCard(ecs::entity_t card) {
 
-	if (numCards_ < MAX_HAND_CARDS)
+	if (cardsInHand_.size() < MAX_HAND_CARDS)
 	{
 
 		card->getComponent<Transform>()->addParent(transform_);
-		card->getComponent<Transform>()->getRelativeScale().set(.25, .25);
-		card->getComponent<Transform>()->getRelativePos().set(0, 0);
-		card->getComponent<SpriteRenderer>()->setTexture("hand");
+		// Settea tamano de carta para anadir cartas directamente desde la factoria
+		//card->getComponent<Transform>()->getRelativeScale().set(.25, .25);
 		cardsInHand_.push_back(card);
 		refreshPositions();
-		//transform_->getGlobalAngle() = 90;
 		return true;
 	}
 	return false;
 }
 
-void HandComponent::refreshPositions() {
-	std::cout << (1 + "");
+void HandComponent::removeCard(ecs::entity_t card) {
+	bool found = false;
+
+	std::vector<ecs::entity_t> auxVec;
+
+	// Guarda en el vector auxiliar las cartas que siguen en la mano, y quita el parent a la que ya no esta en la mano
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
-		//TuVieja("Aaa");
-		//float posx = cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getX() + (i * 10);
-		//cardsInHand_[i]->getComponent<Transform>()->getRelativePos().setX(posx);
-		//cardsInHand_[i]->getComponent<Transform>()->getGlobalAngle() = calculateAngle(i);
-
-		// Ecuaciones del semi circulo?
-		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(
-			100 * cos((((360 / MAX_HAND_CARDS) * i)) + 180),
-			100 * sin(((360 / MAX_HAND_CARDS) * i)) + 180);
-
-		// Ecuaciones del circulo
-		/*cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(
-			100 * cos(((360 / cardsInHand_.size()) * i) + 90),
-			100 * sin(((360 / cardsInHand_.size()) * i) + 90));*/
+		if (cardsInHand_[i] != card)
+		{
+			auxVec.push_back(cardsInHand_[i]);
+			//numCards_++;
+			transform_->getGlobalPos().getX() + 10;
+		}
+		else
+		{
+			cardsInHand_[i]->getComponent<Transform>()->removeParent();
+		}
 	}
+
+	cardsInHand_.clear();
+	cardsInHand_ = auxVec;
 }
 
-float HandComponent::calculateAngle(int numCarta) {
-	float angle = (110 / cardsInHand_.size()) * numCarta;
-	return angle;// -(110 / ;
+void HandComponent::refreshPositions() {
+
+	for (int i = 0; i < cardsInHand_.size(); i++)
+	{
+		int x = (i-cardsInHand_.size()/2) * CARD_SEPARATION;
+
+		// Ecuacion de la parabola que forma las cartas
+		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(
+			x, pow(x,2)/(ARCH_AMPLITUDE));
+	}
 }

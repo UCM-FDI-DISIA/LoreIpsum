@@ -12,18 +12,21 @@
 #include "CardFactory_v0.h"
 
 AndresState::AndresState() :
-	hand_(Instantiate())
+	hand_()
 {
 	CardFactory_v0* factory = new CardFactory_v0();
+	hand_ = Instantiate();
 	hand_->addComponent<Transform>();
 	hand_->addComponent<SpriteRenderer>("hand");
 	hand_->addComponent<HandComponent>();
 	hand_->setLayer(8);
 
+	factory->createBoard();
+
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		ecs::entity_t card = factory->createCard(Vector2D(0, 0));
 		card->setLayer(i + 1);

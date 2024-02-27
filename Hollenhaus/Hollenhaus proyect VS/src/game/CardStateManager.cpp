@@ -1,4 +1,6 @@
 #include "CardStateManager.h"
+#include "HandComponent.h"
+#include "Manager.h"
 
 CardStateManager::CardStateManager()
 {
@@ -8,4 +10,10 @@ CardStateManager::CardStateManager()
 void CardStateManager::setState(CardState newState)
 {
 	currentState = newState;
+}
+
+void CardStateManager::putOnBoard() {
+	ent_->getComponent<Transform>()->getParent()->getEntity()
+		->getComponent<HandComponent>()->removeCard(ent_);
+	setState(CardStateManager::ON_CELL);
 }
