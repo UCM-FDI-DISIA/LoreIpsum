@@ -37,7 +37,7 @@ void DragManager::update()
 
 		dragTransform->setGlobalPos(posAct);
 	}
-	
+
 }
 
 void DragManager::OnLeftClickDown()
@@ -58,7 +58,7 @@ void DragManager::OnLeftClickDown()
 		dragTransform->getGlobalPos().set(ih().getMousePos().first, ih().getMousePos().second);
 	}
 
-	
+
 }
 
 void DragManager::OnLeftClickUp()
@@ -73,15 +73,15 @@ void DragManager::OnLeftClickUp()
 		//si tenemos una colision con el drop detector, cambiamos la posicion de la carta por la que guarde el drop
 		if (drag != nullptr) {
 			dragTransform->setGlobalPos(mngr().getComponent<DropDetector>(drag)->getCardPos());
-			
-			dragTransform->getEntity()->getComponent<CardStateManager>()->setState(CardStateManager::ON_CELL);
+			dragTransform->getEntity()->getComponent<CardStateManager>()->putOnBoard();
+			//dragTransform->getEntity()->getComponent<CardStateManager>()->setState(CardStateManager::ON_CELL);
 		}
 		else {//sino, devolvemos la carta a su posicion inicial
 			dragTransform->setGlobalPos(initialTransformPos);
 		}
 
 		//en cualquier caso, ya no tenemos carta drageada
-			
+
 		dragTransform = nullptr;
 	}
 
