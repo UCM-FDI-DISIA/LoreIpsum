@@ -1,12 +1,10 @@
 #pragma once
 #include "checkML.h"
 #include "GameState.h"
-#include "Entity.h"
-#include "Manager.h"
 
 
-//class Entity;
-
+class Entity;
+//class Manager;
 class SamuState :
     public GameState
 {

@@ -1,4 +1,5 @@
 #include "PaigroState.h"
+#include "Manager.h"
 
 PaigroState::PaigroState() {
 	std::cout << "\nLoading unos buenos BUENOS DIAS\n";

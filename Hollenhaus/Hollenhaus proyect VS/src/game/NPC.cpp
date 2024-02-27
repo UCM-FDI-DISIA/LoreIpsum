@@ -13,7 +13,6 @@ NPC::~NPC() {
 void NPC::initComponent() 
 {
 	myBoxCollider = mngr_->getComponent<BoxCollider>(ent_);
-	click = false;
 
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 	
@@ -21,11 +20,10 @@ void NPC::initComponent()
 void NPC::OnLeftClickDown() {
 	Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
 
-	if (myBoxCollider->isCursorOver() && !click) {
+	if (myBoxCollider->isCursorOver()) {
 		
 		GameStateMachine::instance()->setState(6); // Demomento pasa de CityState a PaigroState que es el 5 (creo).
 		
-		click = true;
 	}
 	TuVieja("Cambio de escena");
 }

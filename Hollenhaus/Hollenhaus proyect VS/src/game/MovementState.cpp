@@ -26,7 +26,7 @@ void MovementState::onEnter() const
 	fondo->addComponent<SpriteRenderer>("ciudad");
 	fondo->getComponent<Transform>()->getGlobalScale().set(2.0f, 1.0f);
 	fondo->getComponent<Transform>()->getGlobalPos().set(0, 0);
-	fondo->addComponent<MoveOnClick>();
+	//fondo->addComponent<MoveOnClick>();
 }
 
 void MovementState::onExit() const
