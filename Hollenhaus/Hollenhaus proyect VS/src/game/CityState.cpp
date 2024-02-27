@@ -50,5 +50,5 @@ void CityState::onEnter() const
 void CityState::onExit() const
 {
 	std::cout << "\nexit CityState\n";
-	delete this;
+	GameStateMachine::instance()->getMngr()->Free();
 }

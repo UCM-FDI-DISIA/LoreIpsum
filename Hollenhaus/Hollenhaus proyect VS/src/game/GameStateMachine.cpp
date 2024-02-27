@@ -88,10 +88,6 @@ void GameStateMachine::Render() const {
 void GameStateMachine::Update() {
 	if (Empty()) return;
 
-	/*for (auto it : toBeDeleted)
-	{
-		delete it;
-	}*/
 	gameStack.top()->update();
 
 	//para el manager
