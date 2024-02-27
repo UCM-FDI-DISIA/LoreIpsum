@@ -48,13 +48,7 @@ public:
 	void DeleteEntityMap(int layer, Entity* e) {
 
 		// cleon: para buscar, mirad la librería estándar
-		auto it = ordenRendering[layer].begin();
-
-		while (e != (*it)) {
-			it++;
-		}
-
-		ordenRendering[layer].erase(it);
+		ordenRendering[layer].erase(std::find(ordenRendering[layer].begin(), ordenRendering[layer].end(), e));
 	}
 
 	void ChangeLayer(int previousLayer, int nextLayer, Entity* e) {
