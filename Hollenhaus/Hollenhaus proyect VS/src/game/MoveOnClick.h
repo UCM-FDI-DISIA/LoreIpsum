@@ -20,5 +20,14 @@ public:
 	void OnLeftClickDown();
 private:
 	BoxCollider* myBoxCollider;
+	Transform* myTransform;
+
+	bool move;
+	Vector2D mousePos;
+	Vector2D myPos;
+
+	float scrollSpeed = 2.0f;
+	float transformer;
+
 };
 
