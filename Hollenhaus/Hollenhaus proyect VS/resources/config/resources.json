@@ -42,6 +42,11 @@
     {
       "id": "key",
       "file": "resources/images/libreta.png"
+    },
+    {
+      "id": "board",
+      "file": "resources/images/board.png"
+
     }
   ],
   "fonts": [

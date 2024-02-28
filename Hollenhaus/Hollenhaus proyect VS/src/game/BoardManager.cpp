@@ -43,8 +43,8 @@ void BoardManager::initComponent()
 
 
 			_board[i][j]->getComponent<BoxCollider>()->setSize(
-				Vector2D(sdlutils().images().at("card").width() * 0.25,
-					(sdlutils().images().at("card").height()) * 0.25));
+				Vector2D(sdlutils().images().at("card").width() * 0.55,
+					(sdlutils().images().at("card").height()) * 0.55));
 			cellCmp->setPosOnBoard(i, j);
 
 

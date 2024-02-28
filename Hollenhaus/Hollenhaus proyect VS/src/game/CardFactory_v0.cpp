@@ -116,8 +116,8 @@ ecs::entity_t CardFactory_v0::createBoard()
 
 void CardFactory_v0::createHand()
 {
-	int initY = 400;
-	int initX = 200;
+	int initY = 470;
+	int initX = 270;
 	int offSetX = 50;
 	
 	std::string sprite = "card";

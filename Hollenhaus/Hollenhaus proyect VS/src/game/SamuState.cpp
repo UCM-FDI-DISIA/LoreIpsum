@@ -36,6 +36,13 @@ SamuState::SamuState() : GameState() {
 	ent->addComponent<DragManager>();
 
 	ent->getComponent<DragManager>()->setBoardManager(board->getComponent<BoardManager>());
+
+	ecs::entity_t background = Instantiate();
+	background->addComponent<Transform>();
+	background->getComponent<Transform>()->getGlobalScale().set(0.42, 0.56);
+
+	background->addComponent<SpriteRenderer>("board");
+	background->setLayer(-1);
 }
 
 SamuState::~SamuState()
