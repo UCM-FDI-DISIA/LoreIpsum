@@ -8,15 +8,26 @@
 #include "MainMenuState.h"
 #include "SamuState.h"
 #include "JimboState.h"
+#include "AndresState.h"
+#include "LuisState.h"
 #include "Manager.h"
+
+#include "BoardState.h"
 
 
 void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
-	//pushState(new JimboState());
 
-	pushState(new SamuState());
+	pushState(new JimboState());
+	//pushState(new AndresState());
+	
+	//pushState(new BoardState());
+	//pushState(new SamuState());
+	//pushState(new JimboState());
+	//pushState(new AndresState());
+
+	//pushState(new LuisState());
 }
 
 //constructor
@@ -24,7 +35,6 @@ GameStateMachine::GameStateMachine()  {
 
 	//init();
 	//inicializamos la pila con el estado del menu inicial
-
 }
 
 //destructor

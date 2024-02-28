@@ -48,8 +48,8 @@ void Game::Run()
 
 		//ejecutar el bucle principal
 		HandleEvents();
-		Update();
 		Render();
+		Update();
 
 		//calcular el tiempo de frame
 		frameTime = SDL_GetTicks() - startTime;
@@ -59,7 +59,6 @@ void Game::Run()
 
 		//si queda tiempo de frame, suspender el programa el tiempo que queda
 		if (frameTime < FRAME_RATE) {
-
 			SDL_Delay(FRAME_RATE - frameTime);
 		}
 	}

@@ -292,11 +292,12 @@ void SDLUtils::loadReasources(std::string filename) {
 					int cost = vObj["cost"]->AsNumber();
 					int value = vObj["value"]->AsNumber();
 					std::string sprite = vObj["sprite"]->AsString();
-					std::string skills = vObj["skills"]->AsString();
+					bool unblockable = vObj["unblockable"]->AsBool();
+					//std::string skills = vObj["skills"]->AsString();
 #ifdef _DEBUG
 					std::cout << "Loading cards with id: " << key << std::endl;
 #endif
-					cards_.emplace(key, Card(cost, value, sprite, skills));
+					cards_.emplace(key, Card(cost, value, sprite, unblockable));
 
 				} else {
 					throw "'cards' array in '" + filename

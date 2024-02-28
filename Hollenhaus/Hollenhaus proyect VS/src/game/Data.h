@@ -11,7 +11,7 @@ private:
 	int currentMoney = 0,
 		currentCase = 0,
 		currentSouls = 0;
-	list<int> maze;
+	list<int> maze;  // cleon: "mierda, mierda, mierda"
 	list<int> drawer;
 	list<int> defeatedNPCS;
 

@@ -6,27 +6,49 @@
       "cost": 1,
       "value": 2,
       "sprite": "sprite01",
-      "skills": "zero"
+      "skills": "zero",
+      "unblockable": false
     },
     {
       "id": "card02",
       "cost": 3,
       "value": 4,
       "sprite": "sprite02",
-      "skills": "one"
+      "skills": "one",
+      "unblockable": false
     },
     {
       "id": "card03",
       "cost": 5,
       "value": 6,
       "sprite": "sprite03",
-      "skills": "two"
+      "skills": "two",
+      "unblockable": false
     }
   ],
   "images": [
     {
       "id": "card",
       "file": "resources/images/card.png"
+    },
+    {
+      "id": "hand",
+      "file": "resources/images/hand.png"
+    },
+    {
+      "id": "picto1",
+      "file": "resources/images/picto1.png"
+    },
+    {
+      "id": "key",
+      "file": "resources/images/libreta.png"
+    }
+  ],
+  "fonts": [
+    {
+      "id": "8bit",
+      "file": "resources/fonts/PressStart2P-Regular.ttf",
+      "size": 16
     }
   ]
 }

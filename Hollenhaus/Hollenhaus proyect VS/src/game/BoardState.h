@@ -1,7 +1,8 @@
 #pragma once
-
 #include "GameState.h"
 #include "Board.h"
+#include "../EffectCollection.h"
+#include "../MatchManager.h"
 
 /// <summary>
 /// Estado para probar la logica de la batalla de cartas
@@ -9,22 +10,26 @@
 
 class BoardState : public GameState
 {
+	Board* board;
+	MatchManager* matchManager;
+	EffectCollection* effectCollection;
+
+	Card* cardPH; // placeholder
+
 public:
 
 	BoardState();
-	~BoardState();
+	~BoardState() override;
+
 	void update() override;
-
 	void render()const  override;
+	void refresh() override;
 
-	//void refresh() override;
 	bool onEnter();
 	bool onExit();
-private:
 
-	// puntero al tablero
-	Board* board;
-	
+	// input ronyoso
+	void inputCard();
 };
 
 
