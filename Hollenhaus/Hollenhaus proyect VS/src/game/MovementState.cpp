@@ -27,7 +27,7 @@ void MovementState::onEnter() const
 	fondo->addComponent<SpriteRenderer>("ciudad");
 	fondo->addComponent<BoxCollider>();
 	fondo->getComponent<Transform>()->getGlobalScale().set(2.0f, 1.0f);
-	fondo->getComponent<Transform>()->getGlobalPos().set(0, 0);
+	fondo->getComponent<Transform>()->getGlobalPos().set(50, 0); //esto no cambia nadaaa ?¿?¿¿? probar setGlobalPos
 	//fondo->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	fondo->addComponent<MoveOnClick>();
 }

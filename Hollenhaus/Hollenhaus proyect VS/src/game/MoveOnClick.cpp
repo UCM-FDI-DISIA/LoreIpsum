@@ -1,9 +1,10 @@
 #include "MoveOnClick.h"
 #include "Entity.h"
 #include "Manager.h"
+#include "../sdlutils/SDLUtils.h"
 
 
-MoveOnClick::MoveOnClick() : transformer(0)
+MoveOnClick::MoveOnClick() : movement(scrollSpeed,0)
 {
 }
 
@@ -24,14 +25,17 @@ void MoveOnClick::initComponent()
 
 void MoveOnClick::update()
 {
-	if (move == true) {
-		std::cout << myPos.getX() << std::endl;
-		myPos.set(transformer, 0);
-		//myTransform.set que esta en otra rama xd
-		std::cout << myPos.getX() << std::endl;
+	if (move) {
 
+		//queremos que el vector movement vaya actualizando su X para se vea un movimiento fluido
+		scrollSpeed--;
+		movement.setX(scrollSpeed);
 
-		move = false;
+		myTransform->setGlobalPos(movement);
+		
+		float halfScreen = sdlutils().width() / 2.0f;
+
+		!move;
 	}
 }
 
@@ -39,7 +43,7 @@ void MoveOnClick::OnLeftClickDown()
 {
 	mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
 	myPos = myTransform->getGlobalPos();
-	transformer += 100.0f;
+
 	if (myBoxCollider->isCursorOver())
 	{
 		move = true;

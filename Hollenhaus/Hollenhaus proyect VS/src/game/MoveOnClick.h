@@ -27,7 +27,7 @@ private:
 	Vector2D myPos;
 
 	float scrollSpeed = 2.0f;
-	float transformer;
+	Vector2D movement;
 
 };
 
