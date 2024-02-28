@@ -45,13 +45,38 @@
 
         },
         {
-          "id": "boton",
-          "file": "resources/images/boton.png"
+            "id": "boton",
+            "file": "resources/images/boton.png"
 
         },
         {
-          "id": "cityExample",
-          "file": "resources/images/cityExample.png"
+            "id": "cityExample",
+            "file": "resources/images/cityExample.png"
+
+        },
+        {
+            "id": "farolascerca",
+            "file": "resources/images/farolascerca.png"
+
+        },
+        {
+            "id": "farolaslejos",
+            "file": "resources/images/farolaslejos.png"
+
+        },
+        {
+            "id": "ambasfarolas",
+            "file": "resources/images/ambasfarolas.png"
+
+        },
+        {
+            "id": "edificios",
+            "file": "resources/images/edificios.png"
+
+        },
+        {
+            "id": "ciudadcompleta",
+            "file": "resources/images/ciudadcompleta.png"
 
         }
     ]
