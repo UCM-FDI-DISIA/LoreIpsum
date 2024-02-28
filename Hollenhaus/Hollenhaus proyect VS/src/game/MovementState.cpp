@@ -1,6 +1,7 @@
 #include "MovementState.h"
 
-MovementState::MovementState() {
+MovementState::MovementState()
+{
 
 }
 void MovementState::update()
@@ -24,9 +25,11 @@ void MovementState::onEnter() const
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudad");
+	fondo->addComponent<BoxCollider>();
 	fondo->getComponent<Transform>()->getGlobalScale().set(2.0f, 1.0f);
 	fondo->getComponent<Transform>()->getGlobalPos().set(0, 0);
-	//fondo->addComponent<MoveOnClick>();
+	//fondo->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	fondo->addComponent<MoveOnClick>();
 }
 
 void MovementState::onExit() const

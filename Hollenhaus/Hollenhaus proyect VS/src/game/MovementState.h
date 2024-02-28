@@ -4,6 +4,7 @@
 #include "NPC.h"
 #include "Entity.h"
 #include "Manager.h"
+#include "MoveOnClick.h"
 
 class MovementState : public GameState
 {
