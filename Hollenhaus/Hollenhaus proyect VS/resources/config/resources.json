@@ -47,7 +47,8 @@
   "fonts": [
     {
       "id": "8bit",
-      "file": "resources/fonts/PressStart2P-Regular.ttf"
+      "file": "resources/fonts/PressStart2P-Regular.ttf",
+      "size": 16
     }
   ]
 }
