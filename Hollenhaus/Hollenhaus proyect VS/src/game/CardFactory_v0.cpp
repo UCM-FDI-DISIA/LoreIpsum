@@ -119,7 +119,7 @@ void CardFactory_v0::createHand()
 	int initX = 200;
 	int offSetX = 50;
 	
-	std::string sprite = "";
+	std::string sprite = "card";
 
 	createCard(Vector2D(initX, initY), 2, 2, sprite, true)->setLayer(1);
 	createCard(Vector2D(initX + offSetX, initY),3,3,sprite, false)->setLayer(1);

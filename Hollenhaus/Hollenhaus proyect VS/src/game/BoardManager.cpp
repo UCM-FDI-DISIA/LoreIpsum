@@ -46,9 +46,18 @@ void BoardManager::initComponent()
 			cellCmp->setPosOnBoard(i, j);
 
 
+			
+		}
+	}
+
+	// Cada elemento de la matriz tiene un nuevo Cell (entidad) vacío
+	for (int i = 0; i < WIDTH; i++) {
+		for (int j = 0; j < HEIGTH; j++) {
+
+
 			Cell* cell = _board[i][j]->addComponent<Cell>();
 
-		
+
 
 			/// CENTRO:
 			///		SIZE PAR: n/2 && n/2 - 1
@@ -92,6 +101,8 @@ void BoardManager::initComponent()
 				adj[Izquierda] = _board[i - 1][j]->getComponent<Cell>();
 
 			cell->setAdjacents(adj);
+
+
 		}
 	}
 	// Esto hay que sustituirlo por una factoría
