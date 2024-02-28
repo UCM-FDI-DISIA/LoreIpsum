@@ -5,6 +5,7 @@
 #include "DragManager.h"
 #include "Entity.h"
 #include "Manager.h"
+#include "..\sdlutils\InputHandler.h"
 
 #include "CardFactory_v0.h"
 
@@ -54,4 +55,6 @@ void SamuState::onEnter() const
 void SamuState::onExit() const
 {
 	TuVieja("\nExit SamuState");
+	//GameStateMachine::instance()->getMngr()->Free();
+	//ih().clearState();
 }

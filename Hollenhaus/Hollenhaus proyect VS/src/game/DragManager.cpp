@@ -56,6 +56,7 @@ void DragManager::OnLeftClickDown()
 		initialMousePos.set(Vector2D(ih().getMousePos().first, ih().getMousePos().second));
 
 		dragTransform->getGlobalPos().set(ih().getMousePos().first, ih().getMousePos().second);
+		GameStateMachine::instance()->setState(2);
 	}
 
 	

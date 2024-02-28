@@ -19,6 +19,7 @@
 
 void GameStateMachine::init()
 {
+
 	//Estado incial
 	pushState(currentState);
 
@@ -40,7 +41,7 @@ GameStateMachine::GameStateMachine() {
 
 
 	//Ponemos el estado actual
-	currentState = cityState;
+	currentState = samuState;
 
 }
 
