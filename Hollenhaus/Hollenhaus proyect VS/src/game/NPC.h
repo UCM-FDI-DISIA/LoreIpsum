@@ -19,6 +19,8 @@ public:
 	void update() override;
 
 	void OnLeftClickDown();
+	void OnLeftClickUP();
+	void reactToClick();
 private:
 	int _id;
 	bool click;
