@@ -1,11 +1,14 @@
 #pragma once
 #include "Factory.h"
+
+
+class Entity;
 class BoardFactory : public Factory
 {
 public:
 	BoardFactory(int w, int h);
 
-	void createBoard() override;
+	ecs::Entity* createBoard() override;
 
 private:
 	int width;

@@ -1,6 +1,8 @@
 #include "MatchManager.h"
 
-MatchManager::MatchManager(Board* board) : board(board)
+#include "game/Manager.h"
+
+MatchManager::MatchManager() 
 {
 	matchResult = TIE;
 }
@@ -22,17 +24,20 @@ void MatchManager::updateScore()
 	pPlayer1 = 0;
 	pPlayer2 = 0;
 
+
+	/*VA AL BOARD MANAGER
 	// hace recuento de valores
-	for (int j = 0; j < board->getSize(); j++) {
-		for (int i = 0; i < board->getSize(); i++) {
+	for (int j = 0; j < board.size(); j++) {
+		for (int i = 0; i < board.size(); i++) {
 				//si es del jugador 1
-			if (board->isPlayer(i,j, PLAYER1)) {
-				pPlayer1 += board->getCell(i,j)->getTotalValue();
+			if (board[i][j]->getComponent<Cell>()->getOwner() == PLAYER1) {
+				pPlayer1 += board[i][j]->getComponent<Cell>()->getTotalValue();
 			}
 				//si es el jugador 2 (normalmente npc)
-			else if (board->isPlayer(i, j, PLAYER2)) {
-				pPlayer2 += board->getCell(i, j)->getTotalValue();
+			else if (board[i][j]->getComponent<Cell>()->getOwner() == PLAYER2) {
+				pPlayer2 += board[i][j]->getComponent<Cell>()->getTotalValue();
 			}
 		}
 	}
+	*/
 }

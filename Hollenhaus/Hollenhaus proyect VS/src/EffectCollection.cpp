@@ -5,7 +5,7 @@ EffectCollection::EffectCollection()
 {
 }
 
-void EffectCollection::addValueAdj(Cell* thisCardCell, Direction direction, int add, bool ultimateArrow)
+void EffectCollection::addValueAdj(Cell* thisCardCell, CellData::Direction direction, int add, bool ultimateArrow)
 {
 	if (thisCardCell != nullptr)
 	{
@@ -41,7 +41,7 @@ void EffectCollection::addValueCorner(Cell* thisCardCell, int add)
 	}
 }
 
-void EffectCollection::blockCard(Cell* thisCardCell, Direction direction)
+void EffectCollection::blockCard(Cell* thisCardCell, CellData::Direction direction)
 {
 	if (thisCardCell->getAdjacents()[direction] != nullptr 
 		&& thisCardCell->getAdjacents()[direction]->getCard() != nullptr
