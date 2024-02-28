@@ -45,6 +45,10 @@ public:
     // Rotacion relativa al padre
     //
     float& getRelativeAngle() { return relativeAngle_; };
+
+    void setGlobalPos(Vector2D& v);
+
+    Transform* getParent() { return parent_; };
     
     Transform& operator+(const Transform& t);
     Transform& operator-(const Transform& t);
