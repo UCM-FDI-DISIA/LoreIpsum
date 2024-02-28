@@ -17,10 +17,15 @@ public:
 
 private:
 
+
     Vector2D cardPos;
+
+    Vector2D boardPos;
 
 public:
 
     Vector2D& getCardPos() { return cardPos; };
+
+    Vector2D& getBoardPos() { return boardPos; };
 };
 

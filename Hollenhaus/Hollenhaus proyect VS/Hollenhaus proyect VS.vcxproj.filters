@@ -174,10 +174,24 @@
     <ClCompile Include="src\game\AndresState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\BoardFactory.cpp" />
-    <ClCompile Include="src\game\LuisState.cpp" />
-    <ClCompile Include="src\game\KeyManager.cpp" />
-
+    <ClCompile Include="src\Cell.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EffectCollection.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\KeyManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\BoardFactory.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MatchManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\LuisState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -306,8 +320,8 @@
     <ClInclude Include="src\game\HandComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\Card.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\game\BoxCollider.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\Data.h">
       <Filter>Archivos de encabezado</Filter>
@@ -320,6 +334,15 @@
     </ClInclude>
     <ClInclude Include="src\game\DropDetector.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cell.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EffectCollection.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MatchManager.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\game\Component.h">
       <Filter>Archivos de encabezado\Componentes\Componentes Basicos</Filter>
@@ -345,14 +368,23 @@
     <ClInclude Include="src\game\AndresState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-
     <ClInclude Include="src\game\Factory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\BoardFactory.h" />
-    <ClInclude Include="src\game\LuisState.h" />
-
-    <ClInclude Include="src\game\KeyManager.h" />
-
+    <ClInclude Include="src\game\BoardFactory.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\CardFactory.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\KeyManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\LuisState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Card.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

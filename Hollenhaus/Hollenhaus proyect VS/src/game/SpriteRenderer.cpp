@@ -3,7 +3,6 @@
 #include "Transform.h"
 #include "SpriteRenderer.h"
 
-
 SpriteRenderer::SpriteRenderer(const std::string _textID) : textID_(_textID) {
 }
 
@@ -25,15 +24,11 @@ void SpriteRenderer::setTexture(const std::string _textID) {
 }
 
 // Para renderizar el estado
-void SpriteRenderer::render() const {
-	
-
-	
+void SpriteRenderer::render() const
+{
 	texture_->render(transform_->getGlobalPos().getX(),
-		transform_->getGlobalPos().getY(),
-		transform_->getGlobalScale().getX(),
-		transform_->getGlobalScale().getY(),
-		transform_->getGlobalAngle());
-	
-	
+	                 transform_->getGlobalPos().getY(),
+	                 transform_->getGlobalScale().getX(),
+	                 transform_->getGlobalScale().getY(),
+	                 transform_->getGlobalAngle());
 };

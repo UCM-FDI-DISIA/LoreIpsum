@@ -1,30 +1,44 @@
 #pragma once
 #include <string>
-// #include "Entity.h"
+#include "Entity.h"
+#include <functional>
+#include "ComponentUpdate.h"
 
-class Card // : Entity
+// utiliza callbacks funcionales de tipo <void(void)>
+using SDLEventCallback = std::function<void()>;
+
+class Card : public ComponentUpdate
 {
-	// lo de adelante es placeholder! para comprobar que funca bien el parseado de jsons que todavia no hay entities ni componentes
-	int cost, value;
-	std::string sprite, skills;
-	bool player; // Ines: lo añado porque me hace falta pero no se si lo quereis asi
+	int cost, value;	// coste y valor de la carta
+	std::string sprite; // esto será posteriormente un puntero a Texture
+	bool unblockable;	// indica si esta carta se puede bloquear o no
+	std::list<SDLEventCallback> cardEffectCallbacks;	// lista de los efectos que tiene una carta concreta
+	std::list<SDLEventCallback>::iterator cardEffectIT;	// iterador para recorrer la lista de efectos de la carta
+
 public:
-	Card() = default;
-	Card(int, int, std::string&, std::string&);
+	Card();
+	Card(int, int);
+	Card(int, int, std::string&, bool);
 
-	int getCost() {
-		return cost;
-	}
+	// getters
+	int getCost() const { return cost; }
+	int getValue() const { return value; }
+	SDLEventCallback getEffect(int i) {
+		if (i < 0) return nullptr;
 
-	int getValue() {
-		return value;
+		cardEffectIT = cardEffectCallbacks.begin();
+		std::next(cardEffectIT, i);	// avanza x posiciones
+		return *(cardEffectIT);
 	}
+	bool getIsUnblockable() const { return unblockable;  }
+	int getEffectSize() const { return cardEffectCallbacks.size(); }
 
-	std::string getSkill() {
-		return skills;
-	}
+	// setters
+	void setCost(int v) { cost = v; }
+	void setValue(int v) { value = v; }
+	void setSprite(const std::string& v) { sprite = v; }
+	void setUnblockable(bool isUnblockable) { unblockable = isUnblockable;  }
 
-	bool getPlayer() {
-		return player;
-	}
+	/// 
+	void addCardEffect(SDLEventCallback buttonCallback);
 };
