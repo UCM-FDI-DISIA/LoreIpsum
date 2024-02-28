@@ -19,18 +19,6 @@
 
 void GameStateMachine::init()
 {
-	//mngr_ = new ecs::Manager();
-
-	//mainMenuState = new MainMenuState();
-	//cityState = new CityState();
-	//officeState = new OfficeState();
-	//shopState = new ShopState();
-	//boardState = new BoardState();
-	//paigroState = new PaigroState();
-
-	////Ponemos el estado actual
-	//currentState = paigroState;
-
 	//Estado incial
 	pushState(currentState);
 
@@ -38,14 +26,6 @@ void GameStateMachine::init()
 
 //constructor
 GameStateMachine::GameStateMachine() {
-
-	/*currentState = nullptr;
-	mainMenuState = nullptr;
-	cityState = nullptr;
-	officeState = nullptr;
-	shopState = nullptr;
-	boardState = nullptr;
-	paigroState = nullptr;*/
 
 	mngr_ = new ecs::Manager();
 
@@ -61,9 +41,6 @@ GameStateMachine::GameStateMachine() {
 
 	//Ponemos el estado actual
 	currentState = cityState;
-
-	//Estado incial
-	//pushState(currentState);
 
 }
 
