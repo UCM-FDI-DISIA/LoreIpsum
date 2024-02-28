@@ -16,9 +16,12 @@ public:
 	
 private:
 
+	void setTexture(std::string textStr, const Font* font, SDL_Color color);
+
 	Transform* tr_;
 	SDLUtils& sdl_ = *SDLUtils::instance();
 
+	Texture* text_;
 	Font* font_;
 	SDL_Color color_;
 
