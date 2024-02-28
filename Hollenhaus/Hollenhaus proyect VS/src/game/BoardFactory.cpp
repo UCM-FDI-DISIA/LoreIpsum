@@ -19,9 +19,11 @@ BoardFactory::BoardFactory(int w, int h) :
 {
 }
 
-void BoardFactory::createBoard()
+ecs::Entity* BoardFactory::createBoard()
 {
-	ecs::entity_t boardEntity = Instantiate(Vector2D(sdlutils().width() / 2, sdlutils().height() / 2));
+	ecs::Entity* boardEntity = Instantiate(Vector2D(sdlutils().width() / 2, sdlutils().height() / 2));
 
 	boardEntity->addComponent<BoardManager>();
+
+	return boardEntity;
 }

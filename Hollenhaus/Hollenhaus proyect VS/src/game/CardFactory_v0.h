@@ -10,7 +10,7 @@ public:
 	ecs::entity_t createDropDetector(Vector2D pos = Vector2D(0,0)) override;
 	ecs::entity_t createDropDetector_v2(Vector2D pos = Vector2D(0,0)) ;
 
-	void createBoard() override;
+	ecs::entity_t createBoard() override;
 	void createHand() override;
 
 };

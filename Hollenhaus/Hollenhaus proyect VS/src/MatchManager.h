@@ -2,16 +2,20 @@
 
 #include "game//Board.h"
 
-class MatchManager
+#include "game/ComponentUpdate.h"
+
+
+class MatchManager : public ComponentUpdate
 {
 	int pPlayer1 = 0;
 	int pPlayer2 = 0;
 	int matchResult;
-	Board* board;
+	//Board* board;
+	std::vector<std::vector<ecs::entity_t>> board;
 
 public:
 
-	MatchManager(Board* board);
+	MatchManager();
 	~MatchManager();
 
 	enum matchResults {
@@ -29,5 +33,7 @@ public:
 
 	int whoWon();
 	void updateScore();
+
+	void setBoard(std::vector<std::vector<ecs::entity_t>>& _board) { board = _board; }
 };
 

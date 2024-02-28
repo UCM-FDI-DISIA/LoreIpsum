@@ -39,7 +39,7 @@ public:
 	virtual ecs::entity_t createDropDetector(Vector2D pos) { return nullptr; };
 
 	virtual void createHand() {};
-	virtual void createBoard() {};
+	virtual ecs::entity_t createBoard() { return nullptr; };
 
 public:
 	BoardFactory* boardFactory;

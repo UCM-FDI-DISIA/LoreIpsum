@@ -5,7 +5,7 @@
 BoardState::BoardState()
 {
 	board = new Board(4);
-	matchManager = new MatchManager(board);
+	matchManager = new MatchManager();
 	effectCollection = new EffectCollection();
 }
 

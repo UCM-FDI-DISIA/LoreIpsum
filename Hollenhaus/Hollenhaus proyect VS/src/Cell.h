@@ -52,6 +52,7 @@ public:
 	void cleanEffectList();
 
 	// getters
+	Owner getOwner() { return player; }
 	bool getActive() const		{ return active; }
 	bool getCorner() const		{ return corner; }
 	bool getCenter() const		{ return center; }

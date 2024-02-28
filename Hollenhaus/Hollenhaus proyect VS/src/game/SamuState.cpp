@@ -18,14 +18,22 @@
 
 #include "BoardFactory.h"
 
+#include "../MatchManager.h"
+
+#include "BoardManager.h"
+
 SamuState::SamuState() : GameState() {
 
 
 	CardFactory_v0* factory = new CardFactory_v0();
 
 	BoardFactory* boardFactory = new BoardFactory(4, 4);
-	boardFactory->createBoard();
+	auto board = boardFactory->createBoard();
 
+
+	manager = Instantiate();
+	manager->addComponent<MatchManager>();
+	manager->getComponent<MatchManager>()->setBoard(board->getComponent<BoardManager>()->getBoard());
 
 	factory->createHand();
 
@@ -47,7 +55,7 @@ void SamuState::update()
 {
 	GameState::update();
 
-	//std::cout << mouseRaycast()<< std::endl;
+	std::cout << manager->getComponent<MatchManager>()->getPlayer1Points() << std::endl;
 }
 
 void SamuState::render() const

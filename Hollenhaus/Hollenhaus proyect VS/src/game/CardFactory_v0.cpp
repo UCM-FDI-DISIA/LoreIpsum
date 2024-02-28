@@ -84,7 +84,7 @@ ecs::entity_t CardFactory_v0::createDropDetector_v2(Vector2D pos)
 	return dropDect;
 }
 
-void CardFactory_v0::createBoard()
+ecs::entity_t CardFactory_v0::createBoard()
 {
 
 	float initX = 200;
@@ -108,7 +108,7 @@ void CardFactory_v0::createBoard()
 	createDropDetector(Vector2D(initX + (2 * xOffset), initY + (2 * yOffset)));
 
 
-
+	return nullptr;
 
 
 }

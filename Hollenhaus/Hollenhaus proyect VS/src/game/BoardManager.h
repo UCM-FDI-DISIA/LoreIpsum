@@ -21,6 +21,8 @@ public:
 
     bool IsFull();
 
+    std::vector<std::vector<ecs::entity_t>>& getBoard() { return _board; }
+
 private:
     //cleon: si en la entrega es una constante, os mataré. bueno, yo os mataré
     const int WIDTH = 4;

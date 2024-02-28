@@ -102,10 +102,11 @@ void BoardManager::initComponent()
 
 			cell->setAdjacents(adj);
 
-
 		}
 	}
 	// Esto hay que sustituirlo por una factoría
+
+
 }
 
 void BoardManager::update()
