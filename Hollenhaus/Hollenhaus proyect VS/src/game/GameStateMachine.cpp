@@ -16,10 +16,10 @@
 void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
-	//pushState(new JimboState());
+	pushState(new JimboState());
 	//pushState(new AndresState());
 	
-	pushState(new LuisState());
+	//pushState(new LuisState());
 }
 
 //constructor

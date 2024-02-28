@@ -10,8 +10,10 @@
 JimboState::JimboState() : GameState() {
 	legend_ = Instantiate(Vector2D(0, 0));
 
+	legend_->addComponent<Transform>();
 	legend_->addComponent<KeyManager>()->initComponent();
 	legend_->addComponent<SpriteRenderer>("key")->initComponent();
+	legend_->getComponent<KeyManager>()->addKey("picto1");
 }
 
 JimboState::~JimboState() {

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <sstream>
 
 #include "ComponentUpdate.h"
 #include "SpriteRenderer.h"
@@ -12,6 +13,8 @@ public:
     KeyManager();
     
     void initComponent() override;
+
+    void addKey(std::string);
 
 private:
     std::vector<std::string> descs_;
