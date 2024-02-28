@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EffectCollection.h" />
+    <ClInclude Include="src\game\Card.h" />
     <ClInclude Include="src\MatchManager.h" />
     <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\game\AndresState.h" />

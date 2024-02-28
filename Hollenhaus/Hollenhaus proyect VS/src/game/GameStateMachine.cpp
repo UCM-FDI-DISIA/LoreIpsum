@@ -18,8 +18,8 @@
 void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
-	pushState(new BoardState());
-	//pushState(new SamuState());
+	//pushState(new BoardState());
+	pushState(new SamuState());
 	//pushState(new JimboState());
 	//pushState(new AndresState());
 	//pushState(new LuisState());

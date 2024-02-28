@@ -154,6 +154,7 @@ public:
 		return musicsAccessWrapper_;
 	}
 
+
 // Access to the random number generator. It is important to always
 // use this generator, this way you can regenerate the same sequence
 // if you start from the same seed

@@ -25,7 +25,7 @@ AndresState::AndresState() :
 
 	for (int i = 0; i < 3; i++)
 	{
-		ecs::entity_t card = factory->createCard(Vector2D(0, 0));
+		ecs::entity_t card = nullptr;//= factory->createCard(Vector2D(0, 0));
 		card->setLayer(i + 1);
 		hand_->getComponent<HandComponent>()->addCard(card);
 	}

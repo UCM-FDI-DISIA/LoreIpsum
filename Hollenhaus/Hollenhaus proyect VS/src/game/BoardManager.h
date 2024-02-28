@@ -22,7 +22,7 @@ public:
     bool IsFull();
 
 private:
-    // si en la entrega es una constante, os mataré. bueno, yo os mataré
+    //cleon: si en la entrega es una constante, os mataré. bueno, yo os mataré
     const int WIDTH = 4;
     const int HEIGTH = 4;
 

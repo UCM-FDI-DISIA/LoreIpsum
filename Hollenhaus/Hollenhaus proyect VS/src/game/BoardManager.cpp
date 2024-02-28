@@ -8,6 +8,8 @@
 #include "DropDetector.h"
 #include "CellManager.h"
 
+#include "../Cell.h"
+
 BoardManager::BoardManager() :
 	cardsOnBoard(0)
 {
@@ -28,6 +30,8 @@ void BoardManager::initComponent()
 	// Cada elemento de la matriz tiene un nuevo Cell (entidad) vacío
 	for (int i = 0; i < WIDTH; i++) {
 		for (int j = 0; j < HEIGTH; j++) {
+
+			//PARTE VISUAL
 			_board[i][j] = Instantiate(Vector2D(200 + i*100, 100 + j*100), ecs::grp::DROPS);
 			auto cellCmp = _board[i][j]->addComponent<CellManager>();
 			_board[i][j]->addComponent<BoxCollider>();
@@ -40,6 +44,54 @@ void BoardManager::initComponent()
 				Vector2D(sdlutils().images().at("card").width() * 0.25,
 					(sdlutils().images().at("card").height()) * 0.25));
 			cellCmp->setPosOnBoard(i, j);
+
+
+			Cell* cell = _board[i][j]->addComponent<Cell>();
+
+		
+
+			/// CENTRO:
+			///		SIZE PAR: n/2 && n/2 - 1
+			///		SIZE IMPAR: floor(n/2)
+			if (WIDTH % 2 == 0) // es un tablero par
+			{
+				// esta en ambos ejes en el centro (2x2 casillas posibles)
+				if ((j == WIDTH / 2 || j == WIDTH / 2 - 1)
+					&& (i == WIDTH / 2 || i == WIDTH / 2 - 1))
+					cell->setCenter(true);
+			}
+			else // es un tablero impar
+			{
+				// esta en ambos ejes en el centro (1 unica casilla posible)
+				// como ambos son ints, la division devuelve el entero redondeando hacia abajo siempre!
+				if (j == WIDTH / 2 && i == WIDTH / 2)
+					cell->setCenter(true);
+			}
+
+			/// ESQUINA:
+			int n = WIDTH - 1;
+			if ((j == 0 && i == 0) // 0,0
+				|| (j == 0 && i == n) // 0,n
+				|| (j == n && i == n) // n,n
+				|| (j == n && i == 0)) // n,0
+				cell->setCorner(true);
+
+			/// ADYACENTES:
+			std::array<Cell*, ADJACENTS> adj;
+			// inicializa a nullptr
+			for (int m = 0; m < ADJACENTS; m++)
+				adj[m] = nullptr;
+
+			if (j > 0)
+				adj[Arriba] = _board[i][j - 1]->getComponent<Cell>();
+			if (i < n)
+				adj[Derecha] = _board[i + 1][j]->getComponent<Cell>();
+			if (j < n)
+				adj[Abajo] = _board[i][j + 1]->getComponent<Cell>();
+			if (i > 0)
+				adj[Izquierda] = _board[i - 1][j]->getComponent<Cell>();
+
+			cell->setAdjacents(adj);
 		}
 	}
 	// Esto hay que sustituirlo por una factoría

@@ -34,7 +34,7 @@ public:
 	{}
 
 
-	virtual ecs::entity_t createCard(Vector2D pos) { return nullptr; };
+	virtual ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable) { return nullptr; };
 
 	virtual ecs::entity_t createDropDetector(Vector2D pos) { return nullptr; };
 

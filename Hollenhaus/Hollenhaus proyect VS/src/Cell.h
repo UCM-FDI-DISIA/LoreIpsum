@@ -3,6 +3,8 @@
 #include "game/Card.h"
 #include <functional>
 
+#include "game/Component.h"
+
 // utiliza callbacks funcionales de tipo <void(void)>
 using SDLEventCallback = std::function<void()>;
 
@@ -24,7 +26,7 @@ enum Direction
 	Izquierda
 };
 
-class Cell
+class Cell :public ComponentUpdate
 {
 	bool active; // si en la celda se pueden jugar cartas o no
 	bool corner; // si la celda es esquina de tablero o no
