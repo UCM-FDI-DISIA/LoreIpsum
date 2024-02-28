@@ -31,7 +31,7 @@ void PaigroState::onEnter() const
 	boton1->getComponent<Transform>()->getGlobalScale().set(0.4f, 0.4f);
 	boton1->getComponent<Transform>()->getGlobalPos().set(100, 200);
 	boton1->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	boton1->addComponent<NPC>();
+	boton1->addComponent<NPC>(0);
 
 	ecs::entity_t boton2 = Instantiate();
 	boton2->addComponent<Transform>();
@@ -40,7 +40,7 @@ void PaigroState::onEnter() const
 	boton2->getComponent<Transform>()->getGlobalScale().set(0.4f, 0.4f);
 	boton2->getComponent<Transform>()->getGlobalPos().set(500, 200);
 	boton2->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	boton2->addComponent<NPC>();
+	boton2->addComponent<NPC>(0);
 
 
 }

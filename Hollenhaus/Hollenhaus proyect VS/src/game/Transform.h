@@ -24,7 +24,8 @@ public:
 
     // Posicion global
     //
-    Vector2D getGlobalPos() { return globalPos_; };
+    Vector2D& getGlobalPos() { return globalPos_; };
+    Vector2D getGlobalPos_sinReferencia() { return globalPos_; };
 
     // Escala global
     //

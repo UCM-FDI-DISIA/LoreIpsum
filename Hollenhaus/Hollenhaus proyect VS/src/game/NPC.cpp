@@ -2,9 +2,9 @@
 #include "Entity.h"
 #include "Manager.h"
 
-NPC::NPC()
+NPC::NPC(int scene)
 {
-	
+	_scene = scene;
 }
 
 NPC::~NPC() {
@@ -14,25 +14,26 @@ void NPC::initComponent()
 {
 	myBoxCollider = mngr_->getComponent<BoxCollider>(ent_);
 
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUP(); });
 	click = false;
 }
-void NPC::OnLeftClickDown() {
+void NPC::OnLeftClickDown(int scene) {
 	
 	click = true;
-	reactToClick();
+	reactToClick(scene);
 
 }
 void NPC::OnLeftClickUP()
 {
 	click = false;
 }
-void NPC::reactToClick()
+void NPC::reactToClick(int scene)
 {
+	
 	if (click && myBoxCollider->isCursorOver()) {
 		TuVieja("Cambio de escena.");
-		GameStateMachine::instance()->setState(5); // Demomento pasa de CityState a PaigroState que es el 5 (creo).
+		GameStateMachine::instance()->setState(scene); // Demomento pasa de CityState a PaigroState que es el 5 (creo).
 	}
 }
 void NPC::update() {

@@ -35,7 +35,7 @@ void CityState::onEnter() const
 	npc1->getComponent<Transform>()->getGlobalScale().set(0.3f, 0.3f);
 	npc1->getComponent<Transform>()->getGlobalPos().set(300, 400);
 	npc1->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	npc1->addComponent<NPC>();
+	npc1->addComponent<NPC>(5);
 
 	ecs::entity_t npc2 = Instantiate();
 	npc2->addComponent<Transform>();
@@ -44,7 +44,7 @@ void CityState::onEnter() const
 	npc2->getComponent<Transform>()->getGlobalScale().set(0.3f, 0.3f);
 	npc2->getComponent<Transform>()->getGlobalPos().set(500, 400);
 	npc2->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	npc2->addComponent<NPC>();
+	npc2->addComponent<NPC>(5);
 }
 
 void CityState::onExit() const

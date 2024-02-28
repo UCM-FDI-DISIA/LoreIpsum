@@ -12,17 +12,18 @@
 class NPC : public ComponentUpdate
 {
 public:
-	NPC();
+	NPC(int scene);
 	~NPC();
 
 	void initComponent() override;
 	void update() override;
 
-	void OnLeftClickDown();
+	void OnLeftClickDown(int scene);
 	void OnLeftClickUP();
-	void reactToClick();
+	void reactToClick(int scene);
 private:
 	int _id;
+	int _scene;
 	bool click;
 	
 	BoxCollider* myBoxCollider;
