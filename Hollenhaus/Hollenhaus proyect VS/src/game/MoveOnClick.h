@@ -24,10 +24,12 @@ private:
 
 	bool move;
 	Vector2D mousePos;
-	Vector2D myPos;
+	Vector2D myPos; //posicion inicial de la entidad (fondo)
 
-	float scrollSpeed = 2.0f;
+	float scrollSpeed = 1.0f;
 	Vector2D movement;
+
+	float halfScreen = sdlutils().width() / 2;
 
 };
 

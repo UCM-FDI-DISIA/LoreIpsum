@@ -1,10 +1,9 @@
 #include "MoveOnClick.h"
 #include "Entity.h"
 #include "Manager.h"
-#include "../sdlutils/SDLUtils.h"
 
 
-MoveOnClick::MoveOnClick() : movement(scrollSpeed,0)
+MoveOnClick::MoveOnClick() : movement(0,0)
 {
 }
 
@@ -25,17 +24,29 @@ void MoveOnClick::initComponent()
 
 void MoveOnClick::update()
 {
-	if (move) {
 
-		//queremos que el vector movement vaya actualizando su X para se vea un movimiento fluido
-		scrollSpeed--;
+
+	if(move) {
+
+		if (mousePos.getX() > halfScreen) {
+			//el fondo se movera de derecha a izquierda
+			scrollSpeed--;
+			std::cout << mousePos.getX() << std::endl;
+			//if (myPos.getX() == mousePos.getX() - halfScreen)
+			//{
+			//	move = false;
+			//}
+		}
+		else {
+			//el fondo se movera de izquierda a derecha
+			scrollSpeed++;
+		}
+
 		movement.setX(scrollSpeed);
-
 		myTransform->setGlobalPos(movement);
 		
-		float halfScreen = sdlutils().width() / 2.0f;
+		move = false;
 
-		!move;
 	}
 }
 
@@ -44,8 +55,10 @@ void MoveOnClick::OnLeftClickDown()
 	mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
 	myPos = myTransform->getGlobalPos();
 
-	if (myBoxCollider->isCursorOver())
-	{
+	//Si pulsamos en el collider, efectuamos el movimiento
+	if (myBoxCollider->isCursorOver()){
+		std::cout << mousePos.getX() << std::endl;
+		//std::cout << myPos.getX() << std::endl;
 		move = true;
 	}
 }

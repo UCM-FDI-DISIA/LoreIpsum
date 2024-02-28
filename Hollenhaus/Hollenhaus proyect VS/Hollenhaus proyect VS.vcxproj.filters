@@ -90,9 +90,6 @@
     <ClCompile Include="src\game\CityState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\GameState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\MainMenuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
@@ -182,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="src\game\MoveOnClick.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\GameState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
