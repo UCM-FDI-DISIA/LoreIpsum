@@ -24,6 +24,8 @@ public:
 	int getCost() const { return cost; }
 	int getValue() const { return value; }
 	SDLEventCallback getEffect(int i) {
+		if (i < 0) return nullptr;
+
 		cardEffectIT = cardEffectCallbacks.begin();
 		std::next(cardEffectIT, i);	// avanza x posiciones
 		return *(cardEffectIT);

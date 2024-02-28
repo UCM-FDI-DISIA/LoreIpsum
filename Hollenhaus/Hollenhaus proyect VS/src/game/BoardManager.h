@@ -1,9 +1,15 @@
 #pragma once
 #include "ComponentUpdate.h"
 #include <vector>
+#include <list>
+#include <iostream>
+#include <functional>
 
-class Cell;
+//class Cell;
 class Card;
+using SDLEventCallback = std::function<void()>;
+
+#include "../Cell.h"
 
 class BoardManager : public ComponentUpdate
 {
@@ -21,7 +27,18 @@ public:
 
     bool IsFull();
 
-    std::vector<std::vector<ecs::entity_t>>& getBoard() { return _board; }
+    Cell* getCell(int x, int y) const;
+
+    std::list<SDLEventCallback> getEffects(Cell* cell) const;
+
+
+    bool setCard(int x, int y, Card* c, CellData::Owner o); // true si pudo poner carta (no habia otra ya antes)
+
+
+    int getPlayer1Points() const { return pPlayer1; }
+    int getPlayer2Points() const { return pPlayer2; }
+
+    void updateScore();
 
 private:
     //cleon: si en la entrega es una constante, os mataré. bueno, yo os mataré
@@ -33,6 +50,11 @@ private:
 
     int cardsOnBoard;
 
+    void applyAllEffects() const;
+
+
+    int pPlayer1 = 0;
+    int pPlayer2 = 0;
 
 };
 

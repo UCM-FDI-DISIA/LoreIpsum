@@ -3,8 +3,12 @@
 
 #include "../utils/Vector2D.h"
 
+#include "ecs.h"
+#include <vector>
+
 class Transform;
 
+class BoardManager;
 
 class DragManager :
     public ComponentUpdate
@@ -16,6 +20,8 @@ public:
     void initComponent() override;
     void update() override;
 
+    void setBoardManager(BoardManager* _boardManager) { boardManager = _boardManager; }
+
 private:
     
     Transform* dragTransform;
@@ -26,6 +32,8 @@ private:
     void OnLeftClickDown();
 
     void OnLeftClickUp();
+
+    BoardManager* boardManager;
 
 };
 

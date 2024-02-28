@@ -30,9 +30,9 @@ public:
 
 	// setters
 	void setCell(int x, int y, Cell* c) { grid[x][y] = c; }
-	bool setCard(int x, int y, Card* c, Owner o); // true si pudo poner carta (no habia otra ya antes)
+	bool setCard(int x, int y, Card* c, CellData::Owner o); // true si pudo poner carta (no habia otra ya antes)
 
 	///
 	void paintBoard();									// pinta el grid
-	bool isPlayer(int i, int j, Owner player) const;	// devuelve si en la posicion indicada esta ocupada por el player indicado
+	bool isPlayer(int i, int j, CellData::Owner player) const;	// devuelve si en la posicion indicada esta ocupada por el player indicado
 };

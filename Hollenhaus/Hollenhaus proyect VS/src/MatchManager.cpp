@@ -24,6 +24,8 @@ void MatchManager::updateScore()
 	pPlayer1 = 0;
 	pPlayer2 = 0;
 
+
+	/*VA AL BOARD MANAGER
 	// hace recuento de valores
 	for (int j = 0; j < board.size(); j++) {
 		for (int i = 0; i < board.size(); i++) {
@@ -37,4 +39,5 @@ void MatchManager::updateScore()
 			}
 		}
 	}
+	*/
 }

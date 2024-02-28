@@ -43,7 +43,8 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 
 	card->addComponent<Card>(cost,value,sprite,unblockable);
 
-	
+	//card->getComponent<Card>()->addCardEffect();
+
     return card;
 }
 

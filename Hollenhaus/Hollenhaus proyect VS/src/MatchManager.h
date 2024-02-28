@@ -11,7 +11,6 @@ class MatchManager : public ComponentUpdate
 	int pPlayer2 = 0;
 	int matchResult;
 	//Board* board;
-	std::vector<std::vector<ecs::entity_t>> board;
 
 public:
 
@@ -34,6 +33,5 @@ public:
 	int whoWon();
 	void updateScore();
 
-	void setBoard(std::vector<std::vector<ecs::entity_t>>& _board) { board = _board; }
 };
 

@@ -39,6 +39,8 @@ void BoardManager::initComponent()
 
 			_board[i][j]->addComponent<DropDetector>()->getCardPos().set(Vector2D(200 + i * 100, 100 + j * 100));
 
+			_board[i][j]->getComponent<DropDetector>()->getBoardPos().set(Vector2D(i, j));
+
 
 			_board[i][j]->getComponent<BoxCollider>()->setSize(
 				Vector2D(sdlutils().images().at("card").width() * 0.25,
@@ -92,13 +94,13 @@ void BoardManager::initComponent()
 				adj[m] = nullptr;
 
 			if (j > 0)
-				adj[Arriba] = _board[i][j - 1]->getComponent<Cell>();
+				adj[CellData::Arriba] = _board[i][j - 1]->getComponent<Cell>();
 			if (i < n)
-				adj[Derecha] = _board[i + 1][j]->getComponent<Cell>();
+				adj[CellData::Derecha] = _board[i + 1][j]->getComponent<Cell>();
 			if (j < n)
-				adj[Abajo] = _board[i][j + 1]->getComponent<Cell>();
+				adj[CellData::Abajo] = _board[i][j + 1]->getComponent<Cell>();
 			if (i > 0)
-				adj[Izquierda] = _board[i - 1][j]->getComponent<Cell>();
+				adj[CellData::Izquierda] = _board[i - 1][j]->getComponent<Cell>();
 
 			cell->setAdjacents(adj);
 
@@ -132,3 +134,66 @@ bool BoardManager::IsFull()
 {
 	return cardsOnBoard == WIDTH * HEIGTH; // recordad que os mataré
 }
+
+
+Cell* BoardManager::getCell(int x, int y)const  {
+
+	return _board[x][y]->getComponent<Cell>();
+}
+
+
+std::list<SDLEventCallback> BoardManager::getEffects(Cell* cell) const
+{
+	return cell->getEffects();
+}
+
+
+bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
+{
+	const auto cell = _board[x][y]->getComponent<Cell>();
+	if (cell->getCard() != nullptr)
+		return false;
+	cell->setCard(c, o);
+	cell->addEffect(c->getEffect(c->getEffectSize() - 1));
+	applyAllEffects();
+	return true;
+}
+
+void BoardManager::updateScore()
+{
+	// reinicia los valores
+	pPlayer1 = 0;
+	pPlayer2 = 0;
+
+
+	//VA AL BOARD MANAGER
+	// hace recuento de valores
+	for (int j = 0; j < _board.size(); j++) {
+		for (int i = 0; i < _board.size(); i++) {
+				//si es del jugador 1
+			if (_board[i][j]->getComponent<Cell>()->getOwner() == CellData::PLAYER1) {
+				pPlayer1 += _board[i][j]->getComponent<Cell>()->getTotalValue();
+			}
+				//si es el jugador 2 (normalmente npc)
+			else if (_board[i][j]->getComponent<Cell>()->getOwner() == CellData::PLAYER2) {
+				pPlayer2 += _board[i][j]->getComponent<Cell>()->getTotalValue();
+			}
+		}
+	}
+	
+
+}
+
+void BoardManager::applyAllEffects() const
+{
+	for (int j = 0; j < WIDTH; j++)
+		for (int i = 0; i < WIDTH; i++)
+			if (_board[j][i]->getComponent<Cell>()->getCard() != nullptr)
+				_board[j][i]->getComponent<Cell>()->setTotalValue(0);
+
+	for (int j = 0; j < WIDTH; j++)
+		for (int i = 0; i < WIDTH; i++)
+			if (_board[j][i]->getComponent<Cell>()->getCard() != nullptr)
+				_board[j][i]->getComponent<Cell>()->applyValue(_board[j][i]->getComponent<Cell>()->getCard());
+}
+

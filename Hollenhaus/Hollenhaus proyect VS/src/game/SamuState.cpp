@@ -28,17 +28,14 @@ SamuState::SamuState() : GameState() {
 	CardFactory_v0* factory = new CardFactory_v0();
 
 	BoardFactory* boardFactory = new BoardFactory(4, 4);
-	auto board = boardFactory->createBoard();
-
-
-	manager = Instantiate();
-	manager->addComponent<MatchManager>();
-	manager->getComponent<MatchManager>()->setBoard(board->getComponent<BoardManager>()->getBoard());
+	board = boardFactory->createBoard();
 
 	factory->createHand();
 
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
+
+	ent->getComponent<DragManager>()->setBoardManager(board->getComponent<BoardManager>());
 }
 
 SamuState::~SamuState()
@@ -55,7 +52,8 @@ void SamuState::update()
 {
 	GameState::update();
 
-	std::cout << manager->getComponent<MatchManager>()->getPlayer1Points() << std::endl;
+	board->getComponent<BoardManager>()->updateScore();
+	std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
 }
 
 void SamuState::render() const
