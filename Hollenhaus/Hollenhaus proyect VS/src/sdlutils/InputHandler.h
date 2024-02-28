@@ -108,7 +108,7 @@ public:
 		(*it).second.push_back(funcCallback);
 
 		//debug
-		std::cout << "se inserta" << std::endl;
+		//std::cout << "se inserta" << std::endl;
 	}
 
 	// funcion para quitar funciones del map con la clave(enum de esta clase)

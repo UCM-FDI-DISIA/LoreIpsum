@@ -20,10 +20,8 @@ BoxCollider::BoxCollider(Vector2D posOffset, Vector2D size) :
 }
 
 void BoxCollider::initComponent() {
+
 	transform_ = mngr_->getComponent<Transform>(ent_);
-
-
-
 	spriteRenderer_ = mngr_->getComponent<SpriteRenderer>(ent_);
 
 	anchoredToSprite_ = spriteRenderer_ != nullptr;

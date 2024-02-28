@@ -40,7 +40,7 @@ GameStateMachine::GameStateMachine() {
 
 
 	//Ponemos el estado actual
-	currentState = movementState;
+	currentState = cityState;
 
 }
 
