@@ -3,7 +3,7 @@
 #include "Manager.h"
 
 
-MoveOnClick::MoveOnClick() : movement(0,0)
+MoveOnClick::MoveOnClick()
 {
 }
 
@@ -24,29 +24,24 @@ void MoveOnClick::initComponent()
 
 void MoveOnClick::update()
 {
-
-
-	if(move) {
-
-		if (mousePos.getX() > halfScreen) {
-			//el fondo se movera de derecha a izquierda
+	if (move)
+	{
+		if (mousePos.getX() > halfScreen)
+		{
 			scrollSpeed--;
-			std::cout << mousePos.getX() << std::endl;
-			//if (myPos.getX() == mousePos.getX() - halfScreen)
-			//{
-			//	move = false;
-			//}
 		}
-		else {
-			//el fondo se movera de izquierda a derecha
+		else if(mousePos.getX() < halfScreen)
+		{
 			scrollSpeed++;
 		}
 
-		movement.setX(scrollSpeed);
+		movement.setX(myPos.getX() + scrollSpeed);
 		myTransform->setGlobalPos(movement);
 		
-		move = false;
-
+		//condicion que falta sacar
+		/*if () {
+			move = false;
+		}*/
 	}
 }
 
