@@ -21,6 +21,7 @@
 #include "../MatchManager.h"
 
 #include "BoardManager.h"
+#include "TextComponent.h"
 
 SamuState::SamuState() : GameState() {
 
@@ -43,6 +44,9 @@ SamuState::SamuState() : GameState() {
 
 	background->addComponent<SpriteRenderer>("board");
 	background->setLayer(-1);
+
+	ecs::entity_t pruebaTxt = Instantiate(Vector2D(400, 50));
+	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit", SDL_Color({ 255, 255, 255, 255 }), TextComponent::Alignment::Center);
 }
 
 SamuState::~SamuState()
