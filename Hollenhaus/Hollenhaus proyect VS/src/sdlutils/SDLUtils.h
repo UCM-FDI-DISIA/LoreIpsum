@@ -16,6 +16,7 @@
 #include "../Cell.h"
 
 #include "../game/Card.h"
+#include "../json/JSON.h"
 
 class SDLUtils: public Singleton<SDLUtils> {
 
@@ -202,8 +203,7 @@ public:
 	{ 
 		CardData();
 		CardData(int c, int v, std::string s, bool u, std::vector<CardEffect> e)
-			: cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e)
-		{}
+			: cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e) {}
 
 		// getters con nombres simplificados para mas facil acceso desde sdlutils
 		int cost() const			{ return cost_; }
@@ -231,6 +231,8 @@ private:
 	void initSDLExtensions(); // initialize resources (fonts, textures, audio, etc.)
 	void closeSDLExtensions(); // free resources the
 	void loadReasources(std::string filename); // load resources from the json file
+
+	std::vector<CellData::Direction>& loadDirections(JSONObject&);
 
 	std::string windowTitle_; // window title
 	int width_; // window width

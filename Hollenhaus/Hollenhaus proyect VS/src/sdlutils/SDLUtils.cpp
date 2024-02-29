@@ -293,7 +293,9 @@ void SDLUtils::loadReasources(std::string filename) {
 					int value			= cardObj["value"]->AsNumber();
 					std::string sprite	= cardObj["sprite"]->AsString();
 					bool unblockable	= cardObj["unblockable"]->AsBool();
+					std::vector<CardEffect> effects;
 
+					/// Por cada carta, hay un array de efectos
 					// effects as JSON array derivate of card object
 					auto effArr = cardObj["effects"]->AsArray();
 					for (auto& e : effArr )
@@ -303,17 +305,16 @@ void SDLUtils::loadReasources(std::string filename) {
 						int type = effObj["type"]->AsNumber();
 						int effValue = effObj["value"]->AsNumber();
 
-						// directions as JSON array derivate of each effect
-						auto dirArr = effObj["type"]->AsArray();
-						for (auto& d : dirArr)
-						{
-							auto dir = d->AsString();	
-						}
+						/// Por cada efecto, puede haber un array de direcciones
+						///	(en caso de que no haya direcciones, el vector es vacio y punto pelota)
+						std::vector<CellData::Direction> directions = loadDirections(effObj);
+
+						effects.emplace_back(type, effValue, directions);
 					}
 #ifdef _DEBUG
 					std::cout << "Loading cards with id: " << key << std::endl;
 #endif
-					//cards_.emplace(key, CardData(cost, value, sprite, unblockable));
+					cards_.emplace(key, CardData(cost, value, sprite, unblockable, effects));
 
 				} else {
 					throw "'cards' array in '" + filename
@@ -324,6 +325,27 @@ void SDLUtils::loadReasources(std::string filename) {
 			throw "'cards' is not an array";
 		}
 	}
+}
+
+std::vector<CellData::Direction>& SDLUtils::loadDirections(JSONObject& jo)
+{
+	std::vector<CellData::Direction> directions;
+	// directions as JSON array derivate of each effect
+	auto dirArr = jo["type"]->AsArray();
+	for (auto& d : dirArr)
+	{
+		auto dir = d->AsString();
+		switch (dir) // esto deberia ir en otro lado SIIIIII no me mires
+		{
+		case "Arriba": directions.emplace_back(CellData::Arriba); break;
+		case "Derecha":	directions.emplace_back(CellData::Derecha); break;
+		case "Abajo": directions.emplace_back(CellData::Abajo); break;
+		case "Izquierda": directions.emplace_back(CellData::Izquierda); break;
+		default: break;
+		}
+	}
+
+	return directions;
 }
 
 void SDLUtils::closeSDLExtensions() {
