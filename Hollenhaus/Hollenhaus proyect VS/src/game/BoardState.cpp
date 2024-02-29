@@ -10,8 +10,6 @@ BoardState::BoardState()
 	matchManager = new MatchManager(board);
 	effectCollection = new EffectCollection();
 
-	ecs::entity_t pruebaTxt = Instantiate();
-	pruebaTxt->addComponent<TextComponent>("hola", "8bit", SDL_Color({ 255, 255, 255, 255 }));
 }
 
 BoardState::~BoardState()

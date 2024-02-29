@@ -3,34 +3,48 @@
 
 TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color color)
 {
+	text_ = nullptr;
 	color_ = color;
-	txt_ = txt;
+	if (txt.empty()) txt_ = " ";
+	else txt_ = txt;	
 	font_ = &sdl_.fonts().at(fontID);
-	setTexture(txt_, font_, color_);
+	createTexture(txt_, font_, color_);
+}
+
+TextComponent::~TextComponent()
+{
+	delete text_;
 }
 
 void TextComponent::initComponent()
 {
 	tr_ = ent_->getComponent<Transform>();
-	
-	
+	assert(tr_ != nullptr);
 }
 
 void TextComponent::render() const
 {
-	font_->renderText(txt_, color_);
+	// Necesita un compomente transform.
+	text_->render(tr_->getGlobalPos().getX(), tr_->getGlobalPos().getY());
 }
 
-void TextComponent::setTexture(std::string textStr, const Font* font, SDL_Color color) {
-	delete text_;
-	if (textStr.empty()) textStr = " ";
+void TextComponent::setTxt(std::string txt)
+{
+	txt_ = txt;
+	createTexture(txt_, font_, color_);
+}
+
+void TextComponent::setColor(SDL_Color color)
+{
+	color_ = color;
+	createTexture(txt_, font_, color_);
+}
+
+void TextComponent::createTexture(std::string txt, Font* font, SDL_Color color) {
+
+	if(text_!= nullptr)
+		delete text_;
 	
 	text_ = new Texture(sdl_.renderer(), txt_, *font_, color_);
-
-	//SDL_Surface* s = font->renderText(textStr, color);
-	//text_ = font->generateTexture(textStr, color);
-	//w = text_->getFrameWidth();
-	//h = text_->getFrameHeight();
-	//renderPos = Vector2D<>(centeredPos.GetX() - w / 2, centeredPos.GetY() - h / 2);
 }
 

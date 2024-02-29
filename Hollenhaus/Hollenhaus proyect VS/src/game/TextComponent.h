@@ -10,13 +10,19 @@ class TextComponent : public ComponentRender
 {
 public:
 	TextComponent(std::string txt, std::string fontID, SDL_Color color);
-
+	~TextComponent();
 	void initComponent() override;
 	void render() const override;
 	
+	// Método público para cambiar el texto
+	void setTxt(std::string txt);
+
+	// Método público para cambiar el color
+	void setColor(SDL_Color color);
+
+
 private:
 
-	void setTexture(std::string textStr, const Font* font, SDL_Color color);
 
 	Transform* tr_;
 	SDLUtils& sdl_ = *SDLUtils::instance();
@@ -27,6 +33,6 @@ private:
 
 	std::string txt_;
 
-
+	void createTexture(std::string txt, Font* font, SDL_Color color);
 };
 
