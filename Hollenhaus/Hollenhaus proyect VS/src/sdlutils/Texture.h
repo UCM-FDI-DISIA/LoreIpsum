@@ -7,7 +7,6 @@
 #include <string>
 #include <cassert>
 #include <iostream>
-
 #include "Font.h"
 
 class Texture {

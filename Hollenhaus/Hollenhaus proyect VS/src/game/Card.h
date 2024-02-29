@@ -12,8 +12,8 @@ class Card : public ComponentUpdate
 	int cost, value;	// coste y valor de la carta
 	std::string sprite; // esto sera posteriormente un puntero a Texture
 	bool unblockable;	// indica si esta carta se puede bloquear o no
-	std::list<SDLEventCallback> cardEffectCallbacks;	// lista de los efectos que tiene una carta concreta
-	std::list<SDLEventCallback>::iterator cardEffectIT;	// iterador para recorrer la lista de efectos de la carta
+	std::list<SDLEventCallback> effects;	// lista de los efectos que tiene una carta concreta
+	std::list<SDLEventCallback>::iterator effectIt;	// iterador para recorrer la lista de efectos de la carta
 
 public:
 	Card();
@@ -26,12 +26,12 @@ public:
 	SDLEventCallback getEffect(int i) {
 		if (i < 0) return nullptr;
 
-		cardEffectIT = cardEffectCallbacks.begin();
-		std::next(cardEffectIT, i);	// avanza x posiciones
-		return *(cardEffectIT);
+		effectIt = effects.begin();
+		std::next(effectIt, i);	// avanza x posiciones
+		return *(effectIt);
 	}
 	bool getIsUnblockable() const { return unblockable;  }
-	int getEffectSize() const { return cardEffectCallbacks.size(); }
+	int getEffectSize() const { return effects.size(); }
 
 	// setters
 	void setCost(int v) { cost = v; }

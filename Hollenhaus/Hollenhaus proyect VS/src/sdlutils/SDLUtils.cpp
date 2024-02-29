@@ -282,22 +282,40 @@ void SDLUtils::loadReasources(std::string filename) {
 	jValue = root["cards"];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
-			musics_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			cards_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
 			for (auto &v : jValue->AsArray()) {
 				if (v->IsObject()) {
+					// card as JSON object
+					JSONObject cardObj = v->AsObject();
 
-					// TODO: parsear bien que no todo soin strings (skills pueden ser objs?)
-					JSONObject vObj = v->AsObject();
-					std::string key = vObj["id"]->AsString();
-					int cost = vObj["cost"]->AsNumber();
-					int value = vObj["value"]->AsNumber();
-					std::string sprite = vObj["sprite"]->AsString();
-					bool unblockable = vObj["unblockable"]->AsBool();
-					//std::string skills = vObj["skills"]->AsString();
+					std::string key		= cardObj["id"]->AsString(); // id
+					int cost			= cardObj["cost"]->AsNumber(); // card parameters
+					int value			= cardObj["value"]->AsNumber();
+					std::string sprite	= cardObj["sprite"]->AsString();
+					bool unblockable	= cardObj["unblockable"]->AsBool();
+					std::vector<CardEffect> effects;
+
+					/// Por cada carta, hay un array de efectos
+					// effects as JSON array derivate of card object
+					auto effArr = cardObj["effects"]->AsArray();
+					for (auto& e : effArr )
+					{ // each effect as JSON object
+						auto effObj = e->AsObject();
+
+						int type = effObj["type"]->AsNumber();
+						int effValue = effObj["value"]->AsNumber();
+
+						/// Por cada efecto, puede haber un array de direcciones
+						///	(en caso de que no haya direcciones, el vector es vacio y punto pelota)
+						std::vector<CellData::Direction> directions;
+						loadDirections(effObj, directions);
+
+						effects.emplace_back(type, effValue, directions);
+					}
 #ifdef _DEBUG
 					std::cout << "Loading cards with id: " << key << std::endl;
 #endif
-					cards_.emplace(key, Card(cost, value, sprite, unblockable));
+					cards_.emplace(key, CardData(cost, value, sprite, unblockable, effects));
 
 				} else {
 					throw "'cards' array in '" + filename
@@ -308,6 +326,31 @@ void SDLUtils::loadReasources(std::string filename) {
 			throw "'cards' is not an array";
 		}
 	}
+}
+
+std::vector<CellData::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::vector<CellData::Direction>& directions)
+{
+	if (jo["directions"] == nullptr) return directions;
+
+	auto dirArr = jo["directions"]->AsArray();
+
+	for (auto& d : dirArr)
+	{
+		auto dir = d->AsString();
+
+		// soy tonti y no se pueden usar switchs con strings </3
+		// esto deberia ir en otro lado siiiii no me mires estoy probando
+		if		(dir == "Arriba")
+			directions.push_back(CellData::Arriba);
+		else if (dir == "Derecha")
+			directions.push_back(CellData::Derecha);
+		else if (dir == "Abajo")
+			directions.push_back(CellData::Abajo);
+		else if (dir == "Izquierda")
+			directions.push_back(CellData::Izquierda);
+	}
+
+	return directions;
 }
 
 void SDLUtils::closeSDLExtensions() {
