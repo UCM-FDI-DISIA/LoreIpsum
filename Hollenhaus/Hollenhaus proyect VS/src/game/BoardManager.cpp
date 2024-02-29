@@ -25,8 +25,8 @@ void BoardManager::initComponent()
 		_board[i].resize(HEIGTH);
 	}
 
-	// Cada elemento de la matriz tiene un nuevo Cell (entidad) vacío
-	for (int j = 0; j < WIDTH; j++) {
+	/// Inicializacion de cada celda como entidad vacio
+	for (int j = 0; j < HEIGTH; j++) {
 		for (int i = 0; i < WIDTH; i++) {
 
 			//PARTE VISUAL
@@ -44,7 +44,7 @@ void BoardManager::initComponent()
 		}
 	}
 
-	// Cada elemento de la matriz tiene un nuevo Cell (entidad) vacío
+	/// Inicializacion de referencias de cada celda
 	for (int j = 0; j < HEIGTH; j++) {
 		for (int i = 0; i < WIDTH; i++) 
 		{
