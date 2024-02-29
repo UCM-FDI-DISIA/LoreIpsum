@@ -11,6 +11,8 @@ public:
 	void render() const override;
 	void refresh() override;
 
+	void OnLeftClickDown() const;
+
 	void onEnter() const override;
 	void onExit() const override;
 private:

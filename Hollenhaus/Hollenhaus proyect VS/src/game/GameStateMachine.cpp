@@ -19,6 +19,7 @@
 
 void GameStateMachine::init()
 {
+
 	//Estado incial
 	pushState(currentState);
 
@@ -56,7 +57,6 @@ GameStateMachine::~GameStateMachine() {
 	delete mngr_;
 }
 
-
 void GameStateMachine::Render() const {
 	if (Empty()) return;
 	gameStack.top()->render();
@@ -77,10 +77,18 @@ void GameStateMachine::Refresh()
 }
 
 
+void GameStateMachine::changeState()
+{
+	//Solo queremos que lo haga de ser necesario
+	if (currentState != gameStack.top()) {
+		replaceState(currentState);
+	}
+	
+}
+
 void GameStateMachine::pushState(GameState* state) {
 
 	gameStack.push(state);		//Colocamos el nuevo GameState
-	currentState = state;		//Lo convertimos en el actual
 	currentState->onEnter();	//Hacemos el onEnter del nuevo estado
 }
 
@@ -90,7 +98,7 @@ void GameStateMachine::replaceState(GameState* state) {
 }
 
 void GameStateMachine::popState() {
-	currentState->onExit();	//Antes de eliminarlo hacemos el onExit del estado
+	gameStack.top()->onExit(); //Antes de eliminarlo hacemos el onExit del estado
 	toBeDeleted.push_back(gameStack.top());
 	gameStack.pop();
 }

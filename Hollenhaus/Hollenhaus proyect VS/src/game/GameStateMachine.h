@@ -31,7 +31,7 @@ public:
 	//destructor
 	~GameStateMachine();
 
-
+	void changeState();
 	void pushState(GameState* state); // adds state without removing the previous
 	void replaceState(GameState* state); // removes the previous state before adding another
 	void popState(); // removes state without adding another
@@ -41,37 +41,35 @@ public:
 	void Refresh();
 
 	inline void setState(int state) {
-		GameState* newState = nullptr;
-
 
 		switch (state)
 		{
 		case MAINMENU:
-			newState = mainMenuState;
+			currentState = mainMenuState;
 			break;
 		case CITY:
-			newState = cityState;
+			currentState = cityState;
 			break;
 		case OFFICE:
-			newState = officeState;
+			currentState = officeState;
 			break;
 		case SHOP:
-			newState = shopState;
+			currentState = shopState;
 			break;
 		case BOARD:
-			newState = boardState;
+			currentState = boardState;
 			break;
 		case PAIGRO:
-			newState = paigroState;
+			currentState = paigroState;
 			break;
 		case SAMU:
-			newState = samuState;
+			currentState = samuState;
 			break;
 		default:
 			break;
 		}
 
-		replaceState(newState);
+		
 	};
 	bool Empty() const { return gameStack.empty(); }
 

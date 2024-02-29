@@ -4,6 +4,9 @@
 #include "Transform.h"
 #include "SpriteRenderer.h"
 #include "../utils/Vector2D.h"
+#include "../utils/Collisions.h"
+
+//#include <vector>
 
 class BoxCollider :public ComponentUpdate
 {
@@ -57,6 +60,10 @@ private:
 	SpriteRenderer* spriteRenderer_;
 	
 	SDL_Rect collider_;
+	//Collisions collider_;
+
+	// Limites del collider
+	Vector2D vertices[4];
 
 	// Offset de la posicion
 	Vector2D posOffset_;
