@@ -1,12 +1,15 @@
 #include "BoardState.h"
 #include "../sdlutils/InputHandler.h"
 #include <algorithm>
+#include "Manager.h"
+#include "TextComponent.h"
 
 BoardState::BoardState()
 {
 	board = new Board(4);
 	matchManager = new MatchManager();
 	effectCollection = new EffectCollection();
+
 }
 
 BoardState::~BoardState()
