@@ -153,6 +153,11 @@ public:
 	inline auto& musics() {
 		return musicsAccessWrapper_;
 	}
+	// cards map
+	inline auto& cards()
+	{
+		return cardAccessWrapper;	
+	}
 
 
 // Access to the random number generator. It is important to always

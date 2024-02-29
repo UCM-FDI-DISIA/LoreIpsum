@@ -15,6 +15,7 @@
 #include "CardFactory_v0.h"
 
 #include "BoardFactory.h"
+#include "TextComponent.h"
 
 LuisState::LuisState() : GameState() {
 
@@ -27,6 +28,10 @@ LuisState::LuisState() : GameState() {
 
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
+
+
+	ecs::entity_t pruebaTxt = Instantiate(Vector2D(100, 100));
+	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit", SDL_Color({ 255, 255, 255, 255 }));
 }
 
 LuisState::~LuisState()
