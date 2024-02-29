@@ -10,17 +10,17 @@ class CellManager : public ComponentUpdate
 public:
 	CellManager();
 
-	ecs::entity_t GetCard() { return _card; };
+	/// getters
+	ecs::entity_t getCard() const { return _card; }
+	Vector2D& getPosOnBoard() { return posOnBoard; }
 
+	/// setters
 	bool setCard(ecs::entity_t card);
-
 	void setPosOnBoard(int posX, int posY);
 	void setPosOnBoard(Vector2D pos);
-	Vector2D getPosOnBoard() { return posOnBoard; }
 
 private:
 	ecs::entity_t _card;
-
 	Vector2D posOnBoard;
 };
 
