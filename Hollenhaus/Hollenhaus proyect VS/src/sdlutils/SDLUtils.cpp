@@ -307,7 +307,8 @@ void SDLUtils::loadReasources(std::string filename) {
 
 						/// Por cada efecto, puede haber un array de direcciones
 						///	(en caso de que no haya direcciones, el vector es vacio y punto pelota)
-						std::vector<CellData::Direction> directions = loadDirections(effObj);
+						std::vector<CellData::Direction> directions;
+						loadDirections(effObj, directions);
 
 						effects.emplace_back(type, effValue, directions);
 					}
@@ -327,10 +328,8 @@ void SDLUtils::loadReasources(std::string filename) {
 	}
 }
 
-std::vector<CellData::Direction>& SDLUtils::loadDirections(JSONObject& jo)
+std::vector<CellData::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::vector<CellData::Direction>& directions)
 {
-	std::vector<CellData::Direction> directions;
-
 	if (jo["directions"] == nullptr) return directions;
 
 	auto dirArr = jo["directions"]->AsArray();

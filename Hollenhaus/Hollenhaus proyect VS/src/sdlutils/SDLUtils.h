@@ -232,8 +232,10 @@ private:
 	void closeSDLExtensions(); // free resources the
 	void loadReasources(std::string filename); // load resources from the json file
 
-	std::vector<CellData::Direction>& loadDirections(JSONObject&);
-
+	/// CARD PARSING estoy fatal de la cabezaaaa
+	std::vector<CellData::Direction>& loadDirections(JSONObject&, std::vector<CellData::Direction>&);
+	/// \brief
+	
 	std::string windowTitle_; // window title
 	int width_; // window width
 	int height_; // window height
