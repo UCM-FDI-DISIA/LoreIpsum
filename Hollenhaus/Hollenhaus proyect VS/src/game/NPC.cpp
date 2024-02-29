@@ -8,7 +8,6 @@ NPC::NPC(int scene)
 	click = false;
 	myBoxCollider = nullptr;
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUP(); });
 }
 
 NPC::~NPC() {
@@ -17,9 +16,6 @@ NPC::~NPC() {
 void NPC::initComponent()
 {
 	myBoxCollider = mngr_->getComponent<BoxCollider>(ent_);
-
-	/*ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUP(); });*/
 	
 }
 void NPC::OnLeftClickDown(int scene) {
@@ -29,11 +25,7 @@ void NPC::OnLeftClickDown(int scene) {
 	click = true;
 
 }
-void NPC::OnLeftClickUP()
-{
-	click = false;
-	
-}
+
 void NPC::reactToClick(int scene)
 {
 	

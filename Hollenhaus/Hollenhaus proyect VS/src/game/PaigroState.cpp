@@ -28,7 +28,7 @@ void PaigroState::onEnter() const
 	boton1->addComponent<Transform>();
 	boton1->addComponent<SpriteRenderer>("boton");
 	boton1->addComponent<BoxCollider>();
-	//boton1->getComponent<Transform>()->getGlobalScale().set(0.4f, 0.4f);
+	boton1->getComponent<Transform>()->getGlobalScale().set(0.4f, 0.4f);
 	boton1->getComponent<Transform>()->getGlobalPos().set(100, 200);
 	boton1->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	boton1->addComponent<NPC>(0);
