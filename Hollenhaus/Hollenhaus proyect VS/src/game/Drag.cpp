@@ -49,6 +49,7 @@ void Drag::OnLeftClickDown()
 		isDraged = true;
 		initialMousePos = mousePos;
 		initialTransformPos = myTransform->getGlobalPos();
+
 	}
 }
 

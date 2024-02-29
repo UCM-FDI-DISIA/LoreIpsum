@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include "ColliderRender.h"
 #include "../sdlutils/InputHandler.h"
+#include "../utils/Collisions.h"
 
 BoxCollider::BoxCollider() :BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
 {}
@@ -12,11 +13,11 @@ BoxCollider::BoxCollider() :BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
 BoxCollider::BoxCollider(Vector2D posOffset, Vector2D size) :
 	transform_(),
 	spriteRenderer_(),
-	collider_(),
+	anchoredToSprite_(false),
 	posOffset_(posOffset),
 	size_(size)
 {
-	
+
 }
 
 void BoxCollider::initComponent() {
@@ -36,7 +37,15 @@ void BoxCollider::initComponent() {
 
 	collider_.w = size_.getX();
 	collider_.h = size_.getY();
+
 	/*
+	vertices[1] = transform_->getGlobalPos();
+	vertices[2] = vertices[1] + Vector2D(size_.getX(), vertices[1].getY());
+	vertices[3] = vertices[1] + size_;
+	vertices[4] = vertices[1] + Vector2D(vertices[1].getX(), size_.getY());*/
+
+
+
 	if (spriteRenderer_ != nullptr) {
 		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
 		anchoredToSprite_ = true;
@@ -44,7 +53,8 @@ void BoxCollider::initComponent() {
 	else
 	{
 		anchoredToSprite_ = false;
-	}*/
+	}
+
 
 #ifdef _DEBUG
 	mngr_->addComponent<ColliderRender>(ent_);
@@ -55,7 +65,11 @@ void BoxCollider::initComponent() {
 void BoxCollider::update() {
 	collider_.x = transform_->getGlobalPos().getX() + posOffset_.getX();
 	collider_.y = transform_->getGlobalPos().getY() + posOffset_.getY();
-
+	/*
+	vertices[1] = transform_->getGlobalPos();
+	vertices[2] = vertices[1] + Vector2D(size_.getX(), vertices[1].getY());
+	vertices[3] = vertices[1] + size_;
+	vertices[4] = vertices[1] + Vector2D(vertices[1].getX(), size_.getY());*/
 	/*
 	if (anchoredToSprite_) {
 
@@ -77,8 +91,9 @@ void BoxCollider::setSize(Vector2D newSizOffset) {
 
 bool BoxCollider::isCursorOver() {
 	Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
-	
+	//Collisions().collides(vertices[1], vertices[2].getX() - vertices[1].getX(), vertices[4].getY() - vertices[1].getY(), mousePos, 1, 1);
+
 	SDL_Rect mouseRect = build_sdlrect(mousePos, 1, 1);
-	
+
 	return SDL_HasIntersection(&collider_, &mouseRect);
 }
