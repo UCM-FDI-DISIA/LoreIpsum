@@ -330,19 +330,25 @@ void SDLUtils::loadReasources(std::string filename) {
 std::vector<CellData::Direction>& SDLUtils::loadDirections(JSONObject& jo)
 {
 	std::vector<CellData::Direction> directions;
-	// directions as JSON array derivate of each effect
-	auto dirArr = jo["type"]->AsArray();
+
+	if (jo["directions"] == nullptr) return directions;
+
+	auto dirArr = jo["directions"]->AsArray();
+
 	for (auto& d : dirArr)
 	{
 		auto dir = d->AsString();
-		switch (dir) // esto deberia ir en otro lado SIIIIII no me mires
-		{
-		case "Arriba": directions.emplace_back(CellData::Arriba); break;
-		case "Derecha":	directions.emplace_back(CellData::Derecha); break;
-		case "Abajo": directions.emplace_back(CellData::Abajo); break;
-		case "Izquierda": directions.emplace_back(CellData::Izquierda); break;
-		default: break;
-		}
+
+		// soy tonti y no se pueden usar switchs con strings </3
+		// esto deberia ir en otro lado siiiii no me mires estoy probando
+		if		(dir == "Arriba")
+			directions.push_back(CellData::Arriba);
+		else if (dir == "Derecha")
+			directions.push_back(CellData::Derecha);
+		else if (dir == "Abajo")
+			directions.push_back(CellData::Abajo);
+		else if (dir == "Izquierda")
+			directions.push_back(CellData::Izquierda);
 	}
 
 	return directions;
