@@ -29,8 +29,8 @@ void GameStateMachine::init()
 }
 
 //constructor
-GameStateMachine::GameStateMachine()  {
-
+GameStateMachine::GameStateMachine()
+{
 	//init();
 	//inicializamos la pila con el estado del menu inicial
 }

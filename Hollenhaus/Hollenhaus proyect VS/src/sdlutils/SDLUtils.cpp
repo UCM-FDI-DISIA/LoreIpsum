@@ -19,7 +19,8 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 		imagesAccessWrapper_(images_, "Images Table"), //
 		msgsAccessWrapper_(msgs_, "Messages Table"), //
 		soundsAccessWrapper_(sounds_, "Sounds Table"), //
-		musicsAccessWrapper_(musics_, "Musics Table") ///
+		musicsAccessWrapper_(musics_, "Musics Table"), //
+		cardAccessWrapper(cards_, "Cards Table") //
 {
 	initWindow();
 	initSDLExtensions();
@@ -316,6 +317,7 @@ void SDLUtils::closeSDLExtensions() {
 	msgs_.clear();
 	images_.clear();
 	fonts_.clear();
+	cards_.clear();
 
 	Mix_Quit(); // quit SDL_mixer
 	IMG_Quit(); // quit SDL_image
