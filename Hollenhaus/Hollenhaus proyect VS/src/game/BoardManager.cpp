@@ -1,13 +1,11 @@
 #include "BoardManager.h"
 #include "GameStateMachine.h"
 #include "Manager.h"
-
 #include "Transform.h"
 #include "SpriteRenderer.h"
 #include "BoxCollider.h"
 #include "DropDetector.h"
 #include "CellManager.h"
-
 #include "../Cell.h"
 
 BoardManager::BoardManager() :
@@ -28,38 +26,29 @@ void BoardManager::initComponent()
 	}
 
 	// Cada elemento de la matriz tiene un nuevo Cell (entidad) vacío
-	for (int i = 0; i < WIDTH; i++) {
-		for (int j = 0; j < HEIGTH; j++) {
+	for (int j = 0; j < WIDTH; j++) {
+		for (int i = 0; i < WIDTH; i++) {
 
 			//PARTE VISUAL
 			_board[i][j] = Instantiate(Vector2D(200 + i*100, 100 + j*100), ecs::grp::DROPS);
 			auto cellCmp = _board[i][j]->addComponent<CellManager>();
+
 			_board[i][j]->addComponent<BoxCollider>();
-
-
 			_board[i][j]->addComponent<DropDetector>()->getCardPos().set(Vector2D(200 + i * 100, 100 + j * 100));
-
 			_board[i][j]->getComponent<DropDetector>()->getBoardPos().set(Vector2D(i, j));
-
-
 			_board[i][j]->getComponent<BoxCollider>()->setSize(
 				Vector2D(sdlutils().images().at("card").width() * 0.55,
 					(sdlutils().images().at("card").height()) * 0.55));
+
 			cellCmp->setPosOnBoard(i, j);
-
-
-			
 		}
 	}
 
 	// Cada elemento de la matriz tiene un nuevo Cell (entidad) vacío
-	for (int i = 0; i < WIDTH; i++) {
-		for (int j = 0; j < HEIGTH; j++) {
-
-
+	for (int j = 0; j < HEIGTH; j++) {
+		for (int i = 0; i < WIDTH; i++) 
+		{
 			Cell* cell = _board[i][j]->addComponent<Cell>();
-
-
 
 			/// CENTRO:
 			///		SIZE PAR: n/2 && n/2 - 1
@@ -94,33 +83,28 @@ void BoardManager::initComponent()
 				adj[m] = nullptr;
 
 			if (j > 0)
-				adj[CellData::Arriba] = _board[i][j - 1]->getComponent<Cell>();
+				adj[CellData::Arriba]	 = _board[i][j - 1]->getComponent<Cell>();
 			if (i < n)
-				adj[CellData::Derecha] = _board[i + 1][j]->getComponent<Cell>();
+				adj[CellData::Derecha]	 = _board[i + 1][j]->getComponent<Cell>();
 			if (j < n)
-				adj[CellData::Abajo] = _board[i][j + 1]->getComponent<Cell>();
+				adj[CellData::Abajo]	 = _board[i][j + 1]->getComponent<Cell>();
 			if (i > 0)
 				adj[CellData::Izquierda] = _board[i - 1][j]->getComponent<Cell>();
 
 			cell->setAdjacents(adj);
-
 		}
 	}
 	// Esto hay que sustituirlo por una factoría
-
-
 }
 
 void BoardManager::update()
 {
 }
 
-bool BoardManager::AddCard(ecs::entity_t card, int posX, int posY)
+bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
 {
 	ecs::entity_t cell = _board[posX][posY];
-
 	auto cellCmp = mngr().getComponent<CellManager>(cell);
-
 	bool cardAdded = cellCmp->SetCard(card);
 
 	if (cardAdded) {
@@ -130,7 +114,7 @@ bool BoardManager::AddCard(ecs::entity_t card, int posX, int posY)
 	return cardAdded;
 }
 
-bool BoardManager::IsFull()
+bool BoardManager::isFull()
 {
 	return cardsOnBoard == WIDTH * HEIGTH; // recordad que os mataré
 }
@@ -161,10 +145,9 @@ bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 
 void BoardManager::updateScore()
 {
-	// reinicia los valores
+	// Reinicia los valores
 	pPlayer1 = 0;
 	pPlayer2 = 0;
-
 
 	//VA AL BOARD MANAGER
 	// hace recuento de valores
@@ -180,20 +163,18 @@ void BoardManager::updateScore()
 			}
 		}
 	}
-	
-
 }
 
 void BoardManager::applyAllEffects() const
 {
 	for (int j = 0; j < WIDTH; j++)
 		for (int i = 0; i < WIDTH; i++)
-			if (_board[j][i]->getComponent<Cell>()->getCard() != nullptr)
-				_board[j][i]->getComponent<Cell>()->setTotalValue(0);
+			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
+				_board[i][j]->getComponent<Cell>()->setTotalValue(0);
 
 	for (int j = 0; j < WIDTH; j++)
 		for (int i = 0; i < WIDTH; i++)
-			if (_board[j][i]->getComponent<Cell>()->getCard() != nullptr)
-				_board[j][i]->getComponent<Cell>()->applyValue(_board[j][i]->getComponent<Cell>()->getCard());
+			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
+				_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
 }
 
