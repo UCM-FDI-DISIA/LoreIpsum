@@ -1,36 +1,28 @@
 #pragma once
-
 #include "checkML.h"
 #include "ComponentUpdate.h"
 
+enum CardState {
+	ON_HAND,
+	ON_HOVER,
+	ON_DRAG,
+	ON_CELL,
+	ON_DECK
+};
+
 class CardStateManager : public ComponentUpdate
 {
-
+	CardState currentState;
 
 public:
-
-	//constructora
 	CardStateManager();
-
-
-	enum CardState {
-		ON_HAND,
-		ON_HOVER,
-		ON_DRAG,
-		ON_CELL,
-		ON_DECK
-	};
-
-	void setState(CardState newState);
 
 	void putOnBoard();
 
-	CardState getState() { return currentState; }
+	/// getters
+	CardState getState() const { return currentState; }
 
-private:
-
-	CardState currentState;
-
-
+	/// setters
+	void setState(CardState newState);
 };
 

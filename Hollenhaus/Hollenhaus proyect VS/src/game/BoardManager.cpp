@@ -10,7 +10,9 @@
 
 BoardManager::BoardManager() :
 	cardsOnBoard(0)
+
 {
+	//BUENOS DIAS :) QUE BONITO CONYO
 }
 
 BoardManager::~BoardManager()
@@ -41,6 +43,8 @@ void BoardManager::initComponent()
 					(sdlutils().images().at("card").height()) * 0.55));
 
 			cellCmp->setPosOnBoard(i, j);
+
+			
 		}
 	}
 
@@ -105,7 +109,7 @@ bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
 {
 	ecs::entity_t cell = _board[posX][posY];
 	auto cellCmp = mngr().getComponent<CellManager>(cell);
-	bool cardAdded = cellCmp->SetCard(card);
+	bool cardAdded = cellCmp->setCard(card);
 
 	if (cardAdded) {
 		cardsOnBoard++;
@@ -114,14 +118,14 @@ bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
 	return cardAdded;
 }
 
-bool BoardManager::isFull()
+bool BoardManager::isFull() const
 {
 	return cardsOnBoard == WIDTH * HEIGTH; // recordad que os mataré
 }
 
 
-Cell* BoardManager::getCell(int x, int y)const  {
-
+Cell* BoardManager::getCell(int x, int y)const
+{
 	return _board[x][y]->getComponent<Cell>();
 }
 
@@ -152,7 +156,7 @@ void BoardManager::updateScore()
 	//VA AL BOARD MANAGER
 	// hace recuento de valores
 	for (int j = 0; j < _board.size(); j++) {
-		for (int i = 0; i < _board.size(); i++) {
+		for (int i = 0; i < _board[j].size(); i++) {
 				//si es del jugador 1
 			if (_board[i][j]->getComponent<Cell>()->getOwner() == CellData::PLAYER1) {
 				pPlayer1 += _board[i][j]->getComponent<Cell>()->getTotalValue();
@@ -167,12 +171,12 @@ void BoardManager::updateScore()
 
 void BoardManager::applyAllEffects() const
 {
-	for (int j = 0; j < WIDTH; j++)
+	for (int j = 0; j < HEIGTH; j++)
 		for (int i = 0; i < WIDTH; i++)
 			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
 				_board[i][j]->getComponent<Cell>()->setTotalValue(0);
 
-	for (int j = 0; j < WIDTH; j++)
+	for (int j = 0; j < HEIGTH; j++)
 		for (int i = 0; i < WIDTH; i++)
 			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
 				_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());

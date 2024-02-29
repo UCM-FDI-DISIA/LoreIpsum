@@ -6,7 +6,7 @@ CellManager::CellManager() :
 {}
 
 
-bool CellManager::SetCard(ecs::entity_t card)
+bool CellManager::setCard(ecs::entity_t card)
 {
 	return true;
 }

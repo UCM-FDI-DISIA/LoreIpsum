@@ -12,7 +12,7 @@ public:
 
 	ecs::entity_t GetCard() { return _card; };
 
-	bool SetCard(ecs::entity_t card);
+	bool setCard(ecs::entity_t card);
 
 	void setPosOnBoard(int posX, int posY);
 	void setPosOnBoard(Vector2D pos);

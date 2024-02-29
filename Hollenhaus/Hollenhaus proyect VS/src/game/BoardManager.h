@@ -21,7 +21,7 @@ public:
     void update() override;
 
     bool addCard(ecs::entity_t card, int posX, int posY);
-    bool isFull();
+    bool isFull() const;
     void updateScore();
 
     /// Setters
