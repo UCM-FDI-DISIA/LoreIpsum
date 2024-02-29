@@ -282,18 +282,34 @@ void SDLUtils::loadReasources(std::string filename) {
 	jValue = root["cards"];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
-			musics_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			cards_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
 			for (auto &v : jValue->AsArray()) {
 				if (v->IsObject()) {
+					// card as JSON object
+					JSONObject cardObj = v->AsObject();
 
-					// TODO: parsear bien que no todo soin strings (skills pueden ser objs?)
-					JSONObject vObj = v->AsObject();
-					std::string key = vObj["id"]->AsString();
-					int cost = vObj["cost"]->AsNumber();
-					int value = vObj["value"]->AsNumber();
-					std::string sprite = vObj["sprite"]->AsString();
-					bool unblockable = vObj["unblockable"]->AsBool();
-					//std::string skills = vObj["skills"]->AsString();
+					std::string key		= cardObj["id"]->AsString(); // id
+					int cost			= cardObj["cost"]->AsNumber(); // card parameters
+					int value			= cardObj["value"]->AsNumber();
+					std::string sprite	= cardObj["sprite"]->AsString();
+					bool unblockable	= cardObj["unblockable"]->AsBool();
+
+					// effects as JSON array derivate of card object
+					auto effArr = cardObj["effects"]->AsArray();
+					for (auto& e : effArr )
+					{ // each effect as JSON object
+						auto effObj = e->AsObject();
+
+						int type = effObj["type"]->AsNumber();
+						int effValue = effObj["value"]->AsNumber();
+
+						// directions as JSON array derivate of each effect
+						auto dirArr = effObj["type"]->AsArray();
+						for (auto& d : dirArr)
+						{
+							auto dir = d->AsString();	
+						}
+					}
 #ifdef _DEBUG
 					std::cout << "Loading cards with id: " << key << std::endl;
 #endif

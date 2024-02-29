@@ -46,6 +46,7 @@
       "unblockable": false
     }
   ],
+
   "images": [
     {
       "id": "card",
@@ -68,6 +69,7 @@
       "file": "resources/images/board.png"
     }
   ],
+  
   "fonts": [
     {
       "id": "8bit",
