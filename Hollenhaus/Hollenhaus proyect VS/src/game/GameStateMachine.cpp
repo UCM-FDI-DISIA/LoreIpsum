@@ -18,7 +18,8 @@
 void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
-
+	
+	//pushState(new LuisState());
 	//pushState(new JimboState());
 	//pushState(new AndresState());
 	
