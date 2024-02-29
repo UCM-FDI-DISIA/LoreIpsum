@@ -3,7 +3,7 @@
 #include "Manager.h"
 
 
-MoveOnClick::MoveOnClick() : rightMovement(0), leftMovement(0)
+MoveOnClick::MoveOnClick()
 {
 }
 
@@ -24,12 +24,9 @@ void MoveOnClick::initComponent()
 
 void MoveOnClick::update()
 {
-
 	if (move)
 	{
-		float a = mousePos.getX() - halfScreen;
-
-		
+		//float a = mousePos.getX() - halfScreen;
 		//posx = posx - a;
 		if (mousePos.getX() >= halfScreen)
 		{
@@ -43,7 +40,6 @@ void MoveOnClick::update()
 		}
 
 		myTransform->setGlobalPos(movement);
-
 
 		if(myPos.getX() == myPos.getX() - halfScreen) //condicion que no va?¿¿?¿?¿?¿ ayuda
 		{
