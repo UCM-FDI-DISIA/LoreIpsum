@@ -180,35 +180,37 @@ public:
 	}
 
 	/// CARD DATA STRUCT
-	struct CardSkill
+	struct CardEffect
 	{
-		CardSkill();
-		~CardSkill();
+		CardEffect();
+
+		int type() const	{ return type_; }
+		int value() const	{ return value_; }
+		std::vector<std::string> directions() const { return directions_; }
 
 	private:
-		int type;
-		int value;
-		std::array<std::string, ADJACENTS> directions;
+		int type_;
+		int value_;
+		std::vector<std::string> directions_;
 	};
 
 	struct CardData
 	{ 
 		CardData();
-		~CardData() = default;
 
 		// getters con nombres simplificados para mas facil acceso desde sdlutils
 		int cost() const			{ return cost_; }
 		int value() const			{ return value_; }
 		std::string& sprite()		{ return sprite_; }
 		bool unblockable() const	{ return unblockable_; }
-		std::list<CardSkill>& effects() { return effects_; }
+		std::vector<CardEffect>& effects() { return effects_; }
 
 	private:
 		int cost_;
 		int value_;
 		std::string sprite_;
 		bool unblockable_;
-		std::list<CardSkill> effects_;
+		std::vector<CardSkill> effects_;
 	};
 
 private:
