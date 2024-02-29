@@ -1,12 +1,19 @@
 {
-
   "cards": [
     {
       "id": "card01",
       "cost": 1,
       "value": 2,
       "sprite": "sprite01",
-      "skills": "zero",
+      "skills": [
+        {
+          "type": 0,
+          "directions": [
+            "Arriba"
+          ],
+          "value": 2
+        }
+      ],
       "unblockable": false
     },
     {
@@ -14,7 +21,15 @@
       "cost": 3,
       "value": 4,
       "sprite": "sprite02",
-      "skills": "one",
+      "skills": [
+        {
+          "type": 1,
+          "directions": [
+            "Derecha"
+          ],
+          "value": 1
+        }
+      ],
       "unblockable": false
     },
     {
@@ -22,7 +37,12 @@
       "cost": 5,
       "value": 6,
       "sprite": "sprite03",
-      "skills": "two",
+      "skills": [
+        {
+          "type": 2,
+          "value": 4
+        }
+      ],
       "unblockable": false
     }
   ],
@@ -46,7 +66,6 @@
     {
       "id": "board",
       "file": "resources/images/board.png"
-
     }
   ],
   "fonts": [

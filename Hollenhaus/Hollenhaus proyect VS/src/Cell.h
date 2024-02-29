@@ -62,7 +62,7 @@ public:
 	int getTotalValue() const	{ return totalValue; }
 	CellData::Owner getPlayer() const		{ return player; }
 	Card* getCard() const		{ return card; }
-	std::array<Cell*, 4>& getAdjacents() { return adjacents; } // sets pointers to adjacent
+	std::array<Cell*, ADJACENTS>& getAdjacents() { return adjacents; } // sets pointers to adjacent
 	std::list<SDLEventCallback> getEffects() { return effectCallbacks; }
 
 	// setters

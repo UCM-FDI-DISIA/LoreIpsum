@@ -13,6 +13,7 @@
 #include "SoundEffect.h"
 #include "Texture.h"
 #include "VirtualTimer.h"
+#include "../Cell.h"
 
 #include "../game/Card.h"
 
@@ -178,6 +179,38 @@ public:
 		return SDL_GetTicks();
 	}
 
+	/// CARD DATA STRUCT
+	struct CardSkill
+	{
+		CardSkill();
+		~CardSkill();
+
+	private:
+		int type;
+		int value;
+		std::array<std::string, ADJACENTS> directions;
+	};
+
+	struct CardData
+	{ 
+		CardData();
+		~CardData() = default;
+
+		// getters con nombres simplificados para mas facil acceso desde sdlutils
+		int cost() const			{ return cost_; }
+		int value() const			{ return value_; }
+		std::string& sprite()		{ return sprite_; }
+		bool unblockable() const	{ return unblockable_; }
+		std::list<CardSkill>& effects() { return effects_; }
+
+	private:
+		int cost_;
+		int value_;
+		std::string sprite_;
+		bool unblockable_;
+		std::list<CardSkill> effects_;
+	};
+
 private:
 	SDLUtils();
 	SDLUtils(std::string windowTitle, int width, int height);
@@ -202,14 +235,14 @@ private:
 	sdl_resource_table<Texture> msgs_; // textures map (string -> texture)
 	sdl_resource_table<SoundEffect> sounds_; // sounds map (string -> sound)
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
-	sdl_resource_table<Card> cards_; // cards map (string -> card)
+	sdl_resource_table<CardData> cards_; // cards map (string -> card)
 
 	map_access_wrapper<Font> fontsAccessWrapper_;
 	map_access_wrapper<Texture> imagesAccessWrapper_;
 	map_access_wrapper<Texture> msgsAccessWrapper_;
 	map_access_wrapper<SoundEffect> soundsAccessWrapper_;
 	map_access_wrapper<Music> musicsAccessWrapper_;
-	map_access_wrapper<Card> cardAccessWrapper;
+	map_access_wrapper<CardData> cardAccessWrapper;
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer

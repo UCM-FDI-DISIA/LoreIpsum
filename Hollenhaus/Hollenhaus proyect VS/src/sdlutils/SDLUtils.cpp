@@ -297,7 +297,7 @@ void SDLUtils::loadReasources(std::string filename) {
 #ifdef _DEBUG
 					std::cout << "Loading cards with id: " << key << std::endl;
 #endif
-					cards_.emplace(key, Card(cost, value, sprite, unblockable));
+					//cards_.emplace(key, CardData(cost, value, sprite, unblockable));
 
 				} else {
 					throw "'cards' array in '" + filename
