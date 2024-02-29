@@ -55,6 +55,5 @@ void SamuState::onEnter() const
 void SamuState::onExit() const
 {
 	TuVieja("\nExit SamuState");
-	//GameStateMachine::instance()->getMngr()->Free();
-	//ih().clearState();
+	GameStateMachine::instance()->getMngr()->Free();
 }

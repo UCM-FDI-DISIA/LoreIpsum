@@ -53,6 +53,7 @@ void Game::Run()
 		HandleEvents();
 		Update();
 		Render();
+		ChangeScene();
 
 		//calcular el tiempo de frame
 		frameTime = SDL_GetTicks() - startTime;
@@ -80,6 +81,11 @@ void Game::Render() const
 void Game::Update()
 {
 	gameStateMachine->Update();
+}
+
+void Game::ChangeScene()
+{
+	gameStateMachine->changeState();
 }
 
 void Game::HandleEvents()

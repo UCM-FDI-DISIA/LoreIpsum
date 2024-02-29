@@ -54,6 +54,7 @@ void CityState::onExit() const
 {
 	std::cout << "\nexit CityState\n";
 	GameStateMachine::instance()->getMngr()->Free();
+	//ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
 	//Free del input
 
 }

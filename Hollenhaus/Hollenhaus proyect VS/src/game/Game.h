@@ -36,6 +36,7 @@ private:
 
 	void Render() const;
 	void Update();
+	void ChangeScene();
 
 	void HandleEvents();
 

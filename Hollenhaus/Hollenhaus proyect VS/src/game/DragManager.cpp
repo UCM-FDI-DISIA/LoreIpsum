@@ -57,6 +57,7 @@ void DragManager::OnLeftClickDown()
 
 		dragTransform->getGlobalPos().set(ih().getMousePos().first, ih().getMousePos().second);
 		GameStateMachine::instance()->setState(2);
+		
 	}
 
 	
