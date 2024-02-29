@@ -3,7 +3,7 @@
 #include "Manager.h"
 
 
-MoveOnClick::MoveOnClick()
+MoveOnClick::MoveOnClick() : rightMovement(0), leftMovement(0)
 {
 }
 
@@ -24,24 +24,31 @@ void MoveOnClick::initComponent()
 
 void MoveOnClick::update()
 {
+
 	if (move)
 	{
-		if (mousePos.getX() > halfScreen)
+		float a = mousePos.getX() - halfScreen;
+
+		
+		//posx = posx - a;
+		if (mousePos.getX() >= halfScreen)
 		{
 			scrollSpeed--;
+			movement.setX(myPos.getX() + scrollSpeed);
 		}
-		else if(mousePos.getX() < halfScreen)
+		else if (mousePos.getX() < halfScreen)
 		{
 			scrollSpeed++;
+			movement.setX(myPos.getX() + scrollSpeed);
 		}
 
-		movement.setX(myPos.getX() + scrollSpeed);
 		myTransform->setGlobalPos(movement);
-		
-		//condicion que falta sacar
-		/*if () {
+
+
+		if(myPos.getX() == myPos.getX() - halfScreen) //condicion que no va?¿¿?¿?¿?¿ ayuda
+		{
 			move = false;
-		}*/
+		}
 	}
 }
 
@@ -52,8 +59,7 @@ void MoveOnClick::OnLeftClickDown()
 
 	//Si pulsamos en el collider, efectuamos el movimiento
 	if (myBoxCollider->isCursorOver()){
-		std::cout << mousePos.getX() << std::endl;
-		//std::cout << myPos.getX() << std::endl;
 		move = true;
+		scrollSpeed = 1.0f;
 	}
 }
