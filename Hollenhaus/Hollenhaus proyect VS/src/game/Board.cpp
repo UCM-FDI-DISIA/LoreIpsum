@@ -60,6 +60,7 @@ bool Board::setCard(int x, int y, Card* c, CellData::Owner o)
 	if (cell->getCard() != nullptr)
 		return false;
 	cell->setCard(c, o);
+	c->setCell(cell);
 	cell->addEffect(c->getEffect(c->getEffectSize() - 1));
 	applyAllEffects();
 	return true;

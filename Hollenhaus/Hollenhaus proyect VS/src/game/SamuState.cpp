@@ -61,6 +61,7 @@ void SamuState::update()
 
 	board->getComponent<BoardManager>()->updateScore();
 	std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
+	
 }
 
 void SamuState::render() const
