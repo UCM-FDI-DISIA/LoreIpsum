@@ -127,9 +127,23 @@ void CardFactory_v0::createHand()
 	
 	std::string sprite = "card";
 
-	createCard(Vector2D(initX, initY), 2, 2, sprite, true)->setLayer(1);
+	auto cards = sdlutils().cards();
+
+	for (int i = 0; i < 3; i++)
+	{
+		auto card = cards.at(std::to_string(i));
+		createCard(
+			Vector2D(initX + offSetX * i, initY),
+			card.cost(),
+			card.value(),
+			sprite,
+			card.unblockable()
+		)->setLayer(1);
+	}
+
+	/*createCard(Vector2D(initX, initY), 2, 2, sprite, true)->setLayer(1);
 	createCard(Vector2D(initX + offSetX, initY),3,3,sprite, false)->setLayer(1);
 	createCard(Vector2D(initX + offSetX*2, initY), 4, 4, sprite, false)->setLayer(1);
-	createCard(Vector2D(initX + offSetX*3, initY), 5, 5, sprite, false)->setLayer(2);
+	createCard(Vector2D(initX + offSetX*3, initY), 5, 5, sprite, false)->setLayer(2);*/
 }
 

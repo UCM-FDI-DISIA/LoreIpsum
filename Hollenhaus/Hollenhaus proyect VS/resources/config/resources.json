@@ -1,7 +1,7 @@
 {
   "cards": [
     {
-      "id": "card01",
+      "id": "0",
       "cost": 1,
       "value": 2,
       "sprite": "sprite01",
@@ -17,7 +17,7 @@
       "unblockable": false
     },
     {
-      "id": "card02",
+      "id": "1",
       "cost": 3,
       "value": 4,
       "sprite": "sprite02",
@@ -33,7 +33,7 @@
       "unblockable": false
     },
     {
-      "id": "card03",
+      "id": "2",
       "cost": 5,
       "value": 6,
       "sprite": "sprite03",
