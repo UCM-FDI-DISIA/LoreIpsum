@@ -24,7 +24,8 @@ enum Direction
 	Arriba,
 	Derecha,
 	Abajo,
-	Izquierda
+	Izquierda,
+	Ninguna
 };
 
 }

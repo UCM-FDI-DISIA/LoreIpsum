@@ -5,7 +5,7 @@ EffectCollection::EffectCollection()
 {
 }
 
-void EffectCollection::addValueAdj(Cell* thisCardCell, CellData::Direction direction, int add, bool ultimateArrow)
+void EffectCollection::addAdj(Cell* thisCardCell, CellData::Direction direction, int add, bool ultimateArrow)
 {
 	if (thisCardCell != nullptr)
 	{
@@ -25,7 +25,31 @@ void EffectCollection::addValueAdj(Cell* thisCardCell, CellData::Direction direc
 	}
 }
 
-void EffectCollection::addValueCenter(Cell* thisCardCell, int add)
+void EffectCollection::addSimpleAdj(Cell* thisCardCell, CellData::Direction direction, int add)
+{
+	if (thisCardCell != nullptr)
+	{
+		if (thisCardCell->getAdjacents()[direction] != nullptr)
+		{
+			thisCardCell->getAdjacents()[direction]->addTotal(add);
+		}
+	}
+}
+
+void EffectCollection::addSuperAdj(Cell* thisCardCell, CellData::Direction direction, int add)
+{
+	if (thisCardCell != nullptr)
+	{
+		while (thisCardCell->getAdjacents()[direction] != nullptr)
+		{
+			// sobrescribes la celda que mirar
+			thisCardCell->getAdjacents()[direction]->addTotal(add);
+			thisCardCell = thisCardCell->getAdjacents()[direction];
+		}
+	}
+}
+
+void EffectCollection::addCenter(Cell* thisCardCell, int add)
 {
 	if (thisCardCell->getCenter())
 	{
@@ -33,7 +57,7 @@ void EffectCollection::addValueCenter(Cell* thisCardCell, int add)
 	}
 }
 
-void EffectCollection::addValueCorner(Cell* thisCardCell, int add)
+void EffectCollection::addCorner(Cell* thisCardCell, int add)
 {
 	if (thisCardCell->getCorner())
 	{
@@ -43,7 +67,7 @@ void EffectCollection::addValueCorner(Cell* thisCardCell, int add)
 
 void EffectCollection::blockCard(Cell* thisCardCell, CellData::Direction direction)
 {
-	if (thisCardCell->getAdjacents()[direction] != nullptr 
+	if (thisCardCell->getAdjacents()[direction] != nullptr
 		&& thisCardCell->getAdjacents()[direction]->getCard() != nullptr
 		&& thisCardCell->getAdjacents()[direction]->getCard()->getIsUnblockable() != true)
 	{
@@ -58,3 +82,5 @@ void EffectCollection::unblockable(Cell* thisCardCell, bool isUnblockable)
 		thisCardCell->getCard()->setUnblockable(isUnblockable);
 	}
 }
+
+

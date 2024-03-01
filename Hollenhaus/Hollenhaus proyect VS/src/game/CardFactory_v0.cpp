@@ -20,35 +20,37 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	card->addComponent<SpriteRenderer>(sprite);
 	card->addComponent<BoxCollider>();
 	card->addComponent<CardStateManager>();
-	
+
 	auto cardTransform = card->getComponent<Transform>();
-
 	cardTransform->getGlobalScale().set(cardScale, cardScale);
-
-	/*
-
-	auto cardDrag = mngr().getComponent<Drag>(card);
-
-	cardDrag->addCondition([card]() {
-
-		auto state = mngr().getComponent<CardStateManager>(card)->getState();
-
-		return state == CardStateManager::ON_HAND;
-		});
 	
-	*/
+	const auto cardComp = card->addComponent<Card>(
+		cost,value,sprite,unblockable
+	);
+	/// Hemos creado getEffect para evitar:
+	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), CellData::Abajo, 20, false);}
+	/// Al metodo createCard se le deberia pasar el array de effects
+	///	y a continuacion iterar sobre el, anyadiendole a la carta cada
+	///	efecto tal que:
+	cardComp->addCardEffect(
+		EffectCollection::getEffect(
+			this,
+			Effects::Flecha, 
+			cardComp, 
+			20, 
+			CellData::Abajo)
+	);
 
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
-
 	cardCardStateManager->setState(CardStateManager::ON_HAND);
 
-	card->addComponent<Card>(cost,value,sprite,unblockable);
-
-	// añade el efecto a la carta
-	//card->getComponent<Card>()->getValue()
-	card->getComponent<Card>()->addCardEffect([this, card] {
-		EffectCollection::addValueAdj(card->getComponent<Card>()->getCell(), CellData::Abajo, 20, false);
-		});
+	/*
+	auto cardDrag = mngr().getComponent<Drag>(card);
+	cardDrag->addCondition([card]() {
+		auto state = mngr().getComponent<CardStateManager>(card)->getState();
+		return state == CardStateManager::ON_HAND;
+	});
+	*/
 
     return card;
 }

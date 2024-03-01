@@ -94,7 +94,7 @@ void BoardState::inputCard()
 		});
 	else if (typecard == 1) 
 		cardPH->addCardEffect([this, x, y, skillv] {
-				effectCollection->addValueAdj(board->getCell(x, y), CellData::Abajo, skillv, false);
+				effectCollection->addAdj(board->getCell(x, y), CellData::Abajo, skillv, false);
 		});
 
 	board->setCard(x, y, cardPH, owner);
