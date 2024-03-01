@@ -5,81 +5,81 @@ EffectCollection::EffectCollection()
 {
 }
 
-void EffectCollection::addAdj(Cell* thisCardCell, CellData::Direction direction, int add, bool ultimateArrow)
+void EffectCollection::addAdj(Cell* cell, CellData::Direction direction, int add, bool ultimateArrow)
 {
-	if (thisCardCell != nullptr)
+	if (cell != nullptr)
 	{
 		if (ultimateArrow)
 		{
-			while (thisCardCell->getAdjacents()[direction] != nullptr)
+			while (cell->getAdjacents()[direction] != nullptr)
 			{
 				// sobrescribes la celda que mirar
-				thisCardCell->getAdjacents()[direction]->addTotal(add);
-				thisCardCell = thisCardCell->getAdjacents()[direction];
+				cell->getAdjacents()[direction]->addTotal(add);
+				cell = cell->getAdjacents()[direction];
 			}
 		}
-		else if (thisCardCell->getAdjacents()[direction] != nullptr)
+		else if (cell->getAdjacents()[direction] != nullptr)
 		{
-			thisCardCell->getAdjacents()[direction]->addTotal(add);
+			cell->getAdjacents()[direction]->addTotal(add);
 		}
 	}
 }
 
-void EffectCollection::addSimpleAdj(Cell* thisCardCell, CellData::Direction direction, int add)
+void EffectCollection::addSimpleAdj(Cell* cell, CellData::Direction direction, int add)
 {
-	if (thisCardCell != nullptr)
+	if (cell != nullptr)
 	{
-		if (thisCardCell->getAdjacents()[direction] != nullptr)
+		if (cell->getAdjacents()[direction] != nullptr)
 		{
-			thisCardCell->getAdjacents()[direction]->addTotal(add);
+			cell->getAdjacents()[direction]->addTotal(add);
 		}
 	}
 }
 
-void EffectCollection::addSuperAdj(Cell* thisCardCell, CellData::Direction direction, int add)
+void EffectCollection::addSuperAdj(Cell* cell, CellData::Direction direction, int add)
 {
-	if (thisCardCell != nullptr)
+	if (cell != nullptr)
 	{
-		while (thisCardCell->getAdjacents()[direction] != nullptr)
+		while (cell->getAdjacents()[direction] != nullptr)
 		{
 			// sobrescribes la celda que mirar
-			thisCardCell->getAdjacents()[direction]->addTotal(add);
-			thisCardCell = thisCardCell->getAdjacents()[direction];
+			cell->getAdjacents()[direction]->addTotal(add);
+			cell = cell->getAdjacents()[direction];
 		}
 	}
 }
 
-void EffectCollection::addCenter(Cell* thisCardCell, int add)
+void EffectCollection::addCenter(Cell* cell, int add)
 {
-	if (thisCardCell->getCenter())
+	if (cell->getCenter())
 	{
-		thisCardCell->addTotal(add);
+		cell->addTotal(add);
 	}
 }
 
-void EffectCollection::addCorner(Cell* thisCardCell, int add)
+void EffectCollection::addCorner(Cell* cell, int add)
 {
-	if (thisCardCell->getCorner())
+	if (cell->getCorner())
 	{
-		thisCardCell->addTotal(add);
+		cell->addTotal(add);
 	}
 }
 
-void EffectCollection::blockCard(Cell* thisCardCell, CellData::Direction direction)
+void EffectCollection::blockCard(Cell* cell, CellData::Direction direction)
 {
-	if (thisCardCell->getAdjacents()[direction] != nullptr
-		&& thisCardCell->getAdjacents()[direction]->getCard() != nullptr
-		&& thisCardCell->getAdjacents()[direction]->getCard()->getIsUnblockable() != true)
+	if (cell->getAdjacents()[direction] != nullptr
+		&& cell->getAdjacents()[direction]->getCard() != nullptr
+		&& cell->getAdjacents()[direction]->getCard()->getIsUnblockable() != true)
 	{
-		thisCardCell->blockEffects(thisCardCell->getAdjacents()[direction]);
+		cell->blockEffects(cell->getAdjacents()[direction]);
 	}
 }
 
-void EffectCollection::unblockable(Cell* thisCardCell, bool isUnblockable)
+void EffectCollection::unblockable(Cell* cell, bool isUnblockable)
 {
-	if (thisCardCell != nullptr)
+	if (cell != nullptr)
 	{
-		thisCardCell->getCard()->setUnblockable(isUnblockable);
+		cell->getCard()->setUnblockable(isUnblockable);
 	}
 }
 

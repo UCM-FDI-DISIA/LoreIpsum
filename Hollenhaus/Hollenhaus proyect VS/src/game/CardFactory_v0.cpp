@@ -23,7 +23,10 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 
 	auto cardTransform = card->getComponent<Transform>();
 	cardTransform->getGlobalScale().set(cardScale, cardScale);
-	
+
+	auto cardCardStateManager = card->getComponent<CardStateManager>();
+	cardCardStateManager->setState(CardStateManager::ON_HAND);
+
 	const auto cardComp = card->addComponent<Card>(
 		cost,value,sprite,unblockable
 	);
@@ -34,15 +37,11 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	///	efecto tal que:
 	cardComp->addCardEffect(
 		EffectCollection::getEffect(
-			this,
 			Effects::Flecha, 
 			cardComp, 
 			20, 
 			CellData::Abajo)
 	);
-
-	auto cardCardStateManager = card->getComponent<CardStateManager>();
-	cardCardStateManager->setState(CardStateManager::ON_HAND);
 
 	/*
 	auto cardDrag = mngr().getComponent<Drag>(card);
@@ -131,7 +130,7 @@ void CardFactory_v0::createHand()
 
 	auto cards = sdlutils().cards();
 
-	// OJO con la condicion, todavia no se como saber cards.size()
+	/// OJO con la condicion, todavia no se como saber cards.size()
 	for (int i = 0; i < 3; i++)
 	{
 		auto card = cards.at(std::to_string(i));
@@ -144,6 +143,8 @@ void CardFactory_v0::createHand()
 		)->setLayer(1);
 	}
 
+
+	// Cartas ejemplo
 	/*createCard(Vector2D(initX, initY), 2, 2, sprite, true)->setLayer(1);
 	createCard(Vector2D(initX + offSetX, initY),3,3,sprite, false)->setLayer(1);
 	createCard(Vector2D(initX + offSetX*2, initY), 4, 4, sprite, false)->setLayer(1);
