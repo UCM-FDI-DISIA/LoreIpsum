@@ -302,7 +302,7 @@ void SDLUtils::loadReasources(std::string filename) {
 					{ // each effect as JSON object
 						auto effObj = e->AsObject();
 
-						int type = effObj["type"]->AsNumber();
+						EffectType::Index type = (EffectType::Index)effObj["type"]->AsNumber();
 						int effValue = effObj["value"]->AsNumber();
 
 						/// Por cada efecto, puede haber un array de direcciones

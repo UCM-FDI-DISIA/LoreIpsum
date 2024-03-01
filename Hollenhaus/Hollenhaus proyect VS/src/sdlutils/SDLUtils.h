@@ -14,6 +14,7 @@
 #include "Texture.h"
 #include "VirtualTimer.h"
 #include "../Cell.h"
+#include "../EffectCollection.h"
 
 #include "../game/Card.h"
 #include "../json/JSON.h"
@@ -186,15 +187,15 @@ public:
 		using Directions = std::vector<CellData::Direction>;
 
 		CardEffect();
-		CardEffect(int t, int v, Directions d)
+		CardEffect(EffectType::Index t, int v, Directions d)
 			: type_(t), value_(v), directions_(d) {}
 
-		int type() const	{ return type_; }
+		EffectType::Index type() const	{ return type_; }
 		int value() const	{ return value_; }
 		Directions directions() const { return directions_; }
 
 	private:
-		int type_;
+		EffectType::Index type_;
 		int value_;
 		Directions directions_;
 	};

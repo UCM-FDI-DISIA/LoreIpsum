@@ -12,8 +12,8 @@
 #include "../EffectCollection.h"
 
 
-
-ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable)
+ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
+                                         std::vector<SDLUtils::CardEffect>& effects)
 {
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
 
@@ -28,21 +28,51 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	cardCardStateManager->setState(CardStateManager::ON_HAND);
 
 	const auto cardComp = card->addComponent<Card>(
-		cost,value,sprite,unblockable
+		cost, value, sprite, unblockable
 	);
 	/// Hemos creado getEffect para evitar:
 	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), CellData::Abajo, 20, false);}
 	/// Al metodo createCard se le deberia pasar el array de effects
 	///	y a continuacion iterar sobre el, anyadiendole a la carta cada
 	///	efecto tal que:
-	cardComp->addCardEffect(
+	/*cardComp->addCardEffect(
 		EffectCollection::getEffect(
-			EffectType::Flecha, 
-			cardComp, 
-			20, 
+			EffectType::Flecha,
+			cardComp,
+			20,
 			CellData::Abajo
 		)
-	);
+	);*/
+
+	/// WIP: bucle de carga de efectos a carta
+	for (auto e : effects)
+	{
+		if (e.directions().empty())
+		{
+			cardComp->addCardEffect(
+				EffectCollection::getEffect(
+					(EffectType::Index)e.type(),
+					cardComp,
+					e.value(),
+					(CellData::Direction)0
+				)
+			);
+		}
+		else
+		{
+			for (auto d : e.directions())
+			{
+				cardComp->addCardEffect(
+					EffectCollection::getEffect(
+						(EffectType::Index)e.type(),
+						cardComp,
+						e.value(),
+						d
+					)
+				);
+			}
+		}
+	}
 
 	/*
 	auto cardDrag = mngr().getComponent<Drag>(card);
@@ -52,12 +82,12 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	});
 	*/
 
-    return card;
+	return card;
 }
 
 
 ecs::entity_t CardFactory_v0::createDropDetector(Vector2D pos)
-{	
+{
 	ecs::entity_t dropDect = Instantiate(ecs::grp::DROPS);
 
 	dropDect->addComponent<Transform>()->getGlobalPos().set(pos);
@@ -65,11 +95,11 @@ ecs::entity_t CardFactory_v0::createDropDetector(Vector2D pos)
 	dropDect->addComponent<DropDetector>()->getCardPos().set(pos);
 
 	dropDect->getComponent<BoxCollider>()->setSize(
-							Vector2D(sdlutils().images().at("card").width()*cardScale,
-											(sdlutils().images().at("card").height())*cardScale )) ;
+		Vector2D(sdlutils().images().at("card").width() * cardScale,
+		         (sdlutils().images().at("card").height()) * cardScale));
 
 	//dropDect->addComponent<Cell>();
-	
+
 
 	return dropDect;
 }
@@ -84,7 +114,7 @@ ecs::entity_t CardFactory_v0::createDropDetector_v2(Vector2D pos)
 
 	dropDect->getComponent<BoxCollider>()->setSize(
 		Vector2D(sdlutils().images().at("card").width() * cardScale,
-			(sdlutils().images().at("card").height()) * cardScale));
+		         (sdlutils().images().at("card").height()) * cardScale));
 
 	//dropDect->addComponent<Cell>();
 
@@ -94,7 +124,6 @@ ecs::entity_t CardFactory_v0::createDropDetector_v2(Vector2D pos)
 
 ecs::entity_t CardFactory_v0::createBoard()
 {
-
 	float initX = 200;
 	float initY = 20;
 	float xOffset = 82;
@@ -102,23 +131,21 @@ ecs::entity_t CardFactory_v0::createBoard()
 
 
 	createDropDetector(Vector2D(initX, initY));
-	createDropDetector(Vector2D(initX +xOffset, initY));
-	createDropDetector(Vector2D(initX + (2*xOffset),initY));
+	createDropDetector(Vector2D(initX + xOffset, initY));
+	createDropDetector(Vector2D(initX + (2 * xOffset), initY));
 
 
 	createDropDetector(Vector2D(initX, initY + yOffset));
-	createDropDetector(Vector2D(initX + xOffset, initY+yOffset));
-	createDropDetector(Vector2D(initX + (2 * xOffset), initY+yOffset));
+	createDropDetector(Vector2D(initX + xOffset, initY + yOffset));
+	createDropDetector(Vector2D(initX + (2 * xOffset), initY + yOffset));
 
 
-	createDropDetector(Vector2D(initX, initY +(2*yOffset)));
+	createDropDetector(Vector2D(initX, initY + (2 * yOffset)));
 	createDropDetector(Vector2D(initX + xOffset, initY + (2 * yOffset)));
 	createDropDetector(Vector2D(initX + (2 * xOffset), initY + (2 * yOffset)));
 
 
 	return nullptr;
-
-
 }
 
 void CardFactory_v0::createHand()
@@ -126,7 +153,7 @@ void CardFactory_v0::createHand()
 	int initY = 470;
 	int initX = 270;
 	int offSetX = 50;
-	
+
 	std::string sprite = "card";
 
 	auto cards = sdlutils().cards();
@@ -140,7 +167,8 @@ void CardFactory_v0::createHand()
 			card.cost(),
 			card.value(),
 			sprite,
-			card.unblockable()
+			card.unblockable(),
+			card.effects()
 		)->setLayer(1);
 	}
 
@@ -151,4 +179,3 @@ void CardFactory_v0::createHand()
 	createCard(Vector2D(initX + offSetX*2, initY), 4, 4, sprite, false)->setLayer(1);
 	createCard(Vector2D(initX + offSetX*3, initY), 5, 5, sprite, false)->setLayer(2);*/
 }
-

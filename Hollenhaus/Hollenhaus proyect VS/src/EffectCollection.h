@@ -48,7 +48,7 @@ public:
 	///	*** Esto es terrible, quiero que sirva para salir al paso
 	///	y como concepto inicial ***
 	static std::function<void()> getEffect(
-		Effects::Index index,
+		EffectType::Index index,
 		Card* card,
 		int value,
 		CellData::Direction direction)
@@ -56,37 +56,37 @@ public:
 		std::function<void()> effect;
 		switch (index)
 		{
-		case Effects::Esquina:
+		case EffectType::Esquina:
 			effect = [card, value]
 			{
 				addCorner(card->getCell(), value);
 			};
 			break;
-		case Effects::Centro:
+		case EffectType::Centro:
 			effect = [card, value]
 			{
 				addCenter(card->getCell(), value);
 			};
 			break;
-		case Effects::Flecha:
+		case EffectType::Flecha:
 			effect = [card, direction, value]
 			{
 				addSimpleAdj(card->getCell(), direction, value);
 			};
 			break;
-		case Effects::Superflecha:
+		case EffectType::Superflecha:
 			effect = [card, direction, value]
 			{
 				addSuperAdj(card->getCell(), direction, value);
 			};
 			break;
-		case Effects::Block:
+		case EffectType::Block:
 			effect = [card, direction]
 			{
 				blockCard(card->getCell(), direction);
 			};
 			break;
-		case Effects::Unblockable:
+		case EffectType::Unblockable:
 			effect = [card]
 			{
 				unblockable(card->getCell(), card->getIsUnblockable());
