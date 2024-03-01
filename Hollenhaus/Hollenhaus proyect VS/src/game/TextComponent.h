@@ -9,7 +9,14 @@ class Transform;
 class TextComponent : public ComponentRender
 {
 public:
-	TextComponent(std::string txt, std::string fontID, SDL_Color color);
+
+	enum Alignment {
+		Left,
+		Right,
+		Center
+	};
+
+	TextComponent(std::string txt, std::string fontID, SDL_Color color, Alignment alignment = Left);
 	~TextComponent();
 	void initComponent() override;
 	void render() const override;
@@ -20,9 +27,10 @@ public:
 	// Método público para cambiar el color
 	void setColor(SDL_Color color);
 
+	void setAlignment(Alignment alignment);
+
 
 private:
-
 
 	Transform* tr_;
 	SDLUtils& sdl_ = *SDLUtils::instance();
@@ -34,5 +42,8 @@ private:
 	std::string txt_;
 
 	void createTexture(std::string txt, Font* font, SDL_Color color);
+
+	Alignment alignment_;
+
 };
 
