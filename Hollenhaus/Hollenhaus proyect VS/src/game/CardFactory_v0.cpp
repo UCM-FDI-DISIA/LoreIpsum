@@ -129,6 +129,7 @@ void CardFactory_v0::createHand()
 
 	auto cards = sdlutils().cards();
 
+	// OJO con la condicion, todavia no se como saber cards.size()
 	for (int i = 0; i < 3; i++)
 	{
 		auto card = cards.at(std::to_string(i));
