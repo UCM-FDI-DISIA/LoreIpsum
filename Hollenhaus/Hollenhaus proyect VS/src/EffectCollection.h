@@ -3,7 +3,7 @@
 #include "Cell.h"
 #include "game/Board.h"
 
-namespace Effects
+namespace EffectType
 {
 	enum Index
 	{

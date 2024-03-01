@@ -37,10 +37,11 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	///	efecto tal que:
 	cardComp->addCardEffect(
 		EffectCollection::getEffect(
-			Effects::Flecha, 
+			EffectType::Flecha, 
 			cardComp, 
 			20, 
-			CellData::Abajo)
+			CellData::Abajo
+		)
 	);
 
 	/*
