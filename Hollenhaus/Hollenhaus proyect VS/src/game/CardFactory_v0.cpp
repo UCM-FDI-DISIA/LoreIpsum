@@ -45,8 +45,9 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	card->addComponent<Card>(cost,value,sprite,unblockable);
 
 	// añade el efecto a la carta
+	//card->getComponent<Card>()->getValue()
 	card->getComponent<Card>()->addCardEffect([this, card] {
-		EffectCollection::addValueCenter(card->getComponent<Card>()->getCell(), card->getComponent<Card>()->getValue());
+		EffectCollection::addValueAdj(card->getComponent<Card>()->getCell(), CellData::Abajo, 20, false);
 		});
 
     return card;

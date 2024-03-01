@@ -27,7 +27,7 @@ void BoardManager::initComponent()
 		_board[i].resize(HEIGTH);
 	}
 
-	/// Inicializacion de cada celda como entidad vacio
+	/// Inicializacion de cada celda como entidad vacia
 	for (int j = 0; j < HEIGTH; j++) {
 		for (int i = 0; i < WIDTH; i++) {
 
@@ -42,6 +42,8 @@ void BoardManager::initComponent()
 				Vector2D(sdlutils().images().at("card").width() * 0.55,
 					(sdlutils().images().at("card").height()) * 0.55));
 
+			_board[i][j]->addComponent<Cell>();
+
 			cellCmp->setPosOnBoard(i, j);
 
 			
@@ -52,7 +54,7 @@ void BoardManager::initComponent()
 	for (int j = 0; j < HEIGTH; j++) {
 		for (int i = 0; i < WIDTH; i++) 
 		{
-			Cell* cell = _board[i][j]->addComponent<Cell>();
+			Cell* cell = _board[i][j]->getComponent<Cell>();
 
 			/// CENTRO:
 			///		SIZE PAR: n/2 && n/2 - 1
