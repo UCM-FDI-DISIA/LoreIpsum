@@ -17,18 +17,18 @@ public:
 
 	// ---- TIPOS DE EFECTOS ----
 	// añade valor a algunas o todas sus adyacentes
-	void addValueAdj(Cell* thisCardCell, CellData::Direction direction, int add, bool ultimateArrow);
+	static void addValueAdj(Cell* thisCardCell, CellData::Direction direction, int add, bool ultimateArrow);
 
 	// añade valor a la propia carta si esta en centro - si el número de cartas a izq/der/arr/abj son el mismo
-	void addValueCenter(Cell* thisCardCell, int add);
+	static void addValueCenter(Cell* thisCardCell, int add);
 
 	// añade valor a la propia carta si esta en esquina - si solo tiene dos casilla adyacentes en cualquier dir
-	void addValueCorner(Cell* thisCardCell, int add);
+	static void addValueCorner(Cell* thisCardCell, int add);
 
 	// bloquea el efecto de la carta en alguna direccion
-	void blockCard(Cell* thisCardCell, CellData::Direction direction);
+	static void blockCard(Cell* thisCardCell, CellData::Direction direction);
 
 	// indica que esta carta no se puede bloquear
-	void unblockable(Cell* thisCardCell, bool isUnblockable);
+	static void unblockable(Cell* thisCardCell, bool isUnblockable);
 };
 
