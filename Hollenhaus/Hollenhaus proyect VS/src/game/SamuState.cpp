@@ -61,7 +61,7 @@ void SamuState::refresh()
 
 void SamuState::update()
 {
-	system("CLS");
+	//system("CLS");
 
 	GameState::update();
 

@@ -82,6 +82,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 }
 
 
+/*
 ecs::entity_t CardFactory_v0::createDropDetector(Vector2D pos)
 {
 	ecs::entity_t dropDect = Instantiate(ecs::grp::DROPS);
@@ -143,6 +144,7 @@ ecs::entity_t CardFactory_v0::createBoard()
 
 	return nullptr;
 }
+*/
 
 void CardFactory_v0::createHand()
 {
