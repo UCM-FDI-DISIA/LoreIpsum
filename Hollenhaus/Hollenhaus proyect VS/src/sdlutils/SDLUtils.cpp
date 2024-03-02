@@ -304,9 +304,17 @@ void SDLUtils::loadReasources(std::string filename) {
 					{ // each effect as JSON object
 						auto effObj = e->AsObject();
 
-						// casting de int a enum de efecto + lectura del valor del efecto
+						/// El UNICO requerimiento que tiene un efecto es su tipo de efecto
+						///	Si ese tipo de efecto necesita otros valores que no tiene, se usan unos
+						///	por defecto
+						
+						// casting de int a enum de efecto
 						Effects::Type type = static_cast<Effects::Type>(effObj["type"]->AsNumber());
-						int effValue = effObj["value"]->AsNumber();
+
+						/// Hay efectos que pueden NO tener valor numerico
+						int effValue = 0;
+						if (effObj["value"] != nullptr)
+							effValue = effObj["value"]->AsNumber();
 
 						/// Por cada efecto, puede haber un array de direcciones
 						///	(en caso de que no haya direcciones, el vector es vacio y punto pelota)

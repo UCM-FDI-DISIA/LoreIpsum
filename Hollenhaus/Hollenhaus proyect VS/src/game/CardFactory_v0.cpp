@@ -150,10 +150,6 @@ void CardFactory_v0::createHand()
 	int initX = 270;
 	int offSetX = 50;
 
-	std::string sprite = "card";
-
-	auto cards = sdlutils().cards();
-
 	// todavia no se como saber cards.size() de otra manera
 	/*int size = 0;
 	for (auto c : cards) esto no funciona porque no esta definido begin y end
@@ -161,12 +157,12 @@ void CardFactory_v0::createHand()
 
 	for (int i = 0; i < 6; i++)
 	{ 
-		auto card = cards.at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
+		auto card = sdlutils().cards().at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		createCard(
 			Vector2D(initX + offSetX * i, initY),
 			card.cost(),
 			card.value(),
-			sprite,
+			card.sprite(),
 			card.unblockable(),
 			card.effects()
 		)->setLayer(1);

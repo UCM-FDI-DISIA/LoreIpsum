@@ -26,6 +26,10 @@ public:
 	// getters
 	int getCost() const { return cost; }
 	int getValue() const { return value; }
+	std::string& getSprite() { return sprite; }
+	bool getUnblockable() const { return unblockable;  }
+	Cell* getCell() const { return cell;  }
+	std::list<SDLEventCallback> getEffects() const { return effects; }
 	SDLEventCallback getEffect(int i) {
 		if (i < 0) return nullptr;
 
@@ -33,9 +37,7 @@ public:
 		std::next(effectIt, i);	// avanza x posiciones
 		return *(effectIt);
 	}
-	bool getIsUnblockable() const { return unblockable;  }
 	int getEffectSize() const { return effects.size(); }
-	Cell* getCell() const { return cell;  }
 
 	// setters
 	void setCost(int v) { cost = v; }

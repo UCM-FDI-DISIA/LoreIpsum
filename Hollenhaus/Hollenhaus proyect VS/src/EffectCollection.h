@@ -89,7 +89,7 @@ public:
 		case Effects::Unblockable:
 			effect = [card]
 			{
-				unblockable(card->getCell(), card->getIsUnblockable());
+				unblockable(card->getCell(), card->getUnblockable());
 			};
 			break;
 		default:

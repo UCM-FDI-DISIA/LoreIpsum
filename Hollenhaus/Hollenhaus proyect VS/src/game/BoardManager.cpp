@@ -155,7 +155,8 @@ bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 	c->setCell(cell);
 
 	/// anyade callback a la celda
-	cell->addEffect(c->getEffect(c->getEffectSize() - 1));
+	for (const auto e : c->getEffects())
+		cell->addEffect(e);
 
 	/// reaplica todos los efectos
 	applyAllEffects();

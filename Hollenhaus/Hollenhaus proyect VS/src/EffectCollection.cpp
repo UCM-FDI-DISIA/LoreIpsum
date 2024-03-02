@@ -69,7 +69,7 @@ void EffectCollection::blockCard(Cell* cell, CellData::Direction direction)
 {
 	if (cell->getAdjacents()[direction] != nullptr
 		&& cell->getAdjacents()[direction]->getCard() != nullptr
-		&& cell->getAdjacents()[direction]->getCard()->getIsUnblockable() != true)
+		&& cell->getAdjacents()[direction]->getCard()->getUnblockable() != true)
 	{
 		cell->blockEffects(cell->getAdjacents()[direction]);
 	}
