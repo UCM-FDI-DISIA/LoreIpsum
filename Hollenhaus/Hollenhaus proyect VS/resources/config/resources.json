@@ -119,6 +119,10 @@
     {
       "id": "board",
       "file": "resources/images/board.png"
+    },
+    {
+      "id": "mouse",
+      "file": "resources/images/mouse.png"
     }
   ],
   

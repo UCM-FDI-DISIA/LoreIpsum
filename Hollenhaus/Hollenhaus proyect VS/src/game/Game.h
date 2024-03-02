@@ -3,7 +3,6 @@
 #include "checkML.h"
 #include <SDL.h>
 
-
 class GameStateMachine;
 
 class Game {

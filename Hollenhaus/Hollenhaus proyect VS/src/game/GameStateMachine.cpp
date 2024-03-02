@@ -2,8 +2,6 @@
 
 #include <iostream>
 #include <SDL.h>
-
-
 #include "GameStateMachine.h"
 #include "MainMenuState.h"
 #include "SamuState.h"
@@ -11,14 +9,14 @@
 #include "AndresState.h"
 #include "LuisState.h"
 #include "Manager.h"
-
+#include "Mouse.h";
 #include "BoardState.h"
 
 
 void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
-	
+	mouse_ = new Mouse("mouse");
 	//pushState(new LuisState());
 	//pushState(new JimboState());
 	//pushState(new AndresState());
@@ -51,12 +49,13 @@ GameStateMachine::~GameStateMachine() {
 void GameStateMachine::Render() const{
 	if (Empty()) return;
 	gameStack.top()->render();
+	mouse_->render();
 }
 
 void GameStateMachine::Update() {
 	if (Empty()) return;
 	gameStack.top()->update();
-
+	mouse_->update();
 	//para el manager
 	Refresh();
 }
