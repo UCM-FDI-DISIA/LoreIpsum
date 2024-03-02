@@ -20,9 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EffectCollection.cpp" />
+    <ClCompile Include="src\game\MatchManager.cpp" />
     <ClCompile Include="src\game\Mouse.cpp" />
     <ClCompile Include="src\game\TextComponent.cpp" />
-    <ClCompile Include="src\MatchManager.cpp" />
     <ClCompile Include="src\game\AndresState.cpp" />
     <ClCompile Include="src\game\BoardFactory.cpp" />
     <ClCompile Include="src\game\BoardManager.cpp" />
@@ -71,9 +71,9 @@
   <ItemGroup>
     <ClInclude Include="src\EffectCollection.h" />
     <ClInclude Include="src\game\Card.h" />
+    <ClInclude Include="src\game\MatchManager.h" />
     <ClInclude Include="src\game\Mouse.h" />
     <ClInclude Include="src\game\TextComponent.h" />
-    <ClInclude Include="src\MatchManager.h" />
     <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\game\AndresState.h" />
     <ClInclude Include="src\game\Board.h" />

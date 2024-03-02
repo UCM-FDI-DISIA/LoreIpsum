@@ -7,7 +7,7 @@
 BoardState::BoardState()
 {
 	board = new Board(4);
-	matchManager = new MatchManager();
+	//matchManager = new MatchManager();
 	effectCollection = new EffectCollection();
 
 }
@@ -30,9 +30,9 @@ void BoardState::render() const
 	// limpia la consola
 	system("CLS");
 
-	std::cout << "PLAYER 1: " << matchManager->getPlayer1Points()
-			  << " PLAYER 2: " << matchManager->getPlayer2Points()
-			  << "\n";
+	//std::cout << "PLAYER 1: " << matchManager->getPlayer1Points()
+	//		  << " PLAYER 2: " << matchManager->getPlayer2Points()
+	//		  << "\n";
 	board->paintBoard();
 }
 
@@ -98,5 +98,5 @@ void BoardState::inputCard()
 		});
 
 	board->setCard(x, y, cardPH, owner);
-	matchManager->updateScore(); // actualiza el matchManager siempre que se ponga una carta
+	//matchManager->updateScore(); // actualiza el matchManager siempre que se ponga una carta
 }

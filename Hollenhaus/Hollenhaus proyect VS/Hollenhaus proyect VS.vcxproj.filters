@@ -186,9 +186,6 @@
     <ClCompile Include="src\game\TextComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\MatchManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\KeyManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -198,6 +195,7 @@
     <ClCompile Include="src\game\GameStateMachine.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\MatchManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -386,9 +384,6 @@
     <ClInclude Include="src\Cell.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\MatchManager.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\KeyManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
@@ -398,5 +393,6 @@
     <ClInclude Include="src\game\GameStateMachine.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\MatchManager.h" />
   </ItemGroup>
 </Project>

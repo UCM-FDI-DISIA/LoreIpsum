@@ -1,15 +1,18 @@
 #pragma once
 #include "ComponentUpdate.h"
+#include "BoardManager.h"
+
+
 class MatchManager : public ComponentUpdate
 {
 public:
-    enum MatchStates {
+    enum TurnState {
         TurnJ1,
         TurnJ2,
         Finish
     };
 
-    MatchManager();
+    MatchManager(int defaultActionPoints, TurnState turnStart);
 
     ~MatchManager();
 
@@ -17,16 +20,19 @@ public:
 
     void update() override;
 
-    int GetActualActionPoints() const { return actualActionPoints; }
+    int GetActualActionPoints() const { return actualActionPoints; } 
     void SubstactActualActionPoints(int pointsSubstracted) { actualActionPoints -= pointsSubstracted; }
 
-    MatchStates GetActualState() const { return actualState; }
-    void SetActualState(MatchStates newState) { actualState = newState; }
+    TurnState GetActualState() const { return actualState; }
+    void SetActualState(TurnState newState) { actualState = newState; }
+
+    CellData::Owner GetPlayerTurn() const;
 
 private:
     int defaultActionPoints;
     int actualActionPoints;
 
-    MatchStates actualState;
+    TurnState actualState;
 };
+
 

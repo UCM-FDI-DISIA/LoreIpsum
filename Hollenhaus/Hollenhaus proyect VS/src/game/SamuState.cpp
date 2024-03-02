@@ -18,13 +18,18 @@
 
 #include "BoardFactory.h"
 
-#include "../MatchManager.h"
+#include "MatchManager.h"
 
 #include "BoardManager.h"
 #include "TextComponent.h"
+#include "MatchManager.h"
 
 SamuState::SamuState() : GameState() {
 
+	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
+	auto matchManager = Instantiate();
+	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
+	matchManager->addComponent<MatchManager>(4, MatchManager::TurnState::TurnJ2);
 
 	cardFact = new CardFactory_v0();
 
@@ -66,7 +71,9 @@ void SamuState::update()
 
 	board->getComponent<BoardManager>()->updateScore();
 
-	std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
+	std::cout << "Player 1 points: " << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
+	std::cout << "Player 2 points: " << board->getComponent<BoardManager>()->getPlayer2Points() << std::endl;
+
 }
 
 void SamuState::render() const
