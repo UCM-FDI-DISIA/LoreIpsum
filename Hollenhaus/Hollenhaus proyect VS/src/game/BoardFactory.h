@@ -3,12 +3,12 @@
 
 
 class Entity;
-class BoardFactory : public Factory
+class BoardFactory 
 {
 public:
 	BoardFactory(int w, int h);
 
-	ecs::Entity* createBoard() override;
+	ecs::Entity* createBoard() ;
 
 private:
 	int width;

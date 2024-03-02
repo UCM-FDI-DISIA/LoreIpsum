@@ -29,6 +29,7 @@ SamuState::SamuState() : GameState() {
 	cardFact = new CardFactory_v0();
 
 	boardFact = new BoardFactory(4, 4);
+
 	board = boardFact->createBoard();
 
 	cardFact->createHand();
@@ -66,7 +67,9 @@ void SamuState::update()
 
 	board->getComponent<BoardManager>()->updateScore();
 
+	#if _DEBUG
 	std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
+	#endif
 }
 
 void SamuState::render() const

@@ -183,9 +183,6 @@
     <ClCompile Include="src\game\KeyManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\BoardFactory.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\MatchManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -194,6 +191,12 @@
     </ClCompile>
     <ClCompile Include="src\game\TextComponent.cpp">
       <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Factory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\BoardFactory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -374,12 +377,6 @@
     <ClInclude Include="src\game\Factory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\BoardFactory.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\CardFactory.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\KeyManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -391,6 +388,9 @@
     </ClInclude>
     <ClInclude Include="src\game\TextComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\BoardFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
