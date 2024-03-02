@@ -1,6 +1,12 @@
 #pragma once
 
-#include "Factory.h"
+
+#include <vector>
+#include "../sdlutils/SDLUtils.h"
+
+class Vector2D;
+
+
 
 class CardFactory_v0 {
 

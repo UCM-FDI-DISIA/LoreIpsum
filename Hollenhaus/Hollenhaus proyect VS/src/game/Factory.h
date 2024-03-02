@@ -4,7 +4,7 @@
 #include "../utils/Vector2D.h"
 #include "../sdlutils/SDLUtils.h"
 
-class BoardFactory;
+class BoardFactory_v0;
 class CardFactory;
 class HandFactory;
 
@@ -22,7 +22,7 @@ public:
 	*/
 
 	template<typename T, typename ...Ts>
-	Factory(BoardFactory* bf, Ts &&... args) {
+	Factory(BoardFactory_v0* bf, Ts &&... args) {
 		boardFactory = bf;
 		Factory(std::forward<Ts>(args)...);
 	}
@@ -52,7 +52,7 @@ public:
 	virtual ecs::entity_t createBoard();
 
 public:
-	BoardFactory* boardFactory;
+	BoardFactory_v0* boardFactory;
 	CardFactory* cardFactory;
 	HandFactory* handFactory;
 };

@@ -16,7 +16,7 @@
 
 #include "Factory.h"
 
-#include "BoardFactory.h"
+#include "BoardFactory_v0.h"
 
 #include "../MatchManager.h"
 
@@ -28,7 +28,7 @@ SamuState::SamuState() : GameState() {
 
 	cardFact = new CardFactory_v0();
 
-	boardFact = new BoardFactory(4, 4);
+	boardFact = new BoardFactory_v0(4, 4);
 
 	board = boardFact->createBoard();
 
