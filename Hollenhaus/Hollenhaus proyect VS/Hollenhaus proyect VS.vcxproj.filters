@@ -198,7 +198,9 @@
     <ClCompile Include="src\game\BoardFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\CardFactory.cpp" />
+    <ClCompile Include="src\game\CardFactory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -393,6 +395,8 @@
     <ClInclude Include="src\game\BoardFactory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\CardFactory.h" />
+    <ClInclude Include="src\game\CardFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -35,7 +35,13 @@ public:
     Cell* getCell(int x, int y) const;
     std::list<SDLEventCallback> getEffects(Cell* cell) const;
 
+    void setBoard(std::vector<std::vector<ecs::entity_t>>& board) { 
+        _board = board;
+        initBoard(); 
+    }
+
 private:
+    void initBoard();
     //cleon: si en la entrega es una constante, os mataré. bueno, yo os mataré
     int size = DEFAULT_SIZE;
 

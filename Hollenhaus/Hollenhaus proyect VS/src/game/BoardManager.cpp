@@ -23,89 +23,7 @@ BoardManager::~BoardManager()
 
 void BoardManager::initComponent()
 {
-	// Seteamos el board al tamanio deseado
-	_board.resize(size);
-	for (int i = 0; i < size; i++)
-	{
-		_board[i].resize(size);
-	}
 
-	/// Inicializacion de cada celda como entidad vacia
-	for (int j = 0; j < size; j++)
-	{
-		for (int i = 0; i < size; i++)
-		{
-			//PARTE VISUAL
-			_board[i][j] = Instantiate(Vector2D(200 + i * 100, 100 + j * 100), ecs::grp::DROPS);
-			auto cellCmp = _board[i][j]->addComponent<CellManager>();
-
-			_board[i][j]->addComponent<BoxCollider>();
-			_board[i][j]->addComponent<DropDetector>()->getCardPos().set(
-				Vector2D(200 + i * 100, 100 + j * 100));
-			_board[i][j]->getComponent<DropDetector>()->getBoardPos().set(
-				Vector2D(i, j));
-			_board[i][j]->getComponent<BoxCollider>()->setSize(
-				Vector2D(sdlutils().images().at("card").width() * 0.55,
-				         (sdlutils().images().at("card").height()) * 0.55));
-
-			_board[i][j]->addComponent<Cell>();
-
-			cellCmp->setPosOnBoard(i, j);
-		}
-	}
-
-	/// Inicializacion de referencias de cada celda
-	for (int j = 0; j < size; j++)
-	{
-		for (int i = 0; i < size; i++)
-		{
-			Cell* cell = _board[i][j]->getComponent<Cell>();
-
-			/// CENTRO:
-			///		SIZE PAR: n/2 && n/2 - 1
-			///		SIZE IMPAR: floor(n/2)
-			if (size % 2 == 0) // es un tablero par
-			{
-				// esta en ambos ejes en el centro (2x2 casillas posibles)
-				if ((j == size / 2 || j == size / 2 - 1)
-					&& (i == size / 2 || i == size / 2 - 1))
-					cell->setCenter(true);
-			}
-			else // es un tablero impar
-			{
-				// esta en ambos ejes en el centro (1 unica casilla posible)
-				// como ambos son ints, la division devuelve el entero redondeando hacia abajo siempre!
-				if (j == size / 2 && i == size / 2)
-					cell->setCenter(true);
-			}
-
-			/// ESQUINA:
-			int n = size - 1;
-			if ((j == 0 && i == 0) // 0,0
-				|| (j == 0 && i == n) // 0,n
-				|| (j == n && i == n) // n,n
-				|| (j == n && i == 0)) // n,0
-				cell->setCorner(true);
-
-			/// ADYACENTES:
-			std::array<Cell*, ADJACENTS> adj;
-			// inicializa a nullptr
-			for (int m = 0; m < ADJACENTS; m++)
-				adj[m] = nullptr;
-
-			if (j > 0)
-				adj[CellData::Up]	 = _board[i][j - 1]->getComponent<Cell>();
-			if (i < n)
-				adj[CellData::Right]	 = _board[i + 1][j]->getComponent<Cell>();
-			if (j < n)
-				adj[CellData::Down]	 = _board[i][j + 1]->getComponent<Cell>();
-			if (i > 0)
-				adj[CellData::Left] = _board[i - 1][j]->getComponent<Cell>();
-
-			cell->setAdjacents(adj);
-		}
-	}
-	// Esto hay que sustituirlo por una factoría
 }
 
 void BoardManager::update()
@@ -142,6 +60,8 @@ std::list<SDLEventCallback> BoardManager::getEffects(Cell* cell) const
 {
 	return cell->getEffects();
 }
+
+
 
 
 bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
@@ -196,4 +116,60 @@ void BoardManager::applyAllEffects() const
 		for (int i = 0; i < size; i++)
 			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
 				_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
+}
+
+
+void BoardManager::initBoard()
+{
+	/// Inicializacion de referencias de cada celda
+	for (int j = 0; j < size; j++)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			Cell* cell = _board[i][j]->getComponent<Cell>();
+
+			/// CENTRO:
+			///		SIZE PAR: n/2 && n/2 - 1
+			///		SIZE IMPAR: floor(n/2)
+			if (size % 2 == 0) // es un tablero par
+			{
+				// esta en ambos ejes en el centro (2x2 casillas posibles)
+				if ((j == size / 2 || j == size / 2 - 1)
+					&& (i == size / 2 || i == size / 2 - 1))
+					cell->setCenter(true);
+			}
+			else // es un tablero impar
+			{
+				// esta en ambos ejes en el centro (1 unica casilla posible)
+				// como ambos son ints, la division devuelve el entero redondeando hacia abajo siempre!
+				if (j == size / 2 && i == size / 2)
+					cell->setCenter(true);
+			}
+
+			/// ESQUINA:
+			int n = size - 1;
+			if ((j == 0 && i == 0) // 0,0
+				|| (j == 0 && i == n) // 0,n
+				|| (j == n && i == n) // n,n
+				|| (j == n && i == 0)) // n,0
+				cell->setCorner(true);
+
+			/// ADYACENTES:
+			std::array<Cell*, ADJACENTS> adj;
+			// inicializa a nullptr
+			for (int m = 0; m < ADJACENTS; m++)
+				adj[m] = nullptr;
+
+			if (j > 0)
+				adj[CellData::Up] = _board[i][j - 1]->getComponent<Cell>();
+			if (i < n)
+				adj[CellData::Right] = _board[i + 1][j]->getComponent<Cell>();
+			if (j < n)
+				adj[CellData::Down] = _board[i][j + 1]->getComponent<Cell>();
+			if (i > 0)
+				adj[CellData::Left] = _board[i - 1][j]->getComponent<Cell>();
+
+			cell->setAdjacents(adj);
+		}
+	}
 }
