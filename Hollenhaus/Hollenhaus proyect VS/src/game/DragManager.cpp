@@ -72,22 +72,25 @@ void DragManager::OnLeftClickUp()
 
 		auto drop = mouseRaycast(ecs::grp::DROPS);
 
+		auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
+
 		//si tenemos una colision con el drop detector, cambiamos la posicion de la carta por la que guarde el drop
-		if (drop != nullptr) {
-			dragTransform->setGlobalPos(mngr().getComponent<DropDetector>(drop)->getCardPos());
+		if (drop != nullptr  && !dropDetector->isOcuped() ) {
+			dragTransform->setGlobalPos(dropDetector->getCardPos());
 			
 			dragTransform->getEntity()->getComponent<CardStateManager>()->setState(CardStateManager::ON_CELL);
+
+			dropDetector->setOcuped(true);
 
 			//x,y dependen del dropDectector(Cell)
 			//card viene del dragTransform
 			//owner depende del match manager,
 			
-			int x = drop->getComponent<DropDetector>()->getBoardPos().getX();
-			int y = drop->getComponent<DropDetector>()->getBoardPos().getY();
+			int x = dropDetector->getBoardPos().getX();
+			int y = dropDetector->getBoardPos().getY();
 			Card* card = dragTransform->getEntity()->getComponent<Card>();
 			
 			boardManager->setCard(x, y, card, CellData::PLAYER1);
-			//boardManager->setCard()
 		}
 		else {//sino, devolvemos la carta a su posicion inicial
 			dragTransform->setGlobalPos(initialTransformPos);
@@ -97,6 +100,5 @@ void DragManager::OnLeftClickUp()
 
 		dragTransform = nullptr;
 	}
-
 
 }

@@ -17,12 +17,17 @@ public:
 
 private:
 
+    bool ocuped = false;
 
     Vector2D cardPos;
 
     Vector2D boardPos;
 
 public:
+
+    void setOcuped(bool b) { ocuped = b; }
+
+    bool isOcuped() { return ocuped; }
 
     Vector2D& getCardPos() { return cardPos; };
 
