@@ -343,22 +343,25 @@ std::vector<CellData::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::
 {
 	if (jo["directions"] == nullptr) return directions; // si no tiene direcciones, vuelve
 
-	auto dirArr = jo["directions"]->AsArray(); // si las tiene
+	const auto dirArr = jo["directions"]->AsArray(); // si las tiene
 
-	for (auto& d : dirArr) // por cada direccion, 
+	for (const auto& d : dirArr) // por cada direccion, 
 	{
 		auto dir = d->AsString();
 
+		for (char &c : dir) 
+			c = std::tolower(c);
+
 		// soy tonti y no se pueden usar switchs con strings </3
 		// esto deberia ir en otro lado siiiii no me mires estoy probando
-		if		(dir == "Arriba")
-			directions.push_back(CellData::Arriba);
-		else if (dir == "Derecha")
-			directions.push_back(CellData::Derecha);
-		else if (dir == "Abajo")
-			directions.push_back(CellData::Abajo);
-		else if (dir == "Izquierda")
-			directions.push_back(CellData::Izquierda);
+		if		(dir == "up"	|| dir == "arriba")
+			directions.push_back(CellData::Up);
+		else if (dir == "right" || dir == "derecha")
+			directions.push_back(CellData::Right);
+		else if (dir == "down"	|| dir == "abajo")
+			directions.push_back(CellData::Down);
+		else if (dir == "left"	|| dir == "izquierda")
+			directions.push_back(CellData::Left);
 	}
 
 	return directions;

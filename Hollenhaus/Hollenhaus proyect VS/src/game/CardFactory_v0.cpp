@@ -33,7 +33,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 
 
 	/// Hemos creado getEffect para evitar:
-	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), CellData::Abajo, 20, false);}
+	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), CellData::Down, 20, false);}
 	/// Al metodo createCard se le deberia pasar el array de effects
 	///	y a continuacion iterar sobre el, anyadiendole a la carta cada
 	///	efecto tal que:
@@ -42,7 +42,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 			Effects::Flecha,
 			cardComp,
 			20,
-			CellData::Abajo
+			CellData::Down
 		)
 	);*/
 
@@ -55,7 +55,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 					e.type(),
 					cardComp,
 					e.value(),
-					CellData::Ninguna
+					CellData::None
 				)
 			);
 		else

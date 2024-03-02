@@ -21,11 +21,11 @@ enum Owner
 
 enum Direction
 {
-	Arriba,
-	Derecha,
-	Abajo,
-	Izquierda,
-	Ninguna
+	Up,
+	Right,
+	Down,
+	Left,
+	None
 };
 
 }
@@ -64,7 +64,7 @@ public:
 	CellData::Owner getPlayer() const		{ return player; }
 	Card* getCard() const		{ return card; }
 	std::array<Cell*, ADJACENTS>& getAdjacents() { return adjacents; } // sets pointers to adjacent
-	std::list<SDLEventCallback> getEffects() { return effectCallbacks; }
+	std::list<SDLEventCallback>& getEffects() { return effectCallbacks; }
 
 	// setters
 	void setActive(bool v)		{ active = v; }

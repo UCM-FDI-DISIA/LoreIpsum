@@ -90,11 +90,11 @@ void BoardState::inputCard()
 
 	if (typecard == 0) 
 		cardPH->addCardEffect([this, x, y] {
-				effectCollection->blockCard(board->getCell(x, y), CellData::Abajo);
+				effectCollection->blockCard(board->getCell(x, y), CellData::Down);
 		});
 	else if (typecard == 1) 
 		cardPH->addCardEffect([this, x, y, skillv] {
-				effectCollection->addAdj(board->getCell(x, y), CellData::Abajo, skillv, false);
+				effectCollection->addAdj(board->getCell(x, y), CellData::Down, skillv, false);
 		});
 
 	board->setCard(x, y, cardPH, owner);

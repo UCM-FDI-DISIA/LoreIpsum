@@ -94,13 +94,13 @@ void BoardManager::initComponent()
 				adj[m] = nullptr;
 
 			if (j > 0)
-				adj[CellData::Arriba]	 = _board[i][j - 1]->getComponent<Cell>();
+				adj[CellData::Up]	 = _board[i][j - 1]->getComponent<Cell>();
 			if (i < n)
-				adj[CellData::Derecha]	 = _board[i + 1][j]->getComponent<Cell>();
+				adj[CellData::Right]	 = _board[i + 1][j]->getComponent<Cell>();
 			if (j < n)
-				adj[CellData::Abajo]	 = _board[i][j + 1]->getComponent<Cell>();
+				adj[CellData::Down]	 = _board[i][j + 1]->getComponent<Cell>();
 			if (i > 0)
-				adj[CellData::Izquierda] = _board[i - 1][j]->getComponent<Cell>();
+				adj[CellData::Left] = _board[i - 1][j]->getComponent<Cell>();
 
 			cell->setAdjacents(adj);
 		}
@@ -155,7 +155,7 @@ bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 	c->setCell(cell);
 
 	/// anyade callback a la celda
-	for (const auto e : c->getEffects())
+	for (const auto& e : c->getEffects())
 		cell->addEffect(e);
 
 	/// reaplica todos los efectos
