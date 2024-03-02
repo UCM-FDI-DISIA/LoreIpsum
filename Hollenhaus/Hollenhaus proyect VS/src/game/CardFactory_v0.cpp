@@ -11,6 +11,8 @@
 #include "../Cell.h"
 #include "../EffectCollection.h"
 
+#include "TextComponent.h"
+
 
 ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
                                          std::vector<SDLUtils::CardEffect>& effects)
@@ -77,6 +79,27 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 		return state == CardStateManager::ON_HAND;
 	});
 	*/
+
+	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
+
+	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit", SDL_Color({255, 255, 255, 255}), TextComponent::Alignment::Center);
+
+	textoValor->getComponent<Transform>()->addParent(card->getComponent<Transform>());
+
+	textoValor->getComponent<Transform>()->getRelativePos().set(10, 10);
+
+	textoValor->setLayer(10);
+
+
+	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
+
+	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit", SDL_Color({ 255, 255, 255, 255 }), TextComponent::Alignment::Center);
+
+	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
+
+	textoCoste->getComponent<Transform>()->getRelativePos().set(10, 90);
+
+	textoCoste->setLayer(10);
 
 	return card;
 }

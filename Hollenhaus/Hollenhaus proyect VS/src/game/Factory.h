@@ -40,8 +40,7 @@ public:
 		SetFactories(std::forward<Ts>(args)...);
 	}
 	
-	
-	
+		
 
 #pragma endregion
 
