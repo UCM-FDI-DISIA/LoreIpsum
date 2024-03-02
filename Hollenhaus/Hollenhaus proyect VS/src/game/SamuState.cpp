@@ -60,11 +60,13 @@ void SamuState::refresh()
 
 void SamuState::update()
 {
+	system("CLS");
+
 	GameState::update();
 
 	board->getComponent<BoardManager>()->updateScore();
+
 	std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
-	
 }
 
 void SamuState::render() const

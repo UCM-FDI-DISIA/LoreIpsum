@@ -279,30 +279,33 @@ void SDLUtils::loadReasources(std::string filename) {
 
 	/// CARD PARSING
 	///	Samir (feat. Cynthia)
-	jValue = root["cards"];
-	if (jValue != nullptr) {
-		if (jValue->IsArray()) {
+	jValue = root["cards"]; // key con todas las cartas
+	if (jValue != nullptr) { // si existe tal key
+		if (jValue->IsArray()) { // si tiene cartas dentro
 			cards_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto &v : jValue->AsArray()) {
-				if (v->IsObject()) {
+			for (auto &v : jValue->AsArray()) { // por cada carta
+				if (v->IsObject()) { // si la carta actual es objeto
 					// card as JSON object
 					JSONObject cardObj = v->AsObject();
 
+					/// >>> Lectura inicial de parametros basicos <<<
 					std::string key		= cardObj["id"]->AsString(); // id
-					int cost			= cardObj["cost"]->AsNumber(); // card parameters
-					int value			= cardObj["value"]->AsNumber();
-					std::string sprite	= cardObj["sprite"]->AsString();
-					bool unblockable	= cardObj["unblockable"]->AsBool();
-					std::vector<CardEffect> effects;
+					int cost			= cardObj["cost"]->AsNumber(); // coste
+					int value			= cardObj["value"]->AsNumber(); // valor 
+					std::string sprite	= cardObj["sprite"]->AsString(); // sprite
+					bool unblockable	= cardObj["unblockable"]->AsBool(); // unblockable
 
+
+					/// >>> Lectura de efectos <<<
 					/// Por cada carta, hay un array de efectos
-					// effects as JSON array derivate of card object
-					auto effArr = cardObj["effects"]->AsArray();
-					for (auto& e : effArr )
+					std::vector<CardEffect> effects; // declaracion inicial de vector vacio de efectos
+					auto effArr = cardObj["effects"]->AsArray(); // effects as JSON array derivate of card object
+					for (auto& e : effArr ) // por cada efecto
 					{ // each effect as JSON object
 						auto effObj = e->AsObject();
 
-						EffectType::Index type = (EffectType::Index)effObj["type"]->AsNumber();
+						// casting de int a enum de efecto + lectura del valor del efecto
+						Effects::Type type = static_cast<Effects::Type>(effObj["type"]->AsNumber());
 						int effValue = effObj["value"]->AsNumber();
 
 						/// Por cada efecto, puede haber un array de direcciones
@@ -315,7 +318,7 @@ void SDLUtils::loadReasources(std::string filename) {
 #ifdef _DEBUG
 					std::cout << "Loading cards with id: " << key << std::endl;
 #endif
-					cards_.emplace(key, CardData(cost, value, sprite, unblockable, effects));
+					cards_.emplace(key, CardData(cost, value, sprite, unblockable, effects)); // finalmente se anyaden al mapa
 
 				} else {
 					throw "'cards' array in '" + filename
@@ -330,11 +333,11 @@ void SDLUtils::loadReasources(std::string filename) {
 
 std::vector<CellData::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::vector<CellData::Direction>& directions)
 {
-	if (jo["directions"] == nullptr) return directions;
+	if (jo["directions"] == nullptr) return directions; // si no tiene direcciones, vuelve
 
-	auto dirArr = jo["directions"]->AsArray();
+	auto dirArr = jo["directions"]->AsArray(); // si las tiene
 
-	for (auto& d : dirArr)
+	for (auto& d : dirArr) // por cada direccion, 
 	{
 		auto dir = d->AsString();
 

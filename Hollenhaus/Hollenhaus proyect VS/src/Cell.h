@@ -7,7 +7,7 @@
 // utiliza callbacks funcionales de tipo <void(void)>
 using SDLEventCallback = std::function<void()>;
 
-constexpr int ADJACENTS = 4;
+constexpr int ADJACENTS = 4 + 1; // direcciones posibles + direccion nula
 
 namespace CellData {
 
@@ -74,7 +74,7 @@ public:
 	void setPlayer(CellData::Owner o)		{ player = o; }
 	void setCard(Card* c, CellData::Owner o);
 	void deleteCard() const		{ delete card; } // ???
-	void setAdjacents(std::array<Cell*, 4>& a) { adjacents = a; }
+	void setAdjacents(std::array<Cell*, ADJACENTS>& a) { adjacents = a; }
 	void blockEffects(Cell* c);
 
 	Cell& operator=(const Cell& o)

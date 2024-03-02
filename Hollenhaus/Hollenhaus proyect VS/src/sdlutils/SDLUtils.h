@@ -45,7 +45,9 @@ public:
 	class map_access_wrapper {
 		sdl_resource_table<T> &map_;
 		std::string desc_;
+
 	public:
+
 		map_access_wrapper(sdl_resource_table<T> &map, std::string desc) :
 				map_(map), desc_(desc) {
 		}
@@ -67,6 +69,7 @@ public:
 		inline T& operator[](const std::string &key) {
 			return at(key);
 		}
+
 	};
 
 	virtual ~SDLUtils();
@@ -187,15 +190,15 @@ public:
 		using Directions = std::vector<CellData::Direction>;
 
 		CardEffect();
-		CardEffect(EffectType::Index t, int v, Directions d)
+		CardEffect(Effects::Type t, int v, Directions& d)
 			: type_(t), value_(v), directions_(d) {}
 
-		EffectType::Index type() const	{ return type_; }
+		Effects::Type type() const	{ return type_; }
 		int value() const	{ return value_; }
 		Directions directions() const { return directions_; }
 
 	private:
-		EffectType::Index type_;
+		Effects::Type type_;
 		int value_;
 		Directions directions_;
 	};
@@ -203,7 +206,7 @@ public:
 	struct CardData
 	{ 
 		CardData();
-		CardData(int c, int v, std::string s, bool u, std::vector<CardEffect> e)
+		CardData(int c, int v, std::string& s, bool u, std::vector<CardEffect>& e)
 			: cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e) {}
 
 		// getters con nombres simplificados para mas facil acceso desde sdlutils

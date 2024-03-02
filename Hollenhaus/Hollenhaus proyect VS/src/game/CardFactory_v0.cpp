@@ -30,6 +30,8 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	const auto cardComp = card->addComponent<Card>(
 		cost, value, sprite, unblockable
 	);
+
+
 	/// Hemos creado getEffect para evitar:
 	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), CellData::Abajo, 20, false);}
 	/// Al metodo createCard se le deberia pasar el array de effects
@@ -37,7 +39,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	///	efecto tal que:
 	/*cardComp->addCardEffect(
 		EffectCollection::getEffect(
-			EffectType::Flecha,
+			Effects::Flecha,
 			cardComp,
 			20,
 			CellData::Abajo
@@ -48,30 +50,24 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	for (auto e : effects)
 	{
 		if (e.directions().empty())
-		{
 			cardComp->addCardEffect(
 				EffectCollection::getEffect(
-					(EffectType::Index)e.type(),
+					e.type(),
 					cardComp,
 					e.value(),
-					(CellData::Direction)0
+					CellData::Ninguna
 				)
 			);
-		}
 		else
-		{
 			for (auto d : e.directions())
-			{
 				cardComp->addCardEffect(
 					EffectCollection::getEffect(
-						(EffectType::Index)e.type(),
+						e.type(),
 						cardComp,
 						e.value(),
 						d
 					)
 				);
-			}
-		}
 	}
 
 	/*
@@ -158,10 +154,14 @@ void CardFactory_v0::createHand()
 
 	auto cards = sdlutils().cards();
 
-	/// OJO con la condicion, todavia no se como saber cards.size()
-	for (int i = 0; i < 3; i++)
-	{
-		auto card = cards.at(std::to_string(i));
+	// todavia no se como saber cards.size() de otra manera
+	/*int size = 0;
+	for (auto c : cards) esto no funciona porque no esta definido begin y end
+		size++;*/
+
+	for (int i = 0; i < 6; i++)
+	{ 
+		auto card = cards.at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		createCard(
 			Vector2D(initX + offSetX * i, initY),
 			card.cost(),

@@ -3,9 +3,9 @@
 #include "Cell.h"
 #include "game/Board.h"
 
-namespace EffectType
+namespace Effects
 {
-	enum Index
+	enum Type
 	{
 		Esquina,
 		Centro,
@@ -48,7 +48,7 @@ public:
 	///	*** Esto es terrible, quiero que sirva para salir al paso
 	///	y como concepto inicial ***
 	static std::function<void()> getEffect(
-		EffectType::Index index,
+		Effects::Type index,
 		Card* card,
 		int value,
 		CellData::Direction direction)
@@ -56,37 +56,37 @@ public:
 		std::function<void()> effect;
 		switch (index)
 		{
-		case EffectType::Esquina:
+		case Effects::Esquina:
 			effect = [card, value]
 			{
 				addCorner(card->getCell(), value);
 			};
 			break;
-		case EffectType::Centro:
+		case Effects::Centro:
 			effect = [card, value]
 			{
 				addCenter(card->getCell(), value);
 			};
 			break;
-		case EffectType::Flecha:
+		case Effects::Flecha:
 			effect = [card, direction, value]
 			{
 				addSimpleAdj(card->getCell(), direction, value);
 			};
 			break;
-		case EffectType::Superflecha:
+		case Effects::Superflecha:
 			effect = [card, direction, value]
 			{
 				addSuperAdj(card->getCell(), direction, value);
 			};
 			break;
-		case EffectType::Block:
+		case Effects::Block:
 			effect = [card, direction]
 			{
 				blockCard(card->getCell(), direction);
 			};
 			break;
-		case EffectType::Unblockable:
+		case Effects::Unblockable:
 			effect = [card]
 			{
 				unblockable(card->getCell(), card->getIsUnblockable());
