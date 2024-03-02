@@ -16,7 +16,7 @@
 void GameStateMachine::init()
 {
 	mngr_ = new ecs::Manager();
-	mouse_ = new Mouse("mouse");
+	mouse_ = new Mouse("mouse", 2);
 	//pushState(new LuisState());
 	//pushState(new JimboState());
 	//pushState(new AndresState());

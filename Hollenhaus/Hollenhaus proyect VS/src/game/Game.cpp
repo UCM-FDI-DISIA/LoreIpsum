@@ -19,8 +19,6 @@ Game::Game()
 
 Game::~Game()
 {
-	ih().clearFunction(ih().KEY_F11_DOWN, [] { sdlutils().toggleFullScreen(); });
-	//delete gameStateMachine;
 }
 
 void Game::Run()
