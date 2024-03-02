@@ -26,13 +26,12 @@
 SamuState::SamuState() : GameState() {
 
 
-	cardFact = new CardFactory_v0();
+	Factory* factory = new Factory();
+	factory->SetFactories( (BoardFactory*)new BoardFactory_v0(4), (CardFactory*)new CardFactory_v0());
 
-	boardFact = new BoardFactory_v0(4);
+	board = factory->createBoard();
 
-	board = boardFact->createBoard();
-
-	cardFact->createHand();
+	factory->createHand();
 
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
@@ -50,8 +49,7 @@ SamuState::SamuState() : GameState() {
 
 SamuState::~SamuState()
 {
-	delete boardFact;
-	delete cardFact;
+
 }
 //cleon: si está vacío se llama directamente al padre
 void SamuState::refresh()

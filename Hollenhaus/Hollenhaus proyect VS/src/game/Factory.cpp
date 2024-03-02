@@ -1,4 +1,7 @@
 #include "Factory.h"
+#include "CardFactory.h"
+#include "BoardFactory.h"
+
 
 
 ecs::entity_t Factory::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<SDLUtils::CardEffect>& effects)
@@ -7,7 +10,7 @@ ecs::entity_t Factory::createCard(Vector2D pos, int cost, int value, std::string
 		throw "no existe cardFactory";
 	}
 
-	return ecs::entity_t();
+	return cardFactory->createCard(pos,cost,value,sprite,unblockable,effects);
 
 }
 
@@ -18,9 +21,14 @@ ecs::entity_t Factory::createDropDetector(Vector2D pos)
 
 void Factory::createHand()
 {
+	if (cardFactory == nullptr) {
+		throw "no existe cardFactory";
+	}
+
+	return cardFactory->createHand();
 }
 
 ecs::entity_t Factory::createBoard()
 {
-	return ecs::entity_t();
+	return boardFactory->createBoard();
 }

@@ -22,7 +22,5 @@ public:
 private:
     ecs::entity_t card;
     ecs::entity_t board;
-    CardFactory_v0* cardFact;
-    BoardFactory_v0* boardFact;
 };
 

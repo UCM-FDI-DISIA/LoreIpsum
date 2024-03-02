@@ -3,9 +3,11 @@
 #include "../utils/Vector2D.h"
 #include "../sdlutils/SDLUtils.h"
 
-class BoardFactory_v0;
 class CardFactory;
 class HandFactory;
+
+#include "CardFactory.h"
+#include "BoardFactory.h"
 
 class Factory
 {
@@ -13,30 +15,33 @@ public:
 
 
 	
-#pragma region Templates contructoras
+#pragma region Templates setFactories
 	/*
 		Si se añade un nuevo tipo de factory para objetos en especifico,
 		hay que meter una nueva variable de ese tipo en esta clase y crear una
-		nueva constructora con template como las que están ya hechas
+		sobrecarga de este metodo con template como las que están ya hechas
 	*/
 
-	template<typename T, typename ...Ts>
-	Factory(BoardFactory_v0* bf, Ts &&... args) {
+	
+	template<typename ...Ts>
+	void SetFactories(Ts &&... args){};
+	
+
+	template<typename ...Ts>
+	void SetFactories(BoardFactory* bf, Ts &&... args) {
 		boardFactory = bf;
-		Factory(std::forward<Ts>(args)...);
+		SetFactories(std::forward<Ts>(args)...);
 	}
 
-	template<typename T, typename ...Ts>
-	Factory(CardFactory* bf, Ts &&... args) {
-		boardFactory = bf;
-		Factory(std::forward<Ts>(args)...);
+	
+	template<typename ...Ts>
+	void SetFactories(CardFactory* cf, Ts &&... args) {
+		cardFactory =cf;
+		SetFactories(std::forward<Ts>(args)...);
 	}
-
-	template<typename T, typename ...Ts>
-	Factory(HandFactory* bf, Ts &&... args) {
-		boardFactory = bf;
-		Factory(std::forward<Ts>(args)...);
-	}
+	
+	
+	
 
 #pragma endregion
 
@@ -51,7 +56,8 @@ public:
 	virtual ecs::entity_t createBoard();
 
 public:
-	BoardFactory_v0* boardFactory;
+
+	BoardFactory* boardFactory;
 	CardFactory* cardFactory;
 	HandFactory* handFactory;
 };
