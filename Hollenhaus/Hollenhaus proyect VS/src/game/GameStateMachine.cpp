@@ -41,7 +41,7 @@ GameStateMachine::~GameStateMachine() {
 		delete gameStack.top();
 		gameStack.pop();
 	}
-
+	delete mouse_;
 	delete mngr_;
 }
 
