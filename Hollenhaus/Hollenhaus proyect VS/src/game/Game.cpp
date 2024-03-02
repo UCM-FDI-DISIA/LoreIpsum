@@ -13,11 +13,14 @@ Game::Game()
 
 	GameStateMachine::instance()->init();
 	gameStateMachine = GameStateMachine::instance();
-	
+
+	ih().insertFunction(ih().KEY_F11_DOWN, [] { sdlutils().toggleFullScreen(); });
 }
 
 Game::~Game()
 {
+	ih().clearFunction(ih().KEY_F11_DOWN, [] { sdlutils().toggleFullScreen(); });
+	//delete gameStateMachine;
 }
 
 void Game::Run()
@@ -40,9 +43,10 @@ void Game::Run()
 	}
 	*/
 
-	
+
 	//version suspendiendo el programa,consume menos recursos	
-	while (!ih().closeWindowEvent() && !gameStateMachine->Empty()) {
+	while (!ih().closeWindowEvent() && !gameStateMachine->Empty())
+	{
 		//actualizar el start time
 		startTime = SDL_GetTicks();
 
@@ -58,11 +62,11 @@ void Game::Run()
 		//std::cout << frameTime << std::endl;
 
 		//si queda tiempo de frame, suspender el programa el tiempo que queda
-		if (frameTime < FRAME_RATE) {
+		if (frameTime < FRAME_RATE)
+		{
 			SDL_Delay(FRAME_RATE - frameTime);
 		}
 	}
-
 }
 
 void Game::Render() const
@@ -79,5 +83,5 @@ void Game::Update()
 
 void Game::HandleEvents()
 {
-	ih().refresh();	
+	ih().refresh();
 }

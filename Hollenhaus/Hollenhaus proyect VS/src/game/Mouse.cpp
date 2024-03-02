@@ -3,12 +3,17 @@
 #include "../sdlutils/SDLUtils.h"
 Mouse::Mouse(const std::string& image) : image_(&sdlutils().images().at(image))
 {
-	rect_ = {
+	srcRect_ = {
 		0,0,
-		image_->width(),
-		image_->height()
+		image_->width()/2,
+		image_->height()/2
 	};
-	SDL_ShowCursor(false);
+	destRect_ = {
+		0,0,
+		image_->width()/2,
+		image_->height()/2
+	};
+	sdlutils().hideCursor();
 }
 
 Mouse::~Mouse()
@@ -18,10 +23,10 @@ Mouse::~Mouse()
 
 void Mouse::render() const
 {
-	image_->render(rect_);
+	image_->render(destRect_);
 }
 
 void Mouse::update()
 {
-	SDL_GetMouseState(&rect_.x, &rect_.y);
+	SDL_GetMouseState(&destRect_.x, &destRect_.y);
 }
