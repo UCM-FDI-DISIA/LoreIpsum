@@ -1,7 +1,8 @@
 #pragma once
+#include "BoardFactory.h"
 #include "checkML.h"
 #include "GameState.h"
-
+#include "CardFactory_v0.h"
 
 class Entity;
 class GameState;
@@ -21,6 +22,7 @@ public:
 private:
     ecs::entity_t card;
     ecs::entity_t board;
-
+    CardFactory_v0* cardFact;
+    BoardFactory* boardFact;
 };
 

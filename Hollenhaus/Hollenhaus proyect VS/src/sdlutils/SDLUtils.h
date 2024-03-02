@@ -13,8 +13,11 @@
 #include "SoundEffect.h"
 #include "Texture.h"
 #include "VirtualTimer.h"
+#include "../Cell.h"
+#include "../EffectCollection.h"
 
 #include "../game/Card.h"
+#include "../json/JSON.h"
 
 class SDLUtils: public Singleton<SDLUtils> {
 
@@ -42,7 +45,9 @@ public:
 	class map_access_wrapper {
 		sdl_resource_table<T> &map_;
 		std::string desc_;
+
 	public:
+
 		map_access_wrapper(sdl_resource_table<T> &map, std::string desc) :
 				map_(map), desc_(desc) {
 		}
@@ -64,6 +69,7 @@ public:
 		inline T& operator[](const std::string &key) {
 			return at(key);
 		}
+
 	};
 
 	virtual ~SDLUtils();
@@ -153,6 +159,11 @@ public:
 	inline auto& musics() {
 		return musicsAccessWrapper_;
 	}
+	// cards map
+	inline auto& cards()
+	{
+		return cardAccessWrapper;	
+	}
 
 
 // Access to the random number generator. It is important to always
@@ -173,6 +184,46 @@ public:
 		return SDL_GetTicks();
 	}
 
+	/// CARD DATA STRUCT
+	struct CardEffect
+	{
+		using Directions = std::vector<CellData::Direction>;
+
+		CardEffect();
+		CardEffect(Effects::Type t, int v, Directions& d)
+			: type_(t), value_(v), directions_(d) {}
+
+		Effects::Type type() const	{ return type_; }
+		int value() const	{ return value_; }
+		Directions directions() const { return directions_; }
+
+	private:
+		Effects::Type type_;
+		int value_;
+		Directions directions_;
+	};
+
+	struct CardData
+	{ 
+		CardData();
+		CardData(int c, int v, std::string& s, bool u, std::vector<CardEffect>& e)
+			: cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e) {}
+
+		// getters con nombres simplificados para mas facil acceso desde sdlutils
+		int cost() const			{ return cost_; }
+		int value() const			{ return value_; }
+		std::string& sprite()		{ return sprite_; }
+		bool unblockable() const	{ return unblockable_; }
+		std::vector<CardEffect>& effects() { return effects_; }
+
+	private:
+		int cost_;
+		int value_;
+		std::string sprite_;
+		bool unblockable_;
+		std::vector<CardEffect> effects_;
+	};
+
 private:
 	SDLUtils();
 	SDLUtils(std::string windowTitle, int width, int height);
@@ -185,6 +236,10 @@ private:
 	void closeSDLExtensions(); // free resources the
 	void loadReasources(std::string filename); // load resources from the json file
 
+	/// CARD PARSING estoy fatal de la cabezaaaa
+	std::vector<CellData::Direction>& loadDirections(JSONObject&, std::vector<CellData::Direction>&);
+	/// \brief
+	
 	std::string windowTitle_; // window title
 	int width_; // window width
 	int height_; // window height
@@ -197,13 +252,14 @@ private:
 	sdl_resource_table<Texture> msgs_; // textures map (string -> texture)
 	sdl_resource_table<SoundEffect> sounds_; // sounds map (string -> sound)
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
-	sdl_resource_table<Card> cards_; // cards map (string -> card)
+	sdl_resource_table<CardData> cards_; // cards map (string -> card)
 
 	map_access_wrapper<Font> fontsAccessWrapper_;
 	map_access_wrapper<Texture> imagesAccessWrapper_;
 	map_access_wrapper<Texture> msgsAccessWrapper_;
 	map_access_wrapper<SoundEffect> soundsAccessWrapper_;
 	map_access_wrapper<Music> musicsAccessWrapper_;
+	map_access_wrapper<CardData> cardAccessWrapper;
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer

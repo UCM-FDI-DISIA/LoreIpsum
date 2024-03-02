@@ -60,6 +60,7 @@ bool Board::setCard(int x, int y, Card* c, CellData::Owner o)
 	if (cell->getCard() != nullptr)
 		return false;
 	cell->setCard(c, o);
+	c->setCell(cell);
 	cell->addEffect(c->getEffect(c->getEffectSize() - 1));
 	applyAllEffects();
 	return true;
@@ -155,13 +156,13 @@ void Board::resetGrid()
 				adj[m] = nullptr;
 
 			if (j > 0)
-				adj[CellData::Arriba] = grid[i][j - 1];
+				adj[CellData::Up] = grid[i][j - 1];
 			if (i < n)
-				adj[CellData::Derecha] = grid[i + 1][j];
+				adj[CellData::Right] = grid[i + 1][j];
 			if (j < n)
-				adj[CellData::Abajo] = grid[i][j + 1];
+				adj[CellData::Down] = grid[i][j + 1];
 			if (i > 0)
-				adj[CellData::Izquierda] = grid[i - 1][j];
+				adj[CellData::Left] = grid[i - 1][j];
 
 			grid[i][j]->setAdjacents(adj);
 		}

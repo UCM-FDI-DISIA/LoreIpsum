@@ -1,31 +1,103 @@
 {
-
   "cards": [
     {
-      "id": "card01",
-      "cost": 1,
+      "id": "0",
+      "cost": 0,
+      "value": 1,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 0,
+          "value": 10
+        }
+      ],
+      "unblockable": false
+    },
+    {
+      "id": "1",
+      "cost": 0,
       "value": 2,
-      "sprite": "sprite01",
-      "skills": "zero",
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
+        }
+      ],
       "unblockable": false
     },
     {
-      "id": "card02",
-      "cost": 3,
+      "id": "2",
+      "cost": 0,
+      "value": 3,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 2,
+          "directions": [
+            "Derecha"
+          ],
+          "value": 30
+        }
+      ],
+      "unblockable": false
+    },
+    {
+      "id": "3",
+      "cost": 0,
       "value": 4,
-      "sprite": "sprite02",
-      "skills": "one",
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 3,
+          "directions": [
+            "Derecha"
+          ],
+          "value": 40
+        }
+      ],
       "unblockable": false
     },
     {
-      "id": "card03",
-      "cost": 5,
-      "value": 6,
-      "sprite": "sprite03",
-      "skills": "two",
+      "id": "4",
+      "cost": 0,
+      "value": 5,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 3,
+          "directions": [
+            "Derecha"
+          ]
+        }
+      ],
       "unblockable": false
+    },
+    {
+      "id": "5",
+      "cost": 0,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
+        },
+        {
+          "type": 2,
+          "directions": [
+            "Derecha"
+          ],
+          "value": 30
+        },
+        {
+          "type": 5
+        }
+      ],
+      "unblockable": true
     }
   ],
+
   "images": [
     {
       "id": "card",
@@ -46,9 +118,9 @@
     {
       "id": "board",
       "file": "resources/images/board.png"
-
     }
   ],
+  
   "fonts": [
     {
       "id": "8bit",

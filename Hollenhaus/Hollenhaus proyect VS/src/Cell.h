@@ -2,13 +2,12 @@
 #include <vector>
 #include "game/Card.h"
 #include <functional>
-
 #include "game/Component.h"
 
 // utiliza callbacks funcionales de tipo <void(void)>
 using SDLEventCallback = std::function<void()>;
 
-constexpr int ADJACENTS = 4;
+constexpr int ADJACENTS = 4 + 1; // direcciones posibles + direccion nula
 
 namespace CellData {
 
@@ -22,10 +21,11 @@ enum Owner
 
 enum Direction
 {
-	Arriba,
-	Derecha,
-	Abajo,
-	Izquierda
+	Up,
+	Right,
+	Down,
+	Left,
+	None
 };
 
 }
@@ -63,8 +63,8 @@ public:
 	int getTotalValue() const	{ return totalValue; }
 	CellData::Owner getPlayer() const		{ return player; }
 	Card* getCard() const		{ return card; }
-	std::array<Cell*, 4>& getAdjacents() { return adjacents; } // sets pointers to adjacent
-	std::list<SDLEventCallback> getEffects() { return effectCallbacks; }
+	std::array<Cell*, ADJACENTS>& getAdjacents() { return adjacents; } // sets pointers to adjacent
+	std::list<SDLEventCallback>& getEffects() { return effectCallbacks; }
 
 	// setters
 	void setActive(bool v)		{ active = v; }
@@ -74,7 +74,7 @@ public:
 	void setPlayer(CellData::Owner o)		{ player = o; }
 	void setCard(Card* c, CellData::Owner o);
 	void deleteCard() const		{ delete card; } // ???
-	void setAdjacents(std::array<Cell*, 4>& a) { adjacents = a; }
+	void setAdjacents(std::array<Cell*, ADJACENTS>& a) { adjacents = a; }
 	void blockEffects(Cell* c);
 
 	Cell& operator=(const Cell& o)

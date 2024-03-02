@@ -19,9 +19,9 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 		imagesAccessWrapper_(images_, "Images Table"), //
 		msgsAccessWrapper_(msgs_, "Messages Table"), //
 		soundsAccessWrapper_(sounds_, "Sounds Table"), //
-		musicsAccessWrapper_(musics_, "Musics Table") ///
+		musicsAccessWrapper_(musics_, "Musics Table"), //
+		cardAccessWrapper(cards_, "Cards Table") //
 {
-
 	initWindow();
 	initSDLExtensions();
 }
@@ -279,25 +279,54 @@ void SDLUtils::loadReasources(std::string filename) {
 
 	/// CARD PARSING
 	///	Samir (feat. Cynthia)
-	jValue = root["cards"];
-	if (jValue != nullptr) {
-		if (jValue->IsArray()) {
-			musics_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto &v : jValue->AsArray()) {
-				if (v->IsObject()) {
+	jValue = root["cards"]; // key con todas las cartas
+	if (jValue != nullptr) { // si existe tal key
+		if (jValue->IsArray()) { // si tiene cartas dentro
+			cards_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto &v : jValue->AsArray()) { // por cada carta
+				if (v->IsObject()) { // si la carta actual es objeto
+					// card as JSON object
+					JSONObject cardObj = v->AsObject();
 
-					// TODO: parsear bien que no todo soin strings (skills pueden ser objs?)
-					JSONObject vObj = v->AsObject();
-					std::string key = vObj["id"]->AsString();
-					int cost = vObj["cost"]->AsNumber();
-					int value = vObj["value"]->AsNumber();
-					std::string sprite = vObj["sprite"]->AsString();
-					bool unblockable = vObj["unblockable"]->AsBool();
-					//std::string skills = vObj["skills"]->AsString();
+					/// >>> Lectura inicial de parametros basicos <<<
+					std::string key		= cardObj["id"]->AsString(); // id
+					int cost			= cardObj["cost"]->AsNumber(); // coste
+					int value			= cardObj["value"]->AsNumber(); // valor 
+					std::string sprite	= cardObj["sprite"]->AsString(); // sprite
+					bool unblockable	= cardObj["unblockable"]->AsBool(); // unblockable
+
+
+					/// >>> Lectura de efectos <<<
+					/// Por cada carta, hay un array de efectos
+					std::vector<CardEffect> effects; // declaracion inicial de vector vacio de efectos
+					auto effArr = cardObj["effects"]->AsArray(); // effects as JSON array derivate of card object
+					for (auto& e : effArr ) // por cada efecto
+					{ // each effect as JSON object
+						auto effObj = e->AsObject();
+
+						/// El UNICO requerimiento que tiene un efecto es su tipo de efecto
+						///	Si ese tipo de efecto necesita otros valores que no tiene, se usan unos
+						///	por defecto
+						
+						// casting de int a enum de efecto
+						Effects::Type type = static_cast<Effects::Type>(effObj["type"]->AsNumber());
+
+						/// Hay efectos que pueden NO tener valor numerico
+						int effValue = 0;
+						if (effObj["value"] != nullptr)
+							effValue = effObj["value"]->AsNumber();
+
+						/// Por cada efecto, puede haber un array de direcciones
+						///	(en caso de que no haya direcciones, el vector es vacio y punto pelota)
+						std::vector<CellData::Direction> directions;
+						loadDirections(effObj, directions);
+
+						effects.emplace_back(type, effValue, directions);
+					}
 #ifdef _DEBUG
 					std::cout << "Loading cards with id: " << key << std::endl;
 #endif
-					cards_.emplace(key, Card(cost, value, sprite, unblockable));
+					cards_.emplace(key, CardData(cost, value, sprite, unblockable, effects)); // finalmente se anyaden al mapa
 
 				} else {
 					throw "'cards' array in '" + filename
@@ -310,6 +339,34 @@ void SDLUtils::loadReasources(std::string filename) {
 	}
 }
 
+std::vector<CellData::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::vector<CellData::Direction>& directions)
+{
+	if (jo["directions"] == nullptr) return directions; // si no tiene direcciones, vuelve
+
+	const auto dirArr = jo["directions"]->AsArray(); // si las tiene
+
+	for (const auto& d : dirArr) // por cada direccion, 
+	{
+		auto dir = d->AsString();
+
+		for (char &c : dir) 
+			c = std::tolower(c);
+
+		// soy tonti y no se pueden usar switchs con strings </3
+		// esto deberia ir en otro lado siiiii no me mires estoy probando
+		if		(dir == "up"	|| dir == "arriba")
+			directions.push_back(CellData::Up);
+		else if (dir == "right" || dir == "derecha")
+			directions.push_back(CellData::Right);
+		else if (dir == "down"	|| dir == "abajo")
+			directions.push_back(CellData::Down);
+		else if (dir == "left"	|| dir == "izquierda")
+			directions.push_back(CellData::Left);
+	}
+
+	return directions;
+}
+
 void SDLUtils::closeSDLExtensions() {
 
 	musics_.clear();
@@ -317,6 +374,7 @@ void SDLUtils::closeSDLExtensions() {
 	msgs_.clear();
 	images_.clear();
 	fonts_.clear();
+	cards_.clear();
 
 	Mix_Quit(); // quit SDL_mixer
 	IMG_Quit(); // quit SDL_image
