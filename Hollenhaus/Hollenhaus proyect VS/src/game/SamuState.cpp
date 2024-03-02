@@ -28,7 +28,7 @@ SamuState::SamuState() : GameState() {
 
 	cardFact = new CardFactory_v0();
 
-	boardFact = new BoardFactory_v0(4, 4);
+	boardFact = new BoardFactory_v0(4);
 
 	board = boardFact->createBoard();
 

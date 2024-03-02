@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Entity.h"
 #include "../utils/Vector2D.h"
 #include "../sdlutils/SDLUtils.h"
 

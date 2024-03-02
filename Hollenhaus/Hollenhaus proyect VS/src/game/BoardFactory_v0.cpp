@@ -16,16 +16,11 @@
 #include "../game/ecs.h"
 
 
-BoardFactory_v0::BoardFactory_v0(int w, int h) :
-	width(w),
-	heigth(h)
-{
-}
+
 
 ecs::entity_t BoardFactory_v0::createBoard()
 {
 	std::vector<std::vector<ecs::entity_t>> _board;
-	int size = 4;
 
 	// Seteamos el board al tamanio deseado
 	_board.resize(size);
@@ -58,9 +53,11 @@ ecs::entity_t BoardFactory_v0::createBoard()
 		}
 	}
 
-
+	//crear una entidad
 	ecs::Entity* boardEntity = Instantiate(Vector2D(sdlutils().width() / 2, sdlutils().height() / 2));
 
+
+	//añadimos a la entidad el componente boardManager y le seteamos el board que hemos creado
 	boardEntity->addComponent<BoardManager>()->setBoard(_board);
 
 

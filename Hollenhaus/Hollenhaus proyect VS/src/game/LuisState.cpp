@@ -21,7 +21,7 @@ LuisState::LuisState() : GameState() {
 
 
 	CardFactory_v0* factory = new CardFactory_v0();
-	BoardFactory_v0* boardFactory = new BoardFactory_v0(4, 4);
+	BoardFactory_v0* boardFactory = new BoardFactory_v0(4);
 	boardFactory->createBoard();
 	factory->createHand();
 	//card->setLayer(1);

@@ -1,21 +1,14 @@
 #pragma once
 
+#include "BoardFactory.h"
 
-//forward declaration
-namespace ecs {
-	class Entity;
-	using entity_t = Entity*;
-}
 
-class BoardFactory_v0 
+class BoardFactory_v0 : public BoardFactory
 {
 public:
-	BoardFactory_v0(int w, int h);
+	BoardFactory_v0(int size) : BoardFactory(size) {};
 
-	ecs::entity_t createBoard() ;
+	ecs::entity_t createBoard() override;
 
-private:
-	int width;
-	int heigth;
 };
 
