@@ -46,8 +46,8 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 		)
 	);*/
 
-	/// WIP: bucle de carga de efectos a carta
-	for (auto e : effects)
+	/// Bucle de carga de efectos a carta
+	for (const auto& e : effects)
 	{
 		if (e.directions().empty())
 			cardComp->addCardEffect(
@@ -58,8 +58,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 					CellData::None
 				)
 			);
-		else
-			for (auto d : e.directions())
+		else for (const auto d : e.directions())
 				cardComp->addCardEffect(
 					EffectCollection::getEffect(
 						e.type(),

@@ -86,7 +86,8 @@
         {
           "type": 2,
           "directions": [
-            "Derecha"
+            "Derecha",
+            "Abajo"
           ],
           "value": 30
         },
