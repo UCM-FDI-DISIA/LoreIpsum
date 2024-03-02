@@ -1,5 +1,8 @@
 #include "DeckComponent.h"
 
+#include <algorithm>
+#include <random>
+
 void
 DeckComponent::shuffle() {
 	std::random_device rd;

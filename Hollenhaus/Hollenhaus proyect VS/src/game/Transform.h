@@ -20,32 +20,32 @@ public:
     void removeParent();
 
     // Posicion global
-    //
-    Vector2D& getGlobalPos() { return globalPos_; };
+    // He quitao la referencia
+    Vector2D getGlobalPos();
 
     // Escala global
     //
-    Vector2D& getGlobalScale() { return globalScale_; };
+    Vector2D& getGlobalScale();
 
     // Rotacion global
     //
-    float& getGlobalAngle() { return globalAngle_; };
+    float& getGlobalAngle();
 
     // Posicion relativa al padre
     //
-    Vector2D& getRelativePos() { return relativePos_; };
+    Vector2D& getRelativePos();
 
     // Escala relativa al padre
     //
-    Vector2D& getRelativeScale() { return relativeScale_; };
+    Vector2D& getRelativeScale();
 
     // Rotacion relativa al padre
     //
-    float& getRelativeAngle() { return relativeAngle_; };
+    float& getRelativeAngle();
 
     void setGlobalPos(Vector2D& v);
 
-    Transform* getParent() { return parent_; };
+    Transform* getParent();
     
     Transform& operator+(const Transform& t);
     Transform& operator-(const Transform& t);

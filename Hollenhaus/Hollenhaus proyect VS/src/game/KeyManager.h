@@ -1,10 +1,8 @@
 #pragma once
 
 #include <vector>
-#include <sstream>
 
 #include "ComponentUpdate.h"
-#include "SpriteRenderer.h"
 
 class KeyManager :
     public ComponentUpdate

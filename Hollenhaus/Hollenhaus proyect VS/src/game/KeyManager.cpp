@@ -1,5 +1,8 @@
 #include "KeyManager.h"
 #include "Manager.h"
+#include "SpriteRenderer.h"
+
+#include <sstream>
 
 KeyManager::KeyManager() {}
 
