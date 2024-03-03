@@ -80,6 +80,10 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	});
 	*/
 
+#pragma region Valor y coste
+
+
+
 	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
 
 	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_12", SDL_Color({255, 255, 255, 255}), TextComponent::Alignment::Center);
@@ -101,47 +105,50 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 
 	textoCoste->setLayer(10);
 
+#pragma endregion
 
-	ecs::entity_t effectImage = Instantiate(Vector2D(0, 0));
+
+#pragma region Imanfenes de efecto
+
+	int initialX = 15;
+	int initialY = 55;
+	int offSetX = 20;
+	int offSetY = 15;
+	int nCols = 2;
+	int layer = 10;
+	float scale = 0.045;
+
+	ecs::entity_t effectImage;
 
 
+	std::vector<std::string> efectsIdsNames{ "esquina" ,"centro","flecha" ,"superflecha" ,"block" , "unblockable" };
 	std::string efectID;
 
-	if (effects[0].type() == Effects::Esquina) {
-		efectID = "esquina";
-	}
-	else if (effects[0].type() == Effects::Centro) {
-		efectID = "centro";
-
-	}
-	else if (effects[0].type() == Effects::Flecha) {
-		efectID = "flecha";
-
-	}
-	else if (effects[0].type() == Effects::Superflecha) {
-		efectID = "superflecha";
-
-	}
-	else if (effects[0].type() == Effects::Block) {
-		efectID = "block";
-
-	}
-	else if (effects[0].type() == Effects::Unblockable) {
-		efectID = "unblockable";
-
-	}
-
-	effectImage->addComponent<SpriteRenderer>(efectID);
 	
 
-	effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
-	//effectImage->getComponent<Transform>()->getGlobalScale().set(1, 1);
-	effectImage->getComponent<Transform>()->getRelativeScale().set(0.1, 0.1);
-	Vector2D gpos(10, 10);
-	effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
+	for (int i = 0; i < effects.size(); i++) {
 
-	effectImage->setLayer(10);
+		effectImage = Instantiate(Vector2D(0, 0));
+
+		efectID = efectsIdsNames[effects[i].type()];
+
+		effectImage->addComponent<SpriteRenderer>(efectID);
+	
+
+		effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
+
+		//effectImage->getComponent<Transform>()->getGlobalScale().set(1, 1);
+		effectImage->getComponent<Transform>()->getRelativeScale().set(scale, scale);
+		Vector2D gpos(initialX + ((i%nCols) *offSetX), initialY + ((i/nCols)*offSetY) );
+
+		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
+
+		effectImage->setLayer(layer);
+	}
+
+
+#pragma endregion
 
 
 	return card;
