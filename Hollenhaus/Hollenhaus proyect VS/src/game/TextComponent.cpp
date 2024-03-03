@@ -9,7 +9,7 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 	boxPivotPoint_(boxPivotPoint),
 	textAlignment_(textAlignment)
 {
-	if (txt.empty()) txt_ = " ";
+	if (txt.empty()) txt_ = "11 ";
 	else txt_ = txt;
 
 	createTexture();
