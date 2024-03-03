@@ -84,7 +84,7 @@ void SamuState::onEnter()
 	// Imágen de fondo
 	ecs::entity_t background = Instantiate();
 	background->addComponent<Transform>();
-	background->getComponent<Transform>()->getGlobalScale().set(0.42, 0.56);
+	background->getComponent<Transform>()->getGlobalScale().set(0.5, 0.5);
 	background->addComponent<SpriteRenderer>("board");
 	background->setLayer(-1);
 
