@@ -232,7 +232,7 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 
 			valueChange = Instantiate(Vector2D(0,0));
 
-			valueChange->addComponent<TextComponent>(valueText, "8bit_8pt", SDL_Color({255, 255, 255, 255}), 100);
+			valueChange->addComponent<TextComponent>(valueText, "8bit_8pt", SDL_Color({0, 0, 0, 255}), 100);
 
 			valueChange->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
 			valueChange->getComponent<Transform>()->getRelativePos().set(-5, 0);
