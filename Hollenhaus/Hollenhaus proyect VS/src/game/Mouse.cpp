@@ -28,7 +28,7 @@ Mouse::Mouse(const std::string& image, int frames) : image_(&sdlutils().images()
 
 Mouse::~Mouse()
 {
-	delete image_;
+	//delete image_; // me ha dado error esto, pq?
 }
 
 void Mouse::render() const

@@ -48,5 +48,7 @@ private:
     void applyAllEffects() const;
     int pPlayer1 = 0;
     int pPlayer2 = 0;
+    ecs::entity_t p1Text;
+    ecs::entity_t p2Text;
 };
 

@@ -2,7 +2,7 @@
 #include "GameState.h"
 #include "Board.h"
 #include "../EffectCollection.h"
-#include "../MatchManager.h"
+#include "MatchManager.h"
 
 /// <summary>
 /// Estado para probar la logica de la batalla de cartas

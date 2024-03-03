@@ -10,6 +10,7 @@
 #include "../Cell.h"
 #include "Card.h"
 #include "BoardManager.h"
+#include "MatchManager.h"
 
 DragManager::DragManager()
 {
@@ -90,7 +91,8 @@ void DragManager::OnLeftClickUp()
 			int y = dropDetector->getBoardPos().getY();
 			Card* card = dragTransform->getEntity()->getComponent<Card>();
 			
-			boardManager->setCard(x, y, card, CellData::PLAYER1);
+			CellData::Owner playerTurn = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetPlayerTurn();
+			boardManager->setCard(x, y, card, playerTurn);
 		}
 		else {//sino, devolvemos la carta a su posicion inicial
 			dragTransform->setGlobalPos(initialTransformPos);

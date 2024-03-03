@@ -6,6 +6,7 @@
 #include "BoxCollider.h"
 #include "DropDetector.h"
 #include "CellManager.h"
+#include "TextComponent.h"
 #include "../Cell.h"
 
 BoardManager::BoardManager()
@@ -105,17 +106,14 @@ void BoardManager::initComponent()
 			cell->setAdjacents(adj);
 		}
 	}
-<<<<<<< Updated upstream
-=======
 
 	/// Textos de puntuacion (WIP)
 	p1Text = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height()*2/3));
 	p2Text = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height()/3));
-	//p1Text->addComponent<TextComponent>("", "8bit", SDL_Color({ 255, 255, 255, 255 }), TextComponent::BoxPivotPoint::Right);
-	//p2Text->addComponent<TextComponent>("", "8bit", SDL_Color({ 255, 255, 255, 255 }), TextComponent::BoxPivotPoint::Right);
+	p1Text->addComponent<TextComponent>("", "8bit", SDL_Color({ 255, 255, 255, 255 }), TextComponent::Alignment::Right);
+	p2Text->addComponent<TextComponent>("", "8bit", SDL_Color({ 255, 255, 255, 255 }), TextComponent::Alignment::Right);
 	// haria falta un setSize o algo asi, que se ve pequenito
 
->>>>>>> Stashed changes
 	// Esto hay que sustituirlo por una factoría
 }
 
@@ -194,12 +192,9 @@ void BoardManager::updateScore()
 				pPlayer2 += _board[i][j]->getComponent<Cell>()->getTotalValue();
 		}
 	}
-<<<<<<< Updated upstream
-=======
 
-	//p1Text->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer1));
-	//p2Text->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
->>>>>>> Stashed changes
+	p1Text->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer1));
+	p2Text->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
 }
 
 void BoardManager::applyAllEffects() const
