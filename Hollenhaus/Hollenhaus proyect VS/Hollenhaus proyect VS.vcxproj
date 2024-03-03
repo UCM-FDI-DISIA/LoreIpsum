@@ -86,7 +86,6 @@
     <ClInclude Include="src\game\BoardFactory.h" />
     <ClInclude Include="src\game\BoardFactory_v0.h" />
     <ClInclude Include="src\game\Card.h" />
-
     <ClInclude Include="src\game\EndTurnButton.h" />
     <ClInclude Include="src\game\MatchManager.h" />
     <ClInclude Include="src\game\Mouse.h" />
@@ -94,14 +93,9 @@
     <ClInclude Include="src\game\TextComponent.h" />
     <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\game\AndresState.h" />
-
     <ClInclude Include="src\game\Board.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="src\game\BoardFactory.h" />
-
-    <ClInclude Include="src\game\Board.h" />
-
     <ClInclude Include="src\game\BoardManager.h" />
     <ClInclude Include="src\game\BoardState.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

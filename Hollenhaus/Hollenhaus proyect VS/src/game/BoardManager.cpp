@@ -176,4 +176,12 @@ void BoardManager::initBoard()
 			cell->setAdjacents(adj);
 		}
 	}
+
+
+	// Textos de puntuacion (WIP)
+	p1Text = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() * 2 / 3));
+	p2Text = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() / 3));
+	p1Text->addComponent<TextComponent>("", "8bit_32pt", SDL_Color({ 0, 0, 255, 255 }), 50, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	p2Text->addComponent<TextComponent>("", "8bit_32pt", SDL_Color({ 255, 0, 0, 255 }), 50, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	// haria falta un setSize o algo asi, que se ve pequenito
 }

@@ -233,22 +233,23 @@ void CardFactory_v0::addValueCostTexts(ecs::entity_t card,  int value, int cost)
 {
 	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
 
-	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }), TextComponent::Alignment::Center);
+	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }), TextComponent::TextAlignment::Center);
 
 	textoValor->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
 	textoValor->getComponent<Transform>()->getRelativePos().set(10, 87);
 
-	textoValor->setLayer(10);
+	textoValor->setLayer(100);
 
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
 
-	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }), TextComponent::Alignment::Center);
+	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }), TextComponent::TextAlignment::Center);
 
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
 	textoCoste->getComponent<Transform>()->getRelativePos().set(10, 10);
+	textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
 
-	textoCoste->setLayer(10);
+	textoCoste->setLayer(100);
 }

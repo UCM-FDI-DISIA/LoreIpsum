@@ -206,7 +206,7 @@
     </ClCompile>
     <ClCompile Include="src\game\Mouse.cpp">
       <Filter>Archivos de origen</Filter>
-
+ </ClCompile>
     <ClCompile Include="src\game\KeyManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -411,11 +411,6 @@
     <ClInclude Include="src\game\CardFactory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-
-    <ClInclude Include="src\game\BoardFactory.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-
     <ClInclude Include="src\game\BoardFactory_v0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
@@ -425,7 +420,6 @@
     <ClInclude Include="src\MatchManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-
     <ClInclude Include="src\game\Card.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>

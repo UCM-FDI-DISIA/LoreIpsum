@@ -61,18 +61,20 @@ void SamuState::onEnter()
 {
 	TuVieja("\nEntering in SamuState");
 
+
+	Factory* factory = new Factory();
+	factory->SetFactories((BoardFactory*)new  BoardFactory_v0(4), (CardFactory*) new CardFactory_v0());
+
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
 	matchManager->addComponent<MatchManager>(4, MatchManager::TurnState::TurnJ1);
 
 	// Factoría del tablero. Generamos el tablero de juego.
-	boardFact = new BoardFactory(4, 4);
-	board = boardFact->createBoard();
+	board = factory->createBoard();
 
 	// Factoría de cartas. Con ella generamos la mano inicial
-	cardFact = new CardFactory_v0();
-	cardFact->createHand();
+	factory->createHand();
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
 	ecs::entity_t ent = Instantiate();
