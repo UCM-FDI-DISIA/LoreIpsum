@@ -20,12 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EffectCollection.cpp" />
+
     <ClCompile Include="src\game\EndTurnButton.cpp" />
     <ClCompile Include="src\game\MatchManager.cpp" />
     <ClCompile Include="src\game\Mouse.cpp" />
+    <ClCompile Include="src\game\BoardFactory.cpp" />
+    <ClCompile Include="src\game\BoardFactory_v0.cpp" />
+    <ClCompile Include="src\game\CardFactory.cpp" />
+    <ClCompile Include="src\game\Factory.cpp" />
     <ClCompile Include="src\game\TextComponent.cpp" />
     <ClCompile Include="src\game\AndresState.cpp" />
-    <ClCompile Include="src\game\BoardFactory.cpp" />
     <ClCompile Include="src\game\BoardManager.cpp" />
     <ClCompile Include="src\game\Board.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -79,23 +83,30 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EffectCollection.h" />
+    <ClInclude Include="src\game\BoardFactory.h" />
+    <ClInclude Include="src\game\BoardFactory_v0.h" />
     <ClInclude Include="src\game\Card.h" />
+
     <ClInclude Include="src\game\EndTurnButton.h" />
     <ClInclude Include="src\game\MatchManager.h" />
     <ClInclude Include="src\game\Mouse.h" />
+    <ClInclude Include="src\game\CardFactory.h" />
     <ClInclude Include="src\game\TextComponent.h" />
     <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\game\AndresState.h" />
+
     <ClInclude Include="src\game\Board.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\game\BoardFactory.h" />
+
+    <ClInclude Include="src\game\Board.h" />
+
     <ClInclude Include="src\game\BoardManager.h" />
     <ClInclude Include="src\game\BoardState.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\game\BoxCollider.h" />
-    <ClInclude Include="src\game\CardFactory.h" />
     <ClInclude Include="src\game\CardFactory_v0.h" />
     <ClInclude Include="src\game\CellManager.h" />
     <ClInclude Include="src\game\CardStateManager.h" />

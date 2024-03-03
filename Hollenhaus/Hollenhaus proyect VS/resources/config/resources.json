@@ -178,7 +178,31 @@
             "id": "EndTurnButton",
             "file": "resources/images/EndTurnButton.png"
             
-         }
+         },
+         {
+          "id": "esquina",
+          "file": "resources/images/ef_esquina.png"
+        },
+        {
+          "id": "centro",
+          "file": "resources/images/ef_centro.png"
+        },
+        {
+          "id": "flecha",
+          "file": "resources/images/ef_flecha.png"
+        },
+        {
+          "id": "superflecha",
+          "file": "resources/images/ef_superflecha.png"
+        },
+        {
+          "id": "block",
+          "file": "resources/images/ef_block.png"
+        },
+        {
+          "id": "unblockable",
+          "file": "resources/images/ef_unblockable.png"
+        }
     ],
     "fonts": [
       {
@@ -200,6 +224,15 @@
         "id": "8bit_40pt",
         "file": "resources/fonts/PressStart2P-Regular.ttf",
         "size": 40
+      },
+      {
+        "id": "8bit_size_12",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 12
       }
     ]
 }
+
+  
+
+

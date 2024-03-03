@@ -11,17 +11,23 @@
 
 #include "CardFactory_v0.h"
 
+#include "BoardFactory_v0.h"
+
 AndresState::AndresState() :
 	hand_()
 {
 	CardFactory_v0* factory = new CardFactory_v0();
+	BoardFactory_v0* boardFactory = new BoardFactory_v0(4);
 	hand_ = Instantiate();
 	hand_->addComponent<Transform>();
 	hand_->addComponent<SpriteRenderer>("hand");
 	hand_->addComponent<HandComponent>();
 	hand_->setLayer(8);
 
-	factory->createBoard();
+	//cambiado por la boardFactory para que no de errores
+	//factory->createBoard();
+
+	boardFactory->createBoard();
 
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();

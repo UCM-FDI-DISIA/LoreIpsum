@@ -11,7 +11,7 @@
 
 #include "Factory.h"
 
-#include "BoardFactory.h"
+#include "BoardFactory_v0.h"
 
 #include "MatchManager.h"
 
@@ -27,8 +27,7 @@ SamuState::SamuState() : GameState() {
 
 SamuState::~SamuState()
 {
-	delete boardFact;
-	delete cardFact;
+
 }
 //cleon: si est� vac�o se llama directamente al padre
 void SamuState::refresh()
@@ -38,13 +37,19 @@ void SamuState::refresh()
 
 void SamuState::update()
 {
+
+	//system("CLS");
+
+
 	GameState::update();
 
 	board->getComponent<BoardManager>()->updateScore();	// Esto puede ser un problema de performance
 
 	//std::cout << "Player 1 points: " << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
 	//std::cout << "Player 2 points: " << board->getComponent<BoardManager>()->getPlayer2Points() << std::endl;
-
+	#if _DEBUG
+	std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
+	#endif
 }
 
 void SamuState::render() const
