@@ -27,7 +27,9 @@
     <ClCompile Include="src\game\BoardFactory.cpp" />
     <ClCompile Include="src\game\BoardFactory_v0.cpp" />
     <ClCompile Include="src\game\CardFactory.cpp" />
+    <ClCompile Include="src\game\CardFactory_v1.cpp" />
     <ClCompile Include="src\game\Factory.cpp" />
+    <ClCompile Include="src\game\PlayerCardsManager.cpp" />
     <ClCompile Include="src\game\TextComponent.cpp" />
     <ClCompile Include="src\game\AndresState.cpp" />
     <ClCompile Include="src\game\BoardManager.cpp" />
@@ -90,6 +92,8 @@
     <ClInclude Include="src\game\MatchManager.h" />
     <ClInclude Include="src\game\Mouse.h" />
     <ClInclude Include="src\game\CardFactory.h" />
+    <ClInclude Include="src\game\CardFactory_v1.h" />
+    <ClInclude Include="src\game\PlayerCardsManager.h" />
     <ClInclude Include="src\game\TextComponent.h" />
     <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\game\AndresState.h" />

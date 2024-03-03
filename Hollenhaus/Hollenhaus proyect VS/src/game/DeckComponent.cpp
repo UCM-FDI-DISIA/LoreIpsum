@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <random>
 
+
 void
 DeckComponent::shuffle() {
 	std::random_device rd;
@@ -17,12 +18,12 @@ DeckComponent::shuffle() {
 	}
 }
 
-void 
+void
 DeckComponent::removeCard(Card* c) {
 	deck.remove(c);
 }
 
-void 
+void
 DeckComponent::addCardsOnBottom(std::list<Card*> h) {
 	while (!h.empty()) {
 		deck.push_front(h.front());
@@ -38,4 +39,10 @@ DeckComponent::drawCard() {
 	removeCard(c);
 
 	return c;
+}
+
+
+void 
+DeckComponent::addCartToDeck(Card* card) {
+	deck.push_back(card);
 }

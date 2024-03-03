@@ -12,6 +12,8 @@ public:
 	DeckComponent(){}
 	~DeckComponent(){}
 
+	void addCartToDeck(Card* card);
+
 	Card* drawCard();
 
 private:
