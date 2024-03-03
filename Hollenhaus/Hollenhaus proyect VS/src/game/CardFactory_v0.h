@@ -6,7 +6,7 @@
 
 class CardFactory_v0 : public CardFactory {
 
-	float cardScale = 0.55f;
+	float cardScale = 0.4f;
 
 public:
 	CardFactory_v0() : CardFactory() {};
