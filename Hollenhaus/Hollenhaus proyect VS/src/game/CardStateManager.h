@@ -1,18 +1,12 @@
 #pragma once
-
 #include "checkML.h"
 #include "ComponentUpdate.h"
+
 
 class CardStateManager : public ComponentUpdate
 {
 
-
 public:
-
-	//constructora
-	CardStateManager();
-
-
 	enum CardState {
 		ON_HAND,
 		ON_HOVER,
@@ -21,14 +15,17 @@ public:
 		ON_DECK
 	};
 
+	CardStateManager();
+
+	void putOnBoard();
+
+	/// getters
+	CardState getState() const { return currentState; }
+
+	/// setters
 	void setState(CardState newState);
 
-	CardState getState() { return currentState; }
-
 private:
-
 	CardState currentState;
-
-
 };
 

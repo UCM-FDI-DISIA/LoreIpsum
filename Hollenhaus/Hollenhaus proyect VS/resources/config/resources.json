@@ -1,26 +1,101 @@
 {
-
   "cards": [
     {
-      "id": "card01",
-      "cost": 1,
+      "id": "0",
+      "cost": 0,
+      "value": 1,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 0,
+          "value": 10
+        }
+      ],
+      "unblockable": false
+    },
+    {
+      "id": "1",
+      "cost": 0,
       "value": 2,
-      "sprite": "sprite01",
-      "skills": "zero"
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
+        }
+      ],
+      "unblockable": false
     },
     {
-      "id": "card02",
-      "cost": 3,
+      "id": "2",
+      "cost": 0,
+      "value": 3,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 2,
+          "directions": [
+            "Derecha"
+          ],
+          "value": 30
+        }
+      ],
+      "unblockable": false
+    },
+    {
+      "id": "3",
+      "cost": 0,
       "value": 4,
-      "sprite": "sprite02",
-      "skills": "one"
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 3,
+          "directions": [
+            "Derecha"
+          ],
+          "value": 40
+        }
+      ],
+      "unblockable": false
     },
     {
-      "id": "card03",
-      "cost": 5,
+      "id": "4",
+      "cost": 0,
+      "value": 5,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 3,
+          "directions": [
+            "Derecha"
+          ]
+        }
+      ],
+      "unblockable": false
+    },
+    {
+      "id": "5",
+      "cost": 0,
       "value": 6,
-      "sprite": "sprite03",
-      "skills": "two"
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
+        },
+        {
+          "type": 2,
+          "directions": [
+            "Derecha",
+            "Abajo"
+          ],
+          "value": 30
+        },
+        {
+          "type": 5
+        }
+      ],
+      "unblockable": true
     }
   ],
 
@@ -33,6 +108,26 @@
             "id": "card",
             "file": "resources/images/card.png"
 
+        },
+        {
+          "id": "hand",
+          "file": "resources/images/hand.png"
+        },
+        {
+          "id": "picto1",
+          "file": "resources/images/picto1.png"
+        },
+        {
+          "id": "key",
+          "file": "resources/images/libreta.png"
+        },
+        {
+          "id": "board",
+          "file": "resources/images/board.png"
+        },
+        {
+          "id": "mouse",
+          "file": "resources/images/mouse.png"
         },
         {
             "id": "ciudad",
@@ -79,5 +174,27 @@
             "file": "resources/images/ciudadcompleta.png"
 
         }
+    ],
+    "fonts": [
+      {
+        "id": "8bit_16pt",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 16
+      },
+      {
+        "id": "8bit_24pt",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 24
+      },
+      {
+        "id": "8bit_32pt",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 32
+      },
+      {
+        "id": "8bit_40pt",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 40
+      }
     ]
 }

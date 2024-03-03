@@ -46,13 +46,9 @@ public:
 	}
 	
 	void DeleteEntityMap(int layer, Entity* e) {
-		auto it = ordenRendering[layer].begin();
 
-		while (e != (*it)) {
-			it++;
-		}
-
-		ordenRendering[layer].erase(it);
+		// cleon: para buscar, mirad la librería estándar
+		ordenRendering[layer].erase(std::find(ordenRendering[layer].begin(), ordenRendering[layer].end(), e));
 	}
 
 	void ChangeLayer(int previousLayer, int nextLayer, Entity* e) {
@@ -500,7 +496,7 @@ inline ecs::entity_t Instantiate(ecs::grpId_t gId = ecs::grp::DEFAULT) {
 
 inline ecs::entity_t Instantiate(Vector2D pos, ecs::grpId_t gId = ecs::grp::DEFAULT) {
 	ecs::entity_t ent = Instantiate(gId);
-	ent->addComponent<Transform>()->getGlobalPos().set(pos);
+	ent->addComponent<Transform>()->setGlobalPos(pos);
 	return ent;
 }
 

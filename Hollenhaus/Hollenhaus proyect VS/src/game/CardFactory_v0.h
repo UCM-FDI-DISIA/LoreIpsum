@@ -1,15 +1,17 @@
 #pragma once
 
-#include "CardFactory.h"
+#include "Factory.h"
 
-class CardFactory_v0 : public CardFactory {
+class CardFactory_v0 : public Factory {
 
-	float cardScale = 0.25f;
+	float cardScale = 0.55f;
+	
 public:
-	ecs::entity_t createCard(Vector2D pos) override;
+	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<SDLUtils::CardEffect>& effects) override;
 	ecs::entity_t createDropDetector(Vector2D pos = Vector2D(0,0)) override;
+	ecs::entity_t createDropDetector_v2(Vector2D pos = Vector2D(0,0)) ;
 
-	void createBoard() override;
+	ecs::entity_t createBoard() override;
 	void createHand() override;
 
 };

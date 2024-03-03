@@ -31,7 +31,9 @@ public:
 	/// </summary>
 	enum INPUT_EVENTES : uint8_t {
 		MOUSE_LEFT_CLICK_DOWN,
-		MOUSE_LEFT_CLICK_UP
+		MOUSE_LEFT_CLICK_UP,
+		KEY_F11_DOWN,
+		KEY_F11_UP
 	};
 
 	virtual ~InputHandler() {
@@ -151,6 +153,22 @@ public:
 		if (event.type == SDL_MOUSEBUTTONUP) {
 			if (event.button.button == SDL_BUTTON_LEFT) {
 				return MOUSE_LEFT_CLICK_UP;
+			}
+		}
+
+		if (event.type == SDL_KEYDOWN)
+		{
+			if (event.button.button == SDL_SCANCODE_F11)
+			{
+				return KEY_F11_DOWN;
+			}
+		}
+
+		if (event.type == SDL_KEYUP)
+		{
+			if (event.button.button == SDL_SCANCODE_F11)
+			{
+				return KEY_F11_UP;
 			}
 		}
 

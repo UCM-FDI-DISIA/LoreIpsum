@@ -1,7 +1,7 @@
 #pragma once
 #include "BoxCollider.h"
-#include "Manager.h"
 #include "SpriteRenderer.h"
+#include "Manager.h"
 #include "Transform.h"
 #include "ColliderRender.h"
 #include "../sdlutils/InputHandler.h"
@@ -65,17 +65,13 @@ void BoxCollider::initComponent() {
 void BoxCollider::update() {
 	collider_.x = transform_->getGlobalPos().getX() + posOffset_.getX();
 	collider_.y = transform_->getGlobalPos().getY() + posOffset_.getY();
-	/*
-	vertices[1] = transform_->getGlobalPos();
-	vertices[2] = vertices[1] + Vector2D(size_.getX(), vertices[1].getY());
-	vertices[3] = vertices[1] + size_;
-	vertices[4] = vertices[1] + Vector2D(vertices[1].getX(), size_.getY());*/
-	/*
+
+	
 	if (anchoredToSprite_) {
 
-		//size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
+		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
 	}
-	*/
+	
 
 	collider_.w = size_.getX() * transform_->getGlobalScale().getX();
 	collider_.h = size_.getY() * transform_->getGlobalScale().getY();
@@ -90,9 +86,8 @@ void BoxCollider::setSize(Vector2D newSizOffset) {
 }
 
 bool BoxCollider::isCursorOver() {
-	Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
-	//Collisions().collides(vertices[1], vertices[2].getX() - vertices[1].getX(), vertices[4].getY() - vertices[1].getY(), mousePos, 1, 1);
-
+	Vector2D mousePos(ih().getMousePos().first, ih().getMousePos().second);
+	
 	SDL_Rect mouseRect = build_sdlrect(mousePos, 1, 1);
 
 	return SDL_HasIntersection(&collider_, &mouseRect);

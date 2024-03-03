@@ -7,7 +7,10 @@
 #include "DropDetector.h"
 #include "CardStateManager.h"
 
-
+#include "../Cell.h"
+#include "Card.h"
+#include "BoardManager.h"
+#include "MatchManager.h"
 
 DragManager::DragManager()
 {
@@ -32,12 +35,12 @@ void DragManager::update()
 	if (dragTransform != nullptr) {
 		//actualizamos su posicion teniendo en cuenta la posicion del raton
 
-		Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
+		Vector2D mousePos (ih().getMousePos().first, ih().getMousePos().second);
 		Vector2D posAct = (mousePos - initialMousePos) + initialTransformPos;
 
-		dragTransform->getGlobalPos().set(posAct);
+		dragTransform->setGlobalPos(posAct);
 	}
-	
+
 }
 
 void DragManager::OnLeftClickDown()
@@ -55,37 +58,49 @@ void DragManager::OnLeftClickDown()
 		initialTransformPos.set(dragTransform->getGlobalPos());
 		initialMousePos.set(Vector2D(ih().getMousePos().first, ih().getMousePos().second));
 
-		dragTransform->getGlobalPos().set(ih().getMousePos().first, ih().getMousePos().second);
-		GameStateMachine::instance()->setState(2);
-		
+		//dragTransform->getGlobalPos().set(ih().getMousePos().first, ih().getMousePos().second);
 	}
 
-	
+
 }
 
 void DragManager::OnLeftClickUp()
 {
 	//si no tenemos carta drageada, no hacemos nada
 
-	//si, sí la tenemos, verifcamos colisiones con el grupo DropDetector
+	//si, sï¿½ la tenemos, verifcamos colisiones con el grupo DropDetector
 	if (dragTransform != nullptr) {
 
-		auto drag = mouseRaycast(ecs::grp::DROPS);
+		auto drop = mouseRaycast(ecs::grp::DROPS);
+
+		auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
 
 		//si tenemos una colision con el drop detector, cambiamos la posicion de la carta por la que guarde el drop
-		if (drag != nullptr) {
-			dragTransform->getGlobalPos().set(mngr().getComponent<DropDetector>(drag)->getCardPos());
+		if (drop != nullptr  && !dropDetector->isOcuped() ) {
+			dragTransform->setGlobalPos(dropDetector->getCardPos());
 			
 			dragTransform->getEntity()->getComponent<CardStateManager>()->setState(CardStateManager::ON_CELL);
+
+			dropDetector->setOcuped(true);
+
+			//x,y dependen del dropDectector(Cell)
+			//card viene del dragTransform
+			//owner depende del match manager,
+			
+			int x = dropDetector->getBoardPos().getX();
+			int y = dropDetector->getBoardPos().getY();
+			Card* card = dragTransform->getEntity()->getComponent<Card>();
+			
+			CellData::Owner playerTurn = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetPlayerTurn();
+			boardManager->setCard(x, y, card, playerTurn);
 		}
 		else {//sino, devolvemos la carta a su posicion inicial
-			dragTransform->getGlobalPos().set(initialTransformPos);
+			dragTransform->setGlobalPos(initialTransformPos);
 		}
 
 		//en cualquier caso, ya no tenemos carta drageada
-			
+
 		dragTransform = nullptr;
 	}
-
 
 }

@@ -7,7 +7,6 @@
 
 #include <SDL.h>
 
-
 class GameStateMachine;
 
 //Probablemente haya que hacer un enum de 
@@ -20,7 +19,7 @@ public:
 	
 private:
 
-#pragma region parámetros
+#pragma region parï¿½metros
 
 	Uint32 frameTime;
 	Uint32 startTime;
@@ -30,12 +29,12 @@ private:
 
 	GameStateMachine* gameStateMachine;
 
-	//Haría falta un booleano de salida
+	//Harï¿½a falta un booleano de salida
 
 
 
 	void Render() const;
-	void Update();
+	void Update();	// cleon:  "NO TENEMOS CONTROL DE TIEMPO" (== "este aviï¿½n no tiene piloto")
 	void ChangeScene();
 
 	void HandleEvents();
