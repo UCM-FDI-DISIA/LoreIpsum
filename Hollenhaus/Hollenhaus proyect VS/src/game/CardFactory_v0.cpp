@@ -101,6 +101,49 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 
 	textoCoste->setLayer(10);
 
+
+	ecs::entity_t effectImage = Instantiate(Vector2D(0, 0));
+
+
+	std::string efectID;
+
+	if (effects[0].type() == Effects::Esquina) {
+		efectID = "esquina";
+	}
+	else if (effects[0].type() == Effects::Centro) {
+		efectID = "centro";
+
+	}
+	else if (effects[0].type() == Effects::Flecha) {
+		efectID = "flecha";
+
+	}
+	else if (effects[0].type() == Effects::Superflecha) {
+		efectID = "superflecha";
+
+	}
+	else if (effects[0].type() == Effects::Block) {
+		efectID = "block";
+
+	}
+	else if (effects[0].type() == Effects::Unblockable) {
+		efectID = "unblockable";
+
+	}
+
+	//effectImage->addComponent<SpriteRenderer>(efectID);
+	
+
+	//effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
+
+	//effectImage->getComponent<Transform>()->getGlobalScale().set(1, 1);
+	//effectImage->getComponent<Transform>()->getRelativeScale().set(1, 1);
+	//Vector2D gpos(10, 10);
+	//effectImage->getComponent<Transform>()->setGlobalPos(gpos);
+
+	//effectImage->setLayer(100);
+
+
 	return card;
 }
 

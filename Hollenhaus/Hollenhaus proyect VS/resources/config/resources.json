@@ -98,6 +98,7 @@
     }
   ],
 
+
   "images": [
     {
       "id": "card",
@@ -118,7 +119,34 @@
     {
       "id": "board",
       "file": "resources/images/board.png"
+    },
+    {
+      "id": "esquina",
+      "file": "resources/images/ef_esquina.png"
+    },
+    {
+      "id": "centro",
+      "file": "resources/images/ef_centro.png"
+    },
+    {
+      "id": "flecha",
+      "file": "resources/images/ef_flecha.png"
+    },
+    {
+      "id": "superflecha",
+      "file": "resources/images/ef_superflecha.png"
+    },
+    {
+      "id": "block",
+      "file": "resources/images/ef_block.png"
+    },
+    {
+      "id": "unblockable",
+      "file": "resources/images/ef_unblockable.png"
     }
+
+
+
   ],
   
   "fonts": [

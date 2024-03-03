@@ -6,7 +6,7 @@ class Transform :
     public ComponentUpdate
 {
 public:
-    Transform() : parent_(), globalAngle_(0), globalScale_(1, 1), relativeAngle_(0), isChild_(false) {};
+    Transform() : parent_(), globalAngle_(0), globalScale_(1, 1), relativeAngle_(0), isChild_(false),relativeScale_(1,1) {};
     ~Transform() {};
 
     void update() override;
