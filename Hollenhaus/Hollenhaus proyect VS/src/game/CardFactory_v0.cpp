@@ -131,17 +131,17 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 
 	}
 
-	//effectImage->addComponent<SpriteRenderer>(efectID);
+	effectImage->addComponent<SpriteRenderer>(efectID);
 	
 
-	//effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
+	effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
 	//effectImage->getComponent<Transform>()->getGlobalScale().set(1, 1);
-	//effectImage->getComponent<Transform>()->getRelativeScale().set(1, 1);
-	//Vector2D gpos(10, 10);
-	//effectImage->getComponent<Transform>()->setGlobalPos(gpos);
+	effectImage->getComponent<Transform>()->getRelativeScale().set(0.1, 0.1);
+	Vector2D gpos(10, 10);
+	effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
 
-	//effectImage->setLayer(100);
+	effectImage->setLayer(10);
 
 
 	return card;
