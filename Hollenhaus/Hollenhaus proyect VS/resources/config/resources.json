@@ -110,24 +110,24 @@
 
         },
         {
-          "id": "hand",
-          "file": "resources/images/hand.png"
+            "id": "hand",
+            "file": "resources/images/hand.png"
         },
         {
-          "id": "picto1",
-          "file": "resources/images/picto1.png"
+            "id": "picto1",
+            "file": "resources/images/picto1.png"
         },
         {
-          "id": "key",
-          "file": "resources/images/libreta.png"
+            "id": "key",
+            "file": "resources/images/libreta.png"
         },
         {
-          "id": "board",
-          "file": "resources/images/board.png"
+            "id": "board",
+            "file": "resources/images/board.png"
         },
         {
-          "id": "mouse",
-          "file": "resources/images/mouse.png"
+            "id": "mouse",
+            "file": "resources/images/mouse.png"
         },
         {
             "id": "ciudad",
@@ -173,11 +173,10 @@
             "id": "ciudadcompleta",
             "file": "resources/images/ciudadcompleta.png"
 
-         },
-         {
+        },
+        {
             "id": "EndTurnButton",
             "file": "resources/images/EndTurnButton.png"
-            
          },
          {
           "id": "esquina",
@@ -202,6 +201,19 @@
         {
           "id": "unblockable",
           "file": "resources/images/ef_unblockable.png"
+
+
+        },
+        {
+            "id": "tiendafondo",
+            "file": "resources/images/provtienda.png"
+
+        },
+        {
+            "id": "oficinafondo",
+            "file": "resources/images/provoficina.png"
+
+
         }
     ],
     "fonts": [

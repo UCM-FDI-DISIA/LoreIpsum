@@ -1,5 +1,7 @@
 #pragma once
 #include "GameState.h"
+#include  "Entity.h"
+#include "NPC.h"
 
 class ShopState : public GameState
 {
