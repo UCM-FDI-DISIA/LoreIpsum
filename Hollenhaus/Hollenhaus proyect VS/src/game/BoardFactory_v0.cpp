@@ -21,12 +21,12 @@
 ecs::entity_t BoardFactory_v0::createBoard()
 {
 
-	int initialX = 292;
-	int initialY = 122;
-	int offSetX = 57;
-	int offSetY = 75;
+	int initialX = 252;
+	int initialY = 54;
+	int offSetX = 79;
+	int offSetY = 105;
 
-	float scale = 0.4;
+	float scale = 0.55;
 	std::vector<std::vector<ecs::entity_t>> _board;
 
 	// Seteamos el board al tamanio deseado
