@@ -13,8 +13,8 @@ public:
 
 	void OnLeftClickDown() const;
 
-	void onEnter() const override;
-	void onExit() const override;
+	void onEnter() override;
+	void onExit() override;
 private:
 
 	//Cambiar a combate (Tarotista) -> Teléfono

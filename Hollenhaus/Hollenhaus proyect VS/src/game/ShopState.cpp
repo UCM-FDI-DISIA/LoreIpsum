@@ -17,12 +17,12 @@ void ShopState::refresh()
 {
 }
 
-void ShopState::onEnter() const
+void ShopState::onEnter()
 {
 	std::cout << "\nEnter shop\n";
 }
 
-void ShopState::onExit() const
+void ShopState::onExit() 
 {
 	std::cout << "\nExit shop\n";
 }

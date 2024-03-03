@@ -19,7 +19,7 @@ void MovementState::refresh()
 	GameState::refresh();
 }
 
-void MovementState::onEnter() const
+void MovementState::onEnter() 
 {
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
@@ -36,6 +36,6 @@ void MovementState::onEnter() const
 	fondo->addComponent<MoveOnClick>();
 }
 
-void MovementState::onExit() const
+void MovementState::onExit() 
 {
 }

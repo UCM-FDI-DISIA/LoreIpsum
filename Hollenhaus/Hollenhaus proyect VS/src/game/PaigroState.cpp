@@ -20,7 +20,7 @@ void PaigroState::refresh()
 	GameState::refresh();
 }
 
-void PaigroState::onEnter() const
+void PaigroState::onEnter()
 {
 	std::cout << "\nBUENOS DIAS\n";
 
@@ -47,7 +47,7 @@ void PaigroState::onEnter() const
 
 }
 
-void PaigroState::onExit() const
+void PaigroState::onExit() 
 {
 	std::cout << "\nBUENAS NOCHES\n";
 	//GameStateMachine::instance()->getMngr()->Free();

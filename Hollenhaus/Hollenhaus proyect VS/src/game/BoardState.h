@@ -26,8 +26,8 @@ public:
 	void refresh() override;
 
 	//void refresh() override;
-	void onEnter() const override;
-	void onExit() const override;
+	void onEnter() override;
+	void onExit() override;
 private:
 
 	// input ronyoso

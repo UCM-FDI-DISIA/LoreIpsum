@@ -99,7 +99,7 @@ void BoardState::inputCard()
 	//matchManager->updateScore(); // actualiza el matchManager siempre que se ponga una carta
 }
 
-void BoardState::onEnter() const
+void BoardState::onEnter() 
 {
 	std::cout << "\nenter board\n";
 		board = new Board(4);
@@ -108,7 +108,7 @@ void BoardState::onEnter() const
 	effectCollection = new EffectCollection();
 }
 
-void BoardState::onExit() const
+void BoardState::onExit()
 {
 	std::cout << "\nexit board\n";
 }

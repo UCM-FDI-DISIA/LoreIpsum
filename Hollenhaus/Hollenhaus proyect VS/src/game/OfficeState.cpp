@@ -24,7 +24,7 @@ void OfficeState::OnLeftClickDown() const
 
 }
 
-void OfficeState::onEnter() const
+void OfficeState::onEnter() 
 {
 	std::cout << "\nEnter office\n";
 	for (int i = 0; i < 1000; i++) { TuVieja("Peaches"); }
@@ -33,7 +33,7 @@ void OfficeState::onEnter() const
 	GameStateMachine::instance()->setState(5);
 }
 
-void OfficeState::onExit() const
+void OfficeState::onExit()
 {
 	std::cout << "\nExit office\n";
 }

@@ -19,7 +19,7 @@ public:
 	
 private:
 
-#pragma region par�metros
+#pragma region parametros
 
 	Uint32 frameTime;
 	Uint32 startTime;

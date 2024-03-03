@@ -28,8 +28,8 @@ public:
 	virtual void render() const; // render de las entidades
 
 	//Para testeo de estrada y salida de estados
-	virtual void onEnter() const = 0;
-	virtual void onExit() const = 0;
+	virtual void onEnter() = 0;
+	virtual void onExit() = 0;
 
 };
 

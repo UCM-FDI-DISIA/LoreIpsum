@@ -16,7 +16,7 @@ void CityState::refresh()
 	GameState::refresh();
 }
 
-void CityState::onEnter() const
+void CityState::onEnter()
 {
 	std::cout << "\nentering CityState\n";
 	
@@ -50,11 +50,9 @@ void CityState::onEnter() const
 
 }
 
-void CityState::onExit() const
+void CityState::onExit()
 {
 	std::cout << "\nexit CityState\n";
 	GameStateMachine::instance()->getMngr()->Free();
-	//ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
-	//Free del input
 
 }

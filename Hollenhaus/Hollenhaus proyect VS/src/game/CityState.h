@@ -12,8 +12,8 @@ public:
 	void render() const override;
 	void refresh() override;
 
-	void onEnter() const override;
-	void onExit() const override;
+	void onEnter() override;
+	void onExit() override;
 private:
 
 	//Velocidad del fondo (mov)

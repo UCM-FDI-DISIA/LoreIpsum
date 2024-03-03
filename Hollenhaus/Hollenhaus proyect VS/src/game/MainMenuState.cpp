@@ -22,7 +22,7 @@ void MainMenuState::refresh()
 {
 }
 
-void MainMenuState::onEnter() const
+void MainMenuState::onEnter() 
 {
 	std::cout << "\nEnter menu\n";
 	ecs::entity_t boton1 = Instantiate();
@@ -37,7 +37,7 @@ void MainMenuState::onEnter() const
 
 }
 
-void MainMenuState::onExit() const
+void MainMenuState::onExit() 
 {
 	std::cout << "\nExit menu\n";
 }

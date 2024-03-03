@@ -53,7 +53,7 @@ void SamuState::render() const
 	GameState::render();
 }
 
-void SamuState::onEnter() const
+void SamuState::onEnter()
 {
 	TuVieja("\nEntering in SamuState");
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
@@ -82,7 +82,7 @@ void SamuState::onEnter() const
 	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 }
 
-void SamuState::onExit() const
+void SamuState::onExit() 
 {
 	TuVieja("\nExit SamuState");
 	GameStateMachine::instance()->getMngr()->Free();

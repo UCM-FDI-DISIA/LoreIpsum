@@ -16,12 +16,36 @@ namespace ecs
 class GameStateMachine : public Singleton<GameStateMachine>
 {
 	std::stack<GameState*> gameStack; // container de los states
+
 	std::list<GameState*> toBeDeleted;
 
 	friend Singleton<GameStateMachine>;
 
 	ecs::Manager* mngr_;
+
 	Mouse* mouse_;
+
+	//Enum de estados del juego
+	enum game_states {
+		MAINMENU = 0,
+		CITY,
+		OFFICE,
+		SHOP,
+		BOARD,
+		PAIGRO,
+		SAMU
+	};
+
+	//Creaci�n de los distintos estados del juego
+	GameState* currentState;
+	GameState* mainMenuState;
+	GameState* cityState;
+	GameState* officeState;
+	GameState* shopState;
+	GameState* boardState;
+	GameState* paigroState;
+	GameState* samuState;
+	GameState* movementState;
 
 public:
 	ecs::Manager* getMngr()
@@ -77,38 +101,6 @@ public:
 		
 	};
 	bool Empty() const { return gameStack.empty(); }
-
-private:
-	std::stack<GameState*> gameStack; // container de los states
-
-	std::list<GameState*> toBeDeleted;
-
-	friend Singleton<GameStateMachine>;
-
-	ecs::Manager* mngr_;
-
-	//Enum de estados del juego
-	enum game_states {
-		MAINMENU = 0,
-		CITY,
-		OFFICE,
-		SHOP,
-		BOARD,
-		PAIGRO,
-		SAMU
-	};
-
-	//Creaci�n de los distintos estados del juego
-	GameState *currentState;
-	GameState *mainMenuState;
-	GameState *cityState;
-	GameState *officeState;
-	GameState *shopState;
-	GameState *boardState;
-	GameState *paigroState;
-	GameState *samuState;
-	GameState* movementState;
-
 };
 
 
