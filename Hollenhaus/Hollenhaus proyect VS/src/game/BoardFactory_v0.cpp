@@ -20,6 +20,13 @@
 
 ecs::entity_t BoardFactory_v0::createBoard()
 {
+
+	int initialX = 292;
+	int initialY = 122;
+	int offSetX = 57;
+	int offSetY = 75;
+
+	float scale = 0.4;
 	std::vector<std::vector<ecs::entity_t>> _board;
 
 	// Seteamos el board al tamanio deseado
@@ -35,17 +42,17 @@ ecs::entity_t BoardFactory_v0::createBoard()
 		for (int i = 0; i < size; i++)
 		{
 			//PARTE VISUAL
-			_board[i][j] = Instantiate(Vector2D(200 + i * 100, 100 + j * 100), ecs::grp::DROPS);
+			_board[i][j] = Instantiate(Vector2D(initialX + i * offSetX, initialY + j * offSetY), ecs::grp::DROPS);
 			auto cellCmp = _board[i][j]->addComponent<CellManager>();
 
 			_board[i][j]->addComponent<BoxCollider>();
 			_board[i][j]->addComponent<DropDetector>()->getCardPos().set(
-				Vector2D(200 + i * 100, 100 + j * 100));
+				Vector2D(initialX + i * offSetX, initialY + j * offSetY));
 			_board[i][j]->getComponent<DropDetector>()->getBoardPos().set(
 				Vector2D(i, j));
 			_board[i][j]->getComponent<BoxCollider>()->setSize(
-				Vector2D(sdlutils().images().at("card").width() * 0.55,
-					(sdlutils().images().at("card").height()) * 0.55));
+				Vector2D(sdlutils().images().at("card").width() * scale,
+					(sdlutils().images().at("card").height()) * scale));
 
 			_board[i][j]->addComponent<Cell>();
 
