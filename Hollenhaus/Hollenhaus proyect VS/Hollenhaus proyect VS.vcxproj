@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EffectCollection.cpp" />
+    <ClCompile Include="src\game\EndTurnButton.cpp" />
     <ClCompile Include="src\game\MatchManager.cpp" />
     <ClCompile Include="src\game\Mouse.cpp" />
     <ClCompile Include="src\game\TextComponent.cpp" />
@@ -79,6 +80,7 @@
   <ItemGroup>
     <ClInclude Include="src\EffectCollection.h" />
     <ClInclude Include="src\game\Card.h" />
+    <ClInclude Include="src\game\EndTurnButton.h" />
     <ClInclude Include="src\game\MatchManager.h" />
     <ClInclude Include="src\game\Mouse.h" />
     <ClInclude Include="src\game\TextComponent.h" />

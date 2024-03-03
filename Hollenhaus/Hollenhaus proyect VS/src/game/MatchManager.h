@@ -24,7 +24,7 @@ public:
     void SubstactActualActionPoints(int pointsSubstracted) { actualActionPoints -= pointsSubstracted; }
 
     TurnState GetActualState() const { return actualState; }
-    void SetActualState(TurnState newState) { actualState = newState; }
+    void SetActualState(TurnState newState);
 
     CellData::Owner GetPlayerTurn() const;
 

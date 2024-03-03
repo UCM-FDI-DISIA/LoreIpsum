@@ -1,8 +1,10 @@
 #include "EndTurnButton.h"
 #include "Manager.h"
-#include "../sdlutils/InputHandler.h"ç
-#include "MatchManager.h"
+#include "../sdlutils/InputHandler.h"
 
+#include "BoxCollider.h"
+#include "Transform.h"
+#include <iostream>
 EndTurnButton::EndTurnButton(MatchManager::TurnState buttonPropietary) :
 	buttonPropietary_(buttonPropietary)
 {

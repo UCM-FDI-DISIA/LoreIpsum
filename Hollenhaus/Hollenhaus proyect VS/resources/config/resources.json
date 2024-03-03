@@ -173,7 +173,12 @@
             "id": "ciudadcompleta",
             "file": "resources/images/ciudadcompleta.png"
 
-        }
+         },
+         {
+            "id": "EndTurnButton",
+            "file": "resources/images/EndTurnButton.png"
+            
+         }
     ],
     "fonts": [
       {

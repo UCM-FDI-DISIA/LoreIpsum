@@ -1,9 +1,10 @@
 #pragma once
 #include "ComponentUpdate.h"
+#include "MatchManager.h"
 
 class Transform;
 class BoxCollider;
-class MatchManager;
+
 
 class EndTurnButton : public ComponentUpdate
 {

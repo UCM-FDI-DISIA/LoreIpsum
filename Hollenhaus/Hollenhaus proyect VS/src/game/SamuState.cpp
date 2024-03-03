@@ -18,6 +18,7 @@
 #include "BoardManager.h"
 #include "TextComponent.h"
 #include "MatchManager.h"
+#include "EndTurnButton.h"
 
 SamuState::SamuState() : GameState() {
 
@@ -59,7 +60,7 @@ void SamuState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	matchManager->addComponent<MatchManager>(4, MatchManager::TurnState::TurnJ2);
+	matchManager->addComponent<MatchManager>(4, MatchManager::TurnState::TurnJ1);
 
 	cardFact = new CardFactory_v0();
 
@@ -80,6 +81,18 @@ void SamuState::onEnter()
 
 	ecs::entity_t pruebaTxt = Instantiate(Vector2D(400, 50));
 	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+
+	// Creación del botón de J1 para acabar su turno
+	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(70, 500));
+	endTurnButtonJ1->addComponent<SpriteRenderer>("EndTurnButton");
+	endTurnButtonJ1->addComponent<BoxCollider>();
+	endTurnButtonJ1->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ1);
+
+	// Creación del botón de J2 para acabar su turno
+	ecs::entity_t endTurnButtonJ2 = Instantiate(Vector2D(70, 100));
+	endTurnButtonJ2->addComponent<SpriteRenderer>("EndTurnButton");
+	endTurnButtonJ2->addComponent<BoxCollider>();
+	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);
 }
 
 void SamuState::onExit() 
