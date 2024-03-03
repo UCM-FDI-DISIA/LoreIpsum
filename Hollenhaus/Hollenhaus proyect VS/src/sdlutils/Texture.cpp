@@ -51,6 +51,12 @@ Texture::Texture(SDL_Renderer *renderer, const std::string &text,
 	constructFromText(renderer, text, font, &fgColor, &bgColor);
 }
 
+Texture::Texture(SDL_Renderer* renderer, const std::string& text, 
+		const Font& font, const SDL_Color& fgColor, Uint32 wrapLenght, int align)
+{
+	constructFromWrappedText(renderer, text, font, &fgColor, wrapLenght, align);
+}
+
 void Texture::constructFromText(SDL_Renderer *renderer, const std::string &text,
 		const Font &font, const SDL_Color *fgColor, const SDL_Color *bgColor) {
 
@@ -61,6 +67,27 @@ void Texture::constructFromText(SDL_Renderer *renderer, const std::string &text,
 			bgColor == nullptr ?
 					font.renderText(text, *fgColor) :
 					font.renderText(text, *fgColor, *bgColor);
+
+	if (textSurface == nullptr)
+		throw "Couldn't create surface for text: " + text;
+
+	width_ = textSurface->w;
+	height_ = textSurface->h;
+
+	texture_ = SDL_CreateTextureFromSurface(renderer, textSurface);
+	SDL_FreeSurface(textSurface);
+
+	if (texture_ == nullptr)
+		throw "Couldn't create texture for text: " + text;
+}
+
+void Texture::constructFromWrappedText(SDL_Renderer* renderer, const std::string& text,
+		const Font& font, const SDL_Color* fgColor, Uint32 wrapLenght, int align)
+{
+	assert(renderer != nullptr);
+	renderer_ = renderer;
+
+	SDL_Surface* textSurface = font.renderWrappedText(text, *fgColor, wrapLenght, align);
 
 	if (textSurface == nullptr)
 		throw "Couldn't create surface for text: " + text;

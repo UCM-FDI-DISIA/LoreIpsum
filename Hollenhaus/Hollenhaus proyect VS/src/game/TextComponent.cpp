@@ -1,15 +1,18 @@
 #include "TextComponent.h"
 #include "Transform.h"
 
-TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color color, Alignment alignment) :
+TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght, BoxPivotPoint boxPivotPoint, TextAlignment textAlignment) :
 	text_(nullptr),
 	color_(color),
 	font_(&sdl_.fonts().at(fontID)),
-	alignment_(alignment)
+	wrapLenght_(wrapLenght),
+	boxPivotPoint_(boxPivotPoint),
+	textAlignment_(textAlignment)
 {
 	if (txt.empty()) txt_ = " ";
 	else txt_ = txt;
-	createTexture(txt_, font_, color_);
+
+	createTexture();
 }
 
 TextComponent::~TextComponent()
@@ -29,45 +32,76 @@ void TextComponent::render() const
 	float h = text_->height();
 	float w = text_->width();
 
-	switch (alignment_)
+	switch (boxPivotPoint_)
 	{
-	case TextComponent::Left:
-		text_->render(tr_->getGlobalPos().getX(), tr_->getGlobalPos().getY() - h/2);
+	case TextComponent::LeftTop:
+		text_->render(tr_->getGlobalPos().getX(), tr_->getGlobalPos().getY());
 		break;
-	case TextComponent::Right:
-		text_->render(tr_->getGlobalPos().getX() - w, tr_->getGlobalPos().getY() - h/2);
+	case TextComponent::LeftCenter:
+		text_->render(tr_->getGlobalPos().getX(), tr_->getGlobalPos().getY() - h / 2);
 		break;
-	case TextComponent::Center:
-		text_->render(tr_->getGlobalPos().getX() - w/2, tr_->getGlobalPos().getY() - h / 2);
+	case TextComponent::LeftBot:
+		text_->render(tr_->getGlobalPos().getX(), tr_->getGlobalPos().getY() - h);
+		break;
+	case TextComponent::RightTop:
+		text_->render(tr_->getGlobalPos().getX() - w, tr_->getGlobalPos().getY());
+		break;
+	case TextComponent::RightCenter:
+		text_->render(tr_->getGlobalPos().getX() - w, tr_->getGlobalPos().getY() - h / 2);
+		break;
+	case TextComponent::RightBot:
+		text_->render(tr_->getGlobalPos().getX() - w, tr_->getGlobalPos().getY() - h);
+		break;
+	case TextComponent::CenterTop:
+		text_->render(tr_->getGlobalPos().getX() - w / 2, tr_->getGlobalPos().getY());
+		break;
+	case TextComponent::CenterCenter:
+		text_->render(tr_->getGlobalPos().getX() - w / 2, tr_->getGlobalPos().getY() - h / 2);
+		break;
+	case TextComponent::CenterBot:
+		text_->render(tr_->getGlobalPos().getX() - w / 2, tr_->getGlobalPos().getY() - h);
 		break;
 	default:
 		break;
 	}
-	
 }
 
 void TextComponent::setTxt(std::string txt)
 {
 	txt_ = txt;
-	createTexture(txt_, font_, color_);
+	createTexture();
 }
 
 void TextComponent::setColor(SDL_Color color)
 {
 	color_ = color;
-	createTexture(txt_, font_, color_);
+	createTexture();
 }
 
-void TextComponent::setAlignment(Alignment alignment)
+void TextComponent::setWrapLenght(Uint32 wrapLenght)
 {
-	alignment_ = alignment;
+	wrapLenght_ = wrapLenght;
+	createTexture();
 }
 
-void TextComponent::createTexture(std::string txt, Font* font, SDL_Color color) {
+void TextComponent::SetBoxPivotPoint(BoxPivotPoint boxPivotPoint)
+{
+	boxPivotPoint_ = boxPivotPoint;
+	createTexture();
+}
+
+void TextComponent::SetTextAlignment(TextAlignment textAlignment)
+{
+	textAlignment_ = textAlignment;
+	// No hace falta crear textura nueva
+}
+
+void TextComponent::createTexture() {
 
 	if(text_!= nullptr)
 		delete text_;
 	
-	text_ = new Texture(sdl_.renderer(), txt_, *font_, color_);
+	// Se utiliza una nueva constructora específica para crear una textura a partir de un texto embebido en una caja
+	text_ = new Texture(sdl_.renderer(), txt_, *font_, color_, wrapLenght_, textAlignment_);
 }
 
