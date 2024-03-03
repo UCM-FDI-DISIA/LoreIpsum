@@ -49,7 +49,7 @@ SamuState::SamuState() : GameState() {
 	background->setLayer(-1);
 
 	ecs::entity_t pruebaTxt = Instantiate(Vector2D(400, 50));
-	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 }
 
 SamuState::~SamuState()

@@ -128,9 +128,24 @@
   
   "fonts": [
     {
-      "id": "8bit",
+      "id": "8bit_16pt",
       "file": "resources/fonts/PressStart2P-Regular.ttf",
       "size": 16
+    },
+    {
+      "id": "8bit_24pt",
+      "file": "resources/fonts/PressStart2P-Regular.ttf",
+      "size": 24
+    },
+    {
+      "id": "8bit_32pt",
+      "file": "resources/fonts/PressStart2P-Regular.ttf",
+      "size": 32
+    },
+    {
+      "id": "8bit_40pt",
+      "file": "resources/fonts/PressStart2P-Regular.ttf",
+      "size": 40
     }
   ]
 }
