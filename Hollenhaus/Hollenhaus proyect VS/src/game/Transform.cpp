@@ -12,7 +12,7 @@ void
 Transform::addParent(Transform* p) {
 	if (!isChild_) {
 		parent_ = p;
-		relativePos_ = globalPos_ - parent_->globalPos_; // Pos relativa al padre
+		relativePos_ = globalPos_ - parent_->getGlobalPos(); // Pos relativa al padre
 		isChild_ = true;
 	}
 }
@@ -29,7 +29,7 @@ Transform::removeParent() {
 Vector2D 
 Transform::getGlobalPos() {
 	if (isChild_)
-		return parent_->globalPos_ + relativePos_;
+		return parent_->getGlobalPos() + relativePos_;
 	else
 		return globalPos_;
 }
@@ -63,7 +63,7 @@ void
 Transform::setGlobalPos(Vector2D& pos) {
 	globalPos_ = pos;
 	if (isChild_)
-		relativePos_ = globalPos_ - parent_->globalPos_;
+		relativePos_ = globalPos_ - parent_->getGlobalPos();
 }
 
 Transform* Transform::getParent()

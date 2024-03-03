@@ -238,6 +238,11 @@
         "size": 40
       },
       {
+        "id": "8bit_8pt",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 8
+      },
+      {
         "id": "8bit_size_12",
         "file": "resources/fonts/PressStart2P-Regular.ttf",
         "size": 12

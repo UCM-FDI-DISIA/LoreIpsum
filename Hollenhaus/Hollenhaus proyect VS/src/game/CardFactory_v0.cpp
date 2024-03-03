@@ -191,18 +191,17 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 
 	int initialX = 15;
 	int initialY = 55;
-	int offSetX = 20;
+	int offSetX = 25;
 	int offSetY = 15;
 	int nCols = 2;
 	int layer = 10;
 	float scale = effects.size() == 1 ? 0.078 : 0.045;
 
 	ecs::entity_t effectImage;
-
+	ecs::entity_t valueChange;
 
 	std::vector<std::string> efectsIdsNames{ "esquina" ,"centro","flecha" ,"superflecha" ,"block" , "unblockable" };
 	std::string efectID;
-
 
 
 
@@ -224,6 +223,22 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
 
 		effectImage->setLayer(layer);
+
+
+		if (effects[i].value() != 0) {
+
+			std::string valueText = effects[i].value() < 0 ? "-" : "+";
+			valueText = valueText + std::to_string(effects[i].value());
+
+			valueChange = Instantiate(Vector2D(0,0));
+
+			valueChange->addComponent<TextComponent>(valueText, "8bit_8pt", SDL_Color({255, 255, 255, 255}), 100);
+
+			valueChange->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
+			valueChange->getComponent<Transform>()->getRelativePos().set(-5, 0);
+
+			valueChange->setLayer(layer + 1);
+		}
 	}
 
 
