@@ -65,7 +65,7 @@
       "sprite": "card",
       "effects": [
         {
-          "type": 3,
+          "type": 4,
           "directions": [
             "Derecha"
           ]

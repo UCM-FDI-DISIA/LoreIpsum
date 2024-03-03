@@ -1,7 +1,6 @@
 #pragma once
 #include "game/Card.h"
 #include "Cell.h"
-#include "game/Board.h"
 
 namespace Effects
 {
@@ -16,8 +15,6 @@ namespace Effects
 
 		_NO_DISCARD_
 	};
-
-
 }
 
 class EffectCollection
@@ -53,49 +50,40 @@ public:
 		int value,
 		CellData::Direction direction)
 	{
-		std::function<void()> effect;
 		switch (index)
 		{
 		case Effects::Esquina:
-			effect = [card, value]
+			return [card, value]
 			{
 				addCorner(card->getCell(), value);
 			};
-			break;
 		case Effects::Centro:
-			effect = [card, value]
+			return [card, value]
 			{
 				addCenter(card->getCell(), value);
 			};
-			break;
 		case Effects::Flecha:
-			effect = [card, direction, value]
+			return [card, direction, value]
 			{
 				addSimpleAdj(card->getCell(), direction, value);
 			};
-			break;
 		case Effects::Superflecha:
-			effect = [card, direction, value]
+			return [card, direction, value]
 			{
 				addSuperAdj(card->getCell(), direction, value);
 			};
-			break;
 		case Effects::Block:
-			effect = [card, direction]
+			return [card, direction]
 			{
 				blockCard(card->getCell(), direction);
 			};
-			break;
 		case Effects::Unblockable:
-			effect = [card]
+			return [card]
 			{
 				unblockable(card->getCell(), card->getUnblockable());
 			};
-			break;
 		default:
-			break;
+			return nullptr;
 		}
-
-		return effect;
 	}
 };
