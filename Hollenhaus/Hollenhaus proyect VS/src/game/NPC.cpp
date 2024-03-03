@@ -26,13 +26,12 @@ void NPC::OnLeftClickDown(int scene) {
 
 }
 
-void NPC::reactToClick(int scene)
+void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 {
-	
 	if (!click && myBoxCollider->isCursorOver()) {
-		
+
 		TuVieja("Cambio de escena.");
-		GameStateMachine::instance()->setState(scene); // Demomento pasa de CityState a PaigroState que es el 5 (creo).
+		GameStateMachine::instance()->setState(scene);
 	}
 }
 void NPC::update() {

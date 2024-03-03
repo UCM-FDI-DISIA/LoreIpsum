@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
-
+#include  "Entity.h"
+#include "NPC.h"
 class OfficeState : public GameState
 {
 public:
@@ -10,8 +11,6 @@ public:
 	void update() override;
 	void render() const override;
 	void refresh() override;
-
-	void OnLeftClickDown() const;
 
 	void onEnter() override;
 	void onExit() override;

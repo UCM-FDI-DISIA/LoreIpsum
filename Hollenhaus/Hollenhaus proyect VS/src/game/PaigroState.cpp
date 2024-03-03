@@ -24,7 +24,7 @@ void PaigroState::onEnter()
 {
 	std::cout << "\nBUENOS DIAS\n";
 
-	ecs::entity_t boton1 = Instantiate();
+	/*ecs::entity_t boton1 = Instantiate();
 	boton1->addComponent<Transform>();
 	boton1->addComponent<SpriteRenderer>("boton");
 	boton1->addComponent<BoxCollider>();
@@ -32,23 +32,10 @@ void PaigroState::onEnter()
 	boton1->getComponent<Transform>()->getGlobalPos().set(100, 200);
 	boton1->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	boton1->addComponent<NPC>(0);
-	boton1->setLayer(1);
-
-	/*ecs::entity_t boton2 = Instantiate();
-	boton2->addComponent<Transform>();
-	boton2->addComponent<SpriteRenderer>("boton");
-	boton2->addComponent<BoxCollider>();
-	boton2->getComponent<Transform>()->getGlobalScale().set(0.4f, 0.4f);
-	boton2->getComponent<Transform>()->getGlobalPos().set(500, 200);
-	boton2->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	boton2->addComponent<NPC>(0);
-	boton2->setLayer(1);*/
-
-
+	boton1->setLayer(1);*/
 }
 
 void PaigroState::onExit() 
 {
 	std::cout << "\nBUENAS NOCHES\n";
-	//GameStateMachine::instance()->getMngr()->Free();
 }
