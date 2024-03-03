@@ -37,8 +37,6 @@ void SamuState::refresh()
 
 void SamuState::update()
 {
-	system("CLS");
-
 	GameState::update();
 
 	board->getComponent<BoardManager>()->updateScore();
