@@ -119,6 +119,8 @@ void SamuState::onEnter()
 	//sdl.musics().at("tryTheme").play();
 	sdl.soundEffects().at("bangarang").play(-1);
 
+	sdl.soundEffects().at("bangarang").setChannelVolume(10);
+
 }
 
 void SamuState::onExit() 
