@@ -51,7 +51,7 @@
         {
           "type": 3,
           "directions": [
-            "Derecha"
+            "Arriba"
           ],
           "value": 40
         }
@@ -100,121 +100,31 @@
   ],
 
     "images": [
-        {
-            "id": "rice",
-            "file": "./resources/images/rice.png"
-        },
-        {
-            "id": "card",
-            "file": "resources/images/card.png"
-
-        },
-        {
-            "id": "hand",
-            "file": "resources/images/hand.png"
-        },
-        {
-            "id": "picto1",
-            "file": "resources/images/picto1.png"
-        },
-        {
-            "id": "key",
-            "file": "resources/images/libreta.png"
-        },
-        {
-            "id": "board",
-            "file": "resources/images/board3.png"
-        },
-        {
-            "id": "mouse",
-            "file": "resources/images/mouse.png"
-        },
-        {
-            "id": "ciudad",
-            "file": "resources/images/ciudad.png"
-
-        },
-        {
-            "id": "npc",
-            "file": "resources/images/npc.png"
-
-        },
-        {
-            "id": "boton",
-            "file": "resources/images/boton.png"
-
-        },
-        {
-            "id": "cityExample",
-            "file": "resources/images/cityExample.png"
-
-        },
-        {
-            "id": "farolascerca",
-            "file": "resources/images/farolascerca.png"
-
-        },
-        {
-            "id": "farolaslejos",
-            "file": "resources/images/farolaslejos.png"
-
-        },
-        {
-            "id": "ambasfarolas",
-            "file": "resources/images/ambasfarolas.png"
-
-        },
-        {
-            "id": "edificios",
-            "file": "resources/images/edificios.png"
-
-        },
-        {
-            "id": "ciudadcompleta",
-            "file": "resources/images/ciudadcompleta.png"
-
-        },
-        {
-            "id": "EndTurnButton",
-            "file": "resources/images/EndTurnButton.png"
-         },
-         {
-          "id": "esquina",
-          "file": "resources/images/ef_esquina.png"
-        },
-        {
-          "id": "centro",
-          "file": "resources/images/ef_centro.png"
-        },
-        {
-          "id": "flecha",
-          "file": "resources/images/ef_flecha.png"
-        },
-        {
-          "id": "superflecha",
-          "file": "resources/images/ef_superflecha.png"
-        },
-        {
-          "id": "block",
-          "file": "resources/images/ef_block.png"
-        },
-        {
-          "id": "unblockable",
-          "file": "resources/images/ef_unblockable.png"
-
-
-        },
-        {
-            "id": "tiendafondo",
-            "file": "resources/images/provtienda.png"
-
-        },
-        {
-            "id": "oficinafondo",
-            "file": "resources/images/provoficina.png"
-
-
-        }
+        {"id": "rice",            "file": "./resources/images/rice.png"},
+        {"id": "card",            "file": "resources/images/card.png"},
+        {"id": "hand",            "file": "resources/images/hand.png"},
+        {"id": "picto1",          "file": "resources/images/picto1.png"},
+        {"id": "key",             "file": "resources/images/libreta.png"},
+        {"id": "board",           "file": "resources/images/board3.png"},
+        {"id": "mouse",           "file": "resources/images/mouse.png"},
+        {"id": "ciudad",          "file": "resources/images/ciudad.png"},
+        {"id": "npc",             "file": "resources/images/npc.png"},
+        {"id": "boton",           "file": "resources/images/boton.png"},
+        {"id": "cityExample",     "file": "resources/images/cityExample.png" },
+        {"id": "farolascerca",    "file": "resources/images/farolascerca.png" },
+        {"id": "farolaslejos",    "file": "resources/images/farolaslejos.png"},
+        {"id": "ambasfarolas",    "file": "resources/images/ambasfarolas.png"},
+        {"id": "edificios",       "file": "resources/images/edificios.png"},
+        {"id": "ciudadcompleta",  "file": "resources/images/ciudadcompleta.png"},
+        {"id": "EndTurnButton",   "file": "resources/images/EndTurnButton.png"},
+        {"id": "esquina",         "file": "resources/images/ef_esquina.png"},
+        {"id": "centro",          "file": "resources/images/ef_centro.png" },
+        {"id": "flecha",          "file": "resources/images/ef_flecha.png" },
+        {"id": "superflecha",     "file": "resources/images/ef_superflecha.png" },
+        {"id": "block",           "file": "resources/images/ef_block.png"  },
+        {"id": "unblockable",     "file": "resources/images/ef_unblockable.png" },
+        {"id": "tiendafondo",     "file": "resources/images/provtienda.png" },
+        {"id": "oficinafondo",    "file": "resources/images/provoficina.png"  }
     ],
     "fonts": [
       {
