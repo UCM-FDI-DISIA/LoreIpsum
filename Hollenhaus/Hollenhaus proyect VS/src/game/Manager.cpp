@@ -46,7 +46,6 @@ void Manager::refresh()
                 else {
                     //DeleteEntityMap(e->getLayer(), e);
                     delete e;
-                    TuVieja("quita entidad");
                     return true;
                 }
                 }),

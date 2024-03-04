@@ -19,6 +19,7 @@
 #include "TextComponent.h"
 #include "MatchManager.h"
 #include "EndTurnButton.h"
+#include "NPC.h"
 
 SamuState::SamuState() : GameState() {
 
@@ -29,7 +30,7 @@ SamuState::~SamuState()
 {
 
 }
-//cleon: si est� vac�o se llama directamente al padre
+//cleon: si esta vacio se llama directamente al padre
 void SamuState::refresh()
 {
 	GameState::refresh();
@@ -103,6 +104,17 @@ void SamuState::onEnter()
 	endTurnButtonJ2->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ2->addComponent<BoxCollider>();
 	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);
+
+	//------Boton para volver:
+	//ecs::entity_t exit = Instantiate();
+	//exit->addComponent<Transform>();
+	//exit->addComponent<SpriteRenderer>("boton");
+	//exit->addComponent<BoxCollider>();
+	//Vector2D exitPos(10, 10);
+	//exit->getComponent<Transform>()->setGlobalPos(exitPos);
+	//exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	//exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
+	//exit->setLayer(1);
 }
 
 void SamuState::onExit() 
