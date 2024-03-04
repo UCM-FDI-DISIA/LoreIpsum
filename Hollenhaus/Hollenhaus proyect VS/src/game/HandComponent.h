@@ -6,7 +6,7 @@
 
 const unsigned int	MAX_HAND_CARDS = 7,
 					CARD_SEPARATION = 30,
-					ARCH_AMPLITUDE=10000;
+					ARCH_AMPLITUDE=1000;
 
 class HandComponent :
 	public ComponentUpdate

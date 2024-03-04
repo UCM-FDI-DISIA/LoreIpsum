@@ -30,7 +30,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 	cardTransform->getGlobalScale().set(cardScale, cardScale);
 
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
-	cardCardStateManager->setState(CardStateManager::ON_CELL);
+	cardCardStateManager->setState(CardStateManager::ON_HAND);
 
 	const auto cardComp = card->addComponent<Card>(
 		cost, value, sprite, unblockable
