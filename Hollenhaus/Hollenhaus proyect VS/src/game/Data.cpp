@@ -1,6 +1,6 @@
 #include "Data.h"
 
-
+using namespace std;
 
 
 //------Constructora y destructora:
