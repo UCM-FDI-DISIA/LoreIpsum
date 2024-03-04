@@ -31,7 +31,7 @@ public:
     CellData::Owner GetPlayerTurn() const;
 
 private:
-    BoardManager* board_;
+    BoardManager* board_ = nullptr;
 
     int defaultActionPoints;
     int actualActionPoints;

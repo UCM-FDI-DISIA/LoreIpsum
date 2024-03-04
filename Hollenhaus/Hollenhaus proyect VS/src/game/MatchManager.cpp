@@ -1,6 +1,8 @@
 #include "MatchManager.h"
 #include "GameStateMachine.h"
 #include "GameState.h"
+#include "BoardManager.h"
+
 #include <iostream>
 
 MatchManager::MatchManager(int defaultActionPoints, TurnState turnStart) :
@@ -21,9 +23,11 @@ void MatchManager::initComponent()
 
 void MatchManager::update()
 {
-	if (board_->isFull()) {
-
-
+	if (actualState != Finish && board_ != nullptr) {
+		if (board_->isFull()) {
+			setWinner();
+			SetActualState(Finish);
+		}
 	}
 }
 
