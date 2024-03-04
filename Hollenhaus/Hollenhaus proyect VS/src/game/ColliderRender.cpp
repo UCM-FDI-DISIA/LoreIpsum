@@ -23,12 +23,8 @@ void ColliderRender::initComponent()
 
 void ColliderRender::render() const
 {
-
-	Vector2D pos = myTransform->getGlobalPos() + myBoxCollider->getPosOffset();
-
 	//render debug
 	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 255, 0, 255);
 	SDL_RenderDrawRect(sdlutils().renderer(), myBoxCollider->getRect());
 	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 0, 255);
-
 }
