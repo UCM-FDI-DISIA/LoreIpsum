@@ -47,7 +47,7 @@ GameStateMachine::GameStateMachine() {
 
 
 	//Ponemos el estado actual
-	currentState = samuState;
+	currentState = mainMenuState;
 
 }
 

@@ -26,6 +26,7 @@ void CityState::onEnter()
 	ecs::entity_t cityText = Instantiate(Vector2D(500, 30));
 	cityText->addComponent<TextComponent>("CIUDAD", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	cityText->setLayer(1);
+	TuVieja("Entidad");
 
 	//-----Ciudad de fondo:
 	ecs::entity_t fondo = Instantiate();
@@ -33,6 +34,7 @@ void CityState::onEnter()
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
 	fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f);
 	fondo->setLayer(0);
+	TuVieja("Entidad");
 
 	//------NPCs que demomento son Caitlyns:
 	//----Para entrar en la oficina.
@@ -46,6 +48,7 @@ void CityState::onEnter()
 	npc2->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	npc2->addComponent<NPC>(2); // Lleva a la oficina (2).
 	npc2->setLayer(2);
+	 TuVieja("Entidad");
 	//----Para entrar en la tienda.
 	ecs::entity_t npc1 = Instantiate();
 	npc1->addComponent<Transform>();
@@ -57,6 +60,7 @@ void CityState::onEnter()
 	npc1->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	npc1->addComponent<NPC>(3); // Lleva a la tienda (3).
 	npc1->setLayer(2);
+	TuVieja("Entidad");
 	//----Para empezar la batalla.
 	ecs::entity_t npc3 = Instantiate();
 	npc3->addComponent<Transform>();
@@ -68,6 +72,7 @@ void CityState::onEnter()
 	npc3->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	npc3->addComponent<NPC>(6); // Lleva al combate (SamuState(6)).
 	npc3->setLayer(2);
+	TuVieja("Entidad");
 
 	//------Boton para volver al menu principal:
 	ecs::entity_t exit = Instantiate();
@@ -79,6 +84,7 @@ void CityState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(0); // Lleva al menu (0).
 	exit->setLayer(2);
+	TuVieja("Entidad");
 }
 
 void CityState::onExit()

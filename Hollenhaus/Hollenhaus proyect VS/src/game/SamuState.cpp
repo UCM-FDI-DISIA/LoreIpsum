@@ -86,7 +86,7 @@ void SamuState::onEnter()
 	background->addComponent<Transform>();
 	background->getComponent<Transform>()->getGlobalScale().set(0.5, 0.5);
 	background->addComponent<SpriteRenderer>("board");
-	background->setLayer(-1);
+	//background->setLayer(-1);
 
 	// Texto de prueba
 	ecs::entity_t pruebaTxt = Instantiate(Vector2D(400, 50));
