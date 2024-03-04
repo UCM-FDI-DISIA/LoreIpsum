@@ -48,10 +48,17 @@ void ShopState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
+
+	auto& sdl = *SDLUtils::instance();
+	sdl.soundEffects().at("shoptheme").play(-1);
+	sdl.soundEffects().at("shoptheme").setChannelVolume(10);
 }
 
 void ShopState::onExit() 
 {
 	std::cout << "\nEXIT SHOP.\n";
+
+	auto& sdl = *SDLUtils::instance();
+	sdl.soundEffects().at("shoptheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
 }

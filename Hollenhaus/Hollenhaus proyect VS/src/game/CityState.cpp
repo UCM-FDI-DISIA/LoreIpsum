@@ -79,10 +79,18 @@ void CityState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(0); // Lleva al menu (0).
 	exit->setLayer(2);
+
+	// referencia a sdlutils
+	auto& sdl = *SDLUtils::instance();
+	sdl.soundEffects().at("citytheme").play(-1);
+	sdl.soundEffects().at("citytheme").setChannelVolume(10);
 }
 
 void CityState::onExit()
 {
 	std::cout << "\nEXIT CITY.\n";
+
+	auto& sdl = *SDLUtils::instance();
+	sdl.soundEffects().at("citytheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
 }
