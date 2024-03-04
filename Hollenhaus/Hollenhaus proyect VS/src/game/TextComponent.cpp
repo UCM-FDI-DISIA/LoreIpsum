@@ -29,6 +29,16 @@ void TextComponent::initComponent()
 void TextComponent::render() const
 {
 
+	Vector2D pos = tr_->getGlobalPos();
+	SDL_Rect textRect = {pos.getX(), pos.getY(), text_->width(),text_->height() };
+
+	//render debug
+	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 255, 255);
+	SDL_RenderDrawRect(sdlutils().renderer(), &textRect);
+	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 0, 255);
+
+	float x = 0;
+	float y = 0;
 	float h = text_->height();
 	float w = text_->width();
 
