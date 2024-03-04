@@ -45,11 +45,10 @@ void SamuState::update()
 	GameState::update();
 
 	board->getComponent<BoardManager>()->updateScore();	// Esto puede ser un problema de performance
-
-	//std::cout << "Player 1 points: " << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
-	//std::cout << "Player 2 points: " << board->getComponent<BoardManager>()->getPlayer2Points() << std::endl;
+	
 	#if _DEBUG
-	std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
+	//std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
+	std::cout << GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints() << std::endl;
 	#endif
 }
 

@@ -8,6 +8,7 @@
 #include "CellManager.h"
 #include "TextComponent.h"
 #include "../Cell.h"
+#include "MatchManager.h"
 
 BoardManager::BoardManager()
 {
@@ -78,6 +79,10 @@ bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 	/// anyade callback a la celda
 	for (const auto& e : c->getEffects())
 		cell->addEffect(e);
+
+	//Gasta los puntos de accion correspondientes
+	mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->SubstactActualActionPoints(c->getCost());
+
 
 	/// reaplica todos los efectos
 	applyAllEffects();
