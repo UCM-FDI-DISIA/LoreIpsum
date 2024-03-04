@@ -6,11 +6,11 @@ namespace Effects
 {
 	enum Type
 	{
-		Esquina,
-		Centro,
-		Flecha,
-		Superflecha,
-		Block,
+		Esquina,		// 0
+		Centro,			// 1
+		Flecha,			// 2
+		Superflecha,	// 3
+		Block,			// 4
 		Unblockable,
 
 		_NO_DISCARD_

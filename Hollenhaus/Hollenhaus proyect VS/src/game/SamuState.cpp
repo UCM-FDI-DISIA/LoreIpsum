@@ -1,5 +1,6 @@
 #include "SamuState.h"
 
+#include <SDL.h>
 #include "Drag.h"
 #include "CardStateManager.h"
 #include "DragManager.h"
@@ -63,6 +64,8 @@ void SamuState::onEnter()
 {
 	TuVieja("\nEntering in SamuState");
 
+	// referencia a sdlutils
+	auto& sdl = *SDLUtils::instance();
 
 	Factory* factory = new Factory();
 	factory->SetFactories((BoardFactory*)new  BoardFactory_v0(4), (CardFactory*) new CardFactory_v1());
@@ -111,6 +114,10 @@ void SamuState::onEnter()
 	
 	//ecs::entity_t puntosDeAccionText = Instantiate(Vector2D(100, 300));
 	//puntosDeAccionText->addComponent<TextComponent>("Puntos de acción:", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+
+	// incicia la cancion en bucle
+	//sdl.musics().at("tryTheme").play();
+	sdl.soundEffects().at("bangarang").play(-1);
 
 }
 
