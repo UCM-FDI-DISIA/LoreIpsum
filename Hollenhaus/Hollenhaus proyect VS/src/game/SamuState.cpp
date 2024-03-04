@@ -46,7 +46,8 @@ void SamuState::update()
 
 	board->getComponent<BoardManager>()->updateScore();	// Esto puede ser un problema de performance
 	
-	actionPointsVisual->getComponent<TextComponent>()->setTxt("Puntos de\naccion:\n\n" + std::to_string(GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints()));
+	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints();
+	actionPointsVisual->getComponent<TextComponent>()->setTxt("Puntos de\naccion:\n\n" + std::to_string(actionPointsValue));
 
 	#if _DEBUG
 	//std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
@@ -107,8 +108,9 @@ void SamuState::onEnter()
 	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);
 
 	// Puntos de acción restantes
+	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints();
 	actionPointsVisual = Instantiate(Vector2D(100, 250));
-	actionPointsVisual->addComponent<TextComponent>("Puntos de\naccion:\n\n" + std::to_string(GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints()),
+	actionPointsVisual->addComponent<TextComponent>("Puntos de\naccion:\n\n" + std::to_string(actionPointsValue),
 		"8bit_16pt", SDL_Color({255, 255, 0, 255}), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	
 	//ecs::entity_t puntosDeAccionText = Instantiate(Vector2D(100, 300));
