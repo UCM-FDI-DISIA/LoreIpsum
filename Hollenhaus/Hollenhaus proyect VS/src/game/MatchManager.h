@@ -20,6 +20,7 @@ public:
 
     void update() override;
 
+    void setBoardManager(BoardManager* b) { board_ = b; }
 
     int GetActualActionPoints() const { return actualActionPoints; } 
     void SubstactActualActionPoints(int pointsSubstracted) { actualActionPoints -= pointsSubstracted; }
@@ -30,12 +31,15 @@ public:
     CellData::Owner GetPlayerTurn() const;
 
 private:
+    BoardManager* board_;
+
     int defaultActionPoints;
     int actualActionPoints;
 
     TurnState actualState;
 
     void ResetActualActionPoints();
+    void setWinner();
 };
 
 

@@ -1,4 +1,6 @@
 #include "MatchManager.h"
+#include "GameStateMachine.h"
+#include "GameState.h"
 #include <iostream>
 
 MatchManager::MatchManager(int defaultActionPoints, TurnState turnStart) :
@@ -19,6 +21,10 @@ void MatchManager::initComponent()
 
 void MatchManager::update()
 {
+	if (board_->isFull()) {
+
+
+	}
 }
 
 void MatchManager::SetActualState(TurnState newState)
@@ -65,4 +71,22 @@ CellData::Owner MatchManager::GetPlayerTurn() const
 void MatchManager::ResetActualActionPoints()
 {
 	actualActionPoints = defaultActionPoints;
+}
+
+void MatchManager::setWinner()
+{
+	// JUGADOR 1
+	if (board_->getPlayer1Points() > board_->getPlayer2Points()) {
+		GameStateMachine::instance()->getCurrentState()->setWinner(2);
+	}
+
+	// JUGADOR 2
+	else if (board_->getPlayer2Points() > board_->getPlayer1Points()) {
+		GameStateMachine::instance()->getCurrentState()->setWinner(3);
+	}
+
+	// EMPATE
+	else if (board_->getPlayer1Points() == board_->getPlayer2Points()) {
+		GameStateMachine::instance()->getCurrentState()->setWinner(1);
+	}
 }

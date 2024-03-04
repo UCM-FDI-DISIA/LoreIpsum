@@ -31,9 +31,7 @@ void BoardManager::initComponent()
 
 void BoardManager::update()
 {
-	if (isFull) {
-		GameStateMachine::instance()->getCurrentState()->setWinner();
-	}
+	
 }
 
 bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)

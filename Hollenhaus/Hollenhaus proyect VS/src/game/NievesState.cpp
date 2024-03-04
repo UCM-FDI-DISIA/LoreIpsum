@@ -73,6 +73,8 @@ void NievesState::onEnter()
 	// Factoría del tablero. Generamos el tablero de juego.
 	board = factory->createBoard();
 
+	matchManager->getComponent<MatchManager>()->setBoardManager(board->getComponent<BoardManager>());
+
 	// Factoría de cartas. Con ella generamos la mano inicial
 	factory->createDeck();
 
