@@ -5,7 +5,7 @@
 #include "BoxCollider.h"
 
 const unsigned int	
-					CARD_SEPARATION = 100,
+					CARD_SEPARATION = 50,
 					ARCH_AMPLITUDE=750;
 
 class HandComponent :

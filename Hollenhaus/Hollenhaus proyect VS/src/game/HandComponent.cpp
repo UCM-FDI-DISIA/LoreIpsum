@@ -54,24 +54,25 @@ void HandComponent::removeCard(ecs::entity_t card) {
 
 	cardsInHand_.clear();
 	cardsInHand_ = auxVec;
+
+	refreshPositions();
 }
 
 void HandComponent::refreshPositions() {
-	std::vector<std::pair <int, int>>positions;
+	std::vector<Vector2D>positions;
 
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
-		int x = (i - cardsInHand_.size() / 2) * CARD_SEPARATION;
-		positions.push_back(std::pair(x, pow(x, 2) / (ARCH_AMPLITUDE)));
-	}
+		// y = (x^2)/CARD_SEPARATION
+		int x = ((i - cardsInHand_.size() / 2) * CARD_SEPARATION);
 
-	std::sort(positions.begin(), positions.end());
+		positions.push_back(Vector2D(x, pow(x, 2) / (ARCH_AMPLITUDE)));
+	}
 
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
 
 		// Ecuacion de la parabola que forma las cartas
-		Vector2D pos(positions[i].first, positions[i].second);
-		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(pos);
+		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(positions[i]);
 	}
 }
