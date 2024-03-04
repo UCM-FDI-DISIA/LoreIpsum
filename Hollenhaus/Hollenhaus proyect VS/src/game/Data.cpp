@@ -43,6 +43,10 @@ void Data::AddSouls(int s) {
 void Data::AddCurrentCase() {
 	currentCase++;
 }
+//----
+void Data::setWinner(int i) {
+	winner = WINNER(i);
+}
 
 //------Busqueda:
 //----Mazo:
