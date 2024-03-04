@@ -30,10 +30,10 @@ void BoardManager::initComponent()
 }
 
 void BoardManager::update()
-{/*
+{
 	if (isFull) {
-
-	}*/
+		GameStateMachine::instance()->getCurrentState()->setWinner();
+	}
 }
 
 bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
@@ -52,7 +52,7 @@ bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
 
 bool BoardManager::isFull() const
 {
-	return cardsOnBoard == size * size; // recordad que os matar�
+	return cardsOnBoard == size * size; // recordad que os matare
 }
 
 

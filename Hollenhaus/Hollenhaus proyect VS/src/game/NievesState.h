@@ -21,9 +21,9 @@ public:
     void onEnter() override;
     void onExit() override;
 
-    void setWinner() {
+    void setWinner(int w) override{
 
-        data->setWinner(1);
+        data->setWinner(w);
     }
 
 private:

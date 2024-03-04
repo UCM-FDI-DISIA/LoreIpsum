@@ -17,7 +17,7 @@ public:
 	void onExit() override;
 
 	// cambia la ventana en funcion del ganador
-	void setWindow(int lastWinner);
+	void setWindow(int lastWinner) override;
 
 private:
 	std::string background, text;

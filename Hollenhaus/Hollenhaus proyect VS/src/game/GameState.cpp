@@ -55,4 +55,3 @@ void GameState::render() const
 {
     GameStateMachine::instance()->getMngr()->render();
 }
-
