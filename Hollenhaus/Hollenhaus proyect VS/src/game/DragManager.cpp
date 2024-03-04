@@ -80,6 +80,7 @@ void DragManager::OnLeftClickUp()
 			dragTransform->setGlobalPos(dropDetector->getCardPos());
 			
 			dragTransform->getEntity()->getComponent<CardStateManager>()->setState(CardStateManager::ON_CELL);
+			dragTransform->getEntity()->getComponent<CardStateManager>()->putOnBoard();
 
 			dropDetector->setOcuped(true);
 

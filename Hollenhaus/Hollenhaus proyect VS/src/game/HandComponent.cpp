@@ -2,6 +2,7 @@
 #include "Manager.h"
 #include "Entity.h"
 #include "SpriteRenderer.h"
+#include "CardStateManager.h"
 
 HandComponent::HandComponent() :
 	transform_()
@@ -20,11 +21,14 @@ void HandComponent::initComponent() {
 
 void HandComponent::addCard(ecs::entity_t card) {
 
-		card->getComponent<Transform>()->addParent(transform_);
-		card->getComponent<Transform>()->getGlobalScale().set(cardScale_, cardScale_);
-		// Settea tamano de carta para anadir cartas directamente desde la factoria
-		cardsInHand_.push_back(card);
-		refreshPositions();
+	auto cardCardStateManager = card->getComponent<CardStateManager>();
+	cardCardStateManager->setState(CardStateManager::ON_HAND);
+
+	card->getComponent<Transform>()->addParent(transform_);
+	card->getComponent<Transform>()->getRelativeScale().set(cardScale_, cardScale_);
+	// Settea tamano de carta para anadir cartas directamente desde la factoria
+	cardsInHand_.push_back(card);
+	refreshPositions();
 }
 
 void HandComponent::removeCard(ecs::entity_t card) {
@@ -57,7 +61,7 @@ void HandComponent::refreshPositions() {
 
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
-		int x = (i - cardsInHand_.size()/2) * CARD_SEPARATION;
+		int x = (i - cardsInHand_.size() / 2) * CARD_SEPARATION;
 		positions.push_back(std::pair(x, pow(x, 2) / (ARCH_AMPLITUDE)));
 	}
 
