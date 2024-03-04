@@ -253,17 +253,25 @@
     ],
     "sounds": [
       {
-        "id": "try1",
-        "file": "resources/sound/music/suspicious_person.wav"
+        "id": "citytheme",
+        "file": "resources/sound/music/layer_cake.wav"
       },
       {
-        "id": "bangarang",
+        "id": "battletheme",
         "file": "resources/sound/music/bangarang.wav"
+      },
+	{
+        "id": "deckbuilder_theme",
+        "file": "resources/sound/music/confession.wav"
+      },
+	{
+        "id": "shoptheme",
+        "file": "resources/sound/music/tanaka_comodities.wav"
       }
     ],
     "musics": [
       {
-        "id": "battleTheme",
+        "id": "layercake",
         "file": "resources/sound/music/layer_cake.wav"
       },
       {
