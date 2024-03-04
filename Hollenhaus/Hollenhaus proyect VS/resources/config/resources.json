@@ -2,7 +2,7 @@
   "cards": [
     {
       "id": "0",
-      "cost": 0,
+      "cost": 3,
       "value": 1,
       "sprite": "card",
       "effects": [
@@ -15,7 +15,7 @@
     },
     {
       "id": "1",
-      "cost": 0,
+      "cost": 2,
       "value": 2,
       "sprite": "card",
       "effects": [
@@ -28,7 +28,7 @@
     },
     {
       "id": "2",
-      "cost": 0,
+      "cost": 1,
       "value": 3,
       "sprite": "card",
       "effects": [
@@ -44,14 +44,14 @@
     },
     {
       "id": "3",
-      "cost": 0,
+      "cost": 4,
       "value": 4,
       "sprite": "card",
       "effects": [
         {
           "type": 3,
           "directions": [
-            "Derecha"
+            "Arriba"
           ],
           "value": 40
         }
@@ -60,7 +60,7 @@
     },
     {
       "id": "4",
-      "cost": 0,
+      "cost": 5,
       "value": 5,
       "sprite": "card",
       "effects": [
@@ -75,6 +75,44 @@
     },
     {
       "id": "5",
+      "cost": 2,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
+        },
+        {
+          "type": 0,
+          "value": 44
+        }
+      ],
+      "unblockable": true
+    },
+    {
+      "id": "6",
+      "cost": 0,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 10
+        },
+        {
+          "type": 2,
+          "directions": [
+            "Arriba",
+            "Abajo"
+          ],
+          "value": 30
+        }
+      ],
+      "unblockable": true
+    },
+    {
+      "id": "7",
       "cost": 0,
       "value": 6,
       "sprite": "card",
@@ -154,128 +192,87 @@
       "unblockable": true
     }
   ],
-  "images": [
-    {
-      "id": "rice",
-      "file": "./resources/images/rice.png"
-    },
-    {
-      "id": "card",
-      "file": "resources/images/card.png"
-
-    },
-    {
-      "id": "hand",
-      "file": "resources/images/hand.png"
-    },
-    {
-      "id": "picto1",
-      "file": "resources/images/picto1.png"
-    },
-    {
-      "id": "key",
-      "file": "resources/images/libreta.png"
-    },
-    {
-      "id": "board",
-      "file": "resources/images/board.png"
-    },
-    {
-      "id": "mouse",
-      "file": "resources/images/mouse.png"
-    },
-    {
-      "id": "ciudad",
-      "file": "resources/images/ciudad.png"
-
-    },
-    {
-      "id": "npc",
-      "file": "resources/images/npc.png"
-
-    },
-    {
-      "id": "boton",
-      "file": "resources/images/boton.png"
-
-    },
-    {
-      "id": "cityExample",
-      "file": "resources/images/cityExample.png"
-
-    },
-    {
-      "id": "farolascerca",
-      "file": "resources/images/farolascerca.png"
-
-    },
-    {
-      "id": "farolaslejos",
-      "file": "resources/images/farolaslejos.png"
-
-    },
-    {
-      "id": "ambasfarolas",
-      "file": "resources/images/ambasfarolas.png"
-
-    },
-    {
-      "id": "edificios",
-      "file": "resources/images/edificios.png"
-
-    },
-    {
-      "id": "ciudadcompleta",
-      "file": "resources/images/ciudadcompleta.png"
-
-    },
-    {
-      "id": "EndTurnButton",
-      "file": "resources/images/EndTurnButton.png"
-
-    }
-  ],
-  "fonts": [
-    {
-      "id": "8bit_16pt",
-      "file": "resources/fonts/PressStart2P-Regular.ttf",
-      "size": 16
-    },
-    {
-      "id": "8bit_24pt",
-      "file": "resources/fonts/PressStart2P-Regular.ttf",
-      "size": 24
-    },
-    {
-      "id": "8bit_32pt",
-      "file": "resources/fonts/PressStart2P-Regular.ttf",
-      "size": 32
-    },
-    {
-      "id": "8bit_40pt",
-      "file": "resources/fonts/PressStart2P-Regular.ttf",
-      "size": 40
-    }
-  ],
-  "sounds": [
-    {
-      "id": "try1",
-      "file": "resources/sound/music/suspicious_person.wav"
-    },
-    {
-      "id": "bangarang",
-      "file": "resources/sound/music/bangarang.wav"
-    }
-  ],
-  "musics": [
-    {
-      "id": "battleTheme",
-      "file": "resources/sound/music/layer_cake.wav"
-    },
-    {
-      "id": "tryTheme",
-      "file": "resources/sound/music/suspicious_person.wav"
-    }
-  ]
-
+    "images": [
+        {"id": "rice",            "file": "./resources/images/rice.png"},
+        {"id": "card",            "file": "resources/images/card.png"},
+        {"id": "hand",            "file": "resources/images/hand.png"},
+        {"id": "picto1",          "file": "resources/images/picto1.png"},
+        {"id": "key",             "file": "resources/images/libreta.png"},
+        {"id": "board",           "file": "resources/images/board3.png"},
+        {"id": "mouse",           "file": "resources/images/mouse.png"},
+        {"id": "ciudad",          "file": "resources/images/ciudad.png"},
+        {"id": "npc",             "file": "resources/images/npc.png"},
+        {"id": "boton",           "file": "resources/images/boton.png"},
+        {"id": "cityExample",     "file": "resources/images/cityExample.png" },
+        {"id": "farolascerca",    "file": "resources/images/farolascerca.png" },
+        {"id": "farolaslejos",    "file": "resources/images/farolaslejos.png"},
+        {"id": "ambasfarolas",    "file": "resources/images/ambasfarolas.png"},
+        {"id": "edificios",       "file": "resources/images/edificios.png"},
+        {"id": "ciudadcompleta",  "file": "resources/images/ciudadcompleta.png"},
+        {"id": "EndTurnButton",   "file": "resources/images/EndTurnButton.png"},
+        {"id": "esquina",         "file": "resources/images/ef_esquina.png"},
+        {"id": "centro",          "file": "resources/images/ef_centro.png" },
+        {"id": "flecha",          "file": "resources/images/ef_flecha.png" },
+        {"id": "superflecha",     "file": "resources/images/ef_superflecha.png" },
+        {"id": "block",           "file": "resources/images/ef_block.png"  },
+        {"id": "unblockable",     "file": "resources/images/ef_unblockable.png" },
+        {"id": "tiendafondo",     "file": "resources/images/provtienda.png" },
+        {"id": "oficinafondo",    "file": "resources/images/provoficina.png"  }
+    ],
+    "fonts": [
+      {
+        "id": "8bit_16pt",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 16
+      },
+      {
+        "id": "8bit_24pt",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 24
+      },
+      {
+        "id": "8bit_32pt",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 32
+      },
+      {
+        "id": "8bit_40pt",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 40
+      },
+      {
+        "id": "8bit_8pt",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 8
+      },
+      {
+        "id": "8bit_size_12",
+        "file": "resources/fonts/PressStart2P-Regular.ttf",
+        "size": 12
+      }
+    ],
+    "sounds": [
+      {
+        "id": "try1",
+        "file": "resources/sound/music/suspicious_person.wav"
+      },
+      {
+        "id": "bangarang",
+        "file": "resources/sound/music/bangarang.wav"
+      }
+    ],
+    "musics": [
+      {
+        "id": "battleTheme",
+        "file": "resources/sound/music/layer_cake.wav"
+      },
+      {
+        "id": "tryTheme",
+        "file": "resources/sound/music/suspicious_person.wav"
+      }
+    ]
 }
+
+  
+
+

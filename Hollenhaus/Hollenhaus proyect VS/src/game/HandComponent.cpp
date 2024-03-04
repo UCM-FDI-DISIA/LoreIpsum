@@ -1,42 +1,36 @@
-#include "HandComponent.h"
+﻿#include "HandComponent.h"
 #include "Manager.h"
 #include "Entity.h"
 #include "SpriteRenderer.h"
+#include "CardStateManager.h"
 
 HandComponent::HandComponent() :
 	transform_()
 {
 
-}/*
+}
 HandComponent::~HandComponent() {
 
 }
-*/
+
 void HandComponent::initComponent() {
 
 	transform_ = ent_->getComponent<Transform>();
 	transform_->getGlobalPos().set(400, 400);
 }
 
-void HandComponent::update() {
+void HandComponent::addCard(ecs::entity_t card) {
+
+	auto cardCardStateManager = card->getComponent<CardStateManager>();
+	cardCardStateManager->setState(CardStateManager::ON_HAND);
 
 
-}
-
-
-bool HandComponent::addCard(ecs::entity_t card) {
-
-	if (cardsInHand_.size() < MAX_HAND_CARDS)
-	{
-
-		card->getComponent<Transform>()->addParent(transform_);
-		// Settea tamano de carta para anadir cartas directamente desde la factoria
-		//card->getComponent<Transform>()->getRelativeScale().set(.25, .25);
-		cardsInHand_.push_back(card);
-		refreshPositions();
-		return true;
-	}
-	return false;
+	card->getComponent<Transform>()->addParent(transform_);
+	card->getComponent<Transform>()->getRelativeScale().set(cardScale_, cardScale_);
+	// Settea tamano de carta para anadir cartas directamente desde la factoria
+	cardsInHand_.push_back(card);
+	//card->setLayer(cardsInHand_.size());
+	refreshPositions();
 }
 
 void HandComponent::removeCard(ecs::entity_t card) {
@@ -55,22 +49,32 @@ void HandComponent::removeCard(ecs::entity_t card) {
 		}
 		else
 		{
+			card->getComponent<Transform>()->getGlobalScale().set(cardScale_, cardScale_);
 			cardsInHand_[i]->getComponent<Transform>()->removeParent();
 		}
 	}
 
 	cardsInHand_.clear();
 	cardsInHand_ = auxVec;
+
+	refreshPositions();
 }
 
 void HandComponent::refreshPositions() {
+	std::vector<Vector2D>positions;
 
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
-		int x = (i-cardsInHand_.size()/2) * CARD_SEPARATION;
+		// y = (x^2)/CARD_SEPARATION
+		int x = ((i - cardsInHand_.size() / 2) * CARD_SEPARATION);
+
+		positions.push_back(Vector2D(x, pow(x, 2) / (ARCH_AMPLITUDE)));
+	}
+
+	for (int i = 0; i < cardsInHand_.size(); i++)
+	{
 
 		// Ecuacion de la parabola que forma las cartas
-		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(
-			x, pow(x,2)/(ARCH_AMPLITUDE));
+		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(positions[i]);
 	}
 }

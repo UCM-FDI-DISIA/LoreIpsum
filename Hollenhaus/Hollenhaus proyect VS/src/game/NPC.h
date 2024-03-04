@@ -19,6 +19,7 @@ public:
 	void update() override;
 
 	void OnLeftClickDown(int scene);
+	void OnLeftClickUp();
 	void reactToClick(int scene);
 private:
 	int _id;

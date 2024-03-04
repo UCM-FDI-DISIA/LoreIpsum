@@ -20,6 +20,7 @@ public:
 
     void update() override;
 
+
     int GetActualActionPoints() const { return actualActionPoints; } 
     void SubstactActualActionPoints(int pointsSubstracted) { actualActionPoints -= pointsSubstracted; }
 
@@ -33,6 +34,8 @@ private:
     int actualActionPoints;
 
     TurnState actualState;
+
+    void ResetActualActionPoints();
 };
 
 

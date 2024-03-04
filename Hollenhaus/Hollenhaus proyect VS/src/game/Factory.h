@@ -1,48 +1,62 @@
 #pragma once
 
-#include "Entity.h"
 #include "../utils/Vector2D.h"
 #include "../sdlutils/SDLUtils.h"
 
-class BoardFactory;
 class CardFactory;
 class HandFactory;
+
+#include "CardFactory.h"
+#include "BoardFactory.h"
 
 class Factory
 {
 public:
 
 
-	template<typename T, typename ...Ts>
-	Factory(BoardFactory* bf, Ts &&... args) {
+	
+#pragma region Templates setFactories
+	/*
+		Si se añade un nuevo tipo de factory para objetos en especifico,
+		hay que meter una nueva variable de ese tipo en esta clase y crear una
+		sobrecarga de este metodo con template como las que están ya hechas
+	*/
+
+	
+	template<typename ...Ts>
+	void SetFactories(Ts &&... args){};
+	
+
+	template<typename ...Ts>
+	void SetFactories(BoardFactory* bf, Ts &&... args) {
 		boardFactory = bf;
-		Factory(std::forward<Ts>(args)...);
+		SetFactories(std::forward<Ts>(args)...);
 	}
 
-	template<typename T, typename ...Ts>
-	Factory(CardFactory* bf, Ts &&... args) {
-		boardFactory = bf;
-		Factory(std::forward<Ts>(args)...);
+	
+	template<typename ...Ts>
+	void SetFactories(CardFactory* cf, Ts &&... args) {
+		cardFactory =cf;
+		SetFactories(std::forward<Ts>(args)...);
 	}
+	
+		
 
-	template<typename T, typename ...Ts>
-	Factory(HandFactory* bf, Ts &&... args) {
-		boardFactory = bf;
-		Factory(std::forward<Ts>(args)...);
-	}
+#pragma endregion
 
-	Factory()
-	{}
+	Factory(){};
 
 
-	virtual ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<SDLUtils::CardEffect>& effects) { return nullptr; };
+	virtual ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<SDLUtils::CardEffect>& effects);
 
-	virtual ecs::entity_t createDropDetector(Vector2D pos) { return nullptr; };
+	virtual ecs::entity_t createDropDetector(Vector2D pos);
 
-	virtual void createHand() {};
-	virtual ecs::entity_t createBoard() { return nullptr; };
+	virtual ecs::entity_t createHand() ;
+	virtual void createDeck() ;
+	virtual ecs::entity_t createBoard();
 
 public:
+
 	BoardFactory* boardFactory;
 	CardFactory* cardFactory;
 	HandFactory* handFactory;

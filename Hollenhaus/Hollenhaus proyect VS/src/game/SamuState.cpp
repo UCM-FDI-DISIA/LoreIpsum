@@ -9,10 +9,11 @@
 #include "..\sdlutils\InputHandler.h"
 
 #include "CardFactory_v0.h"
+#include "CardFactory_v1.h"
 
 #include "Factory.h"
 
-#include "BoardFactory.h"
+#include "BoardFactory_v0.h"
 
 #include "MatchManager.h"
 
@@ -28,8 +29,7 @@ SamuState::SamuState() : GameState() {
 
 SamuState::~SamuState()
 {
-	delete boardFact;
-	delete cardFact;
+
 }
 //cleon: si est� vac�o se llama directamente al padre
 void SamuState::refresh()
@@ -39,13 +39,20 @@ void SamuState::refresh()
 
 void SamuState::update()
 {
+
+	//system("CLS");
+
+
 	GameState::update();
 
-	board->getComponent<BoardManager>()->updateScore();
+	board->getComponent<BoardManager>()->updateScore();	// Esto puede ser un problema de performance
+	
+	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints();
+	actionPointsVisual->getComponent<TextComponent>()->setTxt("Puntos de\naccion:\n\n" + std::to_string(actionPointsValue));
 
-	std::cout << "Player 1 points: " << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
-	std::cout << "Player 2 points: " << board->getComponent<BoardManager>()->getPlayer2Points() << std::endl;
+	#if _DEBUG
 
+	#endif
 }
 
 void SamuState::render() const
@@ -60,46 +67,60 @@ void SamuState::onEnter()
 	// referencia a sdlutils
 	auto& sdl = *SDLUtils::instance();
 
+	Factory* factory = new Factory();
+	factory->SetFactories((BoardFactory*)new  BoardFactory_v0(4), (CardFactory*) new CardFactory_v1());
+	
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
 	matchManager->addComponent<MatchManager>(4, MatchManager::TurnState::TurnJ1);
 
-	cardFact = new CardFactory_v0();
+	// Factoría del tablero. Generamos el tablero de juego.
+	board = factory->createBoard();
 
-	boardFact = new BoardFactory(4, 4);
-	board = boardFact->createBoard();
+	// Factoría de cartas. Con ella generamos la mano inicial
+	factory->createDeck();
 
-	cardFact->createHand();
-
+	// Drag Manager se encarga de gestionar el drag de todas las cartas
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
 	ent->getComponent<DragManager>()->setBoardManager(board->getComponent<BoardManager>());
 
+	// Imágen de fondo
 	ecs::entity_t background = Instantiate();
 	background->addComponent<Transform>();
-	background->getComponent<Transform>()->getGlobalScale().set(0.42, 0.56);
+	background->getComponent<Transform>()->getGlobalScale().set(0.5, 0.5);
 	background->addComponent<SpriteRenderer>("board");
 	background->setLayer(-1);
 
-	ecs::entity_t pruebaTxt = Instantiate(Vector2D(400, 50));
-	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-
-	// Creación del botón de J1 para acabar su turno
-	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(70, 500));
+	
+	// Creación del botón de J1 para acabar su turno (debug por consola)
+	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(60, 500));
 	endTurnButtonJ1->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ1->addComponent<BoxCollider>();
 	endTurnButtonJ1->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ1);
 
-	// Creación del botón de J2 para acabar su turno
-	ecs::entity_t endTurnButtonJ2 = Instantiate(Vector2D(70, 100));
+	// Creación del botón de J2 para acabar su turno (debug por consola)
+	ecs::entity_t endTurnButtonJ2 = Instantiate(Vector2D(60, 100));
 	endTurnButtonJ2->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ2->addComponent<BoxCollider>();
 	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);
 
+	// Puntos de acción restantes
+	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints();
+	actionPointsVisual = Instantiate(Vector2D(100, 250));
+	actionPointsVisual->addComponent<TextComponent>("Puntos de\naccion:\n\n" + std::to_string(actionPointsValue),
+		"8bit_16pt", SDL_Color({255, 255, 0, 255}), 200, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	
+	//ecs::entity_t puntosDeAccionText = Instantiate(Vector2D(100, 300));
+	//puntosDeAccionText->addComponent<TextComponent>("Puntos de acción:", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
 	sdl.soundEffects().at("bangarang").play(-1);
+
+	sdl.soundEffects().at("bangarang").setChannelVolume(10);
+
 }
 
 void SamuState::onExit() 

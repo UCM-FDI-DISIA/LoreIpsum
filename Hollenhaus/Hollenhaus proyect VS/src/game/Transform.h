@@ -6,12 +6,12 @@ class Transform :
     public ComponentUpdate
 {
 public:
-    Transform() : parent_(), globalAngle_(0), globalScale_(1, 1), relativeAngle_(0), isChild_(false) {};
+    Transform() : parent_(), globalAngle_(0), globalScale_(1, 1), relativeAngle_(0), isChild_(false),relativeScale_(1,1) {};
     ~Transform() {};
 
     void update() override;
 
-    // Añade un padre
+    // Aï¿½ade un padre
     //
     void addParent(Transform* p);
 
@@ -20,32 +20,32 @@ public:
     void removeParent();
 
     // Posicion global
-    //
-    Vector2D getGlobalPos() { return globalPos_; };
+    // He quitao la referencia
+    Vector2D getGlobalPos();
 
     // Escala global
     //
-    Vector2D& getGlobalScale() { return globalScale_; };
+    Vector2D& getGlobalScale();
 
     // Rotacion global
     //
-    float& getGlobalAngle() { return globalAngle_; };
+    float& getGlobalAngle();
 
     // Posicion relativa al padre
     //
-    Vector2D& getRelativePos() { return relativePos_; };
+    Vector2D& getRelativePos();
 
     // Escala relativa al padre
     //
-    Vector2D& getRelativeScale() { return relativeScale_; };
+    Vector2D& getRelativeScale();
 
     // Rotacion relativa al padre
     //
-    float& getRelativeAngle() { return relativeAngle_; };
+    float& getRelativeAngle();
 
     void setGlobalPos(Vector2D& v);
 
-    Transform* getParent() { return parent_; };
+    Transform* getParent();
     
     Transform& operator+(const Transform& t);
     Transform& operator-(const Transform& t);

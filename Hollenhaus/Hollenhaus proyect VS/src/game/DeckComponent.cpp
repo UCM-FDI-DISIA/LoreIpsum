@@ -1,5 +1,10 @@
 #include "DeckComponent.h"
 
+#include <algorithm>
+#include <random>
+#include "Manager.h"
+#include "MatchManager.h"
+
 void
 DeckComponent::shuffle() {
 	std::random_device rd;
@@ -14,12 +19,12 @@ DeckComponent::shuffle() {
 	}
 }
 
-void 
+void
 DeckComponent::removeCard(Card* c) {
 	deck.remove(c);
 }
 
-void 
+void
 DeckComponent::addCardsOnBottom(std::list<Card*> h) {
 	while (!h.empty()) {
 		deck.push_front(h.front());
@@ -31,8 +36,17 @@ DeckComponent::addCardsOnBottom(std::list<Card*> h) {
 
 Card*
 DeckComponent::drawCard() {
-	Card* c = *deck.end();
+	auto it = deck.end();
+	--it;
+	Card* c = (*it);
 	removeCard(c);
-
+	mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->SubstactActualActionPoints(drawCardCost);
+	
 	return c;
+}
+
+
+void 
+DeckComponent::addCartToDeck(Card* card) {
+	deck.push_back(card);
 }

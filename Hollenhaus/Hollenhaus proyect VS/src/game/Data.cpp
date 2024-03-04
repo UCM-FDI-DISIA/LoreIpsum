@@ -1,6 +1,6 @@
 #include "Data.h"
 
-
+using namespace std;
 
 
 //------Constructora y destructora:
@@ -42,6 +42,10 @@ void Data::AddSouls(int s) {
 //----Caso:
 void Data::AddCurrentCase() {
 	currentCase++;
+}
+//----
+void Data::setWinner(int i) {
+	winner = WINNER(i);
 }
 
 //------Busqueda:
