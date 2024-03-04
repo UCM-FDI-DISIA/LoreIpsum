@@ -45,6 +45,7 @@ GameStateMachine::GameStateMachine() {
 	samuState = new SamuState();
 	movementState = new MovementState();
 
+	createData();
 
 	//Ponemos el estado actual
 	currentState = samuState;
@@ -90,7 +91,7 @@ void GameStateMachine::changeState()
 	if (currentState != gameStack.top()) {
 		replaceState(currentState);
 	}
-	
+
 }
 
 void GameStateMachine::pushState(GameState* state) {
@@ -108,4 +109,7 @@ void GameStateMachine::popState() {
 	gameStack.top()->onExit(); //Antes de eliminarlo hacemos el onExit del estado
 	toBeDeleted.push_back(gameStack.top());
 	gameStack.pop();
+}
+void GameStateMachine::createData()const {
+	data = new Data;
 }

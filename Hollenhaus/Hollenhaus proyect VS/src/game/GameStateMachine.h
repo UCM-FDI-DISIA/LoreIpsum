@@ -6,6 +6,7 @@
 #include <functional>
 #include "GameState.h"
 #include "../utils/Singleton.h"
+#include "Data.h"
 class Mouse;
 
 namespace ecs
@@ -24,6 +25,8 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	ecs::Manager* mngr_;
 
 	Mouse* mouse_;
+
+	static Data* data;
 
 	//Enum de estados del juego
 	enum game_states {
@@ -53,6 +56,10 @@ public:
 		return mngr_;
 	}
 
+	Data* getData() {
+		return data;
+	}
+
 	void init();
 	//constructor
 	GameStateMachine();
@@ -68,6 +75,7 @@ public:
 	void Render() const;
 	void Update();
 	void Refresh();
+	void createData() const;
 
 	inline void setState(int state) {
 
@@ -98,7 +106,7 @@ public:
 			break;
 		}
 
-		
+
 	};
 	bool Empty() const { return gameStack.empty(); }
 };
