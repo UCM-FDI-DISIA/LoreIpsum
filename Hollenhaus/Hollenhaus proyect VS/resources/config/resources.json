@@ -258,7 +258,7 @@
       },
       {
         "id": "battletheme",
-        "file": "resources/sound/music/bangarang.wav"
+        "file": "resources/sound/music/hollenhaus_battletheme_v1_2.wav"
       },
 	{
         "id": "deckbuilder_theme",
@@ -267,6 +267,10 @@
 	{
         "id": "shoptheme",
         "file": "resources/sound/music/tanaka_comodities.wav"
+      },
+	{
+        "id": "menutheme",
+        "file": "resources/sound/music/bangarang.wav"
       }
     ],
     "musics": [
