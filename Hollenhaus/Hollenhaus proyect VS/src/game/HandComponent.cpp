@@ -1,4 +1,4 @@
-#include "HandComponent.h"
+﻿#include "HandComponent.h"
 #include "Manager.h"
 #include "Entity.h"
 #include "SpriteRenderer.h"
@@ -7,36 +7,24 @@ HandComponent::HandComponent() :
 	transform_()
 {
 
-}/*
+}
 HandComponent::~HandComponent() {
 
 }
-*/
+
 void HandComponent::initComponent() {
 
 	transform_ = ent_->getComponent<Transform>();
 	transform_->getGlobalPos().set(400, 400);
 }
 
-void HandComponent::update() {
-
-
-}
-
-
-bool HandComponent::addCard(ecs::entity_t card) {
-
-	if (cardsInHand_.size() < MAX_HAND_CARDS)
-	{
+void HandComponent::addCard(ecs::entity_t card) {
 
 		card->getComponent<Transform>()->addParent(transform_);
+		card->getComponent<Transform>()->getGlobalScale().set(cardScale_, cardScale_);
 		// Settea tamano de carta para anadir cartas directamente desde la factoria
-		card->getComponent<Transform>()->getRelativeScale().set(cardScale_, cardScale_);
 		cardsInHand_.push_back(card);
 		refreshPositions();
-		return true;
-	}
-	return false;
 }
 
 void HandComponent::removeCard(ecs::entity_t card) {
@@ -65,13 +53,21 @@ void HandComponent::removeCard(ecs::entity_t card) {
 }
 
 void HandComponent::refreshPositions() {
+	std::vector<std::pair <int, int>>positions;
 
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
-		int x = (i-cardsInHand_.size()/2) * CARD_SEPARATION;
+		int x = (i - cardsInHand_.size()/2) * CARD_SEPARATION;
+		positions.push_back(std::pair(x, pow(x, 2) / (ARCH_AMPLITUDE)));
+	}
+
+	std::sort(positions.begin(), positions.end());
+
+	for (int i = 0; i < cardsInHand_.size(); i++)
+	{
 
 		// Ecuacion de la parabola que forma las cartas
-		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(
-			x, pow(x,2)/(ARCH_AMPLITUDE));
+		Vector2D pos(positions[i].first, positions[i].second);
+		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(pos);
 	}
 }

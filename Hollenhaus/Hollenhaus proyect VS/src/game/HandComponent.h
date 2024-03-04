@@ -4,31 +4,32 @@
 #include "Transform.h"
 #include "BoxCollider.h"
 
-const unsigned int	MAX_HAND_CARDS = 7,
-					CARD_SEPARATION = 30,
-					ARCH_AMPLITUDE=1000;
+const unsigned int	
+					CARD_SEPARATION = 100,
+					ARCH_AMPLITUDE=750;
 
 class HandComponent :
 	public ComponentUpdate
 {
 public:
 	HandComponent();
-	//~HandComponent();
+	~HandComponent();
 
 	void initComponent() override;
-	void update() override;
 
 	/// <summary>
 	/// Anade una carta a la mano.
 	/// </summary>
 	/// <param name="card">Carta a anadir</param>
 	/// <returns>Si ha anadido la carta devuelve true, si no false.</returns>
-	bool addCard(ecs::entity_t card);
+	void addCard(ecs::entity_t card);
 
 	/// <summary>
 	/// Saca una carta de
 	/// </summary>
 	void removeCard(ecs::entity_t card);
+
+	int handSize() { return cardsInHand_.size(); }
 
 private:
 	float cardScale_ = 0.55f;
