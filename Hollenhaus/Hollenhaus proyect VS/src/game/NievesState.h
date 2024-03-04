@@ -21,6 +21,11 @@ public:
     void onEnter() override;
     void onExit() override;
 
+    void setWinner() {
+
+        data->setWinner(1);
+    }
+
 private:
     ecs::entity_t card;
     ecs::entity_t board;
