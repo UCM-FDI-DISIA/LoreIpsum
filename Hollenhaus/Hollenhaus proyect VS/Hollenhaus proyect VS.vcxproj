@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EffectCollection.cpp" />
+    <ClCompile Include="src\game\CardHoverManager.cpp" />
     <ClCompile Include="src\game\CardOnHover.cpp" />
     <ClCompile Include="src\game\EndTurnButton.cpp" />
     <ClCompile Include="src\game\MatchManager.cpp" />
@@ -89,6 +90,7 @@
     <ClInclude Include="src\game\BoardFactory.h" />
     <ClInclude Include="src\game\BoardFactory_v0.h" />
     <ClInclude Include="src\game\Card.h" />
+    <ClInclude Include="src\game\CardHoverManager.h" />
     <ClInclude Include="src\game\CardOnHover.h" />
     <ClInclude Include="src\game\EndTurnButton.h" />
     <ClInclude Include="src\game\MatchManager.h" />

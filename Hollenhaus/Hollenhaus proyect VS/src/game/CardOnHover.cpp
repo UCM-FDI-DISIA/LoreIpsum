@@ -29,11 +29,9 @@ void CardOnHover::update()
 {
 	if (myBoxCollider->isCursorOver()) {
 
-		//myTransform->getGlobalScale().set(scaleOnHover);
+		myTransform->getGlobalScale().set(scaleOnHover);
 	}
 	else {
-		//myTransform->getGlobalScale().set(previousScale);
-
+		myTransform->getGlobalScale().set(previousScale);
 	}
-
 }
