@@ -49,11 +49,21 @@ void OfficeState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
+
+	auto& sdl = *SDLUtils::instance();
+	sdl.soundEffects().at("deckbuilder_theme").play(-1);
+	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
+
+
 }
 
 void OfficeState::onExit()
 {
 	std::cout << "\nEXIT OFFICE.\n";
+
+	auto& sdl = *SDLUtils::instance();
+	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
+
 	GameStateMachine::instance()->getMngr()->Free();
 }
 

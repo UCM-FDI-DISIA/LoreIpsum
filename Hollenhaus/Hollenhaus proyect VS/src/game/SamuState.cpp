@@ -69,7 +69,7 @@ void SamuState::onEnter()
 
 	Factory* factory = new Factory();
 	factory->SetFactories((BoardFactory*)new  BoardFactory_v0(4), (CardFactory*) new CardFactory_v1());
-
+	
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
@@ -117,14 +117,18 @@ void SamuState::onEnter()
 
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
-	sdl.soundEffects().at("bangarang").play(-1);
-
-	sdl.soundEffects().at("bangarang").setChannelVolume(10);
+	sdl.soundEffects().at("battletheme").play(-1);
+	sdl.soundEffects().at("battletheme").setChannelVolume(10);
 
 }
 
 void SamuState::onExit() 
 {
 	TuVieja("\nExit SamuState");
+
+	// referencia a sdlutils
+	auto& sdl = *SDLUtils::instance();
+	sdl.soundEffects().at("battletheme").pauseChannel();
+
 	GameStateMachine::instance()->getMngr()->Free();
 }

@@ -122,6 +122,44 @@
           "value": 20
         },
         {
+          "type": 0,
+          "value": 44
+        }
+      ],
+      "unblockable": true
+    },
+    {
+      "id": "6",
+      "cost": 0,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 10
+        },
+        {
+          "type": 2,
+          "directions": [
+            "Arriba",
+            "Abajo"
+          ],
+          "value": 30
+        }
+      ],
+      "unblockable": true
+    },
+    {
+      "id": "7",
+      "cost": 0,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
+        },
+        {
           "type": 2,
           "directions": [
             "Derecha",
@@ -215,17 +253,29 @@
     ],
     "sounds": [
       {
-        "id": "try1",
-        "file": "resources/sound/music/suspicious_person.wav"
+        "id": "citytheme",
+        "file": "resources/sound/music/layer_cake.wav"
       },
       {
-        "id": "bangarang",
+        "id": "battletheme",
+        "file": "resources/sound/music/hollenhaus_battletheme_v1_2.wav"
+      },
+	{
+        "id": "deckbuilder_theme",
+        "file": "resources/sound/music/confession.wav"
+      },
+	{
+        "id": "shoptheme",
+        "file": "resources/sound/music/tanaka_comodities.wav"
+      },
+	{
+        "id": "menutheme",
         "file": "resources/sound/music/bangarang.wav"
       }
     ],
     "musics": [
       {
-        "id": "battleTheme",
+        "id": "layercake",
         "file": "resources/sound/music/layer_cake.wav"
       },
       {
