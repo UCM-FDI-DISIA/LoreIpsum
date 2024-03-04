@@ -11,6 +11,8 @@
 #include "../Cell.h"
 #include "../EffectCollection.h"
 
+#include "TextComponent.h"
+
 
 ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
                                          std::vector<SDLUtils::CardEffect>& effects)
@@ -77,10 +79,18 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	});
 	*/
 
+
+
+	addValueCostTexts(card, value, cost);
+
+	addEffectsImages(card, effects);
+
+
 	return card;
 }
 
 
+/*
 ecs::entity_t CardFactory_v0::createDropDetector(Vector2D pos)
 {
 	ecs::entity_t dropDect = Instantiate(ecs::grp::DROPS);
@@ -142,6 +152,7 @@ ecs::entity_t CardFactory_v0::createBoard()
 
 	return nullptr;
 }
+*/
 
 void CardFactory_v0::createHand()
 {
@@ -173,4 +184,97 @@ void CardFactory_v0::createHand()
 	createCard(Vector2D(initX + offSetX, initY),3,3,sprite, false)->setLayer(1);
 	createCard(Vector2D(initX + offSetX*2, initY), 4, 4, sprite, false)->setLayer(1);
 	createCard(Vector2D(initX + offSetX*3, initY), 5, 5, sprite, false)->setLayer(2);*/
+}
+
+void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::CardEffect>& effects)
+{
+
+	int initialX = 15;
+	int initialY = 55;
+	int offSetX = 25;
+	int offSetY = 15;
+	int nCols = 2;
+	int layer = 10;
+	float scale = effects.size() == 1 ? 0.078 : 0.045;
+
+	ecs::entity_t effectImage;
+	ecs::entity_t valueChange;
+
+	std::vector<std::string> efectsIdsNames{ "esquina" ,"centro","flecha" ,"superflecha" ,"block" , "unblockable" };
+	std::string efectID;
+
+
+
+	for (int i = 0; i < effects.size(); i++) {
+
+		effectImage = Instantiate(Vector2D(0, 0));
+
+		efectID = efectsIdsNames[effects[i].type()];
+
+		effectImage->addComponent<SpriteRenderer>(efectID);
+
+
+		effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
+
+		//effectImage->getComponent<Transform>()->getGlobalScale().set(1, 1);
+		effectImage->getComponent<Transform>()->getRelativeScale().set(scale, scale);
+		Vector2D gpos(initialX + ((i % nCols) * offSetX), initialY + ((i / nCols) * offSetY));
+
+		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
+
+		effectImage->setLayer(layer);
+
+
+		
+		if (effects[i].type() >= 2 && effects[i].type() <= 4) {
+			
+			CellData::Direction dir = effects[i].directions()[0];
+			effectImage->getComponent<Transform>()->getGlobalAngle() = 
+				 dir == CellData::Right ?  90.f :  dir == CellData::Down ? 180.f : dir == CellData::Left ? 270 : 0;
+		}
+		
+
+
+		if (effects[i].value() != 0) {
+
+			std::string valueText = effects[i].value() < 0 ? "-" : "+";
+			valueText = valueText + std::to_string(effects[i].value());
+
+			valueChange = Instantiate(Vector2D(0,0));
+
+			valueChange->addComponent<TextComponent>(valueText, "8bit_8pt", SDL_Color({0, 0, 0, 255}), 100);
+
+			valueChange->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
+			valueChange->getComponent<Transform>()->getRelativePos().set(-5, 0);
+
+			valueChange->setLayer(layer + 1);
+		}
+	}
+
+
+}
+
+void CardFactory_v0::addValueCostTexts(ecs::entity_t card,  int value, int cost)
+{
+	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
+
+	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }), 100,TextComponent::BoxPivotPoint::CenterCenter,TextComponent::TextAlignment::Center);
+
+	textoValor->getComponent<Transform>()->addParent(card->getComponent<Transform>());
+
+	textoValor->getComponent<Transform>()->getRelativePos().set(10, 87);
+
+	textoValor->setLayer(100);
+
+
+	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
+
+	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }),100, TextComponent::BoxPivotPoint::CenterCenter,TextComponent::TextAlignment::Center);
+
+	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
+
+	textoCoste->getComponent<Transform>()->getRelativePos().set(10, 10);
+	textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
+
+	textoCoste->setLayer(100);
 }

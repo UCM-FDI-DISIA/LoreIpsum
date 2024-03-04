@@ -124,7 +124,7 @@ enum sysId : hdlrId_t {
 
 // GetID stuff
 
-constexpr cmpId_t maxComponentUpdateId = 100;
+constexpr cmpId_t maxComponentUpdateId = 1000;
 template<typename T>
 cmpId_t cmpUpdateId = GenID::getUpdateId<T>();
 

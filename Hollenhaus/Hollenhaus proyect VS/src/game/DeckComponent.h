@@ -1,16 +1,18 @@
 #pragma once
 
 #include "ComponentUpdate.h"
-#include "Card.h"
+
 #include <list>
-#include <algorithm>
-#include <random>
+
+class Card;
 
 class DeckComponent : public ComponentUpdate
 {
 public:
 	DeckComponent(){}
 	~DeckComponent(){}
+
+	void addCartToDeck(Card* card);
 
 	Card* drawCard();
 

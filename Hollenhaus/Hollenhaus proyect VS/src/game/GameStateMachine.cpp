@@ -7,7 +7,7 @@
 #include "CityState.h"
 #include "OfficeState.h"
 #include "ShopState.h"
-#include "BoardState.h"
+//#include "BoardState.h"
 #include "SamuState.h"
 #include "JimboState.h"
 #include "AndresState.h"
@@ -15,7 +15,7 @@
 #include "Manager.h"
 #include "PaigroState.h"
 #include "MovementState.h"
-#include "Mouse.h";
+#include "Mouse.h"
 
 
 void GameStateMachine::init()
@@ -40,14 +40,14 @@ GameStateMachine::GameStateMachine() {
 	cityState = new CityState();
 	officeState = new OfficeState();
 	shopState = new ShopState();
-	boardState = new BoardState();
+	//boardState = new BoardState();
 	paigroState = new PaigroState();
 	samuState = new SamuState();
 	movementState = new MovementState();
 
 
 	//Ponemos el estado actual
-	currentState = movementState;
+	currentState = samuState;
 
 }
 
