@@ -5,6 +5,7 @@
 #include "SpriteRenderer.h"
 #include "BoxCollider.h"
 #include "DeckComponent.h"
+#include "PlayerCardsManager.h"
 #include "Drag.h"
 #include "CardStateManager.h"
 
@@ -29,7 +30,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 	cardTransform->getGlobalScale().set(cardScale, cardScale);
 
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
-	cardCardStateManager->setState(CardStateManager::ON_HAND);
+	cardCardStateManager->setState(CardStateManager::ON_CELL);
 
 	const auto cardComp = card->addComponent<Card>(
 		cost, value, sprite, unblockable
@@ -93,11 +94,21 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 }
 
 
-void CardFactory_v1::createHand()
+ecs::entity_t CardFactory_v1::createHand()
 {
 	int initY = 470;
 	int initX = 270;
 	int offSetX = 50;
+
+	ecs::entity_t hand = Instantiate();
+
+	hand->addComponent<Transform>();
+	Vector2D deckPos(initX, initY);
+	hand->getComponent<Transform>()->setGlobalPos(deckPos);
+	hand->addComponent<HandComponent>();
+
+
+	return hand;
 
 	// todavia no se como saber cards.size() de otra manera
 	/*int size = 0;
@@ -116,26 +127,42 @@ void CardFactory_v1::createHand()
 
 void CardFactory_v1::createDeck() {
 
-	int initY = 600;
-	int initX = 300;
+	int initY = 500;
+	int initX = 600;
+
+	ecs::entity_t hand = createHand();
+
+
+	ecs::entity_t deck = Instantiate();
+	deck->addComponent<Transform>();
+	Vector2D deckPos(initX, initY);
+	deck->getComponent<Transform>()->setGlobalPos(deckPos);
+	deck->addComponent<BoxCollider>();
+	deck->addComponent<DeckComponent>();
+	deck->addComponent<PlayerCardsManager>(
+		hand->getComponent<HandComponent>(),
+		deck->getComponent<DeckComponent>());
+	deck->setLayer(2);
 
 	//instantie
 
 	for (int i = 0; i < 6; i++)
 	{
 		auto card = sdlutils().cards().at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
-		createCard(
+		ecs::entity_t ent = createCard(
 			Vector2D(initX, initY),
 			card.cost(),
 			card.value(),
 			card.sprite(),
 			card.unblockable(),
 			card.effects()
-		)->setLayer(1);
+		);
+		ent->setLayer(1);
+		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 	}
 
+	TuVieja("Deck1");
 
-	ecs::entity_t card = Instantiate(Vector2D(initX, initY), ecs::grp::CARDS);
 }
 
 void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::CardEffect>& effects)

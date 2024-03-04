@@ -8,6 +8,7 @@
 #include "..\sdlutils\InputHandler.h"
 
 #include "CardFactory_v0.h"
+#include "CardFactory_v1.h"
 
 #include "Factory.h"
 
@@ -63,7 +64,7 @@ void SamuState::onEnter()
 
 
 	Factory* factory = new Factory();
-	factory->SetFactories((BoardFactory*)new  BoardFactory_v0(4), (CardFactory*) new CardFactory_v0());
+	factory->SetFactories((BoardFactory*)new  BoardFactory_v0(4), (CardFactory*) new CardFactory_v1());
 
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
@@ -74,7 +75,7 @@ void SamuState::onEnter()
 	board = factory->createBoard();
 
 	// Factoría de cartas. Con ella generamos la mano inicial
-	factory->createHand();
+	factory->createDeck();
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
 	ecs::entity_t ent = Instantiate();

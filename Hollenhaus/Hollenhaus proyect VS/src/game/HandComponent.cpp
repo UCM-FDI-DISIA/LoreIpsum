@@ -31,7 +31,7 @@ bool HandComponent::addCard(ecs::entity_t card) {
 
 		card->getComponent<Transform>()->addParent(transform_);
 		// Settea tamano de carta para anadir cartas directamente desde la factoria
-		//card->getComponent<Transform>()->getRelativeScale().set(.25, .25);
+		card->getComponent<Transform>()->getRelativeScale().set(cardScale_, cardScale_);
 		cardsInHand_.push_back(card);
 		refreshPositions();
 		return true;
@@ -55,6 +55,7 @@ void HandComponent::removeCard(ecs::entity_t card) {
 		}
 		else
 		{
+			card->getComponent<Transform>()->getGlobalScale().set(cardScale_, cardScale_);
 			cardsInHand_[i]->getComponent<Transform>()->removeParent();
 		}
 	}

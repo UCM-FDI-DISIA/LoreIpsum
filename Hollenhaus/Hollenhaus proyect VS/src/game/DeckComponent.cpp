@@ -35,7 +35,9 @@ DeckComponent::addCardsOnBottom(std::list<Card*> h) {
 
 Card*
 DeckComponent::drawCard() {
-	Card* c = *deck.end();
+	auto it = deck.end();
+	--it;
+	Card* c = (*it);
 	removeCard(c);
 
 	return c;

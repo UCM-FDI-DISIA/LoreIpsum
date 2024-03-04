@@ -14,6 +14,8 @@ public:
 
 	void addCartToDeck(Card* card);
 
+	int deckSize() { return deck.size(); }
+	
 	Card* drawCard();
 
 private:

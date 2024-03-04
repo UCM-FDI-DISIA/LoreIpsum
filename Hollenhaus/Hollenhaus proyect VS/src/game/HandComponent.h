@@ -6,9 +6,7 @@
 
 const unsigned int	MAX_HAND_CARDS = 7,
 					CARD_SEPARATION = 30,
-					ARCH_AMPLITUDE=1000;
-
-class Card;
+					ARCH_AMPLITUDE=10000;
 
 class HandComponent :
 	public ComponentUpdate
@@ -33,6 +31,8 @@ public:
 	void removeCard(ecs::entity_t card);
 
 private:
+	float cardScale_ = 0.55f;
+	
 	void refreshPositions();
 
 	// Transform de la mano

@@ -7,10 +7,16 @@
 
 void PlayerCardsManager::initComponent() {
 
+	click = false;
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { drawCard(); });
 }
 
 void PlayerCardsManager::drawCard() {
-	hand_->addCard(deck_->drawCard()->getEntity());
+
+	if (!click && ent_->getComponent<BoxCollider>()->isCursorOver() && deck_->deckSize()>0)
+	{
+		hand_->addCard(deck_->drawCard()->getEntity());
+		TuVieja("AAAAAAAAAAAA");
+	}
 
 }
