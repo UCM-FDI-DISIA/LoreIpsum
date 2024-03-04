@@ -11,6 +11,8 @@
 #include "../Cell.h"
 #include "../EffectCollection.h"
 
+#include "CardOnHover.h"
+
 #include "TextComponent.h"
 
 
@@ -28,6 +30,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(CardStateManager::ON_DECK);
+
 
 	const auto cardComp = card->addComponent<Card>(
 		cost, value, sprite, unblockable
@@ -231,7 +234,6 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
 
 		effectImage->setLayer(layer);
-
 
 		
 		if (effects[i].type() >= 2 && effects[i].type() <= 4) {

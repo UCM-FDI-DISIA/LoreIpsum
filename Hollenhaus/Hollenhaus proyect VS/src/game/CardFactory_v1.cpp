@@ -15,6 +15,8 @@
 
 #include "TextComponent.h"
 
+#include "CardOnHover.h"
+
 
 ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
 	std::vector<SDLUtils::CardEffect>& effects)
@@ -35,6 +37,8 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 	const auto cardComp = card->addComponent<Card>(
 		cost, value, sprite, unblockable
 		);
+
+	card->addComponent<CardOnHover>();
 
 
 	/// Hemos creado getEffect para evitar:
