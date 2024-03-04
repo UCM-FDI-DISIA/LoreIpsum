@@ -17,11 +17,11 @@ public:
 	int deckSize() { return deck.size(); }
 	
 	Card* drawCard();
+	void shuffle();
 
 private:
 	std::list<Card*> deck;
 
-	void shuffle();
 	void removeCard(Card* c);
 	void addCardsOnBottom(std::list<Card*> h);
 };

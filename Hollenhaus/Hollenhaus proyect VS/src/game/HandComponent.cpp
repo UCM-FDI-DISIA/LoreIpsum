@@ -24,10 +24,12 @@ void HandComponent::addCard(ecs::entity_t card) {
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(CardStateManager::ON_HAND);
 
+
 	card->getComponent<Transform>()->addParent(transform_);
 	card->getComponent<Transform>()->getRelativeScale().set(cardScale_, cardScale_);
 	// Settea tamano de carta para anadir cartas directamente desde la factoria
 	cardsInHand_.push_back(card);
+	//card->setLayer(cardsInHand_.size());
 	refreshPositions();
 }
 

@@ -3,7 +3,7 @@
 #include "HandComponent.h"
 #include "DeckComponent.h"
 
-const int MAX_IN_HAND = 3;
+const int MAX_IN_HAND = 6;
 
 class PlayerCardsManager :
     public ComponentUpdate
