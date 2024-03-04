@@ -38,7 +38,7 @@ public:
 			Mix_FreeChunk(chunk_);
 	}
 
-	inline int play(int loops = -1, int channel = -1) const {
+	inline int play(int loops = 0, int channel = -1) const {
 		_CHECK_CHANNEL_(channel);
 		assert(loops >= -1);
 		return Mix_PlayChannel(channel, chunk_, loops);

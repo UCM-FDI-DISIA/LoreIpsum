@@ -99,7 +99,7 @@ void SamuState::onEnter()
 
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
-	sdl.soundEffects().at("bangarang").play();
+	sdl.soundEffects().at("bangarang").play(-1);
 }
 
 void SamuState::onExit() 
