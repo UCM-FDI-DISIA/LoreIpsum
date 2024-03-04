@@ -2,7 +2,7 @@
   "cards": [
     {
       "id": "0",
-      "cost": 0,
+      "cost": 3,
       "value": 1,
       "sprite": "card",
       "effects": [
@@ -15,7 +15,7 @@
     },
     {
       "id": "1",
-      "cost": 0,
+      "cost": 2,
       "value": 2,
       "sprite": "card",
       "effects": [
@@ -28,7 +28,7 @@
     },
     {
       "id": "2",
-      "cost": 0,
+      "cost": 1,
       "value": 3,
       "sprite": "card",
       "effects": [
@@ -44,7 +44,7 @@
     },
     {
       "id": "3",
-      "cost": 0,
+      "cost": 4,
       "value": 4,
       "sprite": "card",
       "effects": [
@@ -60,7 +60,7 @@
     },
     {
       "id": "4",
-      "cost": 0,
+      "cost": 5,
       "value": 5,
       "sprite": "card",
       "effects": [
@@ -75,7 +75,7 @@
     },
     {
       "id": "5",
-      "cost": 0,
+      "cost": 2,
       "value": 6,
       "sprite": "card",
       "effects": [

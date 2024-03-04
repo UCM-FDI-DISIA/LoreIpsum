@@ -8,6 +8,8 @@
 #include "CellManager.h"
 #include "TextComponent.h"
 #include "../Cell.h"
+#include "MatchManager.h"
+
 
 BoardManager::BoardManager()
 {
@@ -28,7 +30,10 @@ void BoardManager::initComponent()
 }
 
 void BoardManager::update()
-{
+{/*
+	if (isFull) {
+
+	}*/
 }
 
 bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
@@ -62,9 +67,6 @@ std::list<SDLEventCallback> BoardManager::getEffects(Cell* cell) const
 	return cell->getEffects();
 }
 
-
-
-
 bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 {
 	const auto cell = _board[x][y]->getComponent<Cell>();
@@ -78,6 +80,12 @@ bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 	/// anyade callback a la celda
 	for (const auto& e : c->getEffects())
 		cell->addEffect(e);
+
+	//Gasta los puntos de accion correspondientes
+	mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->SubstactActualActionPoints(c->getCost());
+
+	// aumenta el contador al aniadir carta al tablero
+	cardsOnBoard++;
 
 	/// reaplica todos los efectos
 	applyAllEffects();

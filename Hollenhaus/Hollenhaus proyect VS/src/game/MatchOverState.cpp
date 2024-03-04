@@ -38,7 +38,7 @@ void MatchOverState::onEnter()
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
 
-	setWindow(GameStateMachine().getData()->getWinner());
+	setWindow(data->getWinner());
 }
 
 void MatchOverState::onExit()
@@ -48,6 +48,8 @@ void MatchOverState::onExit()
 }
 
 void MatchOverState::setWindow(int lastWinner) {
+
+	// Cual es el ultimo ganador de la partida?
 	switch (lastWinner)
 	{
 	case 1: // Empate:
@@ -78,6 +80,6 @@ void MatchOverState::setWindow(int lastWinner) {
 	shopText->addComponent<TextComponent>("¡GANADOR:" + text, "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	shopText->setLayer(1);
 
-	// ---- Resetea el ganador a nulo ----
-	GameStateMachine().getData()->setWinner(0);
+	// ---- Resetea el ganador a nulo al salir del estado ----
+	data->setWinner(0);
 }

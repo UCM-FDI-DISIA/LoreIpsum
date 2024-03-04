@@ -14,8 +14,10 @@
 #include "LuisState.h"
 #include "Manager.h"
 #include "PaigroState.h"
+#include "NievesState.h"
 #include "MovementState.h"
 #include "Mouse.h"
+#include "GameState.h"
 
 
 void GameStateMachine::init()
@@ -43,16 +45,17 @@ GameStateMachine::GameStateMachine() {
 	//boardState = new BoardState();
 	paigroState = new PaigroState();
 	samuState = new SamuState();
+	nievesState = new NievesState();
 	movementState = new MovementState();
 
-	createData();
+	// Ponemos el estado actual
+	currentState = nievesState;
 
-	//Ponemos el estado actual
-	currentState = samuState;
-
+	// crea la data en el current state
+	currentState->setData(new Data());
 }
 
-//destructor
+// destructor
 GameStateMachine::~GameStateMachine() {
 
 	//destruye uno a uno todos los estados apilados que queden
@@ -84,7 +87,6 @@ void GameStateMachine::Refresh()
 	gameStack.top()->refresh();
 }
 
-
 void GameStateMachine::changeState()
 {
 	//Solo queremos que lo haga de ser necesario
@@ -109,7 +111,4 @@ void GameStateMachine::popState() {
 	gameStack.top()->onExit(); //Antes de eliminarlo hacemos el onExit del estado
 	toBeDeleted.push_back(gameStack.top());
 	gameStack.pop();
-}
-void GameStateMachine::createData()const {
-	data = new Data;
 }

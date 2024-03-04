@@ -1,17 +1,17 @@
-#pragma once
+
 #include "BoardFactory_v0.h"
 #include "checkML.h"
 #include "GameState.h"
 #include "CardFactory_v0.h"
 
-class Entity;
+    class Entity;
 //class Manager;
-class SamuState :
+class NievesState :
     public GameState
 {
 public:
-    SamuState();
-    virtual ~SamuState();
+    NievesState();
+    virtual ~NievesState();
 
 
     void refresh() override;
@@ -21,9 +21,13 @@ public:
     void onEnter() override;
     void onExit() override;
 
+    void setWinner() {
+
+        data->setWinner(1);
+    }
+
 private:
     ecs::entity_t card;
     ecs::entity_t board;
-    ecs::entity_t actionPointsVisual;
 };
 

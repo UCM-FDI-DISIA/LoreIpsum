@@ -26,7 +26,6 @@ class GameStateMachine : public Singleton<GameStateMachine>
 
 	Mouse* mouse_;
 
-	static Data* data;
 
 	//Enum de estados del juego
 	enum game_states {
@@ -36,7 +35,8 @@ class GameStateMachine : public Singleton<GameStateMachine>
 		SHOP,
 		BOARD,
 		PAIGRO,
-		SAMU
+		SAMU,
+		NIEVES
 	};
 
 	//Creaci�n de los distintos estados del juego
@@ -48,16 +48,13 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* boardState;
 	GameState* paigroState;
 	GameState* samuState;
+	GameState* nievesState;
 	GameState* movementState;
 
 public:
 	ecs::Manager* getMngr()
 	{
 		return mngr_;
-	}
-
-	Data* getData() {
-		return data;
 	}
 
 	void init();
@@ -75,7 +72,6 @@ public:
 	void Render() const;
 	void Update();
 	void Refresh();
-	void createData() const;
 
 	inline void setState(int state) {
 
@@ -102,15 +98,17 @@ public:
 		case SAMU:
 			currentState = samuState;
 			break;
+		case NIEVES:
+			currentState = nievesState;
+			break;
 		default:
 			break;
 		}
-
-
 	};
 	bool Empty() const { return gameStack.empty(); }
-};
 
+	GameState* getCurrentState() { return currentState; }
+};
 
 // --------
 // forma de usar el singleton Manager

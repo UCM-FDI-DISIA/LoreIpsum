@@ -27,7 +27,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	cardTransform->getGlobalScale().set(cardScale, cardScale);
 
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
-	cardCardStateManager->setState(CardStateManager::ON_HAND);
+	cardCardStateManager->setState(CardStateManager::ON_DECK);
 
 	const auto cardComp = card->addComponent<Card>(
 		cost, value, sprite, unblockable
@@ -154,7 +154,7 @@ ecs::entity_t CardFactory_v0::createBoard()
 }
 */
 
-void CardFactory_v0::createHand()
+ecs::entity_t CardFactory_v0::createHand()
 {
 	int initY = 470;
 	int initX = 270;
@@ -184,6 +184,14 @@ void CardFactory_v0::createHand()
 	createCard(Vector2D(initX + offSetX, initY),3,3,sprite, false)->setLayer(1);
 	createCard(Vector2D(initX + offSetX*2, initY), 4, 4, sprite, false)->setLayer(1);
 	createCard(Vector2D(initX + offSetX*3, initY), 5, 5, sprite, false)->setLayer(2);*/
+
+	ecs::entity_t hand = Instantiate();
+
+	hand->addComponent<Transform>();
+	Vector2D deckPos(initX, initY);
+	hand->getComponent<Transform>()->setGlobalPos(deckPos);
+	//hand->addComponent<HandComponent>();
+	return hand;
 }
 
 void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::CardEffect>& effects)
