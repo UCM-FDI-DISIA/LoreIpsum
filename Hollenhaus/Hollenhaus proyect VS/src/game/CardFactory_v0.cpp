@@ -225,6 +225,16 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 		effectImage->setLayer(layer);
 
 
+		
+		if (effects[i].type() >= 2 && effects[i].type() <= 4) {
+			
+			CellData::Direction dir = effects[i].directions()[0];
+			effectImage->getComponent<Transform>()->getGlobalAngle() = 
+				 dir == CellData::Right ?  90.f :  dir == CellData::Down ? 180.f : dir == CellData::Left ? 270 : 0;
+		}
+		
+
+
 		if (effects[i].value() != 0) {
 
 			std::string valueText = effects[i].value() < 0 ? "-" : "+";
