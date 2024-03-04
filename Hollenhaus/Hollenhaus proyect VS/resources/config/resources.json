@@ -98,108 +98,128 @@
       "unblockable": true
     }
   ],
+  "images": [
+    {
+      "id": "rice",
+      "file": "./resources/images/rice.png"
+    },
+    {
+      "id": "card",
+      "file": "resources/images/card.png"
 
-    "images": [
-        {
-            "id": "rice",
-            "file": "./resources/images/rice.png"
-        },
-        {
-            "id": "card",
-            "file": "resources/images/card.png"
+    },
+    {
+      "id": "hand",
+      "file": "resources/images/hand.png"
+    },
+    {
+      "id": "picto1",
+      "file": "resources/images/picto1.png"
+    },
+    {
+      "id": "key",
+      "file": "resources/images/libreta.png"
+    },
+    {
+      "id": "board",
+      "file": "resources/images/board.png"
+    },
+    {
+      "id": "mouse",
+      "file": "resources/images/mouse.png"
+    },
+    {
+      "id": "ciudad",
+      "file": "resources/images/ciudad.png"
 
-        },
-        {
-          "id": "hand",
-          "file": "resources/images/hand.png"
-        },
-        {
-          "id": "picto1",
-          "file": "resources/images/picto1.png"
-        },
-        {
-          "id": "key",
-          "file": "resources/images/libreta.png"
-        },
-        {
-          "id": "board",
-          "file": "resources/images/board.png"
-        },
-        {
-          "id": "mouse",
-          "file": "resources/images/mouse.png"
-        },
-        {
-            "id": "ciudad",
-            "file": "resources/images/ciudad.png"
+    },
+    {
+      "id": "npc",
+      "file": "resources/images/npc.png"
 
-        },
-        {
-            "id": "npc",
-            "file": "resources/images/npc.png"
+    },
+    {
+      "id": "boton",
+      "file": "resources/images/boton.png"
 
-        },
-        {
-            "id": "boton",
-            "file": "resources/images/boton.png"
+    },
+    {
+      "id": "cityExample",
+      "file": "resources/images/cityExample.png"
 
-        },
-        {
-            "id": "cityExample",
-            "file": "resources/images/cityExample.png"
+    },
+    {
+      "id": "farolascerca",
+      "file": "resources/images/farolascerca.png"
 
-        },
-        {
-            "id": "farolascerca",
-            "file": "resources/images/farolascerca.png"
+    },
+    {
+      "id": "farolaslejos",
+      "file": "resources/images/farolaslejos.png"
 
-        },
-        {
-            "id": "farolaslejos",
-            "file": "resources/images/farolaslejos.png"
+    },
+    {
+      "id": "ambasfarolas",
+      "file": "resources/images/ambasfarolas.png"
 
-        },
-        {
-            "id": "ambasfarolas",
-            "file": "resources/images/ambasfarolas.png"
+    },
+    {
+      "id": "edificios",
+      "file": "resources/images/edificios.png"
 
-        },
-        {
-            "id": "edificios",
-            "file": "resources/images/edificios.png"
+    },
+    {
+      "id": "ciudadcompleta",
+      "file": "resources/images/ciudadcompleta.png"
 
-        },
-        {
-            "id": "ciudadcompleta",
-            "file": "resources/images/ciudadcompleta.png"
+    },
+    {
+      "id": "EndTurnButton",
+      "file": "resources/images/EndTurnButton.png"
 
-         },
-         {
-            "id": "EndTurnButton",
-            "file": "resources/images/EndTurnButton.png"
-            
-         }
-    ],
-    "fonts": [
-      {
-        "id": "8bit_16pt",
-        "file": "resources/fonts/PressStart2P-Regular.ttf",
-        "size": 16
-      },
-      {
-        "id": "8bit_24pt",
-        "file": "resources/fonts/PressStart2P-Regular.ttf",
-        "size": 24
-      },
-      {
-        "id": "8bit_32pt",
-        "file": "resources/fonts/PressStart2P-Regular.ttf",
-        "size": 32
-      },
-      {
-        "id": "8bit_40pt",
-        "file": "resources/fonts/PressStart2P-Regular.ttf",
-        "size": 40
-      }
-    ]
+    }
+  ],
+  "fonts": [
+    {
+      "id": "8bit_16pt",
+      "file": "resources/fonts/PressStart2P-Regular.ttf",
+      "size": 16
+    },
+    {
+      "id": "8bit_24pt",
+      "file": "resources/fonts/PressStart2P-Regular.ttf",
+      "size": 24
+    },
+    {
+      "id": "8bit_32pt",
+      "file": "resources/fonts/PressStart2P-Regular.ttf",
+      "size": 32
+    },
+    {
+      "id": "8bit_40pt",
+      "file": "resources/fonts/PressStart2P-Regular.ttf",
+      "size": 40
+    }
+  ],
+  "sounds": [
+    {
+      "id": "try1",
+      "file": "resources/sound/music/suspicious_person.wav"
+    },
+    {
+      "id": "bangarang",
+      "file": "resources/sound/music/bangarang.wav"
+    }
+  ],
+  "musics": [
+    {
+      "id": "battleTheme",
+      "file": "resources/sound/music/layer_cake.wav"
+    },
+    {
+      "id": "tryTheme",
+      "file": "resources/sound/music/suspicious_person.wav"
+    }
+  ]
+
 }

@@ -1,5 +1,6 @@
 #include "SamuState.h"
 
+#include <SDL.h>
 #include "Drag.h"
 #include "CardStateManager.h"
 #include "DragManager.h"
@@ -55,6 +56,10 @@ void SamuState::render() const
 void SamuState::onEnter()
 {
 	TuVieja("\nEntering in SamuState");
+
+	// referencia a sdlutils
+	auto& sdl = *SDLUtils::instance();
+
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
@@ -91,6 +96,10 @@ void SamuState::onEnter()
 	endTurnButtonJ2->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ2->addComponent<BoxCollider>();
 	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);
+
+	// incicia la cancion en bucle
+	//sdl.musics().at("tryTheme").play();
+	sdl.soundEffects().at("bangarang").play();
 }
 
 void SamuState::onExit() 
