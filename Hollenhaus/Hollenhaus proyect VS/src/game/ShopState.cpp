@@ -4,7 +4,7 @@
 
 ShopState::ShopState()
 {
-	std::cout << "\nLoading Shop";
+	std::cout << "\nLoading ShopState.";
 }
 
 void ShopState::update()
@@ -24,20 +24,21 @@ void ShopState::refresh()
 
 void ShopState::onEnter()
 {
-	ecs::entity_t pruebaTxt = Instantiate(Vector2D(400, 30));
-	pruebaTxt->addComponent<TextComponent>("TIENDA", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-	pruebaTxt->setLayer(1);
+	std::cout << "\nENTER SHOP.\n";
+	
+	//------Texto de la tienda:
+	ecs::entity_t shopText = Instantiate(Vector2D(400, 30));
+	shopText->addComponent<TextComponent>("TIENDA", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	shopText->setLayer(1);
 
-
-
-	std::cout << "\nEnter shop\n";
 	//-----Imagen de fondo:
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("tiendafondo");
 	fondo->getComponent<Transform>()->getGlobalScale().set(0.85f, 0.85f);
 	fondo->setLayer(0);
-	//------Botones
+
+	//------Boton para volver:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
 	exit->addComponent<SpriteRenderer>("boton");
@@ -51,6 +52,6 @@ void ShopState::onEnter()
 
 void ShopState::onExit() 
 {
-	std::cout << "\nExit shop\n";
+	std::cout << "\nEXIT SHOP.\n";
 	GameStateMachine::instance()->getMngr()->Free();
 }
