@@ -38,7 +38,7 @@ void MatchOverState::onEnter()
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
 
-	setWindow(GameStateMachine().getData()->getWinner());
+	//setWindow(GameStateMachine().getData()->getWinner());
 }
 
 void MatchOverState::onExit()
@@ -79,5 +79,5 @@ void MatchOverState::setWindow(int lastWinner) {
 	shopText->setLayer(1);
 
 	// ---- Resetea el ganador a nulo ----
-	GameStateMachine().getData()->setWinner(0);
+	//GameStateMachine().getData()->setWinner(0);
 }
