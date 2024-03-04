@@ -6,9 +6,6 @@
 #include <SDL.h>
 #include <iostream>
 #include "ecs.h"
-
-class Data;
-
 #include "Data.h"
 
 /// <summary>

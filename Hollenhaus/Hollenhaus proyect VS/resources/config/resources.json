@@ -84,21 +84,76 @@
           "value": 20
         },
         {
+          "type": 0,
+          "value": 44
+        }
+      ],
+      "unblockable": true
+    },
+    {
+      "id": "6",
+      "cost": 0,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 10
+        },
+        {
+          "type": 2,
+          "directions": [
+            "Arriba",
+            "Abajo"
+          ],
+          "value": 30
+        }
+      ],
+      "unblockable": true
+    },
+    {
+      "id": "7",
+      "cost": 0,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
+        },
+        {
           "type": 2,
           "directions": [
             "Derecha",
             "Abajo"
           ],
           "value": 30
+        }
+      ],
+      "unblockable": true
+    },
+    {
+      "id": "8",
+      "cost": 0,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
         },
         {
-          "type": 5
+          "type": 4,
+          "directions": [
+            "Derecha",
+            "Izquierda"
+          ],
+          "value": 30
         }
       ],
       "unblockable": true
     }
   ],
-
     "images": [
         {"id": "rice",            "file": "./resources/images/rice.png"},
         {"id": "card",            "file": "resources/images/card.png"},
@@ -156,6 +211,26 @@
         "id": "8bit_size_12",
         "file": "resources/fonts/PressStart2P-Regular.ttf",
         "size": 12
+      }
+    ],
+    "sounds": [
+      {
+        "id": "try1",
+        "file": "resources/sound/music/suspicious_person.wav"
+      },
+      {
+        "id": "bangarang",
+        "file": "resources/sound/music/bangarang.wav"
+      }
+    ],
+    "musics": [
+      {
+        "id": "battleTheme",
+        "file": "resources/sound/music/layer_cake.wav"
+      },
+      {
+        "id": "tryTheme",
+        "file": "resources/sound/music/suspicious_person.wav"
       }
     ]
 }

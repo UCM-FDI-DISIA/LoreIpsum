@@ -1,5 +1,6 @@
 #include "SamuState.h"
 
+#include <SDL.h>
 #include "Drag.h"
 #include "CardStateManager.h"
 #include "DragManager.h"
@@ -50,8 +51,7 @@ void SamuState::update()
 	actionPointsVisual->getComponent<TextComponent>()->setTxt("Puntos de\naccion:\n\n" + std::to_string(actionPointsValue));
 
 	#if _DEBUG
-	//std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
-	std::cout << GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints() << std::endl;
+
 	#endif
 }
 
@@ -64,6 +64,8 @@ void SamuState::onEnter()
 {
 	TuVieja("\nEntering in SamuState");
 
+	// referencia a sdlutils
+	auto& sdl = *SDLUtils::instance();
 
 	Factory* factory = new Factory();
 	factory->SetFactories((BoardFactory*)new  BoardFactory_v0(4), (CardFactory*) new CardFactory_v1());
@@ -91,10 +93,7 @@ void SamuState::onEnter()
 	background->addComponent<SpriteRenderer>("board");
 	background->setLayer(-1);
 
-	// Texto de prueba
-	ecs::entity_t pruebaTxt = Instantiate(Vector2D(400, 50));
-	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-
+	
 	// Creación del botón de J1 para acabar su turno (debug por consola)
 	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(60, 500));
 	endTurnButtonJ1->addComponent<SpriteRenderer>("EndTurnButton");
@@ -111,10 +110,16 @@ void SamuState::onEnter()
 	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints();
 	actionPointsVisual = Instantiate(Vector2D(100, 250));
 	actionPointsVisual->addComponent<TextComponent>("Puntos de\naccion:\n\n" + std::to_string(actionPointsValue),
-		"8bit_16pt", SDL_Color({255, 255, 0, 255}), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+		"8bit_16pt", SDL_Color({255, 255, 0, 255}), 200, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	
 	//ecs::entity_t puntosDeAccionText = Instantiate(Vector2D(100, 300));
 	//puntosDeAccionText->addComponent<TextComponent>("Puntos de acción:", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+
+	// incicia la cancion en bucle
+	//sdl.musics().at("tryTheme").play();
+	sdl.soundEffects().at("bangarang").play(-1);
+
+	sdl.soundEffects().at("bangarang").setChannelVolume(10);
 
 }
 
