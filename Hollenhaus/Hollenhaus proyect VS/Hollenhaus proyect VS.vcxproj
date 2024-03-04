@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EffectCollection.cpp" />
-
     <ClCompile Include="src\game\EndTurnButton.cpp" />
     <ClCompile Include="src\game\MatchManager.cpp" />
     <ClCompile Include="src\game\Mouse.cpp" />
@@ -29,6 +28,7 @@
     <ClCompile Include="src\game\CardFactory.cpp" />
     <ClCompile Include="src\game\CardFactory_v1.cpp" />
     <ClCompile Include="src\game\Factory.cpp" />
+    <ClCompile Include="src\game\NievesState.cpp" />
     <ClCompile Include="src\game\PlayerCardsManager.cpp" />
     <ClCompile Include="src\game\TextComponent.cpp" />
     <ClCompile Include="src\game\AndresState.cpp" />
@@ -93,6 +93,7 @@
     <ClInclude Include="src\game\Mouse.h" />
     <ClInclude Include="src\game\CardFactory.h" />
     <ClInclude Include="src\game\CardFactory_v1.h" />
+    <ClInclude Include="src\game\NievesState.h" />
     <ClInclude Include="src\game\PlayerCardsManager.h" />
     <ClInclude Include="src\game\TextComponent.h" />
     <ClInclude Include="src\Cell.h" />

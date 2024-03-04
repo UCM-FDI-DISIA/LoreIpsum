@@ -33,7 +33,8 @@ class GameStateMachine : public Singleton<GameStateMachine>
 		SHOP,
 		BOARD,
 		PAIGRO,
-		SAMU
+		SAMU,
+		NIEVES
 	};
 
 	//Creaci�n de los distintos estados del juego
@@ -46,6 +47,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* paigroState;
 	GameState* samuState;
 	GameState* movementState;
+	GameState* nievesState;
 
 public:
 	ecs::Manager* getMngr()
@@ -94,15 +96,19 @@ public:
 		case SAMU:
 			currentState = samuState;
 			break;
+		case NIEVES:
+			currentState = nievesState;
+			break;
 		default:
 			break;
 		}
 
-		
+
 	};
 	bool Empty() const { return gameStack.empty(); }
-};
 
+	GameState* getCurrentState() { return currentState; }
+};
 
 // --------
 // forma de usar el singleton Manager

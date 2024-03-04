@@ -14,6 +14,7 @@
 #include "LuisState.h"
 #include "Manager.h"
 #include "PaigroState.h"
+#include "NievesState.h"
 #include "MovementState.h"
 #include "Mouse.h"
 
@@ -43,11 +44,12 @@ GameStateMachine::GameStateMachine() {
 	//boardState = new BoardState();
 	paigroState = new PaigroState();
 	samuState = new SamuState();
+	nievesState = new NievesState();
 	movementState = new MovementState();
 
 
 	//Ponemos el estado actual
-	currentState = samuState;
+	currentState = nievesState;
 
 }
 
