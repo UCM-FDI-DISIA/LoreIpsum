@@ -60,7 +60,7 @@
     },
     {
       "id": "4",
-      "cost": 5,
+      "cost": 3,
       "value": 5,
       "sprite": "card",
       "effects": [
