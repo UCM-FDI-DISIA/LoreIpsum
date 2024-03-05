@@ -3,7 +3,6 @@
 void
 Transform::update() {
 	if (isChild_) {
-		globalAngle_ += parent_->globalAngle_;
 		globalScale_ = relativeScale_ * parent_->globalScale_.magnitude();
 	}
 }
@@ -69,6 +68,8 @@ Transform::setGlobalPos(Vector2D& pos) {
 void Transform::setGlobalAngle(float angle)
 {
 	globalAngle_ = angle;
+	if (isChild_)
+		relativeAngle_ = globalAngle_ - parent_->globalAngle_;
 }
 
 Transform* Transform::getParent()
