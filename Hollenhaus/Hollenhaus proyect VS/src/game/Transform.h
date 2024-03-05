@@ -2,22 +2,26 @@
 #include "ComponentUpdate.h"
 #include "../utils/Vector2D.h"
 
+#include <list>
+
 class Transform :
     public ComponentUpdate
 {
 public:
-    Transform() : parent_(), globalAngle_(0), globalScale_(1, 1), relativeAngle_(0), isChild_(false),relativeScale_(1,1) {};
+    Transform() : parent_(), globalAngle_(0), globalScale_(1, 1), relativeAngle_(0), isChild_(false), relativeScale_(1, 1) {};
     ~Transform() {};
 
     void update() override;
 
-    // A�ade un padre
+    // Añade un padre
     //
     void addParent(Transform* p);
 
     // Quitar un padre
     //
     void removeParent();
+
+    std::list<Transform*> getChilds();
 
     // Posicion global
     // He quitao la referencia
@@ -46,21 +50,26 @@ public:
     void setGlobalPos(Vector2D& v);
 
     Transform* getParent();
-    
+
     Transform& operator+(const Transform& t);
     Transform& operator-(const Transform& t);
     Transform& operator=(const Transform& t);
 private:
+    void addChild(Transform* c);
+
+    void removeChild(Transform* c);
+
     Transform* parent_;
+    std::list<Transform*> childs_;
 
     bool isChild_;
 
     Vector2D globalPos_,
-             globalScale_,
-             relativePos_,
-             relativeScale_,
-             vel_;
+        globalScale_,
+        relativePos_,
+        relativeScale_,
+        vel_;
     float globalAngle_,
-          relativeAngle_;
+        relativeAngle_;
 };
 

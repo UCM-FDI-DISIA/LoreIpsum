@@ -28,9 +28,11 @@ void MatchManager::SetActualState(TurnState newState)
 	switch (actualState)
 	{
 	case MatchManager::TurnJ1:
+		ResetActualActionPoints();
 		std::cout << "Nuevo turno: Jugador 1" << std::endl;
 		break;
 	case MatchManager::TurnJ2:
+		ResetActualActionPoints();
 		std::cout << "Nuevo turno: Jugador 2" << std::endl;
 		break;
 	case MatchManager::Finish:
@@ -58,4 +60,9 @@ CellData::Owner MatchManager::GetPlayerTurn() const
 		return CellData::NONE;
 		break;
 	}
+}
+
+void MatchManager::ResetActualActionPoints()
+{
+	actualActionPoints = defaultActionPoints;
 }

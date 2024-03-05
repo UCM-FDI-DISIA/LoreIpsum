@@ -76,7 +76,11 @@ void DragManager::OnLeftClickUp()
 		auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
 
 		//si tenemos una colision con el drop detector, cambiamos la posicion de la carta por la que guarde el drop
-		if (drop != nullptr  && !dropDetector->isOcuped() ) {
+		//también confirmamos que tenemos suficientes puntos de acción para lanzar la carta
+		if (drop != nullptr && 
+			!dropDetector->isOcuped() && 
+			dragTransform->getEntity()->getComponent<Card>()->getCost() <= mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints())
+		{
 			dragTransform->setGlobalPos(dropDetector->getCardPos());
 			
 			dragTransform->getEntity()->getComponent<CardStateManager>()->setState(CardStateManager::ON_CELL);

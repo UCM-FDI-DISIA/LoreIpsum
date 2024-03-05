@@ -1,4 +1,4 @@
-#include "SamuState.h"
+﻿#include "NievesState.h"
 
 #include "Drag.h"
 #include "CardStateManager.h"
@@ -21,24 +21,22 @@
 #include "MatchManager.h"
 #include "EndTurnButton.h"
 
-#include "CardHoverManager.h"
+NievesState::NievesState() : GameState() {
 
-SamuState::SamuState() : GameState() {
-
-	TuVieja("\nloading SAmuState");
+	TuVieja("\nloading NievesState");
 }
 
-SamuState::~SamuState()
+NievesState::~NievesState()
 {
 
 }
 //cleon: si est� vac�o se llama directamente al padre
-void SamuState::refresh()
+void NievesState::refresh()
 {
 	GameState::refresh();
 }
 
-void SamuState::update()
+void NievesState::update()
 {
 
 	//system("CLS");
@@ -47,23 +45,21 @@ void SamuState::update()
 	GameState::update();
 
 	board->getComponent<BoardManager>()->updateScore();	// Esto puede ser un problema de performance
-	
-	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints();
-	actionPointsVisual->getComponent<TextComponent>()->setTxt("Puntos de\naccion:\n\n" + std::to_string(actionPointsValue));
 
-	#if _DEBUG
-
-	#endif
+#if _DEBUG
+	//std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
+	std::cout << GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints() << std::endl;
+#endif
 }
 
-void SamuState::render() const
+void NievesState::render() const
 {
 	GameState::render();
 }
 
-void SamuState::onEnter()
+void NievesState::onEnter()
 {
-	TuVieja("\nEntering in SamuState");
+	TuVieja("\nEntering in NievesState");
 
 
 	Factory* factory = new Factory();
@@ -84,7 +80,6 @@ void SamuState::onEnter()
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
 	ent->getComponent<DragManager>()->setBoardManager(board->getComponent<BoardManager>());
-	//ent->addComponent<CardHoverManager>();
 
 	// Imágen de fondo
 	ecs::entity_t background = Instantiate();
@@ -93,7 +88,10 @@ void SamuState::onEnter()
 	background->addComponent<SpriteRenderer>("board");
 	background->setLayer(-1);
 
-	
+	// Texto de prueba
+	ecs::entity_t pruebaTxt = Instantiate(Vector2D(400, 50));
+	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+
 	// Creación del botón de J1 para acabar su turno (debug por consola)
 	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(60, 500));
 	endTurnButtonJ1->addComponent<SpriteRenderer>("EndTurnButton");
@@ -105,20 +103,10 @@ void SamuState::onEnter()
 	endTurnButtonJ2->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ2->addComponent<BoxCollider>();
 	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);
-
-	// Puntos de acción restantes
-	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints();
-	actionPointsVisual = Instantiate(Vector2D(100, 250));
-	actionPointsVisual->addComponent<TextComponent>("Puntos de\naccion:\n\n" + std::to_string(actionPointsValue),
-		"8bit_16pt", SDL_Color({255, 255, 0, 255}), 200, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-	
-	//ecs::entity_t puntosDeAccionText = Instantiate(Vector2D(100, 300));
-	//puntosDeAccionText->addComponent<TextComponent>("Puntos de acción:", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-
 }
 
-void SamuState::onExit() 
+void NievesState::onExit()
 {
-	TuVieja("\nExit SamuState");
+	TuVieja("\nExit NievesState");
 	GameStateMachine::instance()->getMngr()->Free();
 }
