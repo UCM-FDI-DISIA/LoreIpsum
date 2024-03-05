@@ -40,10 +40,12 @@ void SamuState::update()
 
 	//board->getComponent<BoardManager>()->updateScore(); // Esto puede ser un problema de performance // ahora está en el setcard
 
+
+	// esto tambien deberia ejecutarse solo cuando se ponga una carta, no aqui
 	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
 	                               getActualActionPoints();
-	actionPointsVisual->getComponent<TextComponent>()->setTxt(
-		"Puntos de\naccion:\n\n" + std::to_string(actionPointsValue));
+	actionPointsVisualJ1->getComponent<TextComponent>()->setTxt(
+		"Puntos de accion:\n\n" + std::to_string(actionPointsValue));
 
 #if _DEBUG
 
@@ -58,9 +60,6 @@ void SamuState::render() const
 void SamuState::onEnter()
 {
 	TuVieja("\nEntering in SamuState");
-
-	// referencia a sdlutils
-	auto& sdl = *SDLUtils::instance();
 
 	auto factory = new Factory();
 	factory->SetFactories(static_cast<BoardFactory*>(new BoardFactory_v0(4)),
@@ -90,43 +89,49 @@ void SamuState::onEnter()
 	background->setLayer(-1);
 
 
-	// Creación del botón de J1 para acabar su turno (debug por consola)
-	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(60, 500));
+	// Creación del botón de J1 (ahora general) para acabar su turno (debug por consola)
+	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(sdlutils().width()/4, sdlutils().height()/2 - 35));
+	endTurnButtonJ1->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
 	endTurnButtonJ1->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ1->addComponent<BoxCollider>();
 	endTurnButtonJ1->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ1);
 
 	// Creación del botón de J2 para acabar su turno (debug por consola)
-	ecs::entity_t endTurnButtonJ2 = Instantiate(Vector2D(60, 100));
+	/*ecs::entity_t endTurnButtonJ2 = Instantiate(Vector2D(60, 100));
 	endTurnButtonJ2->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ2->addComponent<BoxCollider>();
-	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);
+	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);*/
 
 	// Puntos de acción restantes
 	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
 	                               getActualActionPoints();
-	actionPointsVisual = Instantiate(Vector2D(100, 250));
-	actionPointsVisual->addComponent<TextComponent>("Puntos de\naccion:\n\n" + std::to_string(actionPointsValue),
+	actionPointsVisualJ1 = Instantiate(Vector2D(100, sdlutils().height() - 100));
+	actionPointsVisualJ1->addComponent<TextComponent>("Puntos de accion:\n\n" + std::to_string(actionPointsValue),
 	                                                "8bit_16pt", SDL_Color({255, 255, 0, 255}), 200,
 	                                                TextComponent::BoxPivotPoint::CenterCenter,
 	                                                TextComponent::TextAlignment::Center);
+
+	actionPointsVisualJ2 = Instantiate(Vector2D(100, 100));
+	actionPointsVisualJ2->addComponent<TextComponent>("Puntos de accion:\n\n" + std::to_string(actionPointsValue),
+	                                                "8bit_16pt", SDL_Color({255, 255, 0, 255}), 200,
+	                                                TextComponent::BoxPivotPoint::CenterCenter,
+	                                                TextComponent::TextAlignment::Center);
+
 
 	//ecs::entity_t puntosDeAccionText = Instantiate(Vector2D(100, 300));
 	//puntosDeAccionText->addComponent<TextComponent>("Puntos de acción:", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
-	sdl.soundEffects().at("battletheme").play(-1);
-	sdl.soundEffects().at("battletheme").setChannelVolume(10);
+	sdlutils().soundEffects().at("battletheme").play(-1);
+	sdlutils().soundEffects().at("battletheme").setChannelVolume(10);
 }
 
 void SamuState::onExit()
 {
 	TuVieja("\nExit SamuState");
 
-	// referencia a sdlutils
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("battletheme").pauseChannel();
+	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
 	GameStateMachine::instance()->getMngr()->Free();
 }

@@ -203,7 +203,7 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 	int offSetY = 15;
 	int nCols = 2;
 	int layer = 10;
-	float scale = effects.size() == 1 ? 0.078 : 0.045;
+	float scale = effects.size() == 1 ? 0.075 : 0.045;
 
 	ecs::entity_t effectImage;
 	ecs::entity_t valueChange;

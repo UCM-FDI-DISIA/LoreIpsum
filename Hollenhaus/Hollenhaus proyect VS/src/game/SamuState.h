@@ -24,6 +24,7 @@ public:
 private:
     ecs::entity_t card;
     ecs::entity_t board;
-    ecs::entity_t actionPointsVisual;
+    ecs::entity_t actionPointsVisualJ1;
+    ecs::entity_t actionPointsVisualJ2;
 };
 

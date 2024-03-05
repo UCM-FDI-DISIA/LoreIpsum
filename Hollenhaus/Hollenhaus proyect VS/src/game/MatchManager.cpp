@@ -10,7 +10,8 @@
 
 MatchManager::MatchManager(int defaultActionPoints, TurnState turnStart) :
 	defaultActionPoints(defaultActionPoints),
-	actualActionPoints(defaultActionPoints),
+	actualActionPointsJ1(defaultActionPoints),
+	actualActionPointsJ2(defaultActionPoints),
 	actualState(turnStart)
 {
 }
@@ -22,6 +23,27 @@ MatchManager::~MatchManager()
 void MatchManager::initComponent()
 {
 	actualText = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() / 2));
+	actualText->setLayer(1);
+	//actualText->addComponent<SpriteRenderer>("black_box"); le queria poner un fondo negro pero que cojones es imposible centrarlo?
+
+	//guarrada MAXIMA:
+	auto fondo = Instantiate(actualText->getComponent<Transform>()->getGlobalPos() + Vector2D(-100, -50));
+	fondo->addComponent<SpriteRenderer>("black_box");
+	auto trasFondo = fondo->getComponent<Transform>(); // je ;)
+	//trasFondo->getRelativePos().set(Vector2D(-300, -150)); esto no funca
+	//trasfondo->getGlobalPos().set(sdlutils().width() - 500, sdlutils().height() / 2 - 500); esto tampoco!!!? soy tonta o algo
+	trasFondo->getGlobalScale().set(2.0, 0.7);
+	fondo->setLayer(0);
+
+	const std::string jugador = actualState == TurnJ1 ? "Jugador 1" : "Jugador 2";
+	const SDL_Color color = actualState == TurnJ1 ? 
+		SDL_Color({102, 255, 102, 255}) :
+		SDL_Color({255, 102, 255, 255});
+	actualText->addComponent<TextComponent>("Turno de:\n" + jugador,
+	                                        "8bit_16pt", SDL_Color({255, 255, 255, 255}), 200,
+	                                        TextComponent::BoxPivotPoint::CenterBot,
+	                                        TextComponent::TextAlignment::Center
+	)->setColor(color);
 	setTurnText();
 }
 
@@ -83,15 +105,12 @@ CellData::Owner MatchManager::getPlayerTurn() const
 void MatchManager::setTurnText()
 {
 	// un mierdon pero el hito es en un dia
-	std::string jugador = actualState == TurnJ1 ? "Jugador 1" : "Jugador 2";
-	SDL_Color color = actualState == TurnJ1 ? 
+	const std::string jugador = actualState == TurnJ1 ? "Jugador 1" : "Jugador 2";
+	const SDL_Color color = actualState == TurnJ1 ? 
 		SDL_Color({102, 255, 102, 255}) :
 		SDL_Color({255, 102, 255, 255});
-	actualText->addComponent<TextComponent>("Turno de:\n" + jugador,
-	                                        "8bit_16pt", SDL_Color({255, 255, 255, 255}), 200,
-	                                        TextComponent::BoxPivotPoint::CenterCenter,
-	                                        TextComponent::TextAlignment::Center
-	)->setColor(color);
+	actualText->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
+	actualText->getComponent<TextComponent>()->setColor(color);
 }
 
 void MatchManager::resetActualActionPoints()

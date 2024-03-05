@@ -10,6 +10,7 @@ class EndTurnButton : public ComponentUpdate
 {
     
 public:
+    EndTurnButton(){}
     EndTurnButton(MatchManager::TurnState buttonPropietary);
     ~EndTurnButton();
 

@@ -9,7 +9,7 @@ class Card;
 class DeckComponent : public ComponentUpdate
 {
 public:
-	DeckComponent() { drawCardCost = 2; }
+	DeckComponent() { drawCardCost = 1; }
 	~DeckComponent(){}
 
 	void addCartToDeck(Card* card);

@@ -20,12 +20,14 @@ public:
     void update() override;
 
     void getActualState(TurnState newState);
-    int getActualActionPoints() const { return actualActionPoints; }
+    int getActualActionPointsJ1() const { return actualActionPointsJ1; }
+    int getActualActionPointsJ2() const { return actualActionPointsJ2; }
     TurnState getActualState() const { return actualState; }
     CellData::Owner getPlayerTurn() const;
 
     void setBoardManager(BoardManager* b) { board_ = b; }
-    void substractActualActionPoints(int pointsSubstracted) { actualActionPoints -= pointsSubstracted; }
+    void substractActionPointsJ1(int pointsSubstracted) { actualActionPointsJ1 -= pointsSubstracted; }
+    void substractActionPointsJ2(int pointsSubstracted) { actualActionPointsJ2 -= pointsSubstracted; }
     
 
 
@@ -33,7 +35,8 @@ private:
     BoardManager* board_ = nullptr;
 
     int defaultActionPoints;
-    int actualActionPoints;
+    int actualActionPointsJ1;
+    int actualActionPointsJ2;
 
     TurnState actualState;
 

@@ -97,7 +97,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 ecs::entity_t CardFactory_v1::createHand()
 {
 	int initY = 470;
-	int initX = 270;
+	int initX = 300;
 	int offSetX = 50;
 
 	ecs::entity_t hand = Instantiate();
