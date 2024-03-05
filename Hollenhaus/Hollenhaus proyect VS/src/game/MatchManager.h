@@ -17,18 +17,17 @@ public:
     ~MatchManager();
 
     void initComponent() override;
-
     void update() override;
 
+    void getActualState(TurnState newState);
+    int getActualActionPoints() const { return actualActionPoints; }
+    TurnState getActualState() const { return actualState; }
+    CellData::Owner getPlayerTurn() const;
+
     void setBoardManager(BoardManager* b) { board_ = b; }
+    void substractActualActionPoints(int pointsSubstracted) { actualActionPoints -= pointsSubstracted; }
 
-    int GetActualActionPoints() const { return actualActionPoints; } 
-    void SubstactActualActionPoints(int pointsSubstracted) { actualActionPoints -= pointsSubstracted; }
 
-    TurnState GetActualState() const { return actualState; }
-    void SetActualState(TurnState newState);
-
-    CellData::Owner GetPlayerTurn() const;
 
 private:
     BoardManager* board_ = nullptr;
@@ -38,7 +37,7 @@ private:
 
     TurnState actualState;
 
-    void ResetActualActionPoints();
+    void resetActualActionPoints();
     void setWinner();
 };
 

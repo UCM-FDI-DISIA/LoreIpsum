@@ -26,23 +26,23 @@ void MatchManager::update()
 	if (actualState != Finish && board_ != nullptr) {
 		if (board_->isFull()) {
 			setWinner();
-			SetActualState(Finish);
+			getActualState(Finish);
 		}
 	}
 }
 
-void MatchManager::SetActualState(TurnState newState)
+void MatchManager::getActualState(TurnState newState)
 {
 	actualState = newState;
 
 	switch (actualState)
 	{
 	case MatchManager::TurnJ1:
-		ResetActualActionPoints();
+		resetActualActionPoints();
 		std::cout << "Nuevo turno: Jugador 1" << std::endl;
 		break;
 	case MatchManager::TurnJ2:
-		ResetActualActionPoints();
+		resetActualActionPoints();
 		std::cout << "Nuevo turno: Jugador 2" << std::endl;
 		break;
 	case MatchManager::Finish:
@@ -53,7 +53,7 @@ void MatchManager::SetActualState(TurnState newState)
 	}
 }
 
-CellData::Owner MatchManager::GetPlayerTurn() const
+CellData::Owner MatchManager::getPlayerTurn() const
 {
 	switch (actualState)
 	{
@@ -72,7 +72,7 @@ CellData::Owner MatchManager::GetPlayerTurn() const
 	}
 }
 
-void MatchManager::ResetActualActionPoints()
+void MatchManager::resetActualActionPoints()
 {
 	actualActionPoints = defaultActionPoints;
 }

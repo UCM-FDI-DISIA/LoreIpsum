@@ -80,13 +80,14 @@ bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 		cell->addEffect(e);
 
 	//Gasta los puntos de accion correspondientes
-	mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->SubstactActualActionPoints(c->getCost());
+	mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->substractActualActionPoints(c->getCost());
 
 	// aumenta el contador al aniadir carta al tablero
 	cardsOnBoard++;
 
 	/// reaplica todos los efectos
 	applyAllEffects();
+	updateScore();
 	return true;
 }
 

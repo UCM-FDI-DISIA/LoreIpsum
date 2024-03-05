@@ -1,36 +1,30 @@
 #include "SamuState.h"
-
 #include <SDL.h>
 #include "Drag.h"
 #include "CardStateManager.h"
 #include "DragManager.h"
 #include "Entity.h"
 #include "Manager.h"
-#include "..\sdlutils\InputHandler.h"
-
+#include "../sdlutils/InputHandler.h"
 #include "CardFactory_v0.h"
 #include "CardFactory_v1.h"
-
 #include "Factory.h"
-
 #include "BoardFactory_v0.h"
-
 #include "MatchManager.h"
-
 #include "BoardManager.h"
 #include "TextComponent.h"
 #include "MatchManager.h"
 #include "EndTurnButton.h"
 
-SamuState::SamuState() : GameState() {
-
+SamuState::SamuState() : GameState()
+{
 	TuVieja("\nloading SAmuState");
 }
 
 SamuState::~SamuState()
 {
-
 }
+
 //cleon: si est� vac�o se llama directamente al padre
 void SamuState::refresh()
 {
@@ -39,20 +33,21 @@ void SamuState::refresh()
 
 void SamuState::update()
 {
-
 	//system("CLS");
 
 
 	GameState::update();
 
-	board->getComponent<BoardManager>()->updateScore();	// Esto puede ser un problema de performance
-	
-	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints();
-	actionPointsVisual->getComponent<TextComponent>()->setTxt("Puntos de\naccion:\n\n" + std::to_string(actionPointsValue));
+	//board->getComponent<BoardManager>()->updateScore(); // Esto puede ser un problema de performance // ahora está en el setcard
 
-	#if _DEBUG
+	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
+	                               getActualActionPoints();
+	actionPointsVisual->getComponent<TextComponent>()->setTxt(
+		"Puntos de\naccion:\n\n" + std::to_string(actionPointsValue));
 
-	#endif
+#if _DEBUG
+
+#endif
 }
 
 void SamuState::render() const
@@ -67,9 +62,10 @@ void SamuState::onEnter()
 	// referencia a sdlutils
 	auto& sdl = *SDLUtils::instance();
 
-	Factory* factory = new Factory();
-	factory->SetFactories((BoardFactory*)new  BoardFactory_v0(4), (CardFactory*) new CardFactory_v1());
-	
+	auto factory = new Factory();
+	factory->SetFactories(static_cast<BoardFactory*>(new BoardFactory_v0(4)),
+	                      static_cast<CardFactory*>(new CardFactory_v1()));
+
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
@@ -89,11 +85,11 @@ void SamuState::onEnter()
 	// Imágen de fondo
 	ecs::entity_t background = Instantiate();
 	background->addComponent<Transform>();
-	background->getComponent<Transform>()->getGlobalScale().set(0.5, 0.5);
+	background->getComponent<Transform>()->getGlobalScale().set(0.555, 0.555);
 	background->addComponent<SpriteRenderer>("board");
 	background->setLayer(-1);
 
-	
+
 	// Creación del botón de J1 para acabar su turno (debug por consola)
 	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(60, 500));
 	endTurnButtonJ1->addComponent<SpriteRenderer>("EndTurnButton");
@@ -107,11 +103,14 @@ void SamuState::onEnter()
 	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);
 
 	// Puntos de acción restantes
-	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints();
+	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
+	                               getActualActionPoints();
 	actionPointsVisual = Instantiate(Vector2D(100, 250));
 	actionPointsVisual->addComponent<TextComponent>("Puntos de\naccion:\n\n" + std::to_string(actionPointsValue),
-		"8bit_16pt", SDL_Color({255, 255, 0, 255}), 200, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-	
+	                                                "8bit_16pt", SDL_Color({255, 255, 0, 255}), 200,
+	                                                TextComponent::BoxPivotPoint::CenterCenter,
+	                                                TextComponent::TextAlignment::Center);
+
 	//ecs::entity_t puntosDeAccionText = Instantiate(Vector2D(100, 300));
 	//puntosDeAccionText->addComponent<TextComponent>("Puntos de acción:", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 
@@ -119,10 +118,9 @@ void SamuState::onEnter()
 	//sdl.musics().at("tryTheme").play();
 	sdl.soundEffects().at("battletheme").play(-1);
 	sdl.soundEffects().at("battletheme").setChannelVolume(10);
-
 }
 
-void SamuState::onExit() 
+void SamuState::onExit()
 {
 	TuVieja("\nExit SamuState");
 

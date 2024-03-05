@@ -29,8 +29,8 @@ void EndTurnButton::update()
 
 void EndTurnButton::ClickButton()
 {
-	if (bc_->isCursorOver() && matchManager_->GetActualState() == buttonPropietary_) {
+	if (bc_->isCursorOver() && matchManager_->getActualState() == buttonPropietary_) {
 		// Se pasa el turno al otro jugador
-		matchManager_->SetActualState(buttonPropietary_ == MatchManager::TurnState::TurnJ1 ? MatchManager::TurnState::TurnJ2 : MatchManager::TurnState::TurnJ1);
+		matchManager_->getActualState(buttonPropietary_ == MatchManager::TurnState::TurnJ1 ? MatchManager::TurnState::TurnJ2 : MatchManager::TurnState::TurnJ1);
 	}
 }

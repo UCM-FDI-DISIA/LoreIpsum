@@ -18,7 +18,7 @@ void PlayerCardsManager::drawCard() {
 	if (deck_->deckSize() > 0 && 
 		ent_->getComponent<BoxCollider>()->isCursorOver() && 
 		hand_->handSize()< MAX_IN_HAND &&
-		mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetActualActionPoints() >= deck_->getDrawCardCost())
+		mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getActualActionPoints() >= deck_->getDrawCardCost())
 	{
 		hand_->addCard(deck_->drawCard()->getEntity());
 		TuVieja("AAAAAAAAAAAA");

@@ -240,7 +240,25 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 			effectImage->getComponent<Transform>()->getGlobalAngle() = 
 				 dir == CellData::Right ?  90.f :  dir == CellData::Down ? 180.f : dir == CellData::Left ? 270 : 0;
 		}
-		
+
+
+		/// WIP: flecha de la habilidad bloqueo
+		///	No borrar de momento
+		//if (effects[i].type() == Effects::Block)
+		//{ // ha de instanciar otra imagen flecha apuntando hacia donde bloquea
+		//	auto arrowImage = Instantiate(Vector2D(0, 0));
+		//	arrowImage->addComponent<SpriteRenderer>(efectsIdsNames[Effects::Flecha]);
+
+		//	arrowImage->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
+		//	arrowImage->getComponent<Transform>()->getRelativeScale().set(scale, scale);
+		//	Vector2D gpos(0, 0);
+		//	arrowImage->getComponent<Transform>()->getRelativePos().set(gpos);
+		//	arrowImage->setLayer(layer);
+
+		//	CellData::Direction dir = effects[i].directions()[0];
+		//	arrowImage->getComponent<Transform>()->getGlobalAngle() = 
+		//		 dir == CellData::Right ?  90.f :  dir == CellData::Down ? 180.f : dir == CellData::Left ? 270 : 0;
+		//}
 
 
 		if (effects[i].value() != 0) {

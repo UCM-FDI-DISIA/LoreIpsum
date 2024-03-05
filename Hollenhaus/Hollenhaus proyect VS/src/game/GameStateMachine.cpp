@@ -49,7 +49,7 @@ GameStateMachine::GameStateMachine() {
 	movementState = new MovementState();
 
 	// Ponemos el estado actual
-	currentState = mainMenuState;//samuState;
+	currentState = samuState;//samuState;
 
 	// crea la data en el current state
 	currentState->setData(new Data());

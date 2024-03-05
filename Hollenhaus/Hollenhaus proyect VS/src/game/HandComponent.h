@@ -32,7 +32,7 @@ public:
 	int handSize() { return cardsInHand_.size(); }
 
 private:
-	float cardScale_ = 0.55f;
+	float cardScale_ = 0.45f;
 	
 	void refreshPositions();
 
