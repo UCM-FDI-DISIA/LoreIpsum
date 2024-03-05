@@ -107,7 +107,7 @@ void SamuState::onEnter()
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
 	sdlutils().soundEffects().at("battletheme").play(-1);
-	sdlutils().soundEffects().at("battletheme").setChannelVolume(10);
+	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 }
 
 void SamuState::onExit()

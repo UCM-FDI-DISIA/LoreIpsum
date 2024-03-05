@@ -5,7 +5,7 @@
 #include "CardStateManager.h"
 
 HandComponent::HandComponent() :
-	transform_()
+	transform_(), lastCardAdded_(nullptr)
 {
 
 }
@@ -32,8 +32,14 @@ void HandComponent::addCard(ecs::entity_t card) {
 
 	card->getComponent<Transform>()->addParent(transform_);
 	card->getComponent<Transform>()->getRelativeScale().set(cardScale_, cardScale_);
+
+	/*if (lastCardAdded_ != nullptr)
+		card->setLayer(lastCardAdded_->getLayer() + 3); COSITAS DEL ORDER IN LAYER :D (JIMBO)
+	card->getComponent<Transform>()->increaseLayer();*/
+
 	// Settea tamano de carta para anadir cartas directamente desde la factoria
 	cardsInHand_.push_back(card);
+	//lastCardAdded_ = card;
 	//card->setLayer(cardsInHand_.size());
 	refreshPositions();
 }
