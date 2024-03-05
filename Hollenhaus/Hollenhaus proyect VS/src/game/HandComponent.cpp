@@ -24,6 +24,8 @@ void HandComponent::addCard(ecs::entity_t card) {
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(CardStateManager::ON_HAND);
 
+	if (owner_ == Players::PLAYER2)
+		card->getComponent<Transform>()->setGlobalAngle(180.0f);
 
 	card->getComponent<Transform>()->addParent(transform_);
 	card->getComponent<Transform>()->getRelativeScale().set(cardScale_, cardScale_);
