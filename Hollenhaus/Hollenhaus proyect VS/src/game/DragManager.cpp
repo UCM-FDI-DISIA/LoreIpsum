@@ -96,7 +96,7 @@ void DragManager::OnLeftClickUp()
 			int y = dropDetector->getBoardPos().getY();
 			Card* card = dragTransform->getEntity()->getComponent<Card>();
 			
-			CellData::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
+			Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
 			boardManager->setCard(x, y, card, playerTurn);
 		}
 		else {//sino, devolvemos la carta a su posicion inicial

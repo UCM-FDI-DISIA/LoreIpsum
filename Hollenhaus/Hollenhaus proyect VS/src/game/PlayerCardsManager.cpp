@@ -14,14 +14,18 @@ void PlayerCardsManager::initComponent() {
 
 void PlayerCardsManager::drawCard() {
 	//deck_->shuffle();
+	const auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
+	const Players::Owner turnOwner = matchManager->getActualState() == MatchManager::TurnJ1
+		? Players::PLAYER1 : Players::PLAYER2;
 
 	if (deck_->deckSize() > 0 && 
 		ent_->getComponent<BoxCollider>()->isCursorOver() && 
 		hand_->handSize()< MAX_IN_HAND &&
-		mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getActualActionPoints() >= deck_->getDrawCardCost())
+		matchManager->getActualActionPoints() >= deck_->getDrawCardCost()
+		&& deck_->getOwner() == turnOwner
+		)
 	{
 		hand_->addCard(deck_->drawCard()->getEntity());
 		TuVieja("AAAAAAAAAAAA");
 	}
-
 }

@@ -38,7 +38,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 
 
 	/// Hemos creado getEffect para evitar:
-	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), CellData::Down, 20, false);}
+	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), Effects::Down, 20, false);}
 	/// Al metodo createCard se le deberia pasar el array de effects
 	///	y a continuacion iterar sobre el, anyadiendole a la carta cada
 	///	efecto tal que:
@@ -47,7 +47,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 			Effects::Flecha,
 			cardComp,
 			20,
-			CellData::Down
+			Effects::Down
 		)
 	);*/
 
@@ -60,7 +60,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 					e.type(),
 					cardComp,
 					e.value(),
-					CellData::None
+					Effects::None
 				)
 			);
 		else
@@ -106,6 +106,7 @@ ecs::entity_t CardFactory_v1::createHand()
 	Vector2D deckPos(initX, initY);
 	hand->getComponent<Transform>()->setGlobalPos(deckPos);
 	hand->addComponent<HandComponent>();
+	hand->getComponent<HandComponent>()->setOwner(Players::PLAYER2);
 
 
 	return hand;
@@ -143,6 +144,7 @@ void CardFactory_v1::createDeck() {
 		deck->getComponent<DeckComponent>()
 	);
 	deck->setLayer(2);
+	deck->getComponent<DeckComponent>()->setOwner(Players::PLAYER1);
 
 	//instantie
 
@@ -175,8 +177,9 @@ ecs::entity_t CardFactory_v1::createHandJ2()
 	hand->addComponent<Transform>();
 	Vector2D deckPos(initX, initY);
 	hand->getComponent<Transform>()->setGlobalPos(deckPos);
-	//hand->getComponent<Transform>()->setGlobalAngle(180.0f); // esto peta
+	//hand->getComponent<Transform>()->setGlobalAngle(270.0f); // esto peta
 	hand->addComponent<HandComponent>()->setUpwards();
+	hand->getComponent<HandComponent>()->setOwner(Players::PLAYER2);
 
 	return hand;
 }
@@ -191,10 +194,11 @@ void CardFactory_v1::createDeckJ2()
 	ecs::entity_t deck = Instantiate();
 	deck->addComponent<Transform>();
 	Vector2D deckPos(initX, initY);
-	deck->getComponent<Transform>()->setGlobalPos(deckPos);
-	//deck->getComponent<Transform>()->setGlobalAngle(180.0f); // esto peta
+	auto deckTrans = deck->getComponent<Transform>();
+	deckTrans->setGlobalPos(deckPos);
+	//deckTrans->setGlobalAngle(270.0f); // esto peta
 	deck->addComponent<BoxCollider>();
-	deck->addComponent<DeckComponent>();
+	deck->addComponent<DeckComponent>()->setOwner(Players::PLAYER2);
 	deck->addComponent<PlayerCardsManager>(
 		hand->getComponent<HandComponent>(),
 		deck->getComponent<DeckComponent>()
@@ -264,12 +268,10 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 
 		if (effects[i].type() >= 2 && effects[i].type() <= 4) {
 
-			CellData::Direction dir = effects[i].directions()[0];
+			Effects::Direction dir = effects[i].directions()[0];
 			effectImage->getComponent<Transform>()->getGlobalAngle() =
-				dir == CellData::Right ? 90.f : dir == CellData::Down ? 180.f : dir == CellData::Left ? 270 : 0;
+				dir == Effects::Right ? 90.f : dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
 		}
-
-
 
 		if (effects[i].value() != 0) {
 

@@ -24,9 +24,9 @@ public:
 
 	// ---- TIPOS DE EFECTOS ----
 	// añade valor a algunas o todas sus adyacentes
-	static void addAdj(Cell* cell, CellData::Direction direction, int add, bool ultimateArrow);
-	static void addSimpleAdj(Cell* cell, CellData::Direction direction, int add);
-	static void addSuperAdj(Cell* cell, CellData::Direction direction, int add);
+	static void addAdj(Cell* cell, Effects::Direction direction, int add, bool ultimateArrow);
+	static void addSimpleAdj(Cell* cell, Effects::Direction direction, int add);
+	static void addSuperAdj(Cell* cell, Effects::Direction direction, int add);
 
 	// añade valor a la propia carta si esta en centro - si el número de cartas a izq/der/arr/abj son el mismo
 	static void addCenter(Cell* cell, int add);
@@ -35,7 +35,7 @@ public:
 	static void addCorner(Cell* cell, int add);
 
 	// bloquea el efecto de la carta en alguna direccion
-	static void blockCard(Cell* cell, CellData::Direction direction);
+	static void blockCard(Cell* cell, Effects::Direction direction);
 
 	// indica que esta carta no se puede bloquear
 	static void unblockable(Cell* cell, bool isUnblockable);
@@ -48,7 +48,7 @@ public:
 		Effects::Type index,
 		Card* card,
 		int value,
-		CellData::Direction direction)
+		Effects::Direction direction)
 	{
 		switch (index)
 		{

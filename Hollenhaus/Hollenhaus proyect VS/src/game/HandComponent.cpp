@@ -63,7 +63,7 @@ void HandComponent::removeCard(ecs::entity_t card) {
 void HandComponent::refreshPositions() {
 	std::vector<Vector2D>positions;
 
-	const int sign = downwards ? 1 : -1;
+	const int sign = downwards_ ? 1 : -1;
 
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
