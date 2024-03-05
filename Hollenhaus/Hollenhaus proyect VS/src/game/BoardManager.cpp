@@ -82,7 +82,7 @@ bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 
 	auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
 	//Gasta los puntos de accion correspondientes
-	matchManager->substractActionPointsJ1(c->getCost());
+	matchManager->substractActionPoints(c->getCost());
 
 	// aumenta el contador al aniadir carta al tablero
 	cardsOnBoard++;

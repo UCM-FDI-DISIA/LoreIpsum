@@ -30,14 +30,14 @@ void EndTurnButton::update()
 void EndTurnButton::ClickButton()
 {
 	// version con propietario:
-	//if (bc_->isCursorOver() && matchManager_->getActualState() == buttonPropietary_) {
+	//if (bc_->isCursorOver() && matchManager_->setActualState() == buttonPropietary_) {
 	//	// Se pasa el turno al otro jugador
-	//	matchManager_->getActualState(buttonPropietary_ == MatchManager::TurnState::TurnJ1 ? MatchManager::TurnState::TurnJ2 : MatchManager::TurnState::TurnJ1);
+	//	matchManager_->setActualState(buttonPropietary_ == MatchManager::TurnState::TurnJ1 ? MatchManager::TurnState::TurnJ2 : MatchManager::TurnState::TurnJ1);
 	//}
 
 	// version toggle
 	if (bc_->isCursorOver()) {
 		// Se pasa el turno al otro jugador
-		matchManager_->getActualState(matchManager_->getActualState() == MatchManager::TurnState::TurnJ1 ? MatchManager::TurnState::TurnJ2 : MatchManager::TurnState::TurnJ1);
+		matchManager_->setActualState(matchManager_->getActualState() == MatchManager::TurnState::TurnJ1 ? MatchManager::TurnState::TurnJ2 : MatchManager::TurnState::TurnJ1);
 	}
 }
