@@ -141,7 +141,8 @@ void CardFactory_v1::createDeck() {
 	deck->addComponent<DeckComponent>();
 	deck->addComponent<PlayerCardsManager>(
 		hand->getComponent<HandComponent>(),
-		deck->getComponent<DeckComponent>());
+		deck->getComponent<DeckComponent>()
+	);
 	deck->setLayer(2);
 
 	//instantie

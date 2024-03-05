@@ -26,7 +26,7 @@ public:
 
     void setBoardManager(BoardManager* b) { board_ = b; }
     void substractActualActionPoints(int pointsSubstracted) { actualActionPoints -= pointsSubstracted; }
-
+    
 
 
 private:
@@ -37,6 +37,9 @@ private:
 
     TurnState actualState;
 
+    ecs::entity_t actualText;
+
+	void setTurnText();
     void resetActualActionPoints();
     void setWinner();
 };
