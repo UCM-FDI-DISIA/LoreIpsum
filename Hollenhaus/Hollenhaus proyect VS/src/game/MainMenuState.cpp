@@ -50,10 +50,14 @@ void MainMenuState::onEnter()
 	//----Texto para salir.
 	ecs::entity_t exitText = Instantiate(Vector2D(400, 500));
 	exitText->addComponent<TextComponent>("EXIT", "8bit_24pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+
+	sdlutils().soundEffects().at("menutheme").play(-1);
+	sdlutils().soundEffects().at("menutheme").setChannelVolume(10);
 }
 
 void MainMenuState::onExit() {
 	std::cout << "\nEXIT MENU.\n";
+	sdlutils().soundEffects().at("menutheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
 }
 
