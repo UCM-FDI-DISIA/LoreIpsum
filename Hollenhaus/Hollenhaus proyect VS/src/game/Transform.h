@@ -44,6 +44,7 @@ public:
     float& getRelativeAngle();
 
     void setGlobalPos(Vector2D& v);
+    void setGlobalAngle(float);
 
     Transform* getParent();
     

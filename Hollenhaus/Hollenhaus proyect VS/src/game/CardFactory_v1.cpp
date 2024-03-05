@@ -97,7 +97,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 ecs::entity_t CardFactory_v1::createHand()
 {
 	int initY = 470;
-	int initX = 300;
+	int initX = 320;
 	int offSetX = 50;
 
 	ecs::entity_t hand = Instantiate();
@@ -169,12 +169,13 @@ ecs::entity_t CardFactory_v1::createHandJ2()
 {
 	ecs::entity_t hand = Instantiate();
 
-	int initX = 170;
-	int initY = 100;
+	int initX = 320;
+	int initY = 20;
 
 	hand->addComponent<Transform>();
 	Vector2D deckPos(initX, initY);
 	hand->getComponent<Transform>()->setGlobalPos(deckPos);
+	//hand->getComponent<Transform>()->setGlobalAngle(180.0f);
 	hand->addComponent<HandComponent>();
 
 	return hand;
@@ -183,7 +184,7 @@ ecs::entity_t CardFactory_v1::createHandJ2()
 void CardFactory_v1::createDeckJ2()
 {
 	int initX = 600;
-	int initY = 50;
+	int initY = 1;
 
 	ecs::entity_t hand = createHandJ2();
 
@@ -191,6 +192,7 @@ void CardFactory_v1::createDeckJ2()
 	deck->addComponent<Transform>();
 	Vector2D deckPos(initX, initY);
 	deck->getComponent<Transform>()->setGlobalPos(deckPos);
+	//deck->getComponent<Transform>()->setGlobalAngle(180.0f);
 	deck->addComponent<BoxCollider>();
 	deck->addComponent<DeckComponent>();
 	deck->addComponent<PlayerCardsManager>(

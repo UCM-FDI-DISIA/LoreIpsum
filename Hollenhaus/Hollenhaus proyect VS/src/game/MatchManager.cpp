@@ -27,12 +27,10 @@ void MatchManager::initComponent()
 	//actualText->addComponent<SpriteRenderer>("black_box"); le queria poner un fondo negro pero que cojones es imposible centrarlo?
 
 	//guarrada MAXIMA:
-	auto fondo = Instantiate(actualText->getComponent<Transform>()->getGlobalPos() + Vector2D(-100, -50));
+	auto fondo = Instantiate(actualText->getComponent<Transform>()->getGlobalPos() + Vector2D(-100, -55));
 	fondo->addComponent<SpriteRenderer>("black_box");
 	auto trasFondo = fondo->getComponent<Transform>(); // je ;)
-	//trasFondo->getRelativePos().set(Vector2D(-300, -150)); esto no funca
-	//trasfondo->getGlobalPos().set(sdlutils().width() - 500, sdlutils().height() / 2 - 500); esto tampoco!!!? soy tonta o algo
-	trasFondo->getGlobalScale().set(2.0, 0.7);
+	trasFondo->getGlobalScale().set(2.0, 0.8);
 	fondo->setLayer(0);
 
 	const std::string jugador = actualState == TurnJ1 ? "Jugador 1" : "Jugador 2";

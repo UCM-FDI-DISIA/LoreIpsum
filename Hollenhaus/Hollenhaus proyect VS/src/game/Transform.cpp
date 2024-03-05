@@ -66,6 +66,11 @@ Transform::setGlobalPos(Vector2D& pos) {
 		relativePos_ = globalPos_ - parent_->getGlobalPos();
 }
 
+void Transform::setGlobalAngle(float angle)
+{
+	globalAngle_ = angle;
+}
+
 Transform* Transform::getParent()
 {
 	return parent_;
