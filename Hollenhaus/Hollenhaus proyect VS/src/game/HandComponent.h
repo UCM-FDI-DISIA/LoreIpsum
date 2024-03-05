@@ -47,6 +47,8 @@ private:
 	// Vector cartas en la mano
 	std::vector<ecs::entity_t> cardsInHand_;
 
+	ecs::entity_t lastCardAdded_;
+
 	// movidas que estoy haciendo para girar el mazo al segundo jugador
 	bool downwards = true;
 };
