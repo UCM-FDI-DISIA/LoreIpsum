@@ -39,7 +39,7 @@ void HandComponent::addCard(ecs::entity_t card) {
 
 	// Settea tamano de carta para anadir cartas directamente desde la factoria
 	cardsInHand_.push_back(card);
-	//lastCardAdded_ = card;
+	//lastCardAdded_ = card; PARA ORDER IN LAYER
 	//card->setLayer(cardsInHand_.size());
 	refreshPositions();
 }
