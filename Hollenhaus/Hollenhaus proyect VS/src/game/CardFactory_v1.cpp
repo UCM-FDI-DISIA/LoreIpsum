@@ -146,7 +146,7 @@ void CardFactory_v1::createDeck() {
 
 	//instantie
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < cardsOnDeck; i++)
 	{
 		auto card = sdlutils().cards().at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		ecs::entity_t ent = createCard(

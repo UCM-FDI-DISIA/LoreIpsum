@@ -129,48 +129,6 @@
       "unblockable": true
     },
     {
-      "id": "6",
-      "cost": 0,
-      "value": 6,
-      "sprite": "card",
-      "effects": [
-        {
-          "type": 1,
-          "value": 10
-        },
-        {
-          "type": 2,
-          "directions": [
-            "Arriba",
-            "Abajo"
-          ],
-          "value": 30
-        }
-      ],
-      "unblockable": true
-    },
-    {
-      "id": "7",
-      "cost": 0,
-      "value": 6,
-      "sprite": "card",
-      "effects": [
-        {
-          "type": 1,
-          "value": 20
-        },
-        {
-          "type": 2,
-          "directions": [
-            "Derecha",
-            "Abajo"
-          ],
-          "value": 30
-        }
-      ],
-      "unblockable": true
-    },
-    {
       "id": "8",
       "cost": 0,
       "value": 6,

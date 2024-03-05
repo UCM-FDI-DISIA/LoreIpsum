@@ -165,7 +165,7 @@ ecs::entity_t CardFactory_v0::createHand()
 	for (auto c : cards) esto no funciona porque no esta definido begin y end
 		size++;*/
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < cardsOnHand; i++)
 	{ 
 		auto card = sdlutils().cards().at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		createCard(

@@ -19,6 +19,7 @@ public:
 
 private:
 	float cardScale = 0.55f;
+	int cardsOnDeck = 8;
 	ecs::entity_t createHandJ2();
 
 	void addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::CardEffect>& effects);
