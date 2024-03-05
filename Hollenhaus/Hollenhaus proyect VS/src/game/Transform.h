@@ -23,7 +23,7 @@ public:
     //
     void removeParent();
 
-    std::list<Transform*> getChilds();
+    std::list<Transform*> getChildren();
 
     // Posicion global
     // He quitao la referencia
@@ -63,7 +63,7 @@ private:
     void removeChild(Transform* c);
 
     Transform* parent_;
-    std::list<Transform*> childs_;
+    std::list<Transform*> children_;
 
 
     bool isChild_;

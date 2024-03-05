@@ -11,7 +11,7 @@ Transform::update() {
 void 
 Transform::increaseLayer() {
 	ent_->setLayer(parent_->ent_->getLayer() + layerToIncrease);
-	for (auto it = childs_.begin(); it != childs_.end(); ++it) {
+	for (auto it = children_.begin(); it != children_.end(); ++it) {
 		(*it)->increaseLayer();
 	}
 }
@@ -38,8 +38,8 @@ Transform::removeParent() {
 }
 
 std::list<Transform*> 
-Transform::getChilds() {
-	return childs_;
+Transform::getChildren() {
+	return children_;
 }
 
 Vector2D 
@@ -89,8 +89,8 @@ void Transform::setGlobalAngle(float angle)
 		relativeAngle_ = globalAngle_ - parent_->globalAngle_;
 }
 
-Transform* Transform::getParent()
-{
+Transform* 
+Transform::getParent() {
 	return parent_;
 }
 
@@ -126,10 +126,10 @@ Transform::operator=(const Transform& t) {
 
 void 
 Transform::addChild(Transform* c) {
-	childs_.emplace_back(c);
+	children_.emplace_back(c);
 }
 
 void 
 Transform::removeChild(Transform* c) {
-	childs_.remove(c);
+	children_.remove(c);
 }
