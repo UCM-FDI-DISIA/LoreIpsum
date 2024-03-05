@@ -51,7 +51,7 @@ void CardHoverManager::update()
 		if (cardStateM->getState() == CardStateManager::ON_HAND) {
 
 			//quitar la actual
-			//card->setLayer(previousLayer);
+			card->setLayer(previousLayer);
 			hoverTransform->getRelativeScale().set(previousScale);
 
 			//guardar sus datos
@@ -61,12 +61,12 @@ void CardHoverManager::update()
 			previousScale = hoverTransform->getRelativeScale();
 
 			//seteo sus nuevos datos
-			//card->setLayer(layerOnHover);
+			card->setLayer(layerOnHover);
 			hoverTransform->getRelativeScale().set(previousScale * scaleMultiplier);
 		}
 	}
 	else if (card == nullptr && hoverTransform != nullptr) {//si no detecto una carta y ya tenia una antes
-		//card->setLayer(previousLayer);
+		hoverTransform->getEntity()->setLayer(previousLayer);
 		hoverTransform->getRelativeScale().set(previousScale );
 		hoverTransform = nullptr;
 	}

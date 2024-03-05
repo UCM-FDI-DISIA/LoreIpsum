@@ -26,7 +26,7 @@ class Manager {
 
 protected:
 
-	std::map<int, std::list<Entity*>> ordenRendering; //map de layers y lista de entidades
+	std::map<int, std::list<ecs::entity_t>> ordenRendering; //map de layers y lista de entidades
 
 public:
 
@@ -41,17 +41,17 @@ public:
 
 
 	//añade una entidad al mapa
-	void AddEntityMap(int layer, Entity* e) {
+	void AddEntityMap(int layer, ecs::entity_t e) {
 		ordenRendering[layer].push_back(e);
 	}
 	
-	void DeleteEntityMap(int layer, Entity* e) {
+	void DeleteEntityMap(int layer, ecs::entity_t e) {
 
 		// cleon: para buscar, mirad la librería estándar
-		ordenRendering[layer].erase(std::find(ordenRendering[layer].begin(), ordenRendering[layer].end(), e));
+		ordenRendering[layer].erase(std::find(ordenRendering[layer].begin(), ordenRendering[layer].end(), e), ordenRendering[layer].end());
 	}
 
-	void ChangeLayer(int previousLayer, int nextLayer, Entity* e) {
+	void ChangeLayer(int previousLayer, int nextLayer, ecs::entity_t e) {
 		DeleteEntityMap(previousLayer, e);
 		AddEntityMap(nextLayer, e);
 	}
