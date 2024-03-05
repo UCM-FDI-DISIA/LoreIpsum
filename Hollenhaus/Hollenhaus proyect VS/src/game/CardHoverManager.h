@@ -2,7 +2,8 @@
 #include "ComponentUpdate.h"
 
 class Transform;
-class Vector2D;
+
+#include "../utils/Vector2D.h"
 
 class CardHoverManager :
     public ComponentUpdate
@@ -16,13 +17,14 @@ public:
 
 private:
 
-    Transform* hoverTransform;
+    Transform* hoverTransform = nullptr;
 
-    float scaleMultiplier;
+    float scaleMultiplier = 1.25f;
 
-    int layerOnHover;
+    int layerOnHover = 5;
     int previousLayer;
 
+    Vector2D previousScale;
 
 };
 
