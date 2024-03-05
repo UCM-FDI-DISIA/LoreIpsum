@@ -32,9 +32,9 @@ void Board::paintBoard()
 			// si la casilla no esta vacia
 			if (grid[i][j]->getCard() != nullptr)
 			{
-				if (grid[i][j]->getPlayer() == Effects::PLAYER1) // gestiona el color
+				if (grid[i][j]->getPlayer() == Players::PLAYER1) // gestiona el color
 					SetConsoleTextAttribute(hConsole, 33);
-				else if (grid[i][j]->getPlayer() == Effects::PLAYER2)
+				else if (grid[i][j]->getPlayer() == Players::PLAYER2)
 					SetConsoleTextAttribute(hConsole, 26);
 			}
 			std::cout << getCellInfo(grid[i][j]);
