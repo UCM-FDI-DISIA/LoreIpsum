@@ -106,21 +106,21 @@ int MatchManager::getActualActionPoints()
 	return getActualActionPointsJ2();
 }
 
-CellData::Owner MatchManager::getPlayerTurn() const
+Players::Owner MatchManager::getPlayerTurn() const
 {
 	switch (actualState)
 	{
 	case TurnJ1:
-		return CellData::PLAYER1;
+		return Players::PLAYER1;
 		break;
 	case TurnJ2:
-		return CellData::PLAYER2;
+		return Players::PLAYER2;
 		break;
 	case Finish:
-		return CellData::NONE;
+		return Players::NONE;
 		break;
 	default:
-		return CellData::NONE;
+		return Players::NONE;
 		break;
 	}
 }

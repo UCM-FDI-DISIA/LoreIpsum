@@ -31,8 +31,11 @@ public:
 
 	int handSize() { return cardsInHand_.size(); }
 
-	void setUpwards()	{ downwards = false; }
-	void setDownwards() { downwards = true; }
+	/// movidas para J2
+	void setUpwards()	{ downwards_ = false; }
+	void setDownwards() { downwards_ = true; }
+	void setOwner(Players::Owner value) { owner_ = value;}
+	Players::Owner getOwner() const { return owner_; }
 
 private:
 	float cardScale_ = 0.45f;
@@ -49,6 +52,7 @@ private:
 
 	ecs::entity_t lastCardAdded_;
 
-	// movidas que estoy haciendo para girar el mazo al segundo jugador
-	bool downwards = true;
+	/// movidas que estoy haciendo para girar el mazo al segundo jugador
+	bool downwards_ = true;
+	Players::Owner owner_;
 };

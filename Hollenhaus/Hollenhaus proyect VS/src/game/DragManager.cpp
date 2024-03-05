@@ -79,7 +79,9 @@ void DragManager::OnLeftClickUp()
 		//también confirmamos que tenemos suficientes puntos de acción para lanzar la carta
 		if (drop != nullptr && 
 			!dropDetector->isOcuped() && 
-			dragTransform->getEntity()->getComponent<Card>()->getCost() <= mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getActualActionPointsJ1())
+			dragTransform->getEntity()->getComponent<Card>()->getCost() <= mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getActualActionPoints()
+			//&& la mano es del jugador del turno
+			)
 		{
 			dragTransform->setGlobalPos(dropDetector->getCardPos());
 			
@@ -96,7 +98,7 @@ void DragManager::OnLeftClickUp()
 			int y = dropDetector->getBoardPos().getY();
 			Card* card = dragTransform->getEntity()->getComponent<Card>();
 			
-			CellData::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
+			Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
 			boardManager->setCard(x, y, card, playerTurn);
 		}
 		else {//sino, devolvemos la carta a su posicion inicial

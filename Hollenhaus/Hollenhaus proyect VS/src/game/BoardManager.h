@@ -27,7 +27,7 @@ public:
     void updateScore();
 
     /// Setters
-    bool setCard(int x, int y, Card* c, CellData::Owner o); // true si pudo poner carta (no habia otra ya antes)
+    bool setCard(int x, int y, Card* c, Players::Owner o); // true si pudo poner carta (no habia otra ya antes)
 
     /// Getters
     int getPlayer1Points() const { return pPlayer1; }

@@ -38,7 +38,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 
 
 	/// Hemos creado getEffect para evitar:
-	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), CellData::Down, 20, false);}
+	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), Effects::Down, 20, false);}
 	/// Al metodo createCard se le deberia pasar el array de effects
 	///	y a continuacion iterar sobre el, anyadiendole a la carta cada
 	///	efecto tal que:
@@ -47,7 +47,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 			Effects::Flecha,
 			cardComp,
 			20,
-			CellData::Down
+			Effects::Down
 		)
 	);*/
 
@@ -60,7 +60,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 					e.type(),
 					cardComp,
 					e.value(),
-					CellData::None
+					Effects::None
 				)
 			);
 		else
@@ -100,29 +100,24 @@ ecs::entity_t CardFactory_v1::createHand()
 	int initX = 320;
 	int offSetX = 50;
 
-	ecs::entity_t hand = Instantiate();
-
-	hand->addComponent<Transform>();
 	Vector2D deckPos(initX, initY);
-	hand->getComponent<Transform>()->setGlobalPos(deckPos);
-	hand->addComponent<HandComponent>();
-
+	ecs::entity_t hand = Instantiate(deckPos);
+	hand->addComponent<HandComponent>()->setOwner(Players::PLAYER1);;
 
 	return hand;
+}
 
-	// todavia no se como saber cards.size() de otra manera
-	/*int size = 0;
-	for (auto c : cards) esto no funciona porque no esta definido begin y end
-		size++;*/
+ecs::entity_t CardFactory_v1::createHandJ2()
+{
+	int initX = 320;
+	int initY = 20;
 
-	
+	Vector2D deckPos(initX, initY);
+	ecs::entity_t hand = Instantiate(deckPos);
+	hand->addComponent<HandComponent>()->setUpwards();
+	hand->getComponent<HandComponent>()->setOwner(Players::PLAYER2);
 
-
-	// Cartas ejemplo
-	/*createCard(Vector2D(initX, initY), 2, 2, sprite, true)->setLayer(1);
-	createCard(Vector2D(initX + offSetX, initY),3,3,sprite, false)->setLayer(1);
-	createCard(Vector2D(initX + offSetX*2, initY), 4, 4, sprite, false)->setLayer(1);
-	createCard(Vector2D(initX + offSetX*3, initY), 5, 5, sprite, false)->setLayer(2);*/
+	return hand;
 }
 
 void CardFactory_v1::createDeck() {
@@ -132,10 +127,8 @@ void CardFactory_v1::createDeck() {
 
 	ecs::entity_t hand = createHand();
 
-	ecs::entity_t deck = Instantiate();
-	deck->addComponent<Transform>();
 	Vector2D deckPos(initX, initY);
-	deck->getComponent<Transform>()->setGlobalPos(deckPos);
+	ecs::entity_t deck = Instantiate(deckPos);
 	deck->addComponent<BoxCollider>();
 	deck->addComponent<DeckComponent>();
 	deck->addComponent<PlayerCardsManager>(
@@ -143,8 +136,7 @@ void CardFactory_v1::createDeck() {
 		deck->getComponent<DeckComponent>()
 	);
 	deck->setLayer(2);
-
-	//instantie
+	deck->getComponent<DeckComponent>()->setOwner(Players::PLAYER1);
 
 	for (int i = 0; i < cardsOnDeck; i++)
 	{
@@ -165,22 +157,6 @@ void CardFactory_v1::createDeck() {
 
 }
 
-ecs::entity_t CardFactory_v1::createHandJ2()
-{
-	ecs::entity_t hand = Instantiate();
-
-	int initX = 320;
-	int initY = 20;
-
-	hand->addComponent<Transform>();
-	Vector2D deckPos(initX, initY);
-	hand->getComponent<Transform>()->setGlobalPos(deckPos);
-	hand->getComponent<Transform>()->setGlobalAngle(180.0f); // esto peta
-	hand->addComponent<HandComponent>()->setUpwards();
-
-	return hand;
-}
-
 void CardFactory_v1::createDeckJ2()
 {
 	int initX = 600;
@@ -188,13 +164,10 @@ void CardFactory_v1::createDeckJ2()
 
 	ecs::entity_t hand = createHandJ2();
 
-	ecs::entity_t deck = Instantiate();
-	deck->addComponent<Transform>();
 	Vector2D deckPos(initX, initY);
-	deck->getComponent<Transform>()->setGlobalPos(deckPos);
-	//deck->getComponent<Transform>()->setGlobalAngle(180.0f); // esto peta
+	ecs::entity_t deck = Instantiate(deckPos);
 	deck->addComponent<BoxCollider>();
-	deck->addComponent<DeckComponent>();
+	deck->addComponent<DeckComponent>()->setOwner(Players::PLAYER2);
 	deck->addComponent<PlayerCardsManager>(
 		hand->getComponent<HandComponent>(),
 		deck->getComponent<DeckComponent>()
@@ -203,7 +176,7 @@ void CardFactory_v1::createDeckJ2()
 
 	//instantie
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < cardsOnDeck; i++)
 	{
 		auto card = sdlutils().cards().at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		ecs::entity_t ent = createCard(
@@ -215,6 +188,8 @@ void CardFactory_v1::createDeckJ2()
 			card.effects()
 		);
 		ent->setLayer(1);
+		if (deck->getComponent<DeckComponent>()->getOwner() == Players::PLAYER2)
+			ent->getComponent<Transform>()->setGlobalAngle(180.0f);
 		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 	}
 
@@ -264,12 +239,10 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 
 		if (effects[i].type() >= 2 && effects[i].type() <= 4) {
 
-			CellData::Direction dir = effects[i].directions()[0];
+			Effects::Direction dir = effects[i].directions()[0];
 			effectImage->getComponent<Transform>()->getGlobalAngle() =
-				dir == CellData::Right ? 90.f : dir == CellData::Down ? 180.f : dir == CellData::Left ? 270 : 0;
+				dir == Effects::Right ? 90.f : dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
 		}
-
-
 
 		if (effects[i].value() != 0) {
 

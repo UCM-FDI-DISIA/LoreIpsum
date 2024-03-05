@@ -35,7 +35,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 
 
 	/// Hemos creado getEffect para evitar:
-	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), CellData::Down, 20, false);}
+	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), Effects::Down, 20, false);}
 	/// Al metodo createCard se le deberia pasar el array de effects
 	///	y a continuacion iterar sobre el, anyadiendole a la carta cada
 	///	efecto tal que:
@@ -44,7 +44,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 			Effects::Flecha,
 			cardComp,
 			20,
-			CellData::Down
+			Effects::Down
 		)
 	);*/
 
@@ -57,7 +57,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 					e.type(),
 					cardComp,
 					e.value(),
-					CellData::None
+					Effects::None
 				)
 			);
 		else for (const auto d : e.directions())
@@ -236,9 +236,9 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 		
 		if (effects[i].type() >= 2 && effects[i].type() <= 4) {
 			
-			CellData::Direction dir = effects[i].directions()[0];
+			Effects::Direction dir = effects[i].directions()[0];
 			effectImage->getComponent<Transform>()->getGlobalAngle() = 
-				 dir == CellData::Right ?  90.f :  dir == CellData::Down ? 180.f : dir == CellData::Left ? 270 : 0;
+				 dir == Effects::Right ?  90.f :  dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
 		}
 
 
@@ -255,9 +255,9 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 		//	arrowImage->getComponent<Transform>()->getRelativePos().set(gpos);
 		//	arrowImage->setLayer(layer);
 
-		//	CellData::Direction dir = effects[i].directions()[0];
+		//	Effects::Direction dir = effects[i].directions()[0];
 		//	arrowImage->getComponent<Transform>()->getGlobalAngle() = 
-		//		 dir == CellData::Right ?  90.f :  dir == CellData::Down ? 180.f : dir == CellData::Left ? 270 : 0;
+		//		 dir == Effects::Right ?  90.f :  dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
 		//}
 
 

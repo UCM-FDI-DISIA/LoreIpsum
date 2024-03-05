@@ -187,7 +187,7 @@ public:
 	/// CARD DATA STRUCT
 	struct CardEffect
 	{
-		using Directions = std::vector<CellData::Direction>;
+		using Directions = std::vector<Effects::Direction>;
 
 		CardEffect();
 		CardEffect(Effects::Type t, int v, Directions& d)
@@ -237,7 +237,7 @@ private:
 	void loadReasources(std::string filename); // load resources from the json file
 
 	/// CARD PARSING estoy fatal de la cabezaaaa
-	std::vector<CellData::Direction>& loadDirections(JSONObject&, std::vector<CellData::Direction>&);
+	std::vector<Effects::Direction>& loadDirections(JSONObject&, std::vector<Effects::Direction>&);
 	/// \brief
 	
 	std::string windowTitle_; // window title

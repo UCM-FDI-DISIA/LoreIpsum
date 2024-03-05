@@ -65,7 +65,7 @@ std::list<SDLEventCallback> BoardManager::getEffects(Cell* cell) const
 	return cell->getEffects();
 }
 
-bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
+bool BoardManager::setCard(int x, int y, Card* c, Players::Owner o)
 {
 	const auto cell = _board[x][y]->getComponent<Cell>();
 	if (cell->getCard() != nullptr)
@@ -107,10 +107,10 @@ void BoardManager::updateScore()
 		for (int i = 0; i < _board[j].size(); i++)
 		{
 			//si es del jugador 1
-			if (_board[i][j]->getComponent<Cell>()->getOwner() == CellData::PLAYER1)
+			if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::PLAYER1)
 				pPlayer1 += _board[i][j]->getComponent<Cell>()->getTotalValue();
 			//si es el jugador 2 (normalmente npc)
-			else if (_board[i][j]->getComponent<Cell>()->getOwner() == CellData::PLAYER2)
+			else if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::PLAYER2)
 				pPlayer2 += _board[i][j]->getComponent<Cell>()->getTotalValue();
 		}
 	}
@@ -174,13 +174,13 @@ void BoardManager::initBoard()
 				adj[m] = nullptr;
 
 			if (j > 0)
-				adj[CellData::Up] = _board[i][j - 1]->getComponent<Cell>();
+				adj[Effects::Up] = _board[i][j - 1]->getComponent<Cell>();
 			if (i < n)
-				adj[CellData::Right] = _board[i + 1][j]->getComponent<Cell>();
+				adj[Effects::Right] = _board[i + 1][j]->getComponent<Cell>();
 			if (j < n)
-				adj[CellData::Down] = _board[i][j + 1]->getComponent<Cell>();
+				adj[Effects::Down] = _board[i][j + 1]->getComponent<Cell>();
 			if (i > 0)
-				adj[CellData::Left] = _board[i - 1][j]->getComponent<Cell>();
+				adj[Effects::Left] = _board[i - 1][j]->getComponent<Cell>();
 
 			cell->setAdjacents(adj);
 		}

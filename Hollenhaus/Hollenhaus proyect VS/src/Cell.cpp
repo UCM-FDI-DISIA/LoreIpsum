@@ -1,6 +1,6 @@
 #include "Cell.h"
 
-Cell::Cell() : active(true), corner(false), center(false), totalValue(0), player(CellData::NONE), card(nullptr)
+Cell::Cell() : active(true), corner(false), center(false), totalValue(0), player(Players::NONE), card(nullptr)
 {
 
 }
@@ -14,7 +14,7 @@ Cell::Cell(Cell& cell)
 	totalValue = cell.totalValue;
 }
 
-Cell::Cell(Card* card, CellData::Owner own) : active(true), player(own), card(card)
+Cell::Cell(Card* card, Players::Owner own) : active(true), player(own), card(card)
 {
 	if (card == nullptr) // si NO hay carta en la casilla 
 		totalValue = 0;
@@ -58,7 +58,7 @@ void Cell::cleanEffectList()
 	effectCallbacks.clear(); // limpia la lista de esta celda
 }
 
-void Cell::setCard(Card* c, CellData::Owner o)
+void Cell::setCard(Card* c, Players::Owner o)
 {
 	card = c; // le pone la carta indicada a la celda
 	player = o; // le pone el player indicado a la celda, a quien le pertenece la carta

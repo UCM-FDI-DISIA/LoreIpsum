@@ -66,13 +66,13 @@ void BoardState::inputCard()
 	std::cout << "card (0 -> block, 1-> addcorner): ";
 	std::cin >> typecard;
 
-	CellData::Owner owner = CellData::NONE;
+	Players::Owner owner = Players::NONE;
 	player = std::clamp(player, 0, 2);
 	switch (player)
 	{
-	case 1: owner = CellData::PLAYER1;
+	case 1: owner = Players::PLAYER1;
 		break;
-	case 2: owner = CellData::PLAYER2;
+	case 2: owner = Players::PLAYER2;
 		break;
 	default: break;
 	}
@@ -88,11 +88,11 @@ void BoardState::inputCard()
 
 	if (typecard == 0) 
 		cardPH->addCardEffect([this, x, y] {
-				effectCollection->blockCard(board->getCell(x, y), CellData::Down);
+				effectCollection->blockCard(board->getCell(x, y), Effects::Down);
 		});
 	else if (typecard == 1) 
 		cardPH->addCardEffect([this, x, y, skillv] {
-				effectCollection->addAdj(board->getCell(x, y), CellData::Down, skillv, false);
+				effectCollection->addAdj(board->getCell(x, y), Effects::Down, skillv, false);
 		});
 
 	board->setCard(x, y, cardPH, owner);

@@ -24,7 +24,7 @@ public:
     int getActualActionPointsJ1() const { return actualActionPointsJ1; }
     int getActualActionPointsJ2() const { return actualActionPointsJ2; }
     TurnState getActualState() const { return actualState; }
-    CellData::Owner getPlayerTurn() const;
+    Players::Owner getPlayerTurn() const;
 
     void setBoardManager(BoardManager* b) { board_ = b; }
     void substractActionPoints(int);
