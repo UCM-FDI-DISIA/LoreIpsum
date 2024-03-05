@@ -45,6 +45,7 @@ GameStateMachine::GameStateMachine() {
 	//boardState = new BoardState();
 	paigroState = new PaigroState();
 	samuState = new SamuState();
+	jimboState = new JimboState();
 	nievesState = new NievesState();
 	movementState = new MovementState();
 

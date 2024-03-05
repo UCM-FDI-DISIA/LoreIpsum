@@ -13,17 +13,13 @@ public:
 
     void update() override;
 
-    // A�ade un padre
+    // Añade un padre
     //
     void addParent(Transform* p);
-
-    void addChild(Transform* c);
 
     // Quitar un padre
     //
     void removeParent();
-
-    void removeChild(Transform* c);
 
     std::list<Transform*> getChilds();
 
@@ -59,6 +55,10 @@ public:
     Transform& operator-(const Transform& t);
     Transform& operator=(const Transform& t);
 private:
+    void addChild(Transform* c);
+
+    void removeChild(Transform* c);
+
     Transform* parent_;
     std::list<Transform*> childs_;
 

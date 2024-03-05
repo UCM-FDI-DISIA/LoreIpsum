@@ -48,6 +48,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* boardState;
 	GameState* paigroState;
 	GameState* samuState;
+	GameState* jimboState;
 	GameState* nievesState;
 	GameState* movementState;
 
