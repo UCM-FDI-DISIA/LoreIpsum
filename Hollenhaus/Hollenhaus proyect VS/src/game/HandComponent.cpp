@@ -63,12 +63,14 @@ void HandComponent::removeCard(ecs::entity_t card) {
 void HandComponent::refreshPositions() {
 	std::vector<Vector2D>positions;
 
+	const int sign = downwards ? 1 : -1;
+
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
 		// y = (x^2)/CARD_SEPARATION
 		int x = ((i - cardsInHand_.size() / 2) * CARD_SEPARATION);
 
-		positions.push_back(Vector2D(x, pow(x, 2) / (ARCH_AMPLITUDE)));
+		positions.push_back(Vector2D(x, pow(x, 2) / (ARCH_AMPLITUDE * sign)));
 	}
 
 	for (int i = 0; i < cardsInHand_.size(); i++)

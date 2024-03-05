@@ -175,8 +175,8 @@ ecs::entity_t CardFactory_v1::createHandJ2()
 	hand->addComponent<Transform>();
 	Vector2D deckPos(initX, initY);
 	hand->getComponent<Transform>()->setGlobalPos(deckPos);
-	//hand->getComponent<Transform>()->setGlobalAngle(180.0f);
-	hand->addComponent<HandComponent>();
+	//hand->getComponent<Transform>()->setGlobalAngle(180.0f); // esto peta
+	hand->addComponent<HandComponent>()->setUpwards();
 
 	return hand;
 }
@@ -192,7 +192,7 @@ void CardFactory_v1::createDeckJ2()
 	deck->addComponent<Transform>();
 	Vector2D deckPos(initX, initY);
 	deck->getComponent<Transform>()->setGlobalPos(deckPos);
-	//deck->getComponent<Transform>()->setGlobalAngle(180.0f);
+	//deck->getComponent<Transform>()->setGlobalAngle(180.0f); // esto peta
 	deck->addComponent<BoxCollider>();
 	deck->addComponent<DeckComponent>();
 	deck->addComponent<PlayerCardsManager>(

@@ -4,9 +4,9 @@
 #include "Transform.h"
 #include "BoxCollider.h"
 
-const unsigned int	
+const int	
 					CARD_SEPARATION = 50,
-					ARCH_AMPLITUDE=750;
+					ARCH_AMPLITUDE	= 750;
 
 class HandComponent :
 	public ComponentUpdate
@@ -31,6 +31,9 @@ public:
 
 	int handSize() { return cardsInHand_.size(); }
 
+	void setUpwards()	{ downwards = false; }
+	void setDownwards() { downwards = true; }
+
 private:
 	float cardScale_ = 0.45f;
 	
@@ -43,4 +46,7 @@ private:
 
 	// Vector cartas en la mano
 	std::vector<ecs::entity_t> cardsInHand_;
+
+	// movidas que estoy haciendo para girar el mazo al segundo jugador
+	bool downwards = true;
 };
