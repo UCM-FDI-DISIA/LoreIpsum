@@ -79,7 +79,7 @@ void DragManager::OnLeftClickUp()
 		//también confirmamos que tenemos suficientes puntos de acción para lanzar la carta
 		if (drop != nullptr && 
 			!dropDetector->isOcuped() && 
-			dragTransform->getEntity()->getComponent<Card>()->getCost() <= mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getActualActionPointsJ1())
+			dragTransform->getEntity()->getComponent<Card>()->getCost() <= mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getActualActionPoints())
 		{
 			dragTransform->setGlobalPos(dropDetector->getCardPos());
 			
