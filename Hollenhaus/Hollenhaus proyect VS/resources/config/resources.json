@@ -176,6 +176,7 @@
         {"id": "unblockable",     "file": "resources/images/ef_unblockable.png" },
         {"id": "tiendafondo",     "file": "resources/images/provtienda.png" },
         {"id": "oficinafondo",    "file": "resources/images/provoficina.png"  },
+        {"id": "fantasma",        "file": "resources/images/fantasmiko.png"  },
         {"id": "black_box",       "file": "resources/images/black_background.png"  }
     ],
     "fonts": [

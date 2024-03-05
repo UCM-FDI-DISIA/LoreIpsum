@@ -41,7 +41,13 @@ void CityState::onEnter()
 	fondo->addComponent<MoveOnClick>();
 	//fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f);
 	fondo->setLayer(0);
-	
+
+	//------Personaje
+	ecs::entity_t fantasmiko = Instantiate(Vector2D(sdlutils().width()/2 - 50, sdlutils().height() - 200));
+	fantasmiko->addComponent<SpriteRenderer>("fantasma");
+	fantasmiko->addComponent<BoxCollider>();
+	fantasmiko->getComponent<Transform>()->setGlobalScale(0.15f, 0.15f);
+	fantasmiko->setLayer(1);
 
 	//------NPCs que demomento son Caitlyns:
 	//----Para entrar en la oficina.
