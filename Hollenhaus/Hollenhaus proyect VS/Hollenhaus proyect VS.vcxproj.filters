@@ -222,10 +222,10 @@
     <ClCompile Include="src\game\PlayerCardsManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\EndTurnButton.cpp" /> </ClCompile>
-    <ClCompile Include="src\game\MatchManager.cpp" /> </ClCompile>
-    <ClCompile Include="src\game\CardOnHover.cpp" /> </ClCompile>
-    <ClCompile Include="src\game\CardHoverManager.cpp" /> </ClCompile>
+    <ClCompile Include="src\game\EndTurnButton.cpp" />
+    <ClCompile Include="src\game\MatchManager.cpp" /> 
+    <ClCompile Include="src\game\CardOnHover.cpp" /> 
+    <ClCompile Include="src\game\CardHoverManager.cpp" />
     <ClCompile Include="src\game\MatchOverState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
@@ -447,11 +447,11 @@
     <ClInclude Include="src\game\PlayerCardsManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\EndTurnButton.h" /></ClInclude>
-    <ClInclude Include="src\game\MatchManager.h" /></ClInclude>
-    <ClInclude Include="resource.h" /></ClInclude>
-    <ClInclude Include="src\game\CardOnHover.h" /></ClInclude>
-    <ClInclude Include="src\game\CardHoverManager.h" /></ClInclude>
+    <ClInclude Include="src\game\EndTurnButton.h" />
+    <ClInclude Include="src\game\MatchManager.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="src\game\CardOnHover.h" />
+    <ClInclude Include="src\game\CardHoverManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Hollenhaus proyect VS.rc" />
