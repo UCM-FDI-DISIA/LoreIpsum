@@ -1,5 +1,6 @@
 #include "Transform.h"
 #include "checkML.h"
+#include "Manager.h"
 
 void
 Transform::update() {
@@ -12,8 +13,9 @@ Transform::update() {
 void
 Transform::addParent(Transform* p) {
 	if (!isChild_) {
-		p->addChild(this);
 		parent_ = p;
+		parent_->addChild(this);
+		getEntity()->setLayer(parent_->getEntity()->getLayer());
 		relativePos_ = globalPos_ - parent_->getGlobalPos(); // Pos relativa al padre
 		isChild_ = true;
 	}
