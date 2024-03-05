@@ -84,7 +84,7 @@ void SamuState::onEnter()
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
 	ent->getComponent<DragManager>()->setBoardManager(board->getComponent<BoardManager>());
-	ent->addComponent<CardHoverManager>();
+	//ent->addComponent<CardHoverManager>();
 
 	// Imágen de fondo
 	ecs::entity_t background = Instantiate();
