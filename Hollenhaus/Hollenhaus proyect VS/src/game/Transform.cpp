@@ -15,7 +15,7 @@ Transform::addParent(Transform* p) {
 	if (!isChild_) {
 		parent_ = p;
 		parent_->addChild(this);
-		getEntity()->setLayer(parent_->getEntity()->getLayer());
+		//getEntity()->setLayer(parent_->getEntity()->getLayer()); No me convence
 		relativePos_ = globalPos_ - parent_->getGlobalPos(); // Pos relativa al padre
 		isChild_ = true;
 	}
