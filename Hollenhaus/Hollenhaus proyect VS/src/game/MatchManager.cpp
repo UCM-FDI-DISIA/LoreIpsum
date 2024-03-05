@@ -115,7 +115,8 @@ void MatchManager::setTurnText()
 
 void MatchManager::resetActualActionPoints()
 {
-	actualActionPoints = defaultActionPoints;
+	actualActionPointsJ1 = defaultActionPoints;
+	actualActionPointsJ2 = defaultActionPoints;
 }
 
 void MatchManager::setWinner()

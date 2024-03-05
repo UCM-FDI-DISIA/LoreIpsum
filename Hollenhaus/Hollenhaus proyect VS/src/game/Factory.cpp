@@ -37,6 +37,15 @@ void Factory::createDeck()
 	return cardFactory->createDeck();
 }
 
+void Factory::createDeckJ2()
+{
+	if (cardFactory == nullptr) {
+		throw "no existe cardFactory";
+	}
+
+	return cardFactory->createDeckJ2();
+}
+
 ecs::entity_t Factory::createBoard()
 {
 	return boardFactory->createBoard();

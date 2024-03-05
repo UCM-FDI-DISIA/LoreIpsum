@@ -52,7 +52,8 @@ public:
 	virtual ecs::entity_t createDropDetector(Vector2D pos);
 
 	virtual ecs::entity_t createHand() ;
-	virtual void createDeck() ;
+	virtual void createDeck();
+	virtual void createDeckJ2();
 	virtual ecs::entity_t createBoard();
 
 public:

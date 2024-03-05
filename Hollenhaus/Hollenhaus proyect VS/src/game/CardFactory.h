@@ -16,6 +16,7 @@ public:
 
 	virtual ecs::entity_t createHand() = 0;
 	virtual void createDeck() = 0;
+	virtual void createDeckJ2() = 0;
 
 };
 

@@ -132,7 +132,6 @@ void CardFactory_v1::createDeck() {
 
 	ecs::entity_t hand = createHand();
 
-
 	ecs::entity_t deck = Instantiate();
 	deck->addComponent<Transform>();
 	Vector2D deckPos(initX, initY);
@@ -164,6 +163,60 @@ void CardFactory_v1::createDeck() {
 
 	TuVieja("Deck1");
 
+}
+
+ecs::entity_t CardFactory_v1::createHandJ2()
+{
+	ecs::entity_t hand = Instantiate();
+
+	int initX = 170;
+	int initY = 100;
+
+	hand->addComponent<Transform>();
+	Vector2D deckPos(initX, initY);
+	hand->getComponent<Transform>()->setGlobalPos(deckPos);
+	hand->addComponent<HandComponent>();
+
+	return hand;
+}
+
+void CardFactory_v1::createDeckJ2()
+{
+	int initX = 600;
+	int initY = 50;
+
+	ecs::entity_t hand = createHandJ2();
+
+	ecs::entity_t deck = Instantiate();
+	deck->addComponent<Transform>();
+	Vector2D deckPos(initX, initY);
+	deck->getComponent<Transform>()->setGlobalPos(deckPos);
+	deck->addComponent<BoxCollider>();
+	deck->addComponent<DeckComponent>();
+	deck->addComponent<PlayerCardsManager>(
+		hand->getComponent<HandComponent>(),
+		deck->getComponent<DeckComponent>()
+	);
+	deck->setLayer(2);
+
+	//instantie
+
+	for (int i = 0; i < 6; i++)
+	{
+		auto card = sdlutils().cards().at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
+		ecs::entity_t ent = createCard(
+			Vector2D(initX, initY),
+			card.cost(),
+			card.value(),
+			card.sprite(),
+			card.unblockable(),
+			card.effects()
+		);
+		ent->setLayer(1);
+		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
+	}
+
+	TuVieja("Deck2");
 }
 
 

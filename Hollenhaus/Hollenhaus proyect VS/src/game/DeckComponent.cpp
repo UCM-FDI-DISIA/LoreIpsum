@@ -40,7 +40,7 @@ DeckComponent::drawCard() {
 	--it;
 	Card* c = (*it);
 	removeCard(c);
-	mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->substractActualActionPoints(drawCardCost);
+	mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->substractActionPointsJ1(drawCardCost);
 	
 	return c;
 }
