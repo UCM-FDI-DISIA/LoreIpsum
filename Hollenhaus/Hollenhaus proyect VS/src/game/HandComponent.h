@@ -50,7 +50,7 @@ private:
 	// Vector cartas en la mano
 	std::vector<ecs::entity_t> cardsInHand_;
 
-	ecs::entity_t lastCardAdded_;
+	ecs::entity_t lastCardAdded_; // Para order in layer
 
 	/// movidas que estoy haciendo para girar el mazo al segundo jugador
 	bool downwards_ = true;
