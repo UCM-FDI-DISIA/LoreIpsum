@@ -25,6 +25,7 @@ SamuState::SamuState() : GameState()
 SamuState::~SamuState()
 {
 }
+
 //cleon: si esta vacio se llama directamente al padre
 void SamuState::refresh()
 {
@@ -41,11 +42,7 @@ void SamuState::update()
 	//board->getComponent<BoardManager>()->updateScore(); // Esto puede ser un problema de performance // ahora está en el setcard
 
 
-	// esto tambien deberia ejecutarse solo cuando se ponga una carta, no aqui
-	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
-	                               getActualActionPointsJ1();
-	actionPointsVisualJ1->getComponent<TextComponent>()->setTxt(
-		"Puntos de accion:\n\n" + std::to_string(actionPointsValue));
+
 
 #if _DEBUG
 
@@ -91,7 +88,7 @@ void SamuState::onEnter()
 
 
 	// Creación del botón de J1 (ahora general) para acabar su turno (debug por consola)
-	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(sdlutils().width()/4, sdlutils().height()/2 - 35));
+	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(sdlutils().width() / 4, sdlutils().height() / 2 - 35));
 	endTurnButtonJ1->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
 	endTurnButtonJ1->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ1->addComponent<BoxCollider>();
@@ -102,21 +99,6 @@ void SamuState::onEnter()
 	endTurnButtonJ2->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ2->addComponent<BoxCollider>();
 	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);*/
-
-	// Puntos de acción restantes
-	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
-	                               getActualActionPointsJ1();
-	actionPointsVisualJ1 = Instantiate(Vector2D(100, sdlutils().height() - 100));
-	actionPointsVisualJ1->addComponent<TextComponent>("Puntos de accion:\n\n" + std::to_string(actionPointsValue),
-	                                                "8bit_16pt", SDL_Color({255, 255, 0, 255}), 200,
-	                                                TextComponent::BoxPivotPoint::CenterCenter,
-	                                                TextComponent::TextAlignment::Center);
-
-	actionPointsVisualJ2 = Instantiate(Vector2D(100, 100));
-	actionPointsVisualJ2->addComponent<TextComponent>("Puntos de accion:\n\n" + std::to_string(actionPointsValue),
-	                                                "8bit_16pt", SDL_Color({255, 255, 0, 255}), 200,
-	                                                TextComponent::BoxPivotPoint::CenterCenter,
-	                                                TextComponent::TextAlignment::Center);
 
 
 	//ecs::entity_t puntosDeAccionText = Instantiate(Vector2D(100, 300));
