@@ -22,7 +22,6 @@ Transform::addParent(Transform* p) {
 		parent_ = p;
 		parent_->addChild(this);
 		relativePos_ = globalPos_ - parent_->getGlobalPos(); // Pos relativa al padre
-		relativeAngle_ = globalAngle_ - parent_->globalAngle_;
 		isChild_ = true;
 	}
 }
