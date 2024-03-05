@@ -43,7 +43,7 @@ void SamuState::update()
 
 	// esto tambien deberia ejecutarse solo cuando se ponga una carta, no aqui
 	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
-	                               getActualActionPoints();
+	                               getActualActionPointsJ1();
 	actionPointsVisualJ1->getComponent<TextComponent>()->setTxt(
 		"Puntos de accion:\n\n" + std::to_string(actionPointsValue));
 
@@ -104,7 +104,7 @@ void SamuState::onEnter()
 
 	// Puntos de acción restantes
 	int actionPointsValue = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
-	                               getActualActionPoints();
+	                               getActualActionPointsJ1();
 	actionPointsVisualJ1 = Instantiate(Vector2D(100, sdlutils().height() - 100));
 	actionPointsVisualJ1->addComponent<TextComponent>("Puntos de accion:\n\n" + std::to_string(actionPointsValue),
 	                                                "8bit_16pt", SDL_Color({255, 255, 0, 255}), 200,

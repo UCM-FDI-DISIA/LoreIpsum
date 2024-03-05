@@ -48,7 +48,7 @@ void NievesState::update()
 
 #if _DEBUG
 	//std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
-	std::cout << GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getActualActionPoints() << std::endl;
+	std::cout << GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getActualActionPointsJ1() << std::endl;
 #endif
 }
 
