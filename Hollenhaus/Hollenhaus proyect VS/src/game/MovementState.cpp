@@ -38,4 +38,5 @@ void MovementState::onEnter()
 
 void MovementState::onExit() 
 {
+	GameStateMachine::instance()->getMngr()->Free();
 }

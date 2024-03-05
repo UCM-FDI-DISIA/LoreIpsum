@@ -15,6 +15,7 @@
 #include "TextComponent.h"
 #include "MatchManager.h"
 #include "EndTurnButton.h"
+#include "NPC.h"
 
 SamuState::SamuState() : GameState()
 {
@@ -24,8 +25,7 @@ SamuState::SamuState() : GameState()
 SamuState::~SamuState()
 {
 }
-
-//cleon: si est� vac�o se llama directamente al padre
+//cleon: si esta vacio se llama directamente al padre
 void SamuState::refresh()
 {
 	GameState::refresh();
@@ -87,7 +87,7 @@ void SamuState::onEnter()
 	background->addComponent<Transform>();
 	background->getComponent<Transform>()->getGlobalScale().set(0.555, 0.555);
 	background->addComponent<SpriteRenderer>("board");
-	background->setLayer(-1);
+	//background->setLayer(-1);
 
 
 	// Creación del botón de J1 (ahora general) para acabar su turno (debug por consola)
