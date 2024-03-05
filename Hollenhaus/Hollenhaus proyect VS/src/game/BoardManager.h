@@ -52,9 +52,11 @@ private:
 
     /// match manager
     void applyAllEffects() const;
+    void updateVisuals();
     int pPlayer1 = 0;
     int pPlayer2 = 0;
-    ecs::entity_t p1Text;
-    ecs::entity_t p2Text;
+    ecs::entity_t scoreVisualJ1;
+    ecs::entity_t scoreVisualJ2;
+
 };
 

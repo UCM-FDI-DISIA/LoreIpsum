@@ -26,10 +26,18 @@ public:
     CellData::Owner getPlayerTurn() const;
 
     void setBoardManager(BoardManager* b) { board_ = b; }
-    void substractActionPointsJ1(int pointsSubstracted) { actualActionPointsJ1 -= pointsSubstracted; }
-    void substractActionPointsJ2(int pointsSubstracted) { actualActionPointsJ2 -= pointsSubstracted; }
+    void substractActionPointsJ1(int pointsSubstracted)
+    {
+	    actualActionPointsJ1 -= pointsSubstracted;
+        updateVisuals(); // no me mires, no estoy aqui
+    }
+    void substractActionPointsJ2(int pointsSubstracted)
+    {
+	    actualActionPointsJ2 -= pointsSubstracted;
+        updateVisuals(); // no me mires, no estoy aqui
+    }
     
-
+    void updateVisuals();
 
 private:
     BoardManager* board_ = nullptr;
@@ -40,7 +48,10 @@ private:
 
     TurnState actualState;
 
-    ecs::entity_t actualText;
+    // visuals
+    ecs::entity_t actualTurnVisual;
+	ecs::entity_t actionPointsVisualJ1;
+    ecs::entity_t actionPointsVisualJ2;
 
 	void setTurnText();
     void resetActualActionPoints();

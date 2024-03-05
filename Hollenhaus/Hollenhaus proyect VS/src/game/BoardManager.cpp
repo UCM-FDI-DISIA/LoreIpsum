@@ -79,14 +79,17 @@ bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 	for (const auto& e : c->getEffects())
 		cell->addEffect(e);
 
+
+	auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
 	//Gasta los puntos de accion correspondientes
-	mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->substractActionPointsJ1(c->getCost());
+	matchManager->substractActionPointsJ1(c->getCost());
 
 	// aumenta el contador al aniadir carta al tablero
 	cardsOnBoard++;
 
 	/// reaplica todos los efectos
 	applyAllEffects();
+	//matchManager->updateVisuals();
 	updateScore();
 	return true;
 }
@@ -112,8 +115,8 @@ void BoardManager::updateScore()
 		}
 	}
 
-	p1Text->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer1));
-	p2Text->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
+	scoreVisualJ1->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer1));
+	scoreVisualJ2->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
 }
 
 void BoardManager::applyAllEffects() const
@@ -128,7 +131,6 @@ void BoardManager::applyAllEffects() const
 			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
 				_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
 }
-
 
 void BoardManager::initBoard()
 {
@@ -186,9 +188,10 @@ void BoardManager::initBoard()
 
 
 	// Textos de puntuacion (WIP)
-	p1Text = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() * 2 / 3 - 50));
-	p2Text = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() / 3 + 25));
-	p1Text->addComponent<TextComponent>("0", "8bit_32pt", SDL_Color({ 102, 255, 102, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-	p2Text->addComponent<TextComponent>("0", "8bit_32pt", SDL_Color({ 255, 102, 255, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-	// haria falta un setSize o algo asi, que se ve pequenito
+	scoreVisualJ1 = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() * 2 / 3 - 50));
+	scoreVisualJ2 = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() / 3 + 25));
+	scoreVisualJ1->addComponent<TextComponent>("0", "8bit_32pt", SDL_Color({ 102, 255, 102, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	scoreVisualJ2->addComponent<TextComponent>("0", "8bit_32pt", SDL_Color({ 255, 102, 255, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	scoreVisualJ1->setLayer(9);
+	scoreVisualJ2->setLayer(9);
 }
