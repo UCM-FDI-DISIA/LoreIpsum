@@ -35,7 +35,7 @@ void MainMenuState::onEnter()
 	//-----Ciudad de fondo:
 	ecs::entity_t fondo = Instantiate(Vector2D(0,0));
 	fondo->addComponent<SpriteRenderer>("main_menu_bg");
-	fondo->getComponent<Transform>()->setGlobalScale(0.5,0.5);
+	fondo->getComponent<Transform>()->setGlobalScale(0.56,0.56);
 	fondo->setLayer(0);
 
 
@@ -45,7 +45,7 @@ void MainMenuState::onEnter()
 	//ecs::entity_t titleText = Instantiate(Vector2D(400, 50));
 	//titleText->addComponent<TextComponent>("HÖLLENHAUS", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 450, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para un nuevo juego.
-	ecs::entity_t newGameText = Instantiate(Vector2D(sdlutils().width() - 150, sdlutils().height() - 100));
+	ecs::entity_t newGameText = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 100));
 	newGameText->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_32pt", ROJO_HOLLENHAUS, 300, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Right);
 	newGameText->addComponent<BoxCollider>();
 	newGameText->getComponent<BoxCollider>()->setSize(Vector2D(200,40));
@@ -59,8 +59,8 @@ void MainMenuState::onEnter()
 	//ecs::entity_t optionsText = Instantiate(Vector2D(400, 300));
 	//optionsText->addComponent<TextComponent>("OPTIONS", "8bit_24pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para salir.
-	ecs::entity_t exitText = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() - 50));
-	exitText->addComponent<TextComponent>("SALIR", "8bit_32pt", ROJO_HOLLENHAUS, 50, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Right);
+	ecs::entity_t exitText = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 50));
+	exitText->addComponent<TextComponent>("SALIR", "8bit_32pt", ROJO_HOLLENHAUS, 300, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Right);
 
 	sdlutils().soundEffects().at("menutheme").play(-1);
 	sdlutils().soundEffects().at("menutheme").setChannelVolume(10);
