@@ -180,7 +180,8 @@
         {"id": "boton_nueva_partida", "file": "resources/images/boton_nueva_partida.png"  },
         {"id": "boton_salir",     "file": "resources/images/boton_salir.png"  },
         {"id": "boton_flecha",    "file": "resources/images/boton_flecha.png"},
-        {"id": "black_box",       "file": "resources/images/black_background.png"  }
+        {"id": "black_box",       "file": "resources/images/black_background.png"  },
+        {"id": "reverseCard",       "file": "resources/images/card_reverse.png"  }
     ],
     "fonts": [
       {

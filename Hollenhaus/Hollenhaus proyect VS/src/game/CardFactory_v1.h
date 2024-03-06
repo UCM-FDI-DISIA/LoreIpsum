@@ -24,5 +24,7 @@ private:
 
 	void addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::CardEffect>& effects);
 	void addValueCostTexts(ecs::entity_t card, int vale, int cost);
+
+	void addDeckImage(int initX, int initY);
 };
 

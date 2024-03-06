@@ -155,6 +155,8 @@ void CardFactory_v1::createDeck() {
 
 	TuVieja("Deck1");
 
+	
+	addDeckImage(initX, initY);
 }
 
 void CardFactory_v1::createDeckJ2()
@@ -194,6 +196,9 @@ void CardFactory_v1::createDeckJ2()
 	}
 
 	TuVieja("Deck2");
+
+	addDeckImage(initX, initY);
+
 }
 
 
@@ -286,4 +291,14 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 	textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
 
 	textoCoste->setLayer(100);
+}
+
+void CardFactory_v1::addDeckImage(int initX, int initY)
+{
+	auto deckImage = Instantiate(Vector2D(initX, initY));
+
+	deckImage->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
+	deckImage->addComponent<SpriteRenderer>("reverseCard");
+
+	deckImage->setLayer(100);
 }
