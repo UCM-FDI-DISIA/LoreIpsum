@@ -72,6 +72,11 @@ void Game::Run()
 			SDL_Delay(FRAME_RATE - frameTime);
 		}
 	}
+
+	while(!gameStateMachine->Empty()) {
+		gameStateMachine->popState();
+	}
+
 }
 
 
