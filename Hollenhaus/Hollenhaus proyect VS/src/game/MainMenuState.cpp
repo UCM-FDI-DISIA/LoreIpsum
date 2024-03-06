@@ -46,7 +46,7 @@ void MainMenuState::onEnter()
 	//titleText->addComponent<TextComponent>("HÖLLENHAUS", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 450, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para un nuevo juego.
 	ecs::entity_t newGameText = Instantiate(Vector2D(sdlutils().width() - 150, sdlutils().height() - 100));
-	newGameText->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_32pt", ROJO_HOLLENHAUS, 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Right);
+	newGameText->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_32pt", ROJO_HOLLENHAUS, 300, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Right);
 	newGameText->addComponent<BoxCollider>();
 	newGameText->getComponent<BoxCollider>()->setSize(Vector2D(200,40));
 	newGameText->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
@@ -60,7 +60,7 @@ void MainMenuState::onEnter()
 	//optionsText->addComponent<TextComponent>("OPTIONS", "8bit_24pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para salir.
 	ecs::entity_t exitText = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() - 50));
-	exitText->addComponent<TextComponent>("SALIR", "8bit_32pt", ROJO_HOLLENHAUS, 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Right);
+	exitText->addComponent<TextComponent>("SALIR", "8bit_32pt", ROJO_HOLLENHAUS, 50, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Right);
 
 	sdlutils().soundEffects().at("menutheme").play(-1);
 	sdlutils().soundEffects().at("menutheme").setChannelVolume(10);
