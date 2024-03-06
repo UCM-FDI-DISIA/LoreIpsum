@@ -26,7 +26,7 @@ void PaigroState::onEnter()
 
 	/*ecs::entity_t boton1 = Instantiate();
 	boton1->addComponent<Transform>();
-	boton1->addComponent<SpriteRenderer>("boton");
+	boton1->addComponent<SpriteRenderer>("boton_flecha");
 	boton1->addComponent<BoxCollider>();
 	boton1->getComponent<Transform>()->getGlobalScale().set(0.4f, 0.4f);
 	boton1->getComponent<Transform>()->getGlobalPos().set(100, 200);

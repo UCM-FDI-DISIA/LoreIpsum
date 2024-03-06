@@ -160,7 +160,6 @@
         {"id": "mouse",           "file": "resources/images/mouse.png"},
         {"id": "ciudad",          "file": "resources/images/ciudad.png"},
         {"id": "npc",             "file": "resources/images/npc.png"},
-        {"id": "boton",           "file": "resources/images/boton.png"},
         {"id": "cityExample",     "file": "resources/images/cityExample.png" },
         {"id": "farolascerca",    "file": "resources/images/farolascerca.png" },
         {"id": "farolaslejos",    "file": "resources/images/farolaslejos.png"},
@@ -178,9 +177,22 @@
         {"id": "oficinafondo",    "file": "resources/images/provoficina.png"  },
         {"id": "fantasma",        "file": "resources/images/fantasmiko.png"  },
         {"id": "main_menu_bg",    "file": "resources/images/main_menu.png"  },
+        {"id": "boton_nueva_partida", "file": "resources/images/boton_nueva_partida.png"  },
+        {"id": "boton_salir",     "file": "resources/images/boton_salir.png"  },
+        {"id": "boton_flecha",    "file": "resources/images/boton_flecha.png"},
         {"id": "black_box",       "file": "resources/images/black_background.png"  }
     ],
     "fonts": [
+      {
+        "id": "8bit_8pt",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 8
+      },
+      {
+        "id": "8bit_size_12",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 12
+      },
       {
         "id": "8bit_16pt",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
@@ -202,14 +214,19 @@
         "size": 40
       },
       {
-        "id": "8bit_8pt",
+        "id": "8bit_48pt",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 8
+        "size": 48
       },
       {
-        "id": "8bit_size_12",
+        "id": "8bit_64pt",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 12
+        "size": 64
+      },
+      {
+        "id": "8bit_72pt",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 72
       }
     ],
     "sounds": [

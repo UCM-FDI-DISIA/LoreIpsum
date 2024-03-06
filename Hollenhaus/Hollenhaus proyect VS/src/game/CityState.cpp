@@ -90,7 +90,7 @@ void CityState::onEnter()
 	//------Boton para volver al menu principal:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
-	exit->addComponent<SpriteRenderer>("boton");
+	exit->addComponent<SpriteRenderer>("boton_flecha");
 	exit->addComponent<BoxCollider>();
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
