@@ -19,6 +19,8 @@ DragManager::DragManager()
 
 DragManager::~DragManager()
 {
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
 void DragManager::initComponent()

@@ -6,9 +6,11 @@
 #include <iostream>
 
 #include "Manager.h"
+#include "MatchOverState.h"
 #include "TextComponent.h"
 
-MatchManager::MatchManager(int defaultActionPoints, TurnState turnStart) :
+MatchManager::MatchManager(int defaultActionPoints, TurnState turnStart, BoardManager* bm) :
+	board_(bm),
 	defaultActionPoints(defaultActionPoints),
 	actualActionPointsJ1(defaultActionPoints),
 	actualActionPointsJ2(defaultActionPoints),
@@ -91,6 +93,7 @@ void MatchManager::setActualState(TurnState newState)
 		break;
 	case Finish:
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
+		GameStateMachine::instance()->setState(GameStates::MATCHOVER);
 		break;
 	default:
 		break;

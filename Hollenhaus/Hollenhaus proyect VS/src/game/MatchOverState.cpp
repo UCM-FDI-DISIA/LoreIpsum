@@ -54,7 +54,7 @@ void MatchOverState::setWindow(int lastWinner) {
 	{
 	case 1: // Empate:
 		background = "rice";
-		text = "TIE :(";
+		text = "TIE :(!";
 		break;
 	case 2: // Jugador1:
 		background = "mouse";
@@ -65,6 +65,8 @@ void MatchOverState::setWindow(int lastWinner) {
 		text = "JUGADOR2!";
 		break;
 	default:
+		background = "board5";
+		text = "NADIE?";
 		break;
 	}
 
@@ -72,12 +74,12 @@ void MatchOverState::setWindow(int lastWinner) {
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>(background);
-	fondo->getComponent<Transform>()->getGlobalScale().set(0.85f, 0.85f);
+	fondo->getComponent<Transform>()->getGlobalScale().set(0.5f, 0.5f);
 	fondo->setLayer(0);
 
-	// ---- Texto de la tienda ----
-	ecs::entity_t shopText = Instantiate(Vector2D(400, 30));
-	shopText->addComponent<TextComponent>("¡GANADOR:" + text, "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	// ---- Texto ----
+	ecs::entity_t shopText = Instantiate(Vector2D(300, 250));
+	shopText->addComponent<TextComponent>("¡GANADOR:" + text, "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 400, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	shopText->setLayer(1);
 
 	// ---- Resetea el ganador a nulo al salir del estado ----

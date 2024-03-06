@@ -14,6 +14,23 @@ namespace ecs
 	class Manager;
 }
 
+namespace GameStates
+{
+	//Enum de estados del juego
+	enum game_states {
+		MAINMENU = 0,
+		CITY,
+		OFFICE,
+		SHOP,
+		BOARD,
+		PAIGRO,
+		SAMU,
+		NIEVES,
+		MATCHOVER
+	};
+}
+	
+
 class GameStateMachine : public Singleton<GameStateMachine>
 {
 	std::stack<GameState*> gameStack; // container de los states
@@ -26,19 +43,6 @@ class GameStateMachine : public Singleton<GameStateMachine>
 
 	Mouse* mouse_;
 
-
-	//Enum de estados del juego
-	enum game_states {
-		MAINMENU = 0,
-		CITY,
-		OFFICE,
-		SHOP,
-		BOARD,
-		PAIGRO,
-		SAMU,
-		NIEVES
-	};
-
 	//Creaci�n de los distintos estados del juego
 	GameState* currentState;
 	GameState* mainMenuState;
@@ -50,6 +54,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* samuState;
 	GameState* nievesState;
 	GameState* movementState;
+	GameState* matchOverState;
 
 public:
 	ecs::Manager* getMngr()
@@ -77,29 +82,32 @@ public:
 
 		switch (state)
 		{
-		case MAINMENU:
+		case GameStates::MAINMENU:
 			currentState = mainMenuState;
 			break;
-		case CITY:
+		case GameStates::CITY:
 			currentState = cityState;
 			break;
-		case OFFICE:
+		case GameStates::OFFICE:
 			currentState = officeState;
 			break;
-		case SHOP:
+		case GameStates::SHOP:
 			currentState = shopState;
 			break;
-		case BOARD:
+		case GameStates::BOARD:
 			currentState = boardState;
 			break;
-		case PAIGRO:
+		case GameStates::PAIGRO:
 			currentState = paigroState;
 			break;
-		case SAMU:
+		case GameStates::SAMU:
 			currentState = samuState;
 			break;
-		case NIEVES:
+		case GameStates::NIEVES:
 			currentState = nievesState;
+			break;
+		case GameStates::MATCHOVER:
+			currentState = matchOverState;
 			break;
 		default:
 			break;

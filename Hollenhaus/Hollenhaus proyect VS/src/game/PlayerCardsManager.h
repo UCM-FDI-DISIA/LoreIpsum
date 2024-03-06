@@ -15,7 +15,7 @@ private:
 
 public:
     PlayerCardsManager(HandComponent* hand, DeckComponent* deck) :hand_(hand), deck_(deck) {}
-    ~PlayerCardsManager() {}
+    ~PlayerCardsManager();
 
     void drawCard();
 

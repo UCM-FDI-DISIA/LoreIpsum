@@ -12,7 +12,7 @@ public:
         Finish
     };
 
-    MatchManager(int defaultActionPoints, TurnState turnStart);
+    MatchManager(int defaultActionPoints, TurnState turnStart, BoardManager* bm = nullptr);
 
     ~MatchManager();
 
@@ -20,6 +20,7 @@ public:
     void update() override;
 
     void setActualState(TurnState newState);
+    void setBoard(BoardManager* value) { board_ = value; } 
     int getActualActionPoints();
     int getActualActionPointsJ1() const { return actualActionPointsJ1; }
     int getActualActionPointsJ2() const { return actualActionPointsJ2; }

@@ -14,6 +14,8 @@ Drag::Drag()
 
 Drag::~Drag()
 {
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
 void Drag::initComponent()

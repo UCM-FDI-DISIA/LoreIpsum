@@ -157,6 +157,7 @@
         {"id": "picto1",          "file": "resources/images/picto1.png"},
         {"id": "key",             "file": "resources/images/libreta.png"},
         {"id": "board",           "file": "resources/images/board4.png"},
+        {"id": "board5",           "file": "resources/images/board5.png"},
         {"id": "mouse",           "file": "resources/images/mouse.png"},
         {"id": "ciudad",          "file": "resources/images/ciudad.png"},
         {"id": "npc",             "file": "resources/images/npc.png"},

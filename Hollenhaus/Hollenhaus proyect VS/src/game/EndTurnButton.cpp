@@ -12,6 +12,7 @@ EndTurnButton::EndTurnButton(MatchManager::TurnState buttonPropietary) :
 
 EndTurnButton::~EndTurnButton()
 {
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { ClickButton(); });
 }
 
 void EndTurnButton::initComponent()

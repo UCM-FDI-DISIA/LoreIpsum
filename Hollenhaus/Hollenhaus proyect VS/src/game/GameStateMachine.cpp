@@ -18,6 +18,7 @@
 #include "MovementState.h"
 #include "Mouse.h"
 #include "GameState.h"
+#include "MatchOverState.h"
 
 
 void GameStateMachine::init()
@@ -47,6 +48,7 @@ GameStateMachine::GameStateMachine() {
 	samuState = new SamuState();
 	nievesState = new NievesState();
 	movementState = new MovementState();
+	matchOverState = new MatchOverState();
 
 	// Ponemos el estado actual
 	currentState = mainMenuState;//samuState;

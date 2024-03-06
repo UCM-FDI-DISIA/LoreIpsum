@@ -129,7 +129,7 @@ void CardFactory_v1::createDeck() {
 
 	Vector2D deckPos(initX, initY);
 	ecs::entity_t deck = Instantiate(deckPos);
-	deck->addComponent<BoxCollider>();
+	deck->addComponent<BoxCollider>()->setPosOffset(Vector2D(-15,0));
 	deck->addComponent<DeckComponent>();
 	deck->addComponent<PlayerCardsManager>(
 		hand->getComponent<HandComponent>(),
@@ -165,7 +165,7 @@ void CardFactory_v1::createDeckJ2()
 
 	Vector2D deckPos(initX, initY);
 	ecs::entity_t deck = Instantiate(deckPos);
-	deck->addComponent<BoxCollider>();
+	deck->addComponent<BoxCollider>()->setPosOffset(Vector2D(-15,0));
 	deck->addComponent<DeckComponent>()->setOwner(Players::PLAYER2);
 	deck->addComponent<PlayerCardsManager>(
 		hand->getComponent<HandComponent>(),

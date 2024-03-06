@@ -1,5 +1,7 @@
 #include "SamuState.h"
 #include <SDL.h>
+
+#include "Board.h"
 #include "Drag.h"
 #include "CardStateManager.h"
 #include "DragManager.h"
@@ -62,13 +64,13 @@ void SamuState::onEnter()
 	factory->SetFactories(static_cast<BoardFactory*>(new BoardFactory_v0(4)),
 	                      static_cast<CardFactory*>(new CardFactory_v1()));
 
+	// Factoría del tablero. Generamos el tablero de juego.
+	board = factory->createBoard();
+
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	matchManager->addComponent<MatchManager>(4, MatchManager::TurnState::TurnJ1);
-
-	// Factoría del tablero. Generamos el tablero de juego.
-	board = factory->createBoard();
+	matchManager->addComponent<MatchManager>(4, MatchManager::TurnState::TurnJ1, board->getComponent<BoardManager>());
 
 	// Factoría de cartas. Con ella generamos la mano inicial
 	factory->createDeck();

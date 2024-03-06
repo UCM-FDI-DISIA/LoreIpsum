@@ -9,6 +9,8 @@ MoveOnClick::MoveOnClick()
 
 MoveOnClick::~MoveOnClick()
 {
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	
 }
 
 void MoveOnClick::initComponent()
