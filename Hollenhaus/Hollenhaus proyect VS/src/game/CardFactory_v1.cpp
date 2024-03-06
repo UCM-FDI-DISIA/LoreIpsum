@@ -152,11 +152,8 @@ void CardFactory_v1::createDeck() {
 		ent->setLayer(1);
 		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 	}
-
-	TuVieja("Deck1");
-
-	
 	addDeckImage(initX, initY);
+	TuVieja("Deck1");
 }
 
 void CardFactory_v1::createDeckJ2()
@@ -194,11 +191,8 @@ void CardFactory_v1::createDeckJ2()
 			ent->getComponent<Transform>()->setGlobalAngle(180.0f);
 		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 	}
-
+	addDeckImage(initX, initY, true);
 	TuVieja("Deck2");
-
-	addDeckImage(initX, initY);
-
 }
 
 
@@ -293,11 +287,13 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 	textoCoste->setLayer(100);
 }
 
-void CardFactory_v1::addDeckImage(int initX, int initY)
+void CardFactory_v1::addDeckImage(int initX, int initY, bool opposite)
 {
 	auto deckImage = Instantiate(Vector2D(initX, initY));
 
 	deckImage->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
+	if (opposite)
+		deckImage->getComponent<Transform>()->setGlobalAngle(180.0f);
 	deckImage->addComponent<SpriteRenderer>("reverseCard");
 
 	deckImage->setLayer(100);

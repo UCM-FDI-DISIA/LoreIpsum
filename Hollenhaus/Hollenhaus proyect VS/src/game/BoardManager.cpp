@@ -190,8 +190,8 @@ void BoardManager::initBoard()
 	// Textos de puntuacion (WIP)
 	scoreVisualJ1 = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() * 2 / 3 - 50));
 	scoreVisualJ2 = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() / 3 + 25));
-	scoreVisualJ1->addComponent<TextComponent>("0", "8bit_32pt", SDL_Color({ 102, 255, 102, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-	scoreVisualJ2->addComponent<TextComponent>("0", "8bit_32pt", SDL_Color({ 255, 102, 255, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	scoreVisualJ1->addComponent<TextComponent>("0", "8bit_48pt", SDL_Color({ 102, 255, 102, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	scoreVisualJ2->addComponent<TextComponent>("0", "8bit_48pt", SDL_Color({ 255, 102, 255, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	scoreVisualJ1->setLayer(9);
 	scoreVisualJ2->setLayer(9);
 }

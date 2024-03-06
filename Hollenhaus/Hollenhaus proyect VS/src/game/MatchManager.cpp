@@ -23,21 +23,21 @@ MatchManager::~MatchManager()
 void MatchManager::initComponent()
 {
 	/// TURNO VISUAL
-	actualTurnVisual = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() / 2));
+	actualTurnVisual = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() / 2 + 25));
 	actualTurnVisual->setLayer(2);
 	//actualTurnVisual->addComponent<SpriteRenderer>("black_box"); le queria poner un fondo negro pero que cojones es imposible centrarlo?
 
 	//guarrada MAXIMA:
-	auto fondo = Instantiate(actualTurnVisual->getComponent<Transform>()->getGlobalPos() + Vector2D(-100, -55));
+	auto fondo = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() / 2 - 100));
 	fondo->addComponent<SpriteRenderer>("black_box");
 	auto trasFondo = fondo->getComponent<Transform>(); // je ;)
-	trasFondo->getGlobalScale().set(2.0, 0.8);
+	trasFondo->getGlobalScale().set(2.0, 1.8);
 	fondo->setLayer(1);
 
 	const std::string jugador = actualState == TurnJ1 ? "Jugador 1" : "Jugador 2";
 	const SDL_Color color = actualState == TurnJ1 ? SDL_Color({102, 255, 102, 255}) : SDL_Color({255, 102, 255, 255});
 	actualTurnVisual->addComponent<TextComponent>("Turno de:\n" + jugador,
-	                                              "8bit_16pt", SDL_Color({255, 255, 255, 255}), 200,
+	                                              "8bit_32pt", SDL_Color({255, 255, 255, 255}), 200,
 	                                              TextComponent::BoxPivotPoint::CenterBot,
 	                                              TextComponent::TextAlignment::Center
 	)->setColor(color);
@@ -45,16 +45,16 @@ void MatchManager::initComponent()
 	/// AP VISUAL
 	const auto matchManager = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
 	const int apValueJ1 = matchManager->getActualActionPointsJ1();
-	actionPointsVisualJ1 = Instantiate(Vector2D(100, sdlutils().height() - 100));
-	actionPointsVisualJ1->addComponent<TextComponent>("Puntos de accion:\n\n" + std::to_string(apValueJ1),
-	                                                  "8bit_16pt", SDL_Color({255, 255, 0, 255}), 200,
+	actionPointsVisualJ1 = Instantiate(Vector2D(100, sdlutils().height() - 80));
+	actionPointsVisualJ1->addComponent<TextComponent>("Puntos de accion:\n" + std::to_string(apValueJ1),
+	                                                  "8bit_24pt", SDL_Color({255, 255, 0, 255}), 200,
 	                                                  TextComponent::BoxPivotPoint::CenterCenter,
 	                                                  TextComponent::TextAlignment::Center);
 
 	const int apValueJ2 = matchManager->getActualActionPointsJ2();
-	actionPointsVisualJ2 = Instantiate(Vector2D(100, 100));
-	actionPointsVisualJ2->addComponent<TextComponent>("Puntos de accion:\n\n" + std::to_string(apValueJ2),
-	                                                  "8bit_16pt", SDL_Color({255, 255, 0, 255}), 200,
+	actionPointsVisualJ2 = Instantiate(Vector2D(100, 80));
+	actionPointsVisualJ2->addComponent<TextComponent>("Puntos de accion:\n" + std::to_string(apValueJ2),
+	                                                  "8bit_24pt", SDL_Color({255, 255, 0, 255}), 200,
 	                                                  TextComponent::BoxPivotPoint::CenterCenter,
 	                                                  TextComponent::TextAlignment::Center);
 	actionPointsVisualJ1->setLayer(9);
@@ -138,12 +138,12 @@ void MatchManager::updateVisuals()
 	const int actionPointsValueJ1 = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
 	                                       getActualActionPointsJ1();
 	actionPointsVisualJ1->getComponent<TextComponent>()->setTxt(
-		"Puntos de accion:\n\n" + std::to_string(actionPointsValueJ1));
+		"Puntos de accion:\n" + std::to_string(actionPointsValueJ1));
 
 	const int actionPointsValueJ2 = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
 	                                       getActualActionPointsJ2();
 	actionPointsVisualJ2->getComponent<TextComponent>()->setTxt(
-		"Puntos de accion:\n\n" + std::to_string(actionPointsValueJ2));
+		"Puntos de accion:\n" + std::to_string(actionPointsValueJ2));
 }
 
 void MatchManager::setTurnText()
