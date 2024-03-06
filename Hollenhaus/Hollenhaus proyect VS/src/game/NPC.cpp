@@ -13,7 +13,7 @@ NPC::NPC(int scene)
 
 NPC::~NPC() {
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
-	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickUp(); });
+	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] {OnLeftClickUp(); });
 }
 
 void NPC::initComponent(){
