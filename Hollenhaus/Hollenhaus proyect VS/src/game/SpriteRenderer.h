@@ -41,6 +41,10 @@ private:
 	// Puntero a la textura
 	Texture* texture_ = nullptr;
 
+	// FLip bools
+	bool flipX_;
+	bool flipY_;
+
 
 };
 

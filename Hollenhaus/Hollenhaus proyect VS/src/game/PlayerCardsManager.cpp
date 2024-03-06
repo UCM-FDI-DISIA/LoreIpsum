@@ -26,6 +26,6 @@ void PlayerCardsManager::drawCard() {
 		)
 	{
 		hand_->addCard(deck_->drawCard()->getEntity());
-		TuVieja("AAAAAAAAAAAA");
+		//TuVieja("AAAAAAAAAAAA");
 	}
 }
