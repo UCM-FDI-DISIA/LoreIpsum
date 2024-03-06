@@ -3,7 +3,8 @@
 #include "../sdlutils/SDLUtils.h"
 #include "../sdlutils/InputHandler.h"
 
-constexpr uint8_t MOUSE_SIZE = 40;
+constexpr uint8_t MOUSE_SIZE = 40,
+					PADDING = 20;
 
 Mouse::Mouse(const std::string& image, int frames) : image_(&sdlutils().images().at(image))
 {
@@ -28,8 +29,6 @@ Mouse::Mouse(const std::string& image, int frames) : image_(&sdlutils().images()
 
 Mouse::~Mouse()
 {
-	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { changeFrame(1); });
-	ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { changeFrame(0); });
 }
 
 void Mouse::render() const
@@ -40,6 +39,8 @@ void Mouse::render() const
 void Mouse::update()
 {
 	SDL_GetMouseState(&destRect_.x, &destRect_.y);
+	destRect_.x -= PADDING;
+	destRect_.y -= PADDING;
 }
 
 void Mouse::changeFrame(int frame)
