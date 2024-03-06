@@ -3,7 +3,7 @@
 #include "../sdlutils/SDLUtils.h"
 #include "../sdlutils/InputHandler.h"
 
-constexpr uint8_t MOUSE_SIZE = 50;
+constexpr uint8_t MOUSE_SIZE = 40;
 
 Mouse::Mouse(const std::string& image, int frames) : image_(&sdlutils().images().at(image))
 {

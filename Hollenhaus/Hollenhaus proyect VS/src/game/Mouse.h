@@ -11,10 +11,10 @@ class Mouse
 	SDL_Rect srcRect_;
 
 	int frameWidth_;
-	void changeFrame(int);
 public:
 	Mouse(const std::string&, int);
 	~Mouse();
 	void render() const;
 	void update();
+	void changeFrame(int);
 };
