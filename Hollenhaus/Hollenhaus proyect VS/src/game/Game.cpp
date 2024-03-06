@@ -100,5 +100,4 @@ void Game::ChangeScene()
 void Game::HandleEvents()
 {
 	ih().refresh();	
-
 }

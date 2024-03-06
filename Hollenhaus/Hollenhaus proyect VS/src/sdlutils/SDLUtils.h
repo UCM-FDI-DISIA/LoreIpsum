@@ -223,6 +223,7 @@ public:
 		bool unblockable_;
 		std::vector<CardEffect> effects_;
 	};
+	void closeWindow();
 
 private:
 	SDLUtils();
@@ -231,7 +232,6 @@ private:
 			std::string filename);
 
 	void initWindow();
-	void closeWindow();
 	void initSDLExtensions(); // initialize resources (fonts, textures, audio, etc.)
 	void closeSDLExtensions(); // free resources the
 	void loadReasources(std::string filename); // load resources from the json file

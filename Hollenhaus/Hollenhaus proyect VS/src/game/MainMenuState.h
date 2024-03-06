@@ -17,7 +17,9 @@ public:
 	void onExit() override;
 
 private:
-
+	ecs::entity_t newGameButton;
+	ecs::entity_t exitButton;
+	void exitGame();
 	//Fondo
 	//Botones
 	//Transicion -> City
