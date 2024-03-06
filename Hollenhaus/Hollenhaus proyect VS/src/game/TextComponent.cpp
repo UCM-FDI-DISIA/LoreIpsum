@@ -9,7 +9,7 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 	boxPivotPoint_(boxPivotPoint),
 	textAlignment_(textAlignment)
 {
-	if (txt.empty()) txt_ = "11 ";
+	if (txt.empty()) txt_ = "";
 	else txt_ = txt;
 
 	createTexture();
@@ -32,7 +32,11 @@ void TextComponent::initComponent()
 
 void TextComponent::render() const
 {
-	text_->render(renderPos_.getX(), renderPos_.getY());
+
+	//PROVISIONAL
+	Vector2D aux  = GetRenderPosAcordingPivotPoint();
+
+	text_->render(aux.getX(), aux.getY());
 
 #ifdef _DEBUG
 	RenderDebugRect( 0, 0, 255, 255 );
