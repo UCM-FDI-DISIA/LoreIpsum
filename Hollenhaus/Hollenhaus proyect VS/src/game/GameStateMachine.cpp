@@ -53,8 +53,6 @@ GameStateMachine::GameStateMachine() {
 
 	// crea la data en el current state
 	currentState->setData(new Data());
-
-
 }
 
 // destructor
@@ -95,13 +93,17 @@ void GameStateMachine::changeState()
 	if (currentState != gameStack.top()) {
 		replaceState(currentState);
 	}
-
 }
 
 void GameStateMachine::pushState(GameState* state) {
 
 	gameStack.push(state);		//Colocamos el nuevo GameState
 	currentState->onEnter();	//Hacemos el onEnter del nuevo estado
+
+	/// GUARRADA MAXIMA PARA EL MOUSE: al cambiar de estados se borran los callbacks del ih()
+	///	y estropea el comportamiento del cursor, hay que mirar como evitar eso 
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { mouse_->changeFrame(1); });
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] {  mouse_->changeFrame(0); });
 }
 
 void GameStateMachine::replaceState(GameState* state) {
