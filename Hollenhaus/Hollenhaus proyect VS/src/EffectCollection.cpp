@@ -5,7 +5,7 @@ EffectCollection::EffectCollection()
 {
 }
 
-void EffectCollection::addAdj(Cell* cell, CellData::Direction direction, int add, bool ultimateArrow)
+void EffectCollection::addAdj(Cell* cell, Effects::Direction direction, int add, bool ultimateArrow)
 {
 	if (cell != nullptr)
 	{
@@ -25,7 +25,7 @@ void EffectCollection::addAdj(Cell* cell, CellData::Direction direction, int add
 	}
 }
 
-void EffectCollection::addSimpleAdj(Cell* cell, CellData::Direction direction, int add)
+void EffectCollection::addSimpleAdj(Cell* cell, Effects::Direction direction, int add)
 {
 	if (cell != nullptr)
 	{
@@ -36,7 +36,7 @@ void EffectCollection::addSimpleAdj(Cell* cell, CellData::Direction direction, i
 	}
 }
 
-void EffectCollection::addSuperAdj(Cell* cell, CellData::Direction direction, int add)
+void EffectCollection::addSuperAdj(Cell* cell, Effects::Direction direction, int add)
 {
 	if (cell != nullptr)
 	{
@@ -65,7 +65,7 @@ void EffectCollection::addCorner(Cell* cell, int add)
 	}
 }
 
-void EffectCollection::blockCard(Cell* cell, CellData::Direction direction)
+void EffectCollection::blockCard(Cell* cell, Effects::Direction direction)
 {
 	if (cell->getAdjacents()[direction] != nullptr
 		&& cell->getAdjacents()[direction]->getCard() != nullptr

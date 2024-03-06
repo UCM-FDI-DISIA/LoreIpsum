@@ -6,6 +6,7 @@
 #include <SDL.h>
 #include <iostream>
 #include "ecs.h"
+#include "Data.h"
 
 /// <summary>
 /// Clase GameState (o Manager) vista en clase
@@ -14,6 +15,8 @@ class Game;
 class GameState {
 
 protected:
+
+	static Data* data; // puntero a la data
 
 	//A lo mejor deja de hacer falta
 	//Game* game;			//Puntero al juego
@@ -31,7 +34,11 @@ public:
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
 
+	virtual void setWinner(int w) {};
+
+	// ---- setters ----
+	// settea la data
+	static void setData(Data* _data) { data = _data; }
 };
 
 #endif // !GameState_H_
-

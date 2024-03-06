@@ -90,10 +90,14 @@ private:
 	Uint32 wrapLenght_;
 	BoxPivotPoint boxPivotPoint_;
 	TextAlignment textAlignment_;
+	
+	// Atributo y método para calcular la posicion de renderizado según el punto de pivote de la caja de texto
+	Vector2D GetRenderPosAcordingPivotPoint() const;
+	Vector2D renderPos_;
 
 	void createTexture();
 
-
+	void RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const;
 
 };
 

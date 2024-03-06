@@ -26,8 +26,9 @@ private:
 	Vector2D mousePos;
 	Vector2D myPos; //posicion inicial de la entidad (fondo)
 
-	float scrollSpeed = 1.0f;
+	float scrollSpeed;
 	Vector2D movement;
+	float moveTo;
 
 	float halfScreen = sdlutils().width() / 2;
 

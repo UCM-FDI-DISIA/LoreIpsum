@@ -14,8 +14,11 @@
 #include "LuisState.h"
 #include "Manager.h"
 #include "PaigroState.h"
+#include "NievesState.h"
 #include "MovementState.h"
 #include "Mouse.h"
+#include "GameState.h"
+#include "MatchOverState.h"
 
 
 void GameStateMachine::init()
@@ -43,15 +46,18 @@ GameStateMachine::GameStateMachine() {
 	//boardState = new BoardState();
 	paigroState = new PaigroState();
 	samuState = new SamuState();
+	nievesState = new NievesState();
 	movementState = new MovementState();
+	matchOverState = new MatchOverState();
 
+	// Ponemos el estado actual
+	currentState = mainMenuState;//samuState;
 
-	//Ponemos el estado actual
-	currentState = samuState;
-
+	// crea la data en el current state
+	currentState->setData(new Data());
 }
 
-//destructor
+// destructor
 GameStateMachine::~GameStateMachine() {
 
 	//destruye uno a uno todos los estados apilados que queden
@@ -83,20 +89,23 @@ void GameStateMachine::Refresh()
 	gameStack.top()->refresh();
 }
 
-
 void GameStateMachine::changeState()
 {
 	//Solo queremos que lo haga de ser necesario
 	if (currentState != gameStack.top()) {
 		replaceState(currentState);
 	}
-	
 }
 
 void GameStateMachine::pushState(GameState* state) {
 
 	gameStack.push(state);		//Colocamos el nuevo GameState
 	currentState->onEnter();	//Hacemos el onEnter del nuevo estado
+
+	/// GUARRADA MAXIMA PARA EL MOUSE: al cambiar de estados se borran los callbacks del ih()
+	///	y estropea el comportamiento del cursor, hay que mirar como evitar eso 
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { mouse_->changeFrame(1); });
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] {  mouse_->changeFrame(0); });
 }
 
 void GameStateMachine::replaceState(GameState* state) {

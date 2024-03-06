@@ -9,6 +9,8 @@ MoveOnClick::MoveOnClick()
 
 MoveOnClick::~MoveOnClick()
 {
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	
 }
 
 void MoveOnClick::initComponent()
@@ -17,6 +19,7 @@ void MoveOnClick::initComponent()
 	myTransform = ent_->getComponent<Transform>();
 	
 	move = false;
+	movement.setX(myTransform->getGlobalPos().getX());
 
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 	
@@ -24,27 +27,33 @@ void MoveOnClick::initComponent()
 
 void MoveOnClick::update()
 {
-	if (move)
+	//parar cuando se centre
+	if (movement.getX() == moveTo)
 	{
-		//float a = mousePos.getX() - halfScreen;
-		//posx = posx - a;
+		move = false;
+	}
+	// parar cuando llegue a los límites de la ciudad por la derecha y se pulse en la derecha
+	else if (movement.getX() >= 0 && mousePos.getX() < halfScreen) 
+	{
+		move = false;
+	}
+	// parar cuando llegue a los límites de la ciudad por la izquierda y se pulse en la izquierda
+	else if (movement.getX() <= -2049 && mousePos.getX() >= halfScreen) 
+	{
+		move = false;
+	}
+	else if (move) 
+	{
 		if (mousePos.getX() >= halfScreen)
 		{
 			scrollSpeed--;
-			movement.setX(myPos.getX() + scrollSpeed);
 		}
 		else if (mousePos.getX() < halfScreen)
 		{
 			scrollSpeed++;
-			movement.setX(myPos.getX() + scrollSpeed);
 		}
-
+		movement.setX(myPos.getX() + scrollSpeed);
 		myTransform->setGlobalPos(movement);
-
-		if(myPos.getX() == myPos.getX() - halfScreen) //condicion que no va?¿¿?¿?¿?¿ ayuda
-		{
-			move = false;
-		}
 	}
 }
 
@@ -57,5 +66,7 @@ void MoveOnClick::OnLeftClickDown()
 	if (myBoxCollider->isCursorOver()){
 		move = true;
 		scrollSpeed = 1.0f;
+
+		moveTo = myTransform->getGlobalPos().getX() - (mousePos.getX() - halfScreen);
 	}
 }

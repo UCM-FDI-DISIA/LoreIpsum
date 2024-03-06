@@ -12,6 +12,7 @@ EndTurnButton::EndTurnButton(MatchManager::TurnState buttonPropietary) :
 
 EndTurnButton::~EndTurnButton()
 {
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { ClickButton(); });
 }
 
 void EndTurnButton::initComponent()
@@ -29,8 +30,15 @@ void EndTurnButton::update()
 
 void EndTurnButton::ClickButton()
 {
-	if (bc_->isCursorOver() && matchManager_->GetActualState() == buttonPropietary_) {
+	// version con propietario:
+	//if (bc_->isCursorOver() && matchManager_->setActualState() == buttonPropietary_) {
+	//	// Se pasa el turno al otro jugador
+	//	matchManager_->setActualState(buttonPropietary_ == MatchManager::TurnState::TurnJ1 ? MatchManager::TurnState::TurnJ2 : MatchManager::TurnState::TurnJ1);
+	//}
+
+	// version toggle
+	if (bc_->isCursorOver()) {
 		// Se pasa el turno al otro jugador
-		matchManager_->SetActualState(buttonPropietary_ == MatchManager::TurnState::TurnJ1 ? MatchManager::TurnState::TurnJ2 : MatchManager::TurnState::TurnJ1);
+		matchManager_->setActualState(matchManager_->getActualState() == MatchManager::TurnState::TurnJ1 ? MatchManager::TurnState::TurnJ2 : MatchManager::TurnState::TurnJ1);
 	}
 }

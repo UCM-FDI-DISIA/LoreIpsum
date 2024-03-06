@@ -6,12 +6,30 @@
 #include <functional>
 #include "GameState.h"
 #include "../utils/Singleton.h"
+#include "Data.h"
 class Mouse;
 
 namespace ecs
 {
 	class Manager;
 }
+
+namespace GameStates
+{
+	//Enum de estados del juego
+	enum game_states {
+		MAINMENU = 0,
+		CITY,
+		OFFICE,
+		SHOP,
+		BOARD,
+		PAIGRO,
+		SAMU,
+		NIEVES,
+		MATCHOVER
+	};
+}
+	
 
 class GameStateMachine : public Singleton<GameStateMachine>
 {
@@ -25,17 +43,6 @@ class GameStateMachine : public Singleton<GameStateMachine>
 
 	Mouse* mouse_;
 
-	//Enum de estados del juego
-	enum game_states {
-		MAINMENU = 0,
-		CITY,
-		OFFICE,
-		SHOP,
-		BOARD,
-		PAIGRO,
-		SAMU
-	};
-
 	//Creaci�n de los distintos estados del juego
 	GameState* currentState;
 	GameState* mainMenuState;
@@ -45,7 +52,9 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* boardState;
 	GameState* paigroState;
 	GameState* samuState;
+	GameState* nievesState;
 	GameState* movementState;
+	GameState* matchOverState;
 
 public:
 	ecs::Manager* getMngr()
@@ -73,36 +82,41 @@ public:
 
 		switch (state)
 		{
-		case MAINMENU:
+		case GameStates::MAINMENU:
 			currentState = mainMenuState;
 			break;
-		case CITY:
+		case GameStates::CITY:
 			currentState = cityState;
 			break;
-		case OFFICE:
+		case GameStates::OFFICE:
 			currentState = officeState;
 			break;
-		case SHOP:
+		case GameStates::SHOP:
 			currentState = shopState;
 			break;
-		case BOARD:
+		case GameStates::BOARD:
 			currentState = boardState;
 			break;
-		case PAIGRO:
+		case GameStates::PAIGRO:
 			currentState = paigroState;
 			break;
-		case SAMU:
+		case GameStates::SAMU:
 			currentState = samuState;
+			break;
+		case GameStates::NIEVES:
+			currentState = nievesState;
+			break;
+		case GameStates::MATCHOVER:
+			currentState = matchOverState;
 			break;
 		default:
 			break;
 		}
-
-		
 	};
 	bool Empty() const { return gameStack.empty(); }
-};
 
+	GameState* getCurrentState() { return currentState; }
+};
 
 // --------
 // forma de usar el singleton Manager

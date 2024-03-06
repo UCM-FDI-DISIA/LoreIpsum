@@ -2,7 +2,8 @@
 
 #include <algorithm>
 #include <random>
-
+#include "Manager.h"
+#include "MatchManager.h"
 
 void
 DeckComponent::shuffle() {
@@ -35,9 +36,12 @@ DeckComponent::addCardsOnBottom(std::list<Card*> h) {
 
 Card*
 DeckComponent::drawCard() {
-	Card* c = *deck.end();
+	auto it = deck.end();
+	--it;
+	Card* c = (*it);
 	removeCard(c);
-
+	mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->substractActionPoints(drawCardCost);
+	
 	return c;
 }
 

@@ -32,9 +32,9 @@ void Board::paintBoard()
 			// si la casilla no esta vacia
 			if (grid[i][j]->getCard() != nullptr)
 			{
-				if (grid[i][j]->getPlayer() == CellData::PLAYER1) // gestiona el color
+				if (grid[i][j]->getPlayer() == Players::PLAYER1) // gestiona el color
 					SetConsoleTextAttribute(hConsole, 33);
-				else if (grid[i][j]->getPlayer() == CellData::PLAYER2)
+				else if (grid[i][j]->getPlayer() == Players::PLAYER2)
 					SetConsoleTextAttribute(hConsole, 26);
 			}
 			std::cout << getCellInfo(grid[i][j]);
@@ -48,13 +48,13 @@ void Board::paintBoard()
 }
 
 /// Devuelve si una carta dada por las coordenadas i, j es controlada por el jugador 'player'
-bool Board::isPlayer(int i, int j, CellData::Owner player) const
+bool Board::isPlayer(int i, int j, Players::Owner player) const
 {
 	return grid[i][j]->getPlayer() == player;
 }
 
 ///  Juega una carta del jugador 'o' en la celda de posicion x, y del tablero
-bool Board::setCard(int x, int y, Card* c, CellData::Owner o)
+bool Board::setCard(int x, int y, Card* c, Players::Owner o)
 {
 	const auto cell = grid[x][y];
 	if (cell->getCard() != nullptr)
@@ -156,13 +156,13 @@ void Board::resetGrid()
 				adj[m] = nullptr;
 
 			if (j > 0)
-				adj[CellData::Up] = grid[i][j - 1];
+				adj[Effects::Up] = grid[i][j - 1];
 			if (i < n)
-				adj[CellData::Right] = grid[i + 1][j];
+				adj[Effects::Right] = grid[i + 1][j];
 			if (j < n)
-				adj[CellData::Down] = grid[i][j + 1];
+				adj[Effects::Down] = grid[i][j + 1];
 			if (i > 0)
-				adj[CellData::Left] = grid[i - 1][j];
+				adj[Effects::Left] = grid[i - 1][j];
 
 			grid[i][j]->setAdjacents(adj);
 		}

@@ -12,27 +12,45 @@ public:
         Finish
     };
 
-    MatchManager(int defaultActionPoints, TurnState turnStart);
+    MatchManager(int defaultActionPoints, TurnState turnStart, BoardManager* bm = nullptr);
 
     ~MatchManager();
 
     void initComponent() override;
-
     void update() override;
 
-    int GetActualActionPoints() const { return actualActionPoints; } 
-    void SubstactActualActionPoints(int pointsSubstracted) { actualActionPoints -= pointsSubstracted; }
+    void setActualState(TurnState newState);
+    void setBoard(BoardManager* value) { board_ = value; } 
+    int getActualActionPoints();
+    int getActualActionPointsJ1() const { return actualActionPointsJ1; }
+    int getActualActionPointsJ2() const { return actualActionPointsJ2; }
+    TurnState getActualState() const { return actualState; }
+    Players::Owner getPlayerTurn() const;
 
-    TurnState GetActualState() const { return actualState; }
-    void SetActualState(TurnState newState);
-
-    CellData::Owner GetPlayerTurn() const;
+    void setBoardManager(BoardManager* b) { board_ = b; }
+    void substractActionPoints(int);
+    void substractActionPointsJ1(int pointsSubstracted) { actualActionPointsJ1 -= pointsSubstracted; }
+    void substractActionPointsJ2(int pointsSubstracted) { actualActionPointsJ2 -= pointsSubstracted; }
+    
+    void updateVisuals();
 
 private:
+    BoardManager* board_ = nullptr;
+
     int defaultActionPoints;
-    int actualActionPoints;
+    int actualActionPointsJ1;
+    int actualActionPointsJ2;
 
     TurnState actualState;
+
+    // visuals
+    ecs::entity_t actualTurnVisual;
+	ecs::entity_t actionPointsVisualJ1;
+    ecs::entity_t actionPointsVisualJ2;
+
+	void setTurnText();
+    void resetActualActionPoints();
+    void setWinner();
 };
 
 

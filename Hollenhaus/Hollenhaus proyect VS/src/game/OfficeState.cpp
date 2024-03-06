@@ -42,18 +42,28 @@ void OfficeState::onEnter()
 	//------Boton para volver:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
-	exit->addComponent<SpriteRenderer>("boton");
+	exit->addComponent<SpriteRenderer>("boton_flecha");
 	exit->addComponent<BoxCollider>();
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
+
+	auto& sdl = *SDLUtils::instance();
+	sdl.soundEffects().at("deckbuilder_theme").play(-1);
+	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
+
+
 }
 
 void OfficeState::onExit()
 {
 	std::cout << "\nEXIT OFFICE.\n";
+
+	auto& sdl = *SDLUtils::instance();
+	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
+
 	GameStateMachine::instance()->getMngr()->Free();
 }
 

@@ -10,6 +10,7 @@
 #include "../Cell.h"
 #include "Card.h"
 #include "BoardManager.h"
+#include "HandComponent.h"
 #include "MatchManager.h"
 
 DragManager::DragManager()
@@ -18,6 +19,8 @@ DragManager::DragManager()
 
 DragManager::~DragManager()
 {
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
 void DragManager::initComponent()
@@ -49,8 +52,19 @@ void DragManager::OnLeftClickDown()
 
 	auto card = mouseRaycast(ecs::grp::CARDS);
 
+	const auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
+	const Players::Owner turnOwner = matchManager->getActualState() == MatchManager::TurnJ1
+		? Players::PLAYER1 : Players::PLAYER2;
+	Players::Owner cardOwner = Players::NULO;
+
+	if (card != nullptr
+		&& card->getComponent<Transform>() != nullptr
+		&& card->getComponent<Transform>()->getParent() != nullptr)
+		cardOwner = card->getComponent<Transform>()->getParent()->getEntity()->getComponent<HandComponent>()->getOwner();
 	if (card != nullptr && //si hay carta y esta en la mano
-		card->getComponent<CardStateManager>()->getState() == CardStateManager::ON_HAND) {
+		card->getComponent<CardStateManager>()->getState() == CardStateManager::ON_HAND && 
+		cardOwner == turnOwner)  // si es carta del propietario del turno actual
+	{
 
 		//se guarda la posicion/ transform de como estaba la carta
 		dragTransform = card->getComponent<Transform>();
@@ -76,10 +90,15 @@ void DragManager::OnLeftClickUp()
 		auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
 
 		//si tenemos una colision con el drop detector, cambiamos la posicion de la carta por la que guarde el drop
-		if (drop != nullptr  && !dropDetector->isOcuped() ) {
+		//también confirmamos que tenemos suficientes puntos de acción para lanzar la carta
+		if (drop != nullptr && 
+			!dropDetector->isOcuped() && 
+			dragTransform->getEntity()->getComponent<Card>()->getCost() <= mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getActualActionPoints()			)
+		{
 			dragTransform->setGlobalPos(dropDetector->getCardPos());
 			
 			dragTransform->getEntity()->getComponent<CardStateManager>()->setState(CardStateManager::ON_CELL);
+			dragTransform->getEntity()->getComponent<CardStateManager>()->putOnBoard();
 
 			dropDetector->setOcuped(true);
 
@@ -91,7 +110,7 @@ void DragManager::OnLeftClickUp()
 			int y = dropDetector->getBoardPos().getY();
 			Card* card = dragTransform->getEntity()->getComponent<Card>();
 			
-			CellData::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->GetPlayerTurn();
+			Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
 			boardManager->setCard(x, y, card, playerTurn);
 		}
 		else {//sino, devolvemos la carta a su posicion inicial

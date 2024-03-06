@@ -3,7 +3,11 @@
 #include "Transform.h"
 #include "SpriteRenderer.h"
 
-SpriteRenderer::SpriteRenderer(const std::string _textID) : textID_(_textID) {
+SpriteRenderer::SpriteRenderer(const std::string _textID) : 
+	textID_(_textID),
+	flipX_(false),
+	flipY_(false)
+{
 }
 
 // Para inicializar el componenete si es necesario.
@@ -26,9 +30,19 @@ void SpriteRenderer::setTexture(const std::string _textID) {
 // Para renderizar el estado
 void SpriteRenderer::render() const
 {
-	texture_->render(transform_->getGlobalPos().getX(),
-	                 transform_->getGlobalPos().getY(),
-	                 transform_->getGlobalScale().getX(),
-	                 transform_->getGlobalScale().getY(),
-	                 transform_->getGlobalAngle());
+	SDL_RendererFlip flip;
+	if (flipX_)
+		flip = SDL_FLIP_HORIZONTAL;
+	else if (flipY_)
+		flip = SDL_FLIP_VERTICAL;
+	else
+		flip = SDL_FLIP_NONE;
+
+
+		texture_->render(transform_->getGlobalPos().getX(),
+			transform_->getGlobalPos().getY(),
+			transform_->getGlobalScale().getX(),
+			transform_->getGlobalScale().getY(),
+			transform_->getGlobalAngle(),
+			flip);
 };

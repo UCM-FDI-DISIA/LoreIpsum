@@ -41,17 +41,24 @@ void ShopState::onEnter()
 	//------Boton para volver:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
-	exit->addComponent<SpriteRenderer>("boton");
+	exit->addComponent<SpriteRenderer>("boton_flecha");
 	exit->addComponent<BoxCollider>();
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
+
+	auto& sdl = *SDLUtils::instance();
+	sdl.soundEffects().at("shoptheme").play(-1);
+	sdl.soundEffects().at("shoptheme").setChannelVolume(10);
 }
 
 void ShopState::onExit() 
 {
 	std::cout << "\nEXIT SHOP.\n";
+
+	auto& sdl = *SDLUtils::instance();
+	sdl.soundEffects().at("shoptheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
 }

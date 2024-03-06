@@ -16,7 +16,11 @@ Game::Game()
 	
 	auto& sdl = *SDLUtils::instance();
 	sdl.presentRenderer();
+
+#ifdef _DEBUG
+	std::cout << "Mapping fullscreen toggle to F11 key" << std::endl;
 	ih().insertFunction(ih().KEY_F11_DOWN, [] { sdlutils().toggleFullScreen(); });
+#endif
 }
 
 Game::~Game()
@@ -68,6 +72,11 @@ void Game::Run()
 			SDL_Delay(FRAME_RATE - frameTime);
 		}
 	}
+
+	while(!gameStateMachine->Empty()) {
+		gameStateMachine->popState();
+	}
+
 }
 
 
@@ -91,5 +100,4 @@ void Game::ChangeScene()
 void Game::HandleEvents()
 {
 	ih().refresh();	
-
 }

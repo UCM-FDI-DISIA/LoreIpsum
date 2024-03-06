@@ -25,6 +25,7 @@ void Manager::Free() {
             setAlive(e, false);
         }
     }
+    ordenRendering.clear();
     refresh();
 }
 
@@ -43,12 +44,14 @@ void Manager::refresh()
                     return false;
                 }
                 else {
+                    //DeleteEntityMap(e->getLayer(), e);
                     delete e;
                     return true;
                 }
                 }),
             ents_.end());
     }
+
 }
 
 }

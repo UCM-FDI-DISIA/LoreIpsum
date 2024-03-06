@@ -1,42 +1,47 @@
-#include "HandComponent.h"
+﻿#include "HandComponent.h"
 #include "Manager.h"
 #include "Entity.h"
 #include "SpriteRenderer.h"
+#include "CardStateManager.h"
 
 HandComponent::HandComponent() :
-	transform_()
+	transform_(), lastCardAdded_(nullptr)
 {
 
-}/*
+}
 HandComponent::~HandComponent() {
 
 }
-*/
+
 void HandComponent::initComponent() {
 
 	transform_ = ent_->getComponent<Transform>();
 	transform_->getGlobalPos().set(400, 400);
 }
 
-void HandComponent::update() {
+void HandComponent::addCard(ecs::entity_t card) {
 
+	auto cardCardStateManager = card->getComponent<CardStateManager>();
+	cardCardStateManager->setState(CardStateManager::ON_HAND);
 
-}
-
-
-bool HandComponent::addCard(ecs::entity_t card) {
-
-	if (cardsInHand_.size() < MAX_HAND_CARDS)
+	if (owner_ == Players::PLAYER2)
 	{
-
-		card->getComponent<Transform>()->addParent(transform_);
-		// Settea tamano de carta para anadir cartas directamente desde la factoria
-		//card->getComponent<Transform>()->getRelativeScale().set(.25, .25);
-		cardsInHand_.push_back(card);
-		refreshPositions();
-		return true;
+		card->getComponent<Transform>()->setGlobalAngle(180.0f);
+		//for (card->getComponent<Transform>().getChildren()) TODO: girar cada elemento dentro, pero como un transform no conoce a sus hijos....
 	}
-	return false;
+
+	card->getComponent<Transform>()->addParent(transform_);
+	card->getComponent<Transform>()->getRelativeScale().set(cardScale_, cardScale_);
+
+	/*if (lastCardAdded_ != nullptr)
+		card->setLayer(lastCardAdded_->getLayer() + 3); COSITAS DEL ORDER IN LAYER :D (JIMBO)
+	card->getComponent<Transform>()->increaseLayer();*/
+
+	// Settea tamano de carta para anadir cartas directamente desde la factoria
+	cardsInHand_.push_back(card);
+	//lastCardAdded_ = card; PARA ORDER IN LAYER
+	//card->setLayer(cardsInHand_.size());
+	refreshPositions();
 }
 
 void HandComponent::removeCard(ecs::entity_t card) {
@@ -55,22 +60,34 @@ void HandComponent::removeCard(ecs::entity_t card) {
 		}
 		else
 		{
+			card->getComponent<Transform>()->getGlobalScale().set(cardScale_, cardScale_);
 			cardsInHand_[i]->getComponent<Transform>()->removeParent();
 		}
 	}
 
 	cardsInHand_.clear();
 	cardsInHand_ = auxVec;
+
+	refreshPositions();
 }
 
 void HandComponent::refreshPositions() {
+	std::vector<Vector2D>positions;
+
+	const int sign = downwards_ ? 1 : -1;
 
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
-		int x = (i-cardsInHand_.size()/2) * CARD_SEPARATION;
+		// y = (x^2)/CARD_SEPARATION
+		int x = ((i - cardsInHand_.size() / 2) * CARD_SEPARATION);
+
+		positions.push_back(Vector2D(x, pow(x, 2) / (ARCH_AMPLITUDE * sign)));
+	}
+
+	for (int i = 0; i < cardsInHand_.size(); i++)
+	{
 
 		// Ecuacion de la parabola que forma las cartas
-		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(
-			x, pow(x,2)/(ARCH_AMPLITUDE));
+		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(positions[i]);
 	}
 }

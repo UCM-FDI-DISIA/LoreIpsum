@@ -27,7 +27,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	cardTransform->getGlobalScale().set(cardScale, cardScale);
 
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
-	cardCardStateManager->setState(CardStateManager::ON_HAND);
+	cardCardStateManager->setState(CardStateManager::ON_DECK);
 
 	const auto cardComp = card->addComponent<Card>(
 		cost, value, sprite, unblockable
@@ -35,7 +35,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 
 
 	/// Hemos creado getEffect para evitar:
-	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), CellData::Down, 20, false);}
+	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), Effects::Down, 20, false);}
 	/// Al metodo createCard se le deberia pasar el array de effects
 	///	y a continuacion iterar sobre el, anyadiendole a la carta cada
 	///	efecto tal que:
@@ -44,7 +44,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 			Effects::Flecha,
 			cardComp,
 			20,
-			CellData::Down
+			Effects::Down
 		)
 	);*/
 
@@ -57,7 +57,7 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 					e.type(),
 					cardComp,
 					e.value(),
-					CellData::None
+					Effects::None
 				)
 			);
 		else for (const auto d : e.directions())
@@ -154,7 +154,7 @@ ecs::entity_t CardFactory_v0::createBoard()
 }
 */
 
-void CardFactory_v0::createHand()
+ecs::entity_t CardFactory_v0::createHand()
 {
 	int initY = 470;
 	int initX = 270;
@@ -165,7 +165,7 @@ void CardFactory_v0::createHand()
 	for (auto c : cards) esto no funciona porque no esta definido begin y end
 		size++;*/
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < cardsOnHand; i++)
 	{ 
 		auto card = sdlutils().cards().at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		createCard(
@@ -184,6 +184,14 @@ void CardFactory_v0::createHand()
 	createCard(Vector2D(initX + offSetX, initY),3,3,sprite, false)->setLayer(1);
 	createCard(Vector2D(initX + offSetX*2, initY), 4, 4, sprite, false)->setLayer(1);
 	createCard(Vector2D(initX + offSetX*3, initY), 5, 5, sprite, false)->setLayer(2);*/
+
+	ecs::entity_t hand = Instantiate();
+
+	hand->addComponent<Transform>();
+	Vector2D deckPos(initX, initY);
+	hand->getComponent<Transform>()->setGlobalPos(deckPos);
+	//hand->addComponent<HandComponent>();
+	return hand;
 }
 
 void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::CardEffect>& effects)
@@ -195,7 +203,7 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 	int offSetY = 15;
 	int nCols = 2;
 	int layer = 10;
-	float scale = effects.size() == 1 ? 0.078 : 0.045;
+	float scale = effects.size() == 1 ? 0.075 : 0.045;
 
 	ecs::entity_t effectImage;
 	ecs::entity_t valueChange;
@@ -228,11 +236,29 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 		
 		if (effects[i].type() >= 2 && effects[i].type() <= 4) {
 			
-			CellData::Direction dir = effects[i].directions()[0];
+			Effects::Direction dir = effects[i].directions()[0];
 			effectImage->getComponent<Transform>()->getGlobalAngle() = 
-				 dir == CellData::Right ?  90.f :  dir == CellData::Down ? 180.f : dir == CellData::Left ? 270 : 0;
+				 dir == Effects::Right ?  90.f :  dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
 		}
-		
+
+
+		/// WIP: flecha de la habilidad bloqueo
+		///	No borrar de momento
+		//if (effects[i].type() == Effects::Block)
+		//{ // ha de instanciar otra imagen flecha apuntando hacia donde bloquea
+		//	auto arrowImage = Instantiate(Vector2D(0, 0));
+		//	arrowImage->addComponent<SpriteRenderer>(efectsIdsNames[Effects::Flecha]);
+
+		//	arrowImage->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
+		//	arrowImage->getComponent<Transform>()->getRelativeScale().set(scale, scale);
+		//	Vector2D gpos(0, 0);
+		//	arrowImage->getComponent<Transform>()->getRelativePos().set(gpos);
+		//	arrowImage->setLayer(layer);
+
+		//	Effects::Direction dir = effects[i].directions()[0];
+		//	arrowImage->getComponent<Transform>()->getGlobalAngle() = 
+		//		 dir == Effects::Right ?  90.f :  dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
+		//}
 
 
 		if (effects[i].value() != 0) {

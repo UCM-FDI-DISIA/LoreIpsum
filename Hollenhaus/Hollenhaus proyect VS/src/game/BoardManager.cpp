@@ -8,6 +8,8 @@
 #include "CellManager.h"
 #include "TextComponent.h"
 #include "../Cell.h"
+#include "MatchManager.h"
+
 
 BoardManager::BoardManager()
 {
@@ -29,6 +31,7 @@ void BoardManager::initComponent()
 
 void BoardManager::update()
 {
+	
 }
 
 bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
@@ -47,7 +50,7 @@ bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
 
 bool BoardManager::isFull() const
 {
-	return cardsOnBoard == size * size; // recordad que os matar�
+	return cardsOnBoard == size * size; // recordad que os matare
 }
 
 
@@ -62,10 +65,7 @@ std::list<SDLEventCallback> BoardManager::getEffects(Cell* cell) const
 	return cell->getEffects();
 }
 
-
-
-
-bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
+bool BoardManager::setCard(int x, int y, Card* c, Players::Owner o)
 {
 	const auto cell = _board[x][y]->getComponent<Cell>();
 	if (cell->getCard() != nullptr)
@@ -79,8 +79,18 @@ bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 	for (const auto& e : c->getEffects())
 		cell->addEffect(e);
 
+
+	auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
+	//Gasta los puntos de accion correspondientes
+	matchManager->substractActionPoints(c->getCost());
+
+	// aumenta el contador al aniadir carta al tablero
+	cardsOnBoard++;
+
 	/// reaplica todos los efectos
 	applyAllEffects();
+	//matchManager->updateVisuals();
+	updateScore();
 	return true;
 }
 
@@ -97,16 +107,16 @@ void BoardManager::updateScore()
 		for (int i = 0; i < _board[j].size(); i++)
 		{
 			//si es del jugador 1
-			if (_board[i][j]->getComponent<Cell>()->getOwner() == CellData::PLAYER1)
+			if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::PLAYER1)
 				pPlayer1 += _board[i][j]->getComponent<Cell>()->getTotalValue();
 			//si es el jugador 2 (normalmente npc)
-			else if (_board[i][j]->getComponent<Cell>()->getOwner() == CellData::PLAYER2)
+			else if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::PLAYER2)
 				pPlayer2 += _board[i][j]->getComponent<Cell>()->getTotalValue();
 		}
 	}
 
-	p1Text->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer1));
-	p2Text->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
+	scoreVisualJ1->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer1));
+	scoreVisualJ2->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
 }
 
 void BoardManager::applyAllEffects() const
@@ -121,7 +131,6 @@ void BoardManager::applyAllEffects() const
 			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
 				_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
 }
-
 
 void BoardManager::initBoard()
 {
@@ -165,13 +174,13 @@ void BoardManager::initBoard()
 				adj[m] = nullptr;
 
 			if (j > 0)
-				adj[CellData::Up] = _board[i][j - 1]->getComponent<Cell>();
+				adj[Effects::Up] = _board[i][j - 1]->getComponent<Cell>();
 			if (i < n)
-				adj[CellData::Right] = _board[i + 1][j]->getComponent<Cell>();
+				adj[Effects::Right] = _board[i + 1][j]->getComponent<Cell>();
 			if (j < n)
-				adj[CellData::Down] = _board[i][j + 1]->getComponent<Cell>();
+				adj[Effects::Down] = _board[i][j + 1]->getComponent<Cell>();
 			if (i > 0)
-				adj[CellData::Left] = _board[i - 1][j]->getComponent<Cell>();
+				adj[Effects::Left] = _board[i - 1][j]->getComponent<Cell>();
 
 			cell->setAdjacents(adj);
 		}
@@ -179,9 +188,10 @@ void BoardManager::initBoard()
 
 
 	// Textos de puntuacion (WIP)
-	p1Text = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() * 2 / 3));
-	p2Text = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() / 3));
-	p1Text->addComponent<TextComponent>("", "8bit_32pt", SDL_Color({ 0, 0, 255, 255 }), 150, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-	p2Text->addComponent<TextComponent>("", "8bit_32pt", SDL_Color({ 255, 0, 0, 255 }), 150, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-	// haria falta un setSize o algo asi, que se ve pequenito
+	scoreVisualJ1 = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() * 2 / 3 - 50));
+	scoreVisualJ2 = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() / 3 + 25));
+	scoreVisualJ1->addComponent<TextComponent>("0", "8bit_48pt", SDL_Color({ 102, 255, 102, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	scoreVisualJ2->addComponent<TextComponent>("0", "8bit_48pt", SDL_Color({ 255, 102, 255, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	scoreVisualJ1->setLayer(9);
+	scoreVisualJ2->setLayer(9);
 }

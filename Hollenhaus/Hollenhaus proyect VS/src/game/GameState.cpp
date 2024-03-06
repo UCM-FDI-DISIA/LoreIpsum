@@ -6,6 +6,9 @@
 #include "../sdlutils/InputHandler.h"
 #include "GameStateMachine.h"
 
+// DECLARAR LAS VARIABLES ESTATICAS
+Data* GameState::data = nullptr;
+
 //GameState::GameState()
 //{
 //
@@ -52,4 +55,3 @@ void GameState::render() const
 {
     GameStateMachine::instance()->getMngr()->render();
 }
-

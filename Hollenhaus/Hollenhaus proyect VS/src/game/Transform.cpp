@@ -1,10 +1,18 @@
 #include "Transform.h"
+#include "Manager.h"
 
 void
 Transform::update() {
 	if (isChild_) {
-		globalAngle_ += parent_->globalAngle_;
 		globalScale_ = relativeScale_ * parent_->globalScale_.magnitude();
+	}
+}
+
+void 
+Transform::increaseLayer() {
+	ent_->setLayer(parent_->ent_->getLayer() + layerToIncrease);
+	for (auto it = children_.begin(); it != children_.end(); ++it) {
+		(*it)->increaseLayer();
 	}
 }
 
@@ -12,6 +20,7 @@ void
 Transform::addParent(Transform* p) {
 	if (!isChild_) {
 		parent_ = p;
+		parent_->addChild(this);
 		relativePos_ = globalPos_ - parent_->getGlobalPos(); // Pos relativa al padre
 		isChild_ = true;
 	}
@@ -20,10 +29,16 @@ Transform::addParent(Transform* p) {
 void
 Transform::removeParent() {
 	if (isChild_) {
+		parent_->removeChild(this);
 		parent_ = nullptr;
 		relativePos_ = Vector2D(0, 0);
 		isChild_ = false;
 	}
+}
+
+std::list<Transform*> 
+Transform::getChildren() {
+	return children_;
 }
 
 Vector2D 
@@ -66,8 +81,15 @@ Transform::setGlobalPos(Vector2D& pos) {
 		relativePos_ = globalPos_ - parent_->getGlobalPos();
 }
 
-Transform* Transform::getParent()
+void Transform::setGlobalAngle(float angle)
 {
+	globalAngle_ = angle;
+	if (isChild_)
+		relativeAngle_ = globalAngle_ - parent_->globalAngle_;
+}
+
+Transform* 
+Transform::getParent() {
 	return parent_;
 }
 
@@ -99,4 +121,14 @@ Transform::operator=(const Transform& t) {
 	vel_ = t.vel_;
 
 	return *this;
+}
+
+void 
+Transform::addChild(Transform* c) {
+	children_.emplace_back(c);
+}
+
+void 
+Transform::removeChild(Transform* c) {
+	children_.remove(c);
 }

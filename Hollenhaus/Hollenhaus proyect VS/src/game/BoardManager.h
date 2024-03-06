@@ -27,7 +27,7 @@ public:
     void updateScore();
 
     /// Setters
-    bool setCard(int x, int y, Card* c, CellData::Owner o); // true si pudo poner carta (no habia otra ya antes)
+    bool setCard(int x, int y, Card* c, Players::Owner o); // true si pudo poner carta (no habia otra ya antes)
 
     /// Getters
     int getPlayer1Points() const { return pPlayer1; }
@@ -52,9 +52,11 @@ private:
 
     /// match manager
     void applyAllEffects() const;
+    void updateVisuals();
     int pPlayer1 = 0;
     int pPlayer2 = 0;
-    ecs::entity_t p1Text;
-    ecs::entity_t p2Text;
+    ecs::entity_t scoreVisualJ1;
+    ecs::entity_t scoreVisualJ2;
+
 };
 

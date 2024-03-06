@@ -65,6 +65,10 @@ void SDLUtils::initWindow() {
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	assert(renderer_ != nullptr);
 
+#if !(_DEBUG)
+	toggleFullScreen();
+#endif
+
 	// hide cursor by default
 	//hideCursor();
 
@@ -318,7 +322,7 @@ void SDLUtils::loadReasources(std::string filename) {
 
 						/// Por cada efecto, puede haber un array de direcciones
 						///	(en caso de que no haya direcciones, el vector es vacio y punto pelota)
-						std::vector<CellData::Direction> directions;
+						std::vector<Effects::Direction> directions;
 						loadDirections(effObj, directions);
 
 						effects.emplace_back(type, effValue, directions);
@@ -339,7 +343,7 @@ void SDLUtils::loadReasources(std::string filename) {
 	}
 }
 
-std::vector<CellData::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::vector<CellData::Direction>& directions)
+std::vector<Effects::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::vector<Effects::Direction>& directions)
 {
 	if (jo["directions"] == nullptr) return directions; // si no tiene direcciones, vuelve
 
@@ -355,13 +359,13 @@ std::vector<CellData::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::
 		// soy tonti y no se pueden usar switchs con strings </3
 		// esto deberia ir en otro lado siiiii no me mires estoy probando
 		if		(dir == "up"	|| dir == "arriba")
-			directions.push_back(CellData::Up);
+			directions.push_back(Effects::Up);
 		else if (dir == "right" || dir == "derecha")
-			directions.push_back(CellData::Right);
+			directions.push_back(Effects::Right);
 		else if (dir == "down"	|| dir == "abajo")
-			directions.push_back(CellData::Down);
+			directions.push_back(Effects::Down);
 		else if (dir == "left"	|| dir == "izquierda")
-			directions.push_back(CellData::Left);
+			directions.push_back(Effects::Left);
 	}
 
 	return directions;

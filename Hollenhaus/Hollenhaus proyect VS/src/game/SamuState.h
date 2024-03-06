@@ -24,5 +24,6 @@ public:
 private:
     ecs::entity_t card;
     ecs::entity_t board;
+
 };
 
