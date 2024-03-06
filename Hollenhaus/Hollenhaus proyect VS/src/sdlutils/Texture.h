@@ -87,9 +87,9 @@ public:
 
 	// renders the complete texture at a destination rectangle (dest),
 	// with rotation
-	inline void render(const SDL_Rect& dest, float rotation, SDL_RendererFlip flip = SDL_FLIP_NONE) {
+	inline void render(const SDL_Rect& dest, float rotation) {
 		SDL_Rect src = { 0, 0, width_, height_ };
-		render(src, dest, rotation,nullptr, flip);
+		render(src, dest, rotation);
 	}
 
 	/// <summary>
@@ -100,9 +100,10 @@ public:
 	/// <param name="mulScaleX">escala x</param>
 	/// <param name="mulScaleY">escala y</param>
 	/// <param name="angle">Angle</param>
-	inline void render(int x, int y, float mulScaleX, float mulScaleY, float angle) {
+	inline void render(int x, int y, float mulScaleX, float mulScaleY, float angle, SDL_RendererFlip flip = SDL_FLIP_NONE) {
 		SDL_Rect dest = { x, y, width_ * mulScaleX, height_ * mulScaleY };
-		render(dest, angle);
+		SDL_Rect src = { 0, 0, width_, height_ };
+		render(src, dest, angle, nullptr, flip);
 	}
 
 private:

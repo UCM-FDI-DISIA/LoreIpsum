@@ -47,6 +47,7 @@ void CityState::onEnter()
 	fantasmiko->addComponent<SpriteRenderer>("fantasma");
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(0.15f, 0.15f);
+	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(1);
 
 	//------NPCs que demomento son Caitlyns:
