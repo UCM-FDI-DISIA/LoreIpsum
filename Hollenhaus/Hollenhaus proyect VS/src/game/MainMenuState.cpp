@@ -45,12 +45,12 @@ void MainMenuState::onEnter()
 	//ecs::entity_t titleText = Instantiate(Vector2D(400, 50));
 	//titleText->addComponent<TextComponent>("HÖLLENHAUS", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 450, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para un nuevo juego.
-	ecs::entity_t newGameText = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 100));
-	newGameText->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_32pt", ROJO_HOLLENHAUS, 300, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Right);
-	newGameText->addComponent<BoxCollider>();
-	newGameText->getComponent<BoxCollider>()->setSize(Vector2D(200,40));
-	newGameText->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
-	newGameText->addComponent<NPC>(1); // Esto es graciosisimo
+	newGameButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 120));
+	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_32pt", ROJO_HOLLENHAUS, 300, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Right);
+	newGameButton->addComponent<BoxCollider>();
+	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300,40));
+	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
+	newGameButton->addComponent<NPC>(1); // Esto es graciosisimo
 
 	//----Texto para continuar partida.
 	//ecs::entity_t continueText = Instantiate(Vector2D(400, 250));
@@ -59,8 +59,12 @@ void MainMenuState::onEnter()
 	//ecs::entity_t optionsText = Instantiate(Vector2D(400, 300));
 	//optionsText->addComponent<TextComponent>("OPTIONS", "8bit_24pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para salir.
-	ecs::entity_t exitText = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 50));
-	exitText->addComponent<TextComponent>("SALIR", "8bit_32pt", ROJO_HOLLENHAUS, 300, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Right);
+	exitButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 70));
+	exitButton->addComponent<TextComponent>("SALIR", "8bit_32pt", ROJO_HOLLENHAUS, 300, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Right);
+	exitButton->addComponent<BoxCollider>();
+	exitButton->getComponent<BoxCollider>()->setSize(Vector2D(100,32));
+	exitButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(50, -16));
+	ih().insertFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
 
 	sdlutils().soundEffects().at("menutheme").play(-1);
 	sdlutils().soundEffects().at("menutheme").setChannelVolume(10);
@@ -68,7 +72,16 @@ void MainMenuState::onEnter()
 
 void MainMenuState::onExit() {
 	std::cout << "\nEXIT MENU.\n";
+	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
 	sdlutils().soundEffects().at("menutheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
+}
+
+void MainMenuState::exitGame()
+{
+	if (exitButton->getComponent<BoxCollider>()->isCursorOver())
+	{
+		sdlutils().closeWindow();
+	}
 }
 

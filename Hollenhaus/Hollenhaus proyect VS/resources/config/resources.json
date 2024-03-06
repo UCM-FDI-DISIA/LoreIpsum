@@ -175,7 +175,7 @@
         {"id": "unblockable",     "file": "resources/images/ef_unblockable.png" },
         {"id": "tiendafondo",     "file": "resources/images/provtienda.png" },
         {"id": "oficinafondo",    "file": "resources/images/provoficina.png"  },
-        {"id": "fantasma",        "file": "resources/images/fantasmiko.png"  },
+        {"id": "fantasma",        "file": "resources/images/fantasma.png"  },
         {"id": "main_menu_bg",    "file": "resources/images/main_menu.png"  },
         {"id": "boton_nueva_partida", "file": "resources/images/boton_nueva_partida.png"  },
         {"id": "boton_salir",     "file": "resources/images/boton_salir.png"  },
