@@ -1,4 +1,5 @@
-﻿#include "Mouse.h"
+﻿#include "pch.h"
+#include "Mouse.h"
 #include "../sdlutils/Texture.h"
 #include "../sdlutils/SDLUtils.h"
 #include "../sdlutils/InputHandler.h"

@@ -1,4 +1,5 @@
-﻿#include "HandComponent.h"
+﻿#include "pch.h"
+#include "HandComponent.h"
 #include "Manager.h"
 #include "Entity.h"
 #include "SpriteRenderer.h"

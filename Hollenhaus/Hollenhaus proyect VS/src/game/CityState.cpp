@@ -1,6 +1,10 @@
+#include "pch.h"
 #include "CityState.h"
 #include "TextComponent.h"
 #include "MoveOnClick.h"
+
+#include "NPC.h"
+#include "Manager.h"
 
 CityState::CityState()
 {

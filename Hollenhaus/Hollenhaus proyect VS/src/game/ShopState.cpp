@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "ShopState.h"
 #include "Manager.h"
 #include "TextComponent.h"

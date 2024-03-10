@@ -1,5 +1,7 @@
 #include "Cell.h"
 
+
+
 Cell::Cell() : active(true), corner(false), center(false), totalValue(0), player(Players::NONE), card(nullptr)
 {
 

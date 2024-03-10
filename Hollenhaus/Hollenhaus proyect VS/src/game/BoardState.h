@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 #include "GameState.h"
 #include "Board.h"
 #include "../EffectCollection.h"

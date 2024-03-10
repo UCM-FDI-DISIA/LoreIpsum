@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "BoardFactory_v0.h"
 
 #include "Manager.h"

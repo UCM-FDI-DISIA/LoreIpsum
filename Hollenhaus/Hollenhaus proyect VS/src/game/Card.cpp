@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Card.h"
 #include <string>
 #include "../Cell.h"

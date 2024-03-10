@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "CardFactory_v1.h"
 #include "Manager.h"
 

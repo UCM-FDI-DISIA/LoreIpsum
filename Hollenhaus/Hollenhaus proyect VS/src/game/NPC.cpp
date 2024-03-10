@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "NPC.h"
 #include "Entity.h"
 #include "Manager.h"

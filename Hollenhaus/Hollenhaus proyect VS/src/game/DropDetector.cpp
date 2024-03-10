@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "DropDetector.h"
 
 DropDetector::DropDetector()

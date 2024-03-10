@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "TextComponent.h"
 #include "Transform.h"
 

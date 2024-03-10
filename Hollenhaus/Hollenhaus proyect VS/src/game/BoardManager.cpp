@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "BoardManager.h"
 #include "GameStateMachine.h"
 #include "Manager.h"

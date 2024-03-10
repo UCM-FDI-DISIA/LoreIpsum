@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "CardStateManager.h"
 #include "HandComponent.h"
 #include "Manager.h"

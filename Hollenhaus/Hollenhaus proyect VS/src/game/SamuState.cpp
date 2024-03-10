@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "SamuState.h"
 #include <SDL.h>
 

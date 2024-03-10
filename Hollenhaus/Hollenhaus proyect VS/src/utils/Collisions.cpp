@@ -1,5 +1,4 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
-
 #include "Collisions.h"
 
 bool Collisions::collidesWithRotation(const Vector2D &o1Pos, float o1Width,

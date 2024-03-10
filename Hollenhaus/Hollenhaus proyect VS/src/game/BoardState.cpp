@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "BoardState.h"
 #include "../sdlutils/InputHandler.h"
 #include <algorithm>

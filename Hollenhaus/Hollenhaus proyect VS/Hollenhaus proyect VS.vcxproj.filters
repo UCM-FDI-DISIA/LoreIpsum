@@ -234,6 +234,7 @@
     <ClCompile Include="src\game\NievesState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -464,5 +465,6 @@
     <ClInclude Include="src\game\EndTurnButton.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\pch.h" />
   </ItemGroup>
 </Project>

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "DeckComponent.h"
 
 #include <algorithm>

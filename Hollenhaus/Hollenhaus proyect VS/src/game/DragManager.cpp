@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "DragManager.h"
 #include "../sdlutils/InputHandler.h"
 #include "Transform.h"

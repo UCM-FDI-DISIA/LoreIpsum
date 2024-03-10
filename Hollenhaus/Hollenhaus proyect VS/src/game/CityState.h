@@ -1,7 +1,6 @@
+#include "pch.h"
+
 #include "GameState.h"
-#include  "Entity.h"
-#include "Manager.h"
-#include "NPC.h"
 class CityState : public GameState
 {
 public:
