@@ -52,22 +52,27 @@ ecs::entity_t Factory::createBoard()
 	return boardFactory->createBoard();
 }
 
-ecs::entity_t Factory::createVisual_NextTurnButton()
+ecs::entity_t Factory::createVisual_NextTurnButton(int posX, int posY)
 {
-	return matchStateUIFactory->createVisual_NextTurnButton();
+	return matchStateUIFactory->createVisual_NextTurnButton(posX, posY);
 }
 
-ecs::entity_t Factory::createVisual_ActionPointsCounter()
+ecs::entity_t Factory::createVisual_ActionPointsCounter(int posX, int posY, SDL_Color color)
 {
-	return matchStateUIFactory->createVisual_ActionPointsCounter();
+	return matchStateUIFactory->createVisual_ActionPointsCounter(posX, posY, color);
 }
 
-ecs::entity_t Factory::createVisual_ScoreCounter()
+ecs::entity_t Factory::createVisual_ScoreCounter(int posX, int posY)
 {
-	return matchStateUIFactory->createVisual_ScoreCounter();
+	return matchStateUIFactory->createVisual_ScoreCounter(posX, posY);
 }
 
-ecs::entity_t Factory::createVisual_PlayerTurnIndicator()
+ecs::entity_t Factory::createVisual_PlayerTurnIndicator(int posX, int posY)
 {
-	return matchStateUIFactory->createVisual_PlayerTurnIndicator();
+	return matchStateUIFactory->createVisual_PlayerTurnIndicator(posX, posY);
+}
+
+ecs::entity_t Factory::createVisual_BackgroundBlackBox(int posX, int posY, float xPixelsSize, float yPixelsSize)
+{
+	return  matchStateUIFactory->createVisual_BackgroundBlackBox(posX, posY, xPixelsSize, yPixelsSize);
 }
