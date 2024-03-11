@@ -1,19 +1,14 @@
 #include "pch.h"
 #include "CardFactory_v1.h"
 #include "Manager.h"
-
 #include "Transform.h"
 #include "SpriteRenderer.h"
 #include "BoxCollider.h"
 #include "DeckComponent.h"
 #include "PlayerCardsManager.h"
-#include "Drag.h"
 #include "CardStateManager.h"
-
-#include "DropDetector.h"
-#include "../Cell.h"
 #include "../EffectCollection.h"
-
+#include "Enums.h"
 #include "TextComponent.h"
 
 
@@ -39,7 +34,8 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 
 
 	/// Hemos creado getEffect para evitar:
-	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), Effects::Down, 20, false);}
+	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), 
+	// Down, 20, false);}
 	/// Al metodo createCard se le deberia pasar el array de effects
 	///	y a continuacion iterar sobre el, anyadiendole a la carta cada
 	///	efecto tal que:
@@ -292,7 +288,7 @@ void CardFactory_v1::addDeckImage(int initX, int initY, bool opposite)
 {
 	auto deckImage = Instantiate(Vector2D(initX, initY));
 
-	deckImage->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
+	deckImage->getComponent<Transform>()->setGlobalScale(Vector2D(0.6f, 0.6f));
 	if (opposite)
 		deckImage->getComponent<Transform>()->setGlobalAngle(180.0f);
 	deckImage->addComponent<SpriteRenderer>("reverseCard");

@@ -13,10 +13,8 @@
 #include "SoundEffect.h"
 #include "Texture.h"
 #include "VirtualTimer.h"
-#include "../Cell.h"
-#include "../EffectCollection.h"
-
-#include "../game/Card.h"
+#include "../game/Entity.h"
+#include "../game/Enums.h"
 #include "../json/JSON.h"
 
 class SDLUtils: public Singleton<SDLUtils> {

@@ -8,7 +8,6 @@
 #include "CityState.h"
 #include "OfficeState.h"
 #include "ShopState.h"
-#include "BoardState.h"
 #include "SamuState.h"
 #include "JimboState.h"
 #include "AndresState.h"

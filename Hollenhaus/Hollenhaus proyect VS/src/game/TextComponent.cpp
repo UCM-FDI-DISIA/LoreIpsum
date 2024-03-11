@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "TextComponent.h"
 #include "Transform.h"
+#include "../sdlutils/SDLUtils.h"
+#include "Entity.h"
 
 TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght, BoxPivotPoint boxPivotPoint, TextAlignment textAlignment) :
 	text_(nullptr),

@@ -1,38 +1,15 @@
 #pragma once
 //#include "../pch/pch.h"
 
-
-#include <vector>
+#include <array>
 #include "game/Card.h"
 #include <functional>
-#include "game/Component.h"
+#include "game/Enums.h"
 
 // utiliza callbacks funcionales de tipo <void(void)>
 using SDLEventCallback = std::function<void()>;
 
 constexpr int ADJACENTS = 4 + 1; // direcciones posibles + direccion nula
-
-namespace Effects {
-enum Direction
-{
-	Up,
-	Right,
-	Down,
-	Left,
-	None
-};
-}
-
-namespace Players
-{
-enum Owner
-{
-	NONE,
-	PLAYER1,
-	PLAYER2,
-	NULO
-};
-}
 
 class Cell :public ComponentUpdate
 {

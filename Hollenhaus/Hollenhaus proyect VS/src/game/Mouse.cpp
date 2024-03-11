@@ -5,7 +5,7 @@
 #include "../sdlutils/InputHandler.h"
 
 constexpr uint8_t MOUSE_SIZE = 40,
-					PADDING = 20;
+					PADDING = 10;
 
 Mouse::Mouse(const std::string& image, int frames) : image_(&sdlutils().images().at(image))
 {

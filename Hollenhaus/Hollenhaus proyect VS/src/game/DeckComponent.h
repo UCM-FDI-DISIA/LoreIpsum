@@ -4,7 +4,7 @@
 
 #include <list>
 
-#include "../Cell.h"
+#include "Enums.h"
 
 class Card;
 
