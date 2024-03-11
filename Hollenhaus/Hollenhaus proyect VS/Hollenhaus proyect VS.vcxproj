@@ -45,9 +45,6 @@
     <ClCompile Include="src\game\TextComponent.cpp" />
     <ClCompile Include="src\game\AndresState.cpp" />
     <ClCompile Include="src\game\BoardManager.cpp" />
-    <ClCompile Include="src\game\Board.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="src\game\BoardState.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -60,7 +57,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\game\CellManager.cpp" />
     <ClCompile Include="src\game\CardStateManager.cpp" />
     <ClCompile Include="src\game\CityState.cpp" />
     <ClCompile Include="src\game\ColliderRender.cpp" />
@@ -146,16 +142,12 @@
     <ClInclude Include="src\game\TextComponent.h" />
     <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\game\AndresState.h" />
-    <ClInclude Include="src\game\Board.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="src\game\BoardManager.h" />
     <ClInclude Include="src\game\BoardState.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\game\BoxCollider.h" />
     <ClInclude Include="src\game\CardFactory_v0.h" />
-    <ClInclude Include="src\game\CellManager.h" />
     <ClInclude Include="src\game\CardStateManager.h" />
     <ClInclude Include="src\game\checkML.h" />
     <ClInclude Include="src\game\CityState.h" />

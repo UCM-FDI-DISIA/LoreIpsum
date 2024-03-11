@@ -10,11 +10,12 @@
 #include "MatchOverState.h"
 #include "TextComponent.h"
 
-MatchManager::MatchManager(int defaultActionPoints, TurnState turnStart, BoardManager* bm) :
+MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, TurnState turnStart, BoardManager* bm) :
 	board_(bm),
-	defaultActionPoints(defaultActionPoints),
-	actualActionPointsJ1(defaultActionPoints),
-	actualActionPointsJ2(defaultActionPoints),
+	defaultActionPointsJ1(defaultActionPointsJ1),
+	defaultActionPointsJ2(defaultActionPointsJ2),
+	actualActionPointsJ1(defaultActionPointsJ1),
+	actualActionPointsJ2(defaultActionPointsJ2),
 	actualState(turnStart)
 {
 }
@@ -103,7 +104,7 @@ void MatchManager::setActualState(TurnState newState)
 	setTurnText();
 }
 
-int MatchManager::getActualActionPoints()
+int MatchManager::getActivePlayerActualActionPoints()
 {
 	if (getActualState() == TurnJ1)
 		return getActualActionPointsJ1();
@@ -129,7 +130,7 @@ Players::Owner MatchManager::getPlayerTurn() const
 	}
 }
 
-void MatchManager::substractActionPoints(int points)
+void MatchManager::substractActualPlayerActionPoints(int points)
 {
 	getActualState() == TurnJ1 ? 
 		substractActionPointsJ1(points) : substractActionPointsJ2(points);
@@ -161,8 +162,8 @@ void MatchManager::setTurnText()
 
 void MatchManager::resetActualActionPoints()
 {
-	actualActionPointsJ1 = defaultActionPoints;
-	actualActionPointsJ2 = defaultActionPoints;
+	actualActionPointsJ1 = defaultActionPointsJ1;
+	actualActionPointsJ2 = defaultActionPointsJ2;
 	updateVisuals();
 }
 

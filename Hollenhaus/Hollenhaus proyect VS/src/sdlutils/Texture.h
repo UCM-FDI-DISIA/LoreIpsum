@@ -100,10 +100,27 @@ public:
 	/// <param name="mulScaleX">escala x</param>
 	/// <param name="mulScaleY">escala y</param>
 	/// <param name="angle">Angle</param>
-	inline void render(int x, int y, float mulScaleX, float mulScaleY, float angle, SDL_RendererFlip flip = SDL_FLIP_NONE) {
+	/// <param name="color">Color a multiplicar</param>
+	inline void render(int x, int y, float mulScaleX, float mulScaleY, float angle, SDL_RendererFlip flip = SDL_FLIP_NONE, SDL_Color color = { 255,255,255,0 }) {
 		SDL_Rect dest = { x, y, width_ * mulScaleX, height_ * mulScaleY };
 		SDL_Rect src = { 0, 0, width_, height_ };
+
+		multiplyColor(color.r, color.g, color.b, color.a);
+
 		render(src, dest, angle, nullptr, flip);
+
+
+	}
+
+	/// <summary>
+	/// Multiplica el color pasado por la textura haciendo asi una mezcla
+	/// </summary>
+	void multiplyColor(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha)
+	{
+		Uint8 a = 255 - alpha;
+
+		//Modulate texture
+		SDL_SetTextureColorMod(texture_, red + a, green + a, blue + a);
 	}
 
 private:
