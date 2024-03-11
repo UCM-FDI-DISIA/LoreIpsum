@@ -2,6 +2,7 @@
 #include "NPC.h"
 #include "Entity.h"
 #include "Manager.h"
+#include "BoxCollider.h"
 
 NPC::NPC(int scene)
 {
