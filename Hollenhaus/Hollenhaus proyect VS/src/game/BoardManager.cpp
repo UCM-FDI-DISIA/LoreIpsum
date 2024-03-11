@@ -34,6 +34,7 @@ void BoardManager::update()
 	
 }
 
+// creo que no se usa MIRAR!!!! -> no se usa BORRAR!!!!
 bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
 {
 	ecs::entity_t cell = _board[posX][posY];
@@ -48,35 +49,40 @@ bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
 	return cardAdded;
 }
 
+// Devuelve TRUE si el tablero esta lleno y FALSE si aun no esta lleno MIRAR!!!!
 bool BoardManager::isFull() const
 {
 	return cardsOnBoard == size * size; // recordad que os matare
 }
 
-
+// Devuelve el componente Cell de la entidad en la posicion indicada en el tablero
 Cell* BoardManager::getCell(int x, int y) const
 {
 	return _board[x][y]->getComponent<Cell>();
 }
 
-
+// Devuelve la lista de efectos de la celda (componente Cell) indicada
 std::list<SDLEventCallback> BoardManager::getEffects(Cell* cell) const
 {
 	return cell->getEffects();
 }
 
+// Settea una carta c en el tablero en la posicion x, y indicada, con un jugador owner.
+// devuelve TRUE si se ha setteado correctamente y FALSE de lo contrario
 bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 {
+
+	// recoge la celda del tablero de la posicion indicada
 	const auto cell = _board[x][y]->getComponent<Cell>();
-	if (cell->getCard() != nullptr)
+	if (cell->getCard() != nullptr)		// si ya tiene carta devuelve FALSE
 		return false;
 
 	/// comunicacion bidireccional celda-carta
-	cell->setCard(c, o);
-	c->setCell(cell);
+	cell->setCard(c, o);	// settea la carta en la celda
+	c->setCell(cell);		// settea la celda en la carta
 
 	/// anyade callback a la celda
-	for (const auto& e : c->getEffects())
+	for (const auto& e : c->getEffects())	
 		cell->addEffect(e);
 
 	//Gasta los puntos de accion correspondientes
@@ -85,12 +91,15 @@ bool BoardManager::setCard(int x, int y, Card* c, CellData::Owner o)
 	// aumenta el contador al aniadir carta al tablero
 	cardsOnBoard++;
 
-	/// reaplica todos los efectos
-	applyAllEffects();
-	updateScore();
+	// MIRAR!!!!
+	// reaplica todos los efectos
+	applyAllEffects();				// aplica los efectos a las celdas
+	updateScore();					// suma los puntos de las celdas a los jugadores
+
 	return true;
 }
 
+// actualiza la puntuacion de cada jugador mirando los valores de las celdas y sus owners
 void BoardManager::updateScore()
 {
 	// Reinicia los valores
@@ -116,20 +125,23 @@ void BoardManager::updateScore()
 	p2Text->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
 }
 
+// Aplica los efectos de cada celda
 void BoardManager::applyAllEffects() const
 {
+	// reinicia los valores de las celdas a 0
 	for (int j = 0; j < size; j++)
 		for (int i = 0; i < size; i++)
 			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
 				_board[i][j]->getComponent<Cell>()->setTotalValue(0);
 
+	// aplica los efectos
 	for (int j = 0; j < size; j++)
 		for (int i = 0; i < size; i++)
 			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
 				_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
 }
 
-
+// incia el tablero ajustando los centros, las esquinas y los adyacentes
 void BoardManager::initBoard()
 {
 	/// Inicializacion de referencias de cada celda
