@@ -2,9 +2,6 @@
 #include "ComponentUpdate.h"
 #include "../sdlutils/InputHandler.h"
 #include "../utils/Vector2D.h"
-#include "GameStateMachine.h"
-
-
 
 class BoxCollider;
 

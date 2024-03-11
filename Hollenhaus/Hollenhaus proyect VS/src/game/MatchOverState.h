@@ -19,5 +19,5 @@ public:
 	void setWindow(int lastWinner);
 
 private:
-	std::string background, text;
+	std::string _background, _text;
 };
