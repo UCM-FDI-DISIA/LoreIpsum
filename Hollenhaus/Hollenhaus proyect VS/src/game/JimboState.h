@@ -3,7 +3,6 @@
 #include "checkML.h"
 
 class Transform;
-
 class JimboState :
     public GameState
 {

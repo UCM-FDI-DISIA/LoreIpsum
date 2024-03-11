@@ -10,12 +10,12 @@
 #include "Data.h"
 
 #include "Entity.h"
-//#include "Manager.h"
 
 /// <summary>
 /// Clase GameState (o Manager) vista en clase
 /// </summary>
 /// 
+class Manager;
 class Game;
 class GameState {
 

@@ -2,8 +2,6 @@
 #include "checkML.h"
 #include "GameState.h"
 
-class GameState;
-
 class AndresState :
     public GameState
 {

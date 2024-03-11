@@ -3,7 +3,7 @@
 #include "GameState.h"
 #include "NPC.h"
 
-class Manager;
+
 class PaigroState : public GameState
 {
 public:

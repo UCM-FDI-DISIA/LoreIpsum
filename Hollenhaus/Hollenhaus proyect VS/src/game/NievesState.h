@@ -4,7 +4,7 @@
 #include "GameState.h"
 #include "CardFactory_v0.h"
 
-//class Manager;
+
 class NievesState :
     public GameState
 {
