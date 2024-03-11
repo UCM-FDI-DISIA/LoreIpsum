@@ -62,9 +62,6 @@
     <ClCompile Include="src\game\TextComponent.cpp" />
     <ClCompile Include="src\game\AndresState.cpp" />
     <ClCompile Include="src\game\BoardManager.cpp" />
-    <ClCompile Include="src\game\BoardState.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="src\game\BoxCollider.cpp" />
     <ClCompile Include="src\game\Card.cpp" />
     <ClCompile Include="src\game\CardFactory_v0.cpp" />
@@ -183,9 +180,6 @@
     <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\game\AndresState.h" />
     <ClInclude Include="src\game\BoardManager.h" />
-    <ClInclude Include="src\game\BoardState.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="src\game\BoxCollider.h" />
     <ClInclude Include="src\game\CardFactory_v0.h" />
     <ClInclude Include="src\game\CardStateManager.h" />
