@@ -44,7 +44,7 @@ GameStateMachine::GameStateMachine() {
 	matchOverState = new MatchOverState();
 
 	// Ponemos el estado actual
-	currentState = mainMenuState;
+	currentState = new LuisState();
 
 	// crea la data en el current state
 	currentState->setData(new Data());

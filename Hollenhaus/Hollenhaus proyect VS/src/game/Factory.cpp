@@ -56,7 +56,7 @@ ecs::entity_t Factory::createVisual_EndTurnButton(int posX, int posY)
 {
 	return matchStateUIFactory->createVisual_NextTurnButton(posX, posY);
 }
-/*
+
 
 ecs::entity_t Factory::createVisual_ActionPointsCounter(int posX, int posY)
 {
@@ -67,7 +67,7 @@ ecs::entity_t Factory::createVisual_ScoreCounter(int posX, int posY, SDL_Color c
 {
 	return matchStateUIFactory->createVisual_ScoreCounter(posX, posY, color);
 }
-x*/
+
 
 ecs::entity_t Factory::createVisual_PlayerTurnIndicator(int posX, int posY)
 {

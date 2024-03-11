@@ -2,7 +2,7 @@
 
 #include <functional>
 #include "ComponentUpdate.h"
-
+#include <string>
 // utiliza callbacks funcionales de tipo <void(void)>
 using SDLEventCallback = std::function<void()>;
 
