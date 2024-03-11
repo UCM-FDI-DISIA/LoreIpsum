@@ -2,8 +2,6 @@
 #include "pch.h"
 
 #include "ComponentRender.h"
-#include "../../../Libraries/SDL2_ttf/include/SDL_ttf.h"
-#include "../sdlutils/SDLUtils.h"
 #include <string>
 
 class Transform;

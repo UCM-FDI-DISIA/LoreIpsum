@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <iostream>
 #include <vector>
 #include <array>
@@ -17,6 +18,7 @@
 #include "../utils/Vector2D.h"
 #include "Transform.h"
 #include "BoxCollider.h"
+
 namespace ecs {
 
 	using entity_t = Entity*;
@@ -509,8 +511,6 @@ inline ecs::entity_t Instantiate(Vector2D pos, ecs::grpId_t gId = ecs::grp::DEFA
 }
 
 
-
-
 inline ecs::entity_t mouseRaycast() {
 	return mngr().mouseRaycast();
 }
@@ -524,3 +524,4 @@ inline ecs::entity_t mouseRaycast(ecs::grpId_t gId) {
 inline void TuVieja(std::string message) {
 	std::cout << message << std::endl;
 }
+

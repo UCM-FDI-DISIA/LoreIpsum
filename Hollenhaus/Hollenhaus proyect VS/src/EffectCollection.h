@@ -3,7 +3,9 @@
 
 #include "game/Enums.h"
 #include "game/Card.h"
-#include "Cell.h"
+
+class Cell;
+
 
 class EffectCollection
 {

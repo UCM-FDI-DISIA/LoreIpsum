@@ -1,6 +1,6 @@
 //#include "../pch/pch.h"
 #include "EffectCollection.h"
-
+#include "Cell.h"
 
 EffectCollection::EffectCollection()
 {

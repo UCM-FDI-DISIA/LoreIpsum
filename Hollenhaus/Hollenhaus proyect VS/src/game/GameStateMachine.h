@@ -4,9 +4,11 @@
 #include "checkML.h"
 #include <stack>
 #include <functional>
-#include "GameState.h"
 #include "../utils/Singleton.h"
-#include "Data.h"
+
+
+class GameState;
+class Data;
 class Mouse;
 
 namespace ecs

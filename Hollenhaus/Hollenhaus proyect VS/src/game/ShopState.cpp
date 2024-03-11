@@ -2,6 +2,8 @@
 #include "ShopState.h"
 #include "Manager.h"
 #include "TextComponent.h"
+#include "NPC.h"
+
 
 ShopState::ShopState()
 {

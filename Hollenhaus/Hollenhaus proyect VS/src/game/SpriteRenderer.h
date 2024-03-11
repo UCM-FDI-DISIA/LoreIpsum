@@ -1,6 +1,5 @@
 #pragma once
 #include "ComponentRender.h"
-#include "../sdlutils/SDLUtils.h"
 
 class Transform;
 class BoxCollider;

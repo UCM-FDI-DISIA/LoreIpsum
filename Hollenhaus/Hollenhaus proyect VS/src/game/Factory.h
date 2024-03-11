@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../utils/Vector2D.h"
-#include "../sdlutils/SDLUtils.h"
+
 
 class CardFactory;
 class HandFactory;

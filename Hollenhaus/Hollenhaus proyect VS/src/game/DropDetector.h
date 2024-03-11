@@ -1,8 +1,7 @@
 #pragma once
 #include "ComponentUpdate.h"
-#include "../utils/Vector2D.h"
 
-
+class Vector2D;
 
 class DropDetector :
     public ComponentUpdate

@@ -1,7 +1,14 @@
 
 #pragma once
 
+#ifdef _DEBUG
+//#include <iostream>
+#endif // DEBUG
+
+
 #include <iostream>
+
+
 #include <type_traits>
 
 class ComponentUpdate;
@@ -17,7 +24,9 @@ public:
 		
 		if (std::is_base_of<ComponentUpdate, T>::value) {
 			static int myUpdateId = updateId++;
-			std::cout << "Update cmp: " << updateId << std::endl;
+#ifdef _DEBUG
+			//std::cout << "Update cmp: " << updateId << '\n';
+#endif // DEBUG
 			return myUpdateId;
 		}
 
@@ -27,7 +36,9 @@ public:
 	static int getRenderId() {
 		if (std::is_base_of<ComponentRender, T>::value) {
 			static int myRenderId = renderId++;
-			std::cout << "Render cmp: " << renderId << std::endl;
+#ifdef _DEBUG
+			//std::cout << "Render cmp: " << renderId << '\n';
+#endif // DEBUG
 			return myRenderId;
 		}
 	}

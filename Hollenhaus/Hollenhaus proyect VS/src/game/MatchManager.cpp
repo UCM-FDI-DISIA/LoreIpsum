@@ -9,6 +9,8 @@
 #include "Manager.h"
 #include "MatchOverState.h"
 #include "TextComponent.h"
+#include "SpriteRenderer.h"
+
 
 MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, TurnState turnStart, BoardManager* bm) :
 	board_(bm),

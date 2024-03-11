@@ -1,6 +1,5 @@
 #pragma once
 #include "GameState.h"
-#include "NPC.h"
 
 class ShopState : public GameState
 {

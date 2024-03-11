@@ -1,7 +1,5 @@
 #pragma once
 
-#include "ecs.h"
-
 class Entity;
 class Manager;
 

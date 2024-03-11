@@ -8,6 +8,10 @@
 #include "../sdlutils/InputHandler.h"
 #include "../utils/Collisions.h"
 
+#include "SpriteRenderer.h"
+#include "Transform.h"
+#include "../utils/Vector2D.h"
+
 BoxCollider::BoxCollider() :BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
 {}
 

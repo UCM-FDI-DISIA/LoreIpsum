@@ -1,12 +1,14 @@
 #pragma once
 #include "ComponentUpdate.h"
 #include "SpriteRenderer.h"
-#include "SDL.h"
-#include "Transform.h"
+//#include "Transform.h"
 #include "../utils/Vector2D.h"
 #include "../utils/Collisions.h"
 
-//#include <vector>
+class Transform;
+class SpriteRenderer;
+class Vector2D;
+
 
 class BoxCollider :public ComponentUpdate
 {

@@ -1,7 +1,5 @@
 #pragma once
 #include "ComponentUpdate.h"
-#include "../sdlutils/InputHandler.h"
-#include "../utils/Vector2D.h"
 
 class BoxCollider;
 

@@ -7,6 +7,8 @@
 #include "Transform.h"
 #include "KeyManager.h"
 
+#include "SpriteRenderer.h"
+
 JimboState::JimboState() : GameState() {
 	legend_ = Instantiate(Vector2D(0, 0));
 
