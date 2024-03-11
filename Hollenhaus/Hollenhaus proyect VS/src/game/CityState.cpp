@@ -51,7 +51,7 @@ void CityState::onEnter()
 	ecs::entity_t fantasmiko = Instantiate(Vector2D(sdlutils().width()/2 - 50, sdlutils().height() - 200));
 	fantasmiko->addComponent<SpriteRenderer>("fantasma");
 	fantasmiko->addComponent<BoxCollider>();
-	fantasmiko->getComponent<Transform>()->setGlobalScale(0.15f, 0.15f);
+	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(1);
 

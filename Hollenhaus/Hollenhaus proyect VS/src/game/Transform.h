@@ -30,7 +30,7 @@ public:
     // Escala global
     //
     Vector2D& getGlobalScale();
-    void setGlobalScale(float x, float y) { globalScale_ = Vector2D(x,y); }
+    //void setGlobalScale(float x, float y) { globalScale_ = Vector2D(x,y); }
 
     // Rotacion global
     //
@@ -50,6 +50,7 @@ public:
 
     void setGlobalPos(Vector2D& v);
     void setGlobalAngle(float);
+    void setGlobalScale(Vector2D);
 
     Transform* getParent();
     
