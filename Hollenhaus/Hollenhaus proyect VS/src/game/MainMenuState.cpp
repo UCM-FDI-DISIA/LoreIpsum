@@ -36,7 +36,7 @@ void MainMenuState::onEnter()
 	//-----Ciudad de fondo:
 	ecs::entity_t fondo = Instantiate(Vector2D(0,0));
 	fondo->addComponent<SpriteRenderer>("main_menu_bg");
-	fondo->getComponent<Transform>()->setGlobalScale(0.56,0.56);
+	fondo->getComponent<Transform>()->setGlobalScale(Vector2D(0.56,0.56));
 	fondo->setLayer(0);
 
 

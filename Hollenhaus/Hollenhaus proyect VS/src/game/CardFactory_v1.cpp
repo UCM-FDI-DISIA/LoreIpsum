@@ -292,7 +292,7 @@ void CardFactory_v1::addDeckImage(int initX, int initY, bool opposite)
 {
 	auto deckImage = Instantiate(Vector2D(initX, initY));
 
-	deckImage->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
+	deckImage->getComponent<Transform>()->setGlobalScale(Vector2D(0.6f, 0.6f));
 	if (opposite)
 		deckImage->getComponent<Transform>()->setGlobalAngle(180.0f);
 	deckImage->addComponent<SpriteRenderer>("reverseCard");
