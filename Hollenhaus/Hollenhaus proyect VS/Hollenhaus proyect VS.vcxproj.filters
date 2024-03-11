@@ -105,9 +105,6 @@
     <ClCompile Include="src\game\BoardManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\BoardState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\Drag.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -222,6 +219,8 @@
     <ClCompile Include="src\game\pch.cpp" />
     <ClCompile Include="pchs\pch_c++_basic.cpp" />
     <ClCompile Include="pchs\pch_SDL.cpp" />
+    <ClCompile Include="src\game\MatchStateUIFactory.cpp" />
+    <ClCompile Include="src\game\MatchStateUIFactory_v0.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -312,9 +311,6 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\SamuState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\BoardState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\game\BoardManager.h">
@@ -440,5 +436,8 @@
     <ClInclude Include="src\game\pch.h" />
     <ClInclude Include="pchs\pch_c++_basic.h" />
     <ClInclude Include="pchs\pch_SDL.h" />
+    <ClInclude Include="Enums.h" />
+    <ClInclude Include="src\game\MatchStateUIFactory.h" />
+    <ClInclude Include="src\game\MatchStateUIFactory_v0.h" />
   </ItemGroup>
 </Project>
