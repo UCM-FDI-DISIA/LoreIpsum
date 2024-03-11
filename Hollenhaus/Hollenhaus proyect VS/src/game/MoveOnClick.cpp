@@ -10,63 +10,79 @@ MoveOnClick::MoveOnClick()
 MoveOnClick::~MoveOnClick()
 {
 	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
-	
 }
 
 void MoveOnClick::initComponent()
 {
-	myBoxCollider = ent_->getComponent<BoxCollider>();
-	myTransform = ent_->getComponent<Transform>();
+	myBoxCollider = ent_->getComponent<BoxCollider>(); // colider del fondo
+	myTransform = ent_->getComponent<Transform>();	   // transform del fondo
 	
-	move = false;
-	movement.setX(myTransform->getGlobalPos().getX());
+	move = false; // inicializa move a false
 
+	// se inicializa el movement al left top del fondo (independientemente de la pantalla, solo de la imagen)
+	ltBackroundCoor.setX(myTransform->getGlobalPos().getX());
+
+	// llamada al input
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
-	
 }
 
 void MoveOnClick::update()
 {
-	//parar cuando se centre
-	if (movement.getX() == moveTo)
+	// ---- MOVE FALSE ----
+	// -> si la coordenda x del lt del fondo coincide con el distanceToMove (se ha centrado)
+	// -> o cuando llegue a los limites de la ciudad por la derecha y se pulse en la derecha
+	// -> o cuando llegue a los limites de la ciudad por la izquierda y se pulse en la izquierda
+	if (ltBackroundCoor.getX() == distanceToMove ||
+		ltBackroundCoor.getX() >= 0 && mousePos.getX() < halfScreen ||
+		ltBackroundCoor.getX() <= BACKGROUND_SIZE && mousePos.getX() >= halfScreen)
+	{ move = false; }
+
+	// ---- MOVE TRUE ----
+	if (move)
 	{
-		move = false;
-	}
-	// parar cuando llegue a los límites de la ciudad por la derecha y se pulse en la derecha
-	else if (movement.getX() >= 0 && mousePos.getX() < halfScreen) 
-	{
-		move = false;
-	}
-	// parar cuando llegue a los límites de la ciudad por la izquierda y se pulse en la izquierda
-	else if (movement.getX() <= -2049 && mousePos.getX() >= halfScreen) 
-	{
-		move = false;
-	}
-	else if (move) 
-	{
-		if (mousePos.getX() >= halfScreen)
+		// JUGADOR HACIA LA DER, FONDO HACIA LA IZQ
+		if (mousePos.getX() > halfScreen)
 		{
-			scrollSpeed--;
+			scrollVel.setX(left);
+			//scrollCounter--;
 		}
+
+		// JUGADOR HACIA LA IZQ, FONDO HACIA LA DER
 		else if (mousePos.getX() < halfScreen)
 		{
-			scrollSpeed++;
+			scrollVel.setX(right);
+			//scrollCounter++;
 		}
-		movement.setX(myPos.getX() + scrollSpeed);
-		myTransform->setGlobalPos(movement);
+
+		scrollVel2.setX(scrollVel.getX() * distanceToMove);
+
+		// ltBackroundCoor.setX(myPos.getX() + scrollCounter);
+
+		//myTransform->setGlobalPos(ltBackroundCoor);
+
+		// DEBIERA EL TRANSFORM TENER VELOCIDAD????
+		myTransform->setGlobalPos(ltBackroundCoor);
 	}
 }
 
 void MoveOnClick::OnLeftClickDown()
 {
+	// guardas la posicion del raton en click
 	mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
+
+	// posicion del fondo al hacer click
 	myPos = myTransform->getGlobalPos();
 
-	//Si pulsamos en el collider, efectuamos el movimiento
+	// Si pulsamos en el collider, efectuamos el movimiento
 	if (myBoxCollider->isCursorOver()){
-		move = true;
-		scrollSpeed = 1.0f;
 
-		moveTo = myTransform->getGlobalPos().getX() - (mousePos.getX() - halfScreen);
+		move = true;
+
+		// resetea la distancia a moverse en cada update que hay movimiento
+		scrollCounter = 1.0f;
+
+		// guardar en moveTo = (left top de la imagen en ese momento) - (donde hagas click - (mitad de la pantalla))
+		// le resta al left top de la imagen en ese momento la distancia entre el sitio a moverse y la mitad de la pantalla
+		distanceToMove = myTransform->getGlobalPos().getX() - (mousePos.getX() - halfScreen);
 	}
 }
