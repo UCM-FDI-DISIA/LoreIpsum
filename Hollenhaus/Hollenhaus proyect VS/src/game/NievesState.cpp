@@ -4,7 +4,7 @@
 #include "Drag.h"
 #include "CardStateManager.h"
 #include "DragManager.h"
-#include "Entity.h"
+//#include "Entity.h"
 #include "Manager.h"
 #include "..\sdlutils\InputHandler.h"
 

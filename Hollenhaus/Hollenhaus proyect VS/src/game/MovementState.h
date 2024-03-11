@@ -2,7 +2,6 @@
 #include "checkML.h"
 #include "GameState.h"
 #include "NPC.h"
-#include "Entity.h"
 #include "Manager.h"
 #include "MoveOnClick.h"
 

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "LuisState.h"
 
-#include "Entity.h"
+//#include "Entity.h"
 #include "GameStateMachine.h"
 #include "Manager.h"
 
