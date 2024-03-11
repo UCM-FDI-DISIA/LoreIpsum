@@ -22,7 +22,7 @@
 
 SamuState::SamuState() : GameState()
 {
-	TuVieja("\nloading SAmuState");
+	TuVieja("Loading SamuState");
 }
 
 SamuState::~SamuState()

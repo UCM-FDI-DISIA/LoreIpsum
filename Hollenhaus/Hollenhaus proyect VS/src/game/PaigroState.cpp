@@ -3,8 +3,7 @@
 #include "Manager.h"
 
 PaigroState::PaigroState() {
-	std::cout << "\nLoading unos buenos BUENOS DIAS\n";
-
+	TuVieja("Loading unos buenos BUENOS DIAS");
 }
 void PaigroState::update()
 {
@@ -23,7 +22,7 @@ void PaigroState::refresh()
 
 void PaigroState::onEnter()
 {
-	std::cout << "\nBUENOS DIAS\n";
+	std::cout << "\nBUENOS DIAS";
 
 	/*ecs::entity_t boton1 = Instantiate();
 	boton1->addComponent<Transform>();
@@ -38,5 +37,5 @@ void PaigroState::onEnter()
 
 void PaigroState::onExit() 
 {
-	std::cout << "\nBUENAS NOCHES\n";
+	std::cout << "\nBUENAS NOCHES";
 }

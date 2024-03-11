@@ -6,7 +6,7 @@
 
 MatchOverState::MatchOverState()
 {
-	std::cout << "\nLoading ShopState.";
+	TuVieja("Loading MatchOverState");
 }
 
 void MatchOverState::update()

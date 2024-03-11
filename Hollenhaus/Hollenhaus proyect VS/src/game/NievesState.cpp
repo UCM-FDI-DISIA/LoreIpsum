@@ -24,7 +24,7 @@
 
 NievesState::NievesState() : GameState() {
 
-	TuVieja("\nloading NievesState");
+	TuVieja("Loading NievesState");
 }
 
 NievesState::~NievesState()

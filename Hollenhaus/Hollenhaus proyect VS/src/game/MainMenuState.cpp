@@ -9,7 +9,7 @@ constexpr SDL_Color ROJO_HOLLENHAUS = { 148, 47, 55, 255 };
 MainMenuState::MainMenuState()
 {
 	
-	std::cout << "\nLoading MainMenuState.";
+	TuVieja("Loading MainMenuState");
 }
 
 void MainMenuState::update()

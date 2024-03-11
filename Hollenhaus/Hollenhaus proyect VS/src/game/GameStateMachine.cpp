@@ -35,22 +35,17 @@ GameStateMachine::GameStateMachine() {
 	mngr_ = new ecs::Manager();
 	mouse_ = new Mouse("mouse", 2);
 
-	//pushState(new LuisState());
-	//pushState(new LuisState());
-	//pushState(new JimboState());
-	//pushState(new AndresState());
+	//Creación de los estados
 	mainMenuState = new MainMenuState();
 	cityState = new CityState();
 	officeState = new OfficeState();
 	shopState = new ShopState();
-	//boardState = new BoardState();
-	paigroState = new PaigroState();
 	samuState = new SamuState();
 	nievesState = new NievesState();
 	matchOverState = new MatchOverState();
 
 	// Ponemos el estado actual
-	currentState = mainMenuState;//samuState;
+	currentState = mainMenuState;
 
 	// crea la data en el current state
 	currentState->setData(new Data());
@@ -92,7 +87,12 @@ void GameStateMachine::changeState()
 {
 	//Solo queremos que lo haga de ser necesario
 	if (currentState != gameStack.top()) {
+		
 		replaceState(currentState);
+		/// GUARRADA MAXIMA PARA EL MOUSE: al cambiar de estados se borran los callbacks del ih()
+		///	y estropea el comportamiento del cursor, hay que mirar como evitar eso 
+		ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { mouse_->changeFrame(1); });
+		ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] {  mouse_->changeFrame(0); });
 	}
 }
 
@@ -100,11 +100,6 @@ void GameStateMachine::pushState(GameState* state) {
 
 	gameStack.push(state);		//Colocamos el nuevo GameState
 	currentState->onEnter();	//Hacemos el onEnter del nuevo estado
-
-	/// GUARRADA MAXIMA PARA EL MOUSE: al cambiar de estados se borran los callbacks del ih()
-	///	y estropea el comportamiento del cursor, hay que mirar como evitar eso 
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { mouse_->changeFrame(1); });
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] {  mouse_->changeFrame(0); });
 }
 
 void GameStateMachine::replaceState(GameState* state) {
