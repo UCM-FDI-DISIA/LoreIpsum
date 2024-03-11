@@ -1,9 +1,6 @@
 #pragma once
 #include "pch.h"
 #include "ComponentUpdate.h"
-#include "../utils/Vector2D.h"
-
-#include <list>  
 
 class Transform :
     public ComponentUpdate
