@@ -12,6 +12,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int 
     endTurnButton->addComponent<SpriteRenderer>("EndTurnButton");
     endTurnButton->addComponent<BoxCollider>();
     endTurnButton->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ1);
+    endTurnButton->setLayer(4);
     return endTurnButton;
 }
 
@@ -66,4 +67,13 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_BackgroundBlackBox(int posX, 
     blackBox->setLayer(1);
 
     return blackBox;
+}
+
+ecs::entity_t MatchStateUIFactory_v0::createVisual_BackgroundBoard()
+{
+    ecs::entity_t background = Instantiate();
+    background->addComponent<Transform>();
+    background->getComponent<Transform>()->getGlobalScale().set(0.555, 0.555);
+    background->addComponent<SpriteRenderer>("board");
+    return background;
 }

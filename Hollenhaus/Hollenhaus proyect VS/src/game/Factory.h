@@ -76,6 +76,7 @@ public:
 	ecs::entity_t createVisual_ScoreCounter(int posX, int posY, SDL_Color color);
 	ecs::entity_t createVisual_PlayerTurnIndicator(int posX, int posY);
 	ecs::entity_t createVisual_BackgroundBlackBox(int posX, int posY, float xPixelsSize, float yPixelsSize);
+	ecs::entity_t createVisual_BackgroundFullImage();
 
 public:
 

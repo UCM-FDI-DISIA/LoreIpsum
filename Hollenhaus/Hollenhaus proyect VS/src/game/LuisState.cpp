@@ -80,6 +80,7 @@ void LuisState::onEnter()
 	ent->getComponent<DragManager>()->setBoardManager(board->getComponent<BoardManager>());
 
 
+
 	// UI 
 	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(100, 500);
 	ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
@@ -92,30 +93,9 @@ void LuisState::onEnter()
 	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, {102, 255, 255, 255});
 	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, { 255, 102, 255, 255 });
 
-	// Imágen de fondo
-	ecs::entity_t background = Instantiate();
-	background->addComponent<Transform>();
-	background->getComponent<Transform>()->getGlobalScale().set(0.555, 0.555);
-	background->addComponent<SpriteRenderer>("board");
-	//background->setLayer(-1);
+	ecs::entity_t visual_BackgroundBoard = factory->createVisual_BackgroundFullImage();
 
 
-	//// Creación del botón de J1 (ahora general) para acabar su turno (debug por consola)
-	//ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(sdlutils().width() / 4, sdlutils().height() / 2 - 35));
-	//endTurnButtonJ1->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
-	//endTurnButtonJ1->addComponent<SpriteRenderer>("EndTurnButton");
-	//endTurnButtonJ1->addComponent<BoxCollider>();
-	//endTurnButtonJ1->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ1);
-
-	// Creación del botón de J2 para acabar su turno (debug por consola)
-	/*ecs::entity_t endTurnButtonJ2 = Instantiate(Vector2D(60, 100));
-	endTurnButtonJ2->addComponent<SpriteRenderer>("EndTurnButton");
-	endTurnButtonJ2->addComponent<BoxCollider>();
-	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);*/
-
-
-	//ecs::entity_t puntosDeAccionText = Instantiate(Vector2D(100, 300));
-	//puntosDeAccionText->addComponent<TextComponent>("Puntos de acción:", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();

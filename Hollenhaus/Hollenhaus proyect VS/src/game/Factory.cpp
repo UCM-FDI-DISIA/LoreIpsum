@@ -78,3 +78,8 @@ ecs::entity_t Factory::createVisual_BackgroundBlackBox(int posX, int posY, float
 {
 	return  matchStateUIFactory->createVisual_BackgroundBlackBox(posX, posY, xPixelsSize, yPixelsSize);
 }
+
+ecs::entity_t Factory::createVisual_BackgroundFullImage()
+{
+	return matchStateUIFactory->createVisual_BackgroundBoard();
+}
