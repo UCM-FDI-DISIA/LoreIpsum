@@ -2,9 +2,8 @@
 #include "checkML.h"
 #include "GameState.h"
 #include "NPC.h"
-#include "Entity.h"
 
-class Manager;
+
 class PaigroState : public GameState
 {
 public:

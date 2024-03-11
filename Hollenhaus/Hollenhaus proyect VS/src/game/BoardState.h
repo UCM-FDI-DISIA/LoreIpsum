@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "GameState.h"
-#include "Board.h"
+//#include "Board.h"
 #include "../EffectCollection.h"
 #include "MatchManager.h"
 
@@ -11,7 +11,7 @@
 
 class BoardState : public GameState
 {
-	Board* board;
+	//Board* board;
 	MatchManager* matchManager;
 	EffectCollection* effectCollection;
 

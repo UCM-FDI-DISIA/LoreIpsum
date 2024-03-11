@@ -1,6 +1,5 @@
 #pragma once
 #include "GameState.h"
-#include  "Entity.h"
 #include "NPC.h"
 
 class MatchOverState : public GameState
@@ -20,5 +19,5 @@ public:
 	void setWindow(int lastWinner);
 
 private:
-	std::string background, text;
+	std::string _background, _text;
 };

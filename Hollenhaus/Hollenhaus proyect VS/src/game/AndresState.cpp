@@ -1,10 +1,7 @@
 #include "pch.h"
 #include "AndresState.h"
 
-#include "Entity.h"
-#include "GameStateMachine.h"
 #include "Manager.h"
-
 #include "SpriteRenderer.h"
 #include "Transform.h"
 #include "HandComponent.h"
@@ -19,7 +16,6 @@ AndresState::AndresState() :
 {
 	CardFactory_v0* factory = new CardFactory_v0();
 	BoardFactory_v0* boardFactory = new BoardFactory_v0(4);
-	hand_ = Instantiate();
 	hand_->addComponent<Transform>();
 	hand_->addComponent<SpriteRenderer>("hand");
 	hand_->addComponent<HandComponent>();

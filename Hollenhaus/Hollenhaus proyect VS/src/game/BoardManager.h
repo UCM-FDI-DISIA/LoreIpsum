@@ -22,7 +22,6 @@ public:
     void initComponent() override;
     void update() override;
 
-    bool addCard(ecs::entity_t card, int posX, int posY);
     bool isFull() const;
     void updateScore();
 
@@ -52,7 +51,6 @@ private:
 
     /// match manager
     void applyAllEffects() const;
-    void updateVisuals();
     int pPlayer1 = 0;
     int pPlayer2 = 0;
     ecs::entity_t scoreVisualJ1;

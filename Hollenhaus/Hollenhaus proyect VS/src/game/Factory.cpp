@@ -3,7 +3,7 @@
 #include "CardFactory.h"
 #include "BoardFactory.h"
 
-
+#include "MatchStateUIFactory.h"
 
 ecs::entity_t Factory::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<SDLUtils::CardEffect>& effects)
 {
@@ -50,4 +50,24 @@ void Factory::createDeckJ2()
 ecs::entity_t Factory::createBoard()
 {
 	return boardFactory->createBoard();
+}
+
+ecs::entity_t Factory::createVisual_NextTurnButton()
+{
+	return matchStateUIFactory->createVisual_NextTurnButton();
+}
+
+ecs::entity_t Factory::createVisual_ActionPointsCounter()
+{
+	return matchStateUIFactory->createVisual_ActionPointsCounter();
+}
+
+ecs::entity_t Factory::createVisual_ScoreCounter()
+{
+	return matchStateUIFactory->createVisual_ScoreCounter();
+}
+
+ecs::entity_t Factory::createVisual_PlayerTurnIndicator()
+{
+	return matchStateUIFactory->createVisual_PlayerTurnIndicator();
 }

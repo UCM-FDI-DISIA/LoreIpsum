@@ -32,7 +32,7 @@ void PlayerCardsManager::drawCard()
 		if (deck_->deckSize() > 0 &&
 			ent_->getComponent<BoxCollider>()->isCursorOver() &&
 			hand_->handSize() < MAX_IN_HAND &&
-			matchManager->getActualActionPoints() >= deck_->getDrawCardCost()
+			matchManager->getActivePlayerActualActionPoints() >= deck_->getDrawCardCost()
 			&& deck_->getOwner() == turnOwner
 		)
 		{

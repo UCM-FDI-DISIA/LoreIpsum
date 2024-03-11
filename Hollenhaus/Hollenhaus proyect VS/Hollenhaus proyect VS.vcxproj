@@ -42,6 +42,7 @@
     <ClCompile Include="src\game\EndTurnButton.cpp" />
     <ClCompile Include="src\game\MatchManager.cpp" />
     <ClCompile Include="src\game\MatchOverState.cpp" />
+    <ClCompile Include="src\game\MatchStateUIFactory.cpp" />
     <ClCompile Include="src\game\Mouse.cpp" />
     <ClCompile Include="src\game\BoardFactory.cpp" />
     <ClCompile Include="src\game\BoardFactory_v0.cpp" />
@@ -61,9 +62,6 @@
     <ClCompile Include="src\game\TextComponent.cpp" />
     <ClCompile Include="src\game\AndresState.cpp" />
     <ClCompile Include="src\game\BoardManager.cpp" />
-    <ClCompile Include="src\game\Board.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="src\game\BoardState.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -76,7 +74,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\game\CellManager.cpp" />
     <ClCompile Include="src\game\CardStateManager.cpp" />
     <ClCompile Include="src\game\CityState.cpp" />
     <ClCompile Include="src\game\ColliderRender.cpp" />
@@ -99,7 +96,6 @@
     <ClCompile Include="src\game\main.cpp" />
     <ClCompile Include="src\game\MainMenuState.cpp" />
     <ClCompile Include="src\game\Manager.cpp" />
-    <ClCompile Include="src\game\MovementState.cpp" />
     <ClCompile Include="src\game\MoveOnClick.cpp" />
     <ClCompile Include="src\game\NPC.cpp" />
     <ClCompile Include="src\game\OfficeState.cpp" />
@@ -176,6 +172,7 @@
     <ClInclude Include="src\game\EndTurnButton.h" />
     <ClInclude Include="src\game\MatchManager.h" />
     <ClInclude Include="src\game\MatchOverState.h" />
+    <ClInclude Include="src\game\MatchStateUIFactory.h" />
     <ClInclude Include="src\game\Mouse.h" />
     <ClInclude Include="src\game\CardFactory.h" />
     <ClInclude Include="src\game\CardFactory_v1.h" />
@@ -185,16 +182,12 @@
     <ClInclude Include="src\game\TextComponent.h" />
     <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\game\AndresState.h" />
-    <ClInclude Include="src\game\Board.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="src\game\BoardManager.h" />
     <ClInclude Include="src\game\BoardState.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\game\BoxCollider.h" />
     <ClInclude Include="src\game\CardFactory_v0.h" />
-    <ClInclude Include="src\game\CellManager.h" />
     <ClInclude Include="src\game\CardStateManager.h" />
     <ClInclude Include="src\game\checkML.h" />
     <ClInclude Include="src\game\CityState.h" />
@@ -219,7 +212,6 @@
     <ClInclude Include="src\game\LuisState.h" />
     <ClInclude Include="src\game\MainMenuState.h" />
     <ClInclude Include="src\game\Manager.h" />
-    <ClInclude Include="src\game\MovementState.h" />
     <ClInclude Include="src\game\MoveOnClick.h" />
     <ClInclude Include="src\game\NPC.h" />
     <ClInclude Include="src\game\OfficeState.h" />

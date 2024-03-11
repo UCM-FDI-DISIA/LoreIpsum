@@ -4,7 +4,7 @@
 #include "Drag.h"
 #include "CardStateManager.h"
 #include "DragManager.h"
-#include "Entity.h"
+
 #include "Manager.h"
 #include "..\sdlutils\InputHandler.h"
 
@@ -24,7 +24,7 @@
 
 NievesState::NievesState() : GameState() {
 
-	TuVieja("\nloading NievesState");
+	TuVieja("Loading NievesState");
 }
 
 NievesState::~NievesState()
@@ -69,7 +69,7 @@ void NievesState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	matchManager->addComponent<MatchManager>(4, MatchManager::TurnState::TurnJ1);
+	matchManager->addComponent<MatchManager>(4, 4, MatchManager::TurnState::TurnJ1);
 
 	// Factoría del tablero. Generamos el tablero de juego.
 	board = factory->createBoard();

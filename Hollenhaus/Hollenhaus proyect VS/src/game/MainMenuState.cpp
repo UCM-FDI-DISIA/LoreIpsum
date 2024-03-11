@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "MainMenuState.h"
-#include "Entity.h"
 #include "Manager.h"
 #include "NPC.h"
 #include "TextComponent.h"
@@ -10,7 +9,7 @@ constexpr SDL_Color ROJO_HOLLENHAUS = { 148, 47, 55, 255 };
 MainMenuState::MainMenuState()
 {
 	
-	std::cout << "\nLoading MainMenuState.";
+	TuVieja("Loading MainMenuState");
 }
 
 void MainMenuState::update()

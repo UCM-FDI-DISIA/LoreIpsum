@@ -102,12 +102,6 @@
     <ClCompile Include="src\game\SamuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\Board.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\CellManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\BoardManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -161,9 +155,6 @@
     </ClCompile>
     <ClCompile Include="src\game\NPC.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\MovementState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\game\MoveOnClick.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
@@ -323,12 +314,6 @@
     <ClInclude Include="src\game\SamuState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\Board.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\CellManager.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\BoardState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
@@ -394,9 +379,6 @@
     </ClInclude>
     <ClInclude Include="src\game\NPC.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\MovementState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\game\MoveOnClick.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
