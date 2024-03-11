@@ -3,11 +3,10 @@
 #include "../sdlutils/InputHandler.h"
 #include "../utils/Vector2D.h"
 #include "GameStateMachine.h"
-#include "BoxCollider.h"
 
 
 
-
+class BoxCollider;
 
 class NPC : public ComponentUpdate
 {

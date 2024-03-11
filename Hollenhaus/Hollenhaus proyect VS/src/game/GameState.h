@@ -35,7 +35,9 @@ public:
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
 
-	virtual void setWinner(int w) {};
+	virtual void setWinner(int w) {
+		data->setWinner(w);
+	}
 
 	// ---- setters ----
 	// settea la data
