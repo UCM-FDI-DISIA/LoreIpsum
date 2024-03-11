@@ -6,7 +6,6 @@
 #include "SpriteRenderer.h"
 #include "BoxCollider.h"
 #include "DropDetector.h"
-#include "CellManager.h"
 #include "TextComponent.h"
 #include "../Cell.h"
 #include "MatchManager.h"
@@ -33,20 +32,6 @@ void BoardManager::initComponent()
 void BoardManager::update()
 {
 	
-}
-
-bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
-{
-	ecs::entity_t cell = _board[posX][posY];
-	auto cellCmp = mngr().getComponent<CellManager>(cell);
-	bool cardAdded = cellCmp->setCard(card);
-
-	if (cardAdded)
-	{
-		cardsOnBoard++;
-	}
-
-	return cardAdded;
 }
 
 bool BoardManager::isFull() const
