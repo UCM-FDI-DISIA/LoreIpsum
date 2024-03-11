@@ -72,7 +72,7 @@ void SamuState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	matchManager->addComponent<MatchManager>(4, MatchManager::TurnState::TurnJ1, board->getComponent<BoardManager>());
+	matchManager->addComponent<MatchManager>(4, 4, MatchManager::TurnState::TurnJ1, board->getComponent<BoardManager>());
 
 	// Factoría de cartas. Con ella generamos la mano inicial
 	factory->createDeck();

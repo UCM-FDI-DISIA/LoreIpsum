@@ -83,7 +83,7 @@ bool BoardManager::setCard(int x, int y, Card* c, Players::Owner o)
 
 	auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
 	//Gasta los puntos de accion correspondientes
-	matchManager->substractActionPoints(c->getCost());
+	matchManager->substractActualPlayerActionPoints(c->getCost());
 
 	// aumenta el contador al aniadir carta al tablero
 	cardsOnBoard++;
