@@ -7,6 +7,11 @@ class HandFactory;
 class BoardFactory;
 class MatchStateUIFactory;
 
+namespace ecs {
+	class Entity;
+	using entity_t = Entity*;
+}
+
 
 class Factory
 {
