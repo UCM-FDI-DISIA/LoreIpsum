@@ -35,6 +35,9 @@ protected:
 	//puntero a la entidad a la que pertenece el componente
 	Entity* ent_;
 	Manager* mngr_;
+
+
+	friend Manager;
 };
 
 }

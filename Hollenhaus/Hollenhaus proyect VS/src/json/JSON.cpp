@@ -22,8 +22,17 @@
  * THE SOFTWARE.
  */
 
+#include "../../pchs/pch_c++_basic.h"
 
 #include "../json/JSON.h"
+#include <vector>
+#include <string>
+#include <map>
+#include <cstring>
+#include <cstdlib>
+#include <cwctype>
+
+
 
 #include <fstream>
 
