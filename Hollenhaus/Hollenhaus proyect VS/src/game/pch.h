@@ -183,7 +183,7 @@
 //entity component sistem
 #include "ecs.h"
 
-
+#include "Manager.h"
 
 #pragma endregion
 
