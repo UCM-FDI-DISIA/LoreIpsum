@@ -13,7 +13,7 @@ BoardState::BoardState() : GameState()
 
 BoardState::~BoardState()
 {
-	delete board;
+	//delete board;
 	delete matchManager;
 	delete effectCollection;
 	delete cardPH;
@@ -32,7 +32,7 @@ void BoardState::render() const
 	//std::cout << "PLAYER 1: " << matchManager->getPlayer1Points()
 	//		  << " PLAYER 2: " << matchManager->getPlayer2Points()
 	//		  << "\n";
-	board->paintBoard();
+	//board->paintBoard();
 }
 
 void BoardState::refresh()
@@ -81,29 +81,29 @@ void BoardState::inputCard()
 	if (blockint == 1)
 		block = true;
 
-	x = std::clamp(x, 0, board->getSize() - 1);
-	y = std::clamp(y, 0, board->getSize() - 1);
+	//x = std::clamp(x, 0, board->getSize() - 1);
+	//y = std::clamp(y, 0, board->getSize() - 1);
 
 	cardPH = new Card(cost, value, sprite, block);
 	int skillv = std::stoi(skill); // string a int
 
 	if (typecard == 0) 
 		cardPH->addCardEffect([this, x, y] {
-				effectCollection->blockCard(board->getCell(x, y), Effects::Down);
+				//effectCollection->blockCard(board->getCell(x, y), Effects::Down);
 		});
 	else if (typecard == 1) 
 		cardPH->addCardEffect([this, x, y, skillv] {
-				effectCollection->addAdj(board->getCell(x, y), Effects::Down, skillv, false);
+				//effectCollection->addAdj(board->getCell(x, y), Effects::Down, skillv, false);
 		});
 
-	board->setCard(x, y, cardPH, owner);
+	//board->setCard(x, y, cardPH, owner);
 	//matchManager->updateScore(); // actualiza el matchManager siempre que se ponga una carta
 }
 
 void BoardState::onEnter() 
 {
 	std::cout << "\nenter board\n";
-		board = new Board(4);
+		//board = new Board(4);
 		
 	//matchManager = new MatchManager();
 	effectCollection = new EffectCollection();

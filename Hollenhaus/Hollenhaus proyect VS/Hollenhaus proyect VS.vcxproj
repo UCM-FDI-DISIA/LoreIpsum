@@ -26,6 +26,7 @@
     <ClCompile Include="src\game\EndTurnButton.cpp" />
     <ClCompile Include="src\game\MatchManager.cpp" />
     <ClCompile Include="src\game\MatchOverState.cpp" />
+    <ClCompile Include="src\game\MatchStateUIFactory.cpp" />
     <ClCompile Include="src\game\Mouse.cpp" />
     <ClCompile Include="src\game\BoardFactory.cpp" />
     <ClCompile Include="src\game\BoardFactory_v0.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="src\game\EndTurnButton.h" />
     <ClInclude Include="src\game\MatchManager.h" />
     <ClInclude Include="src\game\MatchOverState.h" />
+    <ClInclude Include="src\game\MatchStateUIFactory.h" />
     <ClInclude Include="src\game\Mouse.h" />
     <ClInclude Include="src\game\CardFactory.h" />
     <ClInclude Include="src\game\CardFactory_v1.h" />
