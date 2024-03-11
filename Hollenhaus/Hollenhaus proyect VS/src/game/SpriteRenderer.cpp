@@ -28,9 +28,10 @@ void SpriteRenderer::setTexture(const std::string _textID) {
 	texture_ = &sdl_.images().at(textID_);
 }
 
-// Para renderizar el estado
+// Para renderizar la textura
 void SpriteRenderer::render() const
 {
+	// Settea el flip de la textura.
 	SDL_RendererFlip flip;
 	if (flipX_)
 		flip = SDL_FLIP_HORIZONTAL;
@@ -39,7 +40,7 @@ void SpriteRenderer::render() const
 	else
 		flip = SDL_FLIP_NONE;
 
-
+	// Llama a un render custom con todo lo que nos hace falta.
 		texture_->render(transform_->getGlobalPos().getX(),
 			transform_->getGlobalPos().getY(),
 			transform_->getGlobalScale().getX(),
