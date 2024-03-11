@@ -3,7 +3,6 @@
 #include "SamuState.h"
 #include <SDL.h>
 
-#include "Board.h"
 #include "Drag.h"
 #include "CardStateManager.h"
 #include "DragManager.h"

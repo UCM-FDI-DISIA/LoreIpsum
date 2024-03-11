@@ -29,6 +29,20 @@ public:
 	/// </summary>
 	void setFlipY(bool flip) { flipY_ = flip; }
 
+	/// <summary>
+	/// Settea el color que multiplica
+	/// </summary>
+	/// <param name="r">Cantidad de rojo 0-255</param>
+	/// <param name="g">Cantidad de verde 0-255</param>
+	/// <param name="b">Cantidad de azul 0-255</param>
+	/// <param name="a">0 - no multiplica, 255 - multiplica todo el color</param>
+	void setMultiplyColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a = 0) { 
+		color.r = r;
+		color.g = g;
+		color.b = b;
+		color.a = a;
+	}
+
 	// Para inicializar el componenete si es necesario.
 	void initComponent() override;
 
@@ -58,6 +72,8 @@ private:
 	bool flipX_;
 	bool flipY_;
 
+	// Color que multiplica la textura
+	SDL_Color color;
 
 };
 
