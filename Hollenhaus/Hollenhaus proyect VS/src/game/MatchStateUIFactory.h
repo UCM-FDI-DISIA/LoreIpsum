@@ -2,7 +2,6 @@
 
 #include "../sdlutils/SDLUtils.h"
 
-
 class MatchStateUIFactory
 {
 

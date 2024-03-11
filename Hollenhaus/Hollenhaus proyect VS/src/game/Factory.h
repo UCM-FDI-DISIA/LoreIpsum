@@ -49,7 +49,12 @@ public:
 
 #pragma endregion
 
-	Factory(){};
+	Factory() : 
+	boardFactory(nullptr),
+	cardFactory(nullptr),
+	handFactory(nullptr),
+	matchStateUIFactory(nullptr)
+	{};
 
 
 	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<SDLUtils::CardEffect>& effects);
@@ -62,7 +67,7 @@ public:
 	ecs::entity_t createBoard();
 
 	// Métodos para crear la UI en el MatchState
-	ecs::entity_t createVisual_NextTurnButton(int posX, int posY);
+	ecs::entity_t createVisual_EndTurnButton(int posX, int posY);
 	ecs::entity_t createVisual_ActionPointsCounter(int posX, int posY);
 	ecs::entity_t createVisual_ScoreCounter(int posX, int posY, SDL_Color color);
 	ecs::entity_t createVisual_PlayerTurnIndicator(int posX, int posY);

@@ -49,14 +49,14 @@ void MatchManager::initComponent()
 	/// AP VISUAL
 	const auto matchManager = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
 	const int apValueJ1 = matchManager->getActualActionPointsJ1();
-	actionPointsVisualJ1 = Instantiate(Vector2D(100, sdlutils().height() - 80));
+	actionPointsVisualJ1 = Instantiate(Vector2D(200, sdlutils().height() - 80));
 	actionPointsVisualJ1->addComponent<TextComponent>("Puntos de accion:\n" + std::to_string(apValueJ1),
 	                                                  "8bit_24pt", SDL_Color({255, 255, 0, 255}), 200,
 	                                                  TextComponent::BoxPivotPoint::CenterCenter,
 	                                                  TextComponent::TextAlignment::Center);
 
 	const int apValueJ2 = matchManager->getActualActionPointsJ2();
-	actionPointsVisualJ2 = Instantiate(Vector2D(100, 80));
+	actionPointsVisualJ2 = Instantiate(Vector2D(200, 80));
 	actionPointsVisualJ2->addComponent<TextComponent>("Puntos de accion:\n" + std::to_string(apValueJ2),
 	                                                  "8bit_24pt", SDL_Color({255, 255, 0, 255}), 200,
 	                                                  TextComponent::BoxPivotPoint::CenterCenter,

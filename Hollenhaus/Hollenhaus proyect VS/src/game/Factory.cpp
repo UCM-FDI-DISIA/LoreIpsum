@@ -52,19 +52,19 @@ ecs::entity_t Factory::createBoard()
 	return boardFactory->createBoard();
 }
 
-ecs::entity_t Factory::createVisual_NextTurnButton(int posX, int posY)
+ecs::entity_t Factory::createVisual_EndTurnButton(int posX, int posY)
 {
 	return matchStateUIFactory->createVisual_NextTurnButton(posX, posY);
 }
 
-ecs::entity_t Factory::createVisual_ActionPointsCounter(int posX, int posY, SDL_Color color)
+ecs::entity_t Factory::createVisual_ActionPointsCounter(int posX, int posY)
 {
-	return matchStateUIFactory->createVisual_ActionPointsCounter(posX, posY, color);
+	return matchStateUIFactory->createVisual_ActionPointsCounter(posX, posY);
 }
 
-ecs::entity_t Factory::createVisual_ScoreCounter(int posX, int posY)
+ecs::entity_t Factory::createVisual_ScoreCounter(int posX, int posY, SDL_Color color)
 {
-	return matchStateUIFactory->createVisual_ScoreCounter(posX, posY);
+	return matchStateUIFactory->createVisual_ScoreCounter(posX, posY, color);
 }
 
 ecs::entity_t Factory::createVisual_PlayerTurnIndicator(int posX, int posY)

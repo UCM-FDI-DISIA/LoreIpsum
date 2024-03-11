@@ -14,8 +14,10 @@ public:
     void update() override;
     void render() const override;
 
+    void onEnter() override;
+    void onExit() override;
+
 private:
-    ecs::entity_t card;
 
 };
 

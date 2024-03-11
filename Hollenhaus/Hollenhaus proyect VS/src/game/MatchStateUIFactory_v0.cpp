@@ -22,6 +22,8 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_ActionPointsCounter(int posX,
         "8bit_24pt", SDL_Color({ 255, 255, 0, 255 }), 200,  
         TextComponent::BoxPivotPoint::CenterCenter,
         TextComponent::TextAlignment::Center);
+
+    actionPointsVisual->setLayer(9);
     return actionPointsVisual;
 }
 
