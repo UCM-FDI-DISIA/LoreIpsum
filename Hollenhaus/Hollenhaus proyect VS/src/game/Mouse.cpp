@@ -30,6 +30,7 @@ Mouse::Mouse(const std::string& image, int frames) : image_(&sdlutils().images()
 
 Mouse::~Mouse()
 {
+	
 }
 
 void Mouse::render() const

@@ -2,9 +2,7 @@
 #include "GameState.h"
 #include "checkML.h"
 
-class Entity;
 class Transform;
-
 class JimboState :
     public GameState
 {

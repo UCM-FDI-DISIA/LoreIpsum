@@ -4,8 +4,6 @@
 #include "GameState.h"
 #include "CardFactory_v0.h"
 
-class Entity;
-//class Manager;
 class SamuState :
     public GameState
 {

@@ -8,7 +8,7 @@
 
 CityState::CityState()
 {
-	std::cout << "\nLoading CityState.";
+	TuVieja("Loading CityState");
 }
 void CityState::update()
 {

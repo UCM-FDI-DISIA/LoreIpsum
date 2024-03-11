@@ -6,7 +6,6 @@
 #include "Drag.h"
 #include "CardStateManager.h"
 #include "DragManager.h"
-#include "Entity.h"
 #include "Manager.h"
 #include "../sdlutils/InputHandler.h"
 #include "CardFactory_v0.h"
@@ -22,7 +21,7 @@
 
 SamuState::SamuState() : GameState()
 {
-	TuVieja("\nloading SAmuState");
+	TuVieja("Loading SamuState");
 }
 
 SamuState::~SamuState()
