@@ -34,22 +34,8 @@ void BoardManager::update()
 	
 }
 
-// creo que no se usa MIRAR!!!! -> no se usa BORRAR!!!!
-bool BoardManager::addCard(ecs::entity_t card, int posX, int posY)
-{
-	ecs::entity_t cell = _board[posX][posY];
-	auto cellCmp = mngr().getComponent<CellManager>(cell);
-	bool cardAdded = cellCmp->setCard(card);
 
-	if (cardAdded)
-	{
-		cardsOnBoard++;
-	}
-
-	return cardAdded;
-}
-
-// Devuelve TRUE si el tablero esta lleno y FALSE si aun no esta lleno MIRAR!!!!
+// Devuelve TRUE si el tablero esta lleno y FALSE si aun no esta lleno 
 bool BoardManager::isFull() const
 {
 	return cardsOnBoard == size * size; // recordad que os matare

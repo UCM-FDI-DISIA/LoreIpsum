@@ -6,11 +6,8 @@
 #include <functional>
 #include "../Cell.h"
 
-//class Cell;
 class Card;
 using SDLEventCallback = std::function<void()>;
-
-constexpr int DEFAULT_SIZE = 4; 
 
 class BoardManager : public ComponentUpdate
 {
@@ -22,7 +19,6 @@ public:
     void initComponent() override;
     void update() override;
 
-    bool addCard(ecs::entity_t card, int posX, int posY);
     bool isFull() const;
     void updateScore();
 
@@ -43,7 +39,7 @@ public:
 private:
     void initBoard();
     //cleon: si en la entrega es una constante, os mataré. bueno, yo os mataré
-    int size = DEFAULT_SIZE;
+    int size; 
 
     // Un vector de vectores de entidades "Cell".
     std::vector<std::vector<ecs::entity_t>> _board;
