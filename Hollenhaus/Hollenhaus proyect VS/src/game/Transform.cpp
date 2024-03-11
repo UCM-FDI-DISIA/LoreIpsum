@@ -11,9 +11,12 @@ Transform::update() {
 
 void 
 Transform::increaseLayer() {
-	ent_->setLayer(parent_->ent_->getLayer() + layerToIncrease);
-	for (auto it = children_.begin(); it != children_.end(); ++it) {
-		(*it)->increaseLayer();
+	int nextLayer = parent_->ent_->getLayer() + layerToIncrease;
+	ent_->setLayer(nextLayer);
+	if(children_.size() > 0){
+		for (auto it = children_.begin(); it != children_.end(); ++it) {
+			(*it)->increaseLayer();
+		}
 	}
 }
 
@@ -82,11 +85,18 @@ Transform::setGlobalPos(Vector2D& pos) {
 		relativePos_ = globalPos_ - parent_->getGlobalPos();
 }
 
-void Transform::setGlobalAngle(float angle)
-{
+void 
+Transform::setGlobalAngle(float angle) {
 	globalAngle_ = angle;
 	if (isChild_)
 		relativeAngle_ = globalAngle_ - parent_->globalAngle_;
+}
+
+void 
+Transform::setGlobalScale(Vector2D s) {
+	globalScale_ = s;
+	if (isChild_)
+		relativeScale_.set(globalScale_.getX() / parent_->globalScale_.getX(), globalScale_.getY() / parent_->globalScale_.getY());
 }
 
 Transform* 
