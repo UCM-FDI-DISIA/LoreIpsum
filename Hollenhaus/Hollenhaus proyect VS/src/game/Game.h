@@ -1,8 +1,6 @@
 
 #pragma once
 #include "checkML.h"
-#include "CityState.h"
-#include <SDL.h>
 
 class GameStateMachine;
 

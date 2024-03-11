@@ -1,7 +1,6 @@
 #pragma once
 #include "checkML.h"
 #include "GameState.h"
-#include "NPC.h"
 
 
 class PaigroState : public GameState

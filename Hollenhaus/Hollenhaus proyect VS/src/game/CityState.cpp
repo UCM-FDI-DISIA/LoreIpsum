@@ -6,6 +6,8 @@
 #include "NPC.h"
 #include "Manager.h"
 
+#include "SpriteRenderer.h"
+
 CityState::CityState()
 {
 	TuVieja("Loading CityState");

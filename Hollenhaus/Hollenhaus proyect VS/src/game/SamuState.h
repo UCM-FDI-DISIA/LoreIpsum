@@ -1,8 +1,6 @@
 #pragma once
-#include "BoardFactory_v0.h"
 #include "checkML.h"
 #include "GameState.h"
-#include "CardFactory_v0.h"
 
 class SamuState :
     public GameState

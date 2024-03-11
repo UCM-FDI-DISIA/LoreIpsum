@@ -1,12 +1,16 @@
 #pragma once
 
-#include "../utils/Vector2D.h"
-#include "../sdlutils/SDLUtils.h"
+
 
 class CardFactory;
 class HandFactory;
 class BoardFactory;
 class MatchStateUIFactory;
+
+namespace ecs {
+	class Entity;
+	using entity_t = Entity*;
+}
 
 
 class Factory

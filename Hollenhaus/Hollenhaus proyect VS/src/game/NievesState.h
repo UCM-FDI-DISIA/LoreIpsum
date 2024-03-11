@@ -1,9 +1,6 @@
 
-#include "BoardFactory_v0.h"
 #include "checkML.h"
 #include "GameState.h"
-#include "CardFactory_v0.h"
-
 
 class NievesState :
     public GameState
@@ -20,10 +17,7 @@ public:
     void onEnter() override;
     void onExit() override;
 
-    void setWinner(int w) override{
-
-        data->setWinner(w);
-    }
+    void setWinner(int w) override;
 
 private:
     ecs::entity_t card;

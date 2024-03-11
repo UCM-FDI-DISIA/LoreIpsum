@@ -1,14 +1,11 @@
 #pragma once
 #include "ComponentUpdate.h"
 
-#include "../utils/Vector2D.h"
 
-#include "ecs.h"
-#include <vector>
 
 class Transform;
-
 class BoardManager;
+class Vector2D;
 
 class DragManager :
     public ComponentUpdate

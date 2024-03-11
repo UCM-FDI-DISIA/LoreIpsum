@@ -16,7 +16,7 @@
 #include "../game/ecs.h"
 
 
-
+#include "../Cell.h"
 
 ecs::entity_t BoardFactory_v0::createBoard()
 {

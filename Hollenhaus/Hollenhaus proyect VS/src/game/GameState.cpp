@@ -7,6 +7,8 @@
 #include "../sdlutils/InputHandler.h"
 #include "GameStateMachine.h"
 
+#include "Data.h"
+
 // DECLARAR LAS VARIABLES ESTATICAS
 Data* GameState::data = nullptr;
 
@@ -55,4 +57,15 @@ void GameState::update()
 void GameState::render() const 
 {
     GameStateMachine::instance()->getMngr()->render();
+}
+
+void GameState::setWinner(int w)
+{
+    data->setWinner(w);
+
+}
+
+void GameState::setData(Data* _data)
+{
+    data = _data;
 }

@@ -7,6 +7,8 @@
 
 #include "CardFactory_v0.h"
 
+#include "../Cell.h"
+
 void PlayerCardsManager::initComponent()
 {
 	//click = false;

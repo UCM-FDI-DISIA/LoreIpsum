@@ -4,6 +4,9 @@
 #include "../sdlutils/InputHandler.h"
 #include "TextComponent.h"
 
+#include "NPC.h"
+
+
 OfficeState::OfficeState()
 {
 	TuVieja("Loading OfficeState");

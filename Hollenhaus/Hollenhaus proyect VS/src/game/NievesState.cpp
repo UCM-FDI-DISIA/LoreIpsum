@@ -22,6 +22,8 @@
 #include "MatchManager.h"
 #include "EndTurnButton.h"
 
+#include "Data.h"
+
 NievesState::NievesState() : GameState() {
 
 	TuVieja("Loading NievesState");
@@ -112,4 +114,12 @@ void NievesState::onExit()
 {
 	TuVieja("\nExit NievesState");
 	GameStateMachine::instance()->getMngr()->Free();
+}
+
+void NievesState::setWinner(int w)
+{
+	
+
+	data->setWinner(w);
+	
 }

@@ -18,7 +18,7 @@
 #include "Mouse.h"
 #include "GameState.h"
 #include "MatchOverState.h"
-
+#include "Data.h"
 
 void GameStateMachine::init()
 {

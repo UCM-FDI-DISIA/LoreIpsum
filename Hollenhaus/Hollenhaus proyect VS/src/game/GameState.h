@@ -1,15 +1,7 @@
 #ifndef GameState_H_
 #define GameState_H_
 
-#include "pch.h"
 #include  "checkML.h"
-
-#include <SDL.h>
-#include <iostream>
-#include "ecs.h"
-#include "Data.h"
-
-#include "Entity.h"
 
 /// <summary>
 /// Clase GameState (o Manager) vista en clase
@@ -17,6 +9,8 @@
 /// 
 class Manager;
 class Game;
+class Data;
+
 class GameState {
 
 protected:
@@ -36,13 +30,11 @@ public:
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
 
-	virtual void setWinner(int w) {
-		data->setWinner(w);
-	}
+	virtual void setWinner(int w);
 
 	// ---- setters ----
 	// settea la data
-	static void setData(Data* _data) { data = _data; }
+	static void setData(Data* _data);
 };
 
 #endif // !GameState_H_

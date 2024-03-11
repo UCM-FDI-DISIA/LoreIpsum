@@ -2,16 +2,19 @@
 #include "ComponentUpdate.h"
 #include <vector>
 #include <list>
-#include <iostream>
 #include <functional>
-#include "../Cell.h"
 #include "Enums.h"
 
-//class Cell;
+class Cell;
 class Card;
 using SDLEventCallback = std::function<void()>;
 
 constexpr int DEFAULT_SIZE = 4; 
+
+namespace ecs {
+    class Entity;
+    using entity_t = Entity*;
+}
 
 class BoardManager : public ComponentUpdate
 {

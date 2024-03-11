@@ -3,6 +3,9 @@
 #include "ShopState.h"
 #include "Manager.h"
 #include "TextComponent.h"
+#include "SpriteRenderer.h"
+#include "Data.h"
+#include "NPC.h"
 
 MatchOverState::MatchOverState()
 {

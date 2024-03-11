@@ -3,6 +3,8 @@
 #include "Manager.h"
 #include "NPC.h"
 #include "TextComponent.h"
+#include "SpriteRenderer.h"
+
 
 constexpr SDL_Color ROJO_HOLLENHAUS = { 148, 47, 55, 255 };
 
