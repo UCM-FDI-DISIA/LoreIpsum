@@ -47,6 +47,6 @@ void SpriteRenderer::render() const
 		transform_->getGlobalScale().getX(),
 		transform_->getGlobalScale().getY(),
 		transform_->getGlobalAngle(),
-		flip);
-		//color);
+		flip,
+		color);
 };

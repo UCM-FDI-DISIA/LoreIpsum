@@ -120,6 +120,7 @@ public:
 		Uint8 a = 255 - alpha;
 
 		//Modulate texture
+
 		SDL_SetTextureColorMod(texture_, red + a, green + a, blue + a);
 	}
 
