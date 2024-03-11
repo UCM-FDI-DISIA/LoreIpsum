@@ -60,16 +60,10 @@
     <ClCompile Include="src\json\JSON.cpp">
       <Filter>Utilidades\JSON</Filter>
     </ClCompile>
-    <ClCompile Include="src\json\json_demo.cpp">
-      <Filter>Utilidades\JSON</Filter>
-    </ClCompile>
     <ClCompile Include="src\json\JSONValue.cpp">
       <Filter>Utilidades\JSON</Filter>
     </ClCompile>
     <ClCompile Include="src\sdlutils\SDLUtils.cpp">
-      <Filter>Utilidades\SDL_Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="src\sdlutils\sdlutils_demo.cpp">
       <Filter>Utilidades\SDL_Utils</Filter>
     </ClCompile>
     <ClCompile Include="src\sdlutils\SoundEffect.cpp">
@@ -226,6 +220,8 @@
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\game\pch.cpp" />
+    <ClCompile Include="pchs\pch_c++_basic.cpp" />
+    <ClCompile Include="pchs\pch_SDL.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -238,9 +234,6 @@
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\json\JSON.h">
-      <Filter>Utilidades\JSON</Filter>
-    </ClInclude>
-    <ClInclude Include="src\json\json_demo.h">
       <Filter>Utilidades\JSON</Filter>
     </ClInclude>
     <ClInclude Include="src\json\JSONValue.h">
@@ -265,9 +258,6 @@
       <Filter>Utilidades\SDL_Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\sdlutils\SDLUtils.h">
-      <Filter>Utilidades\SDL_Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\sdlutils_demo.h">
       <Filter>Utilidades\SDL_Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\sdlutils\SoundEffect.h">
@@ -448,5 +438,7 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\pch.h" />
+    <ClInclude Include="pchs\pch_c++_basic.h" />
+    <ClInclude Include="pchs\pch_SDL.h" />
   </ItemGroup>
 </Project>
