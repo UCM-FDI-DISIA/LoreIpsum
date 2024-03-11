@@ -5,9 +5,9 @@
 
 class CardFactory;
 class HandFactory;
+class BoardFactory;
+class MatchStateUIFactory;
 
-#include "CardFactory.h"
-#include "BoardFactory.h"
 
 class Factory
 {
@@ -40,6 +40,11 @@ public:
 		SetFactories(std::forward<Ts>(args)...);
 	}
 	
+	template<typename ...Ts>
+	void SetFactories(MatchStateUIFactory* msUIf, Ts &&... args) {
+		matchStateUIFactory = msUIf;
+		SetFactories(std::forward<Ts>(args)...);
+	}
 		
 
 #pragma endregion
@@ -47,19 +52,26 @@ public:
 	Factory(){};
 
 
-	virtual ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<SDLUtils::CardEffect>& effects);
+	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<SDLUtils::CardEffect>& effects);
 
-	virtual ecs::entity_t createDropDetector(Vector2D pos);
+	ecs::entity_t createDropDetector(Vector2D pos);
 
-	virtual ecs::entity_t createHand() ;
-	virtual void createDeck();
-	virtual void createDeckJ2();
-	virtual ecs::entity_t createBoard();
+	ecs::entity_t createHand();
+	void createDeck();
+	void createDeckJ2();
+	ecs::entity_t createBoard();
+
+	// Métodos para crear la UI en el MatchState
+	ecs::entity_t createVisual_NextTurnButton();
+	ecs::entity_t createVisual_ActionPointsCounter();
+	ecs::entity_t createVisual_ScoreCounter();
+	ecs::entity_t createVisual_PlayerTurnIndicator();
 
 public:
 
 	BoardFactory* boardFactory;
 	CardFactory* cardFactory;
 	HandFactory* handFactory;
+	MatchStateUIFactory* matchStateUIFactory;
 };
 

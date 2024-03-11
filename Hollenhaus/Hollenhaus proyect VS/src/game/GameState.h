@@ -9,18 +9,19 @@
 #include "ecs.h"
 #include "Data.h"
 
+#include "Entity.h"
+
 /// <summary>
 /// Clase GameState (o Manager) vista en clase
 /// </summary>
+/// 
+class Manager;
 class Game;
 class GameState {
 
 protected:
 
 	static Data* data; // puntero a la data
-
-	//A lo mejor deja de hacer falta
-	//Game* game;			//Puntero al juego
 
 public:
 	//LAS ENTIDADES ¡NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT 
@@ -35,7 +36,9 @@ public:
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
 
-	virtual void setWinner(int w) {};
+	virtual void setWinner(int w) {
+		data->setWinner(w);
+	}
 
 	// ---- setters ----
 	// settea la data

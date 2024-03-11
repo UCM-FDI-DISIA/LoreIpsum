@@ -6,7 +6,7 @@
 
 OfficeState::OfficeState()
 {
-	std::cout << "\nLoading OfficeState.";
+	TuVieja("Loading OfficeState");
 }
 
 void OfficeState::update()

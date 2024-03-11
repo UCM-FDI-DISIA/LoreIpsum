@@ -5,7 +5,7 @@
 
 ShopState::ShopState()
 {
-	std::cout << "\nLoading ShopState.";
+	TuVieja("Loading ShopState");
 }
 
 void ShopState::update()
@@ -25,11 +25,12 @@ void ShopState::refresh()
 
 void ShopState::onEnter()
 {
-	std::cout << "\nENTER SHOP.\n";
+	std::cout << "\nENTER SHOP.";
 	
 	//------Texto de la tienda:
 	ecs::entity_t shopText = Instantiate(Vector2D(400, 30));
-	shopText->addComponent<TextComponent>("TIENDA", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	shopText->addComponent<TextComponent>("TIENDA", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, 
+		TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	shopText->setLayer(1);
 
 	//-----Imagen de fondo:
@@ -57,7 +58,7 @@ void ShopState::onEnter()
 
 void ShopState::onExit() 
 {
-	std::cout << "\nEXIT SHOP.\n";
+	std::cout << "\nEXIT SHOP.";
 
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("shoptheme").pauseChannel();

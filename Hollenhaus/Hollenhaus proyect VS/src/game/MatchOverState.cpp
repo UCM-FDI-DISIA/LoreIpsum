@@ -6,7 +6,7 @@
 
 MatchOverState::MatchOverState()
 {
-	std::cout << "\nLoading ShopState.";
+	TuVieja("Loading MatchOverState");
 }
 
 void MatchOverState::update()
@@ -54,34 +54,34 @@ void MatchOverState::setWindow(int lastWinner) {
 	switch (lastWinner)
 	{
 	case 1: // Empate:
-		background = "rice";
-		text = "TIE :(!";
+		_background = "rice";
+		_text = "TIE :(";
 		break;
 	case 2: // Jugador1:
-		background = "mouse";
-		text = "JUGADOR1!";
+		_background = "fantasma";
+		_text = "JUGADOR 1!";
 		break;
 	case 3: // Jugador2:
-		background = "npc";
-		text = "JUGADOR2!";
+		_background = "npc";
+		_text = "JUGADOR 2!";
 		break;
 	default:
-		background = "board5";
-		text = "NADIE?";
+		_background = "board5";
+		_text = "NADIE?";
 		break;
 	}
 
 	// ----- Imagen de fondo ---- 
-	ecs::entity_t fondo = Instantiate();
-	fondo->addComponent<Transform>();
-	fondo->addComponent<SpriteRenderer>(background);
-	fondo->getComponent<Transform>()->getGlobalScale().set(0.5f, 0.5f);
-	fondo->setLayer(0);
+	ecs::entity_t background = Instantiate();
+	background->addComponent<Transform>();
+	background->addComponent<SpriteRenderer>(_background);
+	background->getComponent<Transform>()->getGlobalScale().set(0.5f, 0.5f);
+	background->setLayer(0);
 
 	// ---- Texto ----
-	ecs::entity_t shopText = Instantiate(Vector2D(300, 250));
-	shopText->addComponent<TextComponent>("¡GANADOR:" + text, "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 400, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-	shopText->setLayer(1);
+	ecs::entity_t matchOverText = Instantiate(Vector2D(sdlutils().width() / 2, sdlutils().height() / 2));
+	matchOverText->addComponent<TextComponent>("¡GANADOR: " + _text, "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 500, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	matchOverText->setLayer(1);
 
 	// ---- Resetea el ganador a nulo al salir del estado ----
 	data->setWinner(0);

@@ -60,16 +60,10 @@
     <ClCompile Include="src\json\JSON.cpp">
       <Filter>Utilidades\JSON</Filter>
     </ClCompile>
-    <ClCompile Include="src\json\json_demo.cpp">
-      <Filter>Utilidades\JSON</Filter>
-    </ClCompile>
     <ClCompile Include="src\json\JSONValue.cpp">
       <Filter>Utilidades\JSON</Filter>
     </ClCompile>
     <ClCompile Include="src\sdlutils\SDLUtils.cpp">
-      <Filter>Utilidades\SDL_Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="src\sdlutils\sdlutils_demo.cpp">
       <Filter>Utilidades\SDL_Utils</Filter>
     </ClCompile>
     <ClCompile Include="src\sdlutils\SoundEffect.cpp">
@@ -107,12 +101,6 @@
     </ClCompile>
     <ClCompile Include="src\game\SamuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\Board.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\CellManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\BoardManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
@@ -167,9 +155,6 @@
     </ClCompile>
     <ClCompile Include="src\game\NPC.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\MovementState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\game\MoveOnClick.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
@@ -235,6 +220,8 @@
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\game\pch.cpp" />
+    <ClCompile Include="pchs\pch_c++_basic.cpp" />
+    <ClCompile Include="pchs\pch_SDL.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -247,9 +234,6 @@
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\json\JSON.h">
-      <Filter>Utilidades\JSON</Filter>
-    </ClInclude>
-    <ClInclude Include="src\json\json_demo.h">
       <Filter>Utilidades\JSON</Filter>
     </ClInclude>
     <ClInclude Include="src\json\JSONValue.h">
@@ -274,9 +258,6 @@
       <Filter>Utilidades\SDL_Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\sdlutils\SDLUtils.h">
-      <Filter>Utilidades\SDL_Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\sdlutils_demo.h">
       <Filter>Utilidades\SDL_Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\sdlutils\SoundEffect.h">
@@ -332,12 +313,6 @@
     </ClInclude>
     <ClInclude Include="src\game\SamuState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\Board.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\CellManager.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\BoardState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
@@ -405,9 +380,6 @@
     <ClInclude Include="src\game\NPC.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\MovementState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\MoveOnClick.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
@@ -466,5 +438,7 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\pch.h" />
+    <ClInclude Include="pchs\pch_c++_basic.h" />
+    <ClInclude Include="pchs\pch_SDL.h" />
   </ItemGroup>
 </Project>
