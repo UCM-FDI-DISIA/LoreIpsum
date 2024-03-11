@@ -1,24 +1,9 @@
 #pragma once
 //#include "../pch/pch.h"
 
-
+#include "game/Enums.h"
 #include "game/Card.h"
 #include "Cell.h"
-
-namespace Effects
-{
-	enum Type
-	{
-		Esquina,		// 0
-		Centro,			// 1
-		Flecha,			// 2
-		Superflecha,	// 3
-		Block,			// 4
-		Unblockable,
-
-		_NO_DISCARD_
-	};
-}
 
 class EffectCollection
 {

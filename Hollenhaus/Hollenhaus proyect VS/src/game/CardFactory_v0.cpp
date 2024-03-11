@@ -11,7 +11,7 @@
 #include "DropDetector.h"
 #include "../Cell.h"
 #include "../EffectCollection.h"
-
+#include "Enums.h"
 #include "TextComponent.h"
 
 
@@ -36,7 +36,8 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 
 
 	/// Hemos creado getEffect para evitar:
-	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), Effects::Down, 20, false);}
+	// [this, card] { EffectCollection::addAdj(card->getComponent<Card>()->getCell(), 
+	// Down, 20, false);}
 	/// Al metodo createCard se le deberia pasar el array de effects
 	///	y a continuacion iterar sobre el, anyadiendole a la carta cada
 	///	efecto tal que:

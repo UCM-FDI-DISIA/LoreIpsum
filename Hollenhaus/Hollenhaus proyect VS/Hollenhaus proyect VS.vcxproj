@@ -160,6 +160,7 @@
     <ClCompile Include="src\game\JimboState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="pchs\pch_c++_basic.h" />
     <ClInclude Include="pchs\pch_SDL.h" />
     <ClInclude Include="src\EffectCollection.h" />

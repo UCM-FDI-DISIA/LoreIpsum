@@ -5,6 +5,7 @@
 #include <iostream>
 #include <functional>
 #include "../Cell.h"
+#include "Enums.h"
 
 //class Cell;
 class Card;
