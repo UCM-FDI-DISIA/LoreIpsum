@@ -43,6 +43,13 @@ public:
         initBoard(); 
     }
 
+    // Setters para las referencias de los elementos visuales
+    void setScoreVisualJ1(ecs::entity_t visual) { scoreVisualJ1 = visual; }
+    void setScoreVisualJ2(ecs::entity_t visual) { scoreVisualJ2 = visual; }
+
+    // Método para actualizar el aspecto de las referencias visuales del MatchManager
+    void updateVisuals();
+
 private:
     void initBoard();
     //cleon: si en la entrega es una constante, os mataré. bueno, yo os mataré
@@ -57,6 +64,8 @@ private:
     void applyAllEffects() const;
     int pPlayer1 = 0;
     int pPlayer2 = 0;
+
+    // Referencias a los elementos del HUD
     ecs::entity_t scoreVisualJ1;
     ecs::entity_t scoreVisualJ2;
 

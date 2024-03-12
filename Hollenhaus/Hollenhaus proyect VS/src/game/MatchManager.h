@@ -34,10 +34,15 @@ public:
     void substractActionPointsJ1(int pointsSubstracted) { actualActionPointsJ1 -= pointsSubstracted; }
     void substractActionPointsJ2(int pointsSubstracted) { actualActionPointsJ2 -= pointsSubstracted; }
     
+    // Setters para las referencias de los elementos visuales
+    void setActualTurnVisual(ecs::entity_t visual) { actualTurnVisual = visual; }
+    void setActionPointsVisualJ1(ecs::entity_t visual) { actionPointsVisualJ1 = visual; }
+    void setActionPointsVisualJ2(ecs::entity_t visual) { actionPointsVisualJ2 = visual; }
 
     // Setter de la referencia al board
     void setBoardManager(BoardManager* b) { board_ = b; }
 
+    // Método para actualizar el aspecto de las referencias visuales del MatchManager
     void updateVisuals();
 
 private:
@@ -51,7 +56,7 @@ private:
     int actualActionPointsJ1;
     int actualActionPointsJ2;
 
-    // visuals
+    // Referencias a los elementos del HUD
     ecs::entity_t actualTurnVisual;
 	ecs::entity_t actionPointsVisualJ1;
     ecs::entity_t actionPointsVisualJ2;

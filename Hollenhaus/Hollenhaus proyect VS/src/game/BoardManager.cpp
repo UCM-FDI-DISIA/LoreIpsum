@@ -101,8 +101,7 @@ void BoardManager::updateScore()
 		}
 	}
 
-	scoreVisualJ1->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer1));
-	scoreVisualJ2->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
+	updateVisuals();
 }
 
 void BoardManager::applyAllEffects() const
@@ -116,6 +115,12 @@ void BoardManager::applyAllEffects() const
 		for (int i = 0; i < size; i++)
 			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
 				_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
+}
+
+void BoardManager::updateVisuals()
+{
+	scoreVisualJ1->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer1));
+	scoreVisualJ2->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
 }
 
 void BoardManager::initBoard()
@@ -171,13 +176,4 @@ void BoardManager::initBoard()
 			cell->setAdjacents(adj);
 		}
 	}
-
-
-	// Textos de puntuacion (WIP)
-	scoreVisualJ1 = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() * 2 / 3 - 50));
-	scoreVisualJ2 = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() / 3 + 25));
-	scoreVisualJ1->addComponent<TextComponent>("0", "8bit_48pt", SDL_Color({ 102, 255, 102, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-	scoreVisualJ2->addComponent<TextComponent>("0", "8bit_48pt", SDL_Color({ 255, 102, 255, 255 }), 120, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-	scoreVisualJ1->setLayer(9);
-	scoreVisualJ2->setLayer(9);
 }

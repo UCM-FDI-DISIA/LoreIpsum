@@ -63,12 +63,13 @@ void LuisState::onEnter()
 	);
 
 	// Factoría del tablero. Generamos el tablero de juego.
-	ecs::entity_t board = factory->createBoard();
+	ecs::entity_t boardEntity = factory->createBoard();
+	BoardManager* boardManagerComponent = boardEntity->getComponent<BoardManager>();
 
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
-	auto matchManager = Instantiate();
+	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	matchManager->addComponent<MatchManager>(4, 4, MatchManager::TurnState::TurnJ1, board->getComponent<BoardManager>());
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, MatchManager::TurnState::TurnJ1, boardEntity->getComponent<BoardManager>());
 
 	// Factoría de cartas. Con ella generamos la mano inicial
 	factory->createDeck();
@@ -77,7 +78,7 @@ void LuisState::onEnter()
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
-	ent->getComponent<DragManager>()->setBoardManager(board->getComponent<BoardManager>());
+	ent->getComponent<DragManager>()->setBoardManager(boardEntity->getComponent<BoardManager>());
 
 
 
@@ -95,6 +96,16 @@ void LuisState::onEnter()
 
 	ecs::entity_t visual_BackgroundBoard = factory->createVisual_BackgroundFullImage();
 
+
+	// Enlazado de la UI con los scripts que la controlan
+	matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
+	matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
+	matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
+	matchManagerComponent->updateVisuals();
+
+	boardManagerComponent->setScoreVisualJ1(visual_ScoreCounterJ1);
+	boardManagerComponent->setScoreVisualJ2(visual_ScoreCounterJ2);
+	boardManagerComponent->updateVisuals();
 
 
 	// incicia la cancion en bucle

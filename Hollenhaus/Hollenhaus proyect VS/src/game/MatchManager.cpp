@@ -18,7 +18,10 @@ MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2,
 	defaultActionPointsJ2(defaultActionPointsJ2),
 	actualActionPointsJ1(defaultActionPointsJ1),
 	actualActionPointsJ2(defaultActionPointsJ2),
-	actualState(turnStart)
+	actualState(turnStart),
+	actionPointsVisualJ1(nullptr),
+	actionPointsVisualJ2(nullptr),
+	actualTurnVisual(nullptr)
 {
 }
 
@@ -28,45 +31,6 @@ MatchManager::~MatchManager()
 
 void MatchManager::initComponent()
 {
-	/// TURNO VISUAL
-	actualTurnVisual = Instantiate(Vector2D(sdlutils().width() - 100, sdlutils().height() / 2 + 25));
-	actualTurnVisual->setLayer(2);
-	//actualTurnVisual->addComponent<SpriteRenderer>("black_box"); le queria poner un fondo negro pero que cojones es imposible centrarlo?
-
-	//guarrada MAXIMA:
-	auto fondo = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() / 2 - 100));
-	fondo->addComponent<SpriteRenderer>("black_box");
-	auto trasFondo = fondo->getComponent<Transform>(); // je ;)
-	trasFondo->getGlobalScale().set(2.0, 1.8);
-	fondo->setLayer(1);
-
-	const std::string jugador = actualState == TurnJ1 ? "Jugador 1" : "Jugador 2";
-	const SDL_Color color = actualState == TurnJ1 ? SDL_Color({102, 255, 102, 255}) : SDL_Color({255, 102, 255, 255});
-	actualTurnVisual->addComponent<TextComponent>("Turno de:\n" + jugador,
-	                                              "8bit_32pt", SDL_Color({255, 255, 255, 255}), 200,
-	                                              TextComponent::BoxPivotPoint::CenterBot,
-	                                              TextComponent::TextAlignment::Center
-	)->setColor(color);
-
-	/// AP VISUAL
-	const auto matchManager = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
-	const int apValueJ1 = matchManager->getActualActionPointsJ1();
-	actionPointsVisualJ1 = Instantiate(Vector2D(200, sdlutils().height() - 80));
-	actionPointsVisualJ1->addComponent<TextComponent>("Puntos de accion:\n" + std::to_string(apValueJ1),
-	                                                  "8bit_24pt", SDL_Color({255, 255, 0, 255}), 200,
-	                                                  TextComponent::BoxPivotPoint::CenterCenter,
-	                                                  TextComponent::TextAlignment::Center);
-
-	const int apValueJ2 = matchManager->getActualActionPointsJ2();
-	actionPointsVisualJ2 = Instantiate(Vector2D(200, 80));
-	actionPointsVisualJ2->addComponent<TextComponent>("Puntos de accion:\n" + std::to_string(apValueJ2),
-	                                                  "8bit_24pt", SDL_Color({255, 255, 0, 255}), 200,
-	                                                  TextComponent::BoxPivotPoint::CenterCenter,
-	                                                  TextComponent::TextAlignment::Center);
-	actionPointsVisualJ1->setLayer(9);
-	actionPointsVisualJ2->setLayer(9);
-
-	setTurnText();
 }
 
 void MatchManager::update()
@@ -141,25 +105,25 @@ void MatchManager::substractActualPlayerActionPoints(int points)
 
 void MatchManager::updateVisuals()
 {
-	/// AP
-	const int actionPointsValueJ1 = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
-	                                       getActualActionPointsJ1();
+	// Actualiza los puntos de acción restantes de J1
 	actionPointsVisualJ1->getComponent<TextComponent>()->setTxt(
-		"Puntos de accion:\n" + std::to_string(actionPointsValueJ1));
+		"Puntos de accion:\n" + std::to_string(actualActionPointsJ1));
 
-	const int actionPointsValueJ2 = mngr().getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->
-	                                       getActualActionPointsJ2();
+	// Actualiza los puntos de acción restantes de J2
 	actionPointsVisualJ2->getComponent<TextComponent>()->setTxt(
-		"Puntos de accion:\n" + std::to_string(actionPointsValueJ2));
+		"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
+
+	// Actualiza el indicador del propietario del turno actual
+	std::string jugador = actualState == TurnJ1 ? "Jugador 1" : "Jugador 2";
+	SDL_Color color = actualState == TurnJ1 ? SDL_Color({ 102, 255, 102, 255 }) : SDL_Color({ 255, 102, 255, 255 });
+	actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
+	actualTurnVisual->getComponent<TextComponent>()->setColor(color);
 }
 
 void MatchManager::setTurnText()
 {
 	// un mierdon pero el hito es en un dia
-	const std::string jugador = actualState == TurnJ1 ? "Jugador 1" : "Jugador 2";
-	const SDL_Color color = actualState == TurnJ1 ? SDL_Color({102, 255, 102, 255}) : SDL_Color({255, 102, 255, 255});
-	actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
-	actualTurnVisual->getComponent<TextComponent>()->setColor(color);
+	
 }
 
 void MatchManager::resetActualActionPoints()
