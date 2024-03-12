@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Entity.h"
-#include "Manager.h"
+#include "components/managers/Manager.h"
 
 namespace ecs {
 
