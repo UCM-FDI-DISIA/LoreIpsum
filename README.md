@@ -4,11 +4,11 @@
 ## Índice
 - [Proyecto](#Proyecto)
   - [Descripción](#descripción)
-  <!-- - [Capturas](#Capturas) -->
-  <!-- - [Vídeo](#Video) -->
-  <!-- - [Página](#Pagina) -->
+  - [Capturas](#Capturas) 
+  - [Vídeo](#Video) 
+  - [Página](#Pagina)
 - [Presentaciones](#presentaciones)
-<!-- [Arquitectura](#Arquitectura) -->
+- [Arquitectura](#Arquitectura)
 - [GDD](#GDD)
   1. [Ficha técnica](#id1)
   2. [Descripción](#id2)
@@ -43,20 +43,19 @@
 ## Proyecto
 ### Descripción
 **HÖLLENHAUS** es un videojuego de cartas creado por *LoreIpsum* en el que tú —un fantasma en el limbo que busca un nuevo hogar en el infierno— luchas contra tu adversario por sumar la mayor cantidad de puntos en las casillas de un tablero. Te enfrentarás a diversos personajes a lo largo de la historia, ganando las almas necesarias para costearte un hogar en el infierno.
-<!-- COMENTADO PORQUE TODAVÍA NO HAY NADA
 ### Capturas
 ...
 ### Vídeo
 ...
 ### Página
-...
--->
+[Enlace a página web](https://ucm-fdi-disia.github.io/LoreIpsum/)
 ## Presentaciones
 - [Hito 0](https://docs.google.com/presentation/d/14X1H2WW96c6soYmThStQAicIRp_3ZJsN-hTsZ-rOBvw/edit?usp=drive_link)
-- Hito 1
+- [Hito 1](https://docs.google.com/presentation/d/1n5Ko22xPMVLtqO-oFY6cvgndLT4iQ3dGm4_wTjoHPe4/edit?usp=sharing)
 - Hito 2
 - Hito final
-<!-- ## Arquitectura -->
+## Arquitectura 
+(TO-DO: insertar aquí UMLS)
 ## GDD
 <p align="center">
   Paula Alemany, Nieves Alonso, Samuel García, Andrés García, Pablo Iglesias, Luis Parres, Inés Primo, Ariadna Ruiz, Paula Sierra, Cynthia Tristán, Jaime Vicente
