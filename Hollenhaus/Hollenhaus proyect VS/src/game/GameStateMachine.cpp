@@ -46,6 +46,8 @@ GameStateMachine::GameStateMachine() {
 	// Ponemos el estado actual
 	currentState = new LuisState();
 
+	//currentState = samuState;
+
 	// crea la data en el current state
 	currentState->setData(new Data());
 }

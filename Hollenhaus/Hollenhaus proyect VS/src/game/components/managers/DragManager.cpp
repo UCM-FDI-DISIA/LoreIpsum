@@ -54,14 +54,21 @@ void DragManager::OnLeftClickDown()
 	auto card = mouseRaycast(ecs::grp::CARDS);
 
 	const auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
+
 	const Players::Owner turnOwner = matchManager->getActualState() == MatchManager::TurnJ1
 		? Players::PLAYER1 : Players::PLAYER2;
+
 	Players::Owner cardOwner = Players::NULO;
 
+	//setear la carta en funcion de donde hemos clickado
 	if (card != nullptr
 		&& card->getComponent<Transform>() != nullptr
-		&& card->getComponent<Transform>()->getParent() != nullptr)
+		&& card->getComponent<Transform>()->getParent() != nullptr) {
+
 		cardOwner = card->getComponent<Transform>()->getParent()->getEntity()->getComponent<HandComponent>()->getOwner();
+	}
+
+
 	if (card != nullptr && //si hay carta y esta en la mano
 		card->getComponent<CardStateManager>()->getState() == CardStateManager::ON_HAND && 
 		cardOwner == turnOwner)  // si es carta del propietario del turno actual

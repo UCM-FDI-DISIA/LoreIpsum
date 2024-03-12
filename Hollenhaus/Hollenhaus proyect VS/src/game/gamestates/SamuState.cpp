@@ -36,15 +36,7 @@ void SamuState::refresh()
 
 void SamuState::update()
 {
-	//system("CLS");
-
-
 	GameState::update();
-
-	//board->getComponent<BoardManager>()->updateScore(); // Esto puede ser un problema de performance // ahora está en el setcard
-
-
-
 
 #if _DEBUG
 

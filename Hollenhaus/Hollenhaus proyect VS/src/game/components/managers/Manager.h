@@ -521,6 +521,8 @@ inline ecs::entity_t mouseRaycast(ecs::grpId_t gId) {
 
 
 inline void TuVieja(std::string message) {
+#if _DEBUG
 	std::cout << message << std::endl;
+#endif // 
 }
 
