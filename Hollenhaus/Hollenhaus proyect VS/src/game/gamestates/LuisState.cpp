@@ -38,7 +38,7 @@ void LuisState::update()
 	GameState::update();
 
 #if _DEBUG
-	std::cout << sdlutils().dialogues().at("0").text()<< std::endl;
+	//std::cout << sdlutils().dialogues().at("0").text()<< std::endl;
 #endif
 }
 
@@ -112,7 +112,7 @@ void LuisState::onEnter()
 
 void LuisState::onExit()
 {
-	TuVieja("\nExit SamuState");
+	TuVieja("\nExit LuisState");
 
 	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
