@@ -2,8 +2,6 @@
     "images": [
         {"id": "rice",            "file": "./resources/images/rice.png"},
         {"id": "card",            "file": "resources/images/card.png"},
-        {"id": "hand",            "file": "resources/images/hand.png"},
-        {"id": "picto1",          "file": "resources/images/picto1.png"},
         {"id": "key",             "file": "resources/images/libreta.png"},
         {"id": "board",           "file": "resources/images/board4.png"},
         {"id": "board5",           "file": "resources/images/board5.png"},
@@ -27,9 +25,6 @@
         {"id": "oficinafondo",    "file": "resources/images/provoficina.png"  },
         {"id": "fantasma",        "file": "resources/images/fantasma.png"  },
         {"id": "main_menu_bg",    "file": "resources/images/main_menu.png"  },
-        {"id": "boton_nueva_partida", "file": "resources/images/boton_nueva_partida.png"  },
-        {"id": "boton_salir",     "file": "resources/images/boton_salir.png"  },
-        {"id": "boton_flecha",    "file": "resources/images/boton_flecha.png"},
         {"id": "black_box",       "file": "resources/images/black_background.png"  },
         {"id": "reverseCard",       "file": "resources/images/card_reverse.png"  }
     ],
