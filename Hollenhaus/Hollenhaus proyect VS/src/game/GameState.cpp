@@ -59,7 +59,7 @@ void GameState::render() const
     GameStateMachine::instance()->getMngr()->render();
 }
 
-void GameState::setWinner(int w)
+void GameState::setWinnerOnData(int w)
 {
     data->setWinner(w);
 

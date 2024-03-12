@@ -39,7 +39,7 @@ void MatchManager::update()
 	{
 		if (board_->isFull())
 		{
-			setWinner();
+			
 			setActualState(Finish);
 		}
 	}
@@ -52,29 +52,35 @@ void MatchManager::setActualState(TurnState newState)
 	switch (actualState)
 	{
 	case TurnJ1:
-		resetActualActionPoints();
-		std::cout << "Nuevo turno: Jugador 1" << std::endl;
+#if _DEBUG 
+		std::cout << "Nuevo turno: Jugador 1" << std::endl; 
+#endif
+		resetActualActionPoints();	
 		break;
 	case TurnJ2:
-		resetActualActionPoints();
+#if _DEBUG 
 		std::cout << "Nuevo turno: Jugador 2" << std::endl;
+#endif
+		resetActualActionPoints();	
 		break;
 	case Finish:
+#if _DEBUG 
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
+#endif
+		setWinnerOnData();
 		GameStateMachine::instance()->setState(GameStates::MATCHOVER);
 		break;
 	default:
 		break;
 	}
 
-	setTurnText();
+	updateVisuals();
 }
 
-int MatchManager::getActivePlayerActualActionPoints()
+int MatchManager::getActualPlayerActualActionPoints()
 {
-	if (getActualState() == TurnJ1)
-		return getActualActionPointsJ1();
-	return getActualActionPointsJ2();
+	return getActualState() == TurnJ1 ? 
+		getActualActionPointsJ1() : getActualActionPointsJ2();
 }
 
 Players::Owner MatchManager::getPlayerTurn() const
@@ -120,12 +126,6 @@ void MatchManager::updateVisuals()
 	actualTurnVisual->getComponent<TextComponent>()->setColor(color);
 }
 
-void MatchManager::setTurnText()
-{
-	// un mierdon pero el hito es en un dia
-	
-}
-
 void MatchManager::resetActualActionPoints()
 {
 	actualActionPointsJ1 = defaultActionPointsJ1;
@@ -133,23 +133,23 @@ void MatchManager::resetActualActionPoints()
 	updateVisuals();
 }
 
-void MatchManager::setWinner()
+void MatchManager::setWinnerOnData()
 {
+	// EMPATE
+	if (board_->getPlayer1Points() == board_->getPlayer2Points())
+	{
+		GameStateMachine::instance()->getCurrentState()->setWinnerOnData(1);
+	}
+
 	// JUGADOR 1
 	if (board_->getPlayer1Points() > board_->getPlayer2Points())
 	{
-		GameStateMachine::instance()->getCurrentState()->setWinner(2);
+		GameStateMachine::instance()->getCurrentState()->setWinnerOnData(2);
 	}
 
 	// JUGADOR 2
 	else if (board_->getPlayer2Points() > board_->getPlayer1Points())
 	{
-		GameStateMachine::instance()->getCurrentState()->setWinner(3);
-	}
-
-	// EMPATE
-	else if (board_->getPlayer1Points() == board_->getPlayer2Points())
-	{
-		GameStateMachine::instance()->getCurrentState()->setWinner(1);
+		GameStateMachine::instance()->getCurrentState()->setWinnerOnData(3);
 	}
 }

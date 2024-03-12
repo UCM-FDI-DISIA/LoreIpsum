@@ -25,7 +25,7 @@ public:
     Players::Owner getPlayerTurn() const;   // Devuelve el turno activo con el tipo usado en "BoardManager". 
 
     // Getters de los puntos de acción
-    int getActivePlayerActualActionPoints();
+    int getActualPlayerActualActionPoints();
     int getActualActionPointsJ1() const { return actualActionPointsJ1; }
     int getActualActionPointsJ2() const { return actualActionPointsJ2; }
 
@@ -49,6 +49,8 @@ private:
 
     TurnState actualState;
 
+    // Queremos una referencia al board para detectar cuándo se llena y acabar la partida.
+    // También necesitamos el board para evaluar qué jugador tiene más puntos y pasarlo a la data.
     BoardManager* board_ = nullptr;
 
     int defaultActionPointsJ1;
@@ -61,9 +63,10 @@ private:
 	ecs::entity_t actionPointsVisualJ1;
     ecs::entity_t actionPointsVisualJ2;
 
-	void setTurnText();
     void resetActualActionPoints();
-    void setWinner();
+
+    // Método para pasarle el ganador al GameState y guardarlo en data.
+    void setWinnerOnData();
 };
 
 

@@ -116,7 +116,7 @@ void NievesState::onExit()
 	GameStateMachine::instance()->getMngr()->Free();
 }
 
-void NievesState::setWinner(int w)
+void NievesState::setWinnerOnData(int w)
 {
 	
 

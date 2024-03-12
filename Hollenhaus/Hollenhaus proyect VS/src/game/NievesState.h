@@ -17,7 +17,7 @@ public:
     void onEnter() override;
     void onExit() override;
 
-    void setWinner(int w) override;
+    void setWinnerOnData(int w) override;
 
 private:
     ecs::entity_t card;

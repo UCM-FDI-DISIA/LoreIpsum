@@ -24,6 +24,10 @@ void PlayerCardsManager::drawCard()
 {
 	//deck_->shuffle();
 	// esto es porque me da un error rarísimo en el matchover
+	// LUIS: Creo que lo que está pasando es que al salir de MatchState, la función drawCard se queda en la lista de callbacks
+	// asi que cuando el inputHandler recorre la lista de callbacks (el error salta al hacer click derecho) se encuentra con una
+	// función drawCard que ya ha perdido su contexto. 
+	// Supongo que hay que eliminar todas las funciones de la lista de callbacks siempre que salgamos de su contexto.
 	if (mngr_ != nullptr && mngr_->getHandler(ecs::hdlr::MATCH_MANAGER) != nullptr)
 	{
 		const auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
@@ -34,7 +38,7 @@ void PlayerCardsManager::drawCard()
 		if (deck_->deckSize() > 0 &&
 			ent_->getComponent<BoxCollider>()->isCursorOver() &&
 			hand_->handSize() < MAX_IN_HAND &&
-			matchManager->getActivePlayerActualActionPoints() >= deck_->getDrawCardCost()
+			matchManager->getActualPlayerActualActionPoints() >= deck_->getDrawCardCost()
 			&& deck_->getOwner() == turnOwner
 		)
 		{
