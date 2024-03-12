@@ -21,7 +21,8 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 		msgsAccessWrapper_(msgs_, "Messages Table"), //
 		soundsAccessWrapper_(sounds_, "Sounds Table"), //
 		musicsAccessWrapper_(musics_, "Musics Table"), //
-		cardAccessWrapper_(cards_, "Cards Table") //
+		cardAccessWrapper_(cards_, "Cards Table"), //
+		dialogueAccessWrapper_(dialogues_, "Dialogues Table") //
 {
 	initWindow();
 	initSDLExtensions();
@@ -361,6 +362,33 @@ void SDLUtils::loadReasources(std::string filenameResources,
 		}
 	}
 
+
+
+	// load musics
+	jValue = rootDialogues["dialogues"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			dialogues_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString();
+					std::string text = vObj["text"]->AsString();
+#ifdef _DEBUG
+					std::cout << "Loading dialogue with id: " << key << std::endl;
+#endif
+					dialogues_.emplace(key, DialogueData(text));
+				}
+				else {
+					throw "'dialogues' array in '" + filemaneDialogues
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'dialogues' is not an array";
+		}
+	}
 
 
 

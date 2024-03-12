@@ -42,7 +42,7 @@ void LuisState::update()
 	GameState::update();
 
 #if _DEBUG
-
+	std::cout << sdlutils().dialogues().at("0").text()<< std::endl;
 #endif
 }
 

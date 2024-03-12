@@ -157,10 +157,17 @@ public:
 	inline auto& musics() {
 		return musicsAccessWrapper_;
 	}
-	// cards map
+
+// cards map
 	inline auto& cards()
 	{
 		return cardAccessWrapper_;	
+	}
+
+// dialogue map
+	inline auto& dialogues()
+	{
+		return dialogueAccessWrapper_;
 	}
 
 
@@ -221,6 +228,19 @@ public:
 		bool unblockable_;
 		std::vector<CardEffect> effects_;
 	};
+
+	struct DialogueData {
+		DialogueData();
+		DialogueData(std::string text) 
+			:text_(text){};
+
+		std::string text() { return text_; };
+
+	private:
+		std::string text_;
+	};
+
+
 	void closeWindow();
 
 private:
@@ -253,6 +273,7 @@ private:
 	sdl_resource_table<SoundEffect> sounds_; // sounds map (string -> sound)
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
 	sdl_resource_table<CardData> cards_; // cards map (string -> card)
+	sdl_resource_table<DialogueData> dialogues_; // dialogues map (string -> dialogue)
 
 	map_access_wrapper<Font> fontsAccessWrapper_;
 	map_access_wrapper<Texture> imagesAccessWrapper_;
@@ -260,6 +281,7 @@ private:
 	map_access_wrapper<SoundEffect> soundsAccessWrapper_;
 	map_access_wrapper<Music> musicsAccessWrapper_;
 	map_access_wrapper<CardData> cardAccessWrapper_;
+	map_access_wrapper<DialogueData> dialogueAccessWrapper_;
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer
