@@ -49,6 +49,9 @@
     <Filter Include="Archivos de origen\Componentes\ComponentesBasicos">
       <UniqueIdentifier>{7fe60d75-e3bb-45be-8dd6-558968b62610}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{9b9d21a4-1277-4837-bb3d-8d346c3fa8d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\Game.cpp">
@@ -439,5 +442,16 @@
     <ClInclude Include="Enums.h" />
     <ClInclude Include="src\game\MatchStateUIFactory.h" />
     <ClInclude Include="src\game\MatchStateUIFactory_v0.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\config\cards.json">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="resources\config\dialogues.json">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="resources\config\resources.json">
+      <Filter>Resources</Filter>
+    </None>
   </ItemGroup>
 </Project>

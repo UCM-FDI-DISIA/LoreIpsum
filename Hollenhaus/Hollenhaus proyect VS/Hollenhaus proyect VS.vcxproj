@@ -237,6 +237,11 @@
     <ClInclude Include="src\utils\Vector2D.h" />
     <ClInclude Include="src\game\JimboState.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\config\cards.json" />
+    <None Include="resources\config\dialogues.json" />
+    <None Include="resources\config\resources.json" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

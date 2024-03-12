@@ -160,7 +160,7 @@ public:
 	// cards map
 	inline auto& cards()
 	{
-		return cardAccessWrapper;	
+		return cardAccessWrapper_;	
 	}
 
 
@@ -227,12 +227,14 @@ private:
 	SDLUtils();
 	SDLUtils(std::string windowTitle, int width, int height);
 	SDLUtils(std::string windowTitle, int width, int height,
-			std::string filename);
+			std::string filenameResources, std::string filenameCards, std::string filemaneDialogues);
 
 	void initWindow();
 	void initSDLExtensions(); // initialize resources (fonts, textures, audio, etc.)
 	void closeSDLExtensions(); // free resources the
-	void loadReasources(std::string filename); // load resources from the json file
+
+	void loadReasources(std::string filenameResources
+		,std::string filenameCards,std::string filemaneDialogues); // load resources from the json file
 
 	/// CARD PARSING estoy fatal de la cabezaaaa
 	std::vector<Effects::Direction>& loadDirections(JSONObject&, std::vector<Effects::Direction>&);
@@ -257,7 +259,7 @@ private:
 	map_access_wrapper<Texture> msgsAccessWrapper_;
 	map_access_wrapper<SoundEffect> soundsAccessWrapper_;
 	map_access_wrapper<Music> musicsAccessWrapper_;
-	map_access_wrapper<CardData> cardAccessWrapper;
+	map_access_wrapper<CardData> cardAccessWrapper_;
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer
