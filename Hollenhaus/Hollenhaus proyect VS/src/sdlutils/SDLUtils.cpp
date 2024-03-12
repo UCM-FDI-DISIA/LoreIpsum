@@ -1,4 +1,5 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
+#include "../../pchs/pch_SDL.h"
 
 #include "SDLUtils.h"
 
@@ -20,16 +21,17 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 		msgsAccessWrapper_(msgs_, "Messages Table"), //
 		soundsAccessWrapper_(sounds_, "Sounds Table"), //
 		musicsAccessWrapper_(musics_, "Musics Table"), //
-		cardAccessWrapper(cards_, "Cards Table") //
+		cardAccessWrapper_(cards_, "Cards Table"), //
+		dialogueAccessWrapper_(dialogues_, "Dialogues Table") //
 {
 	initWindow();
 	initSDLExtensions();
 }
 
 SDLUtils::SDLUtils(std::string windowTitle, int width, int height,
-		std::string filename) :
+		std::string filename, std::string filenameCards, std::string filemaneDialogues) :
 		SDLUtils(windowTitle, width, height) {
-	loadReasources(filename);
+	loadReasources(filename,filenameCards,filemaneDialogues);
 }
 
 SDLUtils::~SDLUtils() {
@@ -113,7 +115,8 @@ void SDLUtils::initSDLExtensions() {
 
 }
 
-void SDLUtils::loadReasources(std::string filename) {
+void SDLUtils::loadReasources(std::string filenameResources,
+	std::string filenameCards, std::string filemaneDialogues) {
 	// TODO check the correctness of values and issue a corresponding
 	// exception. Now we just do some simple checks, and assume input
 	// is correct.
@@ -122,28 +125,45 @@ void SDLUtils::loadReasources(std::string filename) {
 	// can exit the method in different ways, this way we guarantee that
 	// it is always deleted
 
-	if (filename == "") {
+	if (filenameResources == "") {
 		std::cout << "No hay ruta de recursos, por lo que no se cargan" << '\n';
 		return;
 	}
 
-	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
+	std::unique_ptr<JSONValue> jValueRootResources(JSON::ParseFromFile(filenameResources));
+	std::unique_ptr<JSONValue> jValueRootCards(JSON::ParseFromFile(filenameCards));
+	std::unique_ptr<JSONValue> jValueRootDialogues(JSON::ParseFromFile(filemaneDialogues));
 
 	// check it was loaded correctly
 	// the root must be a JSON object
-	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing '" + filename + "'";
+	if (jValueRootResources == nullptr || !jValueRootResources->IsObject()) {
+		throw "Something went wrong while load/parsing '" + filenameResources + "'";
+	}
+	// check it was loaded correctly
+	// the root must be a JSON object
+	if (jValueRootCards == nullptr || !jValueRootCards->IsObject()) {
+		throw "Something went wrong while load/parsing '" + filenameCards + "'";
+	}
+	// check it was loaded correctly
+	// the root must be a JSON object
+	if (jValueRootDialogues == nullptr || !jValueRootDialogues->IsObject()) {
+		throw "Something went wrong while load/parsing '" + filemaneDialogues + "'";
 	}
 
 	// we know the root is JSONObject
-	JSONObject root = jValueRoot->AsObject();
+	JSONObject rootResources = jValueRootResources->AsObject();
+	JSONObject rootCards = jValueRootCards->AsObject();
+	JSONObject rootDialogues = jValueRootDialogues->AsObject();
+
+
+
 	JSONValue *jValue = nullptr;
 
 	// TODO improve syntax error checks below, now we do not check
 	//      validity of keys with values as sting or integer
 
 	// load fonts
-	jValue = root["fonts"];
+	jValue = rootResources["fonts"];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			fonts_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
@@ -159,17 +179,17 @@ void SDLUtils::loadReasources(std::string filename) {
 #endif
 					fonts_.emplace(key, Font(file, size));
 				} else {
-					throw "'fonts' array in '" + filename
+					throw "'fonts' array in '" + filenameResources
 							+ "' includes and invalid value";
 				}
 			}
 		} else {
-			throw "'fonts' is not an array in '" + filename + "'";
+			throw "'fonts' is not an array in '" + filenameResources + "'";
 		}
 	}
 
 	// load images
-	jValue = root["images"];
+	jValue = rootResources["images"];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			images_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
@@ -183,17 +203,17 @@ void SDLUtils::loadReasources(std::string filename) {
 #endif
 					images_.emplace(key, Texture(renderer(), file));
 				} else {
-					throw "'images' array in '" + filename
+					throw "'images' array in '" + filenameResources
 							+ "' includes and invalid value";
 				}
 			}
 		} else {
-			throw "'images' is not an array in '" + filename + "'";
+			throw "'images' is not an array in '" + filenameResources + "'";
 		}
 	}
 
 	// load messages
-	jValue = root["messages"];
+	jValue = rootResources["messages"];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			msgs_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
@@ -220,17 +240,17 @@ void SDLUtils::loadReasources(std::string filename) {
 										build_sdlcolor(
 												vObj["bg"]->AsString())));
 				} else {
-					throw "'messages' array in '" + filename
+					throw "'messages' array in '" + filenameResources
 							+ "' includes and invalid value";
 				}
 			}
 		} else {
-			throw "'messages' is not an array in '" + filename + "'";
+			throw "'messages' is not an array in '" + filenameResources + "'";
 		}
 	}
 
 	// load sounds
-	jValue = root["sounds"];
+	jValue = rootResources["sounds"];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			sounds_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
@@ -245,7 +265,7 @@ void SDLUtils::loadReasources(std::string filename) {
 #endif
 					sounds_.emplace(key, SoundEffect(file));
 				} else {
-					throw "'sounds' array in '" + filename
+					throw "'sounds' array in '" + filenameResources
 							+ "' includes and invalid value";
 				}
 			}
@@ -255,7 +275,7 @@ void SDLUtils::loadReasources(std::string filename) {
 	}
 
 	// load musics
-	jValue = root["musics"];
+	jValue = rootResources["musics"];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			musics_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
@@ -269,7 +289,7 @@ void SDLUtils::loadReasources(std::string filename) {
 #endif
 					musics_.emplace(key, Music(file));
 				} else {
-					throw "'musics' array in '" + filename
+					throw "'musics' array in '" + filenameResources
 							+ "' includes and invalid value";
 				}
 			}
@@ -283,7 +303,7 @@ void SDLUtils::loadReasources(std::string filename) {
 
 	/// CARD PARSING
 	///	Samir (feat. Cynthia)
-	jValue = root["cards"]; // key con todas las cartas
+	jValue = rootCards["cards"]; // key con todas las cartas
 	if (jValue != nullptr) { // si existe tal key
 		if (jValue->IsArray()) { // si tiene cartas dentro
 			cards_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
@@ -333,7 +353,7 @@ void SDLUtils::loadReasources(std::string filename) {
 					cards_.emplace(key, CardData(cost, value, sprite, unblockable, effects)); // finalmente se anyaden al mapa
 
 				} else {
-					throw "'cards' array in '" + filename
+					throw "'cards' array in '" + filenameCards
 							+ "' includes and invalid value";
 				}
 			}
@@ -341,6 +361,37 @@ void SDLUtils::loadReasources(std::string filename) {
 			throw "'cards' is not an array";
 		}
 	}
+
+
+
+	// load musics
+	jValue = rootDialogues["dialogues"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			dialogues_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString();
+					std::string text = vObj["text"]->AsString();
+#ifdef _DEBUG
+					std::cout << "Loading dialogue with id: " << key << std::endl;
+#endif
+					dialogues_.emplace(key, DialogueData(text));
+				}
+				else {
+					throw "'dialogues' array in '" + filemaneDialogues
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'dialogues' is not an array";
+		}
+	}
+
+
+
 }
 
 std::vector<Effects::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::vector<Effects::Direction>& directions)

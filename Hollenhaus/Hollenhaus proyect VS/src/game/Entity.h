@@ -4,12 +4,12 @@
 #include <array>
 #include <vector>
 
-//class ComponentUpdate;
-//class ComponentRender;
+class ComponentUpdate;
+class ComponentRender;
 
 //CUIDADO: PODRIA HABER DEPENDENCIAS CIRCULARES, si ocurre, mover update y render a cpp
-#include "ComponentUpdate.h"
-#include "ComponentRender.h"
+//#include "ComponentUpdate.h"
+//#include "ComponentRender.h"
 
 /// <summary>
 /// Clase entity vista en clase con algunas modificiaciones:

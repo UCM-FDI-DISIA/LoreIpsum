@@ -1,0 +1,20 @@
+¦
+¦   
++---game
+¦   ¦   
+¦   +---components
+¦   ¦   ¦   
+¦   ¦   +---basics
+¦   ¦   ¦       
+¦   ¦   +---managers
+¦   ¦           
+¦   +---factories
+¦   ¦       
+¦   +---gamestates
+¦           
++---json
+¦       
++---sdlutils
+¦       
++---utils
+        

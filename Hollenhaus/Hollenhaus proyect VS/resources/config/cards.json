@@ -1,0 +1,158 @@
+{
+  "cards": [
+    {
+      "id": "0",
+      "cost": 3,
+      "value": 1,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 0,
+          "value": 10
+        }
+      ],
+      "unblockable": false
+    },
+    {
+      "id": "1",
+      "cost": 2,
+      "value": 2,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
+        }
+      ],
+      "unblockable": false
+    },
+    {
+      "id": "2",
+      "cost": 1,
+      "value": 3,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 2,
+          "directions": [
+            "Derecha"
+          ],
+          "value": 30
+        }
+      ],
+      "unblockable": false
+    },
+    {
+      "id": "3",
+      "cost": 4,
+      "value": 4,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 3,
+          "directions": [
+            "Arriba"
+          ],
+          "value": 40
+        }
+      ],
+      "unblockable": false
+    },
+    {
+      "id": "4",
+      "cost": 3,
+      "value": 5,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 4,
+          "directions": [
+            "Derecha"
+          ]
+        }
+      ],
+      "unblockable": false
+    },
+    {
+      "id": "5",
+      "cost": 2,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
+        },
+        {
+          "type": 0,
+          "value": 44
+        }
+      ],
+      "unblockable": true
+    },
+    {
+      "id": "6",
+      "cost": 0,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 10
+        },
+        {
+          "type": 2,
+          "directions": [
+            "Arriba",
+            "Abajo"
+          ],
+          "value": 30
+        }
+      ],
+      "unblockable": true
+    },
+    {
+      "id": "7",
+      "cost": 0,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
+        },
+        {
+          "type": 0,
+          "value": 44
+        }
+      ],
+      "unblockable": true
+    },
+    {
+      "id": "8",
+      "cost": 0,
+      "value": 6,
+      "sprite": "card",
+      "effects": [
+        {
+          "type": 1,
+          "value": 20
+        },
+        {
+          "type": 4,
+          "directions": [
+            "Derecha",
+            "Izquierda"
+          ],
+          "value": 30
+        }
+      ],
+      "unblockable": true
+    }
+  ]
+
+}
+
+  
+
+
