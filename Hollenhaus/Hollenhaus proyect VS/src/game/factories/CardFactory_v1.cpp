@@ -224,7 +224,8 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 		effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
 		//effectImage->getComponent<Transform>()->getGlobalScale().set(1, 1);
-		effectImage->getComponent<Transform>()->getRelativeScale().set(scale, scale);
+
+		effectImage->getComponent<Transform>()->setGlobalScale(scale, scale);
 		Vector2D gpos(initialX + ((i % nCols) * offSetX), initialY + ((i / nCols) * offSetY));
 
 		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);

@@ -53,6 +53,7 @@ Transform::getGlobalPos() {
 		return globalPos_;
 }
 
+
 Vector2D& Transform::getGlobalScale()
 {
 	return globalScale_;
@@ -97,6 +98,14 @@ Transform::setGlobalScale(Vector2D s) {
 	globalScale_ = s;
 	if (isChild_)
 		relativeScale_.set(globalScale_.getX() / parent_->globalScale_.getX(), globalScale_.getY() / parent_->globalScale_.getY());
+}
+
+void Transform::setGlobalScale(float x, float y)
+{
+	globalScale_ = Vector2D(x, y);
+	if (isChild_)
+		relativeScale_.set(globalScale_.getX() / parent_->globalScale_.getX(), globalScale_.getY() / parent_->globalScale_.getY());
+
 }
 
 Transform* 

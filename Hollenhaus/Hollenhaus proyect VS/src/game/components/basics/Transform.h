@@ -50,6 +50,7 @@ public:
     void setGlobalPos(Vector2D& v);
     void setGlobalAngle(float);
     void setGlobalScale(Vector2D);
+    void setGlobalScale(float x, float y);
 
     Transform* getParent();
     

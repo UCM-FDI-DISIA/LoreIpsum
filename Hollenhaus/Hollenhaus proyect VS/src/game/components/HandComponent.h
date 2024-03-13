@@ -37,7 +37,8 @@ public:
 	Players::Owner getOwner() const { return owner_; }
 
 private:
-	float cardScale_ = 0.45f;
+	float cardScale_ = 0.65f;
+	float cardScaleBoard_ = 0.53f;
 	
 	void refreshPositions();
 
