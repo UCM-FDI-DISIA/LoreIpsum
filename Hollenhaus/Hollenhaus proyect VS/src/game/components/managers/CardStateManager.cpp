@@ -14,6 +14,10 @@ void CardStateManager::setState(CardState newState)
 }
 
 void CardStateManager::putOnBoard() {
+
+	setState(ON_CELL);
+
+	//quitar la carta de la mano
 	ent_->getComponent<Transform>()->getParent()->getEntity()
 		->getComponent<HandComponent>()->removeCard(ent_);
 }

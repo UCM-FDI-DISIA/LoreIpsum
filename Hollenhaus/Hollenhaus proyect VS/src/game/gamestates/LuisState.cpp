@@ -65,7 +65,7 @@ void LuisState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, MatchManager::TurnState::TurnJ1, boardEntity->getComponent<BoardManager>());
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, MatchManager::TurnState::TurnJ1, boardManagerComponent);
 
 	// Factoría de cartas. Con ella generamos la mano inicial
 	factory->createDeck();
@@ -74,7 +74,7 @@ void LuisState::onEnter()
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
-	ent->getComponent<DragManager>()->setBoardManager(boardEntity->getComponent<BoardManager>());
+	ent->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
 
 
 

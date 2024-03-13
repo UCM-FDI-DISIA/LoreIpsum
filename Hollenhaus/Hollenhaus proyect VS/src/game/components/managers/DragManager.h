@@ -6,6 +6,7 @@
 class Transform;
 class BoardManager;
 class Vector2D;
+class DropDetector;
 
 class DragManager :
     public ComponentUpdate
@@ -29,6 +30,15 @@ private:
     void OnLeftClickDown();
 
     void OnLeftClickUp();
+
+
+    bool CardOnHand(ecs::entity_t card);
+
+    bool CardIsOfCurrentPlayer(ecs::entity_t card);
+
+    bool enoughPoints(ecs::entity_t card);
+
+    void putCardOnBoard(ecs::entity_t card,DropDetector* cell);
 
     BoardManager* boardManager;
 
