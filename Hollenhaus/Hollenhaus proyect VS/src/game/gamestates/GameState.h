@@ -15,9 +15,10 @@ protected:
 
 	static Data* data; // puntero a la data
 
-public:
 	//LAS ENTIDADES ¡NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT 
-	GameState() {};
+	GameState() {}; // constructoras de clases abstractas no deberian ser publicas
+
+public:
 	virtual ~GameState();		//Destructora
 
 	virtual void refresh(); //borra entidades no vivas

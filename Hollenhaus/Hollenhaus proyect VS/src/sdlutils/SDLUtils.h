@@ -254,8 +254,19 @@ private:
 	void initSDLExtensions(); // initialize resources (fonts, textures, audio, etc.)
 	void closeSDLExtensions(); // free resources the
 
-	void loadReasources(std::string filenameResources
-		,std::string filenameCards,std::string filemaneDialogues); // load resources from the json file
+	void loadReasources(std::string filenameResources, 
+		std::string filenameCards,
+		std::string filemaneDialogues); // load resources from the json file
+
+	/// vamos a refactorizar el load resources:
+	///	un metodo por cada json
+	void loadFonts(JSONObject rootResources, std::string filenameResources);
+	void loadImages(JSONObject rootResources, std::string filenameResources);
+	void loadMusics(JSONObject rootResources, std::string filenameResources);
+	void loadSounds(JSONObject rootResources, std::string filenameResources);
+	void loadCards(JSONObject rootCards, std::string filenameCards);
+	void loadMessages(JSONObject rootResources, std::string filenameResources);
+	void loadDialogues(JSONObject rootDialogues, std::string filenameDialogues);
 
 	/// CARD PARSING estoy fatal de la cabezaaaa
 	std::vector<Effects::Direction>& loadDirections(JSONObject&, std::vector<Effects::Direction>&);

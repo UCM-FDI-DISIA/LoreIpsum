@@ -5,7 +5,6 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/basics/BoxCollider.h"
 #include "../components/Drag.h"
-#include "../components/managers/CardStateManager.h"
 #include "../components/managers/BoardManager.h"
 #include "../components/DropDetector.h"
 #include "../../utils/Vector2D.h"
