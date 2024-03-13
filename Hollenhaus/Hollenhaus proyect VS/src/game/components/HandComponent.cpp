@@ -32,7 +32,10 @@ void HandComponent::addCard(ecs::entity_t card) {
 	}
 
 	card->getComponent<Transform>()->addParent(transform_);
-	card->getComponent<Transform>()->getRelativeScale().set(cardScale_, cardScale_);
+
+	card->getComponent<Transform>()->setGlobalScale(Vector2D(cardScale_, cardScale_));
+
+	//card->getComponent<Transform>()->getRelativeScale().set(cardScale_, cardScale_);
 
 	/*if (lastCardAdded_ != nullptr)
 		card->setLayer(lastCardAdded_->getLayer() + 3); COSITAS DEL ORDER IN LAYER :D (JIMBO)
@@ -61,7 +64,8 @@ void HandComponent::removeCard(ecs::entity_t card) {
 		}
 		else
 		{
-			card->getComponent<Transform>()->getGlobalScale().set(cardScale_, cardScale_);
+
+			card->getComponent<Transform>()->setGlobalScale(cardScaleBoard_, cardScaleBoard_);
 			cardsInHand_[i]->getComponent<Transform>()->removeParent();
 		}
 	}
