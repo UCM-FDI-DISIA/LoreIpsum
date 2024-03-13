@@ -5,7 +5,9 @@ class Transform :
     public ComponentUpdate
 {
 public:
-    Transform() : parent_(), globalAngle_(0), globalScale_(1, 1), relativeAngle_(0), isChild_(false), relativeScale_(1,1), layerToIncrease(1) {};
+    Transform()
+	: parent_(), isChild_(false), globalScale_(1, 1), relativeScale_(1,1),
+	  globalAngle_(0), relativeAngle_(0), layerToIncrease(1) {};
     ~Transform() {};
 
     void update() override;
@@ -63,7 +65,6 @@ private:
 
     Transform* parent_;
     std::list<Transform*> children_;
-
 
     bool isChild_;
 

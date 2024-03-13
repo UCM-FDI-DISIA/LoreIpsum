@@ -254,9 +254,9 @@ private:
 	void initSDLExtensions(); // initialize resources (fonts, textures, audio, etc.)
 	void closeSDLExtensions(); // free resources the
 
-	void loadReasources(std::string filenameResources, 
+	void loadResources(std::string filenameResources, 
 		std::string filenameCards,
-		std::string filemaneDialogues); // load resources from the json file
+		std::string filenameDialogues); // load resources from the json file
 
 	/// vamos a refactorizar el load resources:
 	///	un metodo por cada json

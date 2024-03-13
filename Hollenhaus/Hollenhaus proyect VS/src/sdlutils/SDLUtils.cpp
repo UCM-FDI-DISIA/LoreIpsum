@@ -31,7 +31,7 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 SDLUtils::SDLUtils(std::string windowTitle, int width, int height,
 		std::string filename, std::string filenameCards, std::string filemaneDialogues) :
 		SDLUtils(windowTitle, width, height) {
-	loadReasources(filename,filenameCards,filemaneDialogues);
+	loadResources(filename,filenameCards,filemaneDialogues);
 }
 
 SDLUtils::~SDLUtils() {
@@ -115,7 +115,7 @@ void SDLUtils::initSDLExtensions() {
 
 }
 
-void SDLUtils::loadReasources(std::string filenameResources,
+void SDLUtils::loadResources(std::string filenameResources,
 	std::string filenameCards, std::string filenameDialogues) {
 	// TODO check the correctness of values and issue a corresponding
 	// exception. Now we just do some simple checks, and assume input
@@ -281,7 +281,7 @@ void SDLUtils::loadSounds(JSONObject rootResources, std::string filenameResource
 
 void SDLUtils::loadCards(JSONObject rootCards, std::string filenameCards)
 {
-		/// CARD PARSING
+	/// CARD PARSING
 	///	Samir (feat. Cynthia)
 	const auto jValue = rootCards["cards"]; // key con todas las cartas
 	if (jValue != nullptr) { // si existe tal key

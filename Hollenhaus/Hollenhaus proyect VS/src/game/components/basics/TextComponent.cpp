@@ -140,7 +140,12 @@ Vector2D TextComponent::GetRenderPosAcordingPivotPoint() const
 
 void TextComponent::RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const
 {
-	SDL_Rect textRect = { renderPos_.getX(), renderPos_.getY(), text_->width(), text_->height() };
+	SDL_Rect textRect = {
+		(int)renderPos_.getX(),
+		(int)renderPos_.getY(),
+		text_->width(),
+		text_->height()
+	};
 
 	//render debug
 	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 255, 255);
