@@ -50,9 +50,7 @@ ecs::entity_t BoardFactory_v0::createBoard()
 			_board[i][j]->getComponent<BoxCollider>()->setSize(
 				Vector2D(sdlutils().images().at("card").width() * scale,
 					(sdlutils().images().at("card").height()) * scale));
-
 			_board[i][j]->addComponent<Cell>();
-
 			_board[i][j]->setLayer(2);
 
 			cellImage = Instantiate(Vector2D(initialX + i * offSetX, initialY + j * offSetY));
@@ -66,11 +64,8 @@ ecs::entity_t BoardFactory_v0::createBoard()
 	//crear una entidad
 	ecs::Entity* boardEntity = Instantiate(Vector2D(sdlutils().width() / 2, sdlutils().height() / 2));
 
-
 	//añadimos a la entidad el componente boardManager y le seteamos el board que hemos creado
 	boardEntity->addComponent<BoardManager>()->setBoard(_board);
-
-
 
 	return boardEntity;
 }

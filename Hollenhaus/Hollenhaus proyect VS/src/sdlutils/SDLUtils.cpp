@@ -302,7 +302,7 @@ void SDLUtils::loadCards(JSONObject rootCards, std::string filenameCards)
 
 					/// >>> Lectura de efectos <<<
 					/// Por cada carta, hay un array de efectos
-					std::vector<CardEffect> effects; // declaracion inicial de vector vacio de efectos
+					std::vector<JsonData::CardEffect> effects; // declaracion inicial de vector vacio de efectos
 					auto effArr = cardObj["effects"]->AsArray(); // effects as JSON array derivate of card object
 					for (auto& e : effArr ) // por cada efecto
 					{ // each effect as JSON object
@@ -330,7 +330,7 @@ void SDLUtils::loadCards(JSONObject rootCards, std::string filenameCards)
 #ifdef _DEBUG
 					std::cout << "Loading cards with id: " << key << std::endl;
 #endif
-					cards_.emplace(key, CardData(cost, value, sprite, unblockable, effects)); // finalmente se anyaden al mapa
+					cards_.emplace(key, JsonData::CardData(cost, value, sprite, unblockable, effects)); // finalmente se anyaden al mapa
 
 				} else {
 					throw "'cards' array in '" + filenameCards
@@ -398,7 +398,7 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 #ifdef _DEBUG
 					std::cout << "Loading dialogue with id: " << key << std::endl;
 #endif
-					dialogues_.emplace(key, DialogueData(text));
+					dialogues_.emplace(key, JsonData::DialogueData(text));
 				}
 				else {
 					throw "'dialogues' array in '" + filenameDialogues

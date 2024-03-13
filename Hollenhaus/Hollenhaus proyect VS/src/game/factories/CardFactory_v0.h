@@ -13,7 +13,7 @@ public:
 	CardFactory_v0() : CardFactory() {};
 	~CardFactory_v0() {};
 
-	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<SDLUtils::CardEffect>& effects)override;
+	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)override;
 
 	ecs::entity_t createHand() override;
 	void createDeck() override {};
@@ -25,7 +25,7 @@ public:
 
 private:
 
-	void addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::CardEffect>& effects);
+	void addEffectsImages(ecs::entity_t card, std::vector<JsonData::CardEffect>& effects);
 
 	void addValueCostTexts(ecs::entity_t card,int vale,int cost);
 };

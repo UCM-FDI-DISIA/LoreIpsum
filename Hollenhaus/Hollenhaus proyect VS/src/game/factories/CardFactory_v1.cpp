@@ -13,7 +13,7 @@
 
 
 ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
-	std::vector<SDLUtils::CardEffect>& effects)
+	std::vector<JsonData::CardEffect>& effects)
 {
 
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
@@ -193,7 +193,7 @@ void CardFactory_v1::createDeckJ2()
 }
 
 
-void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::CardEffect>& effects)
+void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::CardEffect>& effects)
 {
 
 	int initialX = 15;

@@ -5,7 +5,7 @@
 
 #include "MatchStateUIFactory.h"
 
-ecs::entity_t Factory::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<SDLUtils::CardEffect>& effects)
+ecs::entity_t Factory::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
 {
 	if (cardFactory == nullptr) {
 		throw "no existe cardFactory";

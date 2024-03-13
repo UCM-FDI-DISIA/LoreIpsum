@@ -61,7 +61,7 @@ public:
 	{};
 
 
-	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<SDLUtils::CardEffect>& effects);
+	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);
 
 	ecs::entity_t createDropDetector(Vector2D pos);
 
