@@ -232,7 +232,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 		effectImage->setLayer(layer);
 
 
-
+		//si es una flecha, girarla
 		if (effects[i].type() >= 2 && effects[i].type() <= 4) {
 
 			Effects::Direction dir = effects[i].directions()[0];
@@ -240,6 +240,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<SDLUtils::
 				dir == Effects::Right ? 90.f : dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
 		}
 
+		//poner el simbolo del valor
 		if (effects[i].value() != 0) {
 
 			std::string valueText = effects[i].value() < 0 ? "-" : "+";

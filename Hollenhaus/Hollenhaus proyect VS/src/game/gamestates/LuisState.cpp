@@ -67,15 +67,15 @@ void LuisState::onEnter()
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
 	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, MatchManager::TurnState::TurnJ1, boardManagerComponent);
 
-	// Factoría de cartas. Con ella generamos la mano inicial
-	factory->createDeck();
-	factory->createDeckJ2();
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragManager>();
 	ent->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
 
+	// Factoría de cartas. Con ella generamos la mano inicial
+	factory->createDeck();
+	factory->createDeckJ2();
 
 
 	// UI 
