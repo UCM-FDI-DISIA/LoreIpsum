@@ -65,7 +65,7 @@ void LuisState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, MatchManager::TurnState::TurnJ1, boardManagerComponent);
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, Turns::J1, boardManagerComponent);
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas

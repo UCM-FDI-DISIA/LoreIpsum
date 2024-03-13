@@ -11,7 +11,7 @@ class EndTurnButton : public ComponentUpdate
     
 public:
     EndTurnButton(){}
-    EndTurnButton(MatchManager::TurnState buttonPropietary);
+    EndTurnButton(Turns::State buttonPropietary);
     ~EndTurnButton();
 
     void initComponent() override;
@@ -26,6 +26,6 @@ private:
 
     MatchManager* matchManager_;
 
-    MatchManager::TurnState buttonPropietary_;   // Esto es temporal (o no)
+    Turns::State buttonPropietary_;   // Esto es temporal (o no)
 };
 

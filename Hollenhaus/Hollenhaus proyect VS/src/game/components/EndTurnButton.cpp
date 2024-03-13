@@ -6,7 +6,7 @@
 #include "basics/BoxCollider.h"
 #include "basics/Transform.h"
 
-EndTurnButton::EndTurnButton(MatchManager::TurnState buttonPropietary) :
+EndTurnButton::EndTurnButton(Turns::State buttonPropietary) :
 	buttonPropietary_(buttonPropietary)
 {
 }
@@ -40,6 +40,6 @@ void EndTurnButton::ClickButton()
 	// version toggle
 	if (bc_->isCursorOver()) {
 		// Se pasa el turno al otro jugador
-		matchManager_->setActualState(matchManager_->getActualState() == MatchManager::TurnState::TurnJ1 ? MatchManager::TurnState::TurnJ2 : MatchManager::TurnState::TurnJ1);
+		matchManager_->setActualState(matchManager_->getActualState() == Turns::J1 ? Turns::J2 : Turns::J1);
 	}
 }

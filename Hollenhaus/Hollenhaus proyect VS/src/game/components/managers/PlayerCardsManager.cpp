@@ -30,7 +30,7 @@ void PlayerCardsManager::drawCard()
 	if (mngr_ != nullptr && mngr_->getHandler(ecs::hdlr::MATCH_MANAGER) != nullptr)
 	{
 		const auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
-		const Players::Owner turnOwner = matchManager->getActualState() == MatchManager::TurnJ1
+		const Players::Owner turnOwner = matchManager->getActualState() == Turns::J1
 			                                 ? Players::PLAYER1
 			                                 : Players::PLAYER2;
 

@@ -5,17 +5,17 @@
 
 CardStateManager::CardStateManager()
 {
-	currentState = ON_DECK;
+	currentState = Cards::ON_DECK;
 }
 
-void CardStateManager::setState(CardState newState)
+void CardStateManager::setState(Cards::State newState)
 {
 	currentState = newState;
 }
 
 void CardStateManager::putOnBoard() {
 
-	setState(ON_CELL);
+	setState(Cards::ON_CELL);
 
 	//quitar la carta de la mano
 	ent_->getComponent<Transform>()->getParent()->getEntity()

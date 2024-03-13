@@ -62,7 +62,7 @@ void SamuState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	matchManager->addComponent<MatchManager>(4, 4, MatchManager::TurnState::TurnJ1, board->getComponent<BoardManager>());
+	matchManager->addComponent<MatchManager>(4, 4, Turns::J1, board->getComponent<BoardManager>());
 
 	// Factoría de cartas. Con ella generamos la mano inicial
 	factory->createDeck();
@@ -86,7 +86,7 @@ void SamuState::onEnter()
 	endTurnButtonJ1->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
 	endTurnButtonJ1->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ1->addComponent<BoxCollider>();
-	endTurnButtonJ1->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ1);
+	endTurnButtonJ1->addComponent<EndTurnButton>(Turns::J1);
 
 	// Creación del botón de J2 para acabar su turno (debug por consola)
 	/*ecs::entity_t endTurnButtonJ2 = Instantiate(Vector2D(60, 100));

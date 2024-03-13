@@ -7,7 +7,7 @@
 #include "../../gamestates/GameState.h"
 #include "../../components/basics/TextComponent.h"
 
-MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, TurnState turnStart, BoardManager* bm) :
+MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm) :
 	board_(bm),
 	defaultActionPointsJ1(defaultActionPointsJ1),
 	defaultActionPointsJ2(defaultActionPointsJ2),
@@ -30,35 +30,35 @@ void MatchManager::initComponent()
 
 void MatchManager::update()
 {
-	if (actualState != Finish && board_ != nullptr)
+	if (actualState != Turns::Finish && board_ != nullptr)
 	{
 		if (board_->isFull())
 		{
 			
-			setActualState(Finish);
+			setActualState(Turns::Finish);
 		}
 	}
 }
 
-void MatchManager::setActualState(TurnState newState)
+void MatchManager::setActualState(Turns::State newState)
 {
 	actualState = newState;
 
 	switch (actualState)
 	{
-	case TurnJ1:
+	case Turns::J1:
 #if _DEBUG 
 		std::cout << "Nuevo turno: Jugador 1" << std::endl; 
 #endif
 		resetActualActionPoints();	
 		break;
-	case TurnJ2:
+	case Turns::J2:
 #if _DEBUG 
 		std::cout << "Nuevo turno: Jugador 2" << std::endl;
 #endif
 		resetActualActionPoints();	
 		break;
-	case Finish:
+	case Turns::Finish:
 #if _DEBUG 
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
 #endif
@@ -74,7 +74,7 @@ void MatchManager::setActualState(TurnState newState)
 
 int MatchManager::getActualPlayerActualActionPoints()
 {
-	return getActualState() == TurnJ1 ? 
+	return getActualState() == Turns::J1 ? 
 		getActualActionPointsJ1() : getActualActionPointsJ2();
 }
 
@@ -82,13 +82,13 @@ Players::Owner MatchManager::getPlayerTurn() const
 {
 	switch (actualState)
 	{
-	case TurnJ1:
+	case Turns::J1:
 		return Players::PLAYER1;
 		break;
-	case TurnJ2:
+	case Turns::J2:
 		return Players::PLAYER2;
 		break;
-	case Finish:
+	case Turns::Finish:
 		return Players::NONE;
 		break;
 	default:
@@ -99,7 +99,7 @@ Players::Owner MatchManager::getPlayerTurn() const
 
 void MatchManager::substractActualPlayerActionPoints(int points)
 {
-	getActualState() == TurnJ1 ? 
+	getActualState() == Turns::J1 ? 
 		substractActionPointsJ1(points) : substractActionPointsJ2(points);
 	updateVisuals();
 }
@@ -115,8 +115,8 @@ void MatchManager::updateVisuals()
 		"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
 
 	// Actualiza el indicador del propietario del turno actual
-	std::string jugador = actualState == TurnJ1 ? "Jugador 1" : "Jugador 2";
-	SDL_Color color = actualState == TurnJ1 ? SDL_Color({ 102, 255, 102, 255 }) : SDL_Color({ 255, 102, 255, 255 });
+	std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
+	SDL_Color color = actualState == Turns::J1 ? SDL_Color({ 102, 255, 102, 255 }) : SDL_Color({ 255, 102, 255, 255 });
 	actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
 	actualTurnVisual->getComponent<TextComponent>()->setColor(color);
 }

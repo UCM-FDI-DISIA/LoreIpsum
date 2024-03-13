@@ -6,26 +6,6 @@
 
 class Transform;
 
-namespace Text
-{
-	enum BoxPivotPoint {
-		LeftTop,
-		LeftCenter,
-		LeftBot,
-		RightTop,
-		RightCenter,
-		RightBot,
-		CenterTop,
-		CenterCenter,
-		CenterBot
-	};
-
-	enum TextAlignment {
-		Left,
-		Center,
-		Right
-	};
-}
 
 class TextComponent : public ComponentRender
 {

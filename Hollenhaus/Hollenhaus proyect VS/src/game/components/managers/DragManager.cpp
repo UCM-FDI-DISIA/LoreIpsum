@@ -115,7 +115,7 @@ void DragManager::putCardAnimation(DropDetector* cell)
 
 bool DragManager::CardOnHand(ecs::entity_t card)
 {
-	return card->getComponent<CardStateManager>()->getState() == CardStateManager::ON_HAND;
+	return card->getComponent<CardStateManager>()->getState() == Cards::ON_HAND;
 }
 
 
@@ -124,7 +124,7 @@ bool DragManager::CardIsOfCurrentPlayer(ecs::entity_t card)
 {
 	const auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
 
-	const Players::Owner turnOwner = matchManager->getActualState() == MatchManager::TurnJ1
+	const Players::Owner turnOwner = matchManager->getActualState() == Turns::J1
 		? Players::PLAYER1 : Players::PLAYER2;
 
 	Players::Owner cardOwner = Players::NULO;

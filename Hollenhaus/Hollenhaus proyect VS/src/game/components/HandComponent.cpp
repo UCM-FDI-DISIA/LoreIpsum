@@ -23,7 +23,7 @@ void HandComponent::initComponent() {
 void HandComponent::addCard(ecs::entity_t card) {
 
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
-	cardCardStateManager->setState(CardStateManager::ON_HAND);
+	cardCardStateManager->setState(Cards::ON_HAND);
 
 	if (owner_ == Players::PLAYER2)
 	{

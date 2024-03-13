@@ -6,13 +6,8 @@
 class MatchManager : public ComponentUpdate
 {
 public:
-    enum TurnState {
-        TurnJ1,
-        TurnJ2,
-        Finish
-    };
 
-    MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, TurnState turnStart, BoardManager* bm = nullptr);
+    MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm = nullptr);
 
     ~MatchManager();
 
@@ -20,8 +15,8 @@ public:
     void update() override;
 
     // Getters & setters del estado de la partida
-    void setActualState(TurnState newState);
-    TurnState getActualState() const { return actualState; }
+    void setActualState(Turns::State newState);
+    Turns::State getActualState() const { return actualState; }
     Players::Owner getPlayerTurn() const;   // Devuelve el turno activo con el tipo usado en "BoardManager". 
 
     // Getters de los puntos de acción
@@ -47,7 +42,7 @@ public:
 
 private:
 
-    TurnState actualState;
+    Turns::State actualState;
 
     // Queremos una referencia al board para detectar cuándo se llena y acabar la partida.
     // También necesitamos el board para evaluar qué jugador tiene más puntos y pasarlo a la data.

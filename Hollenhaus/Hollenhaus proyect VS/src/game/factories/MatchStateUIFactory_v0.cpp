@@ -11,7 +11,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int 
     endTurnButton->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
     endTurnButton->addComponent<SpriteRenderer>("EndTurnButton");
     endTurnButton->addComponent<BoxCollider>();
-    endTurnButton->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ1);
+    endTurnButton->addComponent<EndTurnButton>(Turns::J1);
     endTurnButton->setLayer(4);
     return endTurnButton;
 }

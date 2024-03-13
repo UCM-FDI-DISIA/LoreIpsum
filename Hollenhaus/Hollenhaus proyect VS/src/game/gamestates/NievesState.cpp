@@ -63,7 +63,7 @@ void NievesState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	matchManager->addComponent<MatchManager>(4, 4, MatchManager::TurnState::TurnJ1);
+	matchManager->addComponent<MatchManager>(4, 4, Turns::J1);
 
 	// Factoría del tablero. Generamos el tablero de juego.
 	board = factory->createBoard();
@@ -93,13 +93,13 @@ void NievesState::onEnter()
 	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(60, 500));
 	endTurnButtonJ1->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ1->addComponent<BoxCollider>();
-	endTurnButtonJ1->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ1);
+	endTurnButtonJ1->addComponent<EndTurnButton>(Turns::J1);
 
 	// Creación del botón de J2 para acabar su turno (debug por consola)
 	ecs::entity_t endTurnButtonJ2 = Instantiate(Vector2D(60, 100));
 	endTurnButtonJ2->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ2->addComponent<BoxCollider>();
-	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);
+	endTurnButtonJ2->addComponent<EndTurnButton>(Turns::J2);
 }
 
 void NievesState::onExit()
