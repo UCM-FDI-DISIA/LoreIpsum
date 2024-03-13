@@ -9,7 +9,7 @@
 #include "../components/DropDetector.h"
 #include "../components/Cell.h"
 #include "../EffectCollection.h"
-#include "../Enums.h"
+#include "../Namespaces.h"
 #include "../components/basics/TextComponent.h"
 
 

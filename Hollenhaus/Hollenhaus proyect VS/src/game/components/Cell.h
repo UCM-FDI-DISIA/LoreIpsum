@@ -4,7 +4,7 @@
 #include <array>
 #include "Card.h"
 #include <functional>
-#include "../Enums.h"
+#include "..\Namespaces.h"
 
 // utiliza callbacks funcionales de tipo <void(void)>
 using SDLEventCallback = std::function<void()>;

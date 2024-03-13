@@ -15,7 +15,7 @@
 #include "Texture.h"
 #include "VirtualTimer.h"
 #include "../game/Entity.h"
-#include "../game/Enums.h"
+#include "../game/Namespaces.h"
 #include "../json/JSON.h"
 
 class SDLUtils: public Singleton<SDLUtils> {

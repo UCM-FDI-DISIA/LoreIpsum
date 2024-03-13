@@ -182,7 +182,7 @@
 
 //entity component sistem
 #include "ecs.h"
-
+#include "Namespaces.h"
 #include "components/managers/Manager.h"
 
 #pragma endregion

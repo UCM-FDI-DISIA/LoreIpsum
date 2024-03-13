@@ -8,7 +8,7 @@
 #include "../components/managers/PlayerCardsManager.h"
 #include "../components/managers/CardStateManager.h"
 #include "../EffectCollection.h"
-#include "../Enums.h"
+#include "../Namespaces.h"
 #include "../components/basics/TextComponent.h"
 
 

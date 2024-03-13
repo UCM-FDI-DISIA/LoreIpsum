@@ -1,7 +1,7 @@
 #pragma once
 //#include "../pch/pch.h"
 
-#include "Enums.h"
+#include "Namespaces.h"
 #include "components/Card.h"
 
 class Cell;

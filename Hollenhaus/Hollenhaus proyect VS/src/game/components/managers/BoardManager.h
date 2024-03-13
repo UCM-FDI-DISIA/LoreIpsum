@@ -3,7 +3,7 @@
 #include <vector>
 #include <list>
 #include <functional>
-#include "../../Enums.h"
+#include "..\..\Namespaces.h"
 
 class Cell;
 class Card;

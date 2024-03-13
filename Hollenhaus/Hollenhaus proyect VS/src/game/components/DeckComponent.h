@@ -4,7 +4,7 @@
 
 #include <list>
 
-#include "../Enums.h"
+#include "..\Namespaces.h"
 
 class Card;
 
