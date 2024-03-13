@@ -5,7 +5,7 @@
 void
 Transform::update() {
 	if (isChild_) {
-		globalScale_ = relativeScale_ * parent_->globalScale_.magnitude();
+		//globalScale_ = relativeScale_ * parent_->globalScale_.magnitude();
 	}
 }
 

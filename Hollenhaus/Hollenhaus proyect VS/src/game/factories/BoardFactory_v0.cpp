@@ -16,12 +16,14 @@
 ecs::entity_t BoardFactory_v0::createBoard()
 {
 	// odio estos putisimos numeros
-	int initialX = 284;
-	int initialY = 135;
-	int offSetX = 62;
-	int offSetY = 84;
+	int initialX = 260;//284
+	int initialY = 90-9;//135
+	int offSetX = 67;//62
+	int offSetY = 96;//84
 
-	float scale = 0.45;
+
+
+	float scale = 0.53;//0.45
 
 	std::vector<std::vector<ecs::entity_t>> _board;
 
