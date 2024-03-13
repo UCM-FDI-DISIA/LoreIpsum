@@ -83,7 +83,7 @@ void LuisState::onEnter()
 	ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
 
 	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(600, 200, 200, 180);
-	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(200, 265);
+	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 265);
 
 	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 

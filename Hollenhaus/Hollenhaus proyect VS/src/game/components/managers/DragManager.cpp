@@ -40,7 +40,7 @@ void DragManager::update()
 		//actualizamos su posicion teniendo en cuenta la posicion del raton
 
 		Vector2D mousePos (ih().getMousePos().first, ih().getMousePos().second);
-		Vector2D posAct = (mousePos - initialMousePos) + initialTransformPos;
+		Vector2D posAct = (mousePos - initialMousePos) + initialTransformPosWithOffSet;
 
 		dragTransform->setGlobalPos(posAct);
 	}
@@ -60,6 +60,10 @@ void DragManager::OnLeftClickDown()
 
 		initialTransformPos.set(dragTransform->getGlobalPos());
 		initialMousePos.set(Vector2D(ih().getMousePos().first, ih().getMousePos().second));
+		
+
+
+		initialTransformPosWithOffSet.set(initialMousePos- Vector2D( card->getComponent<BoxCollider>()->getRect()->w /2 , card->getComponent<BoxCollider>()->getRect()->h/2 ));
 
 	}
 
@@ -81,8 +85,8 @@ void DragManager::OnLeftClickUp()
 		if (drop != nullptr && 
 			!dropDetector->isOcuped() && enoughPoints(dragTransform->getEntity()))
 		{
-			//colocar la carta en su sitio(posicion en la pantalla)
-			dragTransform->setGlobalPos(dropDetector->getCardPos());
+			
+			putCardAnimation(dropDetector);
 			
 			//coloca la carta en la celda y la quita de la manos
 			dragTransform->getEntity()->getComponent<CardStateManager>()->putOnBoard();
@@ -101,6 +105,12 @@ void DragManager::OnLeftClickUp()
 		dragTransform = nullptr;
 	}
 
+}
+
+void DragManager::putCardAnimation(DropDetector* cell)
+{
+	//colocar la carta en su sitio(posicion en la pantalla)
+	dragTransform->setGlobalPos(cell->getCardPos());
 }
 
 bool DragManager::CardOnHand(ecs::entity_t card)

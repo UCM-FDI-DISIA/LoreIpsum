@@ -26,11 +26,13 @@ private:
 
     Vector2D initialMousePos;
     Vector2D initialTransformPos;
+    Vector2D initialTransformPosWithOffSet;
 
     void OnLeftClickDown();
 
     void OnLeftClickUp();
 
+    void putCardAnimation(DropDetector* cell);
 
     bool CardOnHand(ecs::entity_t card);
 

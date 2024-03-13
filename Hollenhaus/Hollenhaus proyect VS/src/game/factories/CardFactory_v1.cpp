@@ -107,7 +107,7 @@ ecs::entity_t CardFactory_v1::createHand()
 ecs::entity_t CardFactory_v1::createHandJ2()
 {
 	int initX = 320;
-	int initY = 20;
+	int initY = -39;
 
 	Vector2D deckPos(initX, initY);
 	ecs::entity_t hand = Instantiate(deckPos);
