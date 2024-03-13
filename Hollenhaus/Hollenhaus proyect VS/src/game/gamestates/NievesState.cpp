@@ -87,7 +87,7 @@ void NievesState::onEnter()
 
 	// Texto de prueba
 	ecs::entity_t pruebaTxt = Instantiate(Vector2D(400, 50));
-	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 
 	// Creación del botón de J1 para acabar su turno (debug por consola)
 	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(60, 500));

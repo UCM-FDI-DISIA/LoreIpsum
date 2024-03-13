@@ -4,7 +4,7 @@
 #include "../../../sdlutils/SDLUtils.h"
 #include "../../Entity.h"
 
-TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght, BoxPivotPoint boxPivotPoint, TextAlignment textAlignment) :
+TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment) :
 	text_(nullptr),
 	color_(color),
 	font_(&sdl_.fonts().at(fontID)),
@@ -65,14 +65,14 @@ void TextComponent::setWrapLenght(Uint32 wrapLenght)
 	createTexture();
 }
 
-void TextComponent::SetBoxPivotPoint(BoxPivotPoint boxPivotPoint)
+void TextComponent::SetBoxPivotPoint(Text::BoxPivotPoint boxPivotPoint)
 {
 	boxPivotPoint_ = boxPivotPoint;
 	createTexture();
 	renderPos_ = GetRenderPosAcordingPivotPoint();
 }
 
-void TextComponent::SetTextAlignment(TextAlignment textAlignment)
+void TextComponent::SetTextAlignment(Text::TextAlignment textAlignment)
 {
 	textAlignment_ = textAlignment;
 	// No hace falta crear textura nueva
@@ -96,39 +96,39 @@ Vector2D TextComponent::GetRenderPosAcordingPivotPoint() const
 
 	switch (boxPivotPoint_)
 	{
-	case TextComponent::LeftTop:
+	case Text::LeftTop:
 		x = tr_->getGlobalPos().getX();
 		y = tr_->getGlobalPos().getY();
 		break;
-	case TextComponent::LeftCenter:
+	case Text::LeftCenter:
 		x = tr_->getGlobalPos().getX();
 		y = tr_->getGlobalPos().getY() - h / 2;
 		break;
-	case TextComponent::LeftBot:
+	case Text::LeftBot:
 		x = tr_->getGlobalPos().getX();
 		y = tr_->getGlobalPos().getY() - h;
 		break;
-	case TextComponent::RightTop:
+	case Text::RightTop:
 		x = tr_->getGlobalPos().getX() - w;
 		y = tr_->getGlobalPos().getY();
 		break;
-	case TextComponent::RightCenter:
+	case Text::RightCenter:
 		x = tr_->getGlobalPos().getX() - w;
 		y = tr_->getGlobalPos().getY() - h / 2;
 		break;
-	case TextComponent::RightBot:
+	case Text::RightBot:
 		x = tr_->getGlobalPos().getX() - w;
 		y = tr_->getGlobalPos().getY() - h;
 		break;
-	case TextComponent::CenterTop:
+	case Text::CenterTop:
 		x = tr_->getGlobalPos().getX() - w / 2;
 		y = tr_->getGlobalPos().getY();
 		break;
-	case TextComponent::CenterCenter:
+	case Text::CenterCenter:
 		x = tr_->getGlobalPos().getX() - w / 2;
 		y = tr_->getGlobalPos().getY() - h / 2;
 		break;
-	case TextComponent::CenterBot:
+	case Text::CenterBot:
 		x = tr_->getGlobalPos().getX() - w / 2;
 		y = tr_->getGlobalPos().getY() - h;
 		break;

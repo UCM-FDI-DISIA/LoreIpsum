@@ -29,7 +29,7 @@ void CityState::onEnter()
 
 	//------Texto de la ciudad:
 	ecs::entity_t cityText = Instantiate(Vector2D(500, 30));
-	cityText->addComponent<TextComponent>("CIUDAD", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	cityText->addComponent<TextComponent>("CIUDAD", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, Text::CenterCenter, Text::Center);
 	cityText->setLayer(1);
 
 	//-----Ciudad de fondo:

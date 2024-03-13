@@ -6,10 +6,8 @@
 
 class Transform;
 
-class TextComponent : public ComponentRender
+namespace Text
 {
-public:
-
 	enum BoxPivotPoint {
 		LeftTop,
 		LeftCenter,
@@ -27,6 +25,13 @@ public:
 		Center,
 		Right
 	};
+}
+
+class TextComponent : public ComponentRender
+{
+public:
+
+
 
 	/// <summary>
 	/// Constructora para crear un componente texto.
@@ -56,7 +61,7 @@ public:
 	/// <param name="wrapLenght"> Longitud horizontal de la caja en la que se envuelve el texto </param>
 	/// <param name="boxPivotPoint"> Punto de pivote de la caja en la que se envuelve el texto </param>
 	/// <param name="textAlignment"> Alineación del texto respecto a la caja en la que se envuelve </param>
-	TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght, BoxPivotPoint boxPivotPoint = LeftTop, TextAlignment textAlignment = Left);
+	TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint = Text::LeftTop, Text::TextAlignment textAlignment = Text::Left);
 	
 	~TextComponent();
 	void initComponent() override;
@@ -72,10 +77,10 @@ public:
 	void setWrapLenght(Uint32 wrapLenght);
 
 	// Método público para cambiar el punto de pivote de la caja
-	void SetBoxPivotPoint(BoxPivotPoint boxPivotPoint);
+	void SetBoxPivotPoint(Text::BoxPivotPoint boxPivotPoint);
 
 	// Método público para cambiar la alineación del texto respecto a la caja
-	void SetTextAlignment(TextAlignment textAlignment);
+	void SetTextAlignment(Text::TextAlignment textAlignment);
 
 private:
 
@@ -88,8 +93,8 @@ private:
 	Font* font_;
 	SDL_Color color_;
 	Uint32 wrapLenght_;
-	BoxPivotPoint boxPivotPoint_;
-	TextAlignment textAlignment_;
+	Text::BoxPivotPoint boxPivotPoint_;
+	Text::TextAlignment textAlignment_;
 	
 	// Atributo y método para calcular la posicion de renderizado según el punto de pivote de la caja de texto
 	Vector2D GetRenderPosAcordingPivotPoint() const;

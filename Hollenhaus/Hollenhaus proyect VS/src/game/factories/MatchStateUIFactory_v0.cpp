@@ -21,8 +21,8 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_ActionPointsCounter(int posX,
     ecs::entity_t actionPointsVisual = Instantiate(Vector2D(posX, posY)); // 100, 500 | 100, 100
     actionPointsVisual->addComponent<TextComponent>("Puntos de accion:\n---",
         "8bit_24pt", SDL_Color({ 255, 255, 0, 255 }), 200,  
-        TextComponent::BoxPivotPoint::CenterCenter,
-        TextComponent::TextAlignment::Center);
+        Text::BoxPivotPoint::CenterCenter,
+        Text::TextAlignment::Center);
 
     actionPointsVisual->setLayer(9);
     return actionPointsVisual;
@@ -33,8 +33,8 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_ScoreCounter(int posX, int po
     ecs::entity_t scoreVisual = Instantiate(Vector2D(posX, posY)); // 300, 350 | 300, 225
     scoreVisual->addComponent<TextComponent>("0", 
         "8bit_48pt", color, 120,    // 102, 255, 255 | 255, 102, 255
-        TextComponent::BoxPivotPoint::CenterCenter, 
-        TextComponent::TextAlignment::Center);
+        Text::CenterCenter, 
+        Text::Center);
     scoreVisual->setLayer(9);
 
     return scoreVisual;
@@ -47,8 +47,8 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_PlayerTurnIndicator(int posX,
 
     actualTurnVisual->addComponent<TextComponent>("Turno de:\n---",
         "8bit_32pt", SDL_Color({ 255, 255, 255, 255 }), 200,
-        TextComponent::BoxPivotPoint::CenterBot,
-        TextComponent::TextAlignment::Center);
+        Text::CenterBot,
+        Text::Center);
 
     return actualTurnVisual;
 }
