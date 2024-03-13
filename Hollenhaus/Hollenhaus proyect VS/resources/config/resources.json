@@ -26,7 +26,8 @@
         {"id": "fantasma",        "file": "resources/images/fantasma.png"  },
         {"id": "main_menu_bg",    "file": "resources/images/main_menu.png"  },
         {"id": "black_box",       "file": "resources/images/black_background.png"  },
-        {"id": "reverseCard",       "file": "resources/images/card_reverse.png"  }
+        {"id": "reverseCard",       "file": "resources/images/card_reverse.png"  },
+        {"id": "cell",       "file": "resources/images/cardCell.png"  }
     ],
     "fonts": [
       {

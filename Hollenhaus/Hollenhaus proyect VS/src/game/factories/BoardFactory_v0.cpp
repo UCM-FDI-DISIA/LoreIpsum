@@ -25,6 +25,7 @@ ecs::entity_t BoardFactory_v0::createBoard()
 
 	std::vector<std::vector<ecs::entity_t>> _board;
 
+	ecs::entity_t cellImage;
 	// Seteamos el board al tamanio deseado
 	_board.resize(size);
 	for (int i = 0; i < size; i++)
@@ -51,7 +52,12 @@ ecs::entity_t BoardFactory_v0::createBoard()
 
 			_board[i][j]->addComponent<Cell>();
 
-			_board[i][j]->setLayer(1);
+			_board[i][j]->setLayer(2);
+
+			cellImage = Instantiate(Vector2D(initialX + i * offSetX, initialY + j * offSetY));
+			cellImage->addComponent<SpriteRenderer>("cell");
+			cellImage->setLayer(1);
+			cellImage->getComponent<Transform>()->setGlobalScale(Vector2D(scale, scale));
 
 		}
 	}
