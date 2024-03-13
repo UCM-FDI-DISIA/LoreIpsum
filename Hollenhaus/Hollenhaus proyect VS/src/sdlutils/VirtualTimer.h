@@ -3,7 +3,6 @@
 #pragma once
 
 #include <SDL.h>
-#include <cassert>
 
 class VirtualTimer {
 public:

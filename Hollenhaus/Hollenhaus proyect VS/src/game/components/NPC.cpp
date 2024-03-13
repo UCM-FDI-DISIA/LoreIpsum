@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "NPC.h"
-#include "../Entity.h"
 #include "managers/Manager.h"
 #include "basics/BoxCollider.h"
 

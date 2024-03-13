@@ -2,7 +2,6 @@
 #include "ComponentUpdate.h"
 #include <vector>
 #include "basics/Transform.h"
-#include "basics/BoxCollider.h"
 
 const int	
 					CARD_SEPARATION = 50,

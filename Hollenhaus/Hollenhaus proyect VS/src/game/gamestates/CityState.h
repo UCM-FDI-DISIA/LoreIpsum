@@ -1,4 +1,3 @@
-#include "../pch.h"
 #include "GameState.h"
 
 class CityState : public GameState

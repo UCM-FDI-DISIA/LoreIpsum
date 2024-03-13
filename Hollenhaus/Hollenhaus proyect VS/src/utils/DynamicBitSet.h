@@ -3,7 +3,6 @@
 #pragma once
 #include <cassert>
 #include <cstdint>
-#include <ctime>
 #include <iostream>
 
 using namespace std;
