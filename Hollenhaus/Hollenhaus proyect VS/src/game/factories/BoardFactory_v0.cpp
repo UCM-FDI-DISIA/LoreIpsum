@@ -51,6 +51,8 @@ ecs::entity_t BoardFactory_v0::createBoard()
 
 			_board[i][j]->addComponent<Cell>();
 
+			_board[i][j]->setLayer(1);
+
 		}
 	}
 
