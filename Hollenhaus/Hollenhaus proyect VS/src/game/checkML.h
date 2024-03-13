@@ -11,7 +11,6 @@
 
 #if defined(_WIN32) && defined(_DEBUG)
 #define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
 #include <crtdbg.h>
 #if defined(_MSC_VER) && !defined(DBG_NEW)
 #define DBG_NEW new (_NORMAL_BLOCK, __FILE__, __LINE__)

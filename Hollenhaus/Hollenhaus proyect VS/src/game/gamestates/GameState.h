@@ -1,8 +1,6 @@
 #ifndef GameState_H_
 #define GameState_H_
 
-#include  "../checkML.h"
-
 /// <summary>
 /// Clase GameState (o Manager) vista en clase
 /// </summary>

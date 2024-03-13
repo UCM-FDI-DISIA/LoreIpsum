@@ -5,7 +5,7 @@
 
 #include "basics/BoxCollider.h"
 #include "basics/Transform.h"
-#include <iostream>
+
 EndTurnButton::EndTurnButton(MatchManager::TurnState buttonPropietary) :
 	buttonPropietary_(buttonPropietary)
 {
