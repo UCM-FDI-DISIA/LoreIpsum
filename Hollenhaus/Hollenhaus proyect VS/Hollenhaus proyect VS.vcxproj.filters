@@ -470,7 +470,7 @@
     <ClInclude Include="src\game\components\managers\PlayerCardsManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\Enums.h">
+    <ClInclude Include="src\game\Namespaces.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
