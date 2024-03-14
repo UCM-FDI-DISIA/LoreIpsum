@@ -23,7 +23,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 	card->addComponent<CardStateManager>();
 
 	auto cardTransform = card->getComponent<Transform>();
-	cardTransform->getGlobalScale().set(cardScale, cardScale);
+	cardTransform->setGlobalScale(cardScale, cardScale);
 
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(Cards::ON_DECK);
