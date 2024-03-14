@@ -30,7 +30,7 @@ public:
 
     // Escala global
     //
-    Vector2D& getGlobalScale();
+    Vector2D getGlobalScale();
     //void setGlobalScale(float x, float y) { globalScale_ = Vector2D(x,y); }
 
     // Rotacion global

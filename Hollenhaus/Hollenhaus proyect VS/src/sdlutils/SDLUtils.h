@@ -66,7 +66,7 @@ class SDLUtils: public Singleton<SDLUtils> {
 		inline T& operator[](const std::string &key) {
 			return at(key);
 		}
-
+		
 	};
 	
 public:

@@ -54,9 +54,14 @@ Transform::getGlobalPos() {
 }
 
 
-Vector2D& Transform::getGlobalScale()
+Vector2D Transform::getGlobalScale()
 {
-	return globalScale_;
+	if (isChild_)
+		return Vector2D(parent_->getGlobalScale().getX() * relativeScale_.getX(),
+			parent_->getGlobalScale().getY() * relativeScale_.getY());
+	else
+		return relativeScale_;
+
 }
 
 float& Transform::getGlobalAngle()
@@ -98,6 +103,8 @@ Transform::setGlobalScale(Vector2D s) {
 	globalScale_ = s;
 	if (isChild_)
 		relativeScale_.set(globalScale_.getX() / parent_->globalScale_.getX(), globalScale_.getY() / parent_->globalScale_.getY());
+	else
+		relativeScale_.set(s);
 }
 
 void Transform::setGlobalScale(float x, float y)
@@ -105,7 +112,8 @@ void Transform::setGlobalScale(float x, float y)
 	globalScale_ = Vector2D(x, y);
 	if (isChild_)
 		relativeScale_.set(globalScale_.getX() / parent_->globalScale_.getX(), globalScale_.getY() / parent_->globalScale_.getY());
-
+	else
+		relativeScale_.set(globalScale_);
 }
 
 Transform* 
