@@ -20,6 +20,11 @@ Transform::increaseLayer() {
 	}
 }
 
+void Transform::setLayerIncrementalInHierarchy(int layer)
+{
+	
+}
+
 void
 Transform::addParent(Transform* p) {
 	if (!isChild_) {

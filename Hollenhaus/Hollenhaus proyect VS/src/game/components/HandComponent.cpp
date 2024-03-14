@@ -41,6 +41,9 @@ void HandComponent::addCard(ecs::entity_t card) {
 		card->setLayer(lastCardAdded_->getLayer() + 3); COSITAS DEL ORDER IN LAYER :D (JIMBO)
 	card->getComponent<Transform>()->increaseLayer();*/
 
+
+	 card->setLayer(1);
+
 	// Settea tamano de carta para anadir cartas directamente desde la factoria
 	cardsInHand_.push_back(card);
 	//lastCardAdded_ = card; PARA ORDER IN LAYER

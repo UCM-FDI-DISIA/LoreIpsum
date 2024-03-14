@@ -14,6 +14,8 @@ public:
 
     void increaseLayer();
 
+    void setLayerIncrementalInHierarchy(int layer);
+
     // A�ade un padre
     //
     void addParent(Transform* p);
