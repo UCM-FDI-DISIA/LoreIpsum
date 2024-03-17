@@ -5,6 +5,7 @@
 #include "../components/NPC.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/SpriteRenderer.h"
+#include "../components/TypeWriterComponent.h"
 
 CityState::CityState()
 {
@@ -91,6 +92,19 @@ void CityState::onEnter()
 	npc3->getComponent<Transform>()->setGlobalPos(npc3Pos);
 	npc3->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	npc3->addComponent<NPC>(6); // Lleva al combate (SamuState(6)).
+	npc3->setLayer(2);
+	//----Para hablar
+	ecs::entity_t npc4 = Instantiate();
+	npc3->addComponent<Transform>();
+	npc3->addComponent<SpriteRenderer>("npc");
+	npc3->addComponent<BoxCollider>();
+	npc3->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
+	npc3->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
+	Vector2D npc4Pos(600, 425);
+	npc3->getComponent<Transform>()->setGlobalPos(npc4Pos);
+	npc3->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	npc3->addComponent<NPC>(6, 1);
+	npc3->addComponent<TypeWriter>(2);
 	npc3->setLayer(2);
 
 	//------Boton para volver al menu principal:

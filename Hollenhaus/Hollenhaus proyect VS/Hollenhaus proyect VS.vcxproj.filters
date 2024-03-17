@@ -243,6 +243,7 @@
     <ClCompile Include="src\game\components\managers\BoardManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\TypeWriterComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -307,9 +308,6 @@
     </ClInclude>
     <ClInclude Include="src\game\Data.h">
       <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\BoxCollider.h">
-      <Filter>Archivos de encabezado\Componentes\Componentes Basicos</Filter>
     </ClInclude>
     <ClInclude Include="src\game\Mouse.h">
       <Filter>Archivos de encabezado</Filter>
@@ -472,6 +470,9 @@
     </ClInclude>
     <ClInclude Include="src\game\Namespaces.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\TypeWriterComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

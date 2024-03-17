@@ -2,6 +2,7 @@
 #include "NPC.h"
 #include "managers/Manager.h"
 #include "basics/BoxCollider.h"
+#include "TypeWriterComponent.h"
 
 NPC::NPC(int scene)
 {
@@ -10,6 +11,17 @@ NPC::NPC(int scene)
 	myBoxCollider = nullptr;
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
+	type = 0;
+}
+
+NPC::NPC(int scene, int t)
+{
+	_scene = scene;
+	click = false;
+	myBoxCollider = nullptr;
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
+	type = t;
 }
 
 NPC::~NPC() {
@@ -33,9 +45,25 @@ void NPC::OnLeftClickUp() {
 void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 {
 	if (!click && myBoxCollider->isCursorOver()) {
-		TuVieja("Cambio de escena.");
-		GameStateMachine::instance()->setState(scene);
+
+		if (type == 0) {
+			TuVieja("Cambio de escena.");
+			GameStateMachine::instance()->setState(scene);
+		}
+		else if (type == 1) {
+			talkTo();
+		}
+		
 	}
+}
+
+void NPC::talkTo()
+{
+	if (!click && myBoxCollider->isCursorOver()) {
+		TuVieja("Que charlatan el tio...");
+		getEntity()->getComponent<TypeWriter>()->typeWrite("tetorras");
+	}
+
 }
 
 void NPC::update() {
