@@ -61,7 +61,7 @@ void NPC::talkTo()
 {
 	if (!click && myBoxCollider->isCursorOver()) {
 		TuVieja("Que charlatan el tio...");
-		getEntity()->getComponent<TypeWriter>()->typeWrite("tetorras");
+		getEntity()->getComponent<TypeWriter>()->typeWrite("sublime");
 	}
 
 }

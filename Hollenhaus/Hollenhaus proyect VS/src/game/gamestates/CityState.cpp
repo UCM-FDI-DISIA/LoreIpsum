@@ -95,17 +95,21 @@ void CityState::onEnter()
 	npc3->setLayer(2);
 	//----Para hablar
 	ecs::entity_t npc4 = Instantiate();
-	npc3->addComponent<Transform>();
-	npc3->addComponent<SpriteRenderer>("npc");
-	npc3->addComponent<BoxCollider>();
-	npc3->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
-	npc3->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
+	npc4->addComponent<Transform>();
+	npc4->addComponent<SpriteRenderer>("npc");
+	npc4->addComponent<BoxCollider>();
+	npc4->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
+	npc4->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
 	Vector2D npc4Pos(600, 425);
-	npc3->getComponent<Transform>()->setGlobalPos(npc4Pos);
-	npc3->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	npc3->addComponent<NPC>(6, 1);
-	npc3->addComponent<TypeWriter>(2);
-	npc3->setLayer(2);
+	npc4->getComponent<Transform>()->setGlobalPos(npc4Pos);
+	npc4->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	npc4->addComponent<NPC>(6, 1);
+	npc4->addComponent<TypeWriter>(2);
+	// estoy mirando el texto jiji
+	/*npc4->addComponent<TextComponent>(" ", "8bit_size_12",
+		SDL_Color({ 255, 255, 255, 255 }), 100, Text::BoxPivotPoint::CenterCenter, 
+		Text::TextAlignment::Center);*/
+	npc4->setLayer(2);
 
 	//------Boton para volver al menu principal:
 	ecs::entity_t exit = Instantiate();
