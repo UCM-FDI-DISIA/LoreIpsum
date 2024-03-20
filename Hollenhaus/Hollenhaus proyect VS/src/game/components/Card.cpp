@@ -17,7 +17,7 @@ Card::Card(int cost, int value, std::string& sprite, bool unblockable)
 	
 }
 
-
+// mete en la lisa de efectos el efecto indicado
 void Card::addCardEffect(SDLEventCallback effectCallback)
 {
 	// el efecto a hacer push back deberia ser un metodo especifico de la coleccion
