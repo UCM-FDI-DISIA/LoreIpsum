@@ -71,10 +71,10 @@ void CityState::onEnter()
 	//----Para entrar en la tienda.
 	ecs::entity_t npc1 = Instantiate();
 	npc1->addComponent<Transform>();
-	npc1->addComponent<SpriteRenderer>("npc");
+	npc1->addComponent<SpriteRenderer>("hombre");
 	npc1->addComponent<BoxCollider>();
 	npc1->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
-	npc1->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
+	npc1->getComponent<Transform>()->getRelativeScale().set(1.0f, 1.0f);
 	Vector2D np1Pos(800, 425);
 	npc1->getComponent<Transform>()->setGlobalPos(np1Pos);
 	npc1->getComponent<BoxCollider>()->setAnchoredToSprite(true);
