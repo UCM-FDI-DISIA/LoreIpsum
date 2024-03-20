@@ -4,18 +4,15 @@
 
 void
 Transform::update() {
-	if (isChild_) {
-		//globalScale_ = relativeScale_ * parent_->globalScale_.magnitude();
-	}
 }
 
 void 
-Transform::increaseLayer() {
-	int nextLayer = parent_->ent_->getLayer() + layerToIncrease;
+Transform::increaseLayer(int layer) {
+	int nextLayer = layer + layerToIncrease;
 	ent_->setLayer(nextLayer);
 	if(children_.size() > 0){
 		for (auto it = children_.begin(); it != children_.end(); ++it) {
-			(*it)->increaseLayer();
+			(*it)->increaseLayer(ent_->getLayer());
 		}
 	}
 }

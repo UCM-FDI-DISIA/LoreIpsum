@@ -12,7 +12,7 @@ public:
 
     void update() override;
 
-    void increaseLayer();
+    void increaseLayer(int);
 
     void setLayerIncrementalInHierarchy(int layer);
 
