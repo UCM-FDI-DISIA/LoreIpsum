@@ -1,91 +1,103 @@
 {
-  "dialogues": [
-
+  "owner": [
     {
-      "owner": [
+      "NPCName": "El Xungo del Barrio",
+      "convo": [
         {
-          "NPCName": "El Xungo del Barrio",
-          "convo": [
+          "convoID": "0",
+          "nodes": [
             {
-              "convoID": "0",
-              "nodes": [
-                {
-                  "id": "0",
-                  "text": "¿Mi campeón favorito?",
-                  "eventStart": 0,
-                  "eventFinish": 0
-                },
-                {
-                  "id": "1",
-                  "text": "Sin duda alguna, Anivia, la Criofenix",
-                  "eventStart": 0,
-                  "eventFinish": 0
-                },
-                {
-                  "id": "2",
-                  "text": "No tendrá mucho ataque",
-                  "eventStart": 0,
-                  "eventFinish": 0
-                },
-                {
-                  "id": "3",
-                  "text": "No tendrá mucha defensa",
-                  "eventStart": 0,
-                  "eventFinish": 0
-                },
-                {
-                  "id": "4",
-                  "text": "Pero me encanta",
-                  "eventStart": 0,
-                  "eventFinish": 0
-                }
-              ]
+              "id": "0",
+              "text": "¿Mi campeón favorito?",
+              "eventStart": 0,
+              "eventFinish": 0
+            },
+            {
+              "id": "1",
+              "text": "Sin duda alguna, Anivia, la Criofenix",
+              "eventStart": 0,
+              "eventFinish": 0
+            },
+            {
+              "id": "2",
+              "text": "No tendrá mucho ataque",
+              "eventStart": 0,
+              "eventFinish": 0
+            },
+            {
+              "id": "3",
+              "text": "No tendrá mucha defensa",
+              "eventStart": 0,
+              "eventFinish": 0
+            },
+            {
+              "id": "4",
+              "text": "Pero me encanta",
+              "eventStart": 0,
+              "eventFinish": 0
             }
           ]
         },
         {
-          "NPCName": "Javivu24",
-          "convo": [
+          "convoID": "1",
+          "nodes": [
             {
-              "convoID": "0",
-              "nodes": [
-                {
-                  "id": "0",
-                  "text": "¿que?",
-                  "eventStart": 0,
-                  "eventFinish": 0
-                },
-                {
-                  "id": "1",
-                  "text": "jajaja....",
-                  "eventStart": 0,
-                  "eventFinish": 0
-                },
-                {
-                  "id": "2",
-                  "text": "es completamente IMPOSIBLE que funciones",
-                  "eventStart": 0,
-                  "eventFinish": 0
-                },
-                {
-                  "id": "3",
-                  "text": "a la pared ya, estas tardando",
-                  "eventStart": 0,
-                  "eventFinish": 0
-                },
-                {
-                  "id": "4",
-                  "text": "vamos, el coach rcibiendo un balon",
-                  "eventStart": 0,
-                  "eventFinish": 0
-                }
-              ]
+              "id": "0",
+              "text": "Otra conversación por aqui",
+              "eventStart": 0,
+              "eventFinish": 0
+            },
+            {
+              "id": "1",
+              "text": "Ha quedado buena tarde",
+              "eventStart": 0,
+              "eventFinish": 0
             }
           ]
         }
-
+      ]
+    },
+    {
+      "NPCName": "Javivu24",
+      "convo": [
+        {
+          "convoID": "0",
+          "nodes": [
+            {
+              "id": "0",
+              "text": "¿que?",
+              "eventStart": 0,
+              "eventFinish": 0
+            },
+            {
+              "id": "1",
+              "text": "jajaja....",
+              "eventStart": 0,
+              "eventFinish": 0
+            },
+            {
+              "id": "2",
+              "text": "es completamente IMPOSIBLE que funciones",
+              "eventStart": 0,
+              "eventFinish": 0
+            },
+            {
+              "id": "3",
+              "text": "a la pared ya, estas tardando",
+              "eventStart": 0,
+              "eventFinish": 0
+            },
+            {
+              "id": "4",
+              "text": "vamos, el coach rcibiendo un balon",
+              "eventStart": 0,
+              "eventFinish": 0
+            }
+          ]
+        }
       ]
     }
+
   ]
 }
 
