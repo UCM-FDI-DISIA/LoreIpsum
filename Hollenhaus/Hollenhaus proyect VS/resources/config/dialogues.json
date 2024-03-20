@@ -1,6 +1,5 @@
 {
   "dialogues": [
-
     {
       "id": "paco_01_01",
       "text": "Hola"
@@ -19,18 +18,15 @@
     },
     {
       "id": "paco_02_03",
-      "text": "y buenos días a los que no"
+      "text": "y buenos dias a los que no"
     },
     {
       "id": "lucia_01_01",
-      "text": "Cuando el niño se despertó"
+      "text": "Cuando el ninio se desperto"
     },
     {
       "id": "lucia_01_02",
-      "text": "el dinosaurio ya no estaba allí"
+      "text": "el dinosaurio ya no estaba alli"
     }
-
   ]
-
-
 }

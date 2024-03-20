@@ -51,6 +51,8 @@ void LuisState::onEnter()
 {
 	TuVieja("\nEntering in LuisState");
 
+	TuVieja(sdlutils().dialogues().at("paco_01_01").text());
+
 	Factory* factory = new Factory();
 	factory->SetFactories(
 		static_cast<BoardFactory*>(new BoardFactory_v0(4)),
