@@ -1,5 +1,7 @@
 #pragma once
 #include "CardFactory.h"
+class Card;
+
 class CardFactory_v1 :
     public CardFactory
 {
@@ -24,7 +26,7 @@ private:
 
 	void addEffectsImages(ecs::entity_t card, std::vector<JsonData::CardEffect>& effects);
 	void addValueCostTexts(ecs::entity_t card, int vale, int cost);
-
+	void addEffects(Card* cardComp, std::vector<JsonData::CardEffect>& effects);
 	void addDeckImage(int initX, int initY, bool opposite = false);
 };
 
