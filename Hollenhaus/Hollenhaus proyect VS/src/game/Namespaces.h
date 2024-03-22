@@ -92,7 +92,6 @@ namespace JsonData
 	{
 		using Directions = std::vector<Effects::Direction>;
 
-		CardEffect();
 		CardEffect(Effects::Type t, int v, Directions& d)
 			: type_(t), value_(v), directions_(d) {}
 
@@ -108,7 +107,6 @@ namespace JsonData
 
 	struct CardData
 	{
-		CardData();
 		CardData(int c, int v, std::string& s, bool u, std::vector<CardEffect>& e)
 			: cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e) {}
 
@@ -130,7 +128,6 @@ namespace JsonData
 
 	struct NodeData {
 
-		NodeData();
 		NodeData(const int nodeID, const std::string& text, const DialogueEvents::Events nodeEventsStart, const DialogueEvents::Events nodeEventsFinish) :
 			nodeID_(nodeID),
 			text_(text),
@@ -152,14 +149,14 @@ namespace JsonData
 
 	struct ConvoData {
 
-		ConvoData();
 		ConvoData(const int convoID, const std::vector<NodeData>& nodes) :
 			convoID_(convoID),
 			nodes_(nodes)
 		{};
 
 		int ConvoID() { return convoID_; }
-		std::vector<NodeData>& Nodes() { return nodes_; }
+		std::vector<NodeData>& NodesVector() { return nodes_; }
+		NodeData& Node(int n) { return nodes_[n]; }
 
 	private:
 		int convoID_;
@@ -169,15 +166,14 @@ namespace JsonData
 	// Cada instancia de DialogueData es un owner con todas sus conversaciones y nodos correspondientes a cada conversacion
 	struct DialogueData {
 
-		DialogueData();
 		DialogueData(const std::string& NPCName, const std::vector<ConvoData>& convos) :
 			NPCName_(NPCName),
 			convos_(convos)
 		{};
 
 		std::string& NPCName() { return NPCName_; }
-		std::vector<ConvoData>& Convos() { return convos_; }
-
+		std::vector<ConvoData>& ConvosVector() { return convos_; }
+		ConvoData& Convo(int n) { return convos_[n]; }
 	private:
 		std::string NPCName_;
 		std::vector<ConvoData> convos_;
