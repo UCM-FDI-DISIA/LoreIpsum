@@ -75,6 +75,16 @@ namespace Text
 	};
 }
 
+namespace DialogueEvents 
+{
+	enum Events {
+		None,				// No ocurre nada
+		ChangeScene,		// Evento para cambiar de escena
+		StartAnimation,		// Evento para lanzar una animación
+		ConfirmMatchPopUp	// Evento para mostrar una ventana donde el jugador acepta o rechaza una partida inminente
+	};
+}
+
 namespace JsonData
 {
 	/// CARD DATA STRUCT
@@ -97,7 +107,7 @@ namespace JsonData
 	};
 
 	struct CardData
-	{ 
+	{
 		CardData();
 		CardData(int c, int v, std::string& s, bool u, std::vector<CardEffect>& e)
 			: cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e) {}
@@ -117,14 +127,61 @@ namespace JsonData
 		std::vector<CardEffect> effects_;
 	};
 
-	struct DialogueData {
-		DialogueData();
-		DialogueData(std::string text) 
-			:text_(text){};
 
-		std::string text() { return text_; };
+	struct NodeData {
+
+		NodeData();
+		NodeData(const int nodeID, const std::string& text, const DialogueEvents::Events nodeEventsStart, const DialogueEvents::Events nodeEventsFinish) :
+			nodeID_(nodeID),
+			text_(text),
+			eventStart_(nodeEventsStart),
+			eventFinish_(nodeEventsFinish)
+		{};
+
+		int NodeID() { return nodeID_; }
+		std::string& Text() { return text_; }
+		DialogueEvents::Events NodeEventsStart() { return eventStart_; }
+		DialogueEvents::Events NodeEventsFinish() { return eventFinish_; }
 
 	private:
+		int nodeID_;
 		std::string text_;
+		DialogueEvents::Events eventStart_;
+		DialogueEvents::Events eventFinish_;
 	};
+
+	struct ConvoData {
+
+		ConvoData();
+		ConvoData(const int convoID, const std::vector<NodeData>& nodes) :
+			convoID_(convoID),
+			nodes_(nodes)
+		{};
+
+		int ConvoID() { return convoID_; }
+		std::vector<NodeData>& Nodes() { return nodes_; }
+
+	private:
+		int convoID_;
+		std::vector<NodeData> nodes_;
+	};
+
+	// Cada instancia de DialogueData es un owner con todas sus conversaciones y nodos correspondientes a cada conversacion
+	struct DialogueData {
+
+		DialogueData();
+		DialogueData(const std::string& NPCName, const std::vector<ConvoData>& convos) :
+			NPCName_(NPCName),
+			convos_(convos)
+		{};
+
+		std::string& NPCName() { return NPCName_; }
+		std::vector<ConvoData>& Convos() { return convos_; }
+
+	private:
+		std::string NPCName_;
+		std::vector<ConvoData> convos_;
+
+	};
+
 }

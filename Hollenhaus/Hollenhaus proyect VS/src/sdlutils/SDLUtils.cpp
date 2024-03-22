@@ -279,6 +279,50 @@ void SDLUtils::loadSounds(JSONObject rootResources, std::string filenameResource
 	}
 }
 
+
+void SDLUtils::loadMessages(JSONObject rootResources, std::string filenameResources)
+{
+	// load messages
+	const auto jValue = rootResources["messages"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			msgs_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString();
+					std::string txt = vObj["text"]->AsString();
+					auto& font = fonts_.at(vObj["font"]->AsString());
+#ifdef _DEBUG
+					std::cout << "Loading message with id: " << key
+						<< std::endl;
+#endif
+					if (vObj["bg"] == nullptr)
+						msgs_.emplace(key,
+							Texture(renderer(), txt, font,
+								build_sdlcolor(
+									vObj["color"]->AsString())));
+					else
+						msgs_.emplace(key,
+							Texture(renderer(), txt, font,
+								build_sdlcolor(
+									vObj["color"]->AsString()),
+								build_sdlcolor(
+									vObj["bg"]->AsString())));
+				}
+				else {
+					throw "'messages' array in '" + filenameResources
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'messages' is not an array in '" + filenameResources + "'";
+		}
+	}
+}
+
+
 void SDLUtils::loadCards(JSONObject rootCards, std::string filenameCards)
 {
 	/// CARD PARSING
@@ -343,62 +387,52 @@ void SDLUtils::loadCards(JSONObject rootCards, std::string filenameCards)
 	}
 }
 
-void SDLUtils::loadMessages(JSONObject rootResources, std::string filenameResources)
-{
-	// load messages
-	const auto jValue = rootResources["messages"];
-	if (jValue != nullptr) {
-		if (jValue->IsArray()) {
-			msgs_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto &v : jValue->AsArray()) {
-				if (v->IsObject()) {
-					JSONObject vObj = v->AsObject();
-					std::string key = vObj["id"]->AsString();
-					std::string txt = vObj["text"]->AsString();
-					auto &font = fonts_.at(vObj["font"]->AsString());
-#ifdef _DEBUG
-					std::cout << "Loading message with id: " << key
-							<< std::endl;
-#endif
-					if (vObj["bg"] == nullptr)
-						msgs_.emplace(key,
-								Texture(renderer(), txt, font,
-										build_sdlcolor(
-												vObj["color"]->AsString())));
-					else
-						msgs_.emplace(key,
-								Texture(renderer(), txt, font,
-										build_sdlcolor(
-												vObj["color"]->AsString()),
-										build_sdlcolor(
-												vObj["bg"]->AsString())));
-				} else {
-					throw "'messages' array in '" + filenameResources
-							+ "' includes and invalid value";
-				}
-			}
-		} else {
-			throw "'messages' is not an array in '" + filenameResources + "'";
-		}
-	}
-}
+
 
 void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialogues)
 {
-	// load dialogues
-	const auto jValue = rootDialogues["dialogues"];
-	if (jValue != nullptr) {
-		if (jValue->IsArray()) {
-			dialogues_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto& v : jValue->AsArray()) {
-				if (v->IsObject()) {
-					JSONObject vObj = v->AsObject();
-					std::string key = vObj["id"]->AsString();
-					std::string text = vObj["text"]->AsString();
+	// DIALOGUES PARSING
+	// Samir, Cynthia (feat. Luis)
+	const auto jValue = rootDialogues["owner"];	// key con todos los owners
+	if (jValue != nullptr) {	// si existe la key "owner"
+		if (jValue->IsArray()) {	// si existen owners
+			for (auto& v : jValue->AsArray()) {	// por cada owner
+				if (v->IsObject()) {	// si el owner es un objeto
+					JSONObject ownerObj = v->AsObject();	// guardamos el owner como JSONObject
+					std::string NPCName = ownerObj["NPCName"]->AsString();	// Obtenemos la key "NPCName" del JSONObject creado por cada owner
+
+					std::vector<JsonData::ConvoData> convos;		// Declaramos el vector para guardar las convos del owner
+																	// Las convos aun no se pueden guardar porque dentro hay varios datos que quedan por parsear
+					
+					JSONArray convosArray = ownerObj["convo"]->AsArray();	// Array de convos
+					for (auto& c : convosArray) {	// Por cada convo
+						if (c->IsObject()) {
+							JSONObject convoObj = c->AsObject();	// Guardamos la convo como objeto
+							int convoID = convoObj["convoID"]->AsNumber();	// Obteneos la key "convoID" del JSONObject creado por cada convo
+
+							std::vector<JsonData::NodeData> nodes;	// Declaramos el vector para guardar los nodos de la convo
+																	// Los nodos aun no se pueden guardar porque dentro hay varios datos que quedan por parsear
+					
+							JSONArray nodesArray = convoObj["nodes"]->AsArray();	// Array de nodes
+							for (auto& n : nodesArray) {		// Por cada node
+								if (n->IsObject()) {
+									JSONObject nodeObj = n->AsObject();
+									int nodeID = nodeObj["nodeID"]->AsNumber();
+									std::string text = nodeObj["text"]->AsString();
+									DialogueEvents::Events eventStart = static_cast<DialogueEvents::Events>(nodeObj["eventStart"]->AsNumber());
+									DialogueEvents::Events eventFinish = static_cast<DialogueEvents::Events>(nodeObj["eventFinish"]->AsNumber());
+
+									nodes.emplace_back(nodeID, text, eventStart, eventFinish);
+								}
+							}
+
+							convos.emplace_back(convoID, nodes);
+						}
+					}
 #ifdef _DEBUG
-					std::cout << "Loading dialogue with id: " << key << std::endl;
+					std::cout << "Loading dialogues of owner: " << NPCName << std::endl;
 #endif
-					dialogues_.emplace(key, JsonData::DialogueData(text));
+					dialogues_.emplace(NPCName, JsonData::DialogueData(NPCName, convos));
 				}
 				else {
 					throw "'dialogues' array in '" + filenameDialogues

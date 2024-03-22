@@ -485,5 +485,6 @@
     <None Include="resources\config\resources.json">
       <Filter>Resources</Filter>
     </None>
+    <None Include="resources\config\dialoguesV1.json" />
   </ItemGroup>
 </Project>
