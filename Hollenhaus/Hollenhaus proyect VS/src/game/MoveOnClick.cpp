@@ -2,19 +2,19 @@
 #include "Entity.h"
 #include "Manager.h"
 
-
 MoveOnClick::MoveOnClick()
 {
 }
 
 MoveOnClick::~MoveOnClick()
 {
+	// se suscribe al evento de click izq
 	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 }
 
 void MoveOnClick::initComponent()
 {
-	myBoxCollider = ent_->getComponent<BoxCollider>(); // colider del fondo
+	myBoxCollider = ent_->getComponent<BoxCollider>(); // collider del fondo
 	myTransform = ent_->getComponent<Transform>();	   // transform del fondo
 	
 	move = false; // inicializa move a false
@@ -32,35 +32,29 @@ void MoveOnClick::update()
 	// -> si la coordenda x del lt del fondo coincide con el distanceToMove (se ha centrado)
 	// -> o cuando llegue a los limites de la ciudad por la derecha y se pulse en la derecha
 	// -> o cuando llegue a los limites de la ciudad por la izquierda y se pulse en la izquierda
-	if (ltBackroundCoor.getX() == distanceToMove ||
-		ltBackroundCoor.getX() >= 0 && mousePos.getX() < halfScreen ||
-		ltBackroundCoor.getX() <= BACKGROUND_SIZE && mousePos.getX() >= halfScreen)
+	if ((ltBackroundCoor.getX() == distanceToMove) ||
+		((ltBackroundCoor.getX() >= 0) && (mousePos.getX() < halfScreen)) ||
+		((ltBackroundCoor.getX() <= BACKGROUND_SIZE) && (mousePos.getX() >= halfScreen)))
 	{ move = false; }
 
 	// ---- MOVE TRUE ----
+	// -> si debe moverse
 	if (move)
 	{
 		// JUGADOR HACIA LA DER, FONDO HACIA LA IZQ
-		if (mousePos.getX() > halfScreen)
+		if (mousePos.getX() >= halfScreen)
 		{
-			scrollVel.setX(left);
-			//scrollCounter--;
+			scrollCounter--;
 		}
 
 		// JUGADOR HACIA LA IZQ, FONDO HACIA LA DER
 		else if (mousePos.getX() < halfScreen)
 		{
-			scrollVel.setX(right);
-			//scrollCounter++;
+			scrollCounter++;
 		}
 
-		scrollVel2.setX(scrollVel.getX() * distanceToMove);
+		ltBackroundCoor.setX(myPos.getX() + scrollCounter * scrollVel);
 
-		// ltBackroundCoor.setX(myPos.getX() + scrollCounter);
-
-		//myTransform->setGlobalPos(ltBackroundCoor);
-
-		// DEBIERA EL TRANSFORM TENER VELOCIDAD????
 		myTransform->setGlobalPos(ltBackroundCoor);
 	}
 }
@@ -76,6 +70,7 @@ void MoveOnClick::OnLeftClickDown()
 	// Si pulsamos en el collider, efectuamos el movimiento
 	if (myBoxCollider->isCursorOver()){
 
+		// debe moverse al click
 		move = true;
 
 		// resetea la distancia a moverse en cada update que hay movimiento

@@ -6,9 +6,7 @@
 #include "../utils/Vector2D.h"
 #include "GameStateMachine.h"
 
-
-class MoveOnClick :
-    public ComponentUpdate
+class MoveOnClick : public ComponentUpdate
 {
 public:
 	MoveOnClick();
@@ -40,13 +38,8 @@ private:
 	// longitud del speed
 	float speedLength = 2;
 
-	float right = 1,
-		left = -1;
-
 	// velocidad de movimiento de scroll
-	Vector2D scrollVel;
-
-	Vector2D scrollVel2;
+	float scrollVel = 2;
 
 	// Coordenada x del left top de la imagen de fondo
 	//		Ha de ser actualizada en cada update en el que deba moverse hasta
@@ -59,4 +52,3 @@ private:
 	// Mitad de la pantalla
 	float halfScreen = sdlutils().width() / 2;
 };
-
