@@ -78,6 +78,15 @@ void ShopState::onEnter()
 	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
 	carta4->getComponent<Transform>()->getRelativeScale().set(0.85f, 0.85f);
 	carta4->setLayer(1);
+	
+	//tendero
+	ecs::entity_t tendero = Instantiate();
+	tendero->addComponent<Transform>();
+	tendero->addComponent<SpriteRenderer>("hombre");
+	Vector2D tenderoPos(100, 100);
+	tendero->getComponent<Transform>()->setGlobalPos(tenderoPos);
+	tendero->getComponent<Transform>()->getRelativeScale().set(3.0f, 3.0f);
+	tendero->setLayer(1);
 
 
 	//------Boton para volver:
