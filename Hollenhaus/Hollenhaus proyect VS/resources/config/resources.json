@@ -33,6 +33,10 @@
         {"id": "boton_flecha",    "file": "resources/images/boton_flecha.png"},
         {"id": "black_box",       "file": "resources/images/black_background.png"  },
         {"id": "reverseCard",       "file": "resources/images/card_reverse.png"  },
+        {"id": "moneda",       "file": "resources/images/moneda.png"  },
+        {"id": "fondoTienda",       "file": "resources/images/fondoTienda.png"  },
+        {"id": "mostrador",       "file": "resources/images/mostradorTienda.png"  },
+        {"id": "estanteria",       "file": "resources/images/estanteriaTienda.png"  },
         {"id": "cell",       "file": "resources/images/cardCell.png"  }
     ],
     "fonts": [
