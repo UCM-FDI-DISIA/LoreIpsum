@@ -1,3 +1,12 @@
+// COMO FUNCIONA EL COMPONENTE:
+// Al hacer click en el suelo se guarda toda la info del inicio del movimiento
+// En el update se evalua si debe moverse
+// (si se ha hecho click, si no se ha llegado al final y si no se ha centrado aun la coor destino guardada al inicio)
+// si debe moverse:
+// el contador de scroll (unidades a moverse por update): aumenta (izq) o disminuye (der)
+// despues de esta evaluacion se ejecuta el movimiento del fondo con su respectiva velocidad
+
+
 #include "MoveOnClick.h"
 #include "Entity.h"
 #include "Manager.h"
@@ -28,6 +37,10 @@ void MoveOnClick::initComponent()
 
 void MoveOnClick::update()
 {
+	/*move = !((ltBackroundCoor.getX() == distanceToMove) ||
+		((ltBackroundCoor.getX() >= 0) && (mousePos.getX() < halfScreen)) ||
+		((ltBackroundCoor.getX() <= BACKGROUND_SIZE) && (mousePos.getX() >= halfScreen)));*/
+
 	// ---- MOVE FALSE ----
 	// -> si la coordenda x del lt del fondo coincide con el distanceToMove (se ha centrado)
 	// -> o cuando llegue a los limites de la ciudad por la derecha y se pulse en la derecha
