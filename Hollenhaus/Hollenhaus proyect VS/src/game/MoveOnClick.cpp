@@ -39,7 +39,7 @@ void MoveOnClick::update()
 
 	// ---- MOVE TRUE ----
 	// -> si debe moverse
-	if (move)
+	else if (move)
 	{
 		// JUGADOR HACIA LA DER, FONDO HACIA LA IZQ
 		if (mousePos.getX() >= halfScreen)

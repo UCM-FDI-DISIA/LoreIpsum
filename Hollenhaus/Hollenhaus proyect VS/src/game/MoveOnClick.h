@@ -35,9 +35,6 @@ private:
 	// pixeles a mover en cada update que haya movimiento
 	float scrollCounter;
 
-	// longitud del speed
-	float speedLength = 2;
-
 	// velocidad de movimiento de scroll
 	float scrollVel = 2;
 
