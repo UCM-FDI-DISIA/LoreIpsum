@@ -40,11 +40,12 @@ GameStateMachine::GameStateMachine() {
 	officeState = new OfficeState();
 	shopState = new ShopState();
 	samuState = new SamuState();
+	jimboState = new JimboState();
 	nievesState = new NievesState();
 	matchOverState = new MatchOverState();
 
 	// Ponemos el estado actual
-	currentState = new LuisState();
+	currentState = new MainMenuState();
 
 	//currentState = samuState;
 

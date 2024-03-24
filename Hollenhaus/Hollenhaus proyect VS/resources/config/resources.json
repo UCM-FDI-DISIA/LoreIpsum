@@ -10,6 +10,7 @@
         {"id": "mouse",           "file": "resources/images/mouse.png"},
         {"id": "ciudad",          "file": "resources/images/ciudad.png"},
         {"id": "npc",             "file": "resources/images/npc.png"},
+        {"id": "hombre",             "file": "resources/images/hombre.png"},
         {"id": "cityExample",     "file": "resources/images/cityExample.png" },
         {"id": "farolascerca",    "file": "resources/images/farolascerca.png" },
         {"id": "farolaslejos",    "file": "resources/images/farolaslejos.png"},
