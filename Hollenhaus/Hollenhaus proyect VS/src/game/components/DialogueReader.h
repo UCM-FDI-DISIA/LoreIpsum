@@ -5,6 +5,8 @@
 #include "..\Namespaces.h"
 
 class TypeWriter;
+class DialogueEventCollection;
+class DialogueDestroyer;
 
 class DialogueReader : public ComponentUpdate
 {
@@ -18,5 +20,7 @@ private:
 	int actualNode_;
 
 	TypeWriter* typeWriter_;
+	DialogueEventCollection* eventCollection_;
+	DialogueDestroyer* dialogueDestroyer_;
 };
 

@@ -137,8 +137,8 @@ namespace JsonData
 
 		int NodeID() { return nodeID_; }
 		std::string& Text() { return text_; }
-		DialogueEvents::Events NodeEventsStart() { return eventStart_; }
-		DialogueEvents::Events NodeEventsFinish() { return eventFinish_; }
+		DialogueEvents::Events NodeEventStart() { return eventStart_; }
+		DialogueEvents::Events NodeEventFinish() { return eventFinish_; }
 
 	private:
 		int nodeID_;
