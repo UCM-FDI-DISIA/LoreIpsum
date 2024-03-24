@@ -43,6 +43,7 @@
     <ClCompile Include="src\game\components\Cell.cpp" />
     <ClCompile Include="src\game\components\ColliderRender.cpp" />
     <ClCompile Include="src\game\components\DeckComponent.cpp" />
+    <ClCompile Include="src\game\components\DialogueReader.cpp" />
     <ClCompile Include="src\game\components\Drag.cpp" />
     <ClCompile Include="src\game\components\DropDetector.cpp" />
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="src\game\components\ComponentRender.h" />
     <ClInclude Include="src\game\components\ComponentUpdate.h" />
     <ClInclude Include="src\game\components\DeckComponent.h" />
+    <ClInclude Include="src\game\components\DialogueReader.h" />
     <ClInclude Include="src\game\components\Drag.h" />
     <ClInclude Include="src\game\components\DropDetector.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
