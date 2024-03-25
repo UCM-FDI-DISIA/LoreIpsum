@@ -8,20 +8,6 @@
 #include "Manager.h"
 
 
-class State {
-	std::vector<std::vector<Card*>> _board;
-
-	std::vector<Card*> playerHand;
-	std::vector<Card*> enemyHand;
-
-	std::vector<Card*> playerDeck;
-	std::vector<Card*> enemyDeck;
-
-	int actionPoints;
-
-	//TuplaSolucion();
-
-};
 
 struct CartaColocada {
 
@@ -33,39 +19,37 @@ struct CartaColocada {
 };
 
 struct TuplaSolucion {
+
+	TuplaSolucion(int cartasRobadas, std::vector<CartaColocada> cartas)
+		: cartasRobadas(cartasRobadas), cartas(cartas) {};
+
 	int cartasRobadas;
 	std::vector<CartaColocada> cartas;//hand + cartas robadas	
 };
 
-std::vector<TuplaSolucion> calcularTurno(
-	int puntosAccion,
-	std::vector<Card*>& Hand,
-	std::vector<Card*>& deck,
-	std::vector<std::vector<bool>>& _board) {
+struct State {
 
-	std::vector<TuplaSolucion> solucionesGlobal;
-	/*
-	for (robar carta)
-	{
-		draw(i);
+	std::vector<std::vector<bool>> _board;
 
-		//actualizar solucionActual
-		//act puntosRestantes
+	std::vector<Card*> playerHand;
+	std::vector<Card*> enemyHand;
 
-		posiblesTurnos(solciones)//hand + cartas robadas	
+	std::vector<Card*> playerDeck;
+	std::vector<Card*> enemyDeck;
 
-			//actualizar la lista de soluciones global(TuplaSolucion)
+	int actionPoints;
 
-			int j;
-		for (soluciones) solucionesGlobal.add(TuplaSolucion{ i,soluciones[j] })
+	//TuplaSolucion();
 
-			//desactualizar solucion Actual
+
+	void apply(std::vector<TuplaSolucion> jugadas,bool isPlayer ) {
+
+
+
 	}
+};
 
-	*/
 
-	return solucionesGlobal;
-}
 
 
 void posiblesTurnos(
@@ -138,6 +122,46 @@ void posiblesTurnos(
 
 }
 
+std::vector<TuplaSolucion> calcularTurno(State s,bool isPlayer) {
+
+	std::vector<TuplaSolucion> solucionesGlobal;
+
+	int i = 0;
+
+	int a = s.actionPoints;
+	while(i <=a)
+	{
+		if (i > 0) {
+			//robar carta
+			Card* c = s.playerDeck.back();
+
+			s.playerDeck.pop_back();
+			s.playerHand.push_back(c);
+			s.actionPoints--;//- N coste de robar carta
+		}
+
+		//actualizar solucionActual
+		//act puntosRestantes
+
+		std::vector<std::vector<CartaColocada>> soluciones;
+		std::vector<CartaColocada> solAct;
+
+		posiblesTurnos(0, s.playerHand.size(), soluciones, solAct, s.actionPoints,
+			s.playerHand, s._board);//hand + cartas robadas	
+
+		//actualizar la lista de soluciones global(TuplaSolucion)
+
+		int j = 0;
+		for (auto& s : soluciones) {
+			solucionesGlobal.push_back(TuplaSolucion{ i,s });
+		}
+
+		i++;
+	}
+
+	return solucionesGlobal;
+}
+
 IA_manager::IA_manager()
 {
 }
@@ -156,36 +180,54 @@ void IA_manager::update()
 
 void IA_manager::evaluateState()
 {
-	std::vector<std::vector<CartaColocada>> soluciones;
-	std::vector<CartaColocada> solAct;
-	int puntosRestantes = 4;
-	std::vector<Card*> playerHand;
-	std::vector<std::vector<bool>> _board;
+
+	State s;
+	s.actionPoints = 4;
+	s.playerDeck;
+	s.playerHand;
+	s._board;
 
 	Card* a = new Card(5, -1);
 	Card* b = new Card(5, -1);
 	Card* c = new Card(5, -1);
 
-	playerHand.push_back(a);
-	playerHand.push_back(b);
-	playerHand.push_back(c);
+
+	Card* m1 = new Card(5, -1);
+	Card* m2 = new Card(1, -1);
+	Card* m3 = new Card(0, -1);
+	Card* m4 = new Card(5, -1);
+	Card* m5 = new Card(5, -1);
+
+	s.playerDeck.push_back(m1);
+	s.playerDeck.push_back(m2);
+	s.playerDeck.push_back(m3);
+	s.playerDeck.push_back(m4);
+	s.playerDeck.push_back(m5);
+
+
+	s.playerHand.push_back(a);
+	s.playerHand.push_back(b);
+	s.playerHand.push_back(c);
 
 	std::vector<bool> aux{ false,false,false };
 
-	_board.push_back(aux);
-	_board.push_back(aux);
-	_board.push_back(aux);
-
-	posiblesTurnos(0, 3, soluciones, solAct, puntosRestantes, playerHand, _board);
+	s._board.push_back(aux);
+	s._board.push_back(aux);
+	s._board.push_back(aux);
+	
+	std::vector<TuplaSolucion> soluciones = calcularTurno(s,true);
 
 
 	TuVieja("TURNO: \n");
 
+	
 	for (auto& s : soluciones) {
-		for (auto& c :s) {
-			std::cout << "I: " << c.indice << " P: " << c.pos.getX() << "," << c.pos.getY() << std::endl;
+		std::cout << "R: " << s.cartasRobadas << std::endl;
+		for (auto& c :s.cartas) {
+			std::cout << " I: " << c.indice << " P: " << c.pos.getX() << "," << c.pos.getY() << std::endl;
 		}
 	}
+	
 
 	TuVieja("TURNO ACABADO \n");
 }
