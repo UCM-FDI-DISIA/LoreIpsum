@@ -1,15 +1,13 @@
 #include "pch.h"
 #include "IA_manager.h"
 
-#include "../../../utils/Vector2D.h"
-#include <vector>
-
 #include "../Card.h"
-#include "Manager.h"
-
+#include "../../Namespaces.h"
 
 
 struct CartaColocada {
+
+	CartaColocada() {};
 
 	CartaColocada(int indice, Vector2D pos)
 		:indice(indice), pos(pos) {};
@@ -22,6 +20,7 @@ struct TuplaSolucion {
 
 	TuplaSolucion(int cartasRobadas, std::vector<CartaColocada> cartas)
 		: cartasRobadas(cartasRobadas), cartas(cartas) {};
+	TuplaSolucion() {};
 
 	int cartasRobadas;
 	std::vector<CartaColocada> cartas;//hand + cartas robadas	
@@ -29,7 +28,11 @@ struct TuplaSolucion {
 
 struct State {
 
-	std::vector<std::vector<bool>> _board;
+	State() {};
+
+	std::vector<std::vector<bool>> _boardBools;
+	std::vector<std::vector<Card*>> _boardCards;
+	std::vector<std::vector<Players::Owner>> _boardOwners;
 
 	std::vector<Card*> playerHand;
 	std::vector<Card*> enemyHand;
@@ -39,10 +42,13 @@ struct State {
 
 	int actionPoints;
 
-	//TuplaSolucion();
+	TuplaSolucion _jugada;
 
 
 	void apply(TuplaSolucion jugada,bool isPlayer) {
+
+		//guardar la jugada que lleva a este estado
+		_jugada = jugada;
 
 		int nCartasColocadas = 0;
 
@@ -64,11 +70,18 @@ struct State {
 				//si se coloca la carta
 				if (jugada.cartas[i].pos.getX() != -1) {
 
+					int posX = jugada.cartas[i].pos.getX();
+					int posY = jugada.cartas[i].pos.getY();
+					
+					//poner la carta en el tablero
+					_boardBools[posX][posY] = true;
+					_boardOwners[posX][posY] = Players::PLAYER1;
+					_boardCards[posX][posY] = playerHand[(i - nCartasColocadas)];
+
 					//quitar la carta de la mano
 					playerHand.erase(playerHand.begin() + (i - nCartasColocadas));
 
-					//poner la carta en el tablero
-
+					nCartasColocadas++;
 				}
 
 			}
@@ -90,10 +103,18 @@ struct State {
 				//si se coloca la carta
 				if (jugada.cartas[i].pos.getX() != -1) {
 
+					int posX = jugada.cartas[i].pos.getX();
+					int posY = jugada.cartas[i].pos.getY();
+
+					//poner la carta en el tablero
+					_boardBools[posX][posY] = true;
+					_boardOwners[posX][posY] = Players::PLAYER2;
+					_boardCards[posX][posY] = playerHand[(i - nCartasColocadas)];
+
 					//quitar la carta de la mano
 					enemyHand.erase(enemyHand.begin() + (i - nCartasColocadas));
 
-					//poner la carta en el tablero
+					nCartasColocadas++;
 
 				}
 
@@ -223,11 +244,11 @@ std::vector<TuplaSolucion> calcularTurno(State s,bool isPlayer) {
 
 		if (isPlayer) {
 			posiblesTurnos(0, s.playerHand.size(), soluciones, solAct, s.actionPoints,
-				s.playerHand, s._board);//hand + cartas robadas	
+				s.playerHand, s._boardBools );//hand + cartas robadas	
 		}
 		else {
 			posiblesTurnos(0, s.enemyHand.size(), soluciones, solAct, s.actionPoints,
-				s.enemyHand, s._board);//hand + cartas robadas	
+				s.enemyHand, s._boardBools);//hand + cartas robadas	
 		}
 
 		//actualizar la lista de soluciones global(TuplaSolucion)
@@ -255,8 +276,7 @@ void IA_manager::initComponent()
 {
 }
 
-void IA_manager::update()
-{
+void IA_manager::update(){
 }
 
 void IA_manager::evaluateState()
@@ -266,7 +286,7 @@ void IA_manager::evaluateState()
 	s.actionPoints = 4;
 	s.playerDeck;
 	s.playerHand;
-	s._board;
+	s._boardBools;
 
 	Card* a = new Card(5, -1);
 	Card* b = new Card(5, -1);
@@ -292,9 +312,9 @@ void IA_manager::evaluateState()
 
 	std::vector<bool> aux{ false,false,false };
 
-	s._board.push_back(aux);
-	s._board.push_back(aux);
-	s._board.push_back(aux);
+	s._boardBools.push_back(aux);
+	s._boardBools.push_back(aux);
+	s._boardBools.push_back(aux);
 	
 	std::vector<TuplaSolucion> soluciones = calcularTurno(s,true);
 

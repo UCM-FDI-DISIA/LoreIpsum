@@ -48,8 +48,8 @@ namespace Players
 	enum Owner
 	{
 		NONE,
-		PLAYER1,
-		PLAYER2,
+		PLAYER1,//jugador?
+		PLAYER2,//IA?
 		NULO
 	};
 }
