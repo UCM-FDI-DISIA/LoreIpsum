@@ -3,6 +3,7 @@
 
 #include "../Card.h"
 #include "../../Namespaces.h"
+#include <SDL.h>
 
 
 struct CartaColocada {
@@ -33,7 +34,7 @@ struct State {
 		std::vector<Card*> cards{ nullptr,nullptr,nullptr };
 		std::vector<Players::Owner> owners{ Players::NONE,Players::NONE,Players::NONE };
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 4; i++) {
 			_boardCards.push_back(cards);
 			_boardOwners.push_back(owners);
 		}
@@ -296,16 +297,16 @@ void IA_manager::evaluateState()
 	s.playerHand;
 	s._boardBools;
 
-	Card* a = new Card(5, -1);
-	Card* b = new Card(5, -1);
-	Card* c = new Card(5, -1);
+	Card* a = new Card(2, -1);
+	Card* b = new Card(1, -1);
+	Card* c = new Card(0, -1);
 
 
-	Card* m1 = new Card(5, -1);
-	Card* m2 = new Card(1, -1);
-	Card* m3 = new Card(0, -1);
-	Card* m4 = new Card(5, -1);
-	Card* m5 = new Card(5, -1);
+	Card* m1 = new Card(1, -1);
+	Card* m2 = new Card(0, -1);
+	Card* m3 = new Card(2, -1);
+	Card* m4 = new Card(1, -1);
+	Card* m5 = new Card(1, -1);
 
 	s.playerDeck.push_back(m1);
 	s.playerDeck.push_back(m2);
@@ -323,11 +324,15 @@ void IA_manager::evaluateState()
 	s._boardBools.push_back(aux);
 	s._boardBools.push_back(aux);
 	s._boardBools.push_back(aux);
+	s._boardBools.push_back(aux);
 	
+	uint32_t time = SDL_GetTicks();
+
 	std::vector<TuplaSolucion> soluciones = calcularTurno(s,true);
 
+	time = SDL_GetTicks() - time;
 #if _DEBUG
-
+	/*
 	TuVieja("TURNO: \n");
 
 	
@@ -340,8 +345,10 @@ void IA_manager::evaluateState()
 	
 
 	TuVieja("TURNO ACABADO \n");
-#endif // _DEBUG
 
+	*/
+	std::cout << time << std::endl;
+#endif // _DEBUG
 
 	s.apply(soluciones[21], true);
 }
