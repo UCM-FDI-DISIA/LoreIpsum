@@ -18,6 +18,8 @@
 #include "../components/EndTurnButton.h"
 #include "../components/NPC.h"
 
+#include "../components/managers/IA_manager.h"
+
 LuisState::LuisState() : GameState()
 {
 	TuVieja("Loading LuisState");
@@ -108,6 +110,15 @@ void LuisState::onEnter()
 	//sdl.musics().at("tryTheme").play();
 	sdlutils().soundEffects().at("battletheme").play(-1);
 	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
+
+
+
+	ecs::entity_t IA_controler = Instantiate();
+	IA_controler->addComponent<IA_manager>();
+
+	IA_controler->getComponent<IA_manager>()->evaluateState();
+
+
 }
 
 void LuisState::onExit()

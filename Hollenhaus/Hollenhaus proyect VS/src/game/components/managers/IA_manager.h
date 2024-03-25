@@ -14,28 +14,17 @@ public:
 
 	void update() override;
 
+	void evaluateState();
 private:
 
-	void evaluateState();
 
 	/// reaplica todos los efectos
 	//void applyAllEffects();
 	//void updateScore();
 };
 
-/*
-class State {
-	std::vector<std::vector<Card*>> _board;
 
-	std::vector<Card*> playerHand;
-	std::vector<Card*> enemyHand;
 
-	std::vector<Card*> playerDeck;
-	std::vector<Card*> enemyDeck;
 
-	int actionPoints;
 
-	TuplaSolucion();
 
-};
-*/
