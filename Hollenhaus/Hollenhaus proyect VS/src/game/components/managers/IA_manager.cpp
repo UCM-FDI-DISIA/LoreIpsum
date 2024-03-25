@@ -44,19 +44,61 @@ struct State {
 
 	void apply(TuplaSolucion jugada,bool isPlayer) {
 
+		int nCartasColocadas = 0;
+
 		if (isPlayer) {
 
 			//robarCartas
 			for (int i = 0; i < jugada.cartasRobadas; i++) {
 
+				Card* c = playerDeck.back();
+				playerDeck.pop_back();
 
-
-
+				playerHand.push_back(c);
 			}
 
 
+			//poner cartas en el mazo
+			for (int i = 0; i < jugada.cartas.size(); i++) {
+			
+				//si se coloca la carta
+				if (jugada.cartas[i].pos.getX() != -1) {
+
+					//quitar la carta de la mano
+					playerHand.erase(playerHand.begin() + (i - nCartasColocadas));
+
+					//poner la carta en el tablero
+
+				}
+
+			}
+
 		}
 		else {
+			//robarCartas
+			for (int i = 0; i < jugada.cartasRobadas; i++) {
+
+				Card* c = enemyDeck.back();
+				enemyDeck.pop_back();
+
+				enemyHand.push_back(c);
+			}
+
+			//poner cartas en el mazo
+			for (int i = 0; i < jugada.cartas.size(); i++) {
+
+				//si se coloca la carta
+				if (jugada.cartas[i].pos.getX() != -1) {
+
+					//quitar la carta de la mano
+					enemyHand.erase(enemyHand.begin() + (i - nCartasColocadas));
+
+					//poner la carta en el tablero
+
+				}
+
+			}
+
 
 		}
 
