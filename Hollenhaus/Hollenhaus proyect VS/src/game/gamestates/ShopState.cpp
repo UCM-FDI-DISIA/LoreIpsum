@@ -2,6 +2,7 @@
 #include "ShopState.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/TextComponent.h"
+#include "../components/ShineComponent.h"
 #include "../components/NPC.h"
 
 
@@ -29,6 +30,26 @@ void ShopState::onEnter()
 {
 	std::cout << "\nENTER SHOP.";
 	
+	//COSAS QUE HAY EN CADA CAPA:
+	//---layer 0
+	// -fondo
+	//
+	//---layer 1
+	// -boton de volver
+	// -texto de la tienda
+	// -estanteria
+	// -tendero
+	//
+	//---layer 2
+	// -cartas
+	//
+	//---layer 3
+	// -mostrador
+	// 
+	//---layer 4
+	// -monedas
+
+
 	//------Texto de la tienda:
 	ecs::entity_t shopText = Instantiate(Vector2D(400, 30));
 	shopText->addComponent<TextComponent>("TIENDA", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, 
@@ -51,66 +72,6 @@ void ShopState::onEnter()
 	estanteria->getComponent<Transform>()->getRelativeScale().set(1.5f, 1.5f);
 	estanteria->setLayer(1);
 
-	//-----Cartas sobre la estanteria
-	//carta1
-	ecs::entity_t carta1 = Instantiate();
-	carta1->addComponent<Transform>();
-	carta1->addComponent<BoxCollider>();
-	carta1->addComponent<SpriteRenderer>("card");
-	Vector2D card1Pos(440, 135);
-	carta1->getComponent<Transform>()->setGlobalPos(card1Pos);
-	carta1->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
-	carta1->setLayer(2);
-	
-	//carta2
-	ecs::entity_t carta2 = Instantiate();
-	carta2->addComponent<Transform>();
-	carta1->addComponent<BoxCollider>();
-	carta2->addComponent<SpriteRenderer>("card");
-	Vector2D card2Pos(550, 280);
-	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
-	carta2->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
-	carta2->setLayer(2);
-	
-	//carta3
-	ecs::entity_t carta3 = Instantiate();
-	carta3->addComponent<Transform>();
-	carta1->addComponent<BoxCollider>();
-	carta3->addComponent<SpriteRenderer>("card");
-	Vector2D card3Pos(440, 280);
-	carta3->getComponent<Transform>()->setGlobalPos(card3Pos);
-	carta3->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
-	carta3->setLayer(2);
-	
-	//carta4
-	ecs::entity_t carta4 = Instantiate();
-	carta4->addComponent<Transform>();
-	carta1->addComponent<BoxCollider>();
-	carta4->addComponent<SpriteRenderer>("card");
-	Vector2D card4Pos(550, 135);
-	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
-	carta4->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
-	carta4->setLayer(2);
-	
-	//tendero
-	ecs::entity_t tendero = Instantiate();
-	tendero->addComponent<Transform>();
-	tendero->addComponent<SpriteRenderer>("hombre");
-	Vector2D tenderoPos(100, 100);
-	tendero->getComponent<Transform>()->setGlobalPos(tenderoPos);
-	tendero->getComponent<Transform>()->getRelativeScale().set(3.0f, 3.0f);
-	tendero->setLayer(1);
-	
-	
-	//mostrador
-	ecs::entity_t mostrador = Instantiate();
-	mostrador->addComponent<Transform>();
-	mostrador->addComponent<SpriteRenderer>("mostrador");
-	Vector2D mostradorPos(0, 400);
-	mostrador->getComponent<Transform>()->setGlobalPos(mostradorPos);
-	mostrador->getComponent<Transform>()->getRelativeScale().set(2.0f, 2.0f);
-	mostrador->setLayer(3);
-	
 	//moneda1
 	ecs::entity_t coin1 = Instantiate();
 	coin1->addComponent<Transform>();
@@ -173,6 +134,68 @@ void ShopState::onEnter()
 	coin7->getComponent<Transform>()->setGlobalPos(coin7Pos);
 	coin7->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
 	coin7->setLayer(4);
+
+	//-----Cartas sobre la estanteria
+	//carta1
+	ecs::entity_t carta1 = Instantiate();
+	carta1->addComponent<Transform>();
+	carta1->addComponent<BoxCollider>();
+	carta1->addComponent<SpriteRenderer>("card");
+	carta1->addComponent<ShineComponent>(coin1, "monedaIlu");
+	Vector2D card1Pos(440, 135);
+	carta1->getComponent<Transform>()->setGlobalPos(card1Pos);
+	carta1->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
+	carta1->setLayer(2);
+	
+	//carta2
+	ecs::entity_t carta2 = Instantiate();
+	carta2->addComponent<Transform>();
+	carta1->addComponent<BoxCollider>();
+	carta2->addComponent<SpriteRenderer>("card");
+	Vector2D card2Pos(550, 280);
+	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
+	carta2->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
+	carta2->setLayer(2);
+	
+	//carta3
+	ecs::entity_t carta3 = Instantiate();
+	carta3->addComponent<Transform>();
+	carta1->addComponent<BoxCollider>();
+	carta3->addComponent<SpriteRenderer>("card");
+	Vector2D card3Pos(440, 280);
+	carta3->getComponent<Transform>()->setGlobalPos(card3Pos);
+	carta3->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
+	carta3->setLayer(2);
+	
+	//carta4
+	ecs::entity_t carta4 = Instantiate();
+	carta4->addComponent<Transform>();
+	carta1->addComponent<BoxCollider>();
+	carta4->addComponent<SpriteRenderer>("card");
+	Vector2D card4Pos(550, 135);
+	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
+	carta4->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
+	carta4->setLayer(2);
+	
+	//tendero
+	ecs::entity_t tendero = Instantiate();
+	tendero->addComponent<Transform>();
+	tendero->addComponent<SpriteRenderer>("hombre");
+	Vector2D tenderoPos(100, 100);
+	tendero->getComponent<Transform>()->setGlobalPos(tenderoPos);
+	tendero->getComponent<Transform>()->getRelativeScale().set(3.0f, 3.0f);
+	tendero->setLayer(1);
+	
+	
+	//mostrador
+	ecs::entity_t mostrador = Instantiate();
+	mostrador->addComponent<Transform>();
+	mostrador->addComponent<SpriteRenderer>("mostrador");
+	Vector2D mostradorPos(0, 400);
+	mostrador->getComponent<Transform>()->setGlobalPos(mostradorPos);
+	mostrador->getComponent<Transform>()->getRelativeScale().set(2.0f, 2.0f);
+	mostrador->setLayer(3);
+	
 
 
 	//------Boton para volver:

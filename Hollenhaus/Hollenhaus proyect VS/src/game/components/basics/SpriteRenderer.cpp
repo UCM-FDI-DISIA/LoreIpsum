@@ -29,6 +29,11 @@ void SpriteRenderer::setTexture(const std::string _textID) {
 	texture_ = &sdl_.images().at(textID_);
 }
 
+void SpriteRenderer::setTexture(Texture* _textu)
+{
+	texture_ = _textu;
+}
+
 // Para renderizar la textura
 void SpriteRenderer::render() const
 {
