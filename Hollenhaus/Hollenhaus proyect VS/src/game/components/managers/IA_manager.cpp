@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "IA_manager.h"
 
+#include "vector"
+#include "iostream"
+
 #include "../Card.h"
 #include "../../Namespaces.h"
 #include <SDL.h>
@@ -273,6 +276,7 @@ std::vector<TuplaSolucion> calcularTurno(State s,bool isPlayer) {
 	return solucionesGlobal;
 }
 
+std::vector<State> all_posible_next_states(const State& s, bool isPlayer);
 IA_manager::IA_manager()
 {
 }
@@ -330,7 +334,6 @@ void IA_manager::evaluateState()
 
 	std::vector<TuplaSolucion> soluciones = calcularTurno(s,true);
 
-	time = SDL_GetTicks() - time;
 #if _DEBUG
 	/*
 	TuVieja("TURNO: \n");
@@ -347,8 +350,27 @@ void IA_manager::evaluateState()
 	TuVieja("TURNO ACABADO \n");
 
 	*/
-	std::cout << time << std::endl;
 #endif // _DEBUG
 
 	s.apply(soluciones[21], true);
+
+	auto x = all_posible_next_states(s, true);
+	time = SDL_GetTicks() - time;
+	std::cout << time << std::endl;
+
+}
+
+
+
+std::vector<State> all_posible_next_states(const State& s,bool isPlayer) {
+	std::vector<State> allStates;
+
+	for (auto& jugada : calcularTurno(s, isPlayer)) {
+		State nuevo = s;
+		nuevo.apply(jugada, isPlayer);
+		allStates.push_back(nuevo);
+	}
+
+
+	return allStates;
 }
