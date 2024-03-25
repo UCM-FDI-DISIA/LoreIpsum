@@ -56,6 +56,7 @@
     <ClCompile Include="src\game\components\managers\MatchManager.cpp" />
     <ClCompile Include="src\game\components\managers\PlayerCardsManager.cpp" />
     <ClCompile Include="src\game\components\MoveOnClick.cpp" />
+    <ClCompile Include="src\game\components\NextText.cpp" />
     <ClCompile Include="src\game\components\NPC.cpp" />
     <ClCompile Include="src\game\components\TypeWriterComponent.cpp" />
     <ClCompile Include="src\game\EffectCollection.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="src\game\components\managers\MatchManager.h" />
     <ClInclude Include="src\game\components\managers\PlayerCardsManager.h" />
     <ClInclude Include="src\game\components\MoveOnClick.h" />
+    <ClInclude Include="src\game\components\NextText.h" />
     <ClInclude Include="src\game\components\NPC.h" />
     <ClInclude Include="src\game\components\TypeWriterComponent.h" />
     <ClInclude Include="src\game\EffectCollection.h" />

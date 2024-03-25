@@ -6,6 +6,7 @@
 #include "../components/managers/Manager.h"
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/TypeWriterComponent.h"
+#include "../components/NextText.h"
 
 CityState::CityState()
 {
@@ -109,6 +110,7 @@ void CityState::onEnter()
 	npc4->addComponent<TextComponent>(" ", "8bit_size_12",
 		SDL_Color({ 255, 255, 255, 255 }), 100, Text::BoxPivotPoint::CenterCenter, 
 		Text::TextAlignment::Center);
+	npc4->addComponent<NextText>();
 	npc4->setLayer(2);
 
 	//------Boton para volver al menu principal:

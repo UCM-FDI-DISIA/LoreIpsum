@@ -38,8 +38,6 @@ void TypeWriter::update()
 			speedCounter = 0;
 		}
 	}
-
-
 }
 
 // setea la informacion para escribir
@@ -48,12 +46,11 @@ void TypeWriter::typeWrite(std::string newtext)
 	finaltext = "";
 	text = newtext;
 	i = 0;
-
 }
 
 void TypeWriter::setText()
 {
 	getEntity()->getComponent<TextComponent>()->setTxt(finaltext);
+	//sugerencia: 
+	//ent_->getComponent<TextComponent>()->setTxt(finaltext);
 }
-
-

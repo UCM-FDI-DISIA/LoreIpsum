@@ -16,7 +16,6 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 	else txt_ = txt;
 
 	createTexture();
-
 }
 
 TextComponent::~TextComponent()

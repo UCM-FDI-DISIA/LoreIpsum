@@ -243,7 +243,15 @@
     <ClCompile Include="src\game\components\managers\BoardManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\TypeWriterComponent.cpp" />
+    <ClCompile Include="src\game\components\TypeWriterComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DialogueReader.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\NextText.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -474,6 +482,12 @@
     <ClInclude Include="src\game\components\TypeWriterComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\components\DialogueReader.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\NextText.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
@@ -485,6 +499,8 @@
     <None Include="resources\config\resources.json">
       <Filter>Resources</Filter>
     </None>
-    <None Include="resources\config\dialoguesV1.json" />
+    <None Include="resources\config\dialoguesV1.json">
+      <Filter>Resources</Filter>
+    </None>
   </ItemGroup>
 </Project>
