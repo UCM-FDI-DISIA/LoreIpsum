@@ -17,5 +17,10 @@ public:
 private:
 	int speedCounter;
 	int writingSpeed;
+	int i;
+
+	std::string text, finaltext;
+
+	void setText();
 
 };
