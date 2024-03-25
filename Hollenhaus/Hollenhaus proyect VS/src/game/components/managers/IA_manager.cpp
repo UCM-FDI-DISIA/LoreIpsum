@@ -42,9 +42,23 @@ struct State {
 	//TuplaSolucion();
 
 
-	void apply(std::vector<TuplaSolucion> jugadas,bool isPlayer ) {
+	void apply(TuplaSolucion jugada,bool isPlayer) {
+
+		if (isPlayer) {
+
+			//robarCartas
+			for (int i = 0; i < jugada.cartasRobadas; i++) {
 
 
+
+
+			}
+
+
+		}
+		else {
+
+		}
 
 	}
 };
@@ -128,15 +142,34 @@ std::vector<TuplaSolucion> calcularTurno(State s,bool isPlayer) {
 
 	int i = 0;
 
-	int a = s.actionPoints;
-	while(i <=a)
+	int aux = s.actionPoints;
+
+
+	//la cantidad de veces que se puede robar es el minimo entre los puntos de accion y el tamaño del mazo
+	if (isPlayer) {
+		aux = fmin(s.actionPoints, s.playerDeck.size());
+	}
+	else {
+		aux = fmin(s.actionPoints, s.enemyDeck.size());
+	}
+
+	while(i <= aux)
 	{
 		if (i > 0) {
-			//robar carta
-			Card* c = s.playerDeck.back();
+			if (isPlayer) {
+				//robar carta
+				Card* c = s.playerDeck.back();
 
-			s.playerDeck.pop_back();
-			s.playerHand.push_back(c);
+				s.playerDeck.pop_back();
+				s.playerHand.push_back(c);
+			}
+			else {
+				//robar carta
+				Card* c = s.enemyDeck.back();
+
+				s.enemyDeck.pop_back();
+				s.enemyHand.push_back(c);
+			}
 			s.actionPoints--;//- N coste de robar carta
 		}
 
@@ -146,8 +179,14 @@ std::vector<TuplaSolucion> calcularTurno(State s,bool isPlayer) {
 		std::vector<std::vector<CartaColocada>> soluciones;
 		std::vector<CartaColocada> solAct;
 
-		posiblesTurnos(0, s.playerHand.size(), soluciones, solAct, s.actionPoints,
-			s.playerHand, s._board);//hand + cartas robadas	
+		if (isPlayer) {
+			posiblesTurnos(0, s.playerHand.size(), soluciones, solAct, s.actionPoints,
+				s.playerHand, s._board);//hand + cartas robadas	
+		}
+		else {
+			posiblesTurnos(0, s.enemyHand.size(), soluciones, solAct, s.actionPoints,
+				s.enemyHand, s._board);//hand + cartas robadas	
+		}
 
 		//actualizar la lista de soluciones global(TuplaSolucion)
 
