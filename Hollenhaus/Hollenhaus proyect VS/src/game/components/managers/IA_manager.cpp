@@ -28,7 +28,17 @@ struct TuplaSolucion {
 
 struct State {
 
-	State() {};
+	State() {
+		
+		std::vector<Card*> cards{ nullptr,nullptr,nullptr };
+		std::vector<Players::Owner> owners{ Players::NONE,Players::NONE,Players::NONE };
+
+		for (int i = 0; i < 3; i++) {
+			_boardCards.push_back(cards);
+			_boardOwners.push_back(owners);
+		}
+		
+	};
 
 	std::vector<std::vector<bool>> _boardBools;
 	std::vector<std::vector<Card*>> _boardCards;
@@ -125,8 +135,6 @@ struct State {
 
 	}
 };
-
-
 
 
 void posiblesTurnos(
@@ -318,6 +326,7 @@ void IA_manager::evaluateState()
 	
 	std::vector<TuplaSolucion> soluciones = calcularTurno(s,true);
 
+#if _DEBUG
 
 	TuVieja("TURNO: \n");
 
@@ -331,4 +340,8 @@ void IA_manager::evaluateState()
 	
 
 	TuVieja("TURNO ACABADO \n");
+#endif // _DEBUG
+
+
+	s.apply(soluciones[21], true);
 }
