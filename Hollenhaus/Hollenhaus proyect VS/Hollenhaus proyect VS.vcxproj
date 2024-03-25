@@ -50,6 +50,7 @@
     <ClCompile Include="src\game\components\managers\BoardManager.cpp" />
     <ClCompile Include="src\game\components\managers\CardStateManager.cpp" />
     <ClCompile Include="src\game\components\managers\DragManager.cpp" />
+    <ClCompile Include="src\game\components\managers\IA_manager.cpp" />
     <ClCompile Include="src\game\components\managers\KeyManager.cpp" />
     <ClCompile Include="src\game\components\managers\Manager.cpp" />
     <ClCompile Include="src\game\components\managers\MatchManager.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="src\game\components\managers\BoardManager.h" />
     <ClInclude Include="src\game\components\managers\CardStateManager.h" />
     <ClInclude Include="src\game\components\managers\DragManager.h" />
+    <ClInclude Include="src\game\components\managers\IA_manager.h" />
     <ClInclude Include="src\game\components\managers\KeyManager.h" />
     <ClInclude Include="src\game\components\managers\Manager.h" />
     <ClInclude Include="src\game\components\managers\MatchManager.h" />
