@@ -51,6 +51,10 @@ private:
 
 	// Distancia final que debe moverse el fondo
 	float distanceToMove;
+	float distanceNow;
+
+	// -1 izquierda 1 derecha
+	int direccion;
 
 	// Mitad de la pantalla
 	float halfScreen = sdlutils().width() / 2;
