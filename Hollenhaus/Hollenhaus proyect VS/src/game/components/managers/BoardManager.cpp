@@ -12,7 +12,6 @@
 
 //#include "IA_manager.h"
 
-IA_manager* IA_manager::State::ia_manager = nullptr;
 
 BoardManager::BoardManager()
 {

@@ -22,11 +22,11 @@ public:
 		Vector2D pos;//posicon en el tablero (-1,-1) no se coloca
 	};
 
-	struct TuplaSolucion {
+	struct InfoJugada {
 
 		//constructoras
-		TuplaSolucion() {};
-		TuplaSolucion(int cartasRobadas, std::vector<CartaColocada> cartas)
+		InfoJugada() {};
+		InfoJugada(int cartasRobadas, std::vector<CartaColocada> cartas)
 			: cartasRobadas(cartasRobadas), cartas(cartas) {};
 
 		int cartasRobadas;
@@ -66,7 +66,7 @@ public:
 
 		int actionPoints;
 
-		TuplaSolucion _jugada;
+		InfoJugada _jugada;
 
 		//devuelve la diferencia de puntos entre el jugador y el enemigo 
 		//PuntosJugador -PuntosEnemigo
@@ -75,7 +75,7 @@ public:
 			return ia_manager->heuristic(this);
 		};
 
-		void apply(TuplaSolucion jugada, bool isPlayer) {
+		void apply(InfoJugada jugada, bool isPlayer) {
 
 			//guardar la jugada que lleva a este estado
 			_jugada = jugada;
@@ -120,13 +120,17 @@ public:
 
 
 	IA_manager(BoardManager* boardM);
+	IA_manager();
 	~IA_manager();
+
+	
+	void setBoardManager(BoardManager* boardM);
 
 	void initComponent() override;
 
 	void update() override;
 
-	void evaluateState();
+	InfoJugada evaluateState();
 
 	int heuristic(State* s);
 
@@ -140,7 +144,7 @@ public:
 	);
 
 
-	std::vector<TuplaSolucion> calcularTurno(State s, bool isPlayer);
+	std::vector<InfoJugada> calcularTurno(State s, bool isPlayer);
 
 	std::vector<State> all_posible_next_states(const State& s, bool isPlayer);
 

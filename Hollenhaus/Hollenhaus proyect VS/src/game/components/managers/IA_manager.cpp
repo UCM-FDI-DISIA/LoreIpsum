@@ -10,6 +10,9 @@
 #include "BoardManager.h"
 
 
+IA_manager* IA_manager::State::ia_manager = nullptr;
+
+
 IA_manager::IA_manager(BoardManager* boardM)
 	:boardManager(boardM){
 
@@ -19,13 +22,29 @@ IA_manager::IA_manager(BoardManager* boardM)
 	}
 }
 
+IA_manager::IA_manager() {
+	
+	boardManager = nullptr;
+
+	State s;
+	if (s.ia_manager == nullptr) {
+		s.ia_manager = this;
+	}
+}
+
+
 IA_manager::~IA_manager(){}
+
+void IA_manager::setBoardManager(BoardManager* boardM)
+{
+	boardManager = boardM;
+}
 
 void IA_manager::initComponent(){}
 
 void IA_manager::update(){}
 
-void IA_manager::evaluateState()
+IA_manager::InfoJugada IA_manager::evaluateState()
 {
 
 	State s;
@@ -64,10 +83,23 @@ void IA_manager::evaluateState()
 
 	uint32_t time = SDL_GetTicks();
 
-	minimax(0, 1, true, s, best);
+	int value = minimax(0, 1, true, s, best);
 	time = SDL_GetTicks() - time;
-	std::cout << time << std::endl;
 
+#ifdef _DEBUG
+
+	std::cout << std::endl;
+	std::cout << "----Resultados minimax---- " << std::endl;
+	std::cout << "Time: " << time << std::endl;
+	std::cout << "Value: " << value << std::endl;
+
+	//rellenar con info de jugada?
+
+	std::cout << "--------------------------" << std::endl;
+
+#endif // _DEBUG
+
+	return best->_jugada;
 
 }
 
@@ -145,9 +177,9 @@ void IA_manager::posiblesTurnos(
 }
 
 
-std::vector<IA_manager::TuplaSolucion> IA_manager::calcularTurno(State s, bool isPlayer) {
+std::vector<IA_manager::InfoJugada> IA_manager::calcularTurno(State s, bool isPlayer) {
 
-	std::vector<TuplaSolucion> allPosiblePlays;
+	std::vector<InfoJugada> allPosiblePlays;
 
 	//NOTA: si cambia el coste del robo hay que cambiar esto
 
@@ -182,7 +214,7 @@ std::vector<IA_manager::TuplaSolucion> IA_manager::calcularTurno(State s, bool i
 
 		//actualizar la lista de jugadasTotales(TuplaSolucion)
 		for (auto& s : partialPlays) {
-			allPosiblePlays.push_back(TuplaSolucion{ i,s });
+			allPosiblePlays.push_back(InfoJugada{ i,s });
 		}
 	}
 

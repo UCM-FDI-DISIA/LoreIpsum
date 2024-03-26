@@ -114,11 +114,12 @@ void LuisState::onEnter()
 
 
 	ecs::entity_t IA_controler = Instantiate();
-	IA_controler->addComponent<IA_manager>(boardManagerComponent);
+	IA_manager* ia_managerComponent = IA_controler->addComponent<IA_manager>();
 
+	ia_managerComponent->setBoardManager(boardManagerComponent);
 	IA_controler->getComponent<IA_manager>()->evaluateState();
 
-
+	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
 }
 
 void LuisState::onExit()

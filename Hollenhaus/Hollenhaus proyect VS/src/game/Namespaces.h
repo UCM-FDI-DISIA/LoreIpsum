@@ -16,7 +16,8 @@ namespace Turns
 	enum State {
         J1,
         J2,
-        Finish
+        Finish,
+		IA
     };
 }
 
