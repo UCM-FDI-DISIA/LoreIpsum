@@ -3,6 +3,7 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/MoveOnClick.h"
 #include "../components/NPC.h"
+#include "../components/ShineComponent.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/SpriteRenderer.h"
 
@@ -73,6 +74,7 @@ void CityState::onEnter()
 	npc1->addComponent<Transform>();
 	npc1->addComponent<SpriteRenderer>("hombre");
 	npc1->addComponent<BoxCollider>();
+	npc1->addComponent<ShineComponent>(npc1, "hombreIlu");
 	npc1->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
 	npc1->getComponent<Transform>()->getRelativeScale().set(1.0f, 1.0f);
 	Vector2D np1Pos(800, 425);
