@@ -23,7 +23,6 @@ MoveOnClick::~MoveOnClick()
 
 void MoveOnClick::initComponent()
 {
-	myBoxCollider = ent_->getComponent<BoxCollider>(); // collider del fondo
 	myTransform = ent_->getComponent<Transform>();	   // transform del fondo
 	
 	move = false; // inicializa move a false

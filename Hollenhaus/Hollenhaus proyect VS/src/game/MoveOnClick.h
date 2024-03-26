@@ -17,6 +17,12 @@ public:
 
 	void OnLeftClickDown();
 
+	// registra el collider que creas en la escena de la ciudad
+	void RegisterCollider(BoxCollider *sceneColliderSuelo)
+	{ 
+		myBoxCollider = sceneColliderSuelo;
+	}
+
 private:
 	// collider y transform del fondo
 	BoxCollider* myBoxCollider;
@@ -48,4 +54,5 @@ private:
 
 	// Mitad de la pantalla
 	float halfScreen = sdlutils().width() / 2;
+
 };

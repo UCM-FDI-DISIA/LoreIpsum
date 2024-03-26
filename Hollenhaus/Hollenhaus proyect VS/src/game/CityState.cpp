@@ -23,26 +23,50 @@ void CityState::onEnter()
 {
 	std::cout << "\nENTER CITY.\n";
 
-	//------Texto de la ciudad:
+	// ---- TEXTO CIUDAD ----
 	ecs::entity_t cityText = Instantiate(Vector2D(500, 30));
 	cityText->addComponent<TextComponent>("CIUDAD", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	cityText->setLayer(1);
 
-	//-----Ciudad de fondo:
+	// ---- FONDO CIUDAD ----
 	ecs::entity_t fondo = Instantiate();
+
+	// le aniade los componentes
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
-	fondo->addComponent<BoxCollider>();
-	//tamanyo de ciudadcompleta.png: 5754 x 1212 
-	fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f); //escalado para ciudadcompleta.png (porfi no toquetear)!!! 
-	Vector2D globalPos(-1200.0f, 0); //Posición inicial de la ciudad para que se vea por el centro.
-	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
-	//fondo->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	fondo->addComponent<MoveOnClick>();
-	//fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f);
+
+	// tamanio de ciudadcompleta.png: 5754 x 1212 
+	fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f); // escalado para ciudadcompleta.png (porfi no toquetear)!!! 
+	Vector2D globalPos(-1200.0f, 0); // Posición inicial de la ciudad para que se vea por el centro
+	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
+
+	// lo pone en la capa correcta
 	fondo->setLayer(0);
 
-	//------Personaje
+	// ---- SUELO ----
+	// instancia suelo
+	ecs::entity_t colliderSuelo = Instantiate();
+
+	// aniade los componentes
+	colliderSuelo->addComponent<Transform>();
+	colliderSuelo->addComponent<BoxCollider>();
+
+	// tamanio del collider del suelo
+	// x: el ancho de la imagen de fondo, y: alto del suelo
+	colliderSuelo->getComponent<BoxCollider>()->setSize(Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), 120));
+
+	// lo emparenta con el fondo
+	colliderSuelo->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
+
+	// posicion del collider del suelo
+	Vector2D vectorSueloPos(0, 520);
+	colliderSuelo->getComponent<Transform>()->getRelativePos().set(vectorSueloPos);
+
+	// registra el collider del suelo
+	fondo->getComponent<MoveOnClick>()->RegisterCollider(colliderSuelo->getComponent<BoxCollider>());
+
+	// ---- PLAYER ----
 	ecs::entity_t fantasmiko = Instantiate(Vector2D(sdlutils().width()/2 - 50, sdlutils().height() - 200));
 	fantasmiko->addComponent<SpriteRenderer>("fantasma");
 	fantasmiko->addComponent<BoxCollider>();
@@ -50,8 +74,8 @@ void CityState::onEnter()
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(1);
 
-	//------NPCs que demomento son Caitlyns:
-	//----Para entrar en la oficina.
+	// ---- NPCs ----
+	// --- Para entrar en la oficina ---
 	ecs::entity_t npc2 = Instantiate();
 	npc2->addComponent<Transform>();
 	npc2->addComponent<SpriteRenderer>("npc");
@@ -63,7 +87,8 @@ void CityState::onEnter()
 	npc2->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	npc2->addComponent<NPC>(2); // Lleva a la oficina (2).
 	npc2->setLayer(2);
-	//----Para entrar en la tienda.
+
+	// --- Para entrar en la tienda ---
 	ecs::entity_t npc1 = Instantiate();
 	npc1->addComponent<Transform>();
 	npc1->addComponent<SpriteRenderer>("npc");
@@ -75,7 +100,8 @@ void CityState::onEnter()
 	npc1->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	npc1->addComponent<NPC>(3); // Lleva a la tienda (3).
 	npc1->setLayer(2);
-	//----Para empezar la batalla.
+
+	// --- Para empezar la batalla ---
 	ecs::entity_t npc3 = Instantiate();
 	npc3->addComponent<Transform>();
 	npc3->addComponent<SpriteRenderer>("npc");
@@ -88,7 +114,7 @@ void CityState::onEnter()
 	npc3->addComponent<NPC>(6); // Lleva al combate (SamuState(6)).
 	npc3->setLayer(2);
 
-	//------Boton para volver al menu principal:
+	// --- Boton para volver al menu principal ---
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
 	exit->addComponent<SpriteRenderer>("boton_flecha");
@@ -99,6 +125,7 @@ void CityState::onEnter()
 	exit->addComponent<NPC>(0); // Lleva al menu (0).
 	exit->setLayer(2);
 
+	// SDLUTILS
 	// referencia a sdlutils
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("citytheme").play(-1);
