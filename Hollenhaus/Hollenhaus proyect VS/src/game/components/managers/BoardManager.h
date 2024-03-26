@@ -5,9 +5,10 @@
 #include <functional>
 #include "..\..\Namespaces.h"
 
+#include "IA_manager.h" //intentar cambiarlo para quitarlo de aqui
+
 class Cell;
 class Card;
-class State; // para la IA
 using SDLEventCallback = std::function<void()>;
 
 constexpr int DEFAULT_SIZE = 4; 
@@ -56,7 +57,7 @@ public:
 
 
     //IA
-    int heuristicIA(State* s);
+    int heuristicIA(IA_manager::State* s);
 
     void initBoardIA();
 

@@ -10,7 +10,7 @@
 #include "../Cell.h"
 #include "MatchManager.h"
 
-#include "IA_manager.h"
+//#include "IA_manager.h"
 
 
 BoardManager::BoardManager()
@@ -125,7 +125,7 @@ void BoardManager::updateVisuals()
 	scoreVisualJ2->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
 }
 
-int BoardManager::heuristicIA(State* s)
+int BoardManager::heuristicIA(IA_manager::State* s)
 {
 	//limpieza del tablero(card a null y reset de los efectos)
 	for (int i = 0; i < size; i++) {
@@ -136,28 +136,26 @@ int BoardManager::heuristicIA(State* s)
 		}
 	}
 
-	int x = 0;
-	int y = 0;
 	Card* card = nullptr;
-	Players::Owner o = Players::NONE;
-	Cell* cell = _boardIA[x][y];
+	Cell* cell = nullptr;
 
 	//colocar todas las cartas en el tablero
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
-			
+
+			if (s->_boardBools[i][j]) {//si hay una carta
+				cell = _boardIA[i][j];
+				card = s->_boardCards[i][j];
+
+				cell->setCard(card,s->_boardOwners[i][j]);
+				card->setCell(cell);
+
+				/// anade callback a la celda
+				for (const auto& e : card->getEffects())
+					cell->addEffect(e);
+			}
 		}
 	}
-
-
-	/// comunicacion bidireccional celda-carta
-	cell->setCard(card, o);
-	card->setCell(cell);
-
-	/// anade callback a la celda
-	for (const auto& e : card->getEffects())
-		cell->addEffect(e);
-
 
 
 	//APPLY EFFECTS
@@ -192,9 +190,6 @@ int BoardManager::heuristicIA(State* s)
 				puntosPlayer2 += _boardIA[i][j]->getTotalValue();
 		}
 	}
-
-
-
 
 	return puntosPlayer1-puntosPlayer2;
 }
