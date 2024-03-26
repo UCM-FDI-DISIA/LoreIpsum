@@ -150,9 +150,9 @@ void ShopState::onEnter()
 	//carta2
 	ecs::entity_t carta2 = Instantiate();
 	carta2->addComponent<Transform>();
-	carta1->addComponent<BoxCollider>();
+	carta2->addComponent<BoxCollider>();
 	carta2->addComponent<SpriteRenderer>("card");
-	carta1->addComponent<ShineComponent>(coin2, "monedaIlu");
+	carta2->addComponent<ShineComponent>(coin2, "monedaIlu");
 	Vector2D card2Pos(550, 280);
 	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
 	carta2->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
@@ -161,9 +161,9 @@ void ShopState::onEnter()
 	//carta3
 	ecs::entity_t carta3 = Instantiate();
 	carta3->addComponent<Transform>();
-	carta1->addComponent<BoxCollider>();
+	carta3->addComponent<BoxCollider>();
 	carta3->addComponent<SpriteRenderer>("card");
-	carta1->addComponent<ShineComponent>(coin3, "monedaIlu");
+	carta3->addComponent<ShineComponent>(coin3, "monedaIlu");
 	Vector2D card3Pos(440, 280);
 	carta3->getComponent<Transform>()->setGlobalPos(card3Pos);
 	carta3->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
@@ -172,9 +172,9 @@ void ShopState::onEnter()
 	//carta4
 	ecs::entity_t carta4 = Instantiate();
 	carta4->addComponent<Transform>();
-	carta1->addComponent<BoxCollider>();
+	carta4->addComponent<BoxCollider>();
 	carta4->addComponent<SpriteRenderer>("card");
-	carta1->addComponent<ShineComponent>(coin4, "monedaIlu");
+	carta4->addComponent<ShineComponent>(coin4, "monedaIlu");
 	Vector2D card4Pos(550, 135);
 	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
 	carta4->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
