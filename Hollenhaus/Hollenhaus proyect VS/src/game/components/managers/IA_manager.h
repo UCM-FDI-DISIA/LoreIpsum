@@ -6,10 +6,15 @@
 
 class Card;
 class BoardManager;
+class HandComponent;
+class DeckComponent;
+class MatchManager;
 
 class IA_manager : public ComponentUpdate
 {
 public:
+
+	#pragma region Structs internos
 
 	struct CartaColocada {
 
@@ -54,13 +59,16 @@ public:
 			}
 		};
 
+		//varios tableros para representar el estado 
 		std::vector<std::vector<bool>> _boardBools;
 		std::vector<std::vector<Card*>> _boardCards;
 		std::vector<std::vector<Players::Owner>> _boardOwners;
 
+		//mano del jugador y enemigo
 		std::vector<Card*> playerHand;
 		std::vector<Card*> enemyHand;
 
+		//mazo del jugador y enemigo
 		std::vector<Card*> playerDeck;
 		std::vector<Card*> enemyDeck;
 
@@ -75,6 +83,7 @@ public:
 			return ia_manager->heuristic(this);
 		};
 
+		//aplica una jugada al estado
 		void apply(InfoJugada jugada, bool isPlayer) {
 
 			//guardar la jugada que lleva a este estado
@@ -118,23 +127,32 @@ public:
 		}
 	};
 
+	#pragma endregion
 
-	IA_manager(BoardManager* boardM);
+	#pragma region Metodos Basicos
+
 	IA_manager();
 	~IA_manager();
-
-	
-	void setBoardManager(BoardManager* boardM);
 
 	void initComponent() override;
 
 	void update() override;
 
+	#pragma endregion
+
+	#pragma region Setters de referencias
+
+	void setBoardManager(BoardManager* boardM);
+
+	#pragma endregion
+
+
 	InfoJugada StartTurn();
 
-	
 
 private:
+
+	#pragma region Internal voids
 
 	int heuristic(State* s);
 
@@ -154,16 +172,22 @@ private:
 
 	int minimax(int depth, int h, bool isPlayer, State& current_state, State*& best);
 
+#pragma endregion
 
-
-
+	#pragma region Referencias externas
 
 	BoardManager* boardManager;
 
+	HandComponent* playerHandCmp;
+	HandComponent* enemyHandCmp;
 
-	/// reaplica todos los efectos
-	//void applyAllEffects();
-	//void updateScore();
+	DeckComponent* playerDeckCmp;
+	DeckComponent* enemyDeckCmp;
+
+	MatchManager* matchManager;
+
+	#pragma endregion
+
 };
 
 

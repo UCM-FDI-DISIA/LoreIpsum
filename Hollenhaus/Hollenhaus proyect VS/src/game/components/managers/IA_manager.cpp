@@ -9,18 +9,11 @@
 #include <SDL.h>
 #include "BoardManager.h"
 
-
+//inicializacion de variable estatica del struct State
 IA_manager* IA_manager::State::ia_manager = nullptr;
 
 
-IA_manager::IA_manager(BoardManager* boardM)
-	:boardManager(boardM){
-
-	State s;
-	if (s.ia_manager == nullptr) {
-		s.ia_manager = this;
-	}
-}
+#pragma region Metodos Basicos
 
 IA_manager::IA_manager() {
 	
@@ -32,17 +25,26 @@ IA_manager::IA_manager() {
 	}
 }
 
-
 IA_manager::~IA_manager(){}
+
+void IA_manager::initComponent(){}
+
+void IA_manager::update(){}
+
+#pragma endregion
+
+#pragma region Setters de referencias
 
 void IA_manager::setBoardManager(BoardManager* boardM)
 {
 	boardManager = boardM;
 }
 
-void IA_manager::initComponent(){}
 
-void IA_manager::update(){}
+
+#pragma endregion
+
+
 
 IA_manager::InfoJugada IA_manager::StartTurn()
 {
@@ -53,7 +55,7 @@ IA_manager::InfoJugada IA_manager::StartTurn()
 	s.playerHand;
 	s._boardBools;
 
-#pragma region Mano y mazo de pruebas
+	#pragma region Mano y mazo de pruebas
 
 	Card* a = new Card(2, 2);
 	Card* b = new Card(1, 3);
@@ -77,7 +79,7 @@ IA_manager::InfoJugada IA_manager::StartTurn()
 
 	
 
-#pragma endregion
+	#pragma endregion
 
 	State* best = nullptr;
 
@@ -100,15 +102,16 @@ IA_manager::InfoJugada IA_manager::StartTurn()
 #endif // _DEBUG
 
 	return best->_jugada;
-
 }
+
+
+
+#pragma region Internal methods 
 
 int IA_manager::heuristic(State* s)
 {
 	return boardManager->heuristicIA(s);
 }
-
-
 
 void IA_manager::posiblesTurnos(
 	int cartaActual, int nCartas,
@@ -261,4 +264,5 @@ int IA_manager::minimax(int depth,int h, bool isPlayer, State& current_state, St
 	return bestValue;
 }
 
+#pragma endregion
 
