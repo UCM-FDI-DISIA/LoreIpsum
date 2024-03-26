@@ -123,6 +123,66 @@ void BoardManager::updateVisuals()
 	scoreVisualJ2->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
 }
 
+int BoardManager::heuristicIA(const State* s)
+{
+	int x;
+	int y;
+	Card* card;
+	Players::Owner o;
+
+	Cell* cell = _boardIA[x][y];
+
+	cell->cleanEffectList();
+
+	/// comunicacion bidireccional celda-carta
+	cell->setCard(card, o);
+	card->setCell(cell);
+
+	/// anade callback a la celda
+	for (const auto& e : card->getEffects())
+		cell->addEffect(e);
+
+
+
+	//APPLY EFFECTS
+	for (int j = 0; j < size; j++)
+		for (int i = 0; i < size; i++)
+			if (_boardIA[i][j]->getCard() != nullptr) 
+				_boardIA[i][j]->setTotalValue(0);
+			
+	
+	for (int j = 0; j < size; j++)
+		for (int i = 0; i < size; i++)
+			_boardIA[i][j]->applyValue(_boardIA[i][j]->getCard());
+
+
+	//UPDATE SCORE
+	
+	// Reinicia los valores
+	int puntosPlayer1 = 0;
+	int puntosPlayer2 = 0;
+
+	//VA AL BOARD MANAGER
+	// hace recuento de valores
+	for (int j = 0; j < _boardIA.size(); j++)
+	{
+		for (int i = 0; i < _boardIA[j].size(); i++)
+		{
+			//si es del jugador 1
+			if (_boardIA[i][j]->getOwner() == Players::PLAYER1)
+				puntosPlayer1 += _boardIA[i][j]->getTotalValue();
+			//si es el jugador 2 (normalmente npc)
+			else if (_boardIA[i][j]->getOwner() == Players::PLAYER2)
+				puntosPlayer2 += _boardIA[i][j]->getTotalValue();
+		}
+	}
+
+
+
+
+	return puntosPlayer1-puntosPlayer2;
+}
+
 void BoardManager::initBoard()
 {
 	/// Inicializacion de referencias de cada celda

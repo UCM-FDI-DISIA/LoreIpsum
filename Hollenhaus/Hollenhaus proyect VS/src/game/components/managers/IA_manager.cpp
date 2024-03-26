@@ -62,7 +62,7 @@ struct State {
 	//PuntosJugador -PuntosEnemigo
 	// el valor es positivo si el jugador tiene mas puntos, y negativo si tiene menos
 	int heuristic() const { 
-		return 0;
+		return 1;
 	};
 
 	void apply(TuplaSolucion jugada,bool isPlayer) {
@@ -283,6 +283,9 @@ std::vector<TuplaSolucion> calcularTurno(State s,bool isPlayer) {
 }
 
 std::vector<State> all_posible_next_states(const State& s, bool isPlayer);
+
+int minimax(int depth, int h, bool isPlayer, const State& current_state, State*& best);
+
 IA_manager::IA_manager()
 {
 }
@@ -338,7 +341,14 @@ void IA_manager::evaluateState()
 	
 	uint32_t time = SDL_GetTicks();
 
-	std::vector<TuplaSolucion> soluciones = calcularTurno(s,true);
+	//std::vector<TuplaSolucion> soluciones = calcularTurno(s,true);
+
+	State* best = nullptr;
+
+	minimax(0, 1, true, s, best);
+	time = SDL_GetTicks() - time;
+	std::cout << time << std::endl;
+
 
 #if _DEBUG
 	/*
@@ -358,11 +368,9 @@ void IA_manager::evaluateState()
 	*/
 #endif // _DEBUG
 
-	s.apply(soluciones[21], true);
+	//s.apply(soluciones[21], true);
 
-	auto x = all_posible_next_states(s, true);
-	time = SDL_GetTicks() - time;
-	std::cout << time << std::endl;
+	//auto x = all_posible_next_states(s, true);
 
 }
 
@@ -383,7 +391,7 @@ std::vector<State> all_posible_next_states(const State& s,bool isPlayer) {
 
 
 
-int minimax(int depth,int h, bool isPlayer, const State& current_state) {
+int minimax(int depth,int h, bool isPlayer, const State& current_state,State*& best) {
 
 	//si alcanza la profundidad indicada, devuelve el valor de la heurisitca
 	if (depth == h) {
@@ -392,24 +400,23 @@ int minimax(int depth,int h, bool isPlayer, const State& current_state) {
 
 	int value = 0;
 	//State* best = nullptr;
-	State best;
 
 	for (State& s : all_posible_next_states(current_state, isPlayer)) {
-		int current = minimax(depth + 1, h, !isPlayer, s);
+		int current = minimax(depth + 1, h, !isPlayer, s,best);
 
 		if (isPlayer) {
 			if (current > value) {
 				value = current;
-				best = s;
+				best = new State(s);
 			}
 		}
 		else {
 			if (current < value) {
 				value = current;
-				best = s;
+				best = new State(s);
+
 			}
 		}
-
 	}
 
 

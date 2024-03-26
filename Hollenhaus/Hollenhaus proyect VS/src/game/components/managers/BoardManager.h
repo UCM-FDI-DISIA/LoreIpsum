@@ -7,6 +7,7 @@
 
 class Cell;
 class Card;
+class State; // para la IA
 using SDLEventCallback = std::function<void()>;
 
 constexpr int DEFAULT_SIZE = 4; 
@@ -50,6 +51,9 @@ public:
     // Método para actualizar el aspecto de las referencias visuales del MatchManager
     void updateVisuals();
 
+    int heuristicIA(const State* s);
+
+
 private:
     void initBoard();
     //cleon: si en la entrega es una constante, os mataré. bueno, yo os mataré
@@ -57,6 +61,9 @@ private:
 
     // Un vector de vectores de entidades "Cell".
     std::vector<std::vector<ecs::entity_t>> _board;
+
+
+    std::vector<std::vector<Cell*>> _boardIA;
 
     int cardsOnBoard = 0;
 
