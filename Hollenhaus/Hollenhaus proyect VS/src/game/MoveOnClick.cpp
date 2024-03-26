@@ -34,22 +34,28 @@ void MoveOnClick::initComponent()
 
 void MoveOnClick::update()
 {
-	// ---- Version de Andres ----
+	// ---- Version de Andres y Nieves y Jesus Cristo amen ----
 
-		move = !((distanceNow < distanceToMove) || (distanceNow > distanceToMove) ||
-			((ltBackroundCoor.getX() >= 0) && (mousePos.getX() < halfScreen)) ||
-			((ltBackroundCoor.getX() <= BACKGROUND_SIZE) && (mousePos.getX() >= halfScreen)));
-	if (move) {
-
-
-		distanceNow += (scrollVel * direccion);
+	// ---- MOVE FALSE ----
+	// -> si la distancia a recorrer a llegado a cero o menos (se ha completado el mov.)
+	// -> o cuando llegue a los limites de la ciudad por la derecha Y se pulse en la derecha
+	// -> o cuando llegue a los limites de la ciudad por la izquierda Y se pulse en la izquierda
+	if  (distance <= 0 || 
+		(((ltBackroundCoor.getX() >= 0) && (mousePos.getX() < halfScreen)) ||
+		((ltBackroundCoor.getX() <= BACKGROUND_SIZE) && (mousePos.getX() >= halfScreen))))
+	{
+		move = false;
+	}
+	else if (move) 
+	{
+		distance -= (scrollVel * direccionFondo);
+		distanceNow += (scrollVel * direccionFondo);
 		distanceNow += halfScreen;
 		ltBackroundCoor.setX(distanceNow);
 		myTransform->setGlobalPos(ltBackroundCoor);
-		//move = false;
 	}
 
-
+#pragma region HOLAAA
 	/*
 	/*move = !((ltBackroundCoor.getX() == distanceToMove) ||
 		((ltBackroundCoor.getX() >= 0) && (mousePos.getX() < halfScreen)) ||
@@ -86,11 +92,11 @@ void MoveOnClick::update()
 
 		myTransform->setGlobalPos(ltBackroundCoor);
 	}*/
+#pragma endregion 
 }
 
 void MoveOnClick::OnLeftClickDown()
 {
-
 	// Si pulsamos en el collider, efectuamos el movimiento
 	if (myBoxCollider->isCursorOver()) {
 
@@ -114,14 +120,15 @@ void MoveOnClick::OnLeftClickDown()
 		// JUGADOR HACIA LA DER, FONDO HACIA LA IZQ
 		if (mousePos.getX() >= halfScreen)
 		{
-			direccion = -1;
+			direccionFondo = -1;
+			distance = mousePos.getX() - halfScreen;
 		}
 
 		// JUGADOR HACIA LA IZQ, FONDO HACIA LA DER
 		else if (mousePos.getX() < halfScreen)
 		{
-			direccion = 1;
+			direccionFondo = 1;
+			distance = halfScreen - mousePos.getX();
 		}
-
 	}
 }

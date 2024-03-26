@@ -44,6 +44,8 @@ private:
 	// velocidad de movimiento de scroll
 	float scrollVel = 2;
 
+	float distance;
+
 	// Coordenada x del left top de la imagen de fondo
 	//		Ha de ser actualizada en cada update en el que deba moverse hasta
 	//		que se haya movido exactamente la distanceToMove
@@ -53,8 +55,8 @@ private:
 	float distanceToMove;
 	float distanceNow;
 
-	// -1 izquierda 1 derecha
-	int direccion;
+	// -1 izquierda, 1 derecha
+	int direccionFondo;
 
 	// Mitad de la pantalla
 	float halfScreen = sdlutils().width() / 2;
