@@ -43,11 +43,12 @@ GameStateMachine::GameStateMachine() {
 	jimboState = new JimboState();
 	nievesState = new NievesState();
 	matchOverState = new MatchOverState();
+	luisState = new LuisState();
 
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();
 
-	currentState = samuState;
+	currentState = luisState;
 
 	// crea la data en el current state
 	currentState->setData(new Data());

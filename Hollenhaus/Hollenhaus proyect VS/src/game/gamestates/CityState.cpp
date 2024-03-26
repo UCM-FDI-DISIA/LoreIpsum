@@ -55,7 +55,7 @@ void CityState::onEnter()
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(1);
 
-	//------NPCs que demomento son Caitlyns:
+	//------NPCs:
 	//----Para entrar en la oficina.
 	ecs::entity_t npc2 = Instantiate();
 	npc2->addComponent<Transform>();
@@ -90,7 +90,7 @@ void CityState::onEnter()
 	Vector2D npc3Pos(400, 425);
 	npc3->getComponent<Transform>()->setGlobalPos(npc3Pos);
 	npc3->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	npc3->addComponent<NPC>(6); // Lleva al combate (SamuState(6)).
+	npc3->addComponent<NPC>(6); // Lleva al combate (LuisState(6)).
 	npc3->setLayer(2);
 
 	//------Boton para volver al menu principal:

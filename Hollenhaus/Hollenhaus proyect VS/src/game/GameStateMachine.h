@@ -26,7 +26,7 @@ namespace GameStates
 		SHOP,
 		BOARD,
 		PAIGRO,
-		SAMU,
+		LUIS,
 		NIEVES,
 		MATCHOVER
 	};
@@ -58,6 +58,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* nievesState;
 	GameState* movementState;
 	GameState* matchOverState;
+	GameState* luisState;
 
 public:
 	ecs::Manager* getMngr()
@@ -103,8 +104,8 @@ public:
 		case GameStates::PAIGRO:
 			currentState = paigroState;
 			break;
-		case GameStates::SAMU:
-			currentState = samuState;
+		case GameStates::LUIS:
+			currentState = luisState;
 			break;
 		case GameStates::NIEVES:
 			currentState = nievesState;

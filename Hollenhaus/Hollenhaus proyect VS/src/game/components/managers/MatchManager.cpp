@@ -34,12 +34,13 @@ void MatchManager::update()
 	{
 		if (board_->isFull())
 		{
-			
+			//Finaliza la partida cuando se llena el tablero
 			setActualState(Turns::Finish);
 		}
 	}
 }
 
+//Aquí poner las transiciones de cambio de turno y fin de la partida
 void MatchManager::setActualState(Turns::State newState)
 {
 	actualState = newState;
@@ -106,6 +107,7 @@ void MatchManager::substractActualPlayerActionPoints(int points)
 
 void MatchManager::updateVisuals()
 {
+	//Si queremos meterlo de forma digética es aquí cuando se pueda
 	// Actualiza los puntos de acción restantes de J1
 	actionPointsVisualJ1->getComponent<TextComponent>()->setTxt(
 		"Puntos de accion:\n" + std::to_string(actualActionPointsJ1));
@@ -115,6 +117,7 @@ void MatchManager::updateVisuals()
 		"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
 
 	// Actualiza el indicador del propietario del turno actual
+	//Habría que Hacer uan diferenciación también cuando recién cambia de turno para la animación
 	std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
 	SDL_Color color = actualState == Turns::J1 ? SDL_Color({ 102, 255, 102, 255 }) : SDL_Color({ 255, 102, 255, 255 });
 	actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);

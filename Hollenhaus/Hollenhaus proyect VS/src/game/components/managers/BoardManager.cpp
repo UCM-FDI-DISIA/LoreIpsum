@@ -65,6 +65,12 @@ bool BoardManager::setCard(int x, int y, Card* c, Players::Owner o)
 	for (const auto& e : c->getEffects())
 		cell->addEffect(e);
 
+	//Cambia el color de la carta si es del jugador 2
+	if (o == 2) //Pertenece al jugador 2
+	{
+		c->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(104, 52, 177, 200);
+	}
+
 
 	auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
 	//Gasta los puntos de accion correspondientes
@@ -119,6 +125,7 @@ void BoardManager::applyAllEffects() const
 
 void BoardManager::updateVisuals()
 {
+	//Cambia directamente el número, si queremos poner algún efecto cero que sería aquí
 	scoreVisualJ1->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer1));
 	scoreVisualJ2->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
 }
