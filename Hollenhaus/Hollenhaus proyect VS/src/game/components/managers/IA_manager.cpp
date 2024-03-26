@@ -58,6 +58,12 @@ struct State {
 
 	TuplaSolucion _jugada;
 
+	//devuelve la diferencia de puntos entre el jugador y el enemigo 
+	//PuntosJugador -PuntosEnemigo
+	// el valor es positivo si el jugador tiene mas puntos, y negativo si tiene menos
+	int heuristic() const { 
+		return 0;
+	};
 
 	void apply(TuplaSolucion jugada,bool isPlayer) {
 
@@ -373,4 +379,40 @@ std::vector<State> all_posible_next_states(const State& s,bool isPlayer) {
 
 
 	return allStates;
+}
+
+
+
+int minimax(int depth,int h, bool isPlayer, const State& current_state) {
+
+	//si alcanza la profundidad indicada, devuelve el valor de la heurisitca
+	if (depth == h) {
+		return current_state.heuristic();
+	}
+
+	int value = 0;
+	//State* best = nullptr;
+	State best;
+
+	for (State& s : all_posible_next_states(current_state, isPlayer)) {
+		int current = minimax(depth + 1, h, !isPlayer, s);
+
+		if (isPlayer) {
+			if (current > value) {
+				value = current;
+				best = s;
+			}
+		}
+		else {
+			if (current < value) {
+				value = current;
+				best = s;
+			}
+		}
+
+	}
+
+
+
+	return 0;
 }
