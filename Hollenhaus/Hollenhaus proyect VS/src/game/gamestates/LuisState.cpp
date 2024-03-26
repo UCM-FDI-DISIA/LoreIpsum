@@ -114,7 +114,7 @@ void LuisState::onEnter()
 
 
 	ecs::entity_t IA_controler = Instantiate();
-	IA_controler->addComponent<IA_manager>();
+	IA_controler->addComponent<IA_manager>(boardManagerComponent);
 
 	IA_controler->getComponent<IA_manager>()->evaluateState();
 

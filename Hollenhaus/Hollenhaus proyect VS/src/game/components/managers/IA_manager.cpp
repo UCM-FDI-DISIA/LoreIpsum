@@ -7,9 +7,17 @@
 #include "../Card.h"
 #include "../../Namespaces.h"
 #include <SDL.h>
+#include "BoardManager.h"
 
 
-IA_manager::IA_manager(){}
+IA_manager::IA_manager(BoardManager* boardM)
+	:boardManager(boardM){
+
+	State s;
+	if (s.ia_manager == nullptr) {
+		s.ia_manager = this;
+	}
+}
 
 IA_manager::~IA_manager(){}
 
@@ -29,15 +37,15 @@ void IA_manager::evaluateState()
 #pragma region Mano y mazo de pruebas
 
 
-	Card* a = new Card(2, -1);
-	Card* b = new Card(1, -1);
-	Card* c = new Card(0, -1);
+	Card* a = new Card(2, 2);
+	Card* b = new Card(1, 3);
+	Card* c = new Card(0, 4);
 
-	Card* m1 = new Card(1, -1);
-	Card* m2 = new Card(0, -1);
-	Card* m3 = new Card(2, -1);
-	Card* m4 = new Card(1, -1);
-	Card* m5 = new Card(1, -1);
+	Card* m1 = new Card(1, 0);
+	Card* m2 = new Card(0, 100);
+	Card* m3 = new Card(2, 0);
+	Card* m4 = new Card(1, 0);
+	Card* m5 = new Card(1, 0);
 
 	s.playerDeck.push_back(m1);
 	s.playerDeck.push_back(m2);
@@ -83,6 +91,11 @@ void IA_manager::evaluateState()
 
 	//auto x = all_posible_next_states(s, true);
 
+}
+
+int IA_manager::heuristic(State* s)
+{
+	return boardManager->heuristicIA(s);
 }
 
 
@@ -217,7 +230,7 @@ int IA_manager::minimax(int depth,int h, bool isPlayer, const State& current_sta
 	//si alcanza la profundidad indicada, devuelve el valor de la heurisitca
 	if (depth == h) { return current_state.heuristic(); }
 	
-	int bestValue = 0;
+	int bestValue = isPlayer ? -99999 : 99999;//cambiar por math min y math max
 
 	for (State& s : all_posible_next_states(current_state, isPlayer)) {
 		
@@ -227,7 +240,7 @@ int IA_manager::minimax(int depth,int h, bool isPlayer, const State& current_sta
 			bestValue = current;
 			best = new State(s);		
 		}
-		else if (current < bestValue) {//si es la IA, lo minimiza
+		else if (!isPlayer && current < bestValue) {//si es la IA, lo minimiza
 			bestValue = current;
 			best = new State(s);
 		}	

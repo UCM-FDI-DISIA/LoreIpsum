@@ -12,6 +12,7 @@
 
 //#include "IA_manager.h"
 
+IA_manager* IA_manager::State::ia_manager = nullptr;
 
 BoardManager::BoardManager()
 {
@@ -133,8 +134,11 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 
 			_boardIA[i][j]->cleanEffectList();
 			_boardIA[i][j]->setCard(nullptr, Players::NONE);
+			_boardIA[i][j]->setTotalValue(0);
+
 		}
 	}
+
 
 	Card* card = nullptr;
 	Cell* cell = nullptr;
@@ -167,7 +171,8 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 	
 	for (int j = 0; j < size; j++)
 		for (int i = 0; i < size; i++)
-			_boardIA[i][j]->applyValue(_boardIA[i][j]->getCard());
+			if (_boardIA[i][j]->getCard() != nullptr)
+				_boardIA[i][j]->applyValue(_boardIA[i][j]->getCard());
 
 
 	//UPDATE SCORE

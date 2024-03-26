@@ -5,10 +5,7 @@
 #include "../../../utils/Vector2D.h"
 
 class Card;
-
-
-
-
+class BoardManager;
 
 class IA_manager : public ComponentUpdate
 {
@@ -37,6 +34,8 @@ public:
 	};
 
 	struct State {
+		
+		static IA_manager* ia_manager ;
 
 		//constructora(inicializa los tableros)
 		State() {
@@ -72,8 +71,8 @@ public:
 		//devuelve la diferencia de puntos entre el jugador y el enemigo 
 		//PuntosJugador -PuntosEnemigo
 		// el valor es positivo si el jugador tiene mas puntos, y negativo si tiene menos
-		int heuristic() const {
-			return 1;
+		int heuristic()const {
+			return ia_manager->heuristic(new State(*this));//cambiar esto
 		};
 
 		void apply(TuplaSolucion jugada, bool isPlayer) {
@@ -120,7 +119,7 @@ public:
 	};
 
 
-	IA_manager();
+	IA_manager(BoardManager* boardM);
 	~IA_manager();
 
 	void initComponent() override;
@@ -129,7 +128,7 @@ public:
 
 	void evaluateState();
 
-
+	int heuristic(State* s);
 
 	void posiblesTurnos(
 		int cartaActual, int nCartas,
@@ -149,12 +148,13 @@ public:
 
 private:
 
+	BoardManager* boardManager;
+
 
 	/// reaplica todos los efectos
 	//void applyAllEffects();
 	//void updateScore();
 };
-
 
 
 
