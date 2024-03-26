@@ -44,7 +44,7 @@ void IA_manager::initComponent(){}
 
 void IA_manager::update(){}
 
-IA_manager::InfoJugada IA_manager::evaluateState()
+IA_manager::InfoJugada IA_manager::StartTurn()
 {
 
 	State s;
@@ -260,3 +260,5 @@ int IA_manager::minimax(int depth,int h, bool isPlayer, State& current_state, St
 
 	return bestValue;
 }
+
+

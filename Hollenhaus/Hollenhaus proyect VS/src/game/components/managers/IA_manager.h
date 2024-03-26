@@ -130,7 +130,11 @@ public:
 
 	void update() override;
 
-	InfoJugada evaluateState();
+	InfoJugada StartTurn();
+
+	
+
+private:
 
 	int heuristic(State* s);
 
@@ -150,7 +154,9 @@ public:
 
 	int minimax(int depth, int h, bool isPlayer, State& current_state, State*& best);
 
-private:
+
+
+
 
 	BoardManager* boardManager;
 

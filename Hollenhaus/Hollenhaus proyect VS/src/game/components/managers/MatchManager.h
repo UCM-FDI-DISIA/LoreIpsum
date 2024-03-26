@@ -2,6 +2,7 @@
 #include "../ComponentUpdate.h"
 #include "BoardManager.h"
 
+class IA_manager;
 
 class MatchManager : public ComponentUpdate
 {
@@ -40,6 +41,9 @@ public:
     // Método para actualizar el aspecto de las referencias visuales del MatchManager
     void updateVisuals();
 
+    void setIA_Manager(IA_manager* ia);
+    //solo la IA deberia llamar a este metodo
+    void endTurnIA();
 private:
 
     Turns::State actualState;
@@ -58,10 +62,15 @@ private:
 	ecs::entity_t actionPointsVisualJ1;
     ecs::entity_t actionPointsVisualJ2;
 
+    IA_manager* ia_manager;
+
     void resetActualActionPoints();
 
     // Método para pasarle el ganador al GameState y guardarlo en data.
     void setWinnerOnData();
+
+
+    void startTurnIA();
 };
 
 

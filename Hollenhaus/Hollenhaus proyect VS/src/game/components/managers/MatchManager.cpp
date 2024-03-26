@@ -65,6 +65,12 @@ void MatchManager::setActualState(Turns::State newState)
 		setWinnerOnData();
 		GameStateMachine::instance()->setState(GameStates::MATCHOVER);
 		break;
+	case Turns::IA:
+#if _DEBUG 
+		std::cout << "Turno: IA" << std::endl;
+#endif
+		startTurnIA();
+		break;
 	default:
 		break;
 	}
@@ -121,6 +127,15 @@ void MatchManager::updateVisuals()
 	actualTurnVisual->getComponent<TextComponent>()->setColor(color);
 }
 
+void MatchManager::setIA_Manager(IA_manager* ia)
+{
+	ia_manager = ia;
+}
+
+void MatchManager::endTurnIA()
+{
+}
+
 void MatchManager::resetActualActionPoints()
 {
 	actualActionPointsJ1 = defaultActionPointsJ1;
@@ -147,4 +162,9 @@ void MatchManager::setWinnerOnData()
 	{
 		GameStateMachine::instance()->getCurrentState()->setWinnerOnData(3);
 	}
+}
+
+void MatchManager::startTurnIA()
+{
+	ia_manager->StartTurn();
 }

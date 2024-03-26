@@ -117,9 +117,10 @@ void LuisState::onEnter()
 	IA_manager* ia_managerComponent = IA_controler->addComponent<IA_manager>();
 
 	ia_managerComponent->setBoardManager(boardManagerComponent);
-	IA_controler->getComponent<IA_manager>()->evaluateState();
 
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
+
+	matchManagerComponent->setIA_Manager(ia_managerComponent);
 }
 
 void LuisState::onExit()
