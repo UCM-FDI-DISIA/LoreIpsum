@@ -11,19 +11,17 @@
 #include "Entity.h"
 #include "Manager.h"
 
-MoveOnClick::MoveOnClick()
-{
-}
+MoveOnClick::MoveOnClick() {}
 
 MoveOnClick::~MoveOnClick()
 {
-	// se suscribe al evento de click izq
+	// se desuscribe al evento de click izq
 	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 }
 
 void MoveOnClick::initComponent()
 {
-	myTransform = ent_->getComponent<Transform>();	   // transform del fondo
+	myTransform = ent_->getComponent<Transform>(); // transform del fondo
 	
 	move = false; // inicializa move a false
 
@@ -44,7 +42,7 @@ void MoveOnClick::update()
 	// -> si la coordenda x del lt del fondo coincide con el distanceToMove (se ha centrado)
 	// -> o cuando llegue a los limites de la ciudad por la derecha y se pulse en la derecha
 	// -> o cuando llegue a los limites de la ciudad por la izquierda y se pulse en la izquierda
-	if ((ltBackroundCoor.getX() == distanceToMove) ||
+	if ((abs(ltBackroundCoor.getX()) <= abs(distanceToMove)) ||
 		((ltBackroundCoor.getX() >= 0) && (mousePos.getX() < halfScreen)) ||
 		((ltBackroundCoor.getX() <= BACKGROUND_SIZE) && (mousePos.getX() >= halfScreen)))
 	{ move = false; }
@@ -88,7 +86,7 @@ void MoveOnClick::OnLeftClickDown()
 		// resetea la distancia a moverse en cada update que hay movimiento
 		scrollCounter = 1.0f;
 
-		// guardar en moveTo = (left top de la imagen en ese momento) - (donde hagas click - (mitad de la pantalla))
+		// guardar en distanceToMove = (left top de la imagen en ese momento) - (donde hagas click - (mitad de la pantalla))
 		// le resta al left top de la imagen en ese momento la distancia entre el sitio a moverse y la mitad de la pantalla
 		distanceToMove = myTransform->getGlobalPos().getX() - (mousePos.getX() - halfScreen);
 	}
