@@ -21,20 +21,26 @@ void TypeWriter::initComponent()
 
 void TypeWriter::update()
 {
+	// si no ha acabado de escribir
 	if (finaltext != text) {
 
+		// tiempo de espera
 		if (speedCounter < writingSpeed) {
 
 			speedCounter++;
 		}
 		else {
 
+			// suma el char siguiente a finaltext
 			finaltext.insert(finaltext.end(), text[i]);
 
+			// cuenta para el siguiente char
 			i++;
 
+			// actualiza el texto
 			setText();
 
+			// reinicia el contador
 			speedCounter = 0;
 		}
 	}

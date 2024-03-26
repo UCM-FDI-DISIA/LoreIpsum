@@ -252,6 +252,7 @@
     <ClCompile Include="src\game\components\NextText.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\AutoDialogue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -486,6 +487,9 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\NextText.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\AutoDialogue.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
