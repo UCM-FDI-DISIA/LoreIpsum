@@ -112,6 +112,7 @@ void IA_manager::posiblesTurnos(
 	std::vector<std::vector<bool>>& _board // true si ocupada, false si libre
 )
 {
+	//si estoy en la ultima carta, añado la solucion a la lista
 	if (cartaActual == nCartas) {
 		soluciones.push_back(solAct);
 		return;
@@ -128,37 +129,33 @@ void IA_manager::posiblesTurnos(
 		esValida = false;
 	}
 
+	//si puedo colocar la carta, miro todas las casillas
 	if (esValida) {
 
+		//recorrido para cada casilla
 		for (int i = 0; i < sizeX; i++) {
-
 			for (int j = 0; j < sizeY; j++) {
 
 				//si casilla no ocupada
 				if (!_board[i][j]) {
 
-
 					//actualizar solAct
 					_board[i][j] = true;
 					solAct.push_back(CartaColocada(cartaActual, Vector2D(i, j)));
-
 					puntosRestantes -= playerHand[cartaActual]->getCost();
 
 					//siguiente nivel
 					posiblesTurnos(cartaActual + 1, nCartas, soluciones, solAct, puntosRestantes,
 						playerHand, _board);
 
-					//desactualizar solucion Actual	
+					//desactualizar solAct
 					solAct.pop_back();
 					_board[i][j] = false;
-
 					puntosRestantes += playerHand[cartaActual]->getCost();
 
 				}
-
 			}
 		}
-
 	}
 
 	//actualizar solucion actual con (-1,-1) No colocar	
@@ -170,29 +167,26 @@ void IA_manager::posiblesTurnos(
 
 	//desactualizar solucion Actual	
 	solAct.pop_back();
-
 }
 
 
 std::vector<IA_manager::TuplaSolucion>  IA_manager::calcularTurno(State s, bool isPlayer) {
 
-	std::vector<TuplaSolucion> solucionesGlobal;
+	std::vector<TuplaSolucion> allPosiblePlays;
 
 	int i = 0;
 
-	int aux = s.actionPoints;
-
+	//NOTA: si cambia el coste del robo hay que cambiar esto
 
 	//la cantidad de veces que se puede robar es el minimo entre los puntos de accion y el tamaño del mazo
-	if (isPlayer) {
-		aux = fmin(s.actionPoints, s.playerDeck.size());
-	}
-	else {
-		aux = fmin(s.actionPoints, s.enemyDeck.size());
-	}
+	int nRobosPosibles = fmin(s.actionPoints, 
+		isPlayer ? s.playerDeck.size() : s.enemyDeck.size());
 
-	while (i <= aux)
+
+
+	while (i <= nRobosPosibles)
 	{
+		//si toca robar
 		if (i > 0) {
 			if (isPlayer) {
 				//robar carta
@@ -213,41 +207,40 @@ std::vector<IA_manager::TuplaSolucion>  IA_manager::calcularTurno(State s, bool 
 
 		//actualizar solucionActual
 		//act puntosRestantes
-
-		std::vector<std::vector<CartaColocada>> soluciones;
+		std::vector<std::vector<CartaColocada>> partialPlays;
 		std::vector<CartaColocada> solAct;
 
 		if (isPlayer) {
-			posiblesTurnos(0, s.playerHand.size(), soluciones, solAct, s.actionPoints,
+			posiblesTurnos(0, s.playerHand.size(), partialPlays, solAct, s.actionPoints,
 				s.playerHand, s._boardBools);//hand + cartas robadas	
 		}
 		else {
-			posiblesTurnos(0, s.enemyHand.size(), soluciones, solAct, s.actionPoints,
+			posiblesTurnos(0, s.enemyHand.size(), partialPlays, solAct, s.actionPoints,
 				s.enemyHand, s._boardBools);//hand + cartas robadas	
 		}
 
 		//actualizar la lista de soluciones global(TuplaSolucion)
-
 		int j = 0;
-		for (auto& s : soluciones) {
-			solucionesGlobal.push_back(TuplaSolucion{ i,s });
+		for (auto& s : partialPlays) {
+			allPosiblePlays.push_back(TuplaSolucion{ i,s });
 		}
 
 		i++;
 	}
 
-	return solucionesGlobal;
+	return allPosiblePlays;
 }
 
 std::vector<IA_manager::State> IA_manager::all_posible_next_states(const State& s,bool isPlayer) {
+
 	std::vector<State> allStates;
 
+	//dado un estado, aplicamos todas las posible jugadas y generamos todos los posibles futuros estados
 	for (auto& jugada : calcularTurno(s, isPlayer)) {
-		State nuevo = s;
-		nuevo.apply(jugada, isPlayer);
-		allStates.push_back(nuevo);
+		State nuevo = s;//copia del estado
+		nuevo.apply(jugada, isPlayer);//aplicar jugada
+		allStates.push_back(nuevo);//añadir a la lista
 	}
-
 
 	return allStates;
 }
