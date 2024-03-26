@@ -53,7 +53,6 @@ public:
 				_boardOwners.push_back(owners);
 				_boardBools.push_back(bools);
 			}
-
 		};
 
 		std::vector<std::vector<bool>> _boardBools;
@@ -84,83 +83,41 @@ public:
 
 			int nCartasColocadas = 0;
 
-			if (isPlayer) {
+			//setear valores en funcion de isPlayer
+			auto& currentDeck = isPlayer ? playerDeck : enemyDeck;
+			auto& currentHand = isPlayer ? playerHand : enemyHand;
+			auto currentPlayersEnum = isPlayer ? Players::PLAYER1 : Players::PLAYER2;
 
-				//robarCartas
-				for (int i = 0; i < jugada.cartasRobadas; i++) {
-
-					Card* c = playerDeck.back();
-					playerDeck.pop_back();
-
-					playerHand.push_back(c);
-				}
-
-
-				//poner cartas en el mazo
-				for (int i = 0; i < jugada.cartas.size(); i++) {
-
-					//si se coloca la carta
-					if (jugada.cartas[i].pos.getX() != -1) {
-
-						int posX = jugada.cartas[i].pos.getX();
-						int posY = jugada.cartas[i].pos.getY();
-
-						//poner la carta en el tablero
-						_boardBools[posX][posY] = true;
-						_boardOwners[posX][posY] = Players::PLAYER1;
-						_boardCards[posX][posY] = playerHand[(i - nCartasColocadas)];
-
-						//quitar la carta de la mano
-						playerHand.erase(playerHand.begin() + (i - nCartasColocadas));
-
-						nCartasColocadas++;
-					}
-
-				}
-
+			//robarCartas
+			for (int i = 0; i < jugada.cartasRobadas; i++) {
+				Card* c = currentDeck.back();
+				currentDeck.pop_back();
+				currentHand.push_back(c);
 			}
-			else {
-				//robarCartas
-				for (int i = 0; i < jugada.cartasRobadas; i++) {
 
-					Card* c = enemyDeck.back();
-					enemyDeck.pop_back();
+			//poner cartas en el mazo
+			for (int i = 0; i < jugada.cartas.size(); i++) {
 
-					enemyHand.push_back(c);
+				//si se coloca la carta
+				if (jugada.cartas[i].pos.getX() != -1) {
+
+					int posX = jugada.cartas[i].pos.getX();
+					int posY = jugada.cartas[i].pos.getY();
+
+					//poner la carta en el tablero
+					_boardBools[posX][posY] = true;
+					_boardOwners[posX][posY] = currentPlayersEnum;
+					_boardCards[posX][posY] = currentHand[(i - nCartasColocadas)];
+
+					//quitar la carta de la mano
+					currentHand.erase(currentHand.begin() + (i - nCartasColocadas));
+
+					//incrementar el numero de cartas colocadas
+					nCartasColocadas++;
 				}
-
-				//poner cartas en el mazo
-				for (int i = 0; i < jugada.cartas.size(); i++) {
-
-					//si se coloca la carta
-					if (jugada.cartas[i].pos.getX() != -1) {
-
-						int posX = jugada.cartas[i].pos.getX();
-						int posY = jugada.cartas[i].pos.getY();
-
-						//poner la carta en el tablero
-						_boardBools[posX][posY] = true;
-						_boardOwners[posX][posY] = Players::PLAYER2;
-						_boardCards[posX][posY] = playerHand[(i - nCartasColocadas)];
-
-						//quitar la carta de la mano
-						enemyHand.erase(enemyHand.begin() + (i - nCartasColocadas));
-
-						nCartasColocadas++;
-
-					}
-
-				}
-
-
-			}
+			}		
 		}
 	};
-
-
-
-
-
 
 
 	IA_manager();
