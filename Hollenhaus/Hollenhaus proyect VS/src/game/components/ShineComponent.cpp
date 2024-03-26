@@ -17,23 +17,25 @@ void ShineComponent::initComponent()
 {
     _myBoxCollider = ent_->getComponent<BoxCollider>();
 	_mySpriteRenderer = _entToShine->getComponent<SpriteRenderer>();
+	_fotoantigua = _mySpriteRenderer->getTexture();
 }
 
 void ShineComponent::update()
 {
-	Shine();
-}
-
-void ShineComponent::Shine()
-{
-	_fotoantigua = _mySpriteRenderer->getTexture();
-
 	if (_myBoxCollider->isCursorOver()) {
-		_mySpriteRenderer->setTexture(_fotoNueva);
+
+		Shine();
+		
 	}
 	else {
 		_mySpriteRenderer->setTexture(_fotoantigua);
 	}
+}
+
+void ShineComponent::Shine()
+{
+	_mySpriteRenderer->setTexture(_fotoNueva);
+	
 }
 
 
