@@ -36,7 +36,6 @@ void IA_manager::evaluateState()
 
 #pragma region Mano y mazo de pruebas
 
-
 	Card* a = new Card(2, 2);
 	Card* b = new Card(1, 3);
 	Card* c = new Card(0, 4);
@@ -47,16 +46,17 @@ void IA_manager::evaluateState()
 	Card* m4 = new Card(1, 0);
 	Card* m5 = new Card(1, 0);
 
+	s.playerHand.push_back(a);
+	s.playerHand.push_back(b);
+	s.playerHand.push_back(c);
+
 	s.playerDeck.push_back(m1);
 	s.playerDeck.push_back(m2);
 	s.playerDeck.push_back(m3);
 	s.playerDeck.push_back(m4);
 	s.playerDeck.push_back(m5);
 
-
-	s.playerHand.push_back(a);
-	s.playerHand.push_back(b);
-	s.playerHand.push_back(c);
+	
 
 #pragma endregion
 
@@ -68,28 +68,6 @@ void IA_manager::evaluateState()
 	time = SDL_GetTicks() - time;
 	std::cout << time << std::endl;
 
-
-#if _DEBUG
-	/*
-	TuVieja("TURNO: \n");
-
-	
-	for (auto& s : soluciones) {
-		std::cout << "R: " << s.cartasRobadas << std::endl;
-		for (auto& c :s.cartas) {
-			std::cout << " I: " << c.indice << " P: " << c.pos.getX() << "," << c.pos.getY() << std::endl;
-		}
-	}
-	
-
-	TuVieja("TURNO ACABADO \n");
-
-	*/
-#endif // _DEBUG
-
-	//s.apply(soluciones[21], true);
-
-	//auto x = all_posible_next_states(s, true);
 
 }
 
@@ -225,7 +203,9 @@ std::vector<IA_manager::State> IA_manager::all_posible_next_states(const State& 
 	return allStates;
 }
 
-int IA_manager::minimax(int depth,int h, bool isPlayer, const State& current_state, State*& best) {
+//current state debería ser const, se ha quitado para evitar crear una copia en la heuristica
+//importante no modificar dicha variable
+int IA_manager::minimax(int depth,int h, bool isPlayer, State& current_state, State*& best) {
 
 	//si alcanza la profundidad indicada, devuelve el valor de la heurisitca
 	if (depth == h) { return current_state.heuristic(); }

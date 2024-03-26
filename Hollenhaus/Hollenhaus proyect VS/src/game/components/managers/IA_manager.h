@@ -71,8 +71,8 @@ public:
 		//devuelve la diferencia de puntos entre el jugador y el enemigo 
 		//PuntosJugador -PuntosEnemigo
 		// el valor es positivo si el jugador tiene mas puntos, y negativo si tiene menos
-		int heuristic()const {
-			return ia_manager->heuristic(new State(*this));//cambiar esto
+		int heuristic() {
+			return ia_manager->heuristic(this);
 		};
 
 		void apply(TuplaSolucion jugada, bool isPlayer) {
@@ -144,7 +144,7 @@ public:
 
 	std::vector<State> all_posible_next_states(const State& s, bool isPlayer);
 
-	int minimax(int depth, int h, bool isPlayer, const State& current_state, State*& best);
+	int minimax(int depth, int h, bool isPlayer, State& current_state, State*& best);
 
 private:
 

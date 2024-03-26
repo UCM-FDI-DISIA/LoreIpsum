@@ -126,6 +126,8 @@ void BoardManager::updateVisuals()
 	scoreVisualJ2->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
 }
 
+
+//falta refacorizar esto dividiendolo en metodos y teniendo en cuenta los metodos originales
 int BoardManager::heuristicIA(IA_manager::State* s)
 {
 	//limpieza del tablero(card a null y reset de los efectos)
@@ -135,7 +137,6 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 			_boardIA[i][j]->cleanEffectList();
 			_boardIA[i][j]->setCard(nullptr, Players::NONE);
 			_boardIA[i][j]->setTotalValue(0);
-
 		}
 	}
 
@@ -199,6 +200,7 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 	return puntosPlayer1-puntosPlayer2;
 }
 
+//inicializa el tablero de la IA
 void BoardManager::initBoardIA()
 {
 	//creacion del tablero
@@ -211,8 +213,6 @@ void BoardManager::initBoardIA()
 			_boardIA[i][j] = new Cell();
 		}
 	}
-
-
 
 	/// Inicializacion de referencias de cada celda
 	for (int j = 0; j < size; j++)
