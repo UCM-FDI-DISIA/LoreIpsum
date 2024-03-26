@@ -257,21 +257,21 @@ int IA_manager::minimax(int depth,int h, bool isPlayer, const State& current_sta
 	//si alcanza la profundidad indicada, devuelve el valor de la heurisitca
 	if (depth == h) { return current_state.heuristic(); }
 	
-	int value = 0;
+	int bestValue = 0;
 
 	for (State& s : all_posible_next_states(current_state, isPlayer)) {
 		
 		int current = minimax(depth + 1, h, !isPlayer, s,best);
 
-		if (isPlayer && current > value) { //si es jugador, maximiza el valor			
-			value = current;
+		if (isPlayer && current > bestValue) { //si es jugador, maximiza el valor			
+			bestValue = current;
 			best = new State(s);		
 		}
-		else if (current < value) {//si es la IA, lo minimiza
-				value = current;
-				best = new State(s);
+		else if (current < bestValue) {//si es la IA, lo minimiza
+			bestValue = current;
+			best = new State(s);
 		}	
 	}
 
-	return 0;
+	return bestValue;
 }
