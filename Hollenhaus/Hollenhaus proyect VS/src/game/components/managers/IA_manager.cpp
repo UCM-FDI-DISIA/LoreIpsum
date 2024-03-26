@@ -9,24 +9,13 @@
 #include <SDL.h>
 
 
+IA_manager::IA_manager(){}
 
+IA_manager::~IA_manager(){}
 
+void IA_manager::initComponent(){}
 
-
-IA_manager::IA_manager()
-{
-}
-
-IA_manager::~IA_manager()
-{
-}
-
-void IA_manager::initComponent()
-{
-}
-
-void IA_manager::update(){
-}
+void IA_manager::update(){}
 
 void IA_manager::evaluateState()
 {
@@ -37,10 +26,12 @@ void IA_manager::evaluateState()
 	s.playerHand;
 	s._boardBools;
 
+#pragma region Mano y mazo de pruebas
+
+
 	Card* a = new Card(2, -1);
 	Card* b = new Card(1, -1);
 	Card* c = new Card(0, -1);
-
 
 	Card* m1 = new Card(1, -1);
 	Card* m2 = new Card(0, -1);
@@ -65,12 +56,11 @@ void IA_manager::evaluateState()
 	s._boardBools.push_back(aux);
 	s._boardBools.push_back(aux);
 	s._boardBools.push_back(aux);
-	
-	uint32_t time = SDL_GetTicks();
-
-	//std::vector<TuplaSolucion> soluciones = calcularTurno(s,true);
+#pragma endregion
 
 	State* best = nullptr;
+
+	uint32_t time = SDL_GetTicks();
 
 	minimax(0, 1, true, s, best);
 	time = SDL_GetTicks() - time;
@@ -170,7 +160,7 @@ void IA_manager::posiblesTurnos(
 }
 
 
-std::vector<IA_manager::TuplaSolucion>  IA_manager::calcularTurno(State s, bool isPlayer) {
+std::vector<IA_manager::TuplaSolucion> IA_manager::calcularTurno(State s, bool isPlayer) {
 
 	std::vector<TuplaSolucion> allPosiblePlays;
 
@@ -182,26 +172,19 @@ std::vector<IA_manager::TuplaSolucion>  IA_manager::calcularTurno(State s, bool 
 	int nRobosPosibles = fmin(s.actionPoints, 
 		isPlayer ? s.playerDeck.size() : s.enemyDeck.size());
 
-
+	auto& currentDeck = isPlayer ? s.playerDeck : s.enemyDeck;
+	auto& currentHand = isPlayer ? s.playerHand : s.enemyHand;
 
 	while (i <= nRobosPosibles)
 	{
 		//si toca robar
 		if (i > 0) {
-			if (isPlayer) {
-				//robar carta
-				Card* c = s.playerDeck.back();
+			//robar carta
+			Card* c = currentDeck.back();
 
-				s.playerDeck.pop_back();
-				s.playerHand.push_back(c);
-			}
-			else {
-				//robar carta
-				Card* c = s.enemyDeck.back();
-
-				s.enemyDeck.pop_back();
-				s.enemyHand.push_back(c);
-			}
+			currentDeck.pop_back();
+			currentHand.push_back(c); 
+		
 			s.actionPoints--;//- N coste de robar carta
 		}
 
@@ -210,17 +193,11 @@ std::vector<IA_manager::TuplaSolucion>  IA_manager::calcularTurno(State s, bool 
 		std::vector<std::vector<CartaColocada>> partialPlays;
 		std::vector<CartaColocada> solAct;
 
-		if (isPlayer) {
-			posiblesTurnos(0, s.playerHand.size(), partialPlays, solAct, s.actionPoints,
-				s.playerHand, s._boardBools);//hand + cartas robadas	
-		}
-		else {
-			posiblesTurnos(0, s.enemyHand.size(), partialPlays, solAct, s.actionPoints,
-				s.enemyHand, s._boardBools);//hand + cartas robadas	
-		}
+		//obtener las jugadasParciales
+		posiblesTurnos(0, currentHand.size(), partialPlays, solAct, s.actionPoints,
+			currentHand, s._boardBools);//hand + cartas robadas	
 
-		//actualizar la lista de soluciones global(TuplaSolucion)
-		int j = 0;
+		//actualizar la lista de jugadasTotales(TuplaSolucion)
 		for (auto& s : partialPlays) {
 			allPosiblePlays.push_back(TuplaSolucion{ i,s });
 		}
