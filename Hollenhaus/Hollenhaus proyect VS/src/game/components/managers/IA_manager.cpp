@@ -33,7 +33,7 @@ struct TuplaSolucion {
 struct State {
 
 	State() {
-		
+
 		std::vector<Card*> cards{ nullptr,nullptr,nullptr };
 		std::vector<Players::Owner> owners{ Players::NONE,Players::NONE,Players::NONE };
 
@@ -41,7 +41,7 @@ struct State {
 			_boardCards.push_back(cards);
 			_boardOwners.push_back(owners);
 		}
-		
+
 	};
 
 	std::vector<std::vector<bool>> _boardBools;
@@ -61,11 +61,11 @@ struct State {
 	//devuelve la diferencia de puntos entre el jugador y el enemigo 
 	//PuntosJugador -PuntosEnemigo
 	// el valor es positivo si el jugador tiene mas puntos, y negativo si tiene menos
-	int heuristic() const { 
+	int heuristic() const {
 		return 1;
 	};
 
-	void apply(TuplaSolucion jugada,bool isPlayer) {
+	void apply(TuplaSolucion jugada, bool isPlayer) {
 
 		//guardar la jugada que lleva a este estado
 		_jugada = jugada;
@@ -86,13 +86,13 @@ struct State {
 
 			//poner cartas en el mazo
 			for (int i = 0; i < jugada.cartas.size(); i++) {
-			
+
 				//si se coloca la carta
 				if (jugada.cartas[i].pos.getX() != -1) {
 
 					int posX = jugada.cartas[i].pos.getX();
 					int posY = jugada.cartas[i].pos.getY();
-					
+
 					//poner la carta en el tablero
 					_boardBools[posX][posY] = true;
 					_boardOwners[posX][posY] = Players::PLAYER1;

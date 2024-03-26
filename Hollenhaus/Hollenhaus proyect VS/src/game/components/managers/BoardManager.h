@@ -42,6 +42,9 @@ public:
     void setBoard(std::vector<std::vector<ecs::entity_t>>& board) { 
         _board = board;
         initBoard(); 
+
+        //llamamos tambien al init board para la IA
+        initBoardIA();
     }
 
     // Setters para las referencias de los elementos visuales
@@ -51,7 +54,11 @@ public:
     // Método para actualizar el aspecto de las referencias visuales del MatchManager
     void updateVisuals();
 
-    int heuristicIA(const State* s);
+
+    //IA
+    int heuristicIA(State* s);
+
+    void initBoardIA();
 
 
 private:

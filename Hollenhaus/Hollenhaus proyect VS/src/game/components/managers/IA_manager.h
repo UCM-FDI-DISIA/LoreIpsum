@@ -4,6 +4,8 @@
 
 class Card;
 
+
+
 class IA_manager : public ComponentUpdate
 {
 public:
