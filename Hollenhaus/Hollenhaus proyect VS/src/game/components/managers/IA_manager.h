@@ -16,8 +16,8 @@ public:
 
 	struct CartaColocada {
 
+		//constructoras
 		CartaColocada() {};
-
 		CartaColocada(int indice, Vector2D pos)
 			:indice(indice), pos(pos) {};
 
@@ -27,9 +27,10 @@ public:
 
 	struct TuplaSolucion {
 
+		//constructoras
+		TuplaSolucion() {};
 		TuplaSolucion(int cartasRobadas, std::vector<CartaColocada> cartas)
 			: cartasRobadas(cartasRobadas), cartas(cartas) {};
-		TuplaSolucion() {};
 
 		int cartasRobadas;
 		std::vector<CartaColocada> cartas;//hand + cartas robadas	
@@ -37,14 +38,20 @@ public:
 
 	struct State {
 
+		//constructora(inicializa los tableros)
 		State() {
 
-			std::vector<Card*> cards{ nullptr,nullptr,nullptr };
-			std::vector<Players::Owner> owners{ Players::NONE,Players::NONE,Players::NONE };
+			int N = 4;//boardSize
 
-			for (int i = 0; i < 4; i++) {
+			//inicializacion de los tableros
+			std::vector<Card*> cards(N, nullptr);
+			std::vector<Players::Owner> owners(N,Players::NONE);
+			std::vector<bool> bools(N,false);
+
+			for (int i = 0; i < N; i++) {
 				_boardCards.push_back(cards);
 				_boardOwners.push_back(owners);
+				_boardBools.push_back(bools);
 			}
 
 		};
@@ -147,11 +154,8 @@ public:
 
 
 			}
-
 		}
 	};
-
-
 
 
 

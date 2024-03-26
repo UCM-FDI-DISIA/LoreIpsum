@@ -50,12 +50,6 @@ void IA_manager::evaluateState()
 	s.playerHand.push_back(b);
 	s.playerHand.push_back(c);
 
-	std::vector<bool> aux{ false,false,false };
-
-	s._boardBools.push_back(aux);
-	s._boardBools.push_back(aux);
-	s._boardBools.push_back(aux);
-	s._boardBools.push_back(aux);
 #pragma endregion
 
 	State* best = nullptr;
@@ -164,8 +158,6 @@ std::vector<IA_manager::TuplaSolucion> IA_manager::calcularTurno(State s, bool i
 
 	std::vector<TuplaSolucion> allPosiblePlays;
 
-	int i = 0;
-
 	//NOTA: si cambia el coste del robo hay que cambiar esto
 
 	//la cantidad de veces que se puede robar es el minimo entre los puntos de accion y el tamaño del mazo
@@ -175,7 +167,7 @@ std::vector<IA_manager::TuplaSolucion> IA_manager::calcularTurno(State s, bool i
 	auto& currentDeck = isPlayer ? s.playerDeck : s.enemyDeck;
 	auto& currentHand = isPlayer ? s.playerHand : s.enemyHand;
 
-	while (i <= nRobosPosibles)
+	for (int i= 0; i <= nRobosPosibles;i++)
 	{
 		//si toca robar
 		if (i > 0) {
@@ -201,8 +193,6 @@ std::vector<IA_manager::TuplaSolucion> IA_manager::calcularTurno(State s, bool i
 		for (auto& s : partialPlays) {
 			allPosiblePlays.push_back(TuplaSolucion{ i,s });
 		}
-
-		i++;
 	}
 
 	return allPosiblePlays;
