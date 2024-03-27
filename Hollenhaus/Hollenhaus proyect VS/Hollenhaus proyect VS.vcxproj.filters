@@ -243,7 +243,7 @@
     <ClCompile Include="src\game\components\managers\BoardManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\TypeWriterComponent.cpp">
+    <ClCompile Include="src\game\components\TypeWriter.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\components\DialogueReader.cpp">
@@ -480,7 +480,7 @@
     <ClInclude Include="src\game\Namespaces.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\TypeWriterComponent.h">
+    <ClInclude Include="src\game\components\TypeWriter.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\DialogueReader.h">

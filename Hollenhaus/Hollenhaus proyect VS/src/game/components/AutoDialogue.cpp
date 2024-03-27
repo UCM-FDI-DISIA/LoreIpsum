@@ -1,33 +1,41 @@
 #include "pch.h"
 #include "AutoDialogue.h"
 #include "NextText.h"
+#include "../components/TypeWriter.h"
 
 AutoDialogue::AutoDialogue(int cd) 
 	: cooldown(cd)
 {
 	count = 0;
-	
 }
 
 void AutoDialogue::initComponent()
 {
-	nexttxt = getEntity()->getComponent<NextText>(); 
+	nexttxt = getEntity()->getComponent<NextText>();
+	assert(nexttxt != nullptr);
+
+
+	writer = getEntity()->getComponent<TypeWriter>();
+	assert(writer != nullptr);
+
+	
 }
 
 void AutoDialogue::update()
 {
-	// tiempo de espera
-	if (count < cooldown) {
+	// si no ha acabado
+	if (!writer->ended()) {
+		// tiempo de espera
+		if (count < cooldown) {
 
-		count++;
+			count++;
+		}
+		else {
+
+			// llama a next text
+			// nexttext->NextText();
+
+			count = 0;
+		}
 	}
-	else {
-
-		// llama a next text
-		// nexttext->NextText();
-
-		count = 0;
-	}
-	
-
 }

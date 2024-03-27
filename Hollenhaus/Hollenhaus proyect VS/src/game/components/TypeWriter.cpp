@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "TypeWriterComponent.h"
+#include "TypeWriter.h"
 #include "basics/TextComponent.h"
 #include "../Game.h"
 
@@ -52,6 +52,11 @@ void TypeWriter::typeWrite(std::string newtext)
 	finaltext = "";
 	text = newtext;
 	i = 0;
+}
+
+bool TypeWriter::ended()
+{
+	return finaltext == text;
 }
 
 void TypeWriter::setText()

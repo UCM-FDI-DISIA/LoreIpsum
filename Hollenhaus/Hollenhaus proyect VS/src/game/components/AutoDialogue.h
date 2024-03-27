@@ -1,7 +1,9 @@
 #pragma once
 #include "ComponentUpdate.h"
+#include "TypeWriter.h"
 
 class NextText;
+//class TypeWriterComponent;
 
 
 class AutoDialogue : public ComponentUpdate
@@ -19,6 +21,6 @@ private:
 	int count;
 
 	NextText* nexttxt;
-
+	TypeWriter* writer;
 
 };

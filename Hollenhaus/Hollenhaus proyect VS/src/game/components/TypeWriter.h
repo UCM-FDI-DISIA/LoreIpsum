@@ -14,6 +14,8 @@ public:
 
 	void typeWrite(std::string text);
 
+	bool ended();
+
 private:
 	int speedCounter;
 	int writingSpeed;
