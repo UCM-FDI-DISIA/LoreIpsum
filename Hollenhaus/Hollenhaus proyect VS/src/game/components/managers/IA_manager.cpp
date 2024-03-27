@@ -136,8 +136,10 @@ void IA_manager::posiblesTurnos(
 )
 {
 	//si estoy en la ultima carta, añado la solucion a la lista
-	if (cartaActual == nCartas) {
-		soluciones.push_back(solAct);
+	if (cartaActual == nCartas ) {
+		if (puntosRestantes < 4) {//si hemos consumido algun punto, cambiar magic number
+			soluciones.push_back(solAct);
+		}
 		return;
 	}
 
@@ -180,6 +182,7 @@ void IA_manager::posiblesTurnos(
 			}
 		}
 	}
+
 
 	//actualizar solucion actual con (-1,-1) No colocar	
 	solAct.push_back(CartaColocada(cartaActual, Vector2D(-1, -1)));
