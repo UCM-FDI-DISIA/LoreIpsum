@@ -1,12 +1,11 @@
 #include "pch.h"
 #include "Data.h"
 
-using namespace std;
 
 
 //------Constructora y destructora:
 Data::Data() {}
-Data::Data(int mon, int cas, int sou, list<int>maz, list<int>dra, list<int>def)
+Data::Data(int mon, int cas, int sou, std::list<int>maz, std::vector<int>dra, std::list<int>def)
 	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def)
 {};
 Data::~Data() {};
@@ -25,7 +24,7 @@ void Data::AddCardToDrawer(int id) {
 	drawer.push_back(id);
 }
 void Data::SubtractCardFromDrawer(int id) {
-	drawer.remove(id);
+	drawer[id] = -1;
 }
 
 // ------ FLUJO ------
@@ -80,7 +79,7 @@ bool Data::IdIsInDefeatedNPC(int id) {
 
 //------Escribir en el archivo:
 void Data::Write() {
-	ofstream file;
+	std::ofstream file;
 	file.open("resources/saves/save.txt");
 
 	file << currentMoney << "\n";
@@ -106,7 +105,7 @@ void Data::Write() {
 void Data::Read() {
 	EmptyLists();
 
-	ifstream file;
+	std::ifstream file;
 	file.open("resources/saves/save.txt");
 
 	int number, iterations;

@@ -11,7 +11,7 @@ private:
 		winner = 0;
 
 	// ------ DECKBUILDING -------
-	vector<int> drawer; // Id de las cartas desbloqueadas
+	std::vector<int> drawer; // Id de las cartas desbloqueadas
 	std::list<int> maze; // Id de las cartas del mazo 
 
 	// ------ NS ------
@@ -29,7 +29,7 @@ public:
 
 	//------Constructora y destructora:
 	Data();
-	Data(int mon, int cas, int sou, std::list<int>maz, std::list<int>dra, std::list<int>def);
+	Data(int mon, int cas, int sou, std::list<int>maz, std::vector<int>dra, std::list<int>def);
 	~Data();
 
 	//------Setters:
@@ -61,7 +61,7 @@ public:
 	//----Mazo:
 	const std::list<int> GetMaze() { return maze; }
 	//----Cajon:
-	const vector<int>* GetDrawer() { return &drawer; }
+	const std::vector<int> GetDrawer() { return drawer; }
 
 	// ------ FLUJO ------
 	//----NPCs:

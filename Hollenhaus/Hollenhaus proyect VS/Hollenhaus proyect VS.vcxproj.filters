@@ -264,6 +264,7 @@
     <ClCompile Include="src\game\factories\DeckBuildingFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
+    <ClCompile Include="FakeCardFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -497,9 +498,6 @@
     <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\factories\FakeCardFactory.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\components\managers\PizarraManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
@@ -513,6 +511,10 @@
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
     <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="FakeCardFactory.h" />
+    <ClInclude Include="src\game\factories\FakeCardFactory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
   </ItemGroup>
