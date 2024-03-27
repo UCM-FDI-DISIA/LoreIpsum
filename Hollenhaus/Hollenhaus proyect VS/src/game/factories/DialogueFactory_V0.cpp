@@ -9,15 +9,18 @@
 //#include "../components/DialogueDestroyer.h"
 
 ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size, 
-	int speed, int cooldown, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint, 
-	Text::TextAlignment textAlignment)
+	int speed, int cooldown, ecs::entity_t parent)
 {
 	ecs::entity_t dialogue = Instantiate();
+
 	dialogue->addComponent<Transform>();
+
+	dialogue->addComponent<BoxCollider>(pos, size);
 	dialogue->getComponent<Transform>()->setGlobalPos(pos);
 	dialogue->getComponent<Transform>()->setGlobalScale(size);
+	dialogue->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
 	//dialogue->addComponent<SpriteRenderer>(" ");
-	dialogue->addComponent<BoxCollider>(pos, size);
+	//dialogue->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	dialogue->addComponent<TextComponent>(" ", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	dialogue->addComponent<TypeWriter>(speed);
 	dialogue->addComponent<DialogueReader>(id, convo);
@@ -29,4 +32,15 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	//dialogue->addComponent<DialogueDestroyer>();
 
 	return dialogue;
+}
+
+void DialogueFactory_V0::setTextValues(std::string fid, SDL_Color c, Uint32 wl, Text::BoxPivotPoint bpp,
+	Text::TextAlignment ta)
+{
+	fontID = fid;
+	color = c;
+	wrapLenght = wl;
+	boxPivotPoint = bpp;
+	textAlignment = ta;
+
 }

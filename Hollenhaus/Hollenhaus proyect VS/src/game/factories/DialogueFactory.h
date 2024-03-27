@@ -9,7 +9,9 @@ public:
 	virtual ~DialogueFactory() {};
 
 	virtual ecs::entity_t createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
-		int speed, int cooldown, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
-		Text::TextAlignment textAlignment) = 0;
+		int speed, int cooldown, ecs::entity_t parent) = 0;
+
+	virtual void setTextValues(std::string fid, SDL_Color c, Uint32 wl, Text::BoxPivotPoint bpp, 
+		Text::TextAlignment ta) = 0;
 
 };

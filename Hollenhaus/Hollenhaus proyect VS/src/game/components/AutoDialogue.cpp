@@ -35,7 +35,7 @@ void AutoDialogue::update()
 			// llama a next text
 			nexttxt->callNextNode();
 
-			TuVieja("pasa");
+			//TuVieja("pasa");
 
 			count = 0;
 		}

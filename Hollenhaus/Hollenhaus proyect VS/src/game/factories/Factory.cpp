@@ -98,14 +98,14 @@ ecs::entity_t Factory::createNPC()
 
 
 ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
-	int speed, int cooldown, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
+	int speed, int cooldown, ecs::entity_t parent, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
 	Text::TextAlignment textAlignment)
 {
 	if (dialogueFactory == nullptr) {
 		throw "no existe dialogueFactory";
 	}
 
-	return dialogueFactory->createDialogue(id, convo, node, pos, size, speed, cooldown, fontID, color, wrapLenght, 
-		boxPivotPoint, textAlignment);
+	dialogueFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
+	return dialogueFactory->createDialogue(id, convo, node, pos, size, speed, cooldown, parent);
 	
 }
