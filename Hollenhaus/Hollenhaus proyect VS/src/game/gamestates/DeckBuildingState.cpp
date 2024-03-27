@@ -5,6 +5,7 @@
 #include "../components/basics/TextComponent.h"
 
 #include "../components/NPC.h"
+#include "../components/managers/PizarraManager.h"
 
 
 DeckBuildingState::DeckBuildingState()
@@ -53,6 +54,17 @@ void DeckBuildingState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(2); // Lleva a la ciudad (1).
 	exit->setLayer(1);
+
+
+	//------pizarra:
+	ecs::entity_t pizarra = Instantiate();
+	pizarra->addComponent<Transform>();
+	pizarra->addComponent<SpriteRenderer>("black_box");
+	pizarra->addComponent<BoxCollider>();
+	pizarra->addComponent<PizarraManager>();
+	Vector2D pizarraPos(10, 10);
+	pizarra->getComponent<Transform>()->setGlobalPos(pizarraPos);
+	pizarra->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").play(-1);
