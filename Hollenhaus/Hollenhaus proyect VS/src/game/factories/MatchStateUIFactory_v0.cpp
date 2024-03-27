@@ -62,7 +62,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_BackgroundBlackBox(int posX, 
     // Obtenemos la altura y anchura de "black_box" para definir el tamaño del sprite en pixeles
     int textureW = blackBox->getComponent<SpriteRenderer>()->getTexture()->width();
     int textureH = blackBox->getComponent<SpriteRenderer>()->getTexture()->height();
-    blackBox->getComponent<Transform>()->getGlobalScale().set(xPixelsSize / textureW, yPixelsSize / textureH);
+    blackBox->getComponent<Transform>()->setGlobalScale(xPixelsSize / textureW, yPixelsSize / textureH);
 
     blackBox->setLayer(1);
 

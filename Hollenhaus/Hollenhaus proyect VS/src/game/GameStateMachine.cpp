@@ -40,6 +40,7 @@ GameStateMachine::GameStateMachine() {
 	cityState = new CityState();
 	officeState = new OfficeState();
 	shopState = new ShopState();
+	//boardState = new BoardState();
 	samuState = new SamuState();
 	jimboState = new JimboState();
 	nievesState = new NievesState();

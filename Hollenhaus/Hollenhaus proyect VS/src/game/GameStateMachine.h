@@ -20,7 +20,7 @@ namespace GameStates
 {
 	//Enum de estados del juego
 	enum game_states {
-		MAINMENU = 0,
+		MAINMENU,
 		CITY,
 		OFFICE,
 		SHOP,
