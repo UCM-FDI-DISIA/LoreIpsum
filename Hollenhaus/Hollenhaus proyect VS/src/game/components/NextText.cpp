@@ -50,4 +50,10 @@ void NextText::reactToClick()
 	}
 }
 
+void NextText::callNextNode()
+{
+	TuVieja("Cambio de nodo.");
+	dialogueReader_->NextNode();
+}
+
 

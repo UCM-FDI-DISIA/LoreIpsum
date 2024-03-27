@@ -29,7 +29,7 @@ void DialogueReader::NextNode()
 		//dialogueDestroyer_->DestroyDialogue();
 		return;
 	}
-	//typeWriter_->setText(convo_->Node(actualNode_));
+	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
 	//eventCollection_->callEvent(convo_->Node(actualNode_).NodeEventStart());
 }
 

@@ -24,6 +24,7 @@ public:
 	void OnLeftClickDown();
 	void OnLeftClickUp();
 	void reactToClick();
+	void callNextNode();
 
 private:
 	bool click;

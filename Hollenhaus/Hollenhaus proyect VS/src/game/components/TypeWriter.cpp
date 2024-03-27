@@ -19,6 +19,9 @@ TypeWriter::~TypeWriter()
 
 void TypeWriter::initComponent()
 {
+	finaltext = " ";
+	text = " ";
+	i = 0;
 }
 
 void TypeWriter::update()

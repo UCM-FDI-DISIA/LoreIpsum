@@ -23,8 +23,8 @@ void AutoDialogue::initComponent()
 
 void AutoDialogue::update()
 {
-	// si no ha acabado
-	if (!writer->ended()) {
+	// si ha acabado
+	if (writer->ended()) {
 		// tiempo de espera
 		if (count < cooldown) {
 
@@ -33,7 +33,9 @@ void AutoDialogue::update()
 		else {
 
 			// llama a next text
-			// nexttext->NextText();
+			nexttxt->callNextNode();
+
+			TuVieja("pasa");
 
 			count = 0;
 		}

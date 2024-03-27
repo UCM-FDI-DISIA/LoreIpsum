@@ -83,12 +83,14 @@ void NPC::talkTo()
 	if (!click && myBoxCollider->isCursorOver()) {
 		TuVieja("Que charlatan el tio...");
 		
+		float x = ent_->getComponent<Transform>()->getGlobalPos().getX();
+		float y = ent_->getComponent<Transform>()->getGlobalPos().getY();
+
 		// crear dialogo del FACTORY de dialogos
-		factory->createDialogue("El Xungo del Barrio", 0, 0, {0,0}, {10,10},
-			5, 3, "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }), 100, Text::BoxPivotPoint::CenterCenter,
+		factory->createDialogue("El Xungo del Barrio", 0, 0, {x,y}, {10,10},
+			5, 10, "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }), 100, Text::BoxPivotPoint::CenterCenter,
 			Text::TextAlignment::Center);
 
-		//getEntity()->getComponent<TypeWriter>()->typeWrite("hola buenas paul der geist yo soy el Xulo del Barrio");
 	}
 
 }
