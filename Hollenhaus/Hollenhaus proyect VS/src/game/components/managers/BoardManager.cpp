@@ -262,6 +262,63 @@ void BoardManager::initBoardIA()
 	}
 }
 
+std::vector<std::vector<bool>> BoardManager::getBoardBoolsIA()
+{ 
+	std::vector<std::vector<bool>> board;
+
+	//creacion del board
+	board.resize(size);
+	for (int i = 0; i < size; i++) {
+		board[i].resize(size);
+	}
+
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			board[i][j] = _board[i][j]->getComponent<Cell>()->getCard() != nullptr;
+		}
+	}
+
+	return board;
+}
+
+std::vector<std::vector<Card*>> BoardManager::getBoardCardsIA()
+{
+	std::vector<std::vector<Card*>> board;
+
+	//creacion del board
+	board.resize(size);
+	for (int i = 0; i < size; i++) {
+		board[i].resize(size);
+	}
+
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			board[i][j] = _board[i][j]->getComponent<Cell>()->getCard();
+		}
+	}
+
+	return board;
+}
+
+std::vector<std::vector<Players::Owner>> BoardManager::getBoardOwnerIA()
+{
+	std::vector<std::vector<Players::Owner>> board;
+
+	//creacion del board
+	board.resize(size);
+	for (int i = 0; i < size; i++) {
+		board[i].resize(size);
+	}
+
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			board[i][j] = _board[i][j]->getComponent<Cell>()->getOwner();
+		}
+	}
+
+	return board;
+}
+
 void BoardManager::initBoard()
 {
 	/// Inicializacion de referencias de cada celda

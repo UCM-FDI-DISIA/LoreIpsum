@@ -61,6 +61,9 @@ public:
 
     void initBoardIA();
 
+    std::vector<std::vector<bool>> getBoardBoolsIA();
+    std::vector<std::vector<Card*>> getBoardCardsIA();
+    std::vector<std::vector<Players::Owner>> getBoardOwnerIA();
 
 private:
     void initBoard();

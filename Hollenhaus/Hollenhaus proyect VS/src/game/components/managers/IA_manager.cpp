@@ -96,8 +96,9 @@ IA_manager::InfoJugada IA_manager::StartTurn()
 	}
 	s.enemyHand = handCopyEnemy;
 
-
-	s._boardBools;
+	s._boardBools = boardManager->getBoardBoolsIA();
+	s._boardCards = boardManager->getBoardCardsIA();
+	s._boardOwners = boardManager->getBoardOwnerIA();
 
 	/*
 	#pragma region Mano y mazo de pruebas
