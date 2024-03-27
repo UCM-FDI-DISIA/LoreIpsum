@@ -69,6 +69,8 @@
     <ClCompile Include="src\game\factories\Factory.cpp" />
     <ClCompile Include="src\game\factories\MatchStateUIFactory.cpp" />
     <ClCompile Include="src\game\factories\MatchStateUIFactory_v0.cpp" />
+    <ClCompile Include="src\game\factories\NPCFactory.cpp" />
+    <ClCompile Include="src\game\factories\NPCFactory_V0.cpp" />
     <ClCompile Include="src\game\gamestates\AndresState.cpp" />
     <ClCompile Include="src\game\gamestates\CityState.cpp" />
     <ClCompile Include="src\game\gamestates\GameState.cpp" />
@@ -188,6 +190,8 @@
     <ClInclude Include="src\game\components\NPC.h" />
     <ClInclude Include="src\game\components\TypeWriter.h" />
     <ClInclude Include="src\game\EffectCollection.h" />
+    <ClInclude Include="src\game\factories\NPCFactory.h" />
+    <ClInclude Include="src\game\factories\NPCFactory_V0.h" />
     <ClInclude Include="src\game\Namespaces.h" />
     <ClInclude Include="src\game\factories\BoardFactory.h" />
     <ClInclude Include="src\game\factories\BoardFactory_v0.h" />
