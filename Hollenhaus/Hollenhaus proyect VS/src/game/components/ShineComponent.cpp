@@ -3,10 +3,8 @@
 #include "ShineComponent.h"
 
 
-ShineComponent::ShineComponent(ecs::entity_t ent, std::string fotoNueva)
+ShineComponent::ShineComponent()
 {
-	_entToShine = ent;
-	_fotoNueva = fotoNueva;
 }
 
 ShineComponent::~ShineComponent()
@@ -15,26 +13,38 @@ ShineComponent::~ShineComponent()
 
 void ShineComponent::initComponent()
 {
-    _myBoxCollider = ent_->getComponent<BoxCollider>();
-	_mySpriteRenderer = _entToShine->getComponent<SpriteRenderer>();
-	_fotoantigua = _mySpriteRenderer->getTexture();
+	_myBoxCollider = ent_->getComponent<BoxCollider>();
 }
 
 void ShineComponent::update()
 {
-	if (_myBoxCollider->isCursorOver()) {
-
-		Shine();
-		
-	}
-	else {
-		_mySpriteRenderer->setTexture(_fotoantigua);
-	}
+	Shine();
 }
+
+void ShineComponent::addEnt(SpriteRenderer* entitySR, std::string _newPic)
+{
+	_mySpriteRenderers.push_back(entitySR);
+	_fotoNueva.push_back(_newPic);
+	_fotosAntiguas.push_back(entitySR->getTexture());
+}
+
 
 void ShineComponent::Shine()
 {
-	_mySpriteRenderer->setTexture(_fotoNueva);
+	if (_myBoxCollider->isCursorOver()) {
+
+		for (int i = 0; i < _mySpriteRenderers.size(); i++) {
+		
+			_mySpriteRenderers[i]->setTexture(_fotoNueva[i]);
+		
+		}
+	}
+	else {
+		for (int i = 0; i < _mySpriteRenderers.size(); i++) {
+
+			_mySpriteRenderers[i]->setTexture(_fotosAntiguas[i]);
+		}
+	}
 	
 }
 

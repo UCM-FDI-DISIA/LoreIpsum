@@ -141,7 +141,9 @@ void ShopState::onEnter()
 	carta1->addComponent<Transform>();
 	carta1->addComponent<BoxCollider>();
 	carta1->addComponent<SpriteRenderer>("card");
-	carta1->addComponent<ShineComponent>(coin1, "monedaIlu");
+	carta1->addComponent<ShineComponent>();
+	carta1->getComponent<ShineComponent>()->addEnt(coin7->getComponent<SpriteRenderer>(), "monedaIlu");
+	carta1->getComponent<ShineComponent>()->addEnt(coin6->getComponent<SpriteRenderer>(), "monedaIlu");
 	Vector2D card1Pos(440, 135);
 	carta1->getComponent<Transform>()->setGlobalPos(card1Pos);
 	carta1->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
@@ -152,7 +154,8 @@ void ShopState::onEnter()
 	carta2->addComponent<Transform>();
 	carta2->addComponent<BoxCollider>();
 	carta2->addComponent<SpriteRenderer>("card");
-	carta2->addComponent<ShineComponent>(coin2, "monedaIlu");
+	carta2->addComponent<ShineComponent>();
+	carta2->getComponent<ShineComponent>()->addEnt(coin3->getComponent<SpriteRenderer>(), "monedaIlu");
 	Vector2D card2Pos(550, 280);
 	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
 	carta2->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
@@ -163,7 +166,8 @@ void ShopState::onEnter()
 	carta3->addComponent<Transform>();
 	carta3->addComponent<BoxCollider>();
 	carta3->addComponent<SpriteRenderer>("card");
-	carta3->addComponent<ShineComponent>(coin3, "monedaIlu");
+	carta3->addComponent<ShineComponent>();
+	carta3->getComponent<ShineComponent>()->addEnt(coin5->getComponent<SpriteRenderer>(), "monedaIlu");
 	Vector2D card3Pos(440, 280);
 	carta3->getComponent<Transform>()->setGlobalPos(card3Pos);
 	carta3->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
@@ -174,7 +178,9 @@ void ShopState::onEnter()
 	carta4->addComponent<Transform>();
 	carta4->addComponent<BoxCollider>();
 	carta4->addComponent<SpriteRenderer>("card");
-	carta4->addComponent<ShineComponent>(coin4, "monedaIlu");
+	carta4->addComponent<ShineComponent>();
+	carta4->getComponent<ShineComponent>()->addEnt(coin1->getComponent<SpriteRenderer>(), "monedaIlu");
+	carta4->getComponent<ShineComponent>()->addEnt(coin2->getComponent<SpriteRenderer>(), "monedaIlu");
 	Vector2D card4Pos(550, 135);
 	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
 	carta4->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
