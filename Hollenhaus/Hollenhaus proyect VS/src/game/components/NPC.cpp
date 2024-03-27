@@ -90,7 +90,7 @@ void NPC::talkTo()
 
 		// crear dialogo del FACTORY de dialogos
 		factory->createDialogue("El Xungo del Barrio", 0, 0, {x,y}, {10,10},
-			5, 10, getEntity(), "8bit_size_12", SDL_Color({255, 255, 255, 255}), 100, Text::BoxPivotPoint::CenterCenter,
+			5, 10, getEntity(), 3, "8bit_size_12", SDL_Color({255, 255, 255, 255}), 100, Text::BoxPivotPoint::CenterCenter,
 			Text::TextAlignment::Center);
 	}
 

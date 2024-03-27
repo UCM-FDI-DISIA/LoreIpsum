@@ -14,7 +14,7 @@ ecs::entity_t NPCFactory_V0::createNPC(std::string id, std::string sprite,
 	npc->getComponent<Transform>()->getRelativeScale().set(scale.getX(), scale.getY());
 	npc->getComponent<Transform>()->setGlobalPos(pos);
 	npc->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	npc->addComponent<NPC>(scene); // Lleva a la oficina (2).
+	npc->addComponent<NPC>(scene);
 	npc->setLayer(layer);
 
     return npc;

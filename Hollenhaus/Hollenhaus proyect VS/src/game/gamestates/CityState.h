@@ -1,5 +1,7 @@
 #include "GameState.h"
 
+class Factory;
+
 class CityState : public GameState
 {
 public:
@@ -19,4 +21,5 @@ private:
 	//Cambio a tienda y oficina
 	//Cambio a NPC
 	//Dialogo NPC -> Cambio estado combate
+	Factory* factory;
 };

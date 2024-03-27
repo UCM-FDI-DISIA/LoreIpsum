@@ -86,14 +86,16 @@ ecs::entity_t Factory::createVisual_BackgroundFullImage()
 	return matchStateUIFactory->createVisual_BackgroundBoard();
 }
 
-ecs::entity_t Factory::createNPC()
+ecs::entity_t Factory::createNPC(std::string id, std::string sprite,
+	Vector2D scale, Vector2D pos, int type, int scene, int layer,
+	ecs::entity_t parent)
 {
 	if (npcFactory == nullptr) {
 		throw "no existe npcFactory";
 	}
 
 	// PLACEHOLDER
-	return npcFactory->createNPC(" ", " ", {0,0}, {0,0}, 0, 0, 0, nullptr);
+	return npcFactory->createNPC(id, sprite, scale, pos, type, scene, layer, parent);
 }
 
 
