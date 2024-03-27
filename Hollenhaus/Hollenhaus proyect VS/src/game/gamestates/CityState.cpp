@@ -105,14 +105,15 @@ void CityState::onEnter()
 	npc4->getComponent<Transform>()->setGlobalPos(npc4Pos);
 	npc4->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	npc4->addComponent<NPC>(6, 1);
+	/*
 	npc4->addComponent<TypeWriter>(5);
-	npc4->addComponent<DialogueReader>("El Xungo del Barrio", 0);
+	npc4->addComponent<DialogueReader>("El Xungo del Barrio", 0);*/
 	
 	// estoy mirando el texto jiji
-	npc4->addComponent<TextComponent>(" ", "8bit_size_12",
+	/*npc4->addComponent<TextComponent>(" ", "8bit_size_12",
 		SDL_Color({ 255, 255, 255, 255 }), 100, Text::BoxPivotPoint::CenterCenter, 
 		Text::TextAlignment::Center);
-	npc4->addComponent<NextText>();
+	npc4->addComponent<NextText>();*/
 	npc4->setLayer(2);
 
 	//------Boton para volver al menu principal:

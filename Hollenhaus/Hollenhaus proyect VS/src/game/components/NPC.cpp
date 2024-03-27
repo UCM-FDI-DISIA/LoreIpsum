@@ -17,12 +17,11 @@ NPC::NPC(int scene)
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 	type = 0;
 
-	factory = nullptr;
 
-	//factory = new Factory();
-	//factory->SetFactories(
-	//	static_cast<DialogueFactory*>(new DialogueFactory_V0())
-	//);
+	factory = new Factory();
+	factory->SetFactories(
+		static_cast<DialogueFactory*>(new DialogueFactory_V0())
+	);
 
 }
 
@@ -34,6 +33,11 @@ NPC::NPC(int scene, int t)
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 	type = t;
+
+	factory = new Factory();
+	factory->SetFactories(
+		static_cast<DialogueFactory*>(new DialogueFactory_V0())
+	);
 
 
 }
