@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FakeCardFactory.cpp" />
+    <ClCompile Include="DropZone.cpp" />
     <ClCompile Include="pchs\pch_c++_basic.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch_c++_basic.h</PrecompiledHeaderFile>
@@ -45,7 +45,9 @@
     <ClCompile Include="src\game\components\ColliderRender.cpp" />
     <ClCompile Include="src\game\components\DeckComponent.cpp" />
     <ClCompile Include="src\game\components\Drag.cpp" />
+    <ClCompile Include="src\game\components\DragNoCombat.cpp" />
     <ClCompile Include="src\game\components\DropDetector.cpp" />
+    <ClCompile Include="src\game\components\DropZone.cpp" />
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
     <ClCompile Include="src\game\components\HandComponent.cpp" />
     <ClCompile Include="src\game\components\managers\BoardManager.cpp" />
@@ -161,7 +163,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FakeCardFactory.h" />
+    <ClInclude Include="DropZone.h" />
     <ClInclude Include="pchs\pch_c++_basic.h" />
     <ClInclude Include="pchs\pch_SDL.h" />
     <ClInclude Include="src\game\components\basics\BoxCollider.h" />
@@ -176,7 +178,9 @@
     <ClInclude Include="src\game\components\ComponentUpdate.h" />
     <ClInclude Include="src\game\components\DeckComponent.h" />
     <ClInclude Include="src\game\components\Drag.h" />
+    <ClInclude Include="src\game\components\DragNoCombat.h" />
     <ClInclude Include="src\game\components\DropDetector.h" />
+    <ClInclude Include="src\game\components\DropZone.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
     <ClInclude Include="src\game\components\HandComponent.h" />
     <ClInclude Include="src\game\components\managers\BoardManager.h" />

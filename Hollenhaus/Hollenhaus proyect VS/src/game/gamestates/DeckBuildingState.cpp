@@ -1,21 +1,34 @@
+// pch
 #include "pch.h"
-#include "DeckBuildingState.h"
-#include "../components/managers/Manager.h"
-#include "../../sdlutils/InputHandler.h"
-#include "../components/basics/TextComponent.h"
-#include "../components/managers/DragManager.h"
 
-#include "../components/NPC.h"
+// estado
+#include "DeckBuildingState.h"
+
+// managers
+#include "../components/managers/Manager.h"
 #include "../components/managers/PizarraManager.h"
+#include "../components/DragNoCombat.h"
+
+// factorias
 #include "../factories/Factory.h"
 #include "../factories/FakeCardFactory_v0.h"
 
+// input
+#include "../../sdlutils/InputHandler.h"
 
+// componentes
+#include "../components/basics/TextComponent.h"
+#include "../components/NPC.h"
+
+// ------------------------------------------------------- //
+
+// ---- constructora ----
 DeckBuildingState::DeckBuildingState()
 {
 	TuVieja("Loading DeckBuildingState");
 }
 
+// ---- basicos ----
 void DeckBuildingState::update()
 {
 	GameState::update();
@@ -31,37 +44,35 @@ void DeckBuildingState::refresh()
 	GameState::refresh();
 }
 
+// ---- ENTER ESTADO ----
 void DeckBuildingState::onEnter()
 {
 	std::cout << "\nENTER DECKBUILDING.\n";
-	// Drag Manager se encarga de gestionar el drag de todas las cartas
+
+	// ---- DRAG ----
+	// DragNoCombat se encarga de gestionar el drag de todas las cartas
 	ecs::entity_t ent = Instantiate();
-	ent->addComponent<DragManager>();
-	//ent->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
+	ent->addComponent<DragNoCombat>();
 
+	// ---- CARDS ----
 	auto card = sdlutils().cards().at(std::to_string(0));
-
 	Factory* factory = new Factory();
-	factory->SetFactories(
-		static_cast<FakeCardFactory*>(new FakeCardFactory_v0())
-	);
-
-
+	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
 	factory->createFakeCard(0, Vector2D(100,100), card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
 
-	//------Texto de la oficina.
+	// ---- TEXTO ----
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
 	officeText->addComponent<TextComponent>("DECKBUILDING", "8bit_24pt", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	officeText->setLayer(1);
 
-	//-----Imagen de fondo:
+	// ---- FONDO ----
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("rice");
 	fondo->getComponent<Transform>()->getGlobalScale().set(0.85f, 0.85f);
 	fondo->setLayer(0);
 
-	//------Boton para volver:
+	// ---- BOTONES ----
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
 	exit->addComponent<SpriteRenderer>("boton_flecha");
@@ -72,8 +83,7 @@ void DeckBuildingState::onEnter()
 	exit->addComponent<NPC>(2); // Lleva a la ciudad (1).
 	exit->setLayer(1);
 
-
-	//------pizarra:
+	// ---- PIZARRA ----
 	ecs::entity_t pizarra = Instantiate();
 	pizarra->addComponent<Transform>();
 	pizarra->addComponent<SpriteRenderer>("black_box");
@@ -84,20 +94,23 @@ void DeckBuildingState::onEnter()
 	pizarra->getComponent<Transform>()->setGlobalScale(4.5,3);
 	pizarra->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
+	// ---- CAJON ----
+
+
+	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").play(-1);
 	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
-
-
 }
 
+// ---- EXIT ESTADO ----
 void DeckBuildingState::onExit()
 {
-	std::cout << "\nEXIT DECKBUILDING.\n";
-
+	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
 
 	GameStateMachine::instance()->getMngr()->Free();
-}
 
+	std::cout << "\nEXIT DECKBUILDING.\n";
+}
