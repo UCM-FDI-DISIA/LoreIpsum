@@ -1,6 +1,9 @@
 #pragma once
 #include "ComponentUpdate.h"
 #include "./basics/BoxCollider.h"
+#include "./managers/DrawerManager.h"
+#include "./managers/PizarraManager.h"
+#include "./Card.h"
 
 class DropZone : public ComponentUpdate
 {
@@ -16,4 +19,7 @@ public:
 	void update() override;
 
 	bool isOnDropZone(Transform* cardTransform);
+
+	void moveToPizarra(DrawerManager* drawer, PizarraManager* pizarra, Card* card);
+	void moveToDrawer(DrawerManager* drawer, PizarraManager* pizarra, Card* card);
 };

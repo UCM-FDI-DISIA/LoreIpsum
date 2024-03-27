@@ -25,6 +25,7 @@ public:
 	// ---- Manageos de carta ----
 	// Aniade carta
 	void addCard(int id);
+
 	// Quita carta
 	void removeCard(int id);
 

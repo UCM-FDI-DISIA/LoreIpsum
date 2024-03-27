@@ -4,6 +4,7 @@
 #include "../../sdlutils/InputHandler.h"
 #include "basics/BoxCollider.h"
 #include "basics/Transform.h"
+#include "DropZone.h"
 
 DragNoCombat::DragNoCombat() {}
 
@@ -70,6 +71,9 @@ void DragNoCombat::OnLeftClickUp()
 	// si se suelta el cursor y se tenia carta
 	if (dragTransform != nullptr)
 	{
-		
+		if(dragTransform->getParent() == dropZonePizarra)
+		{
+			
+		}
 	}
 }

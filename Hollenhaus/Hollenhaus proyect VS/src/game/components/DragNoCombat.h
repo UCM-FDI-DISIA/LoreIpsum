@@ -8,6 +8,8 @@ class DragNoCombat : public ComponentUpdate
 {
 private:
 	Transform* dragTransform; // transform de la carta draggeada
+	Transform* dropZonePizarra;
+	Transform* dropZoneDrawer;
 
 	Vector2D initialMousePos;
 	Vector2D initialTransformPos;
