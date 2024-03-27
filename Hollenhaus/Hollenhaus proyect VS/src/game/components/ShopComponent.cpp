@@ -12,9 +12,13 @@ ShopComponent::~ShopComponent()
 
 void ShopComponent::initComponent()
 {
-	if (GameStateMachine::instance()->getCurrentState()->checkDataShopCardsIsEmpty())
+	if (GameStateMachine::instance()->getCurrentState()->checkDataShopCardsIsEmpty()) // Si no hay cartas de la tienda en Data entonces se tienen que generar.
 	{
 		generateCards();
+	}
+	else
+	{
+		//-------------------------------------Traer desde Data las cartas de la tienda.
 	}
 
 
@@ -26,6 +30,7 @@ void ShopComponent::generateCards()
 	for (size_t i = 0; i < 4; i++)
 	{
 		GameStateMachine::instance()->getCurrentState()->setShopCard(i);
+		//--------meterla en el array de aqui.
 	}
 }
 

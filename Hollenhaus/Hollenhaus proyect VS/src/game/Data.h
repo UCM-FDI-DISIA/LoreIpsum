@@ -12,7 +12,7 @@ private:
 	std::list<int> drawer;
 	std::list<int> maze;  // cleon: "mierda, mierda, mierda"
 	std::list<int> defeatedNPCS;
-	int* shopCards;
+	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
 
 	enum WINNER {
@@ -47,7 +47,7 @@ public:
 	void AddCurrentCase();
 	//----Ganardor de la ultima partida:
 	void setWinner(int i);
-	//----Cartas de la tienda:
+	//----Mete una carta al array de cartas de la tienda. Booleano pues por si acaso.
 	bool setShopCard(int id);
 
 	//------Getters:
@@ -65,7 +65,7 @@ public:
 	const int GetCurrentCase() { return currentCase; };
 	//----Ganador de la ultima partida:
 	int getWinner() { return winner; }
-	//----Comprobar si shopCards esta vacio:
+	//----Comprueba si shopCards esta vacio:
 	bool shopCardsIsEmpty();
 
 	//------Busqueda:
@@ -75,7 +75,7 @@ public:
 	bool IdIsInDrawer(int id);
 	//----NPCs:
 	bool IdIsInDefeatedNPC(int id);
-	//----Carta de la tienda:
+	//----Busqueda de una carta de la tienda por id:
 	bool IdIsInShopCards(int id);
 
 	//------Escritura:
@@ -84,9 +84,14 @@ public:
 	void Read();
 
 	//------Vaciar:
+	//----Vaciado de todas las listas a la vez.
 	void EmptyLists();
+	//----Vaciado de la lista del mazo.
 	void EmptyMaze();
+	//----Vaciado de la lista del cajon.
 	void EmptyDrawer();
+	//----Vaciado de la lista de NPCs derrotados.
 	void EmptyNPCS();
+	//----Vaciado del array de cartas de la tienda. Lo pone todo a (-1 ,-1, -1, -1).
 	void EmptyShopCards();
 };

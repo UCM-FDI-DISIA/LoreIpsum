@@ -30,8 +30,11 @@ public:
 	virtual void onExit() = 0;
 
 	virtual void setWinnerOnData(int w);
+	//----Mete una c carta al array de cartas de la tienda de Data.
 	virtual void setShopCard(int c);
+	//----Comprueba si el array de cartas de la tienda de Data esta vacia.
 	virtual bool checkDataShopCardsIsEmpty();
+	//----Comprueba si una carta con id id esta en el array de cartas de la tienda de Data.
 	virtual bool checkCardIsInDrawer(int id);
 
 	// ---- setters ----
