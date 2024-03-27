@@ -3,11 +3,15 @@
 
 #include "vector"
 #include "iostream"
+#include <list>
 
 #include "../Card.h"
 #include "../../Namespaces.h"
 #include <SDL.h>
 #include "BoardManager.h"
+
+#include "../DeckComponent.h"
+#include "../HandComponent.h"
 
 //inicializacion de variable estatica del struct State
 IA_manager* IA_manager::State::ia_manager = nullptr;
@@ -65,7 +69,23 @@ IA_manager::InfoJugada IA_manager::StartTurn()
 
 	State s;
 	s.actionPoints = 4;
-	s.playerDeck;
+
+	//seteo de los decks
+	std::vector<Card*> deckCopyPlayer;
+	for (auto c : playerDeckCmp->getDeck()) {
+		deckCopyPlayer.push_back(c);
+	}
+	s.playerDeck = deckCopyPlayer;
+
+	std::vector<Card*> deckCopyEnemy;
+	for (auto c : enemyDeckCmp->getDeck()) {
+		deckCopyEnemy.push_back(c);
+	}
+	s.playerDeck = deckCopyEnemy;
+
+
+
+
 	s.playerHand;
 	s._boardBools;
 

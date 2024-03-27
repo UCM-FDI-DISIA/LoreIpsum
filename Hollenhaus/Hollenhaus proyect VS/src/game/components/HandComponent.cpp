@@ -5,6 +5,8 @@
 #include "basics/SpriteRenderer.h"
 #include "managers/CardStateManager.h"
 
+#include "Card.h"
+
 HandComponent::HandComponent() :
 	transform_(), lastCardAdded_(nullptr)
 {
@@ -79,6 +81,17 @@ void HandComponent::removeCard(ecs::entity_t card) {
 	cardsInHand_ = auxVec;
 
 	refreshPositions();
+}
+
+std::vector<Card*> HandComponent::getHand()
+{
+	std::vector<Card*> v;
+
+	for (auto e : cardsInHand_) {
+		v.push_back(new Card((*e->getComponent<Card>())));//copia para no usar la misma memoria?
+	}
+
+	return v;
 }
 
 void HandComponent::refreshPositions() {
