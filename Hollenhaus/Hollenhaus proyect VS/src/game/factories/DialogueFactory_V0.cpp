@@ -9,7 +9,7 @@
 //#include "../components/DialogueDestroyer.h"
 
 ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size, 
-	int speed, int cooldown, ecs::entity_t parent)
+	int speed, int cooldown, ecs::entity_t parent, int layer)
 {
 	ecs::entity_t dialogue = Instantiate();
 
@@ -26,7 +26,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	dialogue->addComponent<DialogueReader>(id, convo);
 	dialogue->addComponent<NextText>();
 	dialogue->addComponent<AutoDialogue>(cooldown);
-	dialogue->setLayer(3);
+	dialogue->setLayer(layer);
 
 	//dialogue->addComponent<DialogueEventCollection>();
 	//dialogue->addComponent<DialogueDestroyer>();
