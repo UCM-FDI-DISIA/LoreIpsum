@@ -14,6 +14,8 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 {
 	ecs::entity_t dialogue = Instantiate();
 	dialogue->addComponent<Transform>();
+	dialogue->getComponent<Transform>()->setGlobalPos(pos);
+	dialogue->getComponent<Transform>()->setGlobalScale(size);
 	//dialogue->addComponent<SpriteRenderer>(" ");
 	dialogue->addComponent<BoxCollider>(pos, size);
 	dialogue->addComponent<TextComponent>(" ", fontID, color, wrapLenght, boxPivotPoint, textAlignment);

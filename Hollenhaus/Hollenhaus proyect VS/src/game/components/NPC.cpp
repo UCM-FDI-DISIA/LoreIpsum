@@ -86,6 +86,8 @@ void NPC::talkTo()
 		float x = ent_->getComponent<Transform>()->getGlobalPos().getX();
 		float y = ent_->getComponent<Transform>()->getGlobalPos().getY();
 
+		TuVieja(std::to_string(x));
+
 		// crear dialogo del FACTORY de dialogos
 		factory->createDialogue("El Xungo del Barrio", 0, 0, {x,y}, {10,10},
 			5, 10, "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }), 100, Text::BoxPivotPoint::CenterCenter,
