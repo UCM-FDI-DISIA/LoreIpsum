@@ -81,14 +81,25 @@ IA_manager::InfoJugada IA_manager::StartTurn()
 	for (auto c : enemyDeckCmp->getDeck()) {
 		deckCopyEnemy.push_back(c);
 	}
-	s.playerDeck = deckCopyEnemy;
+	s.enemyDeck = deckCopyEnemy;
+
+	//seteo de los hands
+	std::vector<Card*> handCopyPlayer;
+	for (auto c : playerHandCmp->getHand()) {
+		handCopyPlayer.push_back(c);
+	}
+	s.playerHand = handCopyPlayer;
+
+	std::vector<Card*> handCopyEnemy;
+	for (auto c : enemyHandCmp->getHand()) {
+		handCopyEnemy.push_back(c);
+	}
+	s.enemyHand = handCopyEnemy;
 
 
-
-
-	s.playerHand;
 	s._boardBools;
 
+	/*
 	#pragma region Mano y mazo de pruebas
 
 	Card* a = new Card(2, 2);
@@ -115,11 +126,13 @@ IA_manager::InfoJugada IA_manager::StartTurn()
 
 	#pragma endregion
 
+	*/
+
 	State* best = nullptr;
 
 	uint32_t time = SDL_GetTicks();
 
-	int value = minimax(0, 1, true, s, best);
+	int value = minimax(0, 1, false, s, best);
 	time = SDL_GetTicks() - time;
 
 #ifdef _DEBUG
