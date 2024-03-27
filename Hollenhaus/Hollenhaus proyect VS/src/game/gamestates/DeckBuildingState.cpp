@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "OfficeState.h"
+#include "DeckBuildingState.h"
 #include "../components/managers/Manager.h"
 #include "../../sdlutils/InputHandler.h"
 #include "../components/basics/TextComponent.h"
@@ -7,39 +7,39 @@
 #include "../components/NPC.h"
 
 
-OfficeState::OfficeState()
+DeckBuildingState::DeckBuildingState()
 {
-	TuVieja("Loading OfficeState");
+	TuVieja("Loading DeckBuildingState");
 }
 
-void OfficeState::update()
+void DeckBuildingState::update()
 {
 	GameState::update();
 }
 
-void OfficeState::render() const
+void DeckBuildingState::render() const
 {
 	GameState::render();
 }
 
-void OfficeState::refresh()
+void DeckBuildingState::refresh()
 {
 	GameState::refresh();
 }
 
-void OfficeState::onEnter()
+void DeckBuildingState::onEnter()
 {
-	std::cout << "\nENTER OFFICE.\n";
-	
+	std::cout << "\nENTER DECKBUILDING.\n";
+
 	//------Texto de la oficina.
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
-	officeText->addComponent<TextComponent>("OFICINA", "8bit_24pt", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	officeText->addComponent<TextComponent>("DECKBUILDING", "8bit_24pt", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	officeText->setLayer(1);
 
 	//-----Imagen de fondo:
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
-	fondo->addComponent<SpriteRenderer>("oficinafondo");
+	fondo->addComponent<SpriteRenderer>("rice");
 	fondo->getComponent<Transform>()->getGlobalScale().set(0.85f, 0.85f);
 	fondo->setLayer(0);
 
@@ -51,20 +51,8 @@ void OfficeState::onEnter()
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
+	exit->addComponent<NPC>(2); // Lleva a la ciudad (1).
 	exit->setLayer(1);
-
-	//------Boton para deckBuilding:
-	ecs::entity_t db = Instantiate();
-	db->addComponent<Transform>();
-	db->addComponent<SpriteRenderer>("rice");
-	db->addComponent<BoxCollider>();
-	Vector2D dbPos(500, 10);
-	db->getComponent<Transform>()->setGlobalPos(dbPos);
-	db->getComponent<Transform>()->setGlobalScale(Vector2D(0.5f, 0.5f));
-	db->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	db->addComponent<NPC>(9); // Lleva al deckbuilding (9).
-	db->setLayer(1);
 
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").play(-1);
@@ -73,9 +61,9 @@ void OfficeState::onEnter()
 
 }
 
-void OfficeState::onExit()
+void DeckBuildingState::onExit()
 {
-	std::cout << "\nEXIT OFFICE.\n";
+	std::cout << "\nEXIT DECKBUILDING.\n";
 
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
