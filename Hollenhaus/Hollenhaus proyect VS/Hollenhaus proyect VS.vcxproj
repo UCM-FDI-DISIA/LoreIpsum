@@ -59,7 +59,8 @@
     <ClCompile Include="src\game\components\MoveOnClick.cpp" />
     <ClCompile Include="src\game\components\NextText.cpp" />
     <ClCompile Include="src\game\components\NPC.cpp" />
-    <ClCompile Include="src\game\components\TypeWriter.cpp" />
+    <ClCompile Include="src\game\components\TypeWriterComponent.cpp" />
+    <ClCompile Include="src\game\Dialogue.cpp" />
     <ClCompile Include="src\game\EffectCollection.cpp" />
     <ClCompile Include="src\game\factories\BoardFactory.cpp" />
     <ClCompile Include="src\game\factories\BoardFactory_v0.cpp" />
@@ -186,7 +187,8 @@
     <ClInclude Include="src\game\components\MoveOnClick.h" />
     <ClInclude Include="src\game\components\NextText.h" />
     <ClInclude Include="src\game\components\NPC.h" />
-    <ClInclude Include="src\game\components\TypeWriter.h" />
+    <ClInclude Include="src\game\components\TypeWriterComponent.h" />
+    <ClInclude Include="src\game\Dialogue.h" />
     <ClInclude Include="src\game\EffectCollection.h" />
     <ClInclude Include="src\game\Namespaces.h" />
     <ClInclude Include="src\game\factories\BoardFactory.h" />
