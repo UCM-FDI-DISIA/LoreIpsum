@@ -43,11 +43,11 @@ public:
 	/// <param name="_anchored"></param>
 	void setAnchoredToSprite(bool _anchored) { anchoredToSprite_ = _anchored; }
 
-	/// <summary>
-	/// Devuelve true si el cursor esta sobre el collider
-	/// </summary>
-	/// <returns></returns>
+	// Devuelve true si el cursor esta sobre el collider
 	bool isCursorOver();
+
+	// Detecta 
+	bool PointOver(Vector2D point);
 
 	void update() override;
 

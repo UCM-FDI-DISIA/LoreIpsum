@@ -21,6 +21,5 @@ void DropZone::update()
 
 bool DropZone::isOnDropZone(Transform* cardTransform)
 {
-	
 	return false;
 }
