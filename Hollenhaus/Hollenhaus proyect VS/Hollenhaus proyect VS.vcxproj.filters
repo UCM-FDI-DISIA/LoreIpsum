@@ -252,6 +252,9 @@
     <ClCompile Include="src\game\factories\FakeCardFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\managers\PizarraManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -487,6 +490,9 @@
     </ClInclude>
     <ClInclude Include="src\game\factories\FakeCardFactory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\PizarraManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,8 @@ Data::Data(int mon, int cas, int sou, list<int>maz, list<int>dra, list<int>def)
 {};
 Data::~Data() {};
 //------Setters:
+
+// ------ DECKBUILDING ------
 //----Mazo:
 void Data::AddCardToMaze(int id) {
 	maze.push_back(id);
@@ -25,6 +27,8 @@ void Data::AddCardToDrawer(int id) {
 void Data::SubtractCardFromDrawer(int id) {
 	drawer.remove(id);
 }
+
+// ------ FLUJO ------
 //----NPCs:
 void Data::AddDefeatedNPC(int id) {
 	defeatedNPCS.push_back(id);
@@ -50,6 +54,8 @@ void Data::setWinner(int i) {
 }
 
 //------Busqueda:
+
+// ------ DECKBUILDING ------
 //----Mazo:
 bool Data::IdIsInMaze(int id) {
 	auto it = std::find(maze.begin(), maze.end(), id);
@@ -63,6 +69,8 @@ bool Data::IdIsInDrawer(int id) {
 
 	return (it != drawer.end()) ? true : false;
 };
+
+// ------ FLUJO ------
 //----NPCs:
 bool Data::IdIsInDefeatedNPC(int id) {
 	auto it = std::find(defeatedNPCS.begin(), defeatedNPCS.end(), id);
