@@ -61,6 +61,9 @@ void NPC::talkTo()
 {
 	if (!click && myBoxCollider->isCursorOver()) {
 		TuVieja("Que charlatan el tio...");
+		
+		// crear dialogo del FACTORY de dialogos
+
 		getEntity()->getComponent<TypeWriter>()->typeWrite("hola buenas paul der geist yo soy el Xulo del Barrio");
 	}
 

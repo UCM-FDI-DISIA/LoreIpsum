@@ -2,6 +2,7 @@
 #include "../pch.h"
 
 
+
 class NPCFactory
 {
 public:
