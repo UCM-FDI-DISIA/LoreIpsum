@@ -6,6 +6,8 @@
 
 #include "../components/NPC.h"
 #include "../components/managers/PizarraManager.h"
+#include "../factories/Factory.h"
+#include "../factories/FakeCardFactory_v0.h"
 
 
 DeckBuildingState::DeckBuildingState()
@@ -31,6 +33,16 @@ void DeckBuildingState::refresh()
 void DeckBuildingState::onEnter()
 {
 	std::cout << "\nENTER DECKBUILDING.\n";
+
+	auto card = sdlutils().cards().at(std::to_string(0));
+
+	Factory* factory = new Factory();
+	factory->SetFactories(
+		static_cast<FakeCardFactory*>(new FakeCardFactory_v0())
+	);
+
+
+	factory->createFakeCard(0, Vector2D(100,100), card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
 
 	//------Texto de la oficina.
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
