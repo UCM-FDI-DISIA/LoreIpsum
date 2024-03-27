@@ -23,7 +23,8 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 	card->addComponent<CardStateManager>();
 
 	auto cardTransform = card->getComponent<Transform>();
-	cardTransform->getGlobalScale().set(cardScale, cardScale);
+	cardTransform->setGlobalScale(cardScale, cardScale);
+	//cardTransform->getGlobalScale().set(cardScale, cardScale);
 
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(Cards::ON_DECK);
@@ -225,7 +226,8 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 		effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
 		//effectImage->getComponent<Transform>()->getGlobalScale().set(1, 1);
-		effectImage->getComponent<Transform>()->getRelativeScale().set(scale, scale);
+		effectImage->getComponent<Transform>()->setGlobalScale(scale, scale);
+		//effectImage->getComponent<Transform>()->getRelativeScale().set(scale, scale);
 		Vector2D gpos(initialX + ((i % nCols) * offSetX), initialY + ((i / nCols) * offSetY));
 
 		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
@@ -300,7 +302,8 @@ void CardFactory_v0::addValueCostTexts(ecs::entity_t card,  int value, int cost)
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
 	textoCoste->getComponent<Transform>()->getRelativePos().set(10, 10);
-	textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
+	textoCoste->getComponent<Transform>()->setGlobalScale(10, 10);
+	//textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
 
 	textoCoste->setLayer(100);
 }

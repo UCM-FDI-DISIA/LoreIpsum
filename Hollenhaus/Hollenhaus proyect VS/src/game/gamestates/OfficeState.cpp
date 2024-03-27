@@ -40,7 +40,8 @@ void OfficeState::onEnter()
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("oficinafondo");
-	fondo->getComponent<Transform>()->getGlobalScale().set(0.85f, 0.85f);
+	fondo->getComponent<Transform>()->setGlobalScale(0.85f, 0.85f);
+	//fondo->getComponent<Transform>()->getGlobalScale().set(0.85f, 0.85f);
 	fondo->setLayer(0);
 
 	//------Boton para volver:
