@@ -25,5 +25,5 @@ private:
 	int type;
 	
 	BoxCollider* myBoxCollider;
-	//Factory* factory;
+	Factory* factory;
 };

@@ -267,7 +267,9 @@
     <ClCompile Include="src\game\factories\DialogueFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\factories\DialogueFactory_V0.cpp" />
+    <ClCompile Include="src\game\factories\DialogueFactory_V0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">

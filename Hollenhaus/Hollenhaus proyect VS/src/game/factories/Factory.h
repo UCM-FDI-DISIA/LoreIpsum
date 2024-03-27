@@ -54,14 +54,14 @@ public:
 	}
 
 	template<typename ...Ts>
-	void SetFactories(DialogueFactory* msUIf, Ts &&... args) {
-		dialogueFactory = msUIf;
+	void SetFactories(DialogueFactory* df, Ts &&... args) {
+		dialogueFactory = df;
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
 	template<typename ...Ts>
-	void SetFactories(NPCFactory* msUIf, Ts &&... args) {
-		npcFactory = msUIf;
+	void SetFactories(NPCFactory* npcf, Ts &&... args) {
+		npcFactory = npcf;
 		SetFactories(std::forward<Ts>(args)...);
 	}
 		
