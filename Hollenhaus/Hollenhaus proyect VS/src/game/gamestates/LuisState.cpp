@@ -20,6 +20,9 @@
 
 #include "../components/managers/IA_manager.h"
 
+#include "../components/managers/Manager.h"
+#include "../GameStateMachine.h"
+
 LuisState::LuisState() : GameState()
 {
 	TuVieja("Loading LuisState");
@@ -112,15 +115,37 @@ void LuisState::onEnter()
 	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 
 
+	#pragma region Seccion IA
 
+	//crear la entidad y añadirle el componente
 	ecs::entity_t IA_controler = Instantiate();
 	IA_manager* ia_managerComponent = IA_controler->addComponent<IA_manager>();
-
-	ia_managerComponent->setBoardManager(boardManagerComponent);
-
+	
+	//le decimos al endTurn que existe la IA
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
 
+	
+
+	//seters de referencias de la ia
+
+
+	
+
+	ia_managerComponent->setMatchManager(matchManagerComponent);
+	ia_managerComponent->setBoardManager(boardManagerComponent);
+
+	ia_managerComponent->setPlayerHand(nullptr);
+	ia_managerComponent->setEnemyHand(nullptr);
+
+	ia_managerComponent->setPlayerDeck(nullptr);
+	ia_managerComponent->setEnemyDeck(nullptr);
+
+	//set en el matchManager
 	matchManagerComponent->setIA_Manager(ia_managerComponent);
+
+
+	#pragma endregion
+
 }
 
 void LuisState::onExit()

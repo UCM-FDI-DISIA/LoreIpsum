@@ -35,15 +35,29 @@ void IA_manager::update(){}
 
 #pragma region Setters de referencias
 
-void IA_manager::setBoardManager(BoardManager* boardM)
-{
+void IA_manager::setMatchManager(MatchManager* matchM) {
+	matchManager = matchM;
+}
+
+void IA_manager::setBoardManager(BoardManager* boardM){
 	boardManager = boardM;
 }
 
+void IA_manager::setPlayerHand(HandComponent* playerH) {
+	playerHandCmp = playerH;
+}
+void IA_manager::setEnemyHand(HandComponent* enemyH) {
+	enemyHandCmp = enemyH;
+}
 
+void IA_manager::setPlayerDeck(DeckComponent* playerD) {
+	playerDeckCmp = playerD;
+}
+void IA_manager::setEnemyDeck(DeckComponent* enemyD) {
+	enemyDeckCmp = enemyD;
+}
 
 #pragma endregion
-
 
 
 IA_manager::InfoJugada IA_manager::StartTurn()
@@ -103,7 +117,6 @@ IA_manager::InfoJugada IA_manager::StartTurn()
 
 	return best->_jugada;
 }
-
 
 
 #pragma region Internal methods 

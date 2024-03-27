@@ -73,7 +73,7 @@ ecs::entity_t CardFactory_v1::createHandJ2()
 	return hand;
 }
 
-void CardFactory_v1::createDeck()
+ecs::entity_t CardFactory_v1::createDeck()
 {
 	int initY = 500;
 	int initX = 600;
@@ -81,6 +81,7 @@ void CardFactory_v1::createDeck()
 	ecs::entity_t hand = createHand();
 
 	Vector2D deckPos(initX, initY);
+
 	ecs::entity_t deck = Instantiate(deckPos);
 	deck->addComponent<BoxCollider>()->setPosOffset(Vector2D(-15, 0));
 	deck->addComponent<DeckComponent>();
@@ -108,9 +109,11 @@ void CardFactory_v1::createDeck()
 	}
 	addDeckImage(initX, initY);
 	TuVieja("Deck1");
+
+	return deck;
 }
 
-void CardFactory_v1::createDeckJ2()
+ecs::entity_t CardFactory_v1::createDeckJ2()
 {
 	int initX = 600;
 	int initY = 1;
@@ -118,6 +121,7 @@ void CardFactory_v1::createDeckJ2()
 	ecs::entity_t hand = createHandJ2();
 
 	Vector2D deckPos(initX, initY);
+
 	ecs::entity_t deck = Instantiate(deckPos);
 	deck->addComponent<BoxCollider>()->setPosOffset(Vector2D(-15, 0));
 	deck->addComponent<DeckComponent>()->setOwner(Players::PLAYER2);
@@ -148,6 +152,8 @@ void CardFactory_v1::createDeckJ2()
 	}
 	addDeckImage(initX, initY, true);
 	TuVieja("Deck2");
+
+	return deck;
 }
 
 

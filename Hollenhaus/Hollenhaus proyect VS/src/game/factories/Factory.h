@@ -66,8 +66,8 @@ public:
 	ecs::entity_t createDropDetector(Vector2D pos);
 
 	ecs::entity_t createHand();
-	void createDeck();
-	void createDeckJ2();
+	ecs::entity_t createDeck();
+	ecs::entity_t createDeckJ2();
 	ecs::entity_t createBoard();
 
 	// Métodos para crear la UI en el MatchState

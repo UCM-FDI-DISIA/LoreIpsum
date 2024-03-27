@@ -142,7 +142,14 @@ public:
 
 	#pragma region Setters de referencias
 
+	void setMatchManager(MatchManager* matchM);
 	void setBoardManager(BoardManager* boardM);
+
+	void setPlayerHand(HandComponent* playerH);
+	void setEnemyHand(HandComponent* enemyH);
+
+	void setPlayerDeck(DeckComponent* playerD);
+	void setEnemyDeck(DeckComponent* enemyD);
 
 	#pragma endregion
 
@@ -176,6 +183,7 @@ private:
 
 	#pragma region Referencias externas
 
+	MatchManager* matchManager;
 	BoardManager* boardManager;
 
 	HandComponent* playerHandCmp;
@@ -183,8 +191,6 @@ private:
 
 	DeckComponent* playerDeckCmp;
 	DeckComponent* enemyDeckCmp;
-
-	MatchManager* matchManager;
 
 	#pragma endregion
 
