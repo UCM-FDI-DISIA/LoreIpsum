@@ -19,15 +19,3 @@ bool DropZone::isOnDropZone(Transform* cardTransform)
 			(cardTransform->getEntity()->getComponent<SpriteRenderer>()->getImageSize() *	// el lt + el tamanio del sprite
 				cardTransform->getGlobalScale().getX())));									// con la escala aplicada
 }
-
-void DropZone::moveToPizarra(DrawerManager* drawer, PizarraManager* pizarra, Card* card)
-{
-	drawer->removeCard(card->getID());
-	pizarra->addCard(card->getID());
-}
-
-void DropZone::moveToDrawer(DrawerManager* drawer, PizarraManager* pizarra, Card* card)
-{
-	pizarra->removeCard(card->getID());
-	drawer->addCard(card->getID());
-}

@@ -4,14 +4,18 @@
 #include "./managers/DrawerManager.h"
 #include "./managers/PizarraManager.h"
 #include "./Card.h"
+#include <functional>
 
+using SDLEventCallback = std::function<void(void)>;
 class DropZone : public ComponentUpdate
 {
 private:
 	Vector2D dropZonePos;
 	BoxCollider* dropZoneCollider;
+	SDLEventCallback callback;
 
 public:
+
 	DropZone();
 	~DropZone();
 
@@ -20,6 +24,12 @@ public:
 
 	bool isOnDropZone(Transform* cardTransform);
 
-	void moveToPizarra(DrawerManager* drawer, PizarraManager* pizarra, Card* card);
-	void moveToDrawer(DrawerManager* drawer, PizarraManager* pizarra, Card* card);
+	SDLEventCallback setCallBack(SDLEventCallback _callback) {
+		callback = _callback;
+		return callback;
+	}
+
+	void useCallback() {
+		callback();
+	}
 };

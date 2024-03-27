@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DropZone.cpp" />
     <ClCompile Include="pchs\pch_c++_basic.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch_c++_basic.h</PrecompiledHeaderFile>
@@ -163,7 +162,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DropZone.h" />
     <ClInclude Include="pchs\pch_c++_basic.h" />
     <ClInclude Include="pchs\pch_SDL.h" />
     <ClInclude Include="src\game\components\basics\BoxCollider.h" />

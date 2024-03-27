@@ -6,7 +6,7 @@
 
 // managers
 #include "../components/managers/Manager.h"
-#include "../components/managers/PizarraManager.h"
+#include "../components/DropZone.h"
 #include "../components/DragNoCombat.h"
 
 // factorias
@@ -58,7 +58,7 @@ void DeckBuildingState::onEnter()
 	auto card = sdlutils().cards().at(std::to_string(0));
 	Factory* factory = new Factory();
 	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
-	factory->createFakeCard(0, Vector2D(100,100), card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
+	Card* carda = factory->createFakeCard(0, Vector2D(100,100), card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects())->getComponent<Card>();
 
 	// ---- TEXTO ----
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
@@ -89,6 +89,8 @@ void DeckBuildingState::onEnter()
 	pizarra->addComponent<SpriteRenderer>("black_box");
 	pizarra->addComponent<BoxCollider>();
 	pizarra->addComponent<PizarraManager>();
+	pizarra->addComponent<DropZone>();
+	pizarra->getComponent<DropZone>()->setCallBack([this, carda]() {moveToPizarra(carda); });
 	Vector2D pizarraPos(300, 10);
 	pizarra->getComponent<Transform>()->setGlobalPos(pizarraPos);
 	pizarra->getComponent<Transform>()->setGlobalScale(4.5,3);
@@ -113,4 +115,16 @@ void DeckBuildingState::onExit()
 	GameStateMachine::instance()->getMngr()->Free();
 
 	std::cout << "\nEXIT DECKBUILDING.\n";
+}
+
+void DeckBuildingState::moveToPizarra(Card* card)
+{
+	drawer->removeCard(card->getID());
+	pizarra->addCard(card->getID());
+}
+
+void DeckBuildingState::moveToDrawer(Card* card)
+{
+	pizarra->removeCard(card->getID());
+	drawer->addCard(card->getID());
 }

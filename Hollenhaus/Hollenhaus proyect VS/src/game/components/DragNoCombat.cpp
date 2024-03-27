@@ -71,9 +71,11 @@ void DragNoCombat::OnLeftClickUp()
 	// si se suelta el cursor y se tenia carta
 	if (dragTransform != nullptr)
 	{
-		if(dragTransform->getParent() == dropZonePizarra)
+		ecs::entity_t ent = mouseRaycast(ecs::grp::DROPZONE);
+		DropZone* dp = ent->getComponent<DropZone>();
+		if(dp != nullptr || dp->isOnDropZone(dragTransform))
 		{
-			
+			dp->useCallback();
 		}
 	}
 }
