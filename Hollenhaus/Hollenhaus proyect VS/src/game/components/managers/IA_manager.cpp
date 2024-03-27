@@ -100,35 +100,6 @@ IA_manager::InfoJugada IA_manager::StartTurn()
 	s._boardCards = boardManager->getBoardCardsIA();
 	s._boardOwners = boardManager->getBoardOwnerIA();
 
-	/*
-	#pragma region Mano y mazo de pruebas
-
-	Card* a = new Card(2, 2);
-	Card* b = new Card(1, 3);
-	Card* c = new Card(0, 4);
-
-	Card* m1 = new Card(1, 0);
-	Card* m2 = new Card(0, 100);
-	Card* m3 = new Card(2, 0);
-	Card* m4 = new Card(1, 0);
-	Card* m5 = new Card(1, 0);
-
-	s.playerHand.push_back(a);
-	s.playerHand.push_back(b);
-	s.playerHand.push_back(c);
-
-	s.playerDeck.push_back(m1);
-	s.playerDeck.push_back(m2);
-	s.playerDeck.push_back(m3);
-	s.playerDeck.push_back(m4);
-	s.playerDeck.push_back(m5);
-
-	
-
-	#pragma endregion
-
-	*/
-
 	State* best = nullptr;
 
 	uint32_t time = SDL_GetTicks();
@@ -144,6 +115,13 @@ IA_manager::InfoJugada IA_manager::StartTurn()
 	std::cout << "Value: " << value << std::endl;
 
 	//rellenar con info de jugada?
+	std::cout << "Jugada:" << std::endl;
+
+	for (int i = 0; i < best->_jugada.cartas.size(); i++) {
+
+		std::cout << "Carta Indice: " << best->_jugada.cartas[i].indice <<
+			" Pos: (" << best->_jugada.cartas[i].pos.getX() << "," << best->_jugada.cartas[i].pos.getY() <<")" << std::endl;
+	}
 
 	std::cout << "--------------------------" << std::endl;
 
