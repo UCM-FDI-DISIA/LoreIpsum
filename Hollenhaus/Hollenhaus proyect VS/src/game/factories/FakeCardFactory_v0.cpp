@@ -6,14 +6,17 @@
 
 ecs::entity_t FakeCardFactory_v0::createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
 {
-    ecs::entity_t fakeCard = Instantiate();
+    ecs::entity_t fakeCard = Instantiate(pos, ecs::grp::CARDS);
     fakeCard->addComponent<Transform>();
     fakeCard->addComponent<SpriteRenderer>("card");
     fakeCard->addComponent<BoxCollider>();
     fakeCard->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	fakeCard->getComponent<Transform>()->setGlobalScale(cardScale, cardScale);
+	fakeCard->getComponent<Transform>()->setGlobalPos(pos);
     fakeCard->addComponent<Card>();
 	Card* cardComp = fakeCard->getComponent<Card>();
+
+	fakeCard->setLayer(2);
 
 	addEffects(cardComp, effects);
 	addValueCostTexts(fakeCard, value, cost);

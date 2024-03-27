@@ -3,6 +3,7 @@
 #include "../components/managers/Manager.h"
 #include "../../sdlutils/InputHandler.h"
 #include "../components/basics/TextComponent.h"
+#include "../components/managers/DragManager.h"
 
 #include "../components/NPC.h"
 #include "../components/managers/PizarraManager.h"
@@ -33,6 +34,10 @@ void DeckBuildingState::refresh()
 void DeckBuildingState::onEnter()
 {
 	std::cout << "\nENTER DECKBUILDING.\n";
+	// Drag Manager se encarga de gestionar el drag de todas las cartas
+	ecs::entity_t ent = Instantiate();
+	ent->addComponent<DragManager>();
+	//ent->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
 
 	auto card = sdlutils().cards().at(std::to_string(0));
 
@@ -74,8 +79,9 @@ void DeckBuildingState::onEnter()
 	pizarra->addComponent<SpriteRenderer>("black_box");
 	pizarra->addComponent<BoxCollider>();
 	pizarra->addComponent<PizarraManager>();
-	Vector2D pizarraPos(10, 10);
+	Vector2D pizarraPos(300, 10);
 	pizarra->getComponent<Transform>()->setGlobalPos(pizarraPos);
+	pizarra->getComponent<Transform>()->setGlobalScale(4.5,3);
 	pizarra->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
 	auto& sdl = *SDLUtils::instance();
