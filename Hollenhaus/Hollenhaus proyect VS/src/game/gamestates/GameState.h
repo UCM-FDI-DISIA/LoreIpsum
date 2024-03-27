@@ -30,6 +30,9 @@ public:
 	virtual void onExit() = 0;
 
 	virtual void setWinnerOnData(int w);
+	virtual void setShopCard(int c);
+	virtual bool checkDataShopCardsIsEmpty();
+	virtual bool checkCardIsInDrawer(int id);
 
 	// ---- setters ----
 	// settea la data

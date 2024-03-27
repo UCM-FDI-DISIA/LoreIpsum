@@ -5,11 +5,13 @@ using namespace std;
 
 
 //------Constructora y destructora:
-Data::Data() {}
-Data::Data(int mon, int cas, int sou, list<int>maz, list<int>dra, list<int>def)
-	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def)
+Data::Data() : currentMoney(0), currentSouls(0), currentCase(0), shopCards(new int[4] {-1, -1, -1, -1}) {}
+Data::Data(int mon, int cas, int sou, list<int>maz, list<int>dra, list<int>def, std::list<int>shc)
+	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[4])
 {};
-Data::~Data() {};
+Data::~Data() {
+	delete shopCards;
+};
 //------Setters:
 //----Mazo:
 void Data::AddCardToMaze(int id) {
@@ -44,9 +46,26 @@ void Data::AddSouls(int s) {
 void Data::AddCurrentCase() {
 	currentCase++;
 }
-//----
+//----Ganador:
 void Data::setWinner(int i) {
 	winner = WINNER(i);
+}
+//----Carta de la tienda:
+bool Data::setShopCard(int id) {
+	int i = 0;
+	bool find = false;
+	while (!find && i < 4)
+	{
+		if (shopCards[i] == -1)
+		{
+			find = true; // Ha encontrado un hueco.
+			shopCards[i] = id; // Guarda la carta en el hueco libre.
+		}
+		i++;
+	}
+
+	if (find) { return true; }
+	else { return false; }
 }
 
 //------Busqueda:
@@ -69,6 +88,37 @@ bool Data::IdIsInDefeatedNPC(int id) {
 
 	return (it != defeatedNPCS.end()) ? true : false;
 };
+//----Cartas de la tienda:
+bool Data::IdIsInShopCards(int id) {
+	int i = 0;
+	bool find = false;
+
+	while (!find && i < 4) {
+		if (shopCards[i] == id)
+		{
+			find = true;
+		}
+		i++;
+	}
+
+	return find;
+};
+//------Getters:
+//----Cartas de la tienda:
+bool Data::shopCardsIsEmpty() {
+	int i = 0;
+	bool empty = true; // Suponemos que esta vacio.
+	while (empty && i < 4)
+	{
+		if (shopCards[i] != -1)
+		{
+			empty = false; // Si hay alguna cartra (no es -1) entonces no esta vacio.
+		}
+		i++;
+	}
+
+	return empty;
+}
 
 //------Escribir en el archivo:
 void Data::Write() {
@@ -90,6 +140,10 @@ void Data::Write() {
 	file << defeatedNPCS.size() << "\n";
 	for (const auto it : defeatedNPCS) {
 		file << it << "\n";
+	}
+	file << 4 << "\n";
+	for (int i = 0;i < 4; i++) {
+		file << shopCards[i] << "\n";
 	}
 	file.close();
 }
@@ -125,6 +179,13 @@ void Data::Read() {
 		defeatedNPCS.push_back(number);
 	}
 
+	file >> iterations;
+	for (int i = 0; i < iterations; i++)
+	{
+		file >> number;
+		shopCards[i] = number;
+	}
+
 	file.close();
 }
 
@@ -133,6 +194,7 @@ void Data::EmptyLists() {
 	EmptyMaze();
 	EmptyDrawer();
 	EmptyNPCS();
+	EmptyShopCards();
 }
 void Data::EmptyMaze() {
 	maze.clear();
@@ -142,4 +204,10 @@ void Data::EmptyDrawer() {
 }
 void Data::EmptyNPCS() {
 	defeatedNPCS.clear();
+}
+void Data::EmptyShopCards() {
+	for (int i = 0; i < 4; i++)
+	{
+		shopCards[i] = -1;
+	}
 }

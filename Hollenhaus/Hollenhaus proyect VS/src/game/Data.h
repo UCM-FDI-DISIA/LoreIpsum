@@ -12,6 +12,7 @@ private:
 	std::list<int> drawer;
 	std::list<int> maze;  // cleon: "mierda, mierda, mierda"
 	std::list<int> defeatedNPCS;
+	int* shopCards;
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
 
 	enum WINNER {
@@ -25,7 +26,7 @@ public:
 
 	//------Constructora y destructora:
 	Data();
-	Data(int mon, int cas, int sou, std::list<int>maz, std::list<int>dra, std::list<int>def);
+	Data(int mon, int cas, int sou, std::list<int>maz, std::list<int>dra, std::list<int>def, std::list<int>shc);
 	~Data();
 
 	//------Setters:
@@ -46,6 +47,8 @@ public:
 	void AddCurrentCase();
 	//----Ganardor de la ultima partida:
 	void setWinner(int i);
+	//----Cartas de la tienda:
+	bool setShopCard(int id);
 
 	//------Getters:
 	//----Mazo:
@@ -62,6 +65,8 @@ public:
 	const int GetCurrentCase() { return currentCase; };
 	//----Ganador de la ultima partida:
 	int getWinner() { return winner; }
+	//----Comprobar si shopCards esta vacio:
+	bool shopCardsIsEmpty();
 
 	//------Busqueda:
 	//----Mazo:
@@ -70,6 +75,8 @@ public:
 	bool IdIsInDrawer(int id);
 	//----NPCs:
 	bool IdIsInDefeatedNPC(int id);
+	//----Carta de la tienda:
+	bool IdIsInShopCards(int id);
 
 	//------Escritura:
 	void Write();
@@ -81,4 +88,5 @@ public:
 	void EmptyMaze();
 	void EmptyDrawer();
 	void EmptyNPCS();
+	void EmptyShopCards();
 };

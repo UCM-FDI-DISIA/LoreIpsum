@@ -67,3 +67,18 @@ void GameState::setData(Data* _data)
 {
     data = _data;
 }
+
+void GameState::setShopCard(int c)
+{
+    data->setShopCard(c);
+}
+
+bool GameState::checkDataShopCardsIsEmpty()
+{
+    return data->shopCardsIsEmpty();
+}
+
+bool GameState::checkCardIsInDrawer(int id) 
+{
+    return data->IdIsInShopCards(id);
+}
