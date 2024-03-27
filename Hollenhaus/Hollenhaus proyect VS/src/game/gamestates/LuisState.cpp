@@ -22,6 +22,7 @@
 
 #include "../components/managers/Manager.h"
 #include "../GameStateMachine.h"
+#include "../components/managers/PlayerCardsManager.h"
 
 LuisState::LuisState() : GameState()
 {
@@ -79,8 +80,8 @@ void LuisState::onEnter()
 	ent->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
 
 	// Factoría de cartas. Con ella generamos la mano inicial
-	factory->createDeck();
-	factory->createDeckJ2();
+	ecs::entity_t deckPlayer1 = factory->createDeck();
+	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
 
 
 	// UI 
@@ -128,17 +129,14 @@ void LuisState::onEnter()
 
 	//seters de referencias de la ia
 
-
-	
-
 	ia_managerComponent->setMatchManager(matchManagerComponent);
 	ia_managerComponent->setBoardManager(boardManagerComponent);
 
-	ia_managerComponent->setPlayerHand(nullptr);
-	ia_managerComponent->setEnemyHand(nullptr);
+	ia_managerComponent->setPlayerHand(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
+	ia_managerComponent->setEnemyHand(deckPlayer2->getComponent<PlayerCardsManager>()->getHand());
 
-	ia_managerComponent->setPlayerDeck(nullptr);
-	ia_managerComponent->setEnemyDeck(nullptr);
+	ia_managerComponent->setPlayerDeck(deckPlayer1->getComponent<DeckComponent>());
+	ia_managerComponent->setEnemyDeck(deckPlayer2->getComponent<DeckComponent>());
 
 	//set en el matchManager
 	matchManagerComponent->setIA_Manager(ia_managerComponent);

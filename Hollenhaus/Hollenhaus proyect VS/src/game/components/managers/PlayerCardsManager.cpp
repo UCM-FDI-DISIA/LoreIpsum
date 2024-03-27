@@ -14,6 +14,11 @@ void PlayerCardsManager::initComponent()
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { drawCard(); });
 }
 
+HandComponent* PlayerCardsManager::getHand()
+{
+	return hand_;
+}
+
 PlayerCardsManager::~PlayerCardsManager()
 {
 	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { drawCard(); });
