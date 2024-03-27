@@ -3,6 +3,7 @@
 
 class BoxCollider;
 
+
 class NPC : public ComponentUpdate
 {
 public:
@@ -24,4 +25,5 @@ private:
 	int type;
 	
 	BoxCollider* myBoxCollider;
+	//Factory* factory;
 };

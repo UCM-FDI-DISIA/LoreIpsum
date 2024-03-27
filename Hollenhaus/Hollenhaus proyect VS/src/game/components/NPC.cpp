@@ -3,6 +3,9 @@
 #include "managers/Manager.h"
 #include "basics/BoxCollider.h"
 #include "TypeWriter.h"
+//#include "../factories/Factory.h"
+//#include "../factories/DialogueFactory_V0.h"
+
 
 NPC::NPC(int scene)
 {
@@ -12,6 +15,12 @@ NPC::NPC(int scene)
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 	type = 0;
+
+	/*Factory* factory = new Factory();
+	factory->SetFactories(
+		static_cast<DialogueFactory*>(new DialogueFactory_V0())
+	);*/
+
 }
 
 NPC::NPC(int scene, int t)
@@ -27,6 +36,9 @@ NPC::NPC(int scene, int t)
 NPC::~NPC() {
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] {OnLeftClickUp(); });
+
+	//delete factory;
+	//factory = nullptr;
 }
 
 void NPC::initComponent(){
@@ -64,7 +76,8 @@ void NPC::talkTo()
 		
 		// crear dialogo del FACTORY de dialogos
 
-		getEntity()->getComponent<TypeWriter>()->typeWrite("hola buenas paul der geist yo soy el Xulo del Barrio");
+
+		//getEntity()->getComponent<TypeWriter>()->typeWrite("hola buenas paul der geist yo soy el Xulo del Barrio");
 	}
 
 }

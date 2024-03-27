@@ -2,8 +2,10 @@
 #include "Factory.h"
 #include "CardFactory.h"
 #include "BoardFactory.h"
-
 #include "MatchStateUIFactory.h"
+#include "DialogueFactory.h"
+#include "NPCFactory.h"
+
 
 ecs::entity_t Factory::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
 {
@@ -82,4 +84,28 @@ ecs::entity_t Factory::createVisual_BackgroundBlackBox(int posX, int posY, float
 ecs::entity_t Factory::createVisual_BackgroundFullImage()
 {
 	return matchStateUIFactory->createVisual_BackgroundBoard();
+}
+
+ecs::entity_t Factory::createNPC()
+{
+	if (npcFactory == nullptr) {
+		throw "no existe npcFactory";
+	}
+
+	// PLACEHOLDER
+	return npcFactory->createNPC(" ", " ", {0,0}, {0,0}, 0, 0, 0, nullptr);
+}
+
+
+ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
+	int speed, int cooldown, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
+	Text::TextAlignment textAlignment)
+{
+	if (dialogueFactory == nullptr) {
+		throw "no existe dialogueFactory";
+	}
+
+	return dialogueFactory->createDialogue(id, convo, node, pos, size, speed, cooldown, fontID, color, wrapLenght, 
+		boxPivotPoint, textAlignment);
+	
 }

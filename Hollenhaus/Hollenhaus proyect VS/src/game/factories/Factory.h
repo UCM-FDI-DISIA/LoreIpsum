@@ -6,6 +6,9 @@ class CardFactory;
 class HandFactory;
 class BoardFactory;
 class MatchStateUIFactory;
+class DialogueFactory;
+class NPCFactory;
+
 
 namespace ecs {
 	class Entity;
@@ -49,6 +52,18 @@ public:
 		matchStateUIFactory = msUIf;
 		SetFactories(std::forward<Ts>(args)...);
 	}
+
+	template<typename ...Ts>
+	void SetFactories(DialogueFactory* msUIf, Ts &&... args) {
+		dialogueFactory = msUIf;
+		SetFactories(std::forward<Ts>(args)...);
+	}
+
+	template<typename ...Ts>
+	void SetFactories(NPCFactory* msUIf, Ts &&... args) {
+		npcFactory = msUIf;
+		SetFactories(std::forward<Ts>(args)...);
+	}
 		
 
 #pragma endregion
@@ -57,7 +72,9 @@ public:
 	boardFactory(nullptr),
 	cardFactory(nullptr),
 	handFactory(nullptr),
-	matchStateUIFactory(nullptr)
+	matchStateUIFactory(nullptr),
+	dialogueFactory(nullptr),
+	npcFactory(nullptr)
 	{};
 
 
@@ -78,11 +95,21 @@ public:
 	ecs::entity_t createVisual_BackgroundBlackBox(int posX, int posY, float xPixelsSize, float yPixelsSize);
 	ecs::entity_t createVisual_BackgroundFullImage();
 
+	// metodos para los NPCs
+	ecs::entity_t createNPC();
+
+	// metodos para los dialogos
+	ecs::entity_t createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
+		int speed, int cooldown, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
+		Text::TextAlignment textAlignment);
+
 public:
 
 	BoardFactory* boardFactory;
 	CardFactory* cardFactory;
 	HandFactory* handFactory;
 	MatchStateUIFactory* matchStateUIFactory;
+	DialogueFactory* dialogueFactory;
+	NPCFactory* npcFactory;
 };
 

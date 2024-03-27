@@ -5,7 +5,7 @@
 
 class NPCFactory_V0 : public NPCFactory {
 public:
-	NPCFactory_V0() {};
+	NPCFactory_V0() : NPCFactory() {};
 	~NPCFactory_V0() {};
 
 	ecs::entity_t createNPC(std::string id, std::string sprite,
