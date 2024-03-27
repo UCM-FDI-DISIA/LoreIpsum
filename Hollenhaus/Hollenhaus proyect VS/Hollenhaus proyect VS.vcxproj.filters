@@ -246,6 +246,12 @@
     <ClCompile Include="src\game\components\ShineComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\FakeCardFactory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -475,6 +481,12 @@
     </ClInclude>
     <ClInclude Include="src\game\components\ShineComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\FakeCardFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

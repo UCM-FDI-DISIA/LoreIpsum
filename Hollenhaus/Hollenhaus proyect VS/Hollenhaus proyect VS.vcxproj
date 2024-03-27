@@ -64,6 +64,8 @@
     <ClCompile Include="src\game\factories\CardFactory_v0.cpp" />
     <ClCompile Include="src\game\factories\CardFactory_v1.cpp" />
     <ClCompile Include="src\game\factories\Factory.cpp" />
+    <ClCompile Include="src\game\factories\FakeCardFactory.cpp" />
+    <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp" />
     <ClCompile Include="src\game\factories\MatchStateUIFactory.cpp" />
     <ClCompile Include="src\game\factories\MatchStateUIFactory_v0.cpp" />
     <ClCompile Include="src\game\gamestates\AndresState.cpp" />
@@ -182,6 +184,8 @@
     <ClInclude Include="src\game\components\NPC.h" />
     <ClInclude Include="src\game\components\ShineComponent.h" />
     <ClInclude Include="src\game\EffectCollection.h" />
+    <ClInclude Include="src\game\factories\FakeCardFactory.h" />
+    <ClInclude Include="src\game\factories\FakeCardFactory_v0.h" />
     <ClInclude Include="src\game\Namespaces.h" />
     <ClInclude Include="src\game\factories\BoardFactory.h" />
     <ClInclude Include="src\game\factories\BoardFactory_v0.h" />
