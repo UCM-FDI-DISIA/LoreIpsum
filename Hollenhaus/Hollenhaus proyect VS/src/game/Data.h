@@ -9,8 +9,12 @@ private:
 		currentCase = 0,
 		currentSouls = 0,
 		winner = 0;
-	std::list<int> drawer;
-	std::list<int> maze;  // cleon: "mierda, mierda, mierda"
+
+	// ------ DECKBUILDING -------
+	std::vector<int> drawer; // Id de las cartas desbloqueadas
+	std::list<int> maze; // Id de las cartas del mazo 
+
+	// ------ NS ------
 	std::list<int> defeatedNPCS;
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
 
@@ -25,16 +29,20 @@ public:
 
 	//------Constructora y destructora:
 	Data();
-	Data(int mon, int cas, int sou, std::list<int>maz, std::list<int>dra, std::list<int>def);
+	Data(int mon, int cas, int sou, std::list<int>maz, std::vector<int>dra, std::list<int>def);
 	~Data();
 
 	//------Setters:
+	
+	// ------ DECKBUILDING ------
 	//----Mazo:
 	void AddCardToMaze(int id);
 	void SubtractCardFromMaze(int id);
 	//----Cajon:
 	void AddCardToDrawer(int id);
 	void SubtractCardFromDrawer(int id);
+
+	// ------ FLUJO ------
 	//----NPCs:
 	void AddDefeatedNPC(int id);
 	//----Dinero:
@@ -48,10 +56,14 @@ public:
 	void setWinner(int i);
 
 	//------Getters:
+	
+	// ------ DECKBUILDING ------
 	//----Mazo:
-	const std::list<int> GetMaze(int id) { return maze; }
+	const std::list<int> GetMaze() { return maze; }
 	//----Cajon:
-	const std::list<int> GetDrawer(int id) { return drawer; }
+	const std::vector<int> GetDrawer() { return drawer; }
+
+	// ------ FLUJO ------
 	//----NPCs:
 	const std::list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
 	//----Dinero:
@@ -64,10 +76,14 @@ public:
 	int getWinner() { return winner; }
 
 	//------Busqueda:
+	
+	// ------ DECKBUILDING ------
 	//----Mazo:
 	bool IdIsInMaze(int id);
 	//----Cajon:
 	bool IdIsInDrawer(int id);
+
+	// ------ FLUJO ------
 	//----NPCs:
 	bool IdIsInDefeatedNPC(int id);
 

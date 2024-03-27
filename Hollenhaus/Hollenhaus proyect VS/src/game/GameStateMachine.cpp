@@ -15,6 +15,7 @@
 #include "gamestates/PaigroState.h"
 #include "gamestates/NievesState.h"
 #include "gamestates/MatchOverState.h"
+#include "gamestates/DeckBuildingState.h"
 #include "components/managers/Manager.h"
 #include "Mouse.h"
 #include "gamestates/GameState.h"
@@ -34,7 +35,7 @@ GameStateMachine::GameStateMachine() {
 	mngr_ = new ecs::Manager();
 	mouse_ = new Mouse("mouse", 2);
 
-	//Creación de los estados
+	//Creaciï¿½n de los estados
 	mainMenuState = new MainMenuState();
 	cityState = new CityState();
 	officeState = new OfficeState();
@@ -44,6 +45,7 @@ GameStateMachine::GameStateMachine() {
 	nievesState = new NievesState();
 	matchOverState = new MatchOverState();
 	luisState = new LuisState();
+	deckBuildingState = new DeckBuildingState();
 
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();

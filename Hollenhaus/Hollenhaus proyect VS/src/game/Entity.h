@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ecs.h"
+#include "components/ComponentUpdate.h" // Si no peta
+#include "components/ComponentRender.h"
 #include <array>
 #include <vector>
 

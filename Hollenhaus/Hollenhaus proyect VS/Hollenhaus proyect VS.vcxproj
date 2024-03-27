@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FakeCardFactory.cpp" />
     <ClCompile Include="pchs\pch_c++_basic.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch_c++_basic.h</PrecompiledHeaderFile>
@@ -50,9 +51,11 @@
     <ClCompile Include="src\game\components\managers\BoardManager.cpp" />
     <ClCompile Include="src\game\components\managers\CardStateManager.cpp" />
     <ClCompile Include="src\game\components\managers\DragManager.cpp" />
+    <ClCompile Include="src\game\components\managers\DrawerManager.cpp" />
     <ClCompile Include="src\game\components\managers\KeyManager.cpp" />
     <ClCompile Include="src\game\components\managers\Manager.cpp" />
     <ClCompile Include="src\game\components\managers\MatchManager.cpp" />
+    <ClCompile Include="src\game\components\managers\PizarraManager.cpp" />
     <ClCompile Include="src\game\components\managers\PlayerCardsManager.cpp" />
     <ClCompile Include="src\game\components\MoveOnClick.cpp" />
     <ClCompile Include="src\game\components\NPC.cpp" />
@@ -63,11 +66,15 @@
     <ClCompile Include="src\game\factories\CardFactory.cpp" />
     <ClCompile Include="src\game\factories\CardFactory_v0.cpp" />
     <ClCompile Include="src\game\factories\CardFactory_v1.cpp" />
+    <ClCompile Include="src\game\factories\DeckBuildingFactory.cpp" />
+    <ClCompile Include="src\game\factories\DeckBuildingFactory_v0.cpp" />
     <ClCompile Include="src\game\factories\Factory.cpp" />
+    <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp" />
     <ClCompile Include="src\game\factories\MatchStateUIFactory.cpp" />
     <ClCompile Include="src\game\factories\MatchStateUIFactory_v0.cpp" />
     <ClCompile Include="src\game\gamestates\AndresState.cpp" />
     <ClCompile Include="src\game\gamestates\CityState.cpp" />
+    <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp" />
     <ClCompile Include="src\game\gamestates\GameState.cpp" />
     <ClCompile Include="src\game\gamestates\JimboState.cpp" />
     <ClCompile Include="src\game\gamestates\LuisState.cpp" />
@@ -154,6 +161,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FakeCardFactory.h" />
     <ClInclude Include="pchs\pch_c++_basic.h" />
     <ClInclude Include="pchs\pch_SDL.h" />
     <ClInclude Include="src\game\components\basics\BoxCollider.h" />
@@ -174,14 +182,21 @@
     <ClInclude Include="src\game\components\managers\BoardManager.h" />
     <ClInclude Include="src\game\components\managers\CardStateManager.h" />
     <ClInclude Include="src\game\components\managers\DragManager.h" />
+    <ClInclude Include="src\game\components\managers\DrawerManager.h" />
     <ClInclude Include="src\game\components\managers\KeyManager.h" />
     <ClInclude Include="src\game\components\managers\Manager.h" />
     <ClInclude Include="src\game\components\managers\MatchManager.h" />
+    <ClInclude Include="src\game\components\managers\PizarraManager.h" />
     <ClInclude Include="src\game\components\managers\PlayerCardsManager.h" />
     <ClInclude Include="src\game\components\MoveOnClick.h" />
     <ClInclude Include="src\game\components\NPC.h" />
     <ClInclude Include="src\game\components\ShineComponent.h" />
     <ClInclude Include="src\game\EffectCollection.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h" />
+    <ClInclude Include="src\game\factories\FakeCardFactory.h" />
+    <ClInclude Include="src\game\factories\FakeCardFactory_v0.h" />
+    <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
     <ClInclude Include="src\game\Namespaces.h" />
     <ClInclude Include="src\game\factories\BoardFactory.h" />
     <ClInclude Include="src\game\factories\BoardFactory_v0.h" />

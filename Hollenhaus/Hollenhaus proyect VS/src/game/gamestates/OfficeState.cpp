@@ -54,6 +54,18 @@ void OfficeState::onEnter()
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
 
+	//------Boton para deckBuilding:
+	ecs::entity_t db = Instantiate();
+	db->addComponent<Transform>();
+	db->addComponent<SpriteRenderer>("rice");
+	db->addComponent<BoxCollider>();
+	Vector2D dbPos(500, 10);
+	db->getComponent<Transform>()->setGlobalPos(dbPos);
+	db->getComponent<Transform>()->setGlobalScale(Vector2D(0.5f, 0.5f));
+	db->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	db->addComponent<NPC>(9); // Lleva al deckbuilding (9).
+	db->setLayer(1);
+
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").play(-1);
 	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
