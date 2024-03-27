@@ -243,23 +243,27 @@
     <ClCompile Include="src\game\components\managers\BoardManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\TypeWriterComponent.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\components\DialogueReader.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\components\NextText.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\AutoDialogue.cpp" />
-    <ClCompile Include="src\game\Dialogue.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\factories\NPCFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\factories\NPCFactory_V0.cpp" />
+    <ClCompile Include="src\game\components\TypeWriterComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\AutoDialogue.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Dialogue.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\NPCFactory_V0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -487,9 +491,6 @@
     <ClInclude Include="src\game\Namespaces.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\TypeWriterComponent.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\components\DialogueReader.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
@@ -499,13 +500,17 @@
     <ClInclude Include="src\game\components\AutoDialogue.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\Dialogue.h">
-      <Filter>Archivos de encabezado</Filter>
     <ClInclude Include="src\game\factories\NPCFactory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
     <ClInclude Include="src\game\factories\NPCFactory_V0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Dialogue.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\TypeWriterComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
