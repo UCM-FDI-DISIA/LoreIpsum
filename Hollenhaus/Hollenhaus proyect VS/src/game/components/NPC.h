@@ -2,6 +2,7 @@
 #include "ComponentUpdate.h"
 
 class BoxCollider;
+class Factory;
 
 
 class NPC : public ComponentUpdate
