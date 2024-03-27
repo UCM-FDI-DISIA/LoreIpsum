@@ -2,7 +2,7 @@
 #include "NPC.h"
 #include "managers/Manager.h"
 #include "basics/BoxCollider.h"
-#include "TypeWriterComponent.h"
+#include "TypeWriter.h"
 
 NPC::NPC(int scene)
 {

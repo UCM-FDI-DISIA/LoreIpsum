@@ -252,9 +252,6 @@
     <ClCompile Include="src\game\factories\NPCFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\TypeWriterComponent.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\components\AutoDialogue.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -263,6 +260,9 @@
     </ClCompile>
     <ClCompile Include="src\game\factories\NPCFactory_V0.cpp">
       <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\TypeWriter.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -509,7 +509,7 @@
     <ClInclude Include="src\game\Dialogue.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\TypeWriterComponent.h">
+    <ClInclude Include="src\game\components\TypeWriter.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>

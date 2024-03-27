@@ -3,7 +3,6 @@
 #include "TypeWriter.h"
 
 class NextText;
-//class TypeWriterComponent;
 
 
 class AutoDialogue : public ComponentUpdate

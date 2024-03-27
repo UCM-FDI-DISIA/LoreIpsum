@@ -3,9 +3,11 @@
 #include "basics/TextComponent.h"
 #include "../Game.h"
 
+
 TypeWriter::TypeWriter(int speed) :
-speedCounter(0), writingSpeed(speed)
+	speedCounter(0), writingSpeed(speed)
 {
+
 	finaltext = " ";
 	text = " ";
 	i = 0;
@@ -46,7 +48,7 @@ void TypeWriter::update()
 	}
 }
 
-// setea la informacion para escribir
+
 void TypeWriter::typeWrite(std::string newtext)
 {
 	finaltext = "";
@@ -62,6 +64,4 @@ bool TypeWriter::ended()
 void TypeWriter::setText()
 {
 	getEntity()->getComponent<TextComponent>()->setTxt(finaltext);
-	//sugerencia: 
-	//ent_->getComponent<TextComponent>()->setTxt(finaltext);
 }

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "DialogueReader.h"
 #include "../../sdlutils/SDLUtils.h"
-#include "TypeWriterComponent.h"
+#include "TypeWriter.h"
 #include "../Entity.h"
 
 DialogueReader::DialogueReader(std::string owner, int convo, int firstNode)
