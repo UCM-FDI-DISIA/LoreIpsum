@@ -9,9 +9,13 @@
 #include "../../Namespaces.h"
 #include <SDL.h>
 #include "BoardManager.h"
+#include "CardStateManager.h"
+#include "MatchManager.h"
+#include "../Cell.h"
 
 #include "../DeckComponent.h"
 #include "../HandComponent.h"
+#include "../DropDetector.h"
 
 //inicializacion de variable estatica del struct State
 IA_manager* IA_manager::State::ia_manager = nullptr;
@@ -64,7 +68,7 @@ void IA_manager::setEnemyDeck(DeckComponent* enemyD) {
 #pragma endregion
 
 
-IA_manager::InfoJugada IA_manager::StartTurn()
+void IA_manager::StartTurn()
 {
 
 	State s;
@@ -127,7 +131,7 @@ IA_manager::InfoJugada IA_manager::StartTurn()
 
 #endif // _DEBUG
 
-	return best->_jugada;
+	makePlay(best->_jugada);
 }
 
 
@@ -290,6 +294,34 @@ int IA_manager::minimax(int depth,int h, bool isPlayer, State& current_state, St
 	}
 
 	return bestValue;
+}
+
+void IA_manager::makePlay(const InfoJugada &play) const
+{
+	const int draws = play.cartasRobadas;
+	const std::vector<CartaColocada> cards = play.cartas;
+
+	for (int i = 0; i < draws; ++i)
+		enemyHandCmp->addCard(enemyDeckCmp->drawCard()->getEntity());
+
+	int i = 0;
+	for(const auto a : enemyHandCmp->getHand())
+	{
+		Vector2D cell = cards[i].pos;
+		if(cell != Vector2D(-1, -1))
+		{
+			const auto cellToUse = boardManager->getCell(cell.getX(), cell.getY())->getEntity()->getComponent<DropDetector>();
+			a->getEntity()->getComponent<Transform>()->setGlobalPos(cellToUse->getCardPos());
+			a->getEntity()->getComponent<CardStateManager>()->putOnBoard();
+			cellToUse->setOcuped(true);
+			const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
+			boardManager->setCard(cell.getX(), cell.getY(), a, playerTurn);
+		}
+
+		++i;
+	}
+
+	matchManager->endTurnIA();
 }
 
 #pragma endregion

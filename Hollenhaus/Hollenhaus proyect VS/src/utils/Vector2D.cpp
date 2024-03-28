@@ -8,6 +8,11 @@
 
 #define PI 3.14159265358979323846264338327950288f
 
+bool Vector2D::operator!=(const Vector2D& vector_2d) const
+{
+	return (x_ != vector_2d.x_) || (y_ != vector_2d.y_);
+}
+
 // for printing an object of type Vector2D
 std::ostream& operator<<(std::ostream &os, const Vector2D &v) {
 	os << "(" << v.getX() << "," << v.getY() << ")";

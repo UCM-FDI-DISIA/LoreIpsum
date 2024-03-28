@@ -154,7 +154,7 @@ public:
 	#pragma endregion
 
 
-	InfoJugada StartTurn();
+	void StartTurn();
 
 
 private:
@@ -178,6 +178,8 @@ private:
 	std::vector<State> all_posible_next_states(const State& s, bool isPlayer);
 
 	int minimax(int depth, int h, bool isPlayer, State& current_state, State*& best);
+
+	void makePlay(const InfoJugada &play) const;
 
 #pragma endregion
 

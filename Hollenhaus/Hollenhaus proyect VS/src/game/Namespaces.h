@@ -51,7 +51,8 @@ namespace Players
 		NONE,
 		PLAYER1,//jugador?
 		PLAYER2,//IA?
-		NULO
+		NULO,
+		IA
 	};
 }
 

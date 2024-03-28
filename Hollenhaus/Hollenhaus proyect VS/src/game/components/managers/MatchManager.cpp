@@ -97,6 +97,9 @@ Players::Owner MatchManager::getPlayerTurn() const
 	case Turns::Finish:
 		return Players::NONE;
 		break;
+	case Turns::IA:
+		return  Players::IA;
+		break;
 	default:
 		return Players::NONE;
 		break;
@@ -134,6 +137,7 @@ void MatchManager::setIA_Manager(IA_manager* ia)
 
 void MatchManager::endTurnIA()
 {
+	setActualState(Turns::J1);
 }
 
 void MatchManager::resetActualActionPoints()
