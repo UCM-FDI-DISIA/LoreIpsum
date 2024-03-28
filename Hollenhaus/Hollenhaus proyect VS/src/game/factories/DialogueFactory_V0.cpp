@@ -13,14 +13,18 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 {
 	ecs::entity_t dialogue = Instantiate();
 
+	Vector2D sizebox = Vector2D(0.5, 0.5);
 	dialogue->addComponent<Transform>();
-	dialogue->getComponent<Transform>()->setGlobalPos(pos);
-	dialogue->getComponent<Transform>()->setGlobalScale(size);
-	dialogue->addComponent<BoxCollider>(pos, size);
+	dialogue->addComponent<SpriteRenderer>("whiteRect");
+	dialogue->addComponent<BoxCollider>(pos, size); //pos -> se le suma la posicion de la entidad
 	dialogue->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
-	//dialogue->addComponent<SpriteRenderer>(" ");
-	//dialogue->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	dialogue->addComponent<TextComponent>(" ", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
+	dialogue->getComponent<Transform>()->getRelativeScale().set(sizebox.getX(), sizebox.getY());
+	dialogue->getComponent<Transform>()->setGlobalPos(pos);
+	//dialogue->getComponent<Transform>()->setGlobalScale(size);
+	dialogue->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+
+	//TETXO
+	//dialogue->addComponent<TextComponent>(" ", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	dialogue->addComponent<TypeWriter>(speed);
 	dialogue->addComponent<DialogueReader>(id, convo);
 	dialogue->addComponent<NextText>();
