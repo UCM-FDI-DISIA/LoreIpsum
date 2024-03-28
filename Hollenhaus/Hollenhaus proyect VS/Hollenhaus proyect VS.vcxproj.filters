@@ -300,6 +300,9 @@
     <ClCompile Include="src\game\EffectCollection.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\factories\DialogueFactory_V0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
