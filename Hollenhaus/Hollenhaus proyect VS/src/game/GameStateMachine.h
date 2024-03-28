@@ -28,10 +28,11 @@ namespace GameStates
 		PAIGRO,
 		SAMU,
 		NIEVES,
-		MATCHOVER
+		MATCHOVER,
+		DECKBUILDING
 	};
 }
-	
+
 
 class GameStateMachine : public Singleton<GameStateMachine>
 {
@@ -58,6 +59,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* nievesState;
 	GameState* movementState;
 	GameState* matchOverState;
+	GameState* deckBuildingState;
 
 public:
 	ecs::Manager* getMngr()
@@ -111,6 +113,9 @@ public:
 			break;
 		case GameStates::MATCHOVER:
 			currentState = matchOverState;
+			break;
+		case GameStates::DECKBUILDING:
+			currentState = deckBuildingState;
 			break;
 		default:
 			break;

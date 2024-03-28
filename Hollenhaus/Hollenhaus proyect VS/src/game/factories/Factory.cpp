@@ -2,6 +2,7 @@
 #include "Factory.h"
 #include "CardFactory.h"
 #include "BoardFactory.h"
+#include "FakeCardFactory.h"
 #include "MatchStateUIFactory.h"
 #include "DialogueFactory.h"
 #include "NPCFactory.h"
@@ -16,7 +17,15 @@ ecs::entity_t Factory::createCard(Vector2D pos, int cost, int value, std::string
 	return cardFactory->createCard(pos,cost,value,sprite,unblockable,effects);
 
 }
+ecs::entity_t Factory::createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
+{
+	if (fakeCardFactory == nullptr) {
+		throw "no existe fakeCardFactory";
+	}
 
+	return fakeCardFactory->createFakeCard(id, pos, cost, value, sprite, unblockable, effects);
+
+}
 ecs::entity_t Factory::createDropDetector(Vector2D pos)
 {
 	return ecs::entity_t();

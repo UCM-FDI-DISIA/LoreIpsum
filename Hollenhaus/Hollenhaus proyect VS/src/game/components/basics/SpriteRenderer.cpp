@@ -29,6 +29,11 @@ void SpriteRenderer::setTexture(const std::string _textID) {
 	texture_ = &sdl_.images().at(textID_);
 }
 
+void SpriteRenderer::setTexture(Texture* _textu)
+{
+	texture_ = _textu;
+}
+
 // Para renderizar la textura
 void SpriteRenderer::render() const
 {
@@ -49,4 +54,9 @@ void SpriteRenderer::render() const
 		transform_->getGlobalAngle(),
 		flip,
 		color);
-};
+}
+Vector2D SpriteRenderer::getImageSize()
+{
+	return Vector2D(texture_->width(), texture_->height());
+}
+;

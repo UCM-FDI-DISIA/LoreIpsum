@@ -3,6 +3,7 @@
 
 
 class CardFactory;
+class FakeCardFactory;
 class HandFactory;
 class BoardFactory;
 class MatchStateUIFactory;
@@ -21,18 +22,18 @@ class Factory
 public:
 
 
-	
+
 #pragma region Templates setFactories
 	/*
-		Si se añade un nuevo tipo de factory para objetos en especifico,
+		Si se aï¿½ade un nuevo tipo de factory para objetos en especifico,
 		hay que meter una nueva variable de ese tipo en esta clase y crear una
-		sobrecarga de este metodo con template como las que están ya hechas
+		sobrecarga de este metodo con template como las que estï¿½n ya hechas
 	*/
 
-	
+
 	template<typename ...Ts>
-	void SetFactories(Ts &&... args){};
-	
+	void SetFactories(Ts &&... args) {};
+
 
 	template<typename ...Ts>
 	void SetFactories(BoardFactory* bf, Ts &&... args) {
@@ -40,13 +41,13 @@ public:
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
-	
+
 	template<typename ...Ts>
 	void SetFactories(CardFactory* cf, Ts &&... args) {
-		cardFactory =cf;
+		cardFactory = cf;
 		SetFactories(std::forward<Ts>(args)...);
 	}
-	
+
 	template<typename ...Ts>
 	void SetFactories(MatchStateUIFactory* msUIf, Ts &&... args) {
 		matchStateUIFactory = msUIf;
@@ -54,6 +55,11 @@ public:
 	}
 
 	template<typename ...Ts>
+	void SetFactories(FakeCardFactory* fcf, Ts &&... args) {
+		fakeCardFactory = fcf;
+		SetFactories(std::forward<Ts>(args)...);
+	}
+
 	void SetFactories(DialogueFactory* df, Ts &&... args) {
 		dialogueFactory = df;
 		SetFactories(std::forward<Ts>(args)...);
@@ -75,10 +81,12 @@ public:
 	matchStateUIFactory(nullptr),
 	dialogueFactory(nullptr),
 	npcFactory(nullptr)
+	fakeCardFactory(nullptr)
 	{};
 
 
 	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);
+	ecs::entity_t createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);
 
 	ecs::entity_t createDropDetector(Vector2D pos);
 
@@ -87,7 +95,7 @@ public:
 	void createDeckJ2();
 	ecs::entity_t createBoard();
 
-	// Métodos para crear la UI en el MatchState
+	// Mï¿½todos para crear la UI en el MatchState
 	ecs::entity_t createVisual_EndTurnButton(int posX, int posY);
 	ecs::entity_t createVisual_ActionPointsCounter(int posX, int posY);
 	ecs::entity_t createVisual_ScoreCounter(int posX, int posY, SDL_Color color);
@@ -113,5 +121,6 @@ public:
 	MatchStateUIFactory* matchStateUIFactory;
 	DialogueFactory* dialogueFactory;
 	NPCFactory* npcFactory;
+	FakeCardFactory* fakeCardFactory;
 };
 

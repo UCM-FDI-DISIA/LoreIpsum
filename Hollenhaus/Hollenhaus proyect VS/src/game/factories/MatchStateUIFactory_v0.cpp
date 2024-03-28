@@ -8,7 +8,8 @@
 ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int posY)
 {
     ecs::entity_t endTurnButton = Instantiate(Vector2D(posX, posY));  // 200, 265
-    endTurnButton->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
+    endTurnButton->getComponent<Transform>()->setGlobalScale(1.2, 1.2);
+    //endTurnButton->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
     endTurnButton->addComponent<SpriteRenderer>("EndTurnButton");
     endTurnButton->addComponent<BoxCollider>();
     endTurnButton->addComponent<EndTurnButton>(Turns::J1);
@@ -62,7 +63,8 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_BackgroundBlackBox(int posX, 
     // Obtenemos la altura y anchura de "black_box" para definir el tamaño del sprite en pixeles
     int textureW = blackBox->getComponent<SpriteRenderer>()->getTexture()->width();
     int textureH = blackBox->getComponent<SpriteRenderer>()->getTexture()->height();
-    blackBox->getComponent<Transform>()->getGlobalScale().set(xPixelsSize / textureW, yPixelsSize / textureH);
+    blackBox->getComponent<Transform>()->setGlobalScale(xPixelsSize / textureW, yPixelsSize / textureH);
+    //blackBox->getComponent<Transform>()->getGlobalScale().set(xPixelsSize / textureW, yPixelsSize / textureH);
 
     blackBox->setLayer(1);
 
@@ -74,7 +76,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_BackgroundBoard()
     ecs::entity_t background = Instantiate();
     background->addComponent<Transform>();
 
-    background->getComponent<Transform>()->getGlobalScale().set(0.5, 0.5);
+    //background->getComponent<Transform>()->getGlobalScale().set(0.5, 0.5);
     background->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
 
     background->addComponent<SpriteRenderer>("board5");

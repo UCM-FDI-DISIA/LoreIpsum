@@ -19,6 +19,8 @@ public:
 	/// <param name="_textID">ID de la textura en el Json</param>
 	void setTexture(const std::string _textID);
 
+	void setTexture(Texture* _textu);
+
 	/// <summary>
 	/// Prioriza el flipe de la X si "X" e "Y" estan en true, por defecto estan en false;
 	/// </summary>
@@ -47,6 +49,8 @@ public:
 
 	// Para renderizar el estado
 	void render() const override;
+
+	Vector2D getImageSize();
 
 	// Getter textura
 	Texture* getTexture() {

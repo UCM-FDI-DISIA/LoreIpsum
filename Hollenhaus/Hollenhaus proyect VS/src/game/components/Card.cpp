@@ -14,7 +14,13 @@ Card::Card(int cost, int value) : cost(cost), value(value)
 Card::Card(int cost, int value, std::string& sprite, bool unblockable)
 	: cost(cost), value(value), sprite(sprite), unblockable(unblockable)
 {
-	
+
+}
+
+Card::Card(int cost, int value, int id, std::string& sprite, bool unblockable)
+	: cost(cost), value(value), id(id), sprite(sprite), unblockable(unblockable)
+{
+
 }
 
 // mete en la lisa de efectos el efecto indicado

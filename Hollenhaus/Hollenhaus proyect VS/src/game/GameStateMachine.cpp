@@ -15,6 +15,7 @@
 #include "gamestates/PaigroState.h"
 #include "gamestates/NievesState.h"
 #include "gamestates/MatchOverState.h"
+#include "gamestates/DeckBuildingState.h"
 #include "components/managers/Manager.h"
 #include "Mouse.h"
 #include "gamestates/GameState.h"
@@ -43,6 +44,7 @@ GameStateMachine::GameStateMachine() {
 	jimboState = new JimboState();
 	nievesState = new NievesState();
 	matchOverState = new MatchOverState();
+	deckBuildingState = new DeckBuildingState();
 
 	// Ponemos el estado actual
 	currentState = new MainMenuState();
