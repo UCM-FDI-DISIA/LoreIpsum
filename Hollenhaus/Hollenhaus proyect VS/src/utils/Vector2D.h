@@ -71,10 +71,6 @@ public:
 		return *this;
 	}
 
-	inline bool operator==(const Vector2D& v) noexcept {
-		return x_ == v.x_ && y_ == v.y_;
-	}
-
 	// v[0] is the first coordinate and v[1] is the second
 	inline float& operator[](int i) noexcept {
 		assert(i == 0 || i == 1);
