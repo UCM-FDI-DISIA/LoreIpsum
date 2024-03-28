@@ -6,7 +6,7 @@
 #include "../components/TypeWriter.h"
 #include "../components/AutoDialogue.h"
 //#include "../components/DialogueEventCollection.h"
-//#include "../components/DialogueDestroyer.h"
+#include "../components/DialogueDestroyer.h"
 
 ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size, 
 	int speed, int cooldown, ecs::entity_t parent, int layer)
@@ -20,15 +20,16 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	dialogue->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
 	//dialogue->addComponent<SpriteRenderer>(" ");
 	//dialogue->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	dialogue->addComponent<DialogueDestroyer>();
 	dialogue->addComponent<TextComponent>(" ", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	dialogue->addComponent<TypeWriter>(speed);
 	dialogue->addComponent<DialogueReader>(id, convo);
 	dialogue->addComponent<NextText>();
-	//dialogue->addComponent<AutoDialogue>(cooldown);
+	dialogue->addComponent<AutoDialogue>(cooldown);
 	dialogue->setLayer(layer);
 
 	//dialogue->addComponent<DialogueEventCollection>();
-	//dialogue->addComponent<DialogueDestroyer>();
+	
 
 	return dialogue;
 }

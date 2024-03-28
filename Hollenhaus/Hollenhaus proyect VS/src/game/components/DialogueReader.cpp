@@ -2,6 +2,7 @@
 #include "DialogueReader.h"
 #include "../../sdlutils/SDLUtils.h"
 #include "TypeWriter.h"
+#include "DialogueDestroyer.h"
 #include "../Entity.h"
 
 DialogueReader::DialogueReader(std::string owner, int convo, int firstNode)
@@ -18,7 +19,10 @@ void DialogueReader::initComponent() {
 	//eventCollection_ = ent_->getComponent<DialogueEventCollection>();
 	//assert(eventCollection_ != nullptr);
 
-	//typeWriter_->setText(convo_->Node(actualNode_));
+	dialogueDestroyer_ = ent_->getComponent<DialogueDestroyer>();
+	assert(dialogueDestroyer_ != nullptr);
+
+	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
 	//eventCollection_->callEvent(convo_->Node(actualNode_).NodeEventStart());
 }
 void DialogueReader::NextNode()
@@ -26,7 +30,7 @@ void DialogueReader::NextNode()
 	//eventCollection_->callEvent(convo_->Node(actualNode_).NodeEventFinish());
 	actualNode_++;
 	if (actualNode_ >= convo_->NodesVector().size()) {
-		//dialogueDestroyer_->DestroyDialogue();
+		dialogueDestroyer_->destroyDialogue();
 		return;
 	}
 	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());

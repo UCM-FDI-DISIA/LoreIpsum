@@ -135,6 +135,7 @@ void CityState::onEnter()
 	exit->addComponent<NPC>(0); // Lleva al menu (0).
 	exit->setLayer(2);
 
+
 	// referencia a sdlutils
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("citytheme").play(-1);
