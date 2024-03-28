@@ -16,3 +16,19 @@ void DrawerManager::update()
 void DrawerManager::initComponent()
 {
 }
+
+void DrawerManager::addCard(int id)
+{
+}
+
+void DrawerManager::removeCard(int id)
+{
+}
+
+void DrawerManager::drawerPalante()
+{
+}
+
+void DrawerManager::drawerPatras()
+{
+}

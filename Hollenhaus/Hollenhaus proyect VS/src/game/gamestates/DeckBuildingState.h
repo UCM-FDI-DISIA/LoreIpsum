@@ -1,9 +1,9 @@
 #pragma once
 
 #include "GameState.h"
-#include "../components/Card.h"
-#include "../components/managers/PizarraManager.h"
-#include "../components/managers/DrawerManager.h"
+class Card;
+class PizarraManager;
+class DrawerManager;
 
 class DeckBuildingState : public GameState
 {

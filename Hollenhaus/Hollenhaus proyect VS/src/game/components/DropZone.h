@@ -6,13 +6,14 @@
 #include "./Card.h"
 #include <functional>
 
-using SDLEventCallback = std::function<void(void)>;
+//typedef void (*Callback)(Card*);
+using SDLCallbackCards = std::function<void(Card*)>;
 class DropZone : public ComponentUpdate
 {
 private:
 	Vector2D dropZonePos;
 	BoxCollider* dropZoneCollider;
-	SDLEventCallback callback;
+	SDLCallbackCards callback;
 
 public:
 
@@ -24,12 +25,12 @@ public:
 
 	bool isOnDropZone(Transform* cardTransform);
 
-	SDLEventCallback setCallBack(SDLEventCallback _callback) {
-		callback = _callback;
-		return callback;
+	void setCallBack(SDLCallbackCards cb) {
+		callback = cb;
 	}
 
-	void useCallback() {
-		callback();
+	void useCallback(Card* card) {
+		if (callback)
+			callback(card);
 	}
 };

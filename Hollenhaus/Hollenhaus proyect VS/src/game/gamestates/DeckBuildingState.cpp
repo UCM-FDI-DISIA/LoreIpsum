@@ -90,7 +90,7 @@ void DeckBuildingState::onEnter()
 	pizarra->addComponent<BoxCollider>();
 	pizarra->addComponent<PizarraManager>();
 	pizarra->addComponent<DropZone>();
-	pizarra->getComponent<DropZone>()->setCallBack([this, carda]() {moveToPizarra(carda); });
+	pizarra->getComponent<DropZone>()->setCallBack([this](Card* card) { moveToPizarra(card); });
 	Vector2D pizarraPos(300, 10);
 	pizarra->getComponent<Transform>()->setGlobalPos(pizarraPos);
 	pizarra->getComponent<Transform>()->setGlobalScale(4.5,3);
@@ -117,11 +117,11 @@ void DeckBuildingState::onExit()
 	std::cout << "\nEXIT DECKBUILDING.\n";
 }
 
-void DeckBuildingState::moveToPizarra(Card* card)
+void DeckBuildingState::moveToPizarra(Card* card){
 {
 	drawer->removeCard(card->getID());
 	pizarra->addCard(card->getID());
-}
+}}
 
 void DeckBuildingState::moveToDrawer(Card* card)
 {

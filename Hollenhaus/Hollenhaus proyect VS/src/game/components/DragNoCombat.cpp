@@ -75,7 +75,7 @@ void DragNoCombat::OnLeftClickUp()
 		DropZone* dp = ent->getComponent<DropZone>();
 		if(dp != nullptr || dp->isOnDropZone(dragTransform))
 		{
-			dp->useCallback();
+			dp->useCallback(dragTransform->getEntity()->getComponent<Card>());
 		}
 	}
 }
