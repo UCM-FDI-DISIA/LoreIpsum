@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "PizarraManager.h"
 #include "../../Data.h"
+#include "../../GameStateMachine.h"
+#include "../../gamestates/GameState.h"
 
 PizarraManager::PizarraManager()
 {
@@ -18,13 +20,36 @@ void PizarraManager::update()
 }
 void PizarraManager::initComponent()
 {
+	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
+		if (isOnPizarra(e)) {
 
+			mazeaux.push_back(e);
+		}
+	}
+	mazePrev.clear();
+
+	for (auto e : mazeaux) {
+		mazePrev.push_back(e);
+	}
+
+	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
+		if (!isOnPizarra(e)) {
+
+			mazePrev.push_back(e);
+		}
+	}
+
+	for (auto e : mazePrev)
+	{
+		GameStateMachine::instance()->getCurrentState()->createCard(e, Vector2D(25, 300));
+	}
 }
 
 // ---- Manageo pa cosas fuera de la pizarra ----
 // Guarda el mazo en el data.
 void PizarraManager::saveMaze()
 {
+	GameStateMachine::instance()->getCurrentState()->setMaze(mazePrev);
 	TuVieja("saveMaze");
 }
 

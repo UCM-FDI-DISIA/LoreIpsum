@@ -4,11 +4,11 @@
 
 
 //------Constructora y destructora:
-Data::Data() : drawer(new int[CARDS_IN_GAME]) { 
-	EmptyDrawer(); 
+Data::Data(){
+	EmptyDrawer();
 	Read();
 }
-Data::Data(int mon, int cas, int sou, std::list<int>maz, int* dra, std::list<int>def)
+Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def)
 	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def)
 {};
 Data::~Data() {};
@@ -16,8 +16,12 @@ Data::~Data() {};
 
 // ------ DECKBUILDING ------
 //----Mazo:
-void Data::AddCardToMaze(int id) {
-	maze.push_back(id);
+void Data::SetNewMaze(std::list<int> newMaze) {
+	EmptyMaze();
+	for (auto e : newMaze)
+	{
+		maze.push_back(e);
+	}
 }
 void Data::SubtractCardFromMaze(int id) {
 	maze.remove(id);
@@ -26,6 +30,11 @@ void Data::SubtractCardFromMaze(int id) {
 void Data::AddCardToDrawer(int id) {
 	drawer[id] = id;
 }
+
+void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {
+	drawer = newDrawer;
+}
+
 void Data::SubtractCardFromDrawer(int id) {
 	drawer[id] = -1;
 }

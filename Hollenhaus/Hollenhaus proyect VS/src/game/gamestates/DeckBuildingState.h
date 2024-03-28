@@ -22,7 +22,7 @@ public:
 	void moveToPizarra(Card* card);
 	void moveToDrawer(Card* card);
 
-	ecs::entity_t createCard(int id) override;
+	ecs::entity_t createCard(int id, Vector2D pos) override;
 
 private:
 	PizarraManager* pizarra_;

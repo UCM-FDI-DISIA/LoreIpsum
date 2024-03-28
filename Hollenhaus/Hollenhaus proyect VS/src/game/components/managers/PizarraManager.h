@@ -8,6 +8,7 @@ class PizarraManager : public ComponentUpdate
 {
 private:
 	std::list<int> mazePrev;
+	std::list<int> mazeaux;
 	int cantCards;
 	bool pizarraLlena;
 

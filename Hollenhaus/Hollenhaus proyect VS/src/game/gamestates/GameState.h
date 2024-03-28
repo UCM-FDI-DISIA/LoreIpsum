@@ -1,5 +1,6 @@
 #ifndef GameState_H_
 #define GameState_H_
+#include <array>
 
 /// <summary>
 /// Clase GameState (o Manager) vista en clase
@@ -31,8 +32,12 @@ public:
 
 	virtual void setWinnerOnData(int w);
 
-	virtual ecs::entity_t createCard(int id) { return nullptr; };
-	int* getDrawer();
+	virtual ecs::entity_t createCard(int id, Vector2D pos) { return nullptr; };
+	virtual std::array<int, CARDS_IN_GAME> getDrawer();
+	virtual std::list<int> getMaze();
+	virtual void setMaze(std::list<int> mazeToSave);
+	virtual void saveData();
+	virtual void loadData();
 
 	// ---- setters ----
 	// settea la data

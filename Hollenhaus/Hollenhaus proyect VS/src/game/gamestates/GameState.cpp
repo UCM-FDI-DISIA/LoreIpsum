@@ -63,9 +63,29 @@ void GameState::setWinnerOnData(int w)
 
 }
 
-int* GameState::getDrawer()
+std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
     return data->GetDrawer();
+}
+
+std::list<int> GameState::getMaze()
+{
+    return data->GetMaze();
+}
+
+void GameState::setMaze(std::list<int> mazeToSave)
+{
+    data->SetNewMaze(mazeToSave);
+}
+
+void GameState::saveData()
+{
+    data->Write();
+}
+
+void GameState::loadData()
+{
+    data->Read();
 }
 
 void GameState::setData(Data* _data)

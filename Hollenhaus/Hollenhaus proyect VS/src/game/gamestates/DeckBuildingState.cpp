@@ -50,6 +50,7 @@ void DeckBuildingState::onEnter()
 {
 	std::cout << "\nENTER DECKBUILDING.\n";
 
+	loadData();
 	
 	// ---- DRAG ----
 	// DragNoCombat se encarga de gestionar el drag de todas las cartas
@@ -173,6 +174,8 @@ void DeckBuildingState::onEnter()
 // ---- EXIT ESTADO ----
 void DeckBuildingState::onExit()
 {
+	saveData();
+
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
@@ -197,11 +200,11 @@ void DeckBuildingState::moveToDrawer(Card* card)
 	drawer_->addCard(card->getID());
 }
 
-ecs::entity_t DeckBuildingState::createCard(int id)
+ecs::entity_t DeckBuildingState::createCard(int id, Vector2D pos)
 {
 	// Hace LA carta
 	auto card = sdlutils().cards().at(std::to_string(id));
-	ecs::entity_t ent = factory->createFakeCard(id, Vector2D(100, 100), card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
+	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
 	return ent;
 
 }

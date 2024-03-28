@@ -28,7 +28,7 @@ void DrawerManager::initComponent()
 	{
 		if (drawer[i] != -1)
 		{
-			GameStateMachine::instance()->getCurrentState()->createCard(drawer[i]);
+			GameStateMachine::instance()->getCurrentState()->createCard(drawer[i], Vector2D(25*i, 100));
 		}
 	}
 }
