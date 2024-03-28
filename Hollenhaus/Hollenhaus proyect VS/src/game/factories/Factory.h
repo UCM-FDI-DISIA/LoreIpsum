@@ -60,6 +60,7 @@ public:
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
+	template<typename ...Ts>
 	void SetFactories(DialogueFactory* df, Ts &&... args) {
 		dialogueFactory = df;
 		SetFactories(std::forward<Ts>(args)...);
@@ -80,8 +81,9 @@ public:
 	handFactory(nullptr),
 	matchStateUIFactory(nullptr),
 	dialogueFactory(nullptr),
-	npcFactory(nullptr)
+	npcFactory(nullptr),
 	fakeCardFactory(nullptr)
+
 	{};
 
 

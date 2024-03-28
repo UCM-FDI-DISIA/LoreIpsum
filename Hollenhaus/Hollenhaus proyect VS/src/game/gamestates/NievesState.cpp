@@ -116,3 +116,4 @@ void NievesState::setWinnerOnData(int w)
 	data->setWinner(w);
 	
 }
+ 
