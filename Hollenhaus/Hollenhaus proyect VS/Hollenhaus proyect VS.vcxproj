@@ -189,6 +189,7 @@
     <ClInclude Include="src\game\components\ComponentUpdate.h" />
     <ClInclude Include="src\game\components\DeckComponent.h" />
     <ClInclude Include="src\game\components\DialogueDestroyer.h" />
+    <ClInclude Include="src\game\components\DialogueEventCollection.h" />
     <ClInclude Include="src\game\components\DialogueReader.h" />
     <ClInclude Include="src\game\components\Drag.h" />
     <ClInclude Include="src\game\components\DragNoCombat.h" />

@@ -428,9 +428,6 @@
     <ClInclude Include="src\game\factories\MatchStateUIFactory_v0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\EffectCollection.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\components\basics\BoxCollider.h">
       <Filter>Archivos de encabezado\Componentes\Basicos</Filter>
     </ClInclude>
@@ -591,6 +588,12 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\DialogueDestroyer.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\EffectCollection.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DialogueEventCollection.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
