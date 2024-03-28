@@ -70,48 +70,13 @@ void CityState::onEnter()
 
 	//------NPCs que demomento son Caitlyns:
 	//----Para entrar en la oficina.
-	//ecs::entity_t npc2 = Instantiate();
-	//npc2->addComponent<Transform>();
-	//npc2->addComponent<SpriteRenderer>("npc");
-	//npc2->addComponent<BoxCollider>();
-	//npc2->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
-	//npc2->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
-	//Vector2D np2Pos(-100, 425);
-	//npc2->getComponent<Transform>()->setGlobalPos(np2Pos);
-	//npc2->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	//npc2->addComponent<NPC>(2); // Lleva a la oficina (2).
-	//npc2->setLayer(2);
-	
 	factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 2, 2, fondo);
+	
 	//----Para entrar en la tienda.
-	//ecs::entity_t npc1 = Instantiate();
-	//npc1->addComponent<Transform>();
-	//npc1->addComponent<SpriteRenderer>("hombre");
-	//npc1->addComponent<BoxCollider>();
-	//npc1->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
-	//npc1->getComponent<Transform>()->getRelativeScale().set(1.0f, 1.0f);
-	//Vector2D np1Pos(800, 425);
-	//npc1->getComponent<Transform>()->setGlobalPos(np1Pos);
-	//npc1->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	//npc1->addComponent<NPC>(3); // Lleva a la tienda (3).
-	//npc1->setLayer(2);
-
 	factory->createNPC("el que te vende la droga idk", "hombre", { 1.0f, 1.0f }, { 800, 425 }, 0, 3, 2, fondo);
 	 
 	//----Para empezar la batalla.
-	//ecs::entity_t npc3 = Instantiate();
-	//npc3->addComponent<Transform>();
-	//npc3->addComponent<SpriteRenderer>("npc");
-	//npc3->addComponent<BoxCollider>();
-	//npc3->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
-	//npc3->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
-	//Vector2D npc3Pos(400, 425);
-	//npc3->getComponent<Transform>()->setGlobalPos(npc3Pos);
-	//npc3->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	//npc3->addComponent<NPC>(6); // Lleva al combate (SamuState(6)).
-	//npc3->setLayer(2);
-	 
-	factory->createNPC("Cailtyn", "npc", {0.25f, 0.25f}, {400, 425}, 0, 6, 2, fondo);
+	 factory->createNPC("Cailtyn", "npc", {0.25f, 0.25f}, {400, 425}, 0, 6, 2, fondo);
 
 	//----Para hablar
 	ecs::entity_t npc4 = Instantiate();
