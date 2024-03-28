@@ -72,3 +72,4 @@ void GameState::setData(Data* _data)
 {
     data = _data;
 }
+

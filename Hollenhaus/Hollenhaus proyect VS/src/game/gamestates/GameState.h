@@ -29,9 +29,9 @@ public:
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
 
-	virtual void setWinnerOnData(int w); 
+	virtual void setWinnerOnData(int w);
 
-
+	virtual ecs::entity_t createCard(int id) { return nullptr; };
 	int* getDrawer();
 
 	// ---- setters ----

@@ -1,8 +1,9 @@
 #pragma once
 #include <list>
 
-// Cantidad de cartas en el juego
-const int CARDS_IN_GAME = 50;
+const int CARDS_IN_GAME = 50,// Cantidad de cartas en el juego
+MIN_CARDS_MAZE = 4, // Minimo de cartas en el mazo
+MAX_CARDS_MAZE = 1; // Maximo de cartas en el mazo
 
 class Data
 {
@@ -31,11 +32,11 @@ public:
 
 	//------Constructora y destructora:
 	Data();
-	Data(int mon, int cas, int sou, std::list<int>maz, int * dra, std::list<int>def);
+	Data(int mon, int cas, int sou, std::list<int>maz, int* dra, std::list<int>def);
 	~Data();
 
 	//------Setters:
-	
+
 	// ------ DECKBUILDING ------
 	//----Mazo:
 	void AddCardToMaze(int id);
@@ -58,7 +59,7 @@ public:
 	void setWinner(int i);
 
 	//------Getters:
-	
+
 	// ------ DECKBUILDING ------
 	//----Mazo:
 	const std::list<int> GetMaze() { return maze; }
@@ -78,7 +79,7 @@ public:
 	int getWinner() { return winner; }
 
 	//------Busqueda:
-	
+
 	// ------ DECKBUILDING ------
 	//----Mazo:
 	bool IdIsInMaze(int id);

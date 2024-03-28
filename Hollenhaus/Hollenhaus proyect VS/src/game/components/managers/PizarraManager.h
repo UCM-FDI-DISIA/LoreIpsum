@@ -2,6 +2,7 @@
 #include "../ComponentUpdate.h"
 #include <list>
 
+class Data;
 
 class PizarraManager : public ComponentUpdate
 {
@@ -14,7 +15,7 @@ public:
 	// ---- Constructora/Destructora ----
 	PizarraManager();
 	~PizarraManager();
-		
+
 	// ---- Metodos heredados (no es TAAAAAAAAN importante) ----
 	void update() override;
 	void initComponent() override;
@@ -25,6 +26,8 @@ public:
 
 	// Devuelve true si la carta (id) esta en la pizarra.
 	bool isOnPizarra(int id);
+
+	bool isPizarraLlena();
 
 	// ---- Manageo de cartas en la pizarra ----
 	// Aniade carta a la pizarra.

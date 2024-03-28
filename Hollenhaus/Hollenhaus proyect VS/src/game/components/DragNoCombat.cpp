@@ -78,7 +78,17 @@ void DragNoCombat::OnLeftClickUp()
 			DropZone* dp = ent->getComponent<DropZone>();
 			if (dp != nullptr && dp->isOnDropZone(dragTransform))
 			{
-				dp->useCallback(dragTransform->getEntity()->getComponent<Card>());
+				if ((ent->getComponent<PizarraManager>() != nullptr) && !ent->getComponent<PizarraManager>()->isPizarraLlena())
+				{
+					dp->useCallback(dragTransform->getEntity()->getComponent<Card>());
+				}
+				else if ((ent->getComponent<DrawerManager>() != nullptr)) 
+				{
+					dp->useCallback(dragTransform->getEntity()->getComponent<Card>());
+				}
+				else {//sino, devolvemos la carta a su posicion inicial
+					dragTransform->setGlobalPos(initialTransformPos);
+				}
 			}
 			else {//sino, devolvemos la carta a su posicion inicial
 				dragTransform->setGlobalPos(initialTransformPos);

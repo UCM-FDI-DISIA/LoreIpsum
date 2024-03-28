@@ -4,7 +4,9 @@
 
 
 //------Constructora y destructora:
-Data::Data() : drawer(new int[CARDS_IN_GAME]) { EmptyDrawer(); }
+Data::Data() : drawer(new int[CARDS_IN_GAME]) { 
+	EmptyDrawer(); 
+}
 Data::Data(int mon, int cas, int sou, std::list<int>maz, int* dra, std::list<int>def)
 	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def)
 {};
@@ -78,7 +80,7 @@ bool Data::IdIsInDefeatedNPC(int id) {
 //------Escribir en el archivo:
 void Data::Write() {
 	std::ofstream file;
-	file.open("resources/saves/save.txt");
+	file.open("save.txt");
 
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
@@ -104,7 +106,7 @@ void Data::Read() {
 	EmptyLists();
 
 	std::ifstream file;
-	file.open("resources/saves/save.txt");
+	file.open("save.txt");
 
 	int number, iterations;
 

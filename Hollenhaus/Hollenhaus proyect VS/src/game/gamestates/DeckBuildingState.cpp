@@ -50,16 +50,19 @@ void DeckBuildingState::onEnter()
 {
 	std::cout << "\nENTER DECKBUILDING.\n";
 
+	
 	// ---- DRAG ----
 	// DragNoCombat se encarga de gestionar el drag de todas las cartas
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragNoCombat>();
 
 	// ---- CARDS ----
-	auto card = sdlutils().cards().at(std::to_string(0));
-	Factory* factory = new Factory();
+	factory = new Factory();
 	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
-	Card* carda = factory->createFakeCard(0, Vector2D(100, 100), card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects())->getComponent<Card>();
+	//
+	////hace la carta 1
+	//auto card1 = sdlutils().cards().at(std::to_string(1));
+	//factory->createFakeCard(1, Vector2D(100, 100), card1.cost(), card1.value(), card1.sprite(), card1.unblockable(), card1.effects())->getComponent<Card>();
 
 	// ---- TEXTO ----
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
@@ -154,6 +157,13 @@ void DeckBuildingState::onEnter()
 	cajon->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	drawer_ = cajon->getComponent<DrawerManager>();
 
+
+	// creamos las cartas del cajon
+	for (int i = 0; i < 6; i++)
+	{
+		drawer_->addCard(i);
+	}
+
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").play(-1);
@@ -186,3 +196,14 @@ void DeckBuildingState::moveToDrawer(Card* card)
 	pizarra_->removeCard(card->getID());
 	drawer_->addCard(card->getID());
 }
+
+ecs::entity_t DeckBuildingState::createCard(int id)
+{
+	// Hace LA carta
+	auto card = sdlutils().cards().at(std::to_string(id));
+	ecs::entity_t ent = factory->createFakeCard(id, Vector2D(100, 100), card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
+	return ent;
+
+}
+
+
