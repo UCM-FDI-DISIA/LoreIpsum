@@ -44,7 +44,8 @@ void NextText::OnLeftClickUp()
 
 void NextText::reactToClick()
 {
-	if (!click && boxCollider_->isCursorOver() && typeWriter_->ended()) {
+	//TuVieja("click en el textbox1.");
+	if (!click && boxCollider_->isCursorOver()) {
 		TuVieja("click en el textbox.");
 		dialogueReader_->NextNode();
 	}
