@@ -24,7 +24,7 @@ void PizarraManager::initComponent()
 // Guarda el mazo en el data.
 void PizarraManager::saveMaze() 
 {
-
+	TuVieja("saveMaze");
 }
 
 // Devuelve true si la carta (id) esta en la pizarra.

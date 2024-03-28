@@ -27,8 +27,10 @@ void DrawerManager::removeCard(int id)
 
 void DrawerManager::drawerPalante()
 {
+	TuVieja("drawerPalante");
 }
 
 void DrawerManager::drawerPatras()
 {
+	TuVieja("drawerPatras");
 }

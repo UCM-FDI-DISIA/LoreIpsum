@@ -18,6 +18,7 @@
 
 // componentes
 #include "../components/basics/TextComponent.h"
+#include "../components/Button.h"
 #include "../components/NPC.h"
 
 // ------------------------------------------------------- //
@@ -82,17 +83,42 @@ void DeckBuildingState::onEnter()
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(2); // Lleva a la oficina (2).
-	exit->setLayer(1); 
-	
-	ecs::entity_t exit = Instantiate();
-	exit->addComponent<Transform>();
-	exit->addComponent<SpriteRenderer>("boton_flecha");
-	exit->addComponent<BoxCollider>();
-	Vector2D exitPos(10, 10);
-	exit->getComponent<Transform>()->setGlobalPos(exitPos);
-	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(2); // Lleva a la oficina (2).
 	exit->setLayer(1);
+
+	// ---- Confirmar Mazo:
+	ecs::entity_t Confirm = Instantiate();
+	Confirm->addComponent<Transform>();
+	Confirm->addComponent<SpriteRenderer>("boton_flecha");
+	Confirm->addComponent<BoxCollider>();
+	Vector2D ConfirmPos(300, 10);
+	Confirm->getComponent<Transform>()->setGlobalPos(ConfirmPos);
+	Confirm->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	Confirm->addComponent<Button>();
+	Confirm->getComponent<Button>()->connectToButton([this]() { pizarra->saveMaze(); });
+	Confirm->setLayer(1);
+
+	// ---- Pasar cajon alante:
+	ecs::entity_t botPalante = Instantiate();
+	botPalante->addComponent<Transform>();
+	botPalante->addComponent<SpriteRenderer>("boton_flecha");
+	botPalante->addComponent<BoxCollider>();
+	Vector2D botPalantePos(200, 200);
+	botPalante->getComponent<Transform>()->setGlobalPos(botPalantePos);
+	botPalante->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	botPalante->addComponent<Button>();
+	botPalante->getComponent<Button>()->connectToButton([this]() { drawer->drawerPalante(); });
+	botPalante->setLayer(1);
+	// ---- Pasar cajon atras:
+	ecs::entity_t botPatras = Instantiate();
+	botPatras->addComponent<Transform>();
+	botPatras->addComponent<SpriteRenderer>("boton_flecha");
+	botPatras->addComponent<BoxCollider>();
+	Vector2D botPatrasPos(200, 400);
+	botPatras->getComponent<Transform>()->setGlobalPos(botPatrasPos);
+	botPatras->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	botPatras->addComponent<Button>();
+	botPatras->getComponent<Button>()->connectToButton([this]() { drawer->drawerPatras(); });
+	botPatras->setLayer(1);
 
 	// ---- PIZARRA ----
 	Vector2D pizarraPos(300, 10);
@@ -138,7 +164,7 @@ void DeckBuildingState::onExit()
 	std::cout << "\nEXIT DECKBUILDING.\n";
 }
 
-void DeckBuildingState::moveToPizarra(Card* card) 
+void DeckBuildingState::moveToPizarra(Card* card)
 {
 	TuVieja("HOSTIA TIO QUE NO LO HE ENCHUFAO - to pizarra");
 	drawer->removeCard(card->getID());

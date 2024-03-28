@@ -31,6 +31,7 @@ public:
 	void initComponent() override;
 	void connectToButton(SDLEventCallback _callback);
 
+	int getCurrentButtonState() { return currentState; }
 
 	void OnLeftClickDown();
 	void OnLeftClickUp();
