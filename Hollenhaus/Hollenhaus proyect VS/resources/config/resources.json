@@ -39,8 +39,9 @@
         {"id": "fondoTienda",       "file": "resources/images/fondoTienda.png"  },
         {"id": "mostrador",       "file": "resources/images/mostradorTienda.png"  },
         {"id": "estanteria",       "file": "resources/images/estanteriaTienda.png"  },
-        {"id": "cell",       "file": "resources/images/cardCell.png"  },        
-        {"id": "boton_ph",       "file": "resources/images/BOTONPH.png"  }
+        {"id": "cell",       "file": "resources/images/cardCell.png"  },  
+        {"id": "DeckbuildingBG",       "file": "resources/images/DeckbuildingBG.png"  },      
+        {"id": "boton_ph",       "file": "resources/images/botonph.png"  }
     ],
     "fonts": [
       {

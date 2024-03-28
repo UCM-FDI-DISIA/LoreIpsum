@@ -32,7 +32,7 @@ public:
 	virtual void setWinnerOnData(int w); 
 
 
-	std::vector<int> getDrawer();
+	int* getDrawer();
 
 	// ---- setters ----
 	// settea la data

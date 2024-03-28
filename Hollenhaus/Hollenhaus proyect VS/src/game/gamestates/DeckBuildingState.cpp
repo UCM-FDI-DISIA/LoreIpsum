@@ -87,27 +87,28 @@ void DeckBuildingState::onEnter()
 	exit->setLayer(1);
 
 	// ---- Confirmar Mazo:
+	Vector2D botScale(.25f, .25f);
 	ecs::entity_t Confirm = Instantiate();
 	Confirm->addComponent<Transform>();
-	Confirm->addComponent<SpriteRenderer>("boton_flecha");
+	Confirm->addComponent<SpriteRenderer>("boton_ph");
 	Confirm->addComponent<BoxCollider>();
 	Vector2D ConfirmPos(260, 330);
 	Confirm->getComponent<Transform>()->setGlobalPos(ConfirmPos);
+	Confirm->getComponent<Transform>()->setGlobalScale(botScale);
 	Confirm->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	Confirm->addComponent<Button>();
 	Confirm->getComponent<Button>()->connectToButton([this]() { pizarra_->saveMaze(); });
 	Confirm->setLayer(1);
 
 	// Escalado de las flechas del drawer
-	Vector2D botdrawerScale(.5f, .5f);
 	// ---- Pasar cajon alante:
 	ecs::entity_t botPalante = Instantiate();
 	botPalante->addComponent<Transform>();
-	botPalante->addComponent<SpriteRenderer>("boton_flecha");
+	botPalante->addComponent<SpriteRenderer>("boton_ph");
 	botPalante->addComponent<BoxCollider>();
 	Vector2D botPalantePos(750, 420);
 	botPalante->getComponent<Transform>()->setGlobalPos(botPalantePos);
-	botPalante->getComponent<Transform>()->setGlobalScale(botdrawerScale);
+	botPalante->getComponent<Transform>()->setGlobalScale(botScale);
 	botPalante->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	botPalante->addComponent<Button>();
 	botPalante->getComponent<Button>()->connectToButton([this]() { drawer_->drawerPalante(); });
@@ -115,11 +116,11 @@ void DeckBuildingState::onEnter()
 	// ---- Pasar cajon atras:
 	ecs::entity_t botPatras = Instantiate();
 	botPatras->addComponent<Transform>();
-	botPatras->addComponent<SpriteRenderer>("boton_flecha");
+	botPatras->addComponent<SpriteRenderer>("boton_ph");
 	botPatras->addComponent<BoxCollider>();
 	Vector2D botPatrasPos(750, 500);
 	botPatras->getComponent<Transform>()->setGlobalPos(botPatrasPos);
-	botPatras->getComponent<Transform>()->setGlobalScale(botdrawerScale);
+	botPatras->getComponent<Transform>()->setGlobalScale(botScale);
 	botPatras->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	botPatras->addComponent<Button>();
 	botPatras->getComponent<Button>()->connectToButton([this]() { drawer_->drawerPatras(); });
@@ -145,7 +146,7 @@ void DeckBuildingState::onEnter()
 	cajon->addComponent<Transform>();
 	cajon->addComponent<SpriteRenderer>("black_box");
 	cajon->addComponent<BoxCollider>();
-	cajon->addComponent<PizarraManager>();
+	cajon->addComponent<DrawerManager>();
 	cajon->addComponent<DropZone>();
 	cajon->getComponent<DropZone>()->setCallBack([this](Card* card) { moveToDrawer(card); });
 	cajon->getComponent<Transform>()->setGlobalPos(cajonPos);

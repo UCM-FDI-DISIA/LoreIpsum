@@ -3,7 +3,8 @@
 #include "../../GameStateMachine.h"
 #include "../../gamestates/GameState.h"
 
-DrawerManager::DrawerManager() : cajonesAbiertos(0)
+DrawerManager::DrawerManager() : cajonesAbiertos(0), 
+drawer(GameStateMachine::instance()->getCurrentState()->getDrawer())
 {
 }
 
@@ -17,7 +18,6 @@ void DrawerManager::update()
 
 void DrawerManager::initComponent()
 {
-	drawer = GameStateMachine::instance()->getCurrentState()->getDrawer();
 }
 
 void DrawerManager::addCard(int id)
