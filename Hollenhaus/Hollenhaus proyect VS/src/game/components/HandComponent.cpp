@@ -27,7 +27,7 @@ void HandComponent::addCard(ecs::entity_t card) {
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(Cards::ON_HAND);
 
-	if (owner_ == Players::PLAYER2)
+	if (owner_ == Players::IA)
 	{
 		card->getComponent<Transform>()->setGlobalAngle(180.0f);
 		//for (card->getComponent<Transform>().getChildren()) TODO: girar cada elemento dentro, pero como un transform no conoce a sus hijos....
