@@ -46,6 +46,7 @@
     <ClCompile Include="src\game\components\ColliderRender.cpp" />
     <ClCompile Include="src\game\components\DeckComponent.cpp" />
     <ClCompile Include="src\game\components\DialogueDestroyer.cpp" />
+    <ClCompile Include="src\game\components\DialogueEventCollection.cpp" />
     <ClCompile Include="src\game\components\DialogueReader.cpp" />
     <ClCompile Include="src\game\components\Drag.cpp" />
     <ClCompile Include="src\game\components\DragNoCombat.cpp" />

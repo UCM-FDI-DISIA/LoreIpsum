@@ -303,6 +303,7 @@
     <ClCompile Include="src\game\factories\DialogueFactory_V0.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\DialogueEventCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
