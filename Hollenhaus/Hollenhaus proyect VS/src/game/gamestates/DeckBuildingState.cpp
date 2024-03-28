@@ -58,7 +58,7 @@ void DeckBuildingState::onEnter()
 	auto card = sdlutils().cards().at(std::to_string(0));
 	Factory* factory = new Factory();
 	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
-	Card* carda = factory->createFakeCard(0, Vector2D(100,100), card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects())->getComponent<Card>();
+	Card* carda = factory->createFakeCard(0, Vector2D(100, 100), card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects())->getComponent<Card>();
 
 	// ---- TEXTO ----
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
@@ -84,20 +84,30 @@ void DeckBuildingState::onEnter()
 	exit->setLayer(1);
 
 	// ---- PIZARRA ----
-	ecs::entity_t pizarra = Instantiate();
+	Vector2D pizarraPos(300, 10);
+	ecs::entity_t pizarra = Instantiate(pizarraPos, ecs::grp::DROPZONE);
 	pizarra->addComponent<Transform>();
 	pizarra->addComponent<SpriteRenderer>("black_box");
 	pizarra->addComponent<BoxCollider>();
 	pizarra->addComponent<PizarraManager>();
 	pizarra->addComponent<DropZone>();
 	pizarra->getComponent<DropZone>()->setCallBack([this](Card* card) { moveToPizarra(card); });
-	Vector2D pizarraPos(300, 10);
 	pizarra->getComponent<Transform>()->setGlobalPos(pizarraPos);
-	pizarra->getComponent<Transform>()->setGlobalScale(4.5,3);
+	pizarra->getComponent<Transform>()->setGlobalScale(4.5, 3);
 	pizarra->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
 	// ---- CAJON ----
-
+	Vector2D cajonPos(200, 200);
+	ecs::entity_t cajon = Instantiate(cajonPos, ecs::grp::DROPZONE);
+	cajon->addComponent<Transform>();
+	cajon->addComponent<SpriteRenderer>("black_box");
+	cajon->addComponent<BoxCollider>();
+	cajon->addComponent<PizarraManager>();
+	cajon->addComponent<DropZone>();
+	cajon->getComponent<DropZone>()->setCallBack([this](Card* card) { moveToDrawer(card); });
+	cajon->getComponent<Transform>()->setGlobalPos(cajonPos);
+	cajon->getComponent<Transform>()->setGlobalScale(3, 3);
+	cajon->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
@@ -117,14 +127,17 @@ void DeckBuildingState::onExit()
 	std::cout << "\nEXIT DECKBUILDING.\n";
 }
 
-void DeckBuildingState::moveToPizarra(Card* card){
+void DeckBuildingState::moveToPizarra(Card* card) 
 {
+	TuVieja("HOSTIA TIO QUE NO LO HE ENCHUFAO - to pizarra");
 	drawer->removeCard(card->getID());
 	pizarra->addCard(card->getID());
-}}
+
+}
 
 void DeckBuildingState::moveToDrawer(Card* card)
 {
+	TuVieja("HOSTIA TIO QUE NO LO HE ENCHUFAO - to cajon");
 	pizarra->removeCard(card->getID());
 	drawer->addCard(card->getID());
 }

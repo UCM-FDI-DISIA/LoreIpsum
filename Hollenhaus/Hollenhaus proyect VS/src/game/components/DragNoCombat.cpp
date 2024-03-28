@@ -27,16 +27,18 @@ void DragNoCombat::initComponent()
 void DragNoCombat::update()
 {
 	// si se esta agarrando la carta
-	if (dragTransform != nullptr) 
+	if (dragTransform != nullptr)
 	{
 		// guarda la posicion del raton en cada instante
-		Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
+		Vector2D mousePos(ih().getMousePos().first, ih().getMousePos().second);
 
 		// guarda la pos actual real para que la carta siga segun donde has pulsado para arrastrar
 		Vector2D posAct = mousePos - initialMousePos + initialTransformPos;
 
 		// establece la posicion actual  
-		dragTransform->getGlobalPos().set(posAct);
+		dragTransform->setGlobalPos(posAct);
+		//std::cout << "PosAct: " << posAct << std::endl;
+		//std::cout << "PosCarta: " << dragTransform->getGlobalPos() << std::endl;
 	}
 }
 
@@ -46,7 +48,7 @@ void DragNoCombat::OnLeftClickDown()
 	auto card = mouseRaycast(ecs::grp::CARDS);
 
 	// si se tiene carta
-	if (card != nullptr) 
+	if (card != nullptr)
 	{
 		// guardas el transform de la carta que agarres
 		dragTransform = card->getComponent<Transform>();
@@ -58,8 +60,8 @@ void DragNoCombat::OnLeftClickDown()
 		initialMousePos.set(Vector2D(ih().getMousePos().first, ih().getMousePos().second));
 
 		// estableces el initial transform real
-		initialTransformPosWithOffSet.set(initialMousePos - Vector2D(card->getComponent<BoxCollider>()->getRect()->w / 2, 
-																       card->getComponent<BoxCollider>()->getRect()->h / 2));
+		initialTransformPosWithOffSet.set(initialMousePos - Vector2D(card->getComponent<BoxCollider>()->getRect()->w / 2,
+			card->getComponent<BoxCollider>()->getRect()->h / 2));
 	}
 }
 
@@ -72,10 +74,21 @@ void DragNoCombat::OnLeftClickUp()
 	if (dragTransform != nullptr)
 	{
 		ecs::entity_t ent = mouseRaycast(ecs::grp::DROPZONE);
-		DropZone* dp = ent->getComponent<DropZone>();
-		if(dp != nullptr || dp->isOnDropZone(dragTransform))
-		{
-			dp->useCallback(dragTransform->getEntity()->getComponent<Card>());
+		if (ent != nullptr) {
+			DropZone* dp = ent->getComponent<DropZone>();
+			if (dp != nullptr && dp->isOnDropZone(dragTransform))
+			{
+				dp->useCallback(dragTransform->getEntity()->getComponent<Card>());
+			}
+			else {//sino, devolvemos la carta a su posicion inicial
+				dragTransform->setGlobalPos(initialTransformPos);
+			}
 		}
+		else {//sino, devolvemos la carta a su posicion inicial
+			dragTransform->setGlobalPos(initialTransformPos);
+		}
+
+		//en cualquier caso, ya no tenemos carta drageada
+		dragTransform = nullptr;
 	}
 }
