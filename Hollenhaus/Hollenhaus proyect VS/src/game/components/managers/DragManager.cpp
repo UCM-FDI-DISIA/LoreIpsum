@@ -43,6 +43,15 @@ void DragManager::update()
 		Vector2D posAct = (mousePos - initialMousePos) + initialTransformPosWithOffSet;
 
 		dragTransform->setGlobalPos(posAct);
+
+		///PARA EL FEEDBACK -> Comprobamos si está encima de una celda y sobre qué cartas va a actuar
+		auto drop = mouseRaycast(ecs::grp::DROPS);
+
+		auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
+		if (drop != nullptr) {
+			
+			std::cout << drop->getComponent<DropDetector>()->getBoardPos() << std::endl;
+		}
 	}
 
 }
