@@ -83,14 +83,14 @@ void NPC::talkTo()
 	if (!click && myBoxCollider->isCursorOver()) {
 		TuVieja("Que charlatan el tio...");
 		
-		float x = ent_->getComponent<Transform>()->getGlobalPos().getX() - 100;
-		float y = ent_->getComponent<Transform>()->getGlobalPos().getY() - 100;
+		float x = ent_->getComponent<Transform>()->getGlobalPos().getX() - 150;
+		float y = ent_->getComponent<Transform>()->getGlobalPos().getY() - 200;
 
 		TuVieja(std::to_string(x));
 
 		// crear dialogo del FACTORY de dialogos
 		factory->createDialogue("El Xungo del Barrio", 0, 0, {x,y}, {100,100},
-			5, 10, getEntity(), 3, "8bit_size_24", SDL_Color({0, 0, 0, 255}), 150, Text::BoxPivotPoint::LeftTop,
+			5, 10, getEntity(), 3, "8bit_size_20", SDL_Color({0, 0, 0, 255}), 150, Text::BoxPivotPoint::LeftTop,
 			Text::TextAlignment::Center);
 	}
 

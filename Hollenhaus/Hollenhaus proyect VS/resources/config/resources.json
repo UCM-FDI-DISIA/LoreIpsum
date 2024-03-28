@@ -54,9 +54,14 @@
         "size": 12
       },
       {
-        "id": "8bit_16pt",
+        "id": "8bit_size_16",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
         "size": 16
+      },
+      {
+        "id": "8bit_size_20",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 20
       },
       {
         "id": "8bit_size_24",
