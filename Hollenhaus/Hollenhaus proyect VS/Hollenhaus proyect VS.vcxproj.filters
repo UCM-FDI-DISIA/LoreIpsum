@@ -264,9 +264,6 @@
     <ClCompile Include="src\game\factories\DialogueFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\factories\DialogueFactory_V0.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
-    </ClInclude>
     <ClCompile Include="src\game\components\ShineComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -296,7 +293,12 @@
     </ClCompile>
     <ClCompile Include="src\game\components\Button.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
-    </ClInclude>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DialogueDestroyer.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\EffectCollection.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -583,6 +585,9 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\Button.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DialogueDestroyer.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
