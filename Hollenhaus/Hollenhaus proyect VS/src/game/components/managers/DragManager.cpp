@@ -44,13 +44,19 @@ void DragManager::update()
 
 		dragTransform->setGlobalPos(posAct);
 
-		///PARA EL FEEDBACK -> Comprobamos si está encima de una celda y sobre qué cartas va a actuar
+		///PARA EL FEEDBACK -> Comprobamos si está encima de una celda
 		auto drop = mouseRaycast(ecs::grp::DROPS);
 
 		auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
 		if (drop != nullptr) {
 			
+			//Debug para que escriba en que celda está
 			std::cout << drop->getComponent<DropDetector>()->getBoardPos() << std::endl;
+
+			////Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
+			//dragTransform->getEntity()->getComponent<Card>()->getEffects();
+
+			//drop->getComponent<Cell>()->getEffects();
 		}
 	}
 
