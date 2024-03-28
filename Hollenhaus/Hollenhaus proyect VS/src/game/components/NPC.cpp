@@ -89,9 +89,16 @@ void NPC::talkTo()
 		TuVieja(std::to_string(x));
 
 		// crear dialogo del FACTORY de dialogos
-		factory->createDialogue("El Xungo del Barrio", 0, 0, {x,y}, {100,100},
-			5, 10, getEntity(), 3, "8bit_size_20", SDL_Color({0, 0, 0, 255}), 150, Text::BoxPivotPoint::LeftTop,
-			Text::TextAlignment::Center);
+		factory->createDialogue("El Xungo del Barrio", 0, 0, 
+								{x,y}, //POS
+								{100,100}, //SIZE (poli: no cambia nada?¿)
+								5, 10, getEntity(), 
+								3, //LAYER
+								"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
+								SDL_Color({0, 0, 0, 255}), 
+								150, //wrap length
+								Text::BoxPivotPoint::LeftTop, //lo de pivot no me deja centrar el texto con el cuadrado-> preguntar a Parres uwu
+								Text::TextAlignment::Center);
 	}
 
 }
