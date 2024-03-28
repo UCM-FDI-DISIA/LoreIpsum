@@ -267,8 +267,10 @@
     <ClCompile Include="src\game\components\DragNoCombat.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="DropZone.cpp" />
     <ClCompile Include="src\game\components\DropZone.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Button.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -525,8 +527,10 @@
     <ClInclude Include="src\game\components\DragNoCombat.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="DropZone.h" />
     <ClInclude Include="src\game\components\DropZone.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Button.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
