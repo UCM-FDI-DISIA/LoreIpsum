@@ -4,8 +4,8 @@
 
 
 //------Constructora y destructora:
-Data::Data() {}
-Data::Data(int mon, int cas, int sou, std::list<int>maz, std::vector<int>dra, std::list<int>def)
+Data::Data() : drawer(new int[CARDS_IN_GAME]) { EmptyDrawer(); }
+Data::Data(int mon, int cas, int sou, std::list<int>maz, int* dra, std::list<int>def)
 	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def)
 {};
 Data::~Data() {};
@@ -21,7 +21,7 @@ void Data::SubtractCardFromMaze(int id) {
 }
 //----Cajon:
 void Data::AddCardToDrawer(int id) {
-	drawer.push_back(id);
+	drawer[id] = id;
 }
 void Data::SubtractCardFromDrawer(int id) {
 	drawer[id] = -1;
@@ -64,9 +64,7 @@ bool Data::IdIsInMaze(int id) {
 ;
 //----Cajon:
 bool Data::IdIsInDrawer(int id) {
-	auto it = std::find(drawer.begin(), drawer.end(), id);
-
-	return (it != drawer.end()) ? true : false;
+	return drawer[id] == id;
 };
 
 // ------ FLUJO ------
@@ -90,9 +88,9 @@ void Data::Write() {
 	for (const auto it : maze) {
 		file << it << "\n";
 	}
-	file << drawer.size() << "\n";
-	for (const auto it : drawer) {
-		file << it << "\n";
+	file << CARDS_IN_GAME << "\n";
+	for (int i = 0; i < CARDS_IN_GAME; i++) {
+		file << drawer[i] << "\n";
 	}
 	file << defeatedNPCS.size() << "\n";
 	for (const auto it : defeatedNPCS) {
@@ -122,7 +120,7 @@ void Data::Read() {
 	for (int i = 0; i < iterations; i++)
 	{
 		file >> number;
-		drawer.push_back(number);
+		drawer[i] = number;
 	}
 
 	file >> iterations;
@@ -145,7 +143,10 @@ void Data::EmptyMaze() {
 	maze.clear();
 }
 void Data::EmptyDrawer() {
-	drawer.clear();
+	for (int i = 0; i < CARDS_IN_GAME; i++)
+	{
+		drawer[i] = -1;
+	}
 }
 void Data::EmptyNPCS() {
 	defeatedNPCS.clear();

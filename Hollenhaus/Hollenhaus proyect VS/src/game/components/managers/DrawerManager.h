@@ -5,6 +5,8 @@ const int CANT_CARTAS_MOSTRADAS_DB = 6;
 class DrawerManager : public ComponentUpdate
 {
 private:
+	int* drawer;
+
 	// lleva la cuenta de en que cajon estamos
 	int cajonesAbiertos;
 
@@ -25,6 +27,7 @@ public:
 	// ---- Manageos de carta ----
 	// Aniade carta
 	void addCard(int id);
+
 	// Quita carta
 	void removeCard(int id);
 

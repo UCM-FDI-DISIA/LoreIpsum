@@ -50,6 +50,8 @@ public:
 	// Para renderizar el estado
 	void render() const override;
 
+	Vector2D getImageSize();
+
 	// Getter textura
 	Texture* getTexture() {
 		return texture_;

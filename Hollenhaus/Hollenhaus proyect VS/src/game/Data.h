@@ -1,6 +1,8 @@
 #pragma once
 #include <list>
 
+// Cantidad de cartas en el juego
+const int CARDS_IN_GAME = 50;
 
 class Data
 {
@@ -11,7 +13,7 @@ private:
 		winner = 0;
 
 	// ------ DECKBUILDING -------
-	std::vector<int> drawer; // Id de las cartas desbloqueadas
+	int* drawer; // Id de las cartas desbloqueadas
 	std::list<int> maze; // Id de las cartas del mazo 
 
 	// ------ NS ------
@@ -29,7 +31,7 @@ public:
 
 	//------Constructora y destructora:
 	Data();
-	Data(int mon, int cas, int sou, std::list<int>maz, std::vector<int>dra, std::list<int>def);
+	Data(int mon, int cas, int sou, std::list<int>maz, int * dra, std::list<int>def);
 	~Data();
 
 	//------Setters:
@@ -61,7 +63,7 @@ public:
 	//----Mazo:
 	const std::list<int> GetMaze() { return maze; }
 	//----Cajon:
-	const std::vector<int> GetDrawer() { return drawer; }
+	int* GetDrawer() { return drawer; }
 
 	// ------ FLUJO ------
 	//----NPCs:

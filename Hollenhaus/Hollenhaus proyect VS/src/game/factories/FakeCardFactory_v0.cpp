@@ -13,7 +13,7 @@ ecs::entity_t FakeCardFactory_v0::createFakeCard(int id, Vector2D pos, int cost,
     fakeCard->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	fakeCard->getComponent<Transform>()->setGlobalScale(cardScale, cardScale);
 	fakeCard->getComponent<Transform>()->setGlobalPos(pos);
-    fakeCard->addComponent<Card>();
+    fakeCard->addComponent<Card>(cost, value, id, sprite, unblockable );
 	Card* cardComp = fakeCard->getComponent<Card>();
 
 	fakeCard->setLayer(2);
@@ -47,7 +47,8 @@ void FakeCardFactory_v0::addValueCostTexts(ecs::entity_t card, int value, int co
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
 	textoCoste->getComponent<Transform>()->getRelativePos().set(10, 10);
-	textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
+	textoCoste->getComponent<Transform>()->setGlobalScale(10, 10);
+	//textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
 
 	textoCoste->setLayer(100);
 }

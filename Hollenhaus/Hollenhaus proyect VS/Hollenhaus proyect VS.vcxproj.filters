@@ -264,7 +264,15 @@
     <ClCompile Include="src\game\factories\DeckBuildingFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="FakeCardFactory.cpp" />
+    <ClCompile Include="src\game\components\DragNoCombat.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DropZone.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Button.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -513,9 +521,17 @@
     <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="FakeCardFactory.h" />
     <ClInclude Include="src\game\factories\FakeCardFactory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DragNoCombat.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DropZone.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Button.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

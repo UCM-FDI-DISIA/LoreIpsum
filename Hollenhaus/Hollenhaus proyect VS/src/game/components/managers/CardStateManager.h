@@ -18,4 +18,3 @@ public:
 private:
 	Cards::State currentState;
 };
-

@@ -78,7 +78,8 @@ void MatchOverState::setWindow(int lastWinner) {
 	ecs::entity_t background = Instantiate();
 	background->addComponent<Transform>();
 	background->addComponent<SpriteRenderer>(_background);
-	background->getComponent<Transform>()->getGlobalScale().set(0.5f, 0.5f);
+	background->getComponent<Transform>()->setGlobalScale(0.5f, 0.5f);
+	//background->getComponent<Transform>()->getGlobalScale().set(0.5f, 0.5f);
 	background->setLayer(0);
 
 	// ---- Texto ----
