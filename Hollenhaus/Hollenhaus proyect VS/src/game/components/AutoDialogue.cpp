@@ -17,8 +17,6 @@ void AutoDialogue::initComponent()
 
 	writer = getEntity()->getComponent<TypeWriter>();
 	assert(writer != nullptr);
-
-	
 }
 
 void AutoDialogue::update()

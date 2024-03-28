@@ -33,10 +33,5 @@ private:
 	DialogueReader* dialogueReader_;
 	DialogueEventCollection* eventCollection_;
 	BoxCollider* boxCollider_;
-
-	//como hago para saber el numero total de nodes del json? vectornodes ??¿
-	//if actualNode != nodeFinal cuando se hace clic -> hacemos actualNode++ (del dialoguereader)
-	//else -> se acaba la convo (desaparece cuadro?), se reinicia actualNode a 0, y se llama al evento final si es que hay
-
 };
 

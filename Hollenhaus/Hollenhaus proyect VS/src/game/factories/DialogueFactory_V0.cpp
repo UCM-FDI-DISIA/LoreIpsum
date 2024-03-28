@@ -14,10 +14,9 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	ecs::entity_t dialogue = Instantiate();
 
 	dialogue->addComponent<Transform>();
-
-	dialogue->addComponent<BoxCollider>(pos, size);
 	dialogue->getComponent<Transform>()->setGlobalPos(pos);
 	dialogue->getComponent<Transform>()->setGlobalScale(size);
+	dialogue->addComponent<BoxCollider>(pos, size);
 	dialogue->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
 	//dialogue->addComponent<SpriteRenderer>(" ");
 	//dialogue->getComponent<BoxCollider>()->setAnchoredToSprite(true);
@@ -25,7 +24,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	dialogue->addComponent<TypeWriter>(speed);
 	dialogue->addComponent<DialogueReader>(id, convo);
 	dialogue->addComponent<NextText>();
-	dialogue->addComponent<AutoDialogue>(cooldown);
+	//dialogue->addComponent<AutoDialogue>(cooldown);
 	dialogue->setLayer(layer);
 
 	//dialogue->addComponent<DialogueEventCollection>();

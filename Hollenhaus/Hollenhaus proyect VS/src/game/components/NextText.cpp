@@ -45,15 +45,17 @@ void NextText::OnLeftClickUp()
 void NextText::reactToClick()
 {
 	if (!click && boxCollider_->isCursorOver() && typeWriter_->ended()) {
-		TuVieja("Cambio de nodo.");
+		TuVieja("click en el textbox.");
 		dialogueReader_->NextNode();
 	}
 }
 
 void NextText::callNextNode()
 {
-	TuVieja("Cambio de nodo.");
-	dialogueReader_->NextNode();
+	if (typeWriter_->ended()) {
+		TuVieja("Cambio de nodo.");
+		dialogueReader_->NextNode();
+	}
 }
 
 
