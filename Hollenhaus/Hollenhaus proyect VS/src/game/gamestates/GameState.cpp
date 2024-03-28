@@ -63,6 +63,11 @@ void GameState::setWinnerOnData(int w)
 
 }
 
+std::vector<int> GameState::getDrawer()
+{
+    return data->GetDrawer();
+}
+
 void GameState::setData(Data* _data)
 {
     data = _data;

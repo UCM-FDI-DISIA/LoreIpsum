@@ -20,9 +20,10 @@ public:
 
 	void moveToPizarra(Card* card);
 	void moveToDrawer(Card* card);
+
 private:
-	PizarraManager* pizarra;
-	DrawerManager* drawer;
+	PizarraManager* pizarra_;
+	DrawerManager* drawer_;
 	//Cambiar a combate (Tarotista) -> Teléfono
 	//Gestionar mazo
 	//Volver a CIU

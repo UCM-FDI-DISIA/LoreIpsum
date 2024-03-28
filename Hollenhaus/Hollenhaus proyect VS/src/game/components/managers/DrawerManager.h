@@ -5,6 +5,8 @@ const int CANT_CARTAS_MOSTRADAS_DB = 6;
 class DrawerManager : public ComponentUpdate
 {
 private:
+	std::vector<int> drawer;
+
 	// lleva la cuenta de en que cajon estamos
 	int cajonesAbiertos;
 

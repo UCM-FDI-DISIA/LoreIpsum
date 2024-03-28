@@ -61,7 +61,7 @@ public:
 	//----Mazo:
 	const std::list<int> GetMaze() { return maze; }
 	//----Cajon:
-	const std::vector<int> GetDrawer() { return drawer; }
+	std::vector<int> GetDrawer() { return drawer; }
 
 	// ------ FLUJO ------
 	//----NPCs:

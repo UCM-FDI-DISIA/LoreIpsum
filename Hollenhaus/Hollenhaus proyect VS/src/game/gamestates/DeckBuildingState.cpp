@@ -69,7 +69,7 @@ void DeckBuildingState::onEnter()
 	// ---- FONDO ----
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
-	fondo->addComponent<SpriteRenderer>("rice");
+	fondo->addComponent<SpriteRenderer>("DeckbuildingBG");
 	fondo->getComponent<Transform>()->setGlobalScale(0.85f, 0.85f);
 	//fondo->getComponent<Transform>()->getGlobalScale().set(0.85f, 0.85f);
 	fondo->setLayer(0);
@@ -91,38 +91,42 @@ void DeckBuildingState::onEnter()
 	Confirm->addComponent<Transform>();
 	Confirm->addComponent<SpriteRenderer>("boton_flecha");
 	Confirm->addComponent<BoxCollider>();
-	Vector2D ConfirmPos(300, 10);
+	Vector2D ConfirmPos(260, 330);
 	Confirm->getComponent<Transform>()->setGlobalPos(ConfirmPos);
 	Confirm->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	Confirm->addComponent<Button>();
-	Confirm->getComponent<Button>()->connectToButton([this]() { pizarra->saveMaze(); });
+	Confirm->getComponent<Button>()->connectToButton([this]() { pizarra_->saveMaze(); });
 	Confirm->setLayer(1);
 
+	// Escalado de las flechas del drawer
+	Vector2D botdrawerScale(.5f, .5f);
 	// ---- Pasar cajon alante:
 	ecs::entity_t botPalante = Instantiate();
 	botPalante->addComponent<Transform>();
 	botPalante->addComponent<SpriteRenderer>("boton_flecha");
 	botPalante->addComponent<BoxCollider>();
-	Vector2D botPalantePos(200, 200);
+	Vector2D botPalantePos(750, 420);
 	botPalante->getComponent<Transform>()->setGlobalPos(botPalantePos);
+	botPalante->getComponent<Transform>()->setGlobalScale(botdrawerScale);
 	botPalante->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	botPalante->addComponent<Button>();
-	botPalante->getComponent<Button>()->connectToButton([this]() { drawer->drawerPalante(); });
+	botPalante->getComponent<Button>()->connectToButton([this]() { drawer_->drawerPalante(); });
 	botPalante->setLayer(1);
 	// ---- Pasar cajon atras:
 	ecs::entity_t botPatras = Instantiate();
 	botPatras->addComponent<Transform>();
 	botPatras->addComponent<SpriteRenderer>("boton_flecha");
 	botPatras->addComponent<BoxCollider>();
-	Vector2D botPatrasPos(200, 400);
+	Vector2D botPatrasPos(750, 500);
 	botPatras->getComponent<Transform>()->setGlobalPos(botPatrasPos);
+	botPatras->getComponent<Transform>()->setGlobalScale(botdrawerScale);
 	botPatras->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	botPatras->addComponent<Button>();
-	botPatras->getComponent<Button>()->connectToButton([this]() { drawer->drawerPatras(); });
+	botPatras->getComponent<Button>()->connectToButton([this]() { drawer_->drawerPatras(); });
 	botPatras->setLayer(1);
 
 	// ---- PIZARRA ----
-	Vector2D pizarraPos(300, 10);
+	Vector2D pizarraPos(260, 40);
 	ecs::entity_t pizarra = Instantiate(pizarraPos, ecs::grp::DROPZONE);
 	pizarra->addComponent<Transform>();
 	pizarra->addComponent<SpriteRenderer>("black_box");
@@ -131,11 +135,12 @@ void DeckBuildingState::onEnter()
 	pizarra->addComponent<DropZone>();
 	pizarra->getComponent<DropZone>()->setCallBack([this](Card* card) { moveToPizarra(card); });
 	pizarra->getComponent<Transform>()->setGlobalPos(pizarraPos);
-	pizarra->getComponent<Transform>()->setGlobalScale(4.5, 3);
+	pizarra->getComponent<Transform>()->setGlobalScale(4.5, 3.5);
 	pizarra->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	pizarra_ = pizarra->getComponent<PizarraManager>();
 
 	// ---- CAJON ----
-	Vector2D cajonPos(200, 200);
+	Vector2D cajonPos(450, 420);
 	ecs::entity_t cajon = Instantiate(cajonPos, ecs::grp::DROPZONE);
 	cajon->addComponent<Transform>();
 	cajon->addComponent<SpriteRenderer>("black_box");
@@ -144,8 +149,9 @@ void DeckBuildingState::onEnter()
 	cajon->addComponent<DropZone>();
 	cajon->getComponent<DropZone>()->setCallBack([this](Card* card) { moveToDrawer(card); });
 	cajon->getComponent<Transform>()->setGlobalPos(cajonPos);
-	cajon->getComponent<Transform>()->setGlobalScale(3, 3);
+	cajon->getComponent<Transform>()->setGlobalScale(3, 1.5f);
 	cajon->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	drawer_ = cajon->getComponent<DrawerManager>();
 
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
@@ -167,15 +173,15 @@ void DeckBuildingState::onExit()
 
 void DeckBuildingState::moveToPizarra(Card* card)
 {
-	TuVieja("HOSTIA TIO QUE NO LO HE ENCHUFAO - to pizarra");
-	drawer->removeCard(card->getID());
-	pizarra->addCard(card->getID());
+	//TuVieja("HOSTIA TIO QUE NO LO HE ENCHUFAO - to pizarra");
+	drawer_->removeCard(card->getID());
+	pizarra_->addCard(card->getID());
 
 }
 
 void DeckBuildingState::moveToDrawer(Card* card)
 {
-	TuVieja("HOSTIA TIO QUE NO LO HE ENCHUFAO - to cajon");
-	pizarra->removeCard(card->getID());
-	drawer->addCard(card->getID());
+	//TuVieja("HOSTIA TIO QUE NO LO HE ENCHUFAO - to cajon");
+	pizarra_->removeCard(card->getID());
+	drawer_->addCard(card->getID());
 }
