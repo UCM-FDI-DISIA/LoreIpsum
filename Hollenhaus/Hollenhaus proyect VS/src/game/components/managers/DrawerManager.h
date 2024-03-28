@@ -24,6 +24,8 @@ public:
 	void initComponent() override;
 
 
+	bool isOnDrawer(int id);
+
 	// ---- Manageos de carta ----
 	// Aniade carta
 	void addCard(int id);

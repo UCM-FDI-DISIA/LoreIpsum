@@ -15,6 +15,15 @@ DrawerManager::~DrawerManager()
 
 void DrawerManager::refreshPos()
 {
+	
+}
+
+void DrawerManager::update()
+{
+}
+
+void DrawerManager::initComponent()
+{
 	for (int i = cajonesAbiertos; i < CANT_CARTAS_MOSTRADAS_DB; i++)
 	{
 		if (drawer[i] != -1)
@@ -24,13 +33,9 @@ void DrawerManager::refreshPos()
 	}
 }
 
-void DrawerManager::update()
+bool DrawerManager::isOnDrawer(int id)
 {
-}
-
-void DrawerManager::initComponent()
-{
-	
+	return drawer[id] == id;
 }
 
 void DrawerManager::addCard(int id)

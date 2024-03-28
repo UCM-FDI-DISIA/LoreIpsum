@@ -6,6 +6,7 @@
 //------Constructora y destructora:
 Data::Data() : drawer(new int[CARDS_IN_GAME]) { 
 	EmptyDrawer(); 
+	Read();
 }
 Data::Data(int mon, int cas, int sou, std::list<int>maz, int* dra, std::list<int>def)
 	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def)

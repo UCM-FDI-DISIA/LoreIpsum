@@ -13,7 +13,7 @@ void DropZone::update() { }
 
 bool DropZone::isOnDropZone(Transform* cardTransform)
 {
-	TuVieja("AY MI KUKI");
+	//TuVieja("AY MI KUKI");
 	// devuelve true si el lt y el rb de la carta estan en el dropZone
 	return (dropZoneCollider->PointOver(cardTransform->getGlobalPos()) &&					// lt
 		dropZoneCollider->PointOver(cardTransform->getGlobalPos() +							// rb ->

@@ -3,7 +3,7 @@
 
 const int CARDS_IN_GAME = 50,// Cantidad de cartas en el juego
 MIN_CARDS_MAZE = 4, // Minimo de cartas en el mazo
-MAX_CARDS_MAZE = 1; // Maximo de cartas en el mazo
+MAX_CARDS_MAZE = 6; // Maximo de cartas en el mazo
 
 class Data
 {

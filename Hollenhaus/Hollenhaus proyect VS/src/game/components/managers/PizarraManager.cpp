@@ -31,11 +31,19 @@ void PizarraManager::saveMaze()
 // Devuelve true si la carta (id) esta en la pizarra.
 bool PizarraManager::isOnPizarra(int id)
 {
-	return true;
+	bool encontrado = false;
+	for (auto e : mazePrev) {
+		if (id == e) {
+			encontrado = true;
+		}
+	}
+
+
+	return encontrado;
 }
 
 bool PizarraManager::isPizarraLlena()
-{	
+{
 	pizarraLlena = mazePrev.size() >= MAX_CARDS_MAZE;
 	return pizarraLlena;
 }
@@ -44,8 +52,10 @@ bool PizarraManager::isPizarraLlena()
 // Aniade carta a la pizarra.
 void PizarraManager::addCard(int id)
 {
-	mazePrev.push_back(id);
-	cantCards++;
+	if (!isOnPizarra(id)) {
+		mazePrev.push_back(id);
+		cantCards++;
+	}
 }
 
 // Quita carta de la pizarra.
