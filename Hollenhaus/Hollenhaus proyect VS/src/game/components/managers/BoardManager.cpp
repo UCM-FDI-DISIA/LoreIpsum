@@ -98,7 +98,7 @@ void BoardManager::updateScore()
 			if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::PLAYER1)
 				pPlayer1 += _board[i][j]->getComponent<Cell>()->getTotalValue();
 			//si es el jugador 2 (normalmente npc)
-			else if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::PLAYER2)
+			else if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::IA)
 				pPlayer2 += _board[i][j]->getComponent<Cell>()->getTotalValue();
 		}
 	}

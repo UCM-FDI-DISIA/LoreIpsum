@@ -307,8 +307,7 @@ void IA_manager::makePlay(const InfoJugada &play) const
 	int i = 0;
 	for(const auto a : enemyHandCmp->getHand())
 	{
-		Vector2D cell = cards[i].pos;
-		if(cell != Vector2D(-1, -1))
+		if(Vector2D cell = cards[i].pos; cell != Vector2D(-1, -1))
 		{
 			const auto cellToUse = boardManager->getCell(cell.getX(), cell.getY())->getEntity()->getComponent<DropDetector>();
 			a->getEntity()->getComponent<Transform>()->setGlobalPos(cellToUse->getCardPos());
