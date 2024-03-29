@@ -4,13 +4,20 @@
 #include "../../GameStateMachine.h"
 #include "../../gamestates/GameState.h"
 
-PizarraManager::PizarraManager() {}
+PizarraManager::PizarraManager()
+{
 
-PizarraManager::~PizarraManager() {}
+}
+PizarraManager::~PizarraManager()
+{
+
+}
 
 // ---- Metodos heredados (no es TAAAAAAAAN importante) ----
-void PizarraManager::update() {}
+void PizarraManager::update()
+{
 
+}
 void PizarraManager::initComponent()
 {
 	// guarda en un array aux las cartas que ya estuvieran en la pizarra
@@ -67,7 +74,6 @@ bool PizarraManager::isOnPizarra(int id)
 
 bool PizarraManager::isPizarraLlena()
 {
-	// si el tamanio del mazo provisional llega el tamanio max
 	return mazePrev.size() >= MAX_CARDS_MAZE;
 }
 
@@ -75,12 +81,8 @@ bool PizarraManager::isPizarraLlena()
 // Aniade carta a la pizarra.
 void PizarraManager::addCard(int id)
 {
-	// si la carta no estaba ya en la pizarra
 	if (!isOnPizarra(id)) {
-		// se aniade
 		mazePrev.push_back(id);
-
-		// aumenta el contador
 		cantCards++;
 	}
 }
@@ -88,12 +90,9 @@ void PizarraManager::addCard(int id)
 // Quita carta de la pizarra.
 void PizarraManager::removeCard(int id)
 {
-	// guarda en un iterador la posicion de la carta que se busca
 	std::list<int>::iterator find = std::find(mazePrev.begin(), mazePrev.end(), id);
 
-	// borra lo que haya en la pos que hayas guardado
+	//mazePrev.remove(id);
 	mazePrev.erase(find);
-
-	// disminuye el contador
 	cantCards--;
 }

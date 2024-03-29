@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Data.h"
 
+
+
 //------Constructora y destructora:
 Data::Data() : currentMoney(0), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
 {
@@ -13,15 +15,8 @@ Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_I
 Data::~Data() {
 	delete shopCards;
 };
-
 //------Setters:
-Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def)
-	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def) {};
 
-Data::~Data() {};
-
-//------Setters:
-#pragma region SETTERS
 // ------ DECKBUILDING ------
 //----Mazo:
 void Data::SetNewMaze(std::list<int> newMaze) {
@@ -31,11 +26,9 @@ void Data::SetNewMaze(std::list<int> newMaze) {
 		maze.push_back(e);
 	}
 }
-
 void Data::SubtractCardFromMaze(int id) {
 	maze.remove(id);
 }
-
 //----Cajon:
 void Data::AddCardToDrawer(int id) {
 	drawer[id] = id;
@@ -81,21 +74,17 @@ void Data::SubtractCardFromDrawer(int id) {
 void Data::AddDefeatedNPC(int id) {
 	defeatedNPCS.push_back(id);
 }
-
 //----Dinero:
 void Data::AddMoney(int m) {
 	currentMoney += m;
 }
-
 void Data::SubtractMoney(int m) {
 	currentMoney -= m;
 }
-
 //----Almas:
 void Data::AddSouls(int s) {
 	currentSouls += s;
 }
-
 //----Caso:
 void Data::AddCurrentCase() {
 	currentCase++;
@@ -121,38 +110,29 @@ bool Data::setShopCard(int id) {
 	if (find) { return true; }
 	else { return false; }
 }
-#pragma endregion
 
 //------Busqueda:
-#pragma region BUSQUEDA
+
 // ------ DECKBUILDING ------
 //----Mazo:
 bool Data::IdIsInMaze(int id) {
-
-	// guarda en el iterador la ubicacion del id en maze
 	auto it = std::find(maze.begin(), maze.end(), id);
 
-	// devuelve true la pos es distinta al final
-	// (si el it fuese igual al final es que no ha encontrado nada)
 	return (it != maze.end()) ? true : false;
 }
 ;
 //----Cajon:
 bool Data::IdIsInDrawer(int id) {
-
-	// devuelve true si el id de la carta
-	// que esta en la pos id es igual al id
 	return drawer[id] == id;
 };
 
 // ------ FLUJO ------
 //----NPCs:
 bool Data::IdIsInDefeatedNPC(int id) {
-
 	auto it = std::find(defeatedNPCS.begin(), defeatedNPCS.end(), id);
+
 	return (it != defeatedNPCS.end()) ? true : false;
 };
-
 //----Cartas de la tienda:
 bool Data::IdIsInShopCards(int id) {
 	int i = 0;
@@ -187,10 +167,8 @@ bool Data::shopCardsIsEmpty() {
 int Data::getShopCardById(int id) {
 	return shopCards[id];
 }
-#pragma endregion
 
-//------Escribir y leer el archivo:
-#pragma region LECTURA Y ESCRITURA
+//------Escribir en el archivo:
 void Data::Write() {
 	std::ofstream file;
 	file.open("save.txt");
@@ -258,35 +236,23 @@ void Data::Read() {
 
 	file.close();
 }
-#pragma endregion
 
 //------Vaciar:
-#pragma region VACIADO
 void Data::EmptyLists() {
 	EmptyMaze();
 	EmptyDrawer();
 	EmptyNPCS();
 	EmptyShopCards();
 }
-
 void Data::EmptyMaze() {
-
-	// se limpia el mazo
 	maze.clear();
 }
-
 void Data::EmptyDrawer() {
-
-	// recorre todas las cartas del cajon y las pasa a -1
-	// (el cajon siempre tiene el tamanio de todas las cartas posibles
-	// y los huecos de las cartas que no hayas conseguido segun su id
-	// permanecen vacios)
 	for (int i = 0; i < CARDS_IN_GAME; i++)
 	{
 		drawer[i] = -1;
 	}
 }
-
 void Data::EmptyNPCS() {
 	defeatedNPCS.clear();
 }
@@ -296,4 +262,3 @@ void Data::EmptyShopCards() {
 		shopCards[i] = -1;
 	}
 }
-#pragma endregion

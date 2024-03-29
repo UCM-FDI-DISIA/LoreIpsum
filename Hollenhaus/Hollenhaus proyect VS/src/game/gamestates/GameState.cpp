@@ -10,14 +10,38 @@
 // DECLARAR LAS VARIABLES ESTATICAS
 Data* GameState::data = nullptr;
 
-// borra todas las entidades
+//GameState::GameState()
+//{
+//
+//    /*
+//    auto mngr = GameStateMachine::instance()->getMngr();
+//
+//    auto entityPrueba = mngr->addEntity();
+//    std::cout << ((mngr->getComponent<Transform>(entityPrueba)) != nullptr) << std::endl;
+//    auto componentPrueba = mngr->addComponent<Transform>(entityPrueba);
+//    std::cout << ((mngr->getComponent<Transform>(entityPrueba)) != nullptr) << std::endl;
+//    //auto componentPrueba2 = mngr->addComponent<SpriteRenderer>(entityPrueba, "hola");
+//    std::cout << ((mngr->hasComponent<Transform>(entityPrueba))) << std::endl;
+//    std::cout << ((mngr->hasComponent<SpriteRenderer>(entityPrueba))) << std::endl;
+//    */
+//
+//
+//
+//    //ih().insertFunction(0, [this] {PruebaInput(); });
+//
+//    //ih().insertFunction(InputHandler::MOUSE_LEFT_CLICK, [this] {PruebaInput(); });
+//    //ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK, [this] {PruebaInput(); });
+//}
+
+//borra todas las entidades
 GameState::~GameState()
 {
     GameStateMachine::instance()->getMngr()->Free();
 }
 
+
 //Su objetivo es borrar todas las entidades muertas, es
-//decir las que han salido del juego en la ï¿½ltima iteraciï¿½n
+//decir las que han salido del juego en la última iteración
 void GameState::refresh()
 {
     GameStateMachine::instance()->getMngr()->refresh();
@@ -39,25 +63,21 @@ void GameState::setWinnerOnData(int w)
 
 }
 
-// para acceder al drawer del data desde el estado
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
     return data->GetDrawer();
 }
 
-// para acceder al mazo del data desde el estado
 std::list<int> GameState::getMaze()
 {
     return data->GetMaze();
 }
 
-// para settear el mazo del data desde el estado
 void GameState::setMaze(std::list<int> mazeToSave)
 {
     data->SetNewMaze(mazeToSave);
 }
 
-// para settear el drawer del data desde el estado
 void GameState::setDrawer(std::array<int, 50> drawerToSave)
 {
     data->SetNewDrawer(drawerToSave);
@@ -65,13 +85,11 @@ void GameState::setDrawer(std::array<int, 50> drawerToSave)
 
 void GameState::saveData()
 {
-    // sobreescribe el archivo de guardado
     data->Write();
 }
 
 void GameState::loadData()
 {
-    // lee el archivo de guardado
     data->Read();
 }
 
@@ -99,4 +117,3 @@ int GameState::getShopCardById(int id)
 {
     return  data->getShopCardById(id);
 }
-

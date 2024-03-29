@@ -37,6 +37,8 @@ void DragNoCombat::update()
 
 		// establece la posicion actual  
 		dragTransform->setGlobalPos(posAct);
+		//std::cout << "PosAct: " << posAct << std::endl;
+		//std::cout << "PosCarta: " << dragTransform->getGlobalPos() << std::endl;
 	}
 }
 
@@ -66,26 +68,19 @@ void DragNoCombat::OnLeftClickDown()
 void DragNoCombat::OnLeftClickUp()
 {
 	// si no tenemos carta draggeada, no hacemos nada
+	// si la tenemos, verificamos colisiones con el grupo DROP_ZONE
 
 	// si se suelta el cursor y se tenia carta
 	if (dragTransform != nullptr)
 	{
-		// verificamos colisiones con el grupo DROP_ZONE
 		ecs::entity_t ent = mouseRaycast(ecs::grp::DROPZONE);
-
-		// si existe entidad
-		if (ent != nullptr) 
-		{
-			// se guarda la dropzone con la que se ha colisionado
+		if (ent != nullptr) {
 			DropZone* dp = ent->getComponent<DropZone>();
-
-			// si existe dropzone
 			if (dp != nullptr && dp->isOnDropZone(dragTransform))
 			{
 				if (ent->getComponent<PizarraManager>() != nullptr)
 				{
-					if (!ent->getComponent<PizarraManager>()->isPizarraLlena() ||
-						ent->getComponent<PizarraManager>()->isOnPizarra(dragTransform->getEntity()->getComponent<Card>()->getID()))
+					if (!ent->getComponent<PizarraManager>()->isPizarraLlena() || ent->getComponent<PizarraManager>()->isOnPizarra(dragTransform->getEntity()->getComponent<Card>()->getID()))
 					{
 						dp->useCallback(dragTransform->getEntity()->getComponent<Card>());
 					}

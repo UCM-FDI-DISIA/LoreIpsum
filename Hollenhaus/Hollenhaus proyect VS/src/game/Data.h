@@ -2,7 +2,6 @@
 #include <list>
 #include <array>
 
-// ---- DECKBUILDING ----
 const int CARDS_IN_GAME = 50,// Cantidad de cartas en el juego
 MIN_CARDS_MAZE = 4, // Minimo de cartas en el mazo
 MAX_CARDS_MAZE = 6, // Maximo de cartas en el mazo
@@ -13,16 +12,16 @@ CARDS_IN_SHOP = 4;
 class Data
 {
 private:
-	// ---- DECKBUILDING ----
-	std::array<int, CARDS_IN_GAME> drawer; // Id de las cartas desbloqueadas
-	std::list<int> maze; // Id de las cartas del mazo
-
-	// ---- FLUJO ----
 	int currentMoney = 0,
 		currentCase = 0,
 		currentSouls = 0,
 		winner = 0;
 
+	// ------ DECKBUILDING -------
+	std::array<int, CARDS_IN_GAME> drawer; // Id de las cartas desbloqueadas
+	std::list<int> maze; // Id de las cartas del mazo 
+
+	// ------ NS ------
 	std::list<int> defeatedNPCS;
 	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
@@ -35,98 +34,83 @@ private:
 	};
 
 public:
-	// ---- Constructoras y destructora ----
+
+	//------Constructora y destructora:
 	Data();
 	Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def);
 	~Data();
 
-	// ---- Setters ----
-	#pragma region SETTERS
-	// -- DECKBUILDING --
-	// Mazo:
+	//------Setters:
+
+	// ------ DECKBUILDING ------
+	//----Mazo:
 	void SetNewMaze(std::list<int> newMaze);
 	void SubtractCardFromMaze(int id);
-
-	//Cajon:
+	//----Cajon:
 	void AddCardToDrawer(int id);
 	void SubtractCardFromDrawer(int id);
 
-	// -- FLUJO --
-	// NPCs:
+	// ------ FLUJO ------
+	//----NPCs:
 	void AddDefeatedNPC(int id);
-
-	// Dinero:
+	//----Dinero:
 	void AddMoney(int m);
 	void SubtractMoney(int m);
-
-	// Almas:
+	//----Almas:
 	void AddSouls(int s);
-
-	// Caso:
+	//----Caso:
 	void AddCurrentCase();
-
-	// Ganador de la ultima partida:
+	//----Ganardor de la ultima partida:
 	void setWinner(int i);
-	
 	//----Mete una carta al array de cartas de la tienda. Booleano pues por si acaso.
 	bool setShopCard(int id);
-	#pragma endregion
 
-	// ---- Getters ----
-	#pragma region GETTERS
-	// -- DECKBUILDING --
-	// Mazo:
+	//------Getters:
+
+	// ------ DECKBUILDING ------
+	//----Mazo:
 	const std::list<int> GetMaze() { return maze; }
-	// Cajon:
+	//----Cajon:
 	std::array<int, CARDS_IN_GAME> GetDrawer() { return drawer; }
 	void SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer);
 
-	// -- FLUJO --
-	// NPCs:
+	// ------ FLUJO ------
+	//----NPCs:
 	const std::list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
-
-	// Dinero:
+	//----Dinero:
 	const int GetMoney() { return currentMoney; }
-
-	// Almas:
+	//----Almas:
 	const int GetSouls() { return currentSouls; };
-
-	// Caso:
+	//----Caso:
 	const int GetCurrentCase() { return currentCase; };
-
-	// Ganador de la ultima partida:
+	//----Ganador de la ultima partida:
 	int getWinner() { return winner; }
-
 	//----Comprueba si shopCards esta vacio:
 	bool shopCardsIsEmpty();
-
 	//----Devuelve una shopCard dado un id:
 	int getShopCardById(int id);
-	#pragma endregion
 
-	// ---- Busqueda ----
-	#pragma region BUSQUEDA
-	// -- DECKBUILDING --
-	// Mazo:
+	//------Busqueda:
+
+	// ------ DECKBUILDING ------
+	//----Mazo:
 	bool IdIsInMaze(int id);
-	// Cajon:
+	//----Cajon:
 	bool IdIsInDrawer(int id);
 
-	// -- FLUJO --
-	// NPCs:
+	// ------ FLUJO ------
+	//----NPCs:
 	bool IdIsInDefeatedNPC(int id);
-	
 	//----Busqueda de una carta de la tienda por id:
 	bool IdIsInShopCards(int id);
-	#pragma endregion
 
-	// ---- Lectura y escritura ----
+	//------Escritura:
 	void Write();
+	//------Lectura:
 	void Read();
-	
+
 	//------Vaciar:
 	//----Vaciado de todas las listas a la vez.
-	// ---- Vaciado ----
 	void EmptyLists();
 	//----Vaciado de la lista del mazo.
 	void EmptyMaze();

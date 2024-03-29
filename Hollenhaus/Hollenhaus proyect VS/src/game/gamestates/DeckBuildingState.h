@@ -10,9 +10,8 @@ class DeckBuildingState : public GameState
 {
 public:
 
-	DeckBuildingState(); // Constructora
+	DeckBuildingState();		//Constructora
 
-	// heredados basicos
 	void update() override;
 	void render() const override;
 	void refresh() override;
@@ -20,17 +19,18 @@ public:
 	void onEnter() override;
 	void onExit() override;
 
-	// Deckbuilding
 	void moveToPizarra(Card* card);
 	void moveToDrawer(Card* card);
 
 	ecs::entity_t createCard(int id, Vector2D pos) override;
 
 private:
-
-	Factory* factory;
-
-	// variables privadas de cajon y pizarra
 	PizarraManager* pizarra_;
 	DrawerManager* drawer_;
+
+	Factory* factory;
+	//Cambiar a combate (Tarotista) -> Teléfono
+	//Gestionar mazo
+	//Volver a CIU
 };
+

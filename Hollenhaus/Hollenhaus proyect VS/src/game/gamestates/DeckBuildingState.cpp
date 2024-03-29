@@ -50,17 +50,20 @@ void DeckBuildingState::onEnter()
 {
 	std::cout << "\nENTER DECKBUILDING.\n";
 
-	// carga el data
 	loadData();
 	
 	// ---- DRAG ----
-	// DragNoCombat se encarga de gestionar el drag de todas las cartas de la escena
+	// DragNoCombat se encarga de gestionar el drag de todas las cartas
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragNoCombat>();
 
 	// ---- CARDS ----
 	factory = new Factory();
 	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
+	//
+	////hace la carta 1
+	//auto card1 = sdlutils().cards().at(std::to_string(1));
+	//factory->createFakeCard(1, Vector2D(100, 100), card1.cost(), card1.value(), card1.sprite(), card1.unblockable(), card1.effects())->getComponent<Card>();
 
 	// ---- TEXTO ----
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
@@ -72,10 +75,10 @@ void DeckBuildingState::onEnter()
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("DeckbuildingBG");
 	fondo->getComponent<Transform>()->setGlobalScale(0.85f, 0.85f);
+	//fondo->getComponent<Transform>()->getGlobalScale().set(0.85f, 0.85f);
 	fondo->setLayer(0);
 
 	// ---- BOTONES ----
-	#pragma region BOTONES
 	// ---- Salir:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
@@ -102,6 +105,7 @@ void DeckBuildingState::onEnter()
 	Confirm->getComponent<Button>()->connectToButton([this]() { drawer_->saveDrawer(); });
 	Confirm->setLayer(1);
 
+	// Escalado de las flechas del drawer
 	// ---- Pasar cajon alante:
 	ecs::entity_t botPalante = Instantiate();
 	botPalante->addComponent<Transform>();
@@ -114,7 +118,6 @@ void DeckBuildingState::onEnter()
 	botPalante->addComponent<Button>();
 	botPalante->getComponent<Button>()->connectToButton([this]() { drawer_->drawerPalante(); });
 	botPalante->setLayer(1);
-
 	// ---- Pasar cajon atras:
 	ecs::entity_t botPatras = Instantiate();
 	botPatras->addComponent<Transform>();
@@ -127,53 +130,34 @@ void DeckBuildingState::onEnter()
 	botPatras->addComponent<Button>();
 	botPatras->getComponent<Button>()->connectToButton([this]() { drawer_->drawerPatras(); });
 	botPatras->setLayer(1);
-#pragma endregion 
 
 	// ---- PIZARRA ----
-	#pragma region PIZARRA
 	Vector2D pizarraPos(260, 40);
 	ecs::entity_t pizarra = Instantiate(pizarraPos, ecs::grp::DROPZONE);
-
-	// componentes basicos
 	pizarra->addComponent<Transform>();
 	pizarra->addComponent<SpriteRenderer>("black_box");
 	pizarra->addComponent<BoxCollider>();
 	pizarra->addComponent<PizarraManager>();
+	pizarra->addComponent<DropZone>();
+	pizarra->getComponent<DropZone>()->setCallBack([this](Card* card) { moveToPizarra(card); });
 	pizarra->getComponent<Transform>()->setGlobalPos(pizarraPos);
 	pizarra->getComponent<Transform>()->setGlobalScale(4.5, 3.5);
 	pizarra->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-
-	// establece la pizarra como dropzone
-	pizarra->addComponent<DropZone>();
-
-	// suscribe a la dropzone al callback movetopizarra
-	pizarra->getComponent<DropZone>()->setCallBack([this](Card* card) { moveToPizarra(card); });
-
-	// lo guarda
 	pizarra_ = pizarra->getComponent<PizarraManager>();
-	#pragma endregion
 
 	// ---- CAJON ----
-	#pragma region CAJON
 	Vector2D cajonPos(450, 420);
 	ecs::entity_t cajon = Instantiate(cajonPos, ecs::grp::DROPZONE);
-
-	// componentes basicos
 	cajon->addComponent<Transform>();
 	cajon->addComponent<SpriteRenderer>("black_box");
 	cajon->addComponent<BoxCollider>();
 	cajon->addComponent<DrawerManager>();
+	cajon->addComponent<DropZone>();
+	cajon->getComponent<DropZone>()->setCallBack([this](Card* card) { moveToDrawer(card); });
 	cajon->getComponent<Transform>()->setGlobalPos(cajonPos);
 	cajon->getComponent<Transform>()->setGlobalScale(3, 1.5f);
 	cajon->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-
-	// establece la pizarra como dropzone
-	cajon->addComponent<DropZone>();
-	cajon->getComponent<DropZone>()->setCallBack([this](Card* card) { moveToDrawer(card); });
-
-	// lo guarda
 	drawer_ = cajon->getComponent<DrawerManager>();
-	#pragma endregion
 
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
@@ -184,7 +168,6 @@ void DeckBuildingState::onEnter()
 // ---- EXIT ESTADO ----
 void DeckBuildingState::onExit()
 {
-	// al salir del estado guardas la info
 	saveData();
 
 	// ---- SONIDO ----
@@ -196,36 +179,28 @@ void DeckBuildingState::onExit()
 	std::cout << "\nEXIT DECKBUILDING.\n";
 }
 
-	#pragma region DECKBUILDING
 void DeckBuildingState::moveToPizarra(Card* card)
 {
 	//TuVieja("HOSTIA TIO QUE NO LO HE ENCHUFAO - to pizarra");
-
-	// ---- al mover una carta a la pizarra:
-	// se elimina del cajon
 	drawer_->removeCard(card->getID());
-
-	// se aniade a la pizarra
 	pizarra_->addCard(card->getID());
+
 }
 
 void DeckBuildingState::moveToDrawer(Card* card)
 {
 	//TuVieja("HOSTIA TIO QUE NO LO HE ENCHUFAO - to cajon");
-
-	// ---- al mover una carta al cajon:
-	// se elimina de la pizarra
 	pizarra_->removeCard(card->getID());
-
-	// se aniade al cajon
 	drawer_->addCard(card->getID());
 }
 
 ecs::entity_t DeckBuildingState::createCard(int id, Vector2D pos)
 {
-	// Hace LA carta segun su id, en la pos que se pida
+	// Hace LA carta
 	auto card = sdlutils().cards().at(std::to_string(id));
 	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
 	return ent;
+
 }
-#pragma endregion
+
+
