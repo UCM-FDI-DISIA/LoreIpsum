@@ -33,6 +33,9 @@ void DrawerManager::refreshExistencia()
 			ent_->getComponent<CardDestroyer>()->destroyCard();
 
 			// la pone a nullptr
+			ent->getComponent<Transform>()->killChilds();
+			ent->setAlive(false);
+
 			cardsAux[i] = nullptr;
 		}
 	}
@@ -79,6 +82,7 @@ void DrawerManager::initComponent()
 
 	// las rellena
 	refreshExistencia();
+
 }
 
 void DrawerManager::saveDrawer()

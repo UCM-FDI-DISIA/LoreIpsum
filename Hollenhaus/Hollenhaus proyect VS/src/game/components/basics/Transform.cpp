@@ -2,6 +2,7 @@
 #include "Transform.h"
 #include "../managers/Manager.h"
 
+
 void
 Transform::update() {
 }
@@ -42,7 +43,18 @@ Transform::removeParent() {
 	}
 }
 
-std::list<Transform*> 
+void Transform::killChilds()
+{
+	for (auto & t : children_)
+	{
+		t->killChilds();
+		t->getEntity()->setAlive(false);
+	}
+
+	children_.clear();
+}
+
+std::list<Transform*>
 Transform::getChildren() {
 	return children_;
 }
@@ -58,7 +70,7 @@ Transform::getGlobalPos() {
 
 Vector2D Transform::getGlobalScale()
 {
-	if (isChild_)
+	if (isChild_ && parent_ != nullptr)
 		return Vector2D(parent_->getGlobalScale().getX() * relativeScale_.getX(),
 			parent_->getGlobalScale().getY() * relativeScale_.getY());
 	else
