@@ -28,10 +28,9 @@ public:
 	/// En funcion del indice, devuelve el callback del efecto
 	///	*** Esto es terrible, quiero que sirva para salir al paso
 	///	y como concepto inicial ***
-	template<typename ...Ts>
+
 	static std::function<void()> callEvent(
-		DialogueEvents::Events index, int scene,
-		Ts &&... args)
+		DialogueEvents::Events index, int scene)
 	{
 		switch (index)
 		{

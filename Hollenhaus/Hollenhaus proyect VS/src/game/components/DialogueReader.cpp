@@ -28,7 +28,7 @@ void DialogueReader::initComponent() {
 }
 void DialogueReader::NextNode()
 {
-	eventCollection_->callEvent(convo_->Node(actualNode_).NodeEventFinish());
+	eventCollection_->callEvent(convo_->Node(actualNode_).NodeEventFinish(), 0);
 	actualNode_++;
 	if (actualNode_ >= convo_->NodesVector().size()) {
 		dialogueDestroyer_->destroyDialogue();
