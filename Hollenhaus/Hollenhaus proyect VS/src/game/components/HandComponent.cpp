@@ -6,6 +6,7 @@
 #include "managers/CardStateManager.h"
 
 #include "Card.h"
+#include "basics/TextComponent.h"
 
 HandComponent::HandComponent() :
 	transform_(), lastCardAdded_(nullptr)
@@ -64,15 +65,33 @@ void HandComponent::removeCard(ecs::entity_t card) {
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
 		if (cardsInHand_[i] != card)
-		{
+		{ // la carta esta en la manita del fantasmiko
 			auxVec.push_back(cardsInHand_[i]);
 			//numCards_++;
-			transform_->getGlobalPos().getX() + 10;
+			//transform_->getGlobalPos().getX() + 10;
+			Vector2D newPos(transform_->getGlobalPos().getX() + 10, transform_->getGlobalPos().getY());
+			transform_->setGlobalPos(newPos);
 		}
-		else
+		else // la carta es jugada
 		{
-
+			// cambia la escala para ajustarse a la celda del tablero
 			card->getComponent<Transform>()->setGlobalScale(cardScaleBoard_, cardScaleBoard_);
+
+			// ajusta tambien los textos
+			for (auto child : card->getComponent<Transform>()->getChildren())
+			{
+				auto texto = child->getEntity()->getComponent<TextComponent>();
+				if (texto != nullptr)
+				{
+					texto->setFont("8bit_16pt");
+					child->getRelativePos().set(
+						child->getRelativePos().getX(), 
+						child->getRelativePos().getY()-child->getRelativePos().getY()/6.25
+					);
+				}
+			}
+
+			// su parent ya no es la mano izq
 			cardsInHand_[i]->getComponent<Transform>()->removeParent();
 		}
 	}

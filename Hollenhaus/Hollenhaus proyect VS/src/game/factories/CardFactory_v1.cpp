@@ -13,9 +13,12 @@
 
 
 ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
-                                         std::vector<JsonData::CardEffect>& effects)
+                                         std::vector<JsonData::CardEffect>& effects, bool bocarriba)
 {
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
+
+	if (!bocarriba)
+		sprite = "reverseCard";
 
 	card->addComponent<SpriteRenderer>(sprite);
 	card->addComponent<BoxCollider>();
@@ -27,22 +30,12 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(Cards::ON_DECK);
 
-	const auto cardComp = card->addComponent<Card>(
+	card->addComponent<Card>(
 		cost, value, sprite, unblockable
 	);
 
+	addInfo(card, cost, value, effects);
 
-	/*
-	auto cardDrag = mngr().getComponent<Drag>(card);
-	cardDrag->addCondition([card]() {
-		auto state = mngr().getComponent<CardStateManager>(card)->getState();
-		return state == CardStateManager::ON_HAND;
-	});
-	*/
-
-	addEffects(cardComp, effects);
-	addValueCostTexts(card, value, cost);
-	addEffectsImages(card, effects);
 	return card;
 }
 
@@ -73,9 +66,16 @@ ecs::entity_t CardFactory_v1::createHandJ2()
 	return hand;
 }
 
+void CardFactory_v1::addInfo(ecs::entity_t card, int cost, int value, std::vector<JsonData::CardEffect>& effects)
+{
+	addEffects(card->getComponent<Card>(), effects);
+	addValueCostTexts(card, value, cost);
+	addEffectsImages(card, effects);
+}
+
 ecs::entity_t CardFactory_v1::createDeck()
 {
-	int initY = 500;
+	int initY = 475;
 	int initX = 600;
 
 	ecs::entity_t hand = createHand();
@@ -116,7 +116,7 @@ ecs::entity_t CardFactory_v1::createDeck()
 ecs::entity_t CardFactory_v1::createDeckJ2()
 {
 	int initX = 600;
-	int initY = 1;
+	int initY = -12;
 
 	ecs::entity_t hand = createHandJ2();
 
@@ -185,8 +185,6 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 		effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
-		//effectImage->getComponent<Transform>()->getGlobalScale().set(1, 1);
-
 		effectImage->getComponent<Transform>()->setGlobalScale(scale, scale);
 		Vector2D gpos(initialX + ((i % nCols) * offSetX), initialY + ((i / nCols) * offSetY));
 
@@ -196,7 +194,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 
 		//si es una flecha, girarla
-		if (effects[i].type() >= 2 && effects[i].type() <= 4)
+		if (effects[i].type() >= Effects::Flecha && effects[i].type() <= Effects::Block)
 		{
 			Effects::Direction dir = effects[i].directions()[0];
 			effectImage->getComponent<Transform>()->getGlobalAngle() =
@@ -211,7 +209,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 			valueChange = Instantiate(Vector2D(0, 0));
 
-			valueChange->addComponent<TextComponent>(valueText, "8bit_8pt", SDL_Color({0, 0, 0, 255}), 100);
+			valueChange->addComponent<TextComponent>(valueText, "8bit_16pt", SDL_Color({200,50,200, 255}), 100);
 
 			valueChange->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
 			valueChange->getComponent<Transform>()->getRelativePos().set(-5, 0);
@@ -243,8 +241,9 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
 	textoCoste->getComponent<Transform>()->getRelativePos().set(10, 10);
-	textoCoste->getComponent<Transform>()->setGlobalScale(10, 10);
+	textoCoste->getComponent<Transform>()->setGlobalScale(10, 10); // esta linea aporta 0 porque es una fuente
 	//textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
+
 
 	textoCoste->setLayer(100);
 }
@@ -279,7 +278,7 @@ void CardFactory_v1::addDeckImage(int initX, int initY, bool opposite)
 {
 	auto deckImage = Instantiate(Vector2D(initX, initY));
 
-	deckImage->getComponent<Transform>()->setGlobalScale(Vector2D(0.6f, 0.6f));
+	deckImage->getComponent<Transform>()->setGlobalScale(Vector2D(0.7f, 0.7f));
 	if (opposite)
 		deckImage->getComponent<Transform>()->setGlobalAngle(180.0f);
 	deckImage->addComponent<SpriteRenderer>("reverseCard");

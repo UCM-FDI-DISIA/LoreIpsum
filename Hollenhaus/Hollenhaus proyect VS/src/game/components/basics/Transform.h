@@ -55,6 +55,7 @@ public:
     void setGlobalAngle(float);
     void setGlobalScale(Vector2D);
     void setGlobalScale(float x, float y);
+    void setRelativePos(float x, float y);
 
     Transform* getParent();
     
