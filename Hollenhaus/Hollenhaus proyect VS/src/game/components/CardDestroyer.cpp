@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CardDestroyer.h"
+#include "managers/Manager.h"
 
 CardDestroyer::CardDestroyer()
 {
@@ -18,5 +19,5 @@ void CardDestroyer::initComponent()
 
 void CardDestroyer::destroyCard()
 {
-
+	ent_->~Entity();
 }

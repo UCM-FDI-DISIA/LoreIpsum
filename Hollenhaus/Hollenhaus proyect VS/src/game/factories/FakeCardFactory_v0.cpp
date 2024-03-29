@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "FakeCardFactory_v0.h"
 #include "../components/basics/TextComponent.h"
+#include "../components/CardDestroyer.h"
 #include "../EffectCollection.h"
 #include "../Namespaces.h"
 
@@ -10,6 +11,7 @@ ecs::entity_t FakeCardFactory_v0::createFakeCard(int id, Vector2D pos, int cost,
     fakeCard->addComponent<Transform>();
     fakeCard->addComponent<SpriteRenderer>("card");
     fakeCard->addComponent<BoxCollider>();
+    fakeCard->addComponent<CardDestroyer>();
     fakeCard->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	fakeCard->getComponent<Transform>()->setGlobalScale(cardScale, cardScale);
 	fakeCard->getComponent<Transform>()->setGlobalPos(pos);

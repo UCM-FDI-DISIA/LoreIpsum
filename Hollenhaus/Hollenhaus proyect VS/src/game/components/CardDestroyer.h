@@ -1,4 +1,5 @@
 #pragma once
+#include "ComponentUpdate.h"
 
 class CardDestroyer : public ComponentUpdate
 {

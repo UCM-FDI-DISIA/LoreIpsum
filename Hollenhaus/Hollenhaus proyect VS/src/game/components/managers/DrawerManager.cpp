@@ -3,6 +3,7 @@
 #include "../../GameStateMachine.h"
 #include "../../gamestates/GameState.h"
 #include "../../components/Card.h"
+#include "../../components/CardDestroyer.h"
 #include "Manager.h"
 
 DrawerManager::DrawerManager() : cajonesAbiertos(0),
@@ -29,7 +30,7 @@ void DrawerManager::refreshExistencia()
 			ecs::entity_t ent = cardsAux[i];
 
 			// la mata
-			delete ent;
+			ent_->getComponent<CardDestroyer>()->destroyCard();
 
 			// la pone a nullptr
 			cardsAux[i] = nullptr;
