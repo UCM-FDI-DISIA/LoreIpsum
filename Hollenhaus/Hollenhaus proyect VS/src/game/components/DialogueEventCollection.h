@@ -35,15 +35,13 @@ public:
 		switch (index)
 		{
 		case DialogueEvents::None:
-			return [scene]
-				{
-					ChangeScene(scene);
-				};
-		case DialogueEvents::ChangeScene:
 			return []
 				{
-
+					
 				};
+		case DialogueEvents::ChangeScene:
+			ChangeScene(scene);
+			break;
 		case DialogueEvents::StartAnimation:
 			return []
 				{
