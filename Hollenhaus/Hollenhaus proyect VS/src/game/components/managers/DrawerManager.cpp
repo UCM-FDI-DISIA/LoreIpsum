@@ -29,7 +29,7 @@ void DrawerManager::refreshExistencia()
 			ecs::entity_t ent = cardsAux[i];
 
 			// la pone a nullptr
-			ent->getComponent<Transform>()->killChildren();
+			ent->getComponent<Transform>()->killChilds();
 			ent->setAlive(false);
 
 			cardsAux[i] = nullptr;
@@ -100,9 +100,9 @@ void DrawerManager::addCard(int id, ecs::entity_t ent)
 {
 	drawer[id] = id;
 
-	if (id > (CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos) + CANT_CARTAS_MOSTRADAS_CAJON || id < CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos)
+	if (id >= (CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos) + CANT_CARTAS_MOSTRADAS_CAJON || id < CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos)
 	{
-		ent->getComponent<Transform>()->killChildren();
+		ent->getComponent<Transform>()->killChilds();
 		ent->setAlive(false);
 	}
 	else
@@ -134,15 +134,20 @@ void DrawerManager::drawerPalante()
 {
 	TuVieja("drawerPalante");
 
+	// aumentas el indice de cajones abiertos
+	cajonesAbiertos++;
 	// si no has llegado al ultimo cajon
 	if (cajonesAbiertos < CARDS_IN_GAME / CANT_CARTAS_MOSTRADAS_CAJON)
 	{
-		// aumentas el indice de cajones abiertos
-		cajonesAbiertos++;
+		// se actualizan las cartas mostradas
+		refreshExistencia();
+	}
+	else
+	{
+	TuVieja("final de la linea");
+		cajonesAbiertos--;
 	}
 
-	// se actualizan las cartas mostradas
-	refreshExistencia();
 }
 
 void DrawerManager::drawerPatras()

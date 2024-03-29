@@ -3,6 +3,8 @@
 #include "../../Data.h"
 #include "../../GameStateMachine.h"
 #include "../../gamestates/GameState.h"
+#include "Manager.h"
+#include "../Card.h"
 
 PizarraManager::PizarraManager() {}
 
@@ -68,7 +70,7 @@ void PizarraManager::refreshPos()
 // Guarda el mazo en el data.
 void PizarraManager::saveMaze()
 {
-	//mazePos.clear();
+	mazePos.clear();
 
 	for (auto e : cards)
 	{
@@ -125,6 +127,23 @@ void PizarraManager::removeCard(int id)
 
 	// borra lo que haya en la pos que hayas guardado
 	mazePrev.erase(find);
+
+	auto it = cards.begin();
+
+	bool encontrado = false;
+	while (!encontrado && it != cards.end() )
+	{
+		if ((*it)->getEntity()->getComponent<Card>()->getID() == id)
+		{
+			cards.erase(it);
+			encontrado = true;
+		}
+		else
+		{
+			it++;
+
+		}
+	}
 
 	// disminuye el contador
 	cantCards--;

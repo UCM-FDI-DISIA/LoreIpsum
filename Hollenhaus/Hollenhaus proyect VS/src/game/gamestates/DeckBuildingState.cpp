@@ -155,7 +155,7 @@ void DeckBuildingState::onEnter()
 
 	// ---- CAJON ----
 	#pragma region CAJON
-	Vector2D cajonPos(450, 420);
+	Vector2D cajonPos(375, 400);
 	ecs::entity_t cajon = Instantiate(cajonPos, ecs::grp::DROPZONE);
 
 	// componentes basicos
@@ -164,7 +164,7 @@ void DeckBuildingState::onEnter()
 	cajon->addComponent<BoxCollider>();
 	cajon->addComponent<DrawerManager>();
 	cajon->getComponent<Transform>()->setGlobalPos(cajonPos);
-	cajon->getComponent<Transform>()->setGlobalScale(3, 1.5f);
+	cajon->getComponent<Transform>()->setGlobalScale(3.7f, 1.5f);
 	cajon->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
 	// establece la pizarra como dropzone

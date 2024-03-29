@@ -17,11 +17,11 @@ private:
 	// posiciones de la carta en el cajon
 	std::array<Vector2D, CANT_CARTAS_MOSTRADAS_CAJON> refreshPositions{
 		Vector2D(400, 420),
-		Vector2D(425, 420),
 		Vector2D(450, 420),
-		Vector2D(475, 420),
 		Vector2D(500, 420),
-		Vector2D(525, 420)
+		Vector2D(550, 420),
+		Vector2D(600, 420),
+		Vector2D(650, 420)
 	};
 
 	// lleva la cuenta de en que cajon estamos

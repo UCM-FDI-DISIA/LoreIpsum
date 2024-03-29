@@ -43,11 +43,11 @@ Transform::removeParent() {
 	}
 }
 
-void Transform::killChildren()
+void Transform::killChilds()
 {
 	for (auto & t : children_)
 	{
-		t->killChildren();
+		t->killChilds();
 		t->getEntity()->setAlive(false);
 	}
 
