@@ -123,12 +123,12 @@ ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vecto
 }
 
 void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer,
-	std::string fontID, SDL_Color color, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment)
+	std::string fontID, SDL_Color color, Uint32 wrapLenght,Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment)
 {
 	if (decisionFactory == nullptr) {
 		throw "no existe decisionFactory";
 	}
 
-	decisionFactory->setTextValues(fontID, color, boxPivotPoint, textAlignment);
+	decisionFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	decisionFactory->createPopUp(pos, size, parent, layer);
 }

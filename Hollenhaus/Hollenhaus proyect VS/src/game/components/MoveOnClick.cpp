@@ -64,10 +64,15 @@ void MoveOnClick::OnLeftClickDown()
 	myPos = myTransform->getGlobalPos();
 
 	//Si pulsamos en el collider, efectuamos el movimiento
-	if (myBoxCollider->isCursorOver()){
+	if (myBoxCollider->isCursorOver() && mouseRaycast() == ent_) {
 		move = true;
 		scrollSpeed = 1.0f;
 
 		moveTo = myTransform->getGlobalPos().getX() - (mousePos.getX() - halfScreen);
 	}
+}
+
+void MoveOnClick::StopMoving()
+{
+	move = false;
 }

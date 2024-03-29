@@ -44,6 +44,8 @@ void NextText::OnLeftClickUp()
 
 void NextText::reactToClick()
 {
+	//moveOnClick_->StopMoving(); //error extraño
+
 	if (typeWriter_->ended())
 	{
 		TuVieja("Cambio de nodo.");
@@ -51,11 +53,11 @@ void NextText::reactToClick()
 	}
 
 	//NO DETECTA EL COLLIIIDIIER AAA @SAMU AYUDA
-	if (!click && boxCollider_->isCursorOver() && typeWriter_->ended()) 
+	/*if (!click && boxCollider_->isCursorOver() && typeWriter_->ended()) 
 	{
 		TuVieja("click en el textbox.");
 		dialogueReader_->NextNode();
-	}
+	}*/
 }
 
 void NextText::callNextNode()
