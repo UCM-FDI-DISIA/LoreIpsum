@@ -36,7 +36,7 @@ public:
 		switch (index)
 		{
 		case DialogueEvents::None:
-			return [scene] 
+			return [scene]
 				{
 					ChangeScene(scene);
 				};
