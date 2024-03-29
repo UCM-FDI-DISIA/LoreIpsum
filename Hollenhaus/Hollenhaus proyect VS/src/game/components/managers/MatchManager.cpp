@@ -138,6 +138,7 @@ void MatchManager::setIA_Manager(IA_manager* ia)
 void MatchManager::endTurnIA()
 {
 	setActualState(Turns::J1);
+
 }
 
 void MatchManager::resetActualActionPoints()

@@ -293,7 +293,9 @@ std::vector<std::vector<Card*>> BoardManager::getBoardCardsIA()
 
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
-			board[i][j] = _board[i][j]->getComponent<Cell>()->getCard();
+			board[i][j] = _board[i][j]->getComponent<Cell>()->getCard() == nullptr ?
+						_board[i][j]->getComponent<Cell>()->getCard() :
+				new Card(*_board[i][j]->getComponent<Cell>()->getCard());
 		}
 	}
 

@@ -112,8 +112,8 @@ void LuisState::onEnter()
 
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
-	sdlutils().soundEffects().at("battletheme").play(-1);
-	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
+	//sdlutils().soundEffects().at("battletheme").play(-1);
+	//sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 
 
 	#pragma region Seccion IA

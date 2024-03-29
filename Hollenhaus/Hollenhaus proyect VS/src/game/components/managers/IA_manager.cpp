@@ -111,6 +111,7 @@ void IA_manager::StartTurn()
 	int value = minimax(0, 1, false, s, best);
 	time = SDL_GetTicks() - time;
 
+	
 #ifdef _DEBUG
 
 	std::cout << std::endl;
@@ -130,8 +131,19 @@ void IA_manager::StartTurn()
 	std::cout << "--------------------------" << std::endl;
 
 #endif // _DEBUG
+	
+
+	InfoJugada info;
+	info.cartasRobadas = 1;
+
+	CartaColocada car;
+	car.indice = 0;
+	car.pos = Vector2D(0, 0);
+
+	info.cartas.push_back(car);
 
 	makePlay(best->_jugada);
+	//makePlay(info);
 }
 
 
@@ -304,20 +316,31 @@ void IA_manager::makePlay(const InfoJugada &play) const
 	for (int i = 0; i < draws; ++i)
 		enemyHandCmp->addCard(enemyDeckCmp->drawCard()->getEntity());
 
-	int i = 0;
-	for(const auto a : enemyHandCmp->getHand())
-	{
-		if(Vector2D cell = cards[i].pos; cell != Vector2D(-1, -1))
-		{
-			const auto cellToUse = boardManager->getCell(cell.getX(), cell.getY())->getEntity()->getComponent<DropDetector>();
-			a->getEntity()->getComponent<Transform>()->setGlobalPos(cellToUse->getCardPos());
-			a->getEntity()->getComponent<CardStateManager>()->putOnBoard();
-			cellToUse->setOcuped(true);
-			const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
-			boardManager->setCard(cell.getX(), cell.getY(), a, playerTurn);
-		}
+	
+	int cartasColocadas = 0;
+	//para cada carta
+	for (int i = 0; i < cards.size(); i++) {
 
-		++i;
+		Vector2D pos = cards[i].pos;
+		//si ponemos la carta
+		if (pos != Vector2D(-1, -1)) {
+			
+			Card* a = enemyHandCmp->getHand()[i-cartasColocadas];
+
+			//dropDetector ocupado
+			const auto dropDet = boardManager->getCell(pos.getX(), pos.getY())->getEntity()->getComponent<DropDetector>();
+			dropDet->setOcuped(true);
+			
+			//colocar la carta en el tablero
+			a->getEntity()->getComponent<Transform>()->setGlobalPos(dropDet->getCardPos());
+			a->getEntity()->getComponent<CardStateManager>()->putOnBoard();
+			
+			//comunicacion con el boardManager
+			const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
+			boardManager->setCard(pos.getX(), pos.getY(), a, playerTurn);
+
+			cartasColocadas++;
+		}
 	}
 
 	matchManager->endTurnIA();
