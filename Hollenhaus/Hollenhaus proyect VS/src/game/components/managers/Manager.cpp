@@ -46,7 +46,7 @@ void Manager::refresh()
                     return false;
                 }
                 else {
-                    //DeleteEntityMap(e->getLayer(), e);
+                    DeleteEntityMap(e->getLayer(), e);
                     delete e;
                     return true;
                 }

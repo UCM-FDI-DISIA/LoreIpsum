@@ -24,6 +24,7 @@ void DrawerManager::refreshExistencia()
 			//aqui se deberian de eliminar las cartas pero como no funciona pq da error en noseque
 			// del child, se va a quedar asi :)
 			ecs::entity_t ent = cardsAux[i];
+			ent->getComponent<Transform>()->killChilds();
 			ent->setAlive(false);
 			cardsAux[i] = nullptr;
 			//Vector2D pos0(0, 0);
@@ -31,7 +32,7 @@ void DrawerManager::refreshExistencia()
 		}
 	}
 
-
+	
 	for (int i = 0; i < CANT_CARTAS_MOSTRADAS_CAJON; i++)
 	{
 		if (drawer[(CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos) + i] != -1)
@@ -64,6 +65,7 @@ void DrawerManager::initComponent()
 		cardsAux[i] = nullptr;
 	}
 	refreshExistencia();
+
 }
 
 void DrawerManager::saveDrawer()
