@@ -68,7 +68,7 @@ bool BoardManager::setCard(int x, int y, Card* c, Players::Owner o)
 		cell->addEffect(e);
 
 	//Cambia el color de la carta si es del jugador 2
-	if (o == Players::PLAYER2) 
+	if (o == Players::PLAYER2 || o == Players::IA) 
 		c->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(104, 52, 177, 200);
 
 
