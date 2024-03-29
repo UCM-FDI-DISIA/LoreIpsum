@@ -33,14 +33,16 @@
         {"id": "boton_salir",     "file": "resources/images/boton_salir.png"  },
         {"id": "boton_flecha",    "file": "resources/images/boton_flecha.png"},
         {"id": "black_box",       "file": "resources/images/black_background.png"  },
-        {"id": "whiteRect",       "file": "resources/images/rectBlanco.png"  },
-        {"id": "reverseCard",       "file": "resources/images/card_reverse.png"  },
-        {"id": "moneda",       "file": "resources/images/moneda.png"  },
-        {"id": "monedaIlu",       "file": "resources/images/monedaIluminada.png"  },
-        {"id": "fondoTienda",       "file": "resources/images/fondoTienda.png"  },
-        {"id": "mostrador",       "file": "resources/images/mostradorTienda.png"  },
-        {"id": "estanteria",       "file": "resources/images/estanteriaTienda.png"  },
-        {"id": "cell",       "file": "resources/images/cardCell.png"  }
+        {"id": "whiteRect",       "file": "resources/images/rectBlanco.png"},
+        {"id": "redRect",       "file": "resources/images/redRect.png"},
+        {"id": "greenRect",       "file": "resources/images/greenRect.png"},
+        {"id": "reverseCard",       "file": "resources/images/card_reverse.png"},
+        {"id": "moneda",       "file": "resources/images/moneda.png"},
+        {"id": "monedaIlu",       "file": "resources/images/monedaIluminada.png"},
+        {"id": "fondoTienda",       "file": "resources/images/fondoTienda.png"},
+        {"id": "mostrador",       "file": "resources/images/mostradorTienda.png"},
+        {"id": "estanteria",       "file": "resources/images/estanteriaTienda.png"},
+        {"id": "cell",       "file": "resources/images/cardCell.png"}
     ],
     "fonts": [
       {
