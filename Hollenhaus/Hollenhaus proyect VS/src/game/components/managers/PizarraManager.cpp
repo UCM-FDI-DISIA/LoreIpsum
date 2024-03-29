@@ -20,18 +20,23 @@ void PizarraManager::update()
 }
 void PizarraManager::initComponent()
 {
+	// guarda en un array aux las cartas que ya estuvieran en la pizarra
 	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
 		if (isOnPizarra(e)) {
 
 			mazeaux.push_back(e);
 		}
 	}
+
+	// limpia el mazo que vas a sobreescribir entero
 	mazePrev.clear();
 
+	// aniade las que ya tenias en la pizarra
 	for (auto e : mazeaux) {
 		mazePrev.push_back(e);
 	}
 
+	// aniade las nuevas
 	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
 		if (!isOnPizarra(e)) {
 
@@ -39,6 +44,7 @@ void PizarraManager::initComponent()
 		}
 	}
 
+	// instancia las cartas de tu mazo
 	for (auto e : mazePrev)
 	{
 		GameStateMachine::instance()->getCurrentState()->createCard(e, Vector2D(25, 300));
@@ -62,7 +68,6 @@ bool PizarraManager::isOnPizarra(int id)
 			encontrado = true;
 		}
 	}
-
 
 	return encontrado;
 }
