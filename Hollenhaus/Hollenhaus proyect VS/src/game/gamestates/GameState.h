@@ -39,6 +39,8 @@ public:
 	//----Devuelve una carta de shopCards dado un indice.
 	virtual int getShopCardById(int id);
 
+	int* getDrawer();
+
 	// ---- setters ----
 	// settea la data
 	static void setData(Data* _data);

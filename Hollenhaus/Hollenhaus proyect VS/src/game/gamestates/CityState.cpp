@@ -39,8 +39,10 @@ void CityState::onEnter()
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
 	fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0,255,255,255);
 	fondo->addComponent<BoxCollider>();
-	//tamanyo de ciudadcompleta.png: 5754 x 1212 
-	fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f); //escalado para ciudadcompleta.png (porfi no toquetear)!!! 
+	//tamanyo de ciudadcompleta.png: 5754 x 1212
+	fondo->getComponent<Transform>()->setGlobalScale(0.495f, 0.495f);
+	//fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f); //escalado para ciudadcompleta.png (porfi no toquetear)!!! 
+
 	Vector2D globalPos(-1200.0f, 0); //Posición inicial de la ciudad para que se vea por el centro.
 	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
 	//fondo->getComponent<BoxCollider>()->setAnchoredToSprite(true);
@@ -63,7 +65,8 @@ void CityState::onEnter()
 	npc2->addComponent<SpriteRenderer>("npc");
 	npc2->addComponent<BoxCollider>();
 	npc2->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
-	npc2->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
+	npc2->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
+	//npc2->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
 	Vector2D np2Pos(-100, 425);
 	npc2->getComponent<Transform>()->setGlobalPos(np2Pos);
 	npc2->getComponent<BoxCollider>()->setAnchoredToSprite(true);
@@ -77,7 +80,8 @@ void CityState::onEnter()
 	npc1->addComponent<ShineComponent>(); // se le aniade este componente y abajo se llama al metodo addEnt con la entidad a iluminar y la foto iluminada
 	npc1->getComponent<ShineComponent>()->addEnt(npc1->getComponent<SpriteRenderer>(), "hombreIlu");
 	npc1->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
-	npc1->getComponent<Transform>()->getRelativeScale().set(1.0f, 1.0f);
+	npc1->getComponent<Transform>()->setGlobalScale(1.0f, 1.0f);
+	//npc1->getComponent<Transform>()->getRelativeScale().set(1.0f, 1.0f);
 	Vector2D np1Pos(800, 425);
 	npc1->getComponent<Transform>()->setGlobalPos(np1Pos);
 	npc1->getComponent<BoxCollider>()->setAnchoredToSprite(true);
@@ -89,7 +93,8 @@ void CityState::onEnter()
 	npc3->addComponent<SpriteRenderer>("npc");
 	npc3->addComponent<BoxCollider>();
 	npc3->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
-	npc3->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
+	npc3->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
+	//npc3->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
 	Vector2D npc3Pos(400, 425);
 	npc3->getComponent<Transform>()->setGlobalPos(npc3Pos);
 	npc3->getComponent<BoxCollider>()->setAnchoredToSprite(true);

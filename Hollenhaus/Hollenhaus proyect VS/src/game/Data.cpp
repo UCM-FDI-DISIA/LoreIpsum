@@ -1,18 +1,22 @@
 #include "pch.h"
 #include "Data.h"
 
-using namespace std;
 
 
 //------Constructora y destructora:
-Data::Data() : currentMoney(0), currentSouls(0), currentCase(0), shopCards(new int[4] {-1, -1, -1, -1}) {}
-Data::Data(int mon, int cas, int sou, list<int>maz, list<int>dra, list<int>def, std::list<int>shc)
+Data::Data() : currentMoney(0), currentSouls(0), currentCase(0), shopCards(new int[4] {-1, -1, -1, -1}, drawer(new int[CARDS_IN_GAME]))
+{
+	EmptyDrawer();
+}
+Data::Data(int mon, int cas, int sou, std::list<int>maz, int* dra, std::list<int>def)
 	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[4])
 {};
 Data::~Data() {
 	delete shopCards;
 };
 //------Setters:
+
+// ------ DECKBUILDING ------
 //----Mazo:
 void Data::AddCardToMaze(int id) {
 	maze.push_back(id);
@@ -22,11 +26,13 @@ void Data::SubtractCardFromMaze(int id) {
 }
 //----Cajon:
 void Data::AddCardToDrawer(int id) {
-	drawer.push_back(id);
+	drawer[id] = id;
 }
 void Data::SubtractCardFromDrawer(int id) {
-	drawer.remove(id);
+	drawer[id] = -1;
 }
+
+// ------ FLUJO ------
 //----NPCs:
 void Data::AddDefeatedNPC(int id) {
 	defeatedNPCS.push_back(id);
@@ -69,6 +75,8 @@ bool Data::setShopCard(int id) {
 }
 
 //------Busqueda:
+
+// ------ DECKBUILDING ------
 //----Mazo:
 bool Data::IdIsInMaze(int id) {
 	auto it = std::find(maze.begin(), maze.end(), id);
@@ -78,10 +86,10 @@ bool Data::IdIsInMaze(int id) {
 ;
 //----Cajon:
 bool Data::IdIsInDrawer(int id) {
-	auto it = std::find(drawer.begin(), drawer.end(), id);
-
-	return (it != drawer.end()) ? true : false;
+	return drawer[id] == id;
 };
+
+// ------ FLUJO ------
 //----NPCs:
 bool Data::IdIsInDefeatedNPC(int id) {
 	auto it = std::find(defeatedNPCS.begin(), defeatedNPCS.end(), id);
@@ -125,7 +133,7 @@ int Data::getShopCardById(int id) {
 
 //------Escribir en el archivo:
 void Data::Write() {
-	ofstream file;
+	std::ofstream file;
 	file.open("resources/saves/save.txt");
 
 	file << currentMoney << "\n";
@@ -136,9 +144,9 @@ void Data::Write() {
 	for (const auto it : maze) {
 		file << it << "\n";
 	}
-	file << drawer.size() << "\n";
-	for (const auto it : drawer) {
-		file << it << "\n";
+	file << CARDS_IN_GAME << "\n";
+	for (int i = 0; i < CARDS_IN_GAME; i++) {
+		file << drawer[i] << "\n";
 	}
 	file << defeatedNPCS.size() << "\n";
 	for (const auto it : defeatedNPCS) {
@@ -155,7 +163,7 @@ void Data::Write() {
 void Data::Read() {
 	EmptyLists();
 
-	ifstream file;
+	std::ifstream file;
 	file.open("resources/saves/save.txt");
 
 	int number, iterations;
@@ -172,7 +180,7 @@ void Data::Read() {
 	for (int i = 0; i < iterations; i++)
 	{
 		file >> number;
-		drawer.push_back(number);
+		drawer[i] = number;
 	}
 
 	file >> iterations;
@@ -203,7 +211,10 @@ void Data::EmptyMaze() {
 	maze.clear();
 }
 void Data::EmptyDrawer() {
-	drawer.clear();
+	for (int i = 0; i < CARDS_IN_GAME; i++)
+	{
+		drawer[i] = -1;
+	}
 }
 void Data::EmptyNPCS() {
 	defeatedNPCS.clear();

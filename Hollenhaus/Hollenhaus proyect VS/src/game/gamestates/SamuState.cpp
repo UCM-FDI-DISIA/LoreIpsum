@@ -76,14 +76,16 @@ void SamuState::onEnter()
 	// Imágen de fondo
 	ecs::entity_t background = Instantiate();
 	background->addComponent<Transform>();
-	background->getComponent<Transform>()->getGlobalScale().set(0.555, 0.555);
+	background->getComponent<Transform>()->setGlobalScale(0.555f, 0.555f);
+	//background->getComponent<Transform>()->getGlobalScale().set(0.555, 0.555);
 	background->addComponent<SpriteRenderer>("board");
 	//background->setLayer(-1);
 
 
 	// Creación del botón de J1 (ahora general) para acabar su turno (debug por consola)
 	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(sdlutils().width() / 4, sdlutils().height() / 2 - 35));
-	endTurnButtonJ1->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
+	endTurnButtonJ1->getComponent<Transform>()->setGlobalScale(1.2f, 1.2f);
+	//endTurnButtonJ1->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
 	endTurnButtonJ1->addComponent<SpriteRenderer>("EndTurnButton");
 	endTurnButtonJ1->addComponent<BoxCollider>();
 	endTurnButtonJ1->addComponent<EndTurnButton>(Turns::J1);

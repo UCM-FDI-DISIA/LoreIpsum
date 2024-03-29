@@ -3,6 +3,7 @@
 
 
 class CardFactory;
+class FakeCardFactory;
 class HandFactory;
 class BoardFactory;
 class MatchStateUIFactory;
@@ -18,7 +19,7 @@ class Factory
 public:
 
 
-	
+
 #pragma region Templates setFactories
 	/*
 		Si se añade un nuevo tipo de factory para objetos en especifico,
@@ -26,10 +27,10 @@ public:
 		sobrecarga de este metodo con template como las que están ya hechas
 	*/
 
-	
+
 	template<typename ...Ts>
-	void SetFactories(Ts &&... args){};
-	
+	void SetFactories(Ts &&... args) {};
+
 
 	template<typename ...Ts>
 	void SetFactories(BoardFactory* bf, Ts &&... args) {
@@ -37,31 +38,39 @@ public:
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
-	
+
 	template<typename ...Ts>
 	void SetFactories(CardFactory* cf, Ts &&... args) {
-		cardFactory =cf;
+		cardFactory = cf;
 		SetFactories(std::forward<Ts>(args)...);
 	}
-	
+
 	template<typename ...Ts>
 	void SetFactories(MatchStateUIFactory* msUIf, Ts &&... args) {
 		matchStateUIFactory = msUIf;
 		SetFactories(std::forward<Ts>(args)...);
 	}
-		
+
+	template<typename ...Ts>
+	void SetFactories(FakeCardFactory* fcf, Ts &&... args) {
+		fakeCardFactory = fcf;
+		SetFactories(std::forward<Ts>(args)...);
+	}
+
 
 #pragma endregion
 
-	Factory() : 
-	boardFactory(nullptr),
-	cardFactory(nullptr),
-	handFactory(nullptr),
-	matchStateUIFactory(nullptr)
+	Factory() :
+		boardFactory(nullptr),
+		cardFactory(nullptr),
+		handFactory(nullptr),
+		matchStateUIFactory(nullptr),
+		fakeCardFactory(nullptr)
 	{};
 
 
 	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);
+	ecs::entity_t createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);
 
 	ecs::entity_t createDropDetector(Vector2D pos);
 
@@ -84,5 +93,6 @@ public:
 	CardFactory* cardFactory;
 	HandFactory* handFactory;
 	MatchStateUIFactory* matchStateUIFactory;
+	FakeCardFactory* fakeCardFactory;
 };
 

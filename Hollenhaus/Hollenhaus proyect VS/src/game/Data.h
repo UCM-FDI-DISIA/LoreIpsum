@@ -1,6 +1,8 @@
 #pragma once
 #include <list>
 
+// Cantidad de cartas en el juego
+const int CARDS_IN_GAME = 50;
 
 class Data
 {
@@ -9,8 +11,12 @@ private:
 		currentCase = 0,
 		currentSouls = 0,
 		winner = 0;
-	std::list<int> drawer;
-	std::list<int> maze;  // cleon: "mierda, mierda, mierda"
+
+	// ------ DECKBUILDING -------
+	int* drawer; // Id de las cartas desbloqueadas
+	std::list<int> maze; // Id de las cartas del mazo 
+
+	// ------ NS ------
 	std::list<int> defeatedNPCS;
 	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
@@ -26,16 +32,20 @@ public:
 
 	//------Constructora y destructora:
 	Data();
-	Data(int mon, int cas, int sou, std::list<int>maz, std::list<int>dra, std::list<int>def, std::list<int>shc);
+	Data(int mon, int cas, int sou, std::list<int>maz, int * dra, std::list<int>def);
 	~Data();
 
 	//------Setters:
+	
+	// ------ DECKBUILDING ------
 	//----Mazo:
 	void AddCardToMaze(int id);
 	void SubtractCardFromMaze(int id);
 	//----Cajon:
 	void AddCardToDrawer(int id);
 	void SubtractCardFromDrawer(int id);
+
+	// ------ FLUJO ------
 	//----NPCs:
 	void AddDefeatedNPC(int id);
 	//----Dinero:
@@ -51,10 +61,14 @@ public:
 	bool setShopCard(int id);
 
 	//------Getters:
+	
+	// ------ DECKBUILDING ------
 	//----Mazo:
-	const std::list<int> GetMaze(int id) { return maze; }
+	const std::list<int> GetMaze() { return maze; }
 	//----Cajon:
-	const std::list<int> GetDrawer(int id) { return drawer; }
+	int* GetDrawer() { return drawer; }
+
+	// ------ FLUJO ------
 	//----NPCs:
 	const std::list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
 	//----Dinero:
@@ -71,10 +85,14 @@ public:
 	int getShopCardById(int id);
 
 	//------Busqueda:
+	
+	// ------ DECKBUILDING ------
 	//----Mazo:
 	bool IdIsInMaze(int id);
 	//----Cajon:
 	bool IdIsInDrawer(int id);
+
+	// ------ FLUJO ------
 	//----NPCs:
 	bool IdIsInDefeatedNPC(int id);
 	//----Busqueda de una carta de la tienda por id:

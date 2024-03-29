@@ -54,4 +54,9 @@ void SpriteRenderer::render() const
 		transform_->getGlobalAngle(),
 		flip,
 		color);
-};
+}
+Vector2D SpriteRenderer::getImageSize()
+{
+	return Vector2D(texture_->width(), texture_->height());
+}
+;

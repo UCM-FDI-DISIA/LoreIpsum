@@ -247,6 +247,32 @@
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\components\ShopComponent.cpp">
+       <Filter>Archivos de origen\Componentes</Filter>
+    <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\PizarraManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\DrawerManager.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\DeckBuildingFactory_v0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\DeckBuildingFactory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DragNoCombat.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DropZone.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Button.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -480,6 +506,36 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\ShopComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\PizarraManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\DeckBuildingState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\DrawerManager.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\DeckBuildingFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\FakeCardFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DragNoCombat.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DropZone.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Button.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
