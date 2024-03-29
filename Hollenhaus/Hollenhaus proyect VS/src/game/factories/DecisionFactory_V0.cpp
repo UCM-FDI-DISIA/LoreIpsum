@@ -2,7 +2,7 @@
 #include "DecisionFactory_V0.h"
 
 
-void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t parent)
+void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer)
 {
 	// ----------ENTIDAD ACEPTAR COMBATE-----------
 	ecs::entity_t accept = Instantiate();

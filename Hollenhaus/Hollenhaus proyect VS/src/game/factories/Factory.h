@@ -9,6 +9,7 @@ class BoardFactory;
 class MatchStateUIFactory;
 class DialogueFactory;
 class NPCFactory;
+class DecisionFactory;
 
 
 namespace ecs {
@@ -71,6 +72,12 @@ public:
 		npcFactory = npcf;
 		SetFactories(std::forward<Ts>(args)...);
 	}
+
+	template<typename ...Ts>
+	void SetFactories(DecisionFactory* decisionF, Ts &&... args) {
+		decisionFactory = decisionF;
+		SetFactories(std::forward<Ts>(args)...);
+	}
 		
 
 #pragma endregion
@@ -82,7 +89,8 @@ public:
 	matchStateUIFactory(nullptr),
 	dialogueFactory(nullptr),
 	npcFactory(nullptr),
-	fakeCardFactory(nullptr)
+	fakeCardFactory(nullptr),
+	decisionFactory(nullptr)
 
 	{};
 
@@ -115,6 +123,11 @@ public:
 		int speed, int cooldown, ecs::entity_t parent, int layer, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
 		Text::TextAlignment textAlignment);
 
+	// metodos para las decisiones al acabar dialogo
+	void createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer,
+		std::string fontID, SDL_Color color, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment);
+
+
 public:
 
 	BoardFactory* boardFactory;
@@ -124,5 +137,6 @@ public:
 	DialogueFactory* dialogueFactory;
 	NPCFactory* npcFactory;
 	FakeCardFactory* fakeCardFactory;
+	DecisionFactory* decisionFactory;
 };
 

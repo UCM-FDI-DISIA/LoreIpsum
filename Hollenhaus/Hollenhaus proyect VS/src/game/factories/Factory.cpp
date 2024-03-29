@@ -6,6 +6,7 @@
 #include "MatchStateUIFactory.h"
 #include "DialogueFactory.h"
 #include "NPCFactory.h"
+#include "DecisionFactory.h"
 
 
 ecs::entity_t Factory::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
@@ -119,4 +120,15 @@ ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vecto
 	dialogueFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	return dialogueFactory->createDialogue(id, convo, node, pos, size, speed, cooldown, parent, layer);
 	
+}
+
+void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer,
+	std::string fontID, SDL_Color color, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment)
+{
+	if (decisionFactory == nullptr) {
+		throw "no existe decisionFactory";
+	}
+
+	decisionFactory->setTextValues(fontID, color, boxPivotPoint, textAlignment);
+	decisionFactory->createPopUp(pos, size, parent, layer);
 }
