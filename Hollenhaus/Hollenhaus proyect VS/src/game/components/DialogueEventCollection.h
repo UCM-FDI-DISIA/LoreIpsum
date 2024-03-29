@@ -30,28 +30,28 @@ public:
 	///	y como concepto inicial ***
 	template<typename ...Ts>
 	static std::function<void()> callEvent(
-		DialogueEvents::Events index,
+		DialogueEvents::Events index, int scene,
 		Ts &&... args)
 	{
 		switch (index)
 		{
 		case DialogueEvents::None:
-			return [std::forward<Ts>(args)...]
+			return [scene] 
 				{
-					ChangeScene(std::forward<Ts>(args)...);
+					ChangeScene(scene);
 				};
 		case DialogueEvents::ChangeScene:
-			return [std::forward<Ts>(args)...]
+			return []
 				{
 
 				};
 		case DialogueEvents::StartAnimation:
-			return [std::forward<Ts>(args)...]
+			return []
 				{
 
 				};
 		case DialogueEvents::ConfirmMatchPopUp:
-			return [std::forward<Ts>(args)...]
+			return []
 				{
 
 				};

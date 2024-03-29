@@ -419,10 +419,46 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 									JSONObject nodeObj = n->AsObject();
 									int nodeID = nodeObj["nodeID"]->AsNumber();
 									std::string text = nodeObj["text"]->AsString();
-									DialogueEvents::Events eventStart = static_cast<DialogueEvents::Events>(nodeObj["eventStart"]->AsNumber());
-									DialogueEvents::Events eventFinish = static_cast<DialogueEvents::Events>(nodeObj["eventFinish"]->AsNumber());
+									//DialogueEvents::Events eventStart = static_cast<DialogueEvents::Events>(nodeObj["eventStart"]->AsNumber());
+									int type, scene;
+									JsonData::DialogueEventsStruct eventph;
+									JSONArray eventSArray = convoObj["eventStart"]->AsArray();	// Array de nodes
+									for (auto& e : eventSArray) {	
+										if (e->IsObject()) {
+											JSONObject eventObj = e->AsObject();
+											type = eventObj["eventType"]->AsNumber();
+											switch (type) {
+											case 0:
+												break;
+											case 1:
+												scene = eventObj["scene"]->AsNumber();
+												break;
+											case 2:
+												break;
+											case 3: 
+												break;
+											default:
+												break;
+											}
+										}
+									}
+									switch (type) {
+									case 0:
+										break;
+									case 1:
+										eventph = static_cast<JsonData::DialogueEventsStruct>(type, scene);
+										break;
+									case 2:
+										break;
+									case 3:
+										break;
+									default:
+										break;
+									}
+									
+									//DialogueEvents::Events eventFinish = static_cast<DialogueEvents::Events>(nodeObj["eventFinish"]->AsNumber());
 
-									nodes.emplace_back(nodeID, text, eventStart, eventFinish);
+									nodes.emplace_back(nodeID, text, 0, 0, eventph);
 								}
 							}
 
