@@ -17,6 +17,7 @@
 #include "../../../utils/Vector2D.h"
 #include "../basics/Transform.h"
 #include "../basics/BoxCollider.h"
+#include "../DeckComponent.h"
 
 namespace ecs {
 

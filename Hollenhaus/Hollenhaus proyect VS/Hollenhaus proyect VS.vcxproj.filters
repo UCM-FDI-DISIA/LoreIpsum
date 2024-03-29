@@ -273,6 +273,9 @@
     <ClCompile Include="src\game\components\Button.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\managers\IA_manager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -532,6 +535,9 @@
     </ClInclude>
     <ClInclude Include="src\game\components\Button.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\IA_manager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

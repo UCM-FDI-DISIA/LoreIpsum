@@ -20,6 +20,11 @@ DeckComponent::shuffle() {
 	}
 }
 
+std::list<Card*> DeckComponent::getDeck()
+{
+	return deck;
+}
+
 void
 DeckComponent::removeCard(Card* c) {
 	deck.remove(c);

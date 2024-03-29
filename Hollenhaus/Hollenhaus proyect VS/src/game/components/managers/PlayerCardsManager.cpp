@@ -14,6 +14,11 @@ void PlayerCardsManager::initComponent()
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { drawCard(); });
 }
 
+HandComponent* PlayerCardsManager::getHand()
+{
+	return hand_;
+}
+
 PlayerCardsManager::~PlayerCardsManager()
 {
 	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { drawCard(); });
@@ -30,9 +35,11 @@ void PlayerCardsManager::drawCard()
 	if (mngr_ != nullptr && mngr_->getHandler(ecs::hdlr::MATCH_MANAGER) != nullptr)
 	{
 		const auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
-		const Players::Owner turnOwner = matchManager->getActualState() == Turns::J1
-			                                 ? Players::PLAYER1
-			                                 : Players::PLAYER2;
+
+		const Players::Owner turnOwner = 
+			matchManager->getActualState() == Turns::J1 ? Players::PLAYER1 :
+			matchManager->getActualState() == Turns::J2 ? Players::PLAYER2 :
+			Players::NONE;
 
 		if (deck_->deckSize() > 0 &&
 			ent_->getComponent<BoxCollider>()->isCursorOver() &&

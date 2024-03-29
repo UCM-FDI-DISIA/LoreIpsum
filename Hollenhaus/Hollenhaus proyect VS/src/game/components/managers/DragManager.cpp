@@ -139,8 +139,10 @@ bool DragManager::CardIsOfCurrentPlayer(ecs::entity_t card)
 {
 	const auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
 
-	const Players::Owner turnOwner = matchManager->getActualState() == Turns::J1
-		? Players::PLAYER1 : Players::PLAYER2;
+	const Players::Owner turnOwner =
+		matchManager->getActualState() == Turns::J1 ? Players::PLAYER1 :
+		matchManager->getActualState() == Turns::J2 ? Players::PLAYER2 :
+		Players::NONE;
 
 	Players::Owner cardOwner = Players::NULO;
 

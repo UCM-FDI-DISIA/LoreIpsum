@@ -36,6 +36,9 @@ public:
 	void setOwner(Players::Owner value) { owner_ = value;}
 	Players::Owner getOwner() const { return owner_; }
 
+	//para la IA
+	std::vector<Card*> getHand();
+
 private:
 	float cardScale_ = 0.65f;
 	float cardScaleBoard_ = 0.53f;
