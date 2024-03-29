@@ -50,16 +50,20 @@ void DeckBuildingState::onEnter()
 {
 	std::cout << "\nENTER DECKBUILDING.\n";
 
+	loadData();
+	
 	// ---- DRAG ----
 	// DragNoCombat se encarga de gestionar el drag de todas las cartas
 	ecs::entity_t ent = Instantiate();
 	ent->addComponent<DragNoCombat>();
 
 	// ---- CARDS ----
-	auto card = sdlutils().cards().at(std::to_string(0));
-	Factory* factory = new Factory();
+	factory = new Factory();
 	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
-	Card* carda = factory->createFakeCard(0, Vector2D(100, 100), card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects())->getComponent<Card>();
+	//
+	////hace la carta 1
+	//auto card1 = sdlutils().cards().at(std::to_string(1));
+	//factory->createFakeCard(1, Vector2D(100, 100), card1.cost(), card1.value(), card1.sprite(), card1.unblockable(), card1.effects())->getComponent<Card>();
 
 	// ---- TEXTO ----
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
@@ -98,6 +102,7 @@ void DeckBuildingState::onEnter()
 	Confirm->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	Confirm->addComponent<Button>();
 	Confirm->getComponent<Button>()->connectToButton([this]() { pizarra_->saveMaze(); });
+	Confirm->getComponent<Button>()->connectToButton([this]() { drawer_->saveDrawer(); });
 	Confirm->setLayer(1);
 
 	// Escalado de las flechas del drawer
@@ -163,6 +168,8 @@ void DeckBuildingState::onEnter()
 // ---- EXIT ESTADO ----
 void DeckBuildingState::onExit()
 {
+	saveData();
+
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
@@ -186,3 +193,14 @@ void DeckBuildingState::moveToDrawer(Card* card)
 	pizarra_->removeCard(card->getID());
 	drawer_->addCard(card->getID());
 }
+
+ecs::entity_t DeckBuildingState::createCard(int id, Vector2D pos)
+{
+	// Hace LA carta
+	auto card = sdlutils().cards().at(std::to_string(id));
+	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
+	return ent;
+
+}
+
+

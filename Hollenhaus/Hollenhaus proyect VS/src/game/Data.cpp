@@ -7,8 +7,9 @@
 Data::Data() : currentMoney(0), currentSouls(0), currentCase(0), shopCards(new int[4] {-1, -1, -1, -1}, drawer(new int[CARDS_IN_GAME]))
 {
 	EmptyDrawer();
+	//Read();
 }
-Data::Data(int mon, int cas, int sou, std::list<int>maz, int* dra, std::list<int>def)
+Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def)
 	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[4])
 {};
 Data::~Data() {
@@ -18,8 +19,12 @@ Data::~Data() {
 
 // ------ DECKBUILDING ------
 //----Mazo:
-void Data::AddCardToMaze(int id) {
-	maze.push_back(id);
+void Data::SetNewMaze(std::list<int> newMaze) {
+	EmptyMaze();
+	for (auto e : newMaze)
+	{
+		maze.push_back(e);
+	}
 }
 void Data::SubtractCardFromMaze(int id) {
 	maze.remove(id);
@@ -28,6 +33,38 @@ void Data::SubtractCardFromMaze(int id) {
 void Data::AddCardToDrawer(int id) {
 	drawer[id] = id;
 }
+
+void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {
+
+	std::array<int, CARDS_IN_GAME> drawerAux;
+	for (int i = 0; i < CARDS_IN_GAME; i++)
+	{
+		drawerAux[i] = -1;
+	}
+
+	for (int i = 0; i < newDrawer.size(); i++)
+	{
+		if (newDrawer[i] == drawer[i]) {
+			drawerAux[i] = newDrawer[i];
+		}
+	}
+
+	EmptyDrawer();
+
+	for (int i = 0; i < drawerAux.size(); i++)
+	{
+		drawer[i] = drawerAux[i];
+	}
+
+
+	for (int i = 0; i < newDrawer.size(); i++)
+	{
+		if (newDrawer[i] != drawer[i]) {
+			drawer[i] = newDrawer[i];
+		}
+	}
+}
+
 void Data::SubtractCardFromDrawer(int id) {
 	drawer[id] = -1;
 }
@@ -134,7 +171,7 @@ int Data::getShopCardById(int id) {
 //------Escribir en el archivo:
 void Data::Write() {
 	std::ofstream file;
-	file.open("resources/saves/save.txt");
+	file.open("save.txt");
 
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
@@ -164,7 +201,7 @@ void Data::Read() {
 	EmptyLists();
 
 	std::ifstream file;
-	file.open("resources/saves/save.txt");
+	file.open("save.txt");
 
 	int number, iterations;
 

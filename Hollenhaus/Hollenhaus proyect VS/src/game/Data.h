@@ -1,8 +1,10 @@
 #pragma once
 #include <list>
+#include <array>
 
-// Cantidad de cartas en el juego
-const int CARDS_IN_GAME = 50;
+const int CARDS_IN_GAME = 50,// Cantidad de cartas en el juego
+MIN_CARDS_MAZE = 4, // Minimo de cartas en el mazo
+MAX_CARDS_MAZE = 6; // Maximo de cartas en el mazo
 
 class Data
 {
@@ -13,7 +15,7 @@ private:
 		winner = 0;
 
 	// ------ DECKBUILDING -------
-	int* drawer; // Id de las cartas desbloqueadas
+	std::array<int, CARDS_IN_GAME> drawer; // Id de las cartas desbloqueadas
 	std::list<int> maze; // Id de las cartas del mazo 
 
 	// ------ NS ------
@@ -32,14 +34,14 @@ public:
 
 	//------Constructora y destructora:
 	Data();
-	Data(int mon, int cas, int sou, std::list<int>maz, int * dra, std::list<int>def);
+	Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def);
 	~Data();
 
 	//------Setters:
-	
+
 	// ------ DECKBUILDING ------
 	//----Mazo:
-	void AddCardToMaze(int id);
+	void SetNewMaze(std::list<int> newMaze);
 	void SubtractCardFromMaze(int id);
 	//----Cajon:
 	void AddCardToDrawer(int id);
@@ -61,12 +63,13 @@ public:
 	bool setShopCard(int id);
 
 	//------Getters:
-	
+
 	// ------ DECKBUILDING ------
 	//----Mazo:
 	const std::list<int> GetMaze() { return maze; }
 	//----Cajon:
-	int* GetDrawer() { return drawer; }
+	std::array<int, CARDS_IN_GAME> GetDrawer() { return drawer; }
+	void SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer);
 
 	// ------ FLUJO ------
 	//----NPCs:
@@ -85,7 +88,7 @@ public:
 	int getShopCardById(int id);
 
 	//------Busqueda:
-	
+
 	// ------ DECKBUILDING ------
 	//----Mazo:
 	bool IdIsInMaze(int id);
