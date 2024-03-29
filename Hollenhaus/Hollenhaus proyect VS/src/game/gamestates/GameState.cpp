@@ -36,7 +36,7 @@ Data* GameState::data = nullptr;
 //borra todas las entidades
 GameState::~GameState()
 {
-    GameStateMachine::instance()->getMngr()->Free();
+	GameStateMachine::instance()->getMngr()->Free();
 }
 
 
@@ -44,76 +44,81 @@ GameState::~GameState()
 //decir las que han salido del juego en la última iteración
 void GameState::refresh()
 {
-    GameStateMachine::instance()->getMngr()->refresh();
+	GameStateMachine::instance()->getMngr()->refresh();
 }
 
 void GameState::update()
 {
-    GameStateMachine::instance()->getMngr()->update();
+	GameStateMachine::instance()->getMngr()->update();
 }
 
-void GameState::render() const 
+void GameState::render() const
 {
-    GameStateMachine::instance()->getMngr()->render();
+	GameStateMachine::instance()->getMngr()->render();
 }
 
 void GameState::setWinnerOnData(int w)
 {
-    data->setWinner(w);
+	data->setWinner(w);
 
 }
 
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
-    return data->GetDrawer();
+	return data->GetDrawer();
 }
 
 std::list<int> GameState::getMaze()
 {
-    return data->GetMaze();
+	return data->GetMaze();
 }
 
 void GameState::setMaze(std::list<int> mazeToSave)
 {
-    data->SetNewMaze(mazeToSave);
+	data->SetNewMaze(mazeToSave);
 }
 
 void GameState::setDrawer(std::array<int, 50> drawerToSave)
 {
-    data->SetNewDrawer(drawerToSave);
+	data->SetNewDrawer(drawerToSave);
 }
 
 void GameState::saveData()
 {
-    data->Write();
+	data->Write();
 }
 
 void GameState::loadData()
 {
-    data->Read();
+	data->Read();
 }
 
 void GameState::setData(Data* _data)
 {
-    data = _data;
+	data = _data;
 }
 
 void GameState::setShopCard(int c)
 {
-    data->setShopCard(c);
+	data->setShopCard(c);
 }
 
 bool GameState::checkDataShopCardsIsEmpty()
 {
-    return data->shopCardsIsEmpty();
+	return data->shopCardsIsEmpty();
 }
 
-bool GameState::checkCardIsInDrawer(int id) 
+bool GameState::checkCardIsInDrawer(int id)
 {
-    return data->IdIsInDrawer(id);
+	return data->IdIsInDrawer(id);
 }
 
-int GameState::getShopCardById(int id) 
+int GameState::getShopCardById(int id)
 {
-    return  data->getShopCardById(id);
+	return  data->getShopCardById(id);
+}
+
+void GameState::addCardToDrawer(int id)
+{
+	data->AddCardToDrawer(id);
 }

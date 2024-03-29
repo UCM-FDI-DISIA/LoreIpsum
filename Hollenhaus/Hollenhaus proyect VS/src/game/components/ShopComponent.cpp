@@ -51,6 +51,11 @@ bool ShopComponent::checkCardIsBought(int id)
 void ShopComponent::showCards() {
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
+		/*if (shopCards[i] == 2)
+		{
+			std::cout << "Pruebita para ver si las que ya estan no las pone en pantalla." << std::endl;
+			GameStateMachine::instance()->getCurrentState()->addCardToDrawer(shopCards[i]);
+		}*/
 		if (!checkCardIsBought(i))
 		{
 			std::cout << "Mostrar carta." << std::endl;
