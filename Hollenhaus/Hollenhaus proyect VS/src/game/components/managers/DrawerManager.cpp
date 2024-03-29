@@ -16,24 +16,34 @@ DrawerManager::~DrawerManager()
 
 void DrawerManager::refreshExistencia()
 {
-	/*for (int i = 0; i < CANT_CARTAS_MOSTRADAS_CAJON; i++)
+	// Esto deberia ir en el refresh pero no funciona asique va aqui
+	for (int i = 0; i < CANT_CARTAS_MOSTRADAS_CAJON; i++)
 	{
-		if (cardsAux[i] != NULL)
+		if (cardsAux[i] != nullptr)
 		{
-			cardsAux[i]->~Entity();
+			//aqui se deberian de eliminar las cartas pero como no funciona pq da error en noseque
+			// del child, se va a quedar asi :)
+			ecs::entity_t ent = cardsAux[i];
+			delete ent;
+			cardsAux[i] = nullptr;
+			//Vector2D pos0(0, 0);
+			//cardsAux[i]->getComponent<Transform>()->setGlobalPos(pos0);
 		}
-	}*/
+	}
 
 
 	for (int i = 0; i < CANT_CARTAS_MOSTRADAS_CAJON; i++)
 	{
 		if (drawer[(CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos) + i] != -1)
 		{
-			cardsAux[i] =
-				GameStateMachine::instance()->getCurrentState()->createCard
-				(drawer[(CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos) + i], Vector2D(25 * i, 100));
+			ecs::entity_t ent = GameStateMachine::instance()->getCurrentState()->createCard
+			(drawer[(CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos) + i], Vector2D(25 * i, 100));
+			if (ent != nullptr) {
+				cardsAux[i] = ent;
 
-			refreshPos(i, cardsAux[i]);
+				refreshPos(i, cardsAux[i]);
+			}
+
 		}
 	}
 }
@@ -51,7 +61,7 @@ void DrawerManager::initComponent()
 {
 	for (int i = 0; i < CANT_CARTAS_MOSTRADAS_CAJON; i++)
 	{
-		cardsAux[i] != nullptr;
+		cardsAux[i] = nullptr;
 	}
 	refreshExistencia();
 }
@@ -85,18 +95,6 @@ void DrawerManager::drawerPalante()
 	TuVieja("drawerPalante");
 	if (cajonesAbiertos < CARDS_IN_GAME / CANT_CARTAS_MOSTRADAS_CAJON)
 	{
-		// Esto deberia ir en el refresh pero no funciona asique va aqui
-		for (int i = 0; i < CANT_CARTAS_MOSTRADAS_CAJON; i++)
-		{
-			if (cardsAux[i]->isAlive())
-			{
-				//aqui se deberian de eliminar las cartas pero como no funciona pq da error en noseque
-				// del child, se va a quedar asi :)
-				cardsAux[i]->setAlive(false);
-				//Vector2D pos0(0, 0);
-				//cardsAux[i]->getComponent<Transform>()->setGlobalPos(pos0);
-			}
-		}
 		cajonesAbiertos++;
 	}
 	refreshExistencia();
@@ -107,17 +105,7 @@ void DrawerManager::drawerPatras()
 	TuVieja("drawerPatras");
 	if (cajonesAbiertos > 0)
 	{
-		// Esto deberia ir en el refresh pero no funciona asique va aqui
-		for (int i = 0; i < CANT_CARTAS_MOSTRADAS_CAJON; i++)
-		{
-			if (cardsAux[i]->isAlive())
-			{
-				//aqui se deberian de eliminar las cartas pero como no funciona pq da error en noseque
-				// del child, se va a quedar asi :)
-				cardsAux[i]->setAlive(false);
-				//cardsAux[i]->getComponent<Transform>()->setGlobalPos(pos0);
-			}
-		}
+
 		cajonesAbiertos--;
 	}
 	refreshExistencia();
