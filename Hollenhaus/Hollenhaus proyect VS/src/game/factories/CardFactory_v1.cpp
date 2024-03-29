@@ -66,13 +66,6 @@ ecs::entity_t CardFactory_v1::createHandJ2()
 	return hand;
 }
 
-void CardFactory_v1::addInfo(ecs::entity_t card, int cost, int value, std::vector<JsonData::CardEffect>& effects)
-{
-	addEffects(card->getComponent<Card>(), effects);
-	addValueCostTexts(card, value, cost);
-	addEffectsImages(card, effects);
-}
-
 ecs::entity_t CardFactory_v1::createDeck()
 {
 	int initY = 475;
@@ -143,7 +136,8 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 			card.value(),
 			card.sprite(),
 			card.unblockable(),
-			card.effects()
+			card.effects(),
+			false
 		);
 		ent->setLayer(1);
 		if (deck->getComponent<DeckComponent>()->getOwner() == Players::PLAYER2)
@@ -156,6 +150,12 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 	return deck;
 }
 
+void CardFactory_v1::addInfo(ecs::entity_t card, int cost, int value, std::vector<JsonData::CardEffect>& effects)
+{
+	addEffects(card->getComponent<Card>(), effects);
+	addValueCostTexts(card, value, cost);
+	addEffectsImages(card, effects);
+}
 
 void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::CardEffect>& effects)
 {
@@ -278,7 +278,7 @@ void CardFactory_v1::addDeckImage(int initX, int initY, bool opposite)
 {
 	auto deckImage = Instantiate(Vector2D(initX, initY));
 
-	deckImage->getComponent<Transform>()->setGlobalScale(Vector2D(0.7f, 0.7f));
+	deckImage->getComponent<Transform>()->setGlobalScale(Vector2D(0.65f, 0.65f));
 	if (opposite)
 		deckImage->getComponent<Transform>()->setGlobalAngle(180.0f);
 	deckImage->addComponent<SpriteRenderer>("reverseCard");

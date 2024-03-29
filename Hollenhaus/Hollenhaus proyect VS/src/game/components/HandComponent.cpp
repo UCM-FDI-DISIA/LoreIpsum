@@ -31,7 +31,6 @@ void HandComponent::addCard(ecs::entity_t card) {
 	if (owner_ == Players::IA)
 	{
 		card->getComponent<Transform>()->setGlobalAngle(180.0f);
-		//for (card->getComponent<Transform>().getChildren()) TODO: girar cada elemento dentro, pero como un transform no conoce a sus hijos....
 	}
 
 	card->getComponent<Transform>()->addParent(transform_);
@@ -68,9 +67,7 @@ void HandComponent::removeCard(ecs::entity_t card) {
 		{ // la carta esta en la manita del fantasmiko
 			auxVec.push_back(cardsInHand_[i]);
 			//numCards_++;
-			//transform_->getGlobalPos().getX() + 10;
-			Vector2D newPos(transform_->getGlobalPos().getX() + 10, transform_->getGlobalPos().getY());
-			transform_->setGlobalPos(newPos);
+			transform_->getGlobalPos().getX() + 10;
 		}
 		else // la carta es jugada
 		{

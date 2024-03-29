@@ -47,7 +47,7 @@ DeckComponent::drawCard() {
 	Card* c = (*it);
 	removeCard(c);
 	mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->substractActualPlayerActionPoints(drawCardCost);
-	
+	if (deckSize() == 0) this->getEntity()->setAlive(false);
 	return c;
 }
 
