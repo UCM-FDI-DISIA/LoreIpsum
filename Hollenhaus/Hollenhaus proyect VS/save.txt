@@ -1,9 +1,15 @@
 0
 0
 0
+Mazo_y_posiciones
 2
 5
+463
+148
 4
+485
+255
+Drawer
 50
 0
 1

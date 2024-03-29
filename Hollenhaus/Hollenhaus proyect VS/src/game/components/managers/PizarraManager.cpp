@@ -51,7 +51,10 @@ void PizarraManager::initComponent()
 	// instancia las cartas de tu mazo
 	for (auto e : mazePrev)
 	{
-		GameStateMachine::instance()->getCurrentState()->createCard(e, (*itPos));
+		Transform* card;
+		card = GameStateMachine::instance()->getCurrentState()->createCard(e, (*itPos))->getComponent<Transform>();
+
+		cards.push_back(card);
 		itPos++;
 	}
 }
@@ -65,11 +68,14 @@ void PizarraManager::refreshPos()
 // Guarda el mazo en el data.
 void PizarraManager::saveMaze()
 {
-	mazePos.clear();
+	//mazePos.clear();
 
 	for (auto e : cards)
 	{
-		mazePos.push_back(e->getGlobalPos());
+		if (e != nullptr)
+		{
+			mazePos.push_back(e->getGlobalPos());
+		}
 	}
 
 	GameStateMachine::instance()->getCurrentState()->setMaze(mazePrev, mazePos);
