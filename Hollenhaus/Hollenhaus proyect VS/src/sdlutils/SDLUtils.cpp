@@ -423,7 +423,24 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 									DialogueEvents::Events eventStart = static_cast<DialogueEvents::Events>(nodeObj["eventStart"]->AsNumber());
 									DialogueEvents::Events eventFinish = static_cast<DialogueEvents::Events>(nodeObj["eventFinish"]->AsNumber());
 
-									nodes.emplace_back(nodeID, text, eventStart, eventFinish);
+									//vector de efectos
+									std::vector<JsonData::DialogueEventS> events;
+
+									JSONArray eventsA = nodeObj["events"]->AsArray();	// Array de eventos iniciales
+									for (auto& ea : eventsA) {
+										if (ea->IsObject()) {
+											JSONObject eventObj = ea->AsObject();
+
+											// recoge los datos
+											int timing = eventObj["timing"]->AsNumber();
+											int type = eventObj["type"]->AsNumber();
+											int scene = eventObj["scene"]->AsNumber();
+
+											events.emplace_back(timing, type, scene);
+										}
+									}
+
+									nodes.emplace_back(nodeID, text, eventStart, eventFinish, events);
 								}
 							}
 

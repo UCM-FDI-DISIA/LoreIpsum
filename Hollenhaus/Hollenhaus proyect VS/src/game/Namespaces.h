@@ -125,14 +125,30 @@ namespace JsonData
 		std::vector<CardEffect> effects_;
 	};
 
+	struct DialogueEventS {
+		DialogueEventS();
+		DialogueEventS(int tg, int t, int s) :
+			timing(tg),
+			type(t),
+			scene(s) 
+		{};
+
+	private:
+		int timing, type;
+		int scene;
+
+	};
+
 
 	struct NodeData {
 		NodeData();
-		NodeData(const int nodeID, const std::string& text, const DialogueEvents::Events nodeEventsStart, const DialogueEvents::Events nodeEventsFinish) :
+		NodeData(const int nodeID, const std::string& text, const DialogueEvents::Events nodeEventsStart, 
+			const DialogueEvents::Events nodeEventsFinish, std::vector<DialogueEventS>& es) :
 			nodeID_(nodeID),
 			text_(text),
 			eventStart_(nodeEventsStart),
-			eventFinish_(nodeEventsFinish)
+			eventFinish_(nodeEventsFinish),
+			eventsStart_(es)
 		{};
 
 		int NodeID() { return nodeID_; }
@@ -145,6 +161,8 @@ namespace JsonData
 		std::string text_;
 		DialogueEvents::Events eventStart_;
 		DialogueEvents::Events eventFinish_;
+
+		std::vector<DialogueEventS> eventsStart_;
 	};
 
 	struct ConvoData {
