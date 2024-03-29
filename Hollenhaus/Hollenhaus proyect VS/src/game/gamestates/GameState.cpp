@@ -46,15 +46,15 @@ std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 }
 
 // para acceder al mazo del data desde el estado
-std::list<int> GameState::getMaze()
+std::unordered_map<int,Vector2D> GameState::getMaze()
 {
     return data->GetMaze();
 }
 
 // para settear el mazo del data desde el estado
-void GameState::setMaze(std::list<int> mazeToSave)
+void GameState::setMaze(std::list<int> mazeToSave, std::list<Vector2D> MazePosToSave)
 {
-    data->SetNewMaze(mazeToSave);
+    data->SetNewMaze(mazeToSave, MazePosToSave);
 }
 
 // para settear el drawer del data desde el estado

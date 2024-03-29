@@ -74,7 +74,7 @@ void DragNoCombat::OnLeftClickUp()
 		ecs::entity_t ent = mouseRaycast(ecs::grp::DROPZONE);
 
 		// si existe entidad
-		if (ent != nullptr) 
+		if (ent != nullptr)
 		{
 			// se guarda la dropzone con la que se ha colisionado
 			DropZone* dp = ent->getComponent<DropZone>();
@@ -92,6 +92,11 @@ void DragNoCombat::OnLeftClickUp()
 						// se hace lo propio segun la dropzone (se hace el callback que le toque)
 						// en este caso se aniade a la pizarra
 						dp->useCallback(dragTransform->getEntity()->getComponent<Card>());
+
+						// en cualquier caso, ya no tenemos carta draggeada
+						dragTransform = nullptr;
+						// Si esta todo bien, salimos del metodo
+						return;
 					}
 				}
 
@@ -103,27 +108,17 @@ void DragNoCombat::OnLeftClickUp()
 					// se hace lo propio segun la dropzone (se hace el callback que le toque)
 					// en este caso se guarda en el cajon
 					dp->useCallback(dragTransform->getEntity()->getComponent<Card>());
-				}
 
-				// si no, devolvemos la carta a su posicion inicial
-				else 
-				{
-					dragTransform->setGlobalPos(initialTransformPos);
+					// en cualquier caso, ya no tenemos carta draggeada
+					dragTransform = nullptr;
+					// Si esta todo bien, salimos del metodo
+					return;
 				}
-			}
-
-			// si no, devolvemos la carta a su posicion inicial
-			else 
-			{
-				dragTransform->setGlobalPos(initialTransformPos);
 			}
 		}
 
 		// si no, devolvemos la carta a su posicion inicial
-		else 
-		{
-			dragTransform->setGlobalPos(initialTransformPos);
-		}
+		dragTransform->setGlobalPos(initialTransformPos);
 
 		// en cualquier caso, ya no tenemos carta draggeada
 		dragTransform = nullptr;

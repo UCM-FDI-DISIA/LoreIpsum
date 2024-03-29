@@ -13,6 +13,8 @@ private:
 	// ---- DECKBUILDING ----
 	std::array<int, CARDS_IN_GAME> drawer; // Id de las cartas desbloqueadas
 	std::list<int> maze; // Id de las cartas del mazo
+	
+	std::unordered_map<int, Vector2D> maze_with_pos;
 
 	// ---- FLUJO ----
 	int currentMoney = 0,
@@ -40,7 +42,7 @@ public:
 	#pragma region SETTERS
 	// -- DECKBUILDING --
 	// Mazo:
-	void SetNewMaze(std::list<int> newMaze);
+	void SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos);
 	void SubtractCardFromMaze(int id);
 
 	//Cajon:
@@ -69,7 +71,7 @@ public:
 	#pragma region GETTERS
 	// -- DECKBUILDING --
 	// Mazo:
-	const std::list<int> GetMaze() { return maze; }
+	const std::unordered_map<int, Vector2D> GetMaze() { return maze_with_pos; }
 	// Cajon:
 	std::array<int, CARDS_IN_GAME> GetDrawer() { return drawer; }
 	void SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer);
@@ -113,4 +115,5 @@ public:
 	void EmptyMaze();
 	void EmptyDrawer();
 	void EmptyNPCS();
+	void EmptyMaze_With_pos();
 };

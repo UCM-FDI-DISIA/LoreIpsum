@@ -206,7 +206,7 @@ void DeckBuildingState::moveToPizarra(Card* card)
 	drawer_->removeCard(card->getID());
 
 	// se aniade a la pizarra
-	pizarra_->addCard(card->getID());
+	pizarra_->addCard(card->getID(), card->getEntity()->getComponent<Transform>());
 }
 
 void DeckBuildingState::moveToDrawer(Card* card)

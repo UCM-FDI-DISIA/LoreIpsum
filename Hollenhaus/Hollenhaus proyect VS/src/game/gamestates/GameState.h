@@ -39,11 +39,11 @@ public:
 
 	// ---- getters ----
 	virtual std::array<int, 50> getDrawer();
-	virtual std::list<int> getMaze();
+	virtual std::unordered_map<int, Vector2D> getMaze();
 
 	// ---- setters ----
 	static void setData(Data* _data); // settea la data
-	virtual void setMaze(std::list<int> mazeToSave);
+	virtual void setMaze(std::list<int> mazeToSave, std::list<Vector2D> MazePosToSave);
 	virtual void setDrawer(std::array<int, 50> drawerToSave);
 	virtual void setWinnerOnData(int w);
 };

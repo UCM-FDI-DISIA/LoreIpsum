@@ -26,8 +26,8 @@ void DrawerManager::refreshExistencia()
 			// del child, se va a quedar asi :) 
 
 			// guarda la entidad
-			ecs::entity_t ent = cardsAux[i];
-
+			//ecs::entity_t ent = ;
+			
 			// la pone a nullptr
 			ent->getComponent<Transform>()->killChilds();
 			ent->setAlive(false);

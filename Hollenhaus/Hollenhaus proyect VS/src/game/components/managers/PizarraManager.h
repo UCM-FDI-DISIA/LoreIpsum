@@ -10,11 +10,13 @@ class PizarraManager : public ComponentUpdate
 private:
 	// Mazo en la pizarra
 	std::list<int> mazePrev;
+	std::list<Vector2D> mazePos;
 	// Auxiliar para el guardado del mazo
 	std::list<int> mazeaux;
+	std::list<Vector2D> mazePosaux;
 
 	// lista de entidades cartas en la pizarra
-	std::list<ecs::entity_t> cards;
+	std::list<Transform*> cards;
 
 	// Cantidad de cartas en el mazo
 	int cantCards;
@@ -28,6 +30,8 @@ public:
 	void update() override;
 	void initComponent() override;
 
+	void refreshPos();
+
 	// ---- PARA FUERA PIZARRA ----
 	// Guarda el mazo en el data.
 	void saveMaze();
@@ -40,7 +44,7 @@ public:
 
 	// ---- PIZARRA ----
 	// Aniade carta a la pizarra
-	void addCard(int id);
+	void addCard(int id, Transform* card);
 
 	// Quita carta de la pizarra
 	void removeCard(int id);

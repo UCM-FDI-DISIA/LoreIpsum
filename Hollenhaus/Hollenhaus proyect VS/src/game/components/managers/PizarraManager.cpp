@@ -15,40 +15,64 @@ void PizarraManager::initComponent()
 {
 	// guarda en un array aux las cartas que ya estuvieran en la pizarra
 	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
-		if (isOnPizarra(e)) {
+		if (isOnPizarra(e.first)) {
 
-			mazeaux.push_back(e);
+			mazeaux.push_back(e.first);
+			mazePosaux.push_back(e.second);
+
 		}
 	}
 
 	// limpia el mazo que vas a sobreescribir entero
 	mazePrev.clear();
+	mazePos.clear();
 
 	// aniade las que ya tenias en la pizarra
 	for (auto e : mazeaux) {
 		mazePrev.push_back(e);
 	}
 
+	// aniade las que ya tenias en la pizarra
+	for (auto e : mazePosaux) {
+		mazePosaux.push_back(e);
+	}
+
 	// aniade las nuevas
 	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
-		if (!isOnPizarra(e)) {
+		if (!isOnPizarra(e.first)) {
 
-			mazePrev.push_back(e);
+			mazePrev.push_back(e.first);
+			mazePos.push_back(e.second);
 		}
 	}
+
+	auto itPos = mazePos.begin();
 
 	// instancia las cartas de tu mazo
 	for (auto e : mazePrev)
 	{
-		GameStateMachine::instance()->getCurrentState()->createCard(e, Vector2D(25, 300));
+		GameStateMachine::instance()->getCurrentState()->createCard(e, (*itPos));
+		itPos++;
 	}
+}
+
+void PizarraManager::refreshPos()
+{
+
 }
 
 // ---- Manageo pa cosas fuera de la pizarra ----
 // Guarda el mazo en el data.
 void PizarraManager::saveMaze()
 {
-	GameStateMachine::instance()->getCurrentState()->setMaze(mazePrev);
+	mazePos.clear();
+
+	for (auto e : cards)
+	{
+		mazePos.push_back(e->getGlobalPos());
+	}
+
+	GameStateMachine::instance()->getCurrentState()->setMaze(mazePrev, mazePos);
 	TuVieja("saveMaze");
 }
 
@@ -73,12 +97,14 @@ bool PizarraManager::isPizarraLlena()
 
 // ---- Manageo de cartas en la pizarra ----
 // Aniade carta a la pizarra.
-void PizarraManager::addCard(int id)
+void PizarraManager::addCard(int id, Transform* card)
 {
 	// si la carta no estaba ya en la pizarra
 	if (!isOnPizarra(id)) {
 		// se aniade
 		mazePrev.push_back(id);
+		// se aniade Posicion
+		cards.push_back(card);
 
 		// aumenta el contador
 		cantCards++;
