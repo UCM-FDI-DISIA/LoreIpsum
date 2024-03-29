@@ -17,9 +17,6 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 {
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
 
-	if (!bocarriba)
-		sprite = "reverseCard";
-
 	card->addComponent<SpriteRenderer>(sprite);
 	card->addComponent<BoxCollider>();
 	card->addComponent<CardStateManager>();
@@ -34,7 +31,10 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 		cost, value, sprite, unblockable
 	);
 
-	addInfo(card, cost, value, effects);
+	addInfo(card, cost, value, effects, !bocarriba);
+
+	if (!bocarriba)
+		addDeckImageChild(card);
 
 	return card;
 }
@@ -140,8 +140,6 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 			false
 		);
 		ent->setLayer(1);
-		if (deck->getComponent<DeckComponent>()->getOwner() == Players::PLAYER2)
-			ent->getComponent<Transform>()->setGlobalAngle(180.0f);
 		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 	}
 	addDeckImage(initX, initY, true);
@@ -150,14 +148,14 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 	return deck;
 }
 
-void CardFactory_v1::addInfo(ecs::entity_t card, int cost, int value, std::vector<JsonData::CardEffect>& effects)
+void CardFactory_v1::addInfo(ecs::entity_t card, int cost, int value, std::vector<JsonData::CardEffect>& effects, bool bocabajo)
 {
 	addEffects(card->getComponent<Card>(), effects);
 	addValueCostTexts(card, value, cost);
-	addEffectsImages(card, effects);
+	addEffectsImages(card, effects, bocabajo);
 }
 
-void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::CardEffect>& effects)
+void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::CardEffect>& effects, bool rival)
 {
 	int initialX = 15;
 	int initialY = 55;
@@ -165,7 +163,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 	int offSetY = 15;
 	int nCols = 2;
 	int layer = 10;
-	float scale = effects.size() == 1 ? 0.078 : 0.045;
+	float scale = effects.size() == 1 ? 0.07 : 0.045;
 
 	ecs::entity_t effectImage;
 	ecs::entity_t valueChange;
@@ -190,11 +188,11 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
 
-		effectImage->setLayer(layer);
+		effectImage->setLayer(card->getLastLayer() - 1);
 
 
 		//si es una flecha, girarla
-		if (effects[i].type() >= Effects::Flecha && effects[i].type() <= Effects::Block)
+		if (effects[i].type() >= 2 && effects[i].type() <= 4)
 		{
 			Effects::Direction dir = effects[i].directions()[0];
 			effectImage->getComponent<Transform>()->getGlobalAngle() =
@@ -209,12 +207,14 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 			valueChange = Instantiate(Vector2D(0, 0));
 
-			valueChange->addComponent<TextComponent>(valueText, "8bit_16pt", SDL_Color({200,50,200, 255}), 100);
+			auto color = SDL_Color({255,50,50, 255});
+			if (rival) color = SDL_Color({40,200,200, 255});
+			valueChange->addComponent<TextComponent>(valueText, "8bit_16pt", color, 100);
 
 			valueChange->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
 			valueChange->getComponent<Transform>()->getRelativePos().set(-5, 0);
 
-			valueChange->setLayer(layer + 1);
+			valueChange->setLayer(effectImage->getLastLayer() - 1);
 		}
 	}
 }
@@ -230,7 +230,7 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 
 	textoValor->getComponent<Transform>()->getRelativePos().set(10, 102);
 
-	textoValor->setLayer(100);
+	textoValor->setLayer(card->getLastLayer() - 1);
 
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
@@ -245,7 +245,7 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 	//textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
 
 
-	textoCoste->setLayer(100);
+	textoCoste->setLayer(card->getLastLayer() - 1);
 }
 
 void CardFactory_v1::addEffects(Card* cardComp, std::vector<JsonData::CardEffect>& effects)
@@ -284,4 +284,18 @@ void CardFactory_v1::addDeckImage(int initX, int initY, bool opposite)
 	deckImage->addComponent<SpriteRenderer>("reverseCard");
 
 	deckImage->setLayer(100);
+}
+
+void CardFactory_v1::addDeckImageChild(ecs::entity_t card)
+{
+	auto cardTrans = card->getComponent<Transform>();
+	auto deckImage = Instantiate(Vector2D(cardTrans->getGlobalPos()));
+
+	deckImage->getComponent<Transform>()->addParent(cardTrans);
+	deckImage->getComponent<Transform>()->setGlobalScale(Vector2D(0.55f, 0.55f));
+	//if (opposite)
+	deckImage->getComponent<Transform>()->setGlobalAngle(180.0f);
+	deckImage->addComponent<SpriteRenderer>("reverseCard");
+
+	deckImage->setLayer(card->getLastLayer() + 1);
 }

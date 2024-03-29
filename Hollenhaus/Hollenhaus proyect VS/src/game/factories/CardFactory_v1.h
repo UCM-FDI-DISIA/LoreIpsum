@@ -25,10 +25,11 @@ private:
 	int cardsOnDeck = 9;
 	ecs::entity_t createHandJ2();
 
-	void addInfo(ecs::entity_t card, int cost, int value, std::vector<JsonData::CardEffect>& effects);
-	void addEffectsImages(ecs::entity_t card, std::vector<JsonData::CardEffect>& effects);
+	void addInfo(ecs::entity_t card, int cost, int value, std::vector<JsonData::CardEffect>& effects, bool bocabajo);
+	void addEffectsImages(ecs::entity_t card, std::vector<JsonData::CardEffect>& effects, bool rival = false);
 	void addValueCostTexts(ecs::entity_t card, int vale, int cost);
 	void addEffects(Card* cardComp, std::vector<JsonData::CardEffect>& effects);
 	void addDeckImage(int initX, int initY, bool opposite = false);
+	void addDeckImageChild(ecs::entity_t card);
 };
 

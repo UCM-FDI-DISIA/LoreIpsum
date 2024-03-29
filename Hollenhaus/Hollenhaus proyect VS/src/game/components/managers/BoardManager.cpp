@@ -68,8 +68,15 @@ bool BoardManager::setCard(int x, int y, Card* c, Players::Owner o)
 		cell->addEffect(e);
 
 	//Cambia el color de la carta si es del jugador 2
-	if (o == Players::PLAYER2 || o == Players::IA) 
+	if (o == Players::PLAYER2 || o == Players::IA)
+	{
 		c->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(104, 52, 177, 200);
+		auto children = c->getEntity()->getComponent<Transform>()->getChildren();
+		// SE PRESUPONE QUE EL ULTIMO HIJO ES EL DORSO DE LA CARTA XDXDDSDSSD JAAAAAA ayuda
+		auto it = children.end();
+		--it;
+		(*it)->getEntity()->setLayer(-999); // esto es ridiculo
+	}
 
 
 	auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
