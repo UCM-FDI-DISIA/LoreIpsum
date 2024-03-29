@@ -68,10 +68,8 @@ bool BoardManager::setCard(int x, int y, Card* c, Players::Owner o)
 		cell->addEffect(e);
 
 	//Cambia el color de la carta si es del jugador 2
-	if (o == 2) 
-	{
+	if (o == Players::PLAYER2) 
 		c->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(104, 52, 177, 200);
-	}
 
 
 	auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
