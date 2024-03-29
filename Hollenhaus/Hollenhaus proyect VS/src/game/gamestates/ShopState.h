@@ -1,6 +1,10 @@
 #pragma once
 #include "GameState.h"
 
+
+
+class Factory;
+
 class ShopState : public GameState
 {
 public: 
@@ -14,9 +18,12 @@ public:
 	void onEnter() override;
 	void onExit() override;
 
+	ecs::entity_t createCard(int id, Vector2D pos) override;
 private:
 	//Volver a la ciudad
 	//Comprar ??
 	//Dinero  ??
+
+	Factory* factory;
 };
 
