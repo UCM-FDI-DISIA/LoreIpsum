@@ -1,9 +1,10 @@
 #pragma once
 #include "../ComponentUpdate.h"
 #include "../../Data.h"
+#include "../../ecs.h"
 #include <array>
 
-const int CANT_CARTAS_MOSTRADAS_DB = 6;
+const int CANT_CARTAS_MOSTRADAS_CAJON = 6;
 class DrawerManager : public ComponentUpdate
 {
 private:
@@ -11,6 +12,9 @@ private:
 
 	// lleva la cuenta de en que cajon estamos
 	int cajonesAbiertos;
+
+	// Array auxiliar para guardar las cartas actuales del cajon
+	std::array<ecs::entity_t, CANT_CARTAS_MOSTRADAS_CAJON> cardsAux;
 
 	// ---- Manageos externos ----
 	// crea las cartas del cajon en un rango

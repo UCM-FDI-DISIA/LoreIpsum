@@ -15,7 +15,21 @@ DrawerManager::~DrawerManager()
 
 void DrawerManager::refreshPos()
 {
+	for (int i = 0; i < CANT_CARTAS_MOSTRADAS_CAJON; i++)
+	{
+		if (cardsAux[i] != nullptr) {
+			cardsAux[i]->setAlive(false);
+		}
+	}
 	
+
+	for (int i = CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos; i < CANT_CARTAS_MOSTRADAS_CAJON; i += CANT_CARTAS_MOSTRADAS_CAJON)
+	{
+		if (drawer[i] != -1)
+		{
+			cardsAux[i] = GameStateMachine::instance()->getCurrentState()->createCard(drawer[i], Vector2D(25 * i, 100));
+		}
+	}
 }
 
 void DrawerManager::update()
@@ -24,13 +38,7 @@ void DrawerManager::update()
 
 void DrawerManager::initComponent()
 {
-	for (int i = cajonesAbiertos; i < CANT_CARTAS_MOSTRADAS_DB; i++)
-	{
-		if (drawer[i] != -1)
-		{
-			GameStateMachine::instance()->getCurrentState()->createCard(drawer[i], Vector2D(25*i, 100));
-		}
-	}
+	refreshPos();
 }
 
 void DrawerManager::saveDrawer()
@@ -58,10 +66,19 @@ void DrawerManager::removeCard(int id)
 void DrawerManager::drawerPalante()
 {
 	TuVieja("drawerPalante");
+	if (cajonesAbiertos < CARDS_IN_GAME / CANT_CARTAS_MOSTRADAS_CAJON)
+	{
+		cajonesAbiertos++;
+	}
 	refreshPos();
 }
 
 void DrawerManager::drawerPatras()
 {
 	TuVieja("drawerPatras");
+	if (cajonesAbiertos > 0)
+	{
+		cajonesAbiertos--;
+	}
+	refreshPos();
 }
