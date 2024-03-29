@@ -40,8 +40,6 @@ public:
 	//----Devuelve una carta de shopCards dado un indice.
 	virtual int getShopCardById(int id);
 
-	int* getDrawer();
-
 	virtual ecs::entity_t createCard(int id, Vector2D pos) { return nullptr; };
 	virtual std::array<int, 50> getDrawer();
 	virtual std::list<int> getMaze();

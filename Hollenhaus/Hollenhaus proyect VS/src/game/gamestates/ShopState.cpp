@@ -253,3 +253,12 @@ void ShopState::onExit()
 	sdl.soundEffects().at("shoptheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
 }
+
+ecs::entity_t ShopState::createCard(int id, Vector2D pos)
+{
+	// Hace LA carta
+	auto card = sdlutils().cards().at(std::to_string(id));
+	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
+	return ent;
+
+}

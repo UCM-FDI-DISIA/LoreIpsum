@@ -110,7 +110,7 @@ bool GameState::checkDataShopCardsIsEmpty()
 
 bool GameState::checkCardIsInDrawer(int id) 
 {
-    return data->IdIsInShopCards(id);
+    return data->IdIsInDrawer(id);
 }
 
 int GameState::getShopCardById(int id) 

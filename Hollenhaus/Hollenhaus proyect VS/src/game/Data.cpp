@@ -4,13 +4,13 @@
 
 
 //------Constructora y destructora:
-Data::Data() : currentMoney(0), currentSouls(0), currentCase(0), shopCards(new int[4] {-1, -1, -1, -1}, drawer(new int[CARDS_IN_GAME]))
+Data::Data() : currentMoney(0), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
 {
 	EmptyDrawer();
 	//Read();
 }
 Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def)
-	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[4])
+	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[CARDS_IN_SHOP])
 {};
 Data::~Data() {
 	delete shopCards;
@@ -97,7 +97,7 @@ void Data::setWinner(int i) {
 bool Data::setShopCard(int id) {
 	int i = 0;
 	bool find = false;
-	while (!find && i < 4)
+	while (!find && i < CARDS_IN_SHOP)
 	{
 		if (shopCards[i] == -1)
 		{
@@ -138,7 +138,7 @@ bool Data::IdIsInShopCards(int id) {
 	int i = 0;
 	bool find = false;
 
-	while (!find && i < 4) {
+	while (!find && i < CARDS_IN_SHOP) {
 		if (shopCards[i] == id)
 		{
 			find = true;
@@ -153,7 +153,7 @@ bool Data::IdIsInShopCards(int id) {
 bool Data::shopCardsIsEmpty() {
 	int i = 0;
 	bool empty = true; // Suponemos que esta vacio.
-	while (empty && i < 4)
+	while (empty && i < CARDS_IN_SHOP)
 	{
 		if (shopCards[i] != -1)
 		{
@@ -189,8 +189,8 @@ void Data::Write() {
 	for (const auto it : defeatedNPCS) {
 		file << it << "\n";
 	}
-	file << 4 << "\n";
-	for (int i = 0;i < 4; i++) {
+	file << CARDS_IN_SHOP << "\n";
+	for (int i = 0;i < CARDS_IN_SHOP; i++) {
 		file << shopCards[i] << "\n";
 	}
 	file.close();
@@ -257,7 +257,7 @@ void Data::EmptyNPCS() {
 	defeatedNPCS.clear();
 }
 void Data::EmptyShopCards() {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
 		shopCards[i] = -1;
 	}

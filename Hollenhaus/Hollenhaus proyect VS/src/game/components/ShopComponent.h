@@ -1,5 +1,8 @@
 #pragma once
 
+// Cantidad de cartas de la tienda.
+const int CARDS_IN_SHOP = 4;
+
 class ShopComponent : public ComponentUpdate
 {public:
 
@@ -9,7 +12,7 @@ class ShopComponent : public ComponentUpdate
 	//------Inicializacion del componente.
 	void initComponent() override;
 
-	//------Genera las 4 cartas que puede comprar el jugador.
+	//------Genera las CARDS_IN_SHOP cartas que puede comprar el jugador.
 	void generateCards();
 	//------Comprueba si una carta ha sido comprada por el jugador, es decir, esta en el drawer (cajon).
 	bool checkCardIsBought(int id);
@@ -19,7 +22,7 @@ class ShopComponent : public ComponentUpdate
 	void showPrizes();
 	
 private:
-	//----Guarda las 4 cartas de la tienda.
+	//----Guarda las CARDS_IN_SHOP cartas de la tienda.
 	int* shopCards; 
 	//----Precio de las cartas.
 	int* shopCardsPrize;
