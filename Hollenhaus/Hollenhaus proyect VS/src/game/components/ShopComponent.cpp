@@ -61,30 +61,70 @@ void ShopComponent::showCards() {
 		}*/
 		if (!checkCardIsBought(i)) // Comprueba si la carta esta comprada (en drawer).
 		{
-			std::cout << "Mostrar carta: " + shopCards[i] << std::endl;
+			std::cout << "Mostrar carta: " << shopCards[i] << std::endl;
 			auto card = GameStateMachine::instance()->getCurrentState()->createCard(shopCards[i], shopCardsPositions[i]);
 
 			if (card != nullptr)
 			{
 				card->addComponent<Button>();
 				card->getComponent<Button>()->connectToButton([this] {buyCard();});
+				buttons.push_back(card->getComponent<Button>());
 				buyableCards.push_back(card->getComponent<Card>());
 			}
 		}
 	}
 }
 
-void ShopComponent::buyCard() 
+void ShopComponent::buyCard()
 {
 	std::cout << "compra." << std::endl;
-	/*if (confirmPurchase)
+	if (confirmPurchase())
 	{
-
-	}*/
+		//------Esto para buscar el boton que ha sido pulsado para acceder a la carta de ese boton.
+		Button* buttonClicked = nullptr;
+		for (auto b : buttons) // Recorremos la lista de botones.
+		{
+			if (b->getCurrentButtonState() == 2) // 2 = boton pulsado.
+			{
+				buttonClicked = b; // Guardamos el boton.
+			}
+		}
+		//------Esto para guardar la carta al drawer.
+		if (buttonClicked != nullptr)
+		{
+			auto card = buttonClicked->getEntity(); // Guardamos la carta del boton.
+			if (card != nullptr)
+			{
+				int id = card->getComponent<Card>()->getID(); // Guardamos el id de la carta.
+				GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al
+				//------Esto para buscar dada la carta pulsada su indice en shopCards y ponerlo a -1 para que no se muestre.
+				int i = 0;
+				bool find = false;
+				while (!find && i < CARDS_IN_SHOP)
+				{
+					if (id == shopCards[i])
+					{
+						find = true;
+						i = -1;
+					}
+					i++;
+				}
+				//auto it = std::find(buyableCards.begin(), buyableCards.end(), id); // Buscamos y guardamos la carta en la lista.
+				//buyableCards.erase(it); // La eliminamos.
+				/*for (auto c : buyableCards)
+				{
+					delete c->getEntity();
+				}*/
+				buyableCards.clear();
+				buttons.clear();
+				showCards(); // Para que se acutalice.
+			}
+		}
+	}
 }
 
 bool ShopComponent::confirmPurchase()
 {
-	//----------------------preguntar a ines sobre el dialogo de confirmar.
+	//----------------------preguntar a ines sobre el dialogo para confirmar.
 	return true;
 }

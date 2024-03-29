@@ -6,6 +6,7 @@
 const int CARDS_IN_SHOP = 4;
 
 class Card;
+class Button;
 
 class ShopComponent : public ComponentUpdate
 {public:
@@ -36,8 +37,10 @@ private:
 	int* shopCardsPrize;
 	//----Guarda las posiciones de las cartas.
 	Vector2D* shopCardsPositions;
-	//Guarda las cartas creadas para luego interactuar con ellas.
+	//----Guarda las cartas creadas para luego interactuar con ellas.
 	std::list<Card*> buyableCards;
+
+	std::list<Button*> buttons;
 	
 	//------------------------------lo del precio de las cartas deberia de estar en el json. Todas en el mismo json.
 	//------------------------------array de precios de las cartas. Sus posiciones son las de las cartas pero bajando la y.
