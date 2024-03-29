@@ -74,8 +74,7 @@ bool PizarraManager::isOnPizarra(int id)
 
 bool PizarraManager::isPizarraLlena()
 {
-	pizarraLlena = mazePrev.size() >= MAX_CARDS_MAZE;
-	return pizarraLlena;
+	return mazePrev.size() >= MAX_CARDS_MAZE;
 }
 
 // ---- Manageo de cartas en la pizarra ----

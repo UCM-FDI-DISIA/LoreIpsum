@@ -24,7 +24,7 @@ void DrawerManager::refreshExistencia()
 			//aqui se deberian de eliminar las cartas pero como no funciona pq da error en noseque
 			// del child, se va a quedar asi :)
 			ecs::entity_t ent = cardsAux[i];
-			delete ent;
+			ent->setAlive(false);
 			cardsAux[i] = nullptr;
 			//Vector2D pos0(0, 0);
 			//cardsAux[i]->getComponent<Transform>()->setGlobalPos(pos0);

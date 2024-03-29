@@ -1,5 +1,6 @@
 #pragma once
 #include "../ComponentUpdate.h"
+#include "../../ecs.h"
 #include <list>
 
 class Data;
@@ -7,10 +8,16 @@ class Data;
 class PizarraManager : public ComponentUpdate
 {
 private:
+	// Mazo en la pizarra
 	std::list<int> mazePrev;
+	// Auxiliar para el guardado del mazo
 	std::list<int> mazeaux;
+
+	// lista de entidades cartas en la pizarra
+	std::list<ecs::entity_t> cards;
+
+	// Cantidad de cartas en el mazo
 	int cantCards;
-	bool pizarraLlena;
 
 public:
 	// ---- Constructora/Destructora ----
@@ -28,6 +35,7 @@ public:
 	// Devuelve true si la carta (id) esta en la pizarra.
 	bool isOnPizarra(int id);
 
+	// Devuelve true si la pizarra esta llena
 	bool isPizarraLlena();
 
 	// ---- Manageo de cartas en la pizarra ----
