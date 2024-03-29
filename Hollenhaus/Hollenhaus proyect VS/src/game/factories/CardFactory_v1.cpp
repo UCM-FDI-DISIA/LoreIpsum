@@ -192,7 +192,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 
 		//si es una flecha, girarla
-		if (effects[i].type() >= 2 && effects[i].type() <= 4)
+		if (effects[i].type() >= Effects::Flecha && effects[i].type() <= Effects::Block)
 		{
 			Effects::Direction dir = effects[i].directions()[0];
 			effectImage->getComponent<Transform>()->getGlobalAngle() =
