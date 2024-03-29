@@ -36,6 +36,8 @@ public:
 	virtual bool checkDataShopCardsIsEmpty();
 	//----Comprueba si una carta con id id esta en el array de cartas de la tienda de Data.
 	virtual bool checkCardIsInDrawer(int id);
+	//----Devuelve una carta de shopCards dado un indice.
+	virtual int getShopCardById(int id);
 
 	// ---- setters ----
 	// settea la data

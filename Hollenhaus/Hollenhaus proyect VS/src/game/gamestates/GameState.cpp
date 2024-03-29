@@ -82,3 +82,8 @@ bool GameState::checkCardIsInDrawer(int id)
 {
     return data->IdIsInShopCards(id);
 }
+
+int GameState::getShopCardById(int id) 
+{
+    return  data->getShopCardById(id);
+}

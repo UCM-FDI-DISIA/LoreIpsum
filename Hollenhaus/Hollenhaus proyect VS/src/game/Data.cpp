@@ -119,6 +119,9 @@ bool Data::shopCardsIsEmpty() {
 
 	return empty;
 }
+int Data::getShopCardById(int id) {
+	return shopCards[id];
+}
 
 //------Escribir en el archivo:
 void Data::Write() {

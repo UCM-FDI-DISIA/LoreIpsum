@@ -4,6 +4,7 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/ShineComponent.h"
 #include "../components/NPC.h"
+#include "../components/shopComponent.h"
 
 
 ShopState::ShopState()
@@ -217,6 +218,12 @@ void ShopState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
+
+	//------Manager de la tienda:
+	ecs::entity_t shopManager = Instantiate();
+	shopManager->addComponent<Transform>();
+	shopManager->addComponent<ShopComponent>();
+	shopManager->setLayer(1);
 
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("shoptheme").play(-1);

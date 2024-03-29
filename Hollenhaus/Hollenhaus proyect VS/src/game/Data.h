@@ -67,6 +67,8 @@ public:
 	int getWinner() { return winner; }
 	//----Comprueba si shopCards esta vacio:
 	bool shopCardsIsEmpty();
+	//----Devuelve una shopCard dado un id:
+	int getShopCardById(int id);
 
 	//------Busqueda:
 	//----Mazo:

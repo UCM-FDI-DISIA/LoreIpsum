@@ -1,5 +1,4 @@
 #pragma once
-#include <list>
 
 class ShopComponent : public ComponentUpdate
 {public:
@@ -18,13 +17,17 @@ class ShopComponent : public ComponentUpdate
 	void showCards();
 	//------Muestra los precios de las cartas.
 	void showPrizes();
-
+	
 private:
 	//----Guarda las 4 cartas de la tienda.
 	int* shopCards; 
-
+	//----Precio de las cartas.
+	int* shopCardsPrize;
+	//----Guarda las posiciones de las cartas.
+	Vector2D* shopCardsPositions;
+	
+	
 	//------------------------------lo del precio de las cartas deberia de estar en el json. Todas en el mismo json.
-	//------------------------------array de vector2d de posiciones fijas para las cartas.
 	//------------------------------array de precios de las cartas. Sus posiciones son las de las cartas pero bajando la y.
 	
 };
