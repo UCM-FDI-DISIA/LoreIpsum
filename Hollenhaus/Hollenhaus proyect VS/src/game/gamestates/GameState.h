@@ -33,9 +33,10 @@ public:
 	virtual void setWinnerOnData(int w);
 
 	virtual ecs::entity_t createCard(int id, Vector2D pos) { return nullptr; };
-	virtual std::array<int, CARDS_IN_GAME> getDrawer();
+	virtual std::array<int, 50> getDrawer();
 	virtual std::list<int> getMaze();
 	virtual void setMaze(std::list<int> mazeToSave);
+	virtual void setDrawer(std::array<int, 50> drawerToSave);
 	virtual void saveData();
 	virtual void loadData();
 

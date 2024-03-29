@@ -102,6 +102,7 @@ void DeckBuildingState::onEnter()
 	Confirm->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	Confirm->addComponent<Button>();
 	Confirm->getComponent<Button>()->connectToButton([this]() { pizarra_->saveMaze(); });
+	Confirm->getComponent<Button>()->connectToButton([this]() { drawer_->saveDrawer(); });
 	Confirm->setLayer(1);
 
 	// Escalado de las flechas del drawer
@@ -157,13 +158,6 @@ void DeckBuildingState::onEnter()
 	cajon->getComponent<Transform>()->setGlobalScale(3, 1.5f);
 	cajon->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	drawer_ = cajon->getComponent<DrawerManager>();
-
-
-	// creamos las cartas del cajon
-	for (int i = 0; i < 6; i++)
-	{
-		drawer_->addCard(i);
-	}
 
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();

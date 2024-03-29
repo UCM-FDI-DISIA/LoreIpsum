@@ -33,6 +33,11 @@ void DrawerManager::initComponent()
 	}
 }
 
+void DrawerManager::saveDrawer()
+{
+	GameStateMachine::instance()->getCurrentState()->setDrawer(drawer);
+}
+
 bool DrawerManager::isOnDrawer(int id)
 {
 	return drawer[id] == id;

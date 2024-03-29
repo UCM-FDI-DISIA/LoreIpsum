@@ -1,11 +1,13 @@
 #pragma once
 #include "../ComponentUpdate.h"
+#include "../../Data.h"
+#include <array>
 
 const int CANT_CARTAS_MOSTRADAS_DB = 6;
 class DrawerManager : public ComponentUpdate
 {
 private:
-	int* drawer;
+	std::array<int, CARDS_IN_GAME> drawer;
 
 	// lleva la cuenta de en que cajon estamos
 	int cajonesAbiertos;
@@ -23,6 +25,7 @@ public:
 	void update() override;
 	void initComponent() override;
 
+	void saveDrawer();
 
 	bool isOnDrawer(int id);
 

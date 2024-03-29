@@ -78,6 +78,11 @@ void GameState::setMaze(std::list<int> mazeToSave)
     data->SetNewMaze(mazeToSave);
 }
 
+void GameState::setDrawer(std::array<int, 50> drawerToSave)
+{
+    data->SetNewDrawer(drawerToSave);
+}
+
 void GameState::saveData()
 {
     data->Write();

@@ -6,7 +6,7 @@
 //------Constructora y destructora:
 Data::Data(){
 	EmptyDrawer();
-	Read();
+	//Read();
 }
 Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def)
 	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def)
@@ -32,7 +32,34 @@ void Data::AddCardToDrawer(int id) {
 }
 
 void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {
-	drawer = newDrawer;
+
+	std::array<int, CARDS_IN_GAME> drawerAux;
+	for (int i = 0; i < CARDS_IN_GAME; i++)
+	{
+		drawerAux[i] = -1;
+	}
+
+	for (int i = 0; i < newDrawer.size(); i++)
+	{
+		if (newDrawer[i] == drawer[i]) {
+			drawerAux[i] = newDrawer[i];
+		}
+	}
+
+	EmptyDrawer();
+
+	for (int i = 0; i < drawerAux.size(); i++)
+	{
+		drawer[i] = drawerAux[i];
+	}
+
+
+	for (int i = 0; i < newDrawer.size(); i++)
+	{
+		if (newDrawer[i] != drawer[i]) {
+			drawer[i] = newDrawer[i];
+		}
+	}
 }
 
 void Data::SubtractCardFromDrawer(int id) {
