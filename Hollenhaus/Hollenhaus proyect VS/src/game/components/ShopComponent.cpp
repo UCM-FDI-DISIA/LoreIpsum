@@ -3,6 +3,9 @@
 #include "../GameStateMachine.h"
 #include "../gamestates/GameState.h"
 #include "../../utils/Vector2D.h"
+#include "Card.h"
+#include "Button.h"
+#include "../../game/components/managers/Manager.h"
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}), shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(100,100),Vector2D(100,200) ,Vector2D(200,100) ,Vector2D(200,200) })
 {}
@@ -56,10 +59,32 @@ void ShopComponent::showCards() {
 			std::cout << "Pruebita para ver si las que ya estan no las pone en pantalla." << std::endl;
 			GameStateMachine::instance()->getCurrentState()->addCardToDrawer(shopCards[i]);
 		}*/
-		if (!checkCardIsBought(i))
+		if (!checkCardIsBought(i)) // Comprueba si la carta esta comprada (en drawer).
 		{
-			std::cout << "Mostrar carta." << std::endl;
-			GameStateMachine::instance()->getCurrentState()->createCard(shopCards[i], shopCardsPositions[i]);
+			std::cout << "Mostrar carta: " + shopCards[i] << std::endl;
+			auto card = GameStateMachine::instance()->getCurrentState()->createCard(shopCards[i], shopCardsPositions[i]);
+
+			if (card != nullptr)
+			{
+				card->addComponent<Button>();
+				card->getComponent<Button>()->connectToButton([this] {buyCard();});
+				buyableCards.push_back(card->getComponent<Card>());
+			}
 		}
 	}
+}
+
+void ShopComponent::buyCard() 
+{
+	std::cout << "compra." << std::endl;
+	/*if (confirmPurchase)
+	{
+
+	}*/
+}
+
+bool ShopComponent::confirmPurchase()
+{
+	//----------------------preguntar a ines sobre el dialogo de confirmar.
+	return true;
 }

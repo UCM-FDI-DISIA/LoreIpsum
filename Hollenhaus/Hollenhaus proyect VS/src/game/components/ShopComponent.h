@@ -1,7 +1,11 @@
 #pragma once
 
+#include <list>
+
 // Cantidad de cartas de la tienda.
 const int CARDS_IN_SHOP = 4;
+
+class Card;
 
 class ShopComponent : public ComponentUpdate
 {public:
@@ -20,7 +24,11 @@ class ShopComponent : public ComponentUpdate
 	void showCards();
 	//------Muestra los precios de las cartas.
 	void showPrizes();
-	
+	void setButtons();
+	void buyCard();
+	bool confirmPurchase();
+
+	void onLeftClick();
 private:
 	//----Guarda las CARDS_IN_SHOP cartas de la tienda.
 	int* shopCards; 
@@ -28,7 +36,8 @@ private:
 	int* shopCardsPrize;
 	//----Guarda las posiciones de las cartas.
 	Vector2D* shopCardsPositions;
-	
+	//Guarda las cartas creadas para luego interactuar con ellas.
+	std::list<Card*> buyableCards;
 	
 	//------------------------------lo del precio de las cartas deberia de estar en el json. Todas en el mismo json.
 	//------------------------------array de precios de las cartas. Sus posiciones son las de las cartas pero bajando la y.
