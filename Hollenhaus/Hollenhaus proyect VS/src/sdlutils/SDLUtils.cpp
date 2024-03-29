@@ -447,7 +447,6 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 											default:
 												break;
 											}
-											
 										}
 									}
 									nodes.emplace_back(nodeID, text, eventStart, eventFinish, eventsS, eventsF);

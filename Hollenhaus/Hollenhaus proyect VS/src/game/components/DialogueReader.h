@@ -22,5 +22,7 @@ private:
 	TypeWriter* typeWriter_;
 	DialogueEventCollection* eventCollection_;
 	DialogueDestroyer* dialogueDestroyer_;
+
+	void exeEvents(std::vector<JsonData::DialogueEventS> events);
 };
 

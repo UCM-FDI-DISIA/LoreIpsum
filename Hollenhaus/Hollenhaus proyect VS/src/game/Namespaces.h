@@ -133,6 +133,9 @@ namespace JsonData
 			scene(s) 
 		{};
 
+		int getType() { return type; }
+		int getScene() { return scene; }
+
 	private:
 		int timing, type;
 		int scene;
@@ -156,6 +159,8 @@ namespace JsonData
 		std::string& Text() { return text_; }
 		DialogueEvents::Events NodeEventStart() { return eventStart_; }
 		DialogueEvents::Events NodeEventFinish() { return eventFinish_; }
+		std::vector<DialogueEventS> NodeEventsStart() { return eventsStart_; }
+		std::vector<DialogueEventS> NodeEventsFinish() { return eventsFinish_; }
 
 	private:
 		int nodeID_;

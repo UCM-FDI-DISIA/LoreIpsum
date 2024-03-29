@@ -30,7 +30,7 @@ public:
 	///	y como concepto inicial ***
 
 	static std::function<void()> callEvent(
-		DialogueEvents::Events index, int scene)
+		int index, int scene)
 	{
 		switch (index)
 		{
