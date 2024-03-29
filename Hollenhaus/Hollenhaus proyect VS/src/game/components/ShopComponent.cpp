@@ -47,7 +47,7 @@ bool ShopComponent::checkCardIsBought(int id)
 	return GameStateMachine::instance()->getCurrentState()->checkCardIsInDrawer(id);
 }
 
-void ShopComponent::shopCards() {
+void ShopComponent::showCards() {
 	for (int i = 0; i < 4; i++)
 	{
 		if (!checkCardIsBought(i))
