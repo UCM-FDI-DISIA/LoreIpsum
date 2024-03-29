@@ -15,7 +15,7 @@ public:
 	static void StartAnimation();
 
 	//ConfirmationPopUp
-	static bool ConfirmationPopUp();
+	static void ConfirmationPopUp();
 
 
 	/*template<typename ...Ts>
@@ -52,7 +52,7 @@ public:
 		case DialogueEvents::ConfirmMatchPopUp:
 			return []
 				{
-
+					ConfirmationPopUp(std::forward<Ts>(args)...);
 				};
 		default:
 			return nullptr;

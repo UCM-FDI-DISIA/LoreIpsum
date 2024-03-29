@@ -75,6 +75,8 @@
     <ClCompile Include="src\game\factories\CardFactory.cpp" />
     <ClCompile Include="src\game\factories\CardFactory_v0.cpp" />
     <ClCompile Include="src\game\factories\CardFactory_v1.cpp" />
+    <ClCompile Include="src\game\factories\DecisionFactory.cpp" />
+    <ClCompile Include="src\game\factories\DecisionFactory_V0.cpp" />
     <ClCompile Include="src\game\factories\DialogueFactory.cpp" />
     <ClCompile Include="src\game\factories\DeckBuildingFactory.cpp" />
     <ClCompile Include="src\game\factories\DeckBuildingFactory_v0.cpp" />
@@ -213,6 +215,8 @@
     <ClInclude Include="src\game\components\TypeWriter.h" />
     <ClInclude Include="src\game\Dialogue.h" />
     <ClInclude Include="src\game\EffectCollection.h" />
+    <ClInclude Include="src\game\factories\DecisionFactory.h" />
+    <ClInclude Include="src\game\factories\DecisionFactory_V0.h" />
     <ClInclude Include="src\game\factories\DialogueFactory.h" />
     <ClInclude Include="src\game\factories\DialogueFactory_V0.h" />
     <ClInclude Include="src\game\factories\NPCFactory.h" />
