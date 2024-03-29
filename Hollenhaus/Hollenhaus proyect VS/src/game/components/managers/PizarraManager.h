@@ -28,7 +28,7 @@ public:
 	void update() override;
 	void initComponent() override;
 
-	// ---- Manageo pa cosas fuera de la pizarra ----
+	// ---- PARA FUERA PIZARRA ----
 	// Guarda el mazo en el data.
 	void saveMaze();
 
@@ -38,10 +38,10 @@ public:
 	// Devuelve true si la pizarra esta llena
 	bool isPizarraLlena();
 
-	// ---- Manageo de cartas en la pizarra ----
-	// Aniade carta a la pizarra.
+	// ---- PIZARRA ----
+	// Aniade carta a la pizarra
 	void addCard(int id);
 
-	// Quita carta de la pizarra.
+	// Quita carta de la pizarra
 	void removeCard(int id);
 };
