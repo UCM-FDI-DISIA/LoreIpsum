@@ -125,7 +125,7 @@ public:
 
 	// metodos para las decisiones al acabar dialogo
 	void createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer,
-		std::string fontID, SDL_Color color, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment);
+		std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment);
 
 
 public:

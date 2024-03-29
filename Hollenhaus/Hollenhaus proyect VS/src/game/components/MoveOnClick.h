@@ -22,6 +22,8 @@ public:
 	void update() override;
 
 	void OnLeftClickDown();
+	void StopMoving();
+
 private:
 	BoxCollider* myBoxCollider;
 	Transform* myTransform;
