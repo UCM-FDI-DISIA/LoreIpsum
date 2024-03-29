@@ -21,7 +21,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	
 	//tamanyo de el cuadro de texto
 	Vector2D scaleBox = Vector2D(3,3);
-	dialogue->getComponent<Transform>()->getRelativeScale().set(scaleBox.getX(), scaleBox.getY()); //size del whiteRect
+	dialogue->getComponent<Transform>()->getRelativeScale().set(scaleBox.getX(), scaleBox.getY()); //escala del whiteRect
 
 	dialogue->getComponent<Transform>()->setGlobalPos(pos);
 	dialogue->getComponent<BoxCollider>()->setAnchoredToSprite(true);
@@ -31,8 +31,8 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	dialogue->addComponent<TextComponent>(" ", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	dialogue->addComponent<TypeWriter>(speed);
 	dialogue->addComponent<DialogueReader>(id, convo);
-	dialogue->addComponent<NextText>();
-	dialogue->addComponent<AutoDialogue>(cooldown);
+	dialogue->addComponent<NextText>(); 
+	//dialogue->addComponent<AutoDialogue>(cooldown);
 	dialogue->setLayer(layer);
 
 	//dialogue->addComponent<DialogueEventCollection>();
