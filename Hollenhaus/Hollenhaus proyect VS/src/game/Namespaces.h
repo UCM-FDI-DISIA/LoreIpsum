@@ -143,12 +143,13 @@ namespace JsonData
 	struct NodeData {
 		NodeData();
 		NodeData(const int nodeID, const std::string& text, const DialogueEvents::Events nodeEventsStart, 
-			const DialogueEvents::Events nodeEventsFinish, std::vector<DialogueEventS>& es) :
+			const DialogueEvents::Events nodeEventsFinish, std::vector<DialogueEventS>& es, std::vector<DialogueEventS>& ef) :
 			nodeID_(nodeID),
 			text_(text),
 			eventStart_(nodeEventsStart),
 			eventFinish_(nodeEventsFinish),
-			eventsStart_(es)
+			eventsStart_(es),
+			eventsFinish_(ef)
 		{};
 
 		int NodeID() { return nodeID_; }
@@ -163,6 +164,7 @@ namespace JsonData
 		DialogueEvents::Events eventFinish_;
 
 		std::vector<DialogueEventS> eventsStart_;
+		std::vector<DialogueEventS> eventsFinish_;
 	};
 
 	struct ConvoData {
