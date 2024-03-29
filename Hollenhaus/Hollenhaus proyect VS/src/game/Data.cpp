@@ -36,8 +36,6 @@ void Data::SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos) {
 
 		itPos++;
 	}
-
-
 }
 
 void Data::SubtractCardFromMaze(int id) {

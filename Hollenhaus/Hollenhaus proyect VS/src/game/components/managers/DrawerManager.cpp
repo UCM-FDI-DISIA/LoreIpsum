@@ -27,9 +27,9 @@ void DrawerManager::refreshExistencia()
 
 			// guarda la entidad
 			ecs::entity_t ent = cardsAux[i];
-			
+
 			// la pone a nullptr
-			ent->getComponent<Transform>()->killChilds();
+			ent->getComponent<Transform>()->killChildren();
 			ent->setAlive(false);
 
 			cardsAux[i] = nullptr;
@@ -99,8 +99,18 @@ bool DrawerManager::isOnDrawer(int id)
 void DrawerManager::addCard(int id, ecs::entity_t ent)
 {
 	drawer[id] = id;
-	cardsAux[id % CANT_CARTAS_MOSTRADAS_CAJON] = ent;
-	refreshPos(id % CANT_CARTAS_MOSTRADAS_CAJON, cardsAux[id % CANT_CARTAS_MOSTRADAS_CAJON]);
+
+	if (id > (CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos) + CANT_CARTAS_MOSTRADAS_CAJON || id < CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos)
+	{
+		ent->getComponent<Transform>()->killChildren();
+		ent->setAlive(false);
+	}
+	else
+	{
+		cardsAux[id % CANT_CARTAS_MOSTRADAS_CAJON] = ent;
+		refreshPos(id % CANT_CARTAS_MOSTRADAS_CAJON, cardsAux[id % CANT_CARTAS_MOSTRADAS_CAJON]);
+	}
+
 
 	// DEBUG
 	std::cout << drawer[id] << std::endl;
