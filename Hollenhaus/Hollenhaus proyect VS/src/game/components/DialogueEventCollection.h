@@ -18,31 +18,40 @@ public:
 	static bool ConfirmationPopUp();
 
 
+	/*template<typename ...Ts>
+	void SetFactories(CardFactory* cf, Ts &&... args) {
+		cardFactory = cf;
+		SetFactories(std::forward<Ts>(args)...);
+	}*/
+
+
 	/// En funcion del indice, devuelve el callback del efecto
 	///	*** Esto es terrible, quiero que sirva para salir al paso
 	///	y como concepto inicial ***
-	static std::function<void()> getEvent(
-		DialogueEvents::Events index)
+	template<typename ...Ts>
+	static std::function<void()> callEvent(
+		DialogueEvents::Events index,
+		Ts &&... args)
 	{
 		switch (index)
 		{
 		case DialogueEvents::None:
-			return []
+			return [std::forward<Ts>(args)...]
 				{
-					//ChangeScene(scene);
+					ChangeScene(std::forward<Ts>(args)...);
 				};
 		case DialogueEvents::ChangeScene:
-			return []
+			return [std::forward<Ts>(args)...]
 				{
 
 				};
 		case DialogueEvents::StartAnimation:
-			return []
+			return [std::forward<Ts>(args)...]
 				{
 
 				};
 		case DialogueEvents::ConfirmMatchPopUp:
-			return []
+			return [std::forward<Ts>(args)...]
 				{
 
 				};
