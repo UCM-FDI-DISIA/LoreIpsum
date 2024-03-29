@@ -28,8 +28,8 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	deny->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
 
 	//tamanyo de el cuadro de texto
-	Vector2D scaleBox = Vector2D(2, 2);
-	deny->getComponent<Transform>()->getRelativeScale().set(scaleBox.getX(), scaleBox.getY()); //escala del whiteRect
+	Vector2D scaleBox2 = Vector2D(2, 2);
+	deny->getComponent<Transform>()->getRelativeScale().set(scaleBox2.getX(), scaleBox2.getY()); //escala del whiteRect
 
 	deny->getComponent<Transform>()->setGlobalPos(pos);
 	deny->getComponent<BoxCollider>()->setAnchoredToSprite(true);

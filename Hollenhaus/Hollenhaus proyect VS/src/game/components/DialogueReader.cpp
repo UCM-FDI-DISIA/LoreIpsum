@@ -17,8 +17,8 @@ void DialogueReader::initComponent() {
 	typeWriter_ = ent_->getComponent<TypeWriter>();
 	assert(typeWriter_ != nullptr);
 
-	eventCollection_ = ent_->getComponent<DialogueEventCollection>();
-	assert(eventCollection_ != nullptr);
+	//eventCollection_ = ent_->getComponent<DialogueEventCollection>();
+	//assert(eventCollection_ != nullptr);
 
 	dialogueDestroyer_ = ent_->getComponent<DialogueDestroyer>();
 	assert(dialogueDestroyer_ != nullptr);
@@ -28,7 +28,7 @@ void DialogueReader::initComponent() {
 }
 void DialogueReader::NextNode()
 {
-	eventCollection_->callEvent(convo_->Node(actualNode_).NodeEventFinish(), 0);
+	//eventCollection_->callEvent(convo_->Node(actualNode_).NodeEventFinish(), 0);
 	actualNode_++;
 	if (actualNode_ >= convo_->NodesVector().size()) {
 		dialogueDestroyer_->destroyDialogue();

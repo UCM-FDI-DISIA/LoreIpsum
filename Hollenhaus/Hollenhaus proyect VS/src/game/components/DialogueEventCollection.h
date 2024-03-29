@@ -52,7 +52,7 @@ public:
 		case DialogueEvents::ConfirmMatchPopUp:
 			return []
 				{
-					ConfirmationPopUp(std::forward<Ts>(args)...);
+					ConfirmationPopUp();
 				};
 		default:
 			return nullptr;
