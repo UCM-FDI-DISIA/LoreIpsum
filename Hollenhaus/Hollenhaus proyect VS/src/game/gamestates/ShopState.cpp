@@ -6,6 +6,9 @@
 #include "../components/NPC.h"
 #include "../components/shopComponent.h"
 
+// Factorias:
+#include "../factories/Factory.h"
+#include "../factories/FakeCardFactory_v0.h"
 
 ShopState::ShopState()
 {
@@ -30,7 +33,11 @@ void ShopState::refresh()
 void ShopState::onEnter()
 {
 	std::cout << "\nENTER SHOP.";
-	
+
+	// ---- CARDS ----
+	factory = new Factory();
+	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
+
 	//COSAS QUE HAY EN CADA CAPA:
 	//---layer 0
 	// -fondo
