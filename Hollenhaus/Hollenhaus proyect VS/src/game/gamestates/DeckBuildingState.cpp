@@ -218,7 +218,7 @@ void DeckBuildingState::moveToDrawer(Card* card)
 	pizarra_->removeCard(card->getID());
 
 	// se aniade al cajon
-	drawer_->addCard(card->getID());
+	drawer_->addCard(card->getID(), card->getEntity());
 }
 
 ecs::entity_t DeckBuildingState::createCard(int id, Vector2D pos)

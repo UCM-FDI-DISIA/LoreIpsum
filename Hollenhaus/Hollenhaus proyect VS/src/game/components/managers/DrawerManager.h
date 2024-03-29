@@ -55,7 +55,7 @@ public:
 
 	// ---- CARTAS ----
 	// Aniade carta
-	void addCard(int id);
+	void addCard(int id, ecs::entity_t);
 
 	// Quita carta
 	void removeCard(int id);

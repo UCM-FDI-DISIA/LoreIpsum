@@ -98,6 +98,10 @@ void DrawerManager::addCard(int id)
 	drawer[id] = id;
 
 	// refresca la pos de la carta en el cajon
+void DrawerManager::addCard(int id, ecs::entity_t ent)
+{
+	drawer[id] = id; 
+	cardsAux[id % CANT_CARTAS_MOSTRADAS_CAJON] = ent;
 	refreshPos(id % CANT_CARTAS_MOSTRADAS_CAJON, cardsAux[id % CANT_CARTAS_MOSTRADAS_CAJON]);
 
 	// DEBUG
