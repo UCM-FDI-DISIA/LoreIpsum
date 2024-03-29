@@ -2,6 +2,7 @@
 #include "DrawerManager.h"
 #include "../../GameStateMachine.h"
 #include "../../gamestates/GameState.h"
+#include "../../components/Card.h"
 #include "Manager.h"
 
 DrawerManager::DrawerManager() : cajonesAbiertos(0),
@@ -28,7 +29,7 @@ void DrawerManager::refreshExistencia()
 			ecs::entity_t ent = cardsAux[i];
 
 			// la mata
-			ent->setAlive(false);
+			delete ent;
 
 			// la pone a nullptr
 			cardsAux[i] = nullptr;
@@ -92,15 +93,11 @@ bool DrawerManager::isOnDrawer(int id)
 }
 
 #pragma region METE Y SACA CARTA
-void DrawerManager::addCard(int id)
-{
-	// mete la carta segun id en el drawer (en la pos del propio id)
-	drawer[id] = id;
 
-	// refresca la pos de la carta en el cajon
+// refresca la pos de la carta en el cajon
 void DrawerManager::addCard(int id, ecs::entity_t ent)
 {
-	drawer[id] = id; 
+	drawer[id] = id;
 	cardsAux[id % CANT_CARTAS_MOSTRADAS_CAJON] = ent;
 	refreshPos(id % CANT_CARTAS_MOSTRADAS_CAJON, cardsAux[id % CANT_CARTAS_MOSTRADAS_CAJON]);
 
