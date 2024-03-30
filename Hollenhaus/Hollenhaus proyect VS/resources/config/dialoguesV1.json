@@ -13,9 +13,9 @@
               "eventFinish": 0,
 		"events": [
 		{ 
-		  "timing": 0,
+		  "timing": 1,
 		  "type": 1,
-		  "scene": 1
+		  "scene": 3
 		}
 		]
             },

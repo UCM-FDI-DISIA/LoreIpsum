@@ -40,7 +40,11 @@ public:
 					
 				};
 		case DialogueEvents::ChangeScene:
-			ChangeScene(scene);
+			return [scene]
+				{
+					ChangeScene(scene);
+				};
+			
 			break;
 		case DialogueEvents::StartAnimation:
 			return []

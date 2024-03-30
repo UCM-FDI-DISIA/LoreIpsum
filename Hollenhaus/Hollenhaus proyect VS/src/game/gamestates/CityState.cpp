@@ -70,13 +70,13 @@ void CityState::onEnter()
 
 	//------NPCs que demomento son Caitlyns:
 	//----Para entrar en la oficina.
-	factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 2, 2, fondo);
+	factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
 	
 	//----Para entrar en la tienda.
-	factory->createNPC("el que te vende la droga idk", "hombre", { 1.0f, 1.0f }, { 800, 425 }, 0, 3, 2, fondo);
+	factory->createNPC("el que te vende la droga idk", "hombre", { 1.0f, 1.0f }, { 800, 425 }, 1, 3, 2, fondo);
 	 
 	//----Para empezar la batalla.
-	 factory->createNPC("Cailtyn", "npc", {0.25f, 0.25f}, {400, 425}, 0, 6, 2, fondo);
+	 factory->createNPC("Cailtyn", "npc", {0.25f, 0.25f}, {400, 425}, 1, 6, 2, fondo);
 
 	//----Para hablar
 	ecs::entity_t npc4 = Instantiate();
@@ -88,7 +88,7 @@ void CityState::onEnter()
 	Vector2D npc4Pos(600, 425);
 	npc4->getComponent<Transform>()->setGlobalPos(npc4Pos);
 	npc4->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	npc4->addComponent<NPC>(6, 1);
+	npc4->addComponent<NPC>(3, 1);
 	npc4->setLayer(2);
 
 	//------Boton para volver al menu principal:

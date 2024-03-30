@@ -24,25 +24,26 @@ void DialogueReader::initComponent() {
 	assert(dialogueDestroyer_ != nullptr);
 
 	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
-	//eventCollection_->callEvent(convo_->Node(actualNode_).NodeEventStart());
+	exeEvents(convo_->Node(actualNode_).NodeEventsStart());
 }
 void DialogueReader::NextNode()
 {
-	//exeEvents(convo_->Node(actualNode_).NodeEventsStart());
+	exeEvents(convo_->Node(actualNode_).NodeEventsFinish());
 	actualNode_++;
 	if (actualNode_ >= convo_->NodesVector().size()) {
 		dialogueDestroyer_->destroyDialogue();
 		return;
 	}
 	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
-	//exeEvents(convo_->Node(actualNode_).NodeEventsFinish());
+	exeEvents(convo_->Node(actualNode_).NodeEventsStart());
 }
 
 void DialogueReader::exeEvents(std::vector<JsonData::DialogueEventS> events)
 {
 	for (auto e : events) {
-		eventCollection_->callEvent(e.getType(), e.getScene());
+		eventCollection_->callEvent(e.getType(), e.getScene())();
 	}
+
 }
 
 
