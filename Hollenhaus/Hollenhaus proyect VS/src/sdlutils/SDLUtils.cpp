@@ -498,7 +498,8 @@ void SDLUtils::loadNPCs(JSONObject rootNPCSs, std::string filenameNPCs)
 					JSONObject npcObj = v->AsObject();
 					
 					/// >>> Lectura inicial de parametros basicos <<<
-					std::string id = npcObj["npcID"]->AsString(); // id
+					std::string id = npcObj["npcID"]->AsString();
+					std::string name = npcObj["name"]->AsString(); // id
 					std::string sprite = npcObj["sprite"]->AsString(); // sprite
 					int sX = npcObj["scaleX"]->AsNumber(); // scale X
 					int sY = npcObj["scaleY"]->AsNumber(); // scale Y
@@ -508,7 +509,7 @@ void SDLUtils::loadNPCs(JSONObject rootNPCSs, std::string filenameNPCs)
 					int scene = npcObj["scene"]->AsNumber(); // scene
 					int layer = npcObj["layer"]->AsNumber(); // layer
 
-					JsonData::NPCData info(id, sprite, sX, sY, pX, pY, type, scene, layer);
+					JsonData::NPCData info(std::stoi(id), name, sprite, sX, sY, pX, pY, type, scene, layer);
 					JsonData::NPCData rinfo = static_cast<JsonData::NPCData>(info);
 
 #ifdef _DEBUG

@@ -114,9 +114,8 @@ public:
 	ecs::entity_t createVisual_BackgroundFullImage();
 
 	// metodos para los NPCs
-	ecs::entity_t createNPC(std::string id, std::string sprite,
-		Vector2D scale, Vector2D pos, int type, int scene, int layer,
-		ecs::entity_t parent);
+	// i de index para especificar el npc que quieres crear del json
+	ecs::entity_t createNPC(int i, ecs::entity_t parent);
 
 	// metodos para los dialogos
 	ecs::entity_t createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
