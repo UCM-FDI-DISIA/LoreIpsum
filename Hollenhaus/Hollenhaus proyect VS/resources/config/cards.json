@@ -34,19 +34,19 @@
     {"id": "6","cost": 0,"value": 6,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 1,"value": 10},
-        {"type": 2,"value": 30,"directions": ["Arriba","Abajo"]}
+        {"type": 2,"value": 30,"directions": ["arriba","abajo"]}
       ]     
     },
-    {"id": "7","cost": 0,"value": 6,"sprite": "card","unblockable": true,
+    {"id": "7","cost": 2,"value": 6,"sprite": "card","unblockable": true,
         "effects": [
-        {"type": 1,"value": 20},
-        {"type": 0,"value": 4 }
+        {"type": 1,"value": 0},
+        {"type": 0,"value": 0 }
       ]
     },
-    {"id": "8","cost": 3,"value": 6,"sprite": "card","unblockable": true,
+    {"id": "8","cost": 0,"value": 6,"sprite": "card","unblockable": true,
       "effects": [
-        {"type": 1,"value": 0},
-        {"type": 3,"value": 90,"directions": ["Arriba","Abajo"]}
+        {"type": 3,"value": 90,"directions": ["abajo"]},
+        {"type": 1,"value": 0}
       ]
     }
   ]

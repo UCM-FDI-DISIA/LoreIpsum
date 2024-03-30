@@ -18,16 +18,30 @@ Card::Card(const Card& other) {
 	unblockable = other.unblockable;
 	cell = other.cell;
 
+	//importante  no olvidarse de esto
 	ent_ = other.ent_;
 
+	//copiar los efectos bien
 	for (auto& ef : other.effectsJSON) {
-		effects.push_back(
-			EffectCollection::getEffect(
-				ef.type(),
-				this,
-				ef.value(),
-				Effects::None
-			));
+
+		if (ef.directions().empty())
+			effects.push_back(
+				EffectCollection::getEffect(
+					ef.type(),
+					this,
+					ef.value(),
+					Effects::None
+				));
+		else
+			for (auto d : ef.directions())
+				effects.push_back(
+					EffectCollection::getEffect(
+						ef.type(),
+						this,
+						ef.value(),
+						d
+					)
+				);
 	}
 
 	effectsJSON = other.effectsJSON;
