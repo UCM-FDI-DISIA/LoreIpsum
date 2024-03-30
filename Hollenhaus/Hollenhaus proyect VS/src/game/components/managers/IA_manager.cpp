@@ -77,13 +77,13 @@ void IA_manager::StartTurn()
 	//seteo de los decks
 	std::vector<Card*> deckCopyPlayer;
 	for (auto c : playerDeckCmp->getDeck()) {
-		deckCopyPlayer.push_back(c);
+		deckCopyPlayer.push_back(new Card(*c));
 	}
 	s.playerDeck = deckCopyPlayer;
 
 	std::vector<Card*> deckCopyEnemy;
 	for (auto c : enemyDeckCmp->getDeck()) {
-		deckCopyEnemy.push_back(c);
+		deckCopyEnemy.push_back(new Card(*c));
 	}
 	s.enemyDeck = deckCopyEnemy;
 
@@ -111,6 +111,7 @@ void IA_manager::StartTurn()
 	int value = minimax(0, 1, false, s, best);
 	time = SDL_GetTicks() - time;
 
+	
 #ifdef _DEBUG
 
 	std::cout << std::endl;
@@ -121,16 +122,28 @@ void IA_manager::StartTurn()
 	//rellenar con info de jugada?
 	std::cout << "Jugada:" << std::endl;
 
-	for (int i = 0; i < best->_jugada.cartas.size(); i++) {
+	if (best == nullptr) {
+		std::cout << "No se ha podido encontrar jugdada" << std::endl;
+	}
+	else {
 
-		std::cout << "Carta Indice: " << best->_jugada.cartas[i].indice <<
-			" Pos: (" << best->_jugada.cartas[i].pos.getX() << "," << best->_jugada.cartas[i].pos.getY() <<")" << std::endl;
+		for (int i = 0; i < best->_jugada.cartas.size(); i++) {
+
+			std::cout << "Carta Indice: " << best->_jugada.cartas[i].indice <<
+				" Pos: (" << best->_jugada.cartas[i].pos.getX() << "," << best->_jugada.cartas[i].pos.getY() <<")" << std::endl;
+		}
 	}
 
 	std::cout << "--------------------------" << std::endl;
 
 #endif // _DEBUG
+	
 
+	if (best == nullptr) {
+
+		//seguramente sea pq se queda sin cartas en el mazo
+		throw "jugada no encontrada";
+	}
 	makePlay(best->_jugada);
 }
 
@@ -304,20 +317,31 @@ void IA_manager::makePlay(const InfoJugada &play) const
 	for (int i = 0; i < draws; ++i)
 		enemyHandCmp->addCard(enemyDeckCmp->drawCard()->getEntity());
 
-	int i = 0;
-	for(const auto a : enemyHandCmp->getHand())
-	{
-		if(Vector2D cell = cards[i].pos; cell != Vector2D(-1, -1))
-		{
-			const auto cellToUse = boardManager->getCell(cell.getX(), cell.getY())->getEntity()->getComponent<DropDetector>();
-			a->getEntity()->getComponent<Transform>()->setGlobalPos(cellToUse->getCardPos());
-			a->getEntity()->getComponent<CardStateManager>()->putOnBoard();
-			cellToUse->setOcuped(true);
-			const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
-			boardManager->setCard(cell.getX(), cell.getY(), a, playerTurn);
-		}
+	
+	int cartasColocadas = 0;
+	//para cada carta
+	for (int i = 0; i < cards.size(); i++) {
 
-		++i;
+		Vector2D pos = cards[i].pos;
+		//si ponemos la carta
+		if (pos != Vector2D(-1, -1)) {
+			
+			Card* card = enemyHandCmp->getHand()[i-cartasColocadas];
+
+			//dropDetector ocupado
+			const auto dropDet = boardManager->getCell(pos.getX(), pos.getY())->getEntity()->getComponent<DropDetector>();
+			dropDet->setOcuped(true);
+			
+			//colocar la carta en el tablero
+			card->getEntity()->getComponent<Transform>()->setGlobalPos(dropDet->getCardPos());
+			card->getEntity()->getComponent<CardStateManager>()->putOnBoard();
+			
+			//comunicacion con el boardManager
+			const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
+			boardManager->setCard(pos.getX(), pos.getY(), card, playerTurn);
+
+			cartasColocadas++;
+		}
 	}
 
 	matchManager->endTurnIA();

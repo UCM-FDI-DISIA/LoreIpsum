@@ -125,9 +125,16 @@ void BoardManager::applyAllEffects() const
 				_board[i][j]->getComponent<Cell>()->setTotalValue(0);
 
 	for (int j = 0; j < size; j++)
-		for (int i = 0; i < size; i++)
-			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
-				_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
+		for (int i = 0; i < size; i++) {
+			auto cell = _board[i][j]->getComponent<Cell>();
+			auto card = cell->getCard();
+			if (card != nullptr) {
+				cell->applyValue(card);
+
+			}
+		}
+			//if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
+			//	_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
 }
 
 void BoardManager::updateVisuals()
@@ -161,7 +168,7 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 
 			if (s->_boardBools[i][j]) {//si hay una carta
 				cell = _boardIA[i][j];
-				card = s->_boardCards[i][j];
+				card =  s->_boardCards[i][j];
 
 				cell->setCard(card,s->_boardOwners[i][j]);
 				card->setCell(cell);
@@ -175,6 +182,7 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 
 
 	//APPLY EFFECTS
+	
 	for (int j = 0; j < size; j++)
 		for (int i = 0; i < size; i++)
 			if (_boardIA[i][j]->getCard() != nullptr) 
@@ -185,6 +193,7 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 		for (int i = 0; i < size; i++)
 			if (_boardIA[i][j]->getCard() != nullptr)
 				_boardIA[i][j]->applyValue(_boardIA[i][j]->getCard());
+	
 
 
 	//UPDATE SCORE
@@ -305,8 +314,12 @@ std::vector<std::vector<Card*>> BoardManager::getBoardCardsIA()
 
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
-			board[i][j] = _board[i][j]->getComponent<Cell>()->getCard();
+			board[i][j] = _board[i][j]->getComponent<Cell>()->getCard() == nullptr ?
+						_board[i][j]->getComponent<Cell>()->getCard() :
+				new Card(*_board[i][j]->getComponent<Cell>()->getCard());
+			//board[i][j] = _board[i][j]->getComponent<Cell>()->getCard();
 		}
+
 	}
 
 	return board;
