@@ -1,0 +1,38 @@
+{
+    "npcs":[
+        {
+            "npcID": "El Xungo del Barrio",
+            "sprite": "npc",
+            "scaleX": 0.25,
+            "scaleY": 0.25,
+            "posX": -100,
+            "posY": 425,
+            "type": 0,
+            "scene": 2,
+            "layer": 3
+        },
+        {
+            "npcID": "Elias",
+            "sprite": "hombre",
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "posX": 800,
+            "posY": 425,
+            "type": 1,
+            "scene": 2,
+            "layer": 3
+        },
+        {
+            "npcID": "Caitlyn",
+            "sprite": "npc",
+            "scaleX": 0.25,
+            "scaleY": 0.25,
+            "posX": 400,
+            "posY": 425,
+            "type": 1,
+            "scene": 6,
+            "layer": 2
+        }
+    ]
+
+}

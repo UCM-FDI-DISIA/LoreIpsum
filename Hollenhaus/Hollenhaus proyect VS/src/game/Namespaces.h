@@ -205,4 +205,21 @@ namespace JsonData
 
 	};
 
+	struct NPCData {
+		NPCData();
+		NPCData(std::string id, std::string s, int sx, int sy, int px, int py, int t, int scen, int lay) :
+			NPCID_(id), sprite(s), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t), scene(scen), layer(lay) 
+		{};
+
+	private:
+		std::string NPCID_;
+		std::string sprite;
+		int scaleX, scaleY;
+		int posX, posY;
+		int type;
+		int scene;
+		int layer;
+
+	};
+
 }

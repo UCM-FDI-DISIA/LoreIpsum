@@ -171,6 +171,11 @@ public:
 		return dialogueAccessWrapper_;
 	}
 
+	inline auto& npcs()
+	{
+		return npcsAccessWrapper_;
+	}
+
 
 // Access to the random number generator. It is important to always
 // use this generator, this way you can regenerate the same sequence
@@ -196,7 +201,8 @@ private:
 	SDLUtils();
 	SDLUtils(std::string windowTitle, int width, int height);
 	SDLUtils(std::string windowTitle, int width, int height,
-			std::string filenameResources, std::string filenameCards, std::string filemaneDialogues);
+			std::string filenameResources, std::string filenameCards, std::string filemaneDialogues,
+			std::string filenameNPCs);
 
 	void initWindow();
 	void initSDLExtensions(); // initialize resources (fonts, textures, audio, etc.)
@@ -204,7 +210,8 @@ private:
 
 	void loadResources(std::string filenameResources, 
 		std::string filenameCards,
-		std::string filenameDialogues); // load resources from the json file
+		std::string filenameDialogues,
+		std::string filenameNPCs); // load resources from the json file
 
 	/// vamos a refactorizar el load resources:
 	///	un metodo por cada json
@@ -215,6 +222,7 @@ private:
 	void loadCards(JSONObject rootCards, std::string filenameCards);
 	void loadMessages(JSONObject rootResources, std::string filenameResources);
 	void loadDialogues(JSONObject rootDialogues, std::string filenameDialogues);
+	void loadNPCs(JSONObject rootNPCs, std::string filenameNPCs);
 
 	/// CARD PARSING estoy fatal de la cabezaaaa
 	std::vector<Effects::Direction>& loadDirections(JSONObject&, std::vector<Effects::Direction>&);
@@ -234,6 +242,7 @@ private:
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
 	sdl_resource_table<JsonData::CardData> cards_; // cards map (string -> card)
 	sdl_resource_table<JsonData::DialogueData> dialogues_; // dialogues map (string -> dialogue)
+	sdl_resource_table<JsonData::NPCData> npcs_; // npcs map (string -> npcs)
 
 	map_access_wrapper<Font> fontsAccessWrapper_;
 	map_access_wrapper<Texture> imagesAccessWrapper_;
@@ -242,6 +251,7 @@ private:
 	map_access_wrapper<Music> musicsAccessWrapper_;
 	map_access_wrapper<JsonData::CardData> cardAccessWrapper_;
 	map_access_wrapper<JsonData::DialogueData> dialogueAccessWrapper_;
+	map_access_wrapper<JsonData::NPCData> npcsAccessWrapper_;
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer
