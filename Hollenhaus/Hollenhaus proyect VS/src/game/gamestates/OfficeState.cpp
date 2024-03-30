@@ -33,7 +33,7 @@ void OfficeState::onEnter()
 	
 	//------Texto de la oficina.
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
-	officeText->addComponent<TextComponent>("OFICINA", "8bit_24pt", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	officeText->addComponent<TextComponent>("OFICINA", "8bit_size_20", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	officeText->setLayer(1);
 
 	//-----Imagen de fondo:
