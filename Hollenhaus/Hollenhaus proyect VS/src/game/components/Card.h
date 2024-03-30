@@ -17,8 +17,11 @@ class Card : public ComponentUpdate
 	std::list<SDLEventCallback> effects;	// lista de los efectos que tiene una carta concreta
 	std::list<SDLEventCallback>::iterator effectIt;	// iterador para recorrer la lista de efectos de la carta
 
+
+
 public:
 	Card();
+	Card(const Card&);
 	Card(int, int);
 	Card(int, int, std::string&, bool);
 

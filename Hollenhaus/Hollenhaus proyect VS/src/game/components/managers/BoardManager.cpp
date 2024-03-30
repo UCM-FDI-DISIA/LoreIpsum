@@ -114,9 +114,16 @@ void BoardManager::applyAllEffects() const
 				_board[i][j]->getComponent<Cell>()->setTotalValue(0);
 
 	for (int j = 0; j < size; j++)
-		for (int i = 0; i < size; i++)
-			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
-				_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
+		for (int i = 0; i < size; i++) {
+			auto cell = _board[i][j]->getComponent<Cell>();
+			auto card = cell->getCard();
+			if (card != nullptr) {
+				cell->applyValue(card);
+
+			}
+		}
+			//if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
+			//	_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
 }
 
 void BoardManager::updateVisuals()
@@ -129,6 +136,7 @@ void BoardManager::updateVisuals()
 //falta refacorizar esto dividiendolo en metodos y teniendo en cuenta los metodos originales
 int BoardManager::heuristicIA(IA_manager::State* s)
 {
+
 	//limpieza del tablero(card a null y reset de los efectos)
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
@@ -152,7 +160,7 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 				card = s->_boardCards[i][j];
 
 				cell->setCard(card,s->_boardOwners[i][j]);
-				card->setCell(cell);
+				card->setCell(new Cell(*cell));
 
 				/// anade callback a la celda
 				for (const auto& e : card->getEffects())
@@ -163,6 +171,7 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 
 
 	//APPLY EFFECTS
+	
 	for (int j = 0; j < size; j++)
 		for (int i = 0; i < size; i++)
 			if (_boardIA[i][j]->getCard() != nullptr) 
@@ -173,6 +182,7 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 		for (int i = 0; i < size; i++)
 			if (_boardIA[i][j]->getCard() != nullptr)
 				_boardIA[i][j]->applyValue(_boardIA[i][j]->getCard());
+	
 
 
 	//UPDATE SCORE
@@ -296,7 +306,9 @@ std::vector<std::vector<Card*>> BoardManager::getBoardCardsIA()
 			board[i][j] = _board[i][j]->getComponent<Cell>()->getCard() == nullptr ?
 						_board[i][j]->getComponent<Cell>()->getCard() :
 				new Card(*_board[i][j]->getComponent<Cell>()->getCard());
+			//board[i][j] = _board[i][j]->getComponent<Cell>()->getCard();
 		}
+
 	}
 
 	return board;
