@@ -15,25 +15,37 @@ Data::~Data() {};
 //------Setters:
 #pragma region SETTERS
 // ------ DECKBUILDING ------
+#pragma region DECKBUILDING SETTERS
 //----Mazo:
 void Data::SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos) {
 
+	// vacia el anterior
 	EmptyMaze();
 	EmptyMaze_With_pos();
 
+	// guarda iterador al inicio (indice)
 	auto itPos = mazePos.begin();
 
+	// recorre el mazo a guardar
 	for (auto e : newMaze)
 	{
+		// aniade la entidad al mazo del data
 		maze.push_back(e);
+
+		// busca la entidad en el map mazo de pos
 		auto it = maze_with_pos.find(e);
+
+		// si no se encuentra
 		if (it == maze_with_pos.end())
 		{
+			// se inserta id
 			it = maze_with_pos.insert({ e,Vector2D() }).first;
 		}
 
+		// se guarda la pos en su respectivo id
 		(*it).second = (*itPos);
 
+		// se sigue recorriendo (aumenta indice)
 		itPos++;
 	}
 }
@@ -49,27 +61,36 @@ void Data::AddCardToDrawer(int id) {
 
 void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {
 
+	// hacemos array auxiliar 
 	std::array<int, CARDS_IN_GAME> drawerAux;
+
+	// lo inicializamos vacio
 	for (int i = 0; i < CARDS_IN_GAME; i++)
 	{
 		drawerAux[i] = -1;
 	}
 
+	// recorre el drawer a guardar
 	for (int i = 0; i < newDrawer.size(); i++)
 	{
+		// si la carta ya estaba en el drawer
 		if (newDrawer[i] == drawer[i]) {
+
+			// se guarda en el aux en la pos correspondiente a su id
 			drawerAux[i] = newDrawer[i];
 		}
 	}
 
+	// se vacia
 	EmptyDrawer();
 
+	// se guardan las cartas que ya estuvieran
 	for (int i = 0; i < drawerAux.size(); i++)
 	{
 		drawer[i] = drawerAux[i];
 	}
 
-
+	// se guardan las cartas nuevas
 	for (int i = 0; i < newDrawer.size(); i++)
 	{
 		if (newDrawer[i] != drawer[i]) {
@@ -81,8 +102,10 @@ void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {
 void Data::SubtractCardFromDrawer(int id) {
 	drawer[id] = -1;
 }
+#pragma endregion
 
 // ------ FLUJO ------
+#pragma region FLUJO SETTERS
 //----NPCs:
 void Data::AddDefeatedNPC(int id) {
 	defeatedNPCS.push_back(id);
@@ -274,10 +297,6 @@ void Data::EmptyNPCS() {
 
 void Data::EmptyMaze_With_pos()
 {
-	maze_with_pos.clear();/*
-	for (auto e : maze_with_pos) {
-		auto sec = e.second;
-		se
-	}*/
+	maze_with_pos.clear();
 }
 #pragma endregion

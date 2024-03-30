@@ -3,7 +3,7 @@
 #include <array>
 
 // ---- DECKBUILDING ----
-const int CARDS_IN_GAME = 50,// Cantidad de cartas en el juego
+const int CARDS_IN_GAME = 50, // Cantidad de cartas en el juego
 MIN_CARDS_MAZE = 4, // Minimo de cartas en el mazo
 MAX_CARDS_MAZE = 6; // Maximo de cartas en el mazo
 
@@ -23,7 +23,9 @@ private:
 		winner = 0;
 
 	std::list<int> defeatedNPCS;
-	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
+
+	// True si la ultima partida ha sido ganado el jugador
+	bool playerWon; 
 
 	enum WINNER {
 		NONE,

@@ -258,12 +258,6 @@
     <ClCompile Include="src\game\components\managers\DrawerManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\factories\DeckBuildingFactory_v0.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\factories\DeckBuildingFactory.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\components\DragNoCombat.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -514,12 +508,6 @@
     </ClInclude>
     <ClInclude Include="src\game\components\managers\DrawerManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\factories\DeckBuildingFactory.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
     <ClInclude Include="src\game\factories\FakeCardFactory.h">
       <Filter>Archivos de encabezado\Factories</Filter>

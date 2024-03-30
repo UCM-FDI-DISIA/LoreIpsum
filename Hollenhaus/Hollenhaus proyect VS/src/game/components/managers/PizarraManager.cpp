@@ -10,18 +10,23 @@ PizarraManager::PizarraManager() {}
 
 PizarraManager::~PizarraManager() {}
 
-// ---- Metodos heredados (no es TAAAAAAAAN importante) ----
+// ---- Metodos heredados ----
 void PizarraManager::update() {}
 
 void PizarraManager::initComponent()
 {
 	// guarda en un array aux las cartas que ya estuvieran en la pizarra
+	// recorre cada pair del map mazo de data
 	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
+
+		// si la primera componente de la pareja (id) ya estaba en la pizarra
 		if (isOnPizarra(e.first)) {
 
+			// guardas el id
 			mazeaux.push_back(e.first);
-			mazePosaux.push_back(e.second);
 
+			// guardas la pos
+			mazePosaux.push_back(e.second);
 		}
 	}
 
@@ -29,58 +34,68 @@ void PizarraManager::initComponent()
 	mazePrev.clear();
 	mazePos.clear();
 
-	// aniade las que ya tenias en la pizarra
+	// aniade las que ya tenias en la pizarra (id)
 	for (auto e : mazeaux) {
 		mazePrev.push_back(e);
 	}
 
-	// aniade las que ya tenias en la pizarra
+	// aniade las que ya tenias en la pizarra (pos)
 	for (auto e : mazePosaux) {
 		mazePosaux.push_back(e);
 	}
 
 	// aniade las nuevas
 	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
+
+		// si la primera componente de la pareja (id) NO estaba en la pizarra
 		if (!isOnPizarra(e.first)) {
 
+			// guardas el id
 			mazePrev.push_back(e.first);
+
+			// guardas la pos
 			mazePos.push_back(e.second);
 		}
 	}
 
+	// iterador al inicio de la lista de pos (indice)
 	auto itPos = mazePos.begin();
 
-	// instancia las cartas de tu mazo
+	// recorres el mazo
 	for (auto e : mazePrev)
 	{
+		// instancia las cartas de tu mazo
 		Transform* card;
 		card = GameStateMachine::instance()->getCurrentState()->createCard(e, (*itPos))->getComponent<Transform>();
-
 		cards.push_back(card);
+
+		// recorres la lista de pos
 		itPos++;
 	}
-}
-
-void PizarraManager::refreshPos()
-{
-
 }
 
 // ---- Manageo pa cosas fuera de la pizarra ----
 // Guarda el mazo en el data.
 void PizarraManager::saveMaze()
 {
+	// limpias mazo de pos
 	mazePos.clear();
 
+	// recorres las cartas en pizarra
 	for (auto e : cards)
 	{
+		// si existe la entidad
 		if (e != nullptr)
 		{
+			// guardas su pos en la lista de pos de cartas en pizarra
 			mazePos.push_back(e->getGlobalPos());
 		}
 	}
 
+	// guardas el mazo pasando las listas de id y pos
 	GameStateMachine::instance()->getCurrentState()->setMaze(mazePrev, mazePos);
+
+	// DEBUG
 	TuVieja("saveMaze");
 }
 
@@ -109,12 +124,14 @@ void PizarraManager::addCard(int id, Transform* card)
 {
 	// si la carta no estaba ya en la pizarra
 	if (!isOnPizarra(id)) {
-		// se aniade
+
+		// se aniade id
 		mazePrev.push_back(id);
-		// se aniade Posicion
+
+		// se aniade pos
 		cards.push_back(card);
 
-		// aumenta el contador
+		// aumenta el contador de cartas en pizarra
 		cantCards++;
 	}
 }
@@ -128,23 +145,28 @@ void PizarraManager::removeCard(int id)
 	// borra lo que haya en la pos que hayas guardado
 	mazePrev.erase(find);
 
+	// iterador al inicio de la lista de pos (indice)
 	auto it = cards.begin();
 
 	bool encontrado = false;
-	while (!encontrado && it != cards.end() )
+
+	// mientras no lo hayas encontrado y queden entidades
+	while (!encontrado && it != cards.end())
 	{
+		// si la encuentras se borra
 		if ((*it)->getEntity()->getComponent<Card>()->getID() == id)
 		{
 			cards.erase(it);
 			encontrado = true;
 		}
+
+		// si no, seguimos buscando
 		else
 		{
 			it++;
-
 		}
 	}
 
-	// disminuye el contador
+	// disminuye el contador (resta una carta de la pizarra)
 	cantCards--;
 }
