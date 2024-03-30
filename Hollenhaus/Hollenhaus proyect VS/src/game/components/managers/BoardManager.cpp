@@ -136,7 +136,6 @@ void BoardManager::updateVisuals()
 //falta refacorizar esto dividiendolo en metodos y teniendo en cuenta los metodos originales
 int BoardManager::heuristicIA(IA_manager::State* s)
 {
-
 	//limpieza del tablero(card a null y reset de los efectos)
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
@@ -157,10 +156,10 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 
 			if (s->_boardBools[i][j]) {//si hay una carta
 				cell = _boardIA[i][j];
-				card = s->_boardCards[i][j];
+				card =  s->_boardCards[i][j];
 
 				cell->setCard(card,s->_boardOwners[i][j]);
-				card->setCell(new Cell(*cell));
+				card->setCell(new Cell( *cell));
 
 				/// anade callback a la celda
 				for (const auto& e : card->getEffects())

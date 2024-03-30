@@ -139,6 +139,9 @@ void IA_manager::StartTurn()
 #endif // _DEBUG
 	
 
+	if (best == nullptr) {
+		throw "jugada no encontrada";
+	}
 	makePlay(best->_jugada);
 }
 

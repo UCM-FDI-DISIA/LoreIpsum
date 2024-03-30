@@ -18,23 +18,19 @@ Card::Card(const Card& other) {
 	unblockable = other.unblockable;
 	cell = other.cell;
 
-
 	ent_ = other.ent_;
 
-	//effects = other.effects;
-
-	/*
-	for (auto& ef : other.effects) {
-		EffectCollection::getEffect(
-			e.type(),
-			cardComp,
-			e.value(),
-			Effects::None
-		)
+	for (auto& ef : other.effectsJSON) {
+		effects.push_back(
+			EffectCollection::getEffect(
+				ef.type(),
+				this,
+				ef.value(),
+				Effects::None
+			));
 	}
-	*/
 
-	//std::list<SDLEventCallback> effects;
+	effectsJSON = other.effectsJSON;
 }
 
 Card::Card(int cost, int value) : cost(cost), value(value)

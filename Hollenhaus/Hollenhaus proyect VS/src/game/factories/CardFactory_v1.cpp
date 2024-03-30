@@ -272,6 +272,9 @@ void CardFactory_v1::addEffects(Card* cardComp, std::vector<JsonData::CardEffect
 					)
 				);
 	}
+
+	//MUY IMPORTANTEEEEEEEE!!!!!!!!!
+	cardComp->setEffectsJSON(effects);
 }
 
 void CardFactory_v1::addDeckImage(int initX, int initY, bool opposite)
