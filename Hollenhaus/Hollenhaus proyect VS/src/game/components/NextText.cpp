@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "NextText.h"
+#include "managers/Manager.h"
 
 //Detecta el clickIzq con el BoxCollider del cuadro de texto (o de la pantalla?) y hace las siguientes operaciones:
 //->Se llama al EventoFinal del texto actual
@@ -44,20 +45,11 @@ void NextText::OnLeftClickUp()
 
 void NextText::reactToClick()
 {
-	//moveOnClick_->StopMoving(); //error extraño
-
-	if (typeWriter_->ended())
+	if (typeWriter_->ended() && mouseRaycast() == ent_)
 	{
 		TuVieja("Cambio de nodo.");
 		dialogueReader_->NextNode();
 	}
-
-	//NO DETECTA EL COLLIIIDIIER AAA @SAMU AYUDA
-	/*if (!click && boxCollider_->isCursorOver() && typeWriter_->ended()) 
-	{
-		TuVieja("click en el textbox.");
-		dialogueReader_->NextNode();
-	}*/
 }
 
 void NextText::callNextNode()
@@ -66,6 +58,11 @@ void NextText::callNextNode()
 		TuVieja("Cambio de nodo.");
 		dialogueReader_->NextNode();
 	}
+}
+
+void NextText::setMoveOnClick(MoveOnClick* moveOnClick)
+{
+	moveOnClick_ = moveOnClick;
 }
 
 

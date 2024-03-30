@@ -70,6 +70,9 @@ void MoveOnClick::OnLeftClickDown()
 
 		moveTo = myTransform->getGlobalPos().getX() - (mousePos.getX() - halfScreen);
 	}
+	else {
+		move = false;
+	}
 }
 
 void MoveOnClick::StopMoving()

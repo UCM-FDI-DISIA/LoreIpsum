@@ -14,7 +14,7 @@
 		"events": [
 		{ 
 		  "timing": 1,
-		  "type": 1,
+		  "type": 0,
 		  "scene": 3
 		}
 		]
