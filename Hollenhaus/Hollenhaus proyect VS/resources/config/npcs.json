@@ -10,7 +10,7 @@
             "posY": 425,
             "type": 0,
             "scene": 2,
-            "layer": 3
+            "layer": 2
         },
         {
             "npcID": "1",
@@ -22,7 +22,7 @@
             "posY": 425,
             "type": 1,
             "scene": 2,
-            "layer": 3
+            "layer": 2
         },
         {
             "npcID": "2",
