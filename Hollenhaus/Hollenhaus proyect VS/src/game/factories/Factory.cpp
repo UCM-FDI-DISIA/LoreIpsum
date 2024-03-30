@@ -96,16 +96,17 @@ ecs::entity_t Factory::createVisual_BackgroundFullImage()
 	return matchStateUIFactory->createVisual_BackgroundBoard();
 }
 
-ecs::entity_t Factory::createNPC(std::string id, std::string sprite,
-	Vector2D scale, Vector2D pos, int type, int scene, int layer,
-	ecs::entity_t parent)
+ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent)
 {
 	if (npcFactory == nullptr) {
 		throw "no existe npcFactory";
 	}
 
+
+	JsonData::NPCData info = sdlutils().npcs().at(std::to_string(i));
+
 	// PLACEHOLDER
-	return npcFactory->createNPC(id, sprite, scale, pos, type, scene, layer, parent);
+	return npcFactory->createNPC(info, parent);
 }
 
 

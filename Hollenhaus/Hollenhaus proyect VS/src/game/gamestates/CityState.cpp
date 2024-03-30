@@ -70,13 +70,17 @@ void CityState::onEnter()
 
 	//------NPCs que demomento son Caitlyns:
 	//----Para entrar en la oficina.
-	factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
+	//factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
+	factory->createNPC(0, fondo);
+	factory->createNPC(1, fondo);
+	factory->createNPC(2, fondo);
+
 	
 	//----Para entrar en la tienda.
-	factory->createNPC("el que te vende la droga idk", "hombre", { 1.0f, 1.0f }, { 800, 425 }, 1, 3, 2, fondo);
+	//factory->createNPC("el que te vende la droga idk", "hombre", { 1.0f, 1.0f }, { 800, 425 }, 1, 3, 2, fondo);
 	 
 	//----Para empezar la batalla.
-	 factory->createNPC("Cailtyn", "npc", {0.25f, 0.25f}, {400, 425}, 1, 6, 2, fondo);
+	 //factory->createNPC("Cailtyn", "npc", {0.25f, 0.25f}, {400, 425}, 1, 6, 2, fondo);
 
 	//----Para hablar
 	ecs::entity_t npc4 = Instantiate();
