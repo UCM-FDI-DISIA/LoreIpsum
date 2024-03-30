@@ -28,9 +28,9 @@ IA_manager::IA_manager() {
 	boardManager = nullptr;
 
 	State s;
-	if (s.ia_manager == nullptr) {
-		s.ia_manager = this;
-	}
+
+	s.ia_manager = this;
+	
 }
 
 IA_manager::~IA_manager(){}
