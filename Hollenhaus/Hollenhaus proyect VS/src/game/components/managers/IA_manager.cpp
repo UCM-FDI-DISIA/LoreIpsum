@@ -140,6 +140,8 @@ void IA_manager::StartTurn()
 	
 
 	if (best == nullptr) {
+
+		//seguramente sea pq se queda sin cartas en el mazo
 		throw "jugada no encontrada";
 	}
 	makePlay(best->_jugada);

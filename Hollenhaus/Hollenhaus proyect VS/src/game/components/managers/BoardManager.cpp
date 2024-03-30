@@ -159,7 +159,7 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 				card =  s->_boardCards[i][j];
 
 				cell->setCard(card,s->_boardOwners[i][j]);
-				card->setCell(new Cell( *cell));
+				card->setCell(cell);
 
 				/// anade callback a la celda
 				for (const auto& e : card->getEffects())

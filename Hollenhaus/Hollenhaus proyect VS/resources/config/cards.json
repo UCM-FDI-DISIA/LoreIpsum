@@ -123,7 +123,7 @@
         },
         {
           "type": 0,
-          "value": 44
+          "value": 4
         }
       ],
       "unblockable": true
@@ -135,14 +135,14 @@
       "sprite": "card",
       "effects": [
         {
-          "type": 1,
+          "type": 0,
           "value": 20
         },
         {
-          "type": 4,
+          "type": 2,
           "directions": [
-            "Derecha",
-            "Izquierda"
+            "Arriba",
+            "Arriba"
           ],
           "value": 30
         }
