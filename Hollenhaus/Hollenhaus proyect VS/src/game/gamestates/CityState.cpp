@@ -44,20 +44,21 @@ void CityState::onEnter()
 	cityText->setLayer(1);
 
 	// ---- FONDO CIUDAD ----
-	ecs::entity_t fondo = Instantiate();
-
+	fondo = Instantiate();
+	//fond = fondo;
 	// le aniade los componentes
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
 	fondo->addComponent<MoveOnClick>(2);
 
-	fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0,255,255,255);
+	fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0, 255, 255, 255);
 	fondo->addComponent<BoxCollider>();
 	//tamanyo de ciudadcompleta.png: 5754 x 1212
 	fondo->getComponent<Transform>()->setGlobalScale(0.495f, 0.495f);
 	//fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f); //escalado para ciudadcompleta.png (porfi no toquetear)!!! 
 
-	Vector2D globalPos(-1200.0f, 0); //Posici�n inicial de la ciudad para que se vea por el centro.
+	//Vector2D globalPos(-1200.0f, 0); //Posici�n inicial de la ciudad para que se vea por el centro.
+	Vector2D globalPos = getLastPaulPos();
 	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
 
 	// lo pone en la capa correcta
@@ -86,7 +87,7 @@ void CityState::onEnter()
 	fondo->getComponent<MoveOnClick>()->RegisterCollider(colliderSuelo->getComponent<BoxCollider>());
 
 	// ---- PLAYER ----
-	ecs::entity_t fantasmiko = Instantiate(Vector2D(sdlutils().width()/2 - 50, sdlutils().height() - 200));
+	ecs::entity_t fantasmiko = Instantiate(Vector2D(sdlutils().width() / 2 - 50, sdlutils().height() - 200));
 	fantasmiko->addComponent<SpriteRenderer>("fantasma");
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
@@ -100,10 +101,10 @@ void CityState::onEnter()
 	factory->createNPC(1, fondo);
 	factory->createNPC(2, fondo);
 
-	
+
 	//----Para entrar en la tienda.
 	//factory->createNPC("el que te vende la droga idk", "hombre", { 1.0f, 1.0f }, { 800, 425 }, 1, 3, 2, fondo);
-	 
+
 	//----Para empezar la batalla.
 	 //factory->createNPC("Cailtyn", "npc", {0.25f, 0.25f}, {400, 425}, 1, 6, 2, fondo);
 
@@ -143,6 +144,7 @@ void CityState::onExit()
 	std::cout << "\nEXIT CITY.\n";
 
 	auto& sdl = *SDLUtils::instance();
+	setLastPaulPos(fondo->getComponent<Transform>()->getGlobalPos());
 	sdl.soundEffects().at("citytheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
 }

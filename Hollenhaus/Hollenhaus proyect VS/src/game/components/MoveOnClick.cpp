@@ -56,6 +56,7 @@ void MoveOnClick::update()
 	else if (move_) 
 	{
 		Vector2D aux = Vector2D(posX + movement_, myTransform_->getGlobalPos().getY());
+
 		myTransform_->setGlobalPos(aux);
 	}
 
