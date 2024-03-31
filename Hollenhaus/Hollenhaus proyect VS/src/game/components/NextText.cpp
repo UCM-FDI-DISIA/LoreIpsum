@@ -71,11 +71,6 @@ void NextText::callNextNode()
 	}
 }
 
-void NextText::setMoveOnClick(MoveOnClick* moveOnClick)
-{
-	moveOnClick_ = moveOnClick;
-}
-
 void NextText::setDead(bool a)
 {
 	this;
