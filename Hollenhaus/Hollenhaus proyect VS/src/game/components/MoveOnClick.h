@@ -18,9 +18,11 @@ public:
 
 	void OnLeftClickDown();
 
+	bool getDir() { return faceTo_; };
+
 	// registra el collider que creas en la escena de la ciudad
-	void RegisterCollider(BoxCollider *collider)
-	{ 
+	void RegisterCollider(BoxCollider* collider)
+	{
 		myBoxCollider_ = collider;
 	}
 
@@ -31,12 +33,14 @@ private:
 
 	// debe moverse
 	bool move_;
+	// true derecha false izquierda
+	bool faceTo_;
 
 	// posicion del raton en clock para saber cuanto moverse
 	Vector2D mousePos_;
 
 	// posicion inicial del fondo
-	Vector2D myPos_; 
+	Vector2D myPos_;
 
 	// velocidad de movimiento de scroll
 	float scrollVel_;
