@@ -17,6 +17,26 @@ NPC::NPC(int scene)
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 	type = 0;
 	talking = false;
+	_id = 0;
+
+
+	factory = new Factory();
+	factory->SetFactories(
+		static_cast<DialogueFactory*>(new DialogueFactory_V0())
+	);
+
+}
+
+NPC::NPC(int scene, std::string name_)
+{
+	_scene = scene;
+	click = false;
+	myBoxCollider = nullptr;
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
+	type = 0;
+	talking = false;
+	name = name;
 
 
 	factory = new Factory();
@@ -41,6 +61,24 @@ NPC::NPC(int scene, int t)
 		static_cast<DialogueFactory*>(new DialogueFactory_V0())
 	);
 
+}
+
+NPC::NPC(int scene, int t, std::string name_)
+{
+	_scene = scene;
+	click = false;
+	myBoxCollider = nullptr;
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
+	type = t;
+	talking = false;
+	name = name_;
+
+	factory = new Factory();
+	factory->SetFactories(
+		static_cast<DialogueFactory*>(new DialogueFactory_V0())
+	);
+
 
 }
 
@@ -48,8 +86,8 @@ NPC::~NPC() {
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] {OnLeftClickUp(); });
 
-	//delete factory;
-	//factory = nullptr;
+	delete factory;
+	factory = nullptr;
 }
 
 void NPC::initComponent(){
@@ -90,12 +128,16 @@ void NPC::talkTo()
 
 		TuVieja(std::to_string(x));
 
+		JsonData::DialogueData dialogue = sdlutils().dialogues().at(name);
+		int conv = 0;
+		int node = 0;
+
 		// crear dialogo del FACTORY de dialogos
-		factory->createDialogue("El Xungo del Barrio", 0, 0, 
+		factory->createDialogue(dialogue.NPCName(), conv, node,
 								{x,y}, //POS
 								{100,100}, //SIZE (poli: no cambia nada?¿)
 								5, 10, getEntity(), 
-								3, //LAYER
+								3, dialogue.Convo(conv).isAuto(),  //LAYER
 								"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
 								SDL_Color({0, 0, 0, 255}), 
 								150, //wrap length

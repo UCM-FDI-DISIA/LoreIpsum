@@ -102,6 +102,7 @@ void CityState::onEnter()
 	factory->createNPC(0, fondo);
 	factory->createNPC(1, fondo);
 	factory->createNPC(2, fondo);
+	factory->createNPC(3, fondo);
 
 
 	//----Para entrar en la tienda.
@@ -110,18 +111,18 @@ void CityState::onEnter()
 	//----Para empezar la batalla.
 	 //factory->createNPC("Cailtyn", "npc", {0.25f, 0.25f}, {400, 425}, 1, 6, 2, fondo);
 
-	//----Para hablar
-	ecs::entity_t npc4 = Instantiate();
-	npc4->addComponent<Transform>();
-	npc4->addComponent<SpriteRenderer>("NPCNPC");
-	npc4->addComponent<BoxCollider>();
-	npc4->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
-	npc4->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
-	Vector2D npc4Pos(600, 425);
-	npc4->getComponent<Transform>()->setGlobalPos(npc4Pos);
-	npc4->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	npc4->addComponent<NPC>(3, 1);
-	npc4->setLayer(2);
+	////----Para hablar
+	//ecs::entity_t npc4 = Instantiate();
+	//npc4->addComponent<Transform>();
+	//npc4->addComponent<SpriteRenderer>("NPCNPC");
+	//npc4->addComponent<BoxCollider>();
+	//npc4->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
+	//npc4->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
+	//Vector2D npc4Pos(600, 425);
+	//npc4->getComponent<Transform>()->setGlobalPos(npc4Pos);
+	//npc4->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	//npc4->addComponent<NPC>(3, 1, "El Xungo del Barrio");
+	//npc4->setLayer(2);
 
 	// --- Boton para volver al menu principal ---
 	ecs::entity_t exit = Instantiate();
