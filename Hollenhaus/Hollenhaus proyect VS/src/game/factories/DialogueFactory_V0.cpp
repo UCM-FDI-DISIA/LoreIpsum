@@ -27,7 +27,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	dialogue->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
 	//textou
-	dialogue->addComponent<DialogueDestroyer>();
+	dialogue->addComponent<DialogueDestroyer>(parent);
 	dialogue->addComponent<TextComponent>(" ", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	dialogue->addComponent<TypeWriter>(speed);
 	dialogue->addComponent<DialogueReader>(id, convo);

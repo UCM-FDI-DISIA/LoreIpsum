@@ -19,11 +19,14 @@ public:
 	void OnLeftClickUp();
 	void reactToClick(int scene);
 	void talkTo();
+	void stoppedTalking();
+
 private:
 	int _id;
 	int _scene;
 	bool click;
 	int type;
+	bool talking;
 	
 	BoxCollider* myBoxCollider;
 	Factory* factory;
