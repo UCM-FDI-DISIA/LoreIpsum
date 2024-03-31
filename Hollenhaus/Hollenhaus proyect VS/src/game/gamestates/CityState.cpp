@@ -18,6 +18,8 @@ CityState::CityState()
 void CityState::update()
 {
 	GameState::update();
+
+	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(fondo->getComponent<MoveOnClick>()->getDir());
 }
 void CityState::render() const
 {
@@ -87,7 +89,7 @@ void CityState::onEnter()
 	fondo->getComponent<MoveOnClick>()->RegisterCollider(colliderSuelo->getComponent<BoxCollider>());
 
 	// ---- PLAYER ----
-	ecs::entity_t fantasmiko = Instantiate(Vector2D(sdlutils().width() / 2 - 50, sdlutils().height() - 200));
+	fantasmiko = Instantiate(Vector2D(sdlutils().width() / 2 - 50, sdlutils().height() - 200));
 	fantasmiko->addComponent<SpriteRenderer>("fantasma");
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
@@ -148,3 +150,4 @@ void CityState::onExit()
 	sdl.soundEffects().at("citytheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
 }
+

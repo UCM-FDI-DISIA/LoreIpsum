@@ -84,6 +84,7 @@ void MoveOnClick::OnLeftClickDown()
 		{
 			dir_ = -1;
 			distance_ = mousePos_.getX() - halfScreen_;
+			faceTo_ = true;
 		}
 
 		// JUGADOR HACIA LA IZQ, FONDO HACIA LA DER
@@ -91,6 +92,7 @@ void MoveOnClick::OnLeftClickDown()
 		{
 			dir_ = 1;
 			distance_ = halfScreen_ - mousePos_.getX();
+			faceTo_ = false;
 		}
 
 		movement_ = scrollVel_ * dir_;
