@@ -15,17 +15,17 @@ public:
 	static void StartAnimation();
 
 	//ConfirmationPopUp
-	static void ConfirmationPopUp();
+	static void ConfirmationPopUp(ecs::entity_t parent);
 
 	//para llamar a decisionFactory
-	static Factory* factory;
+	Factory* factory;
 
 	/// En funcion del indice, devuelve el callback del efecto
 	///	*** Esto es terrible, quiero que sirva para salir al paso
 	///	y como concepto inicial ***
 
 	static std::function<void()> callEvent(
-		int index, int scene)
+		int index, int scene, ecs::entity_t parent)
 	{
 		switch (index)
 		{
@@ -47,9 +47,9 @@ public:
 
 				};
 		case DialogueEvents::ConfirmMatchPopUp:
-			return []
+			return [parent]
 				{
-					ConfirmationPopUp();
+					ConfirmationPopUp(parent);
 				};
 		default:
 			return nullptr;

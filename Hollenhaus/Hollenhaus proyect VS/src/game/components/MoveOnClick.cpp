@@ -60,8 +60,8 @@ void MoveOnClick::update()
 	}
 
 #if _DEBUG
-	std::cout << "DISTANCE: " << distance_ << " " << move_ << "\n";
-	std::cout << abs(myTransform_->getGlobalPos().getX() - myPos_.getX()) << "\n";
+	//std::cout << "DISTANCE: " << distance_ << " " << move_ << "\n";
+	//std::cout << abs(myTransform_->getGlobalPos().getX() - myPos_.getX()) << "\n";
 #endif
 }
 

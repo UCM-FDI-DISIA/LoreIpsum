@@ -16,6 +16,11 @@ NextText::NextText()
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
+NextText::~NextText()
+{
+
+}
+
 void NextText::initComponent()
 {
 	boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
@@ -45,11 +50,15 @@ void NextText::OnLeftClickUp()
 
 void NextText::reactToClick()
 {
-	if (typeWriter_->ended() && mouseRaycast() == ent_)
-	{
-		TuVieja("Cambio de nodo.");
-		dialogueReader_->NextNode();
+	if (ent_) {
+		if (typeWriter_->ended() && mouseRaycast() == ent_)
+		{
+			TuVieja("ended: ");
+			//TuVieja(typeWriter_->ended());
+			dialogueReader_->NextNode();
+		}
 	}
+	
 }
 
 void NextText::callNextNode()

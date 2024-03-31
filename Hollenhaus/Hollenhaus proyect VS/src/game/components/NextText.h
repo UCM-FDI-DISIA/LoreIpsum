@@ -17,7 +17,7 @@ class NextText : public ComponentUpdate
 {
 public:
 	NextText();
-	~NextText() {}
+	~NextText();
 
 	void initComponent() override;
 	void update() override;
