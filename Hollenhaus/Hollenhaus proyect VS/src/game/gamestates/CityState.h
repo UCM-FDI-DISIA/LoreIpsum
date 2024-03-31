@@ -21,5 +21,7 @@ private:
 	//Cambio a tienda y oficina
 	//Cambio a NPC
 	//Dialogo NPC -> Cambio estado combate
+	ecs::entity_t fondo;
+	ecs::entity_t fantasmiko;
 	Factory* factory;
 };

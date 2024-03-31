@@ -74,6 +74,10 @@ void MainMenuState::onEnter()
 
 void MainMenuState::onExit() {
 	std::cout << "\nEXIT MENU.\n";
+
+	Vector2D globalPos(-1200.0f, 0);
+	setLastPaulPos(globalPos);
+
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
 	sdlutils().soundEffects().at("menutheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();

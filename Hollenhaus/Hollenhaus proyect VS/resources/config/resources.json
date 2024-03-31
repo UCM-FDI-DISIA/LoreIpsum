@@ -26,7 +26,7 @@
         {"id": "block",           "file": "resources/images/ef_block.png"  },
         {"id": "unblockable",     "file": "resources/images/ef_unblockable.png" },
         {"id": "tiendafondo",     "file": "resources/images/provtienda.png" },
-        {"id": "oficinafondo",    "file": "resources/images/provoficina.png"  },
+        {"id": "oficinafondo",    "file": "resources/images/OficinaBG.png"  },
         {"id": "fantasma",        "file": "resources/images/fantasma.png"  },
         {"id": "main_menu_bg",    "file": "resources/images/main_menu.png"  },
         {"id": "boton_nueva_partida", "file": "resources/images/boton_nueva_partida.png"  },
@@ -39,12 +39,21 @@
         {"id": "reverseCard",       "file": "resources/images/card_reverse.png"  },
         {"id": "moneda",       "file": "resources/images/moneda.png"  },
         {"id": "monedaIlu",       "file": "resources/images/monedaIluminada.png"  },
-        {"id": "fondoTienda",       "file": "resources/images/fondoTienda.png"  },
+        {"id": "fondoTienda",       "file": "resources/images/tienda_ph.png"  },
         {"id": "mostrador",       "file": "resources/images/mostradorTienda.png"  },
         {"id": "estanteria",       "file": "resources/images/estanteriaTienda.png"  },
         {"id": "cell",       "file": "resources/images/cardCell.png"  },  
         {"id": "DeckbuildingBG",       "file": "resources/images/DeckbuildingBG.png"  },      
-        {"id": "boton_ph",       "file": "resources/images/botonph.png"  }
+        {"id": "boton_ph",       "file": "resources/images/botonph.png"  },  
+        {"id": "DeckbuildingMesaBG",       "file": "resources/images/DeckBuildingMesaBG.png"  },  
+        {"id": "DeckbuildingCajonBG",       "file": "resources/images/DeckBuildingCajonBG.png"  },
+        {"id": "SaveMazeBut",       "file": "resources/images/boton_guardar_mazo.png"  },
+        {"id": "DownDrawer",       "file": "resources/images/down_drawer.png"  },
+        {"id": "UpDrawer",       "file": "resources/images/up_drawer.png"  },
+        {"id": "TiendaNPC",       "file": "resources/images/tienda_dibujo.png"  },
+        {"id": "CompbateNPC",       "file": "resources/images/juego_dibujo.png"  },
+        {"id": "OficinaNPC",       "file": "resources/images/ofi_dibujo.png"  },
+        {"id": "NPCNPC",       "file": "resources/images/npc_dibujo.png"  }
     ],
     "fonts": [
       {
