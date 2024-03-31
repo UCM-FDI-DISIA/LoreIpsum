@@ -18,12 +18,38 @@ Data::~Data() {
 //------Setters:
 
 // ------ DECKBUILDING ------
+#pragma region DECKBUILDING SETTERS
 //----Mazo:
-void Data::SetNewMaze(std::list<int> newMaze) {
+void Data::SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos) {
+
+	// vacia el anterior
 	EmptyMaze();
+	EmptyMaze_With_pos();
+
+	// guarda iterador al inicio (indice)
+	auto itPos = mazePos.begin();
+
+	// recorre el mazo a guardar
 	for (auto e : newMaze)
 	{
+		// aniade la entidad al mazo del data
 		maze.push_back(e);
+
+		// busca la entidad en el map mazo de pos
+		auto it = maze_with_pos.find(e);
+
+		// si no se encuentra
+		if (it == maze_with_pos.end())
+		{
+			// se inserta id
+			it = maze_with_pos.insert({ e,Vector2D() }).first;
+		}
+
+		// se guarda la pos en su respectivo id
+		(*it).second = (*itPos);
+
+		// se sigue recorriendo (aumenta indice)
+		itPos++;
 	}
 }
 void Data::SubtractCardFromMaze(int id) {
@@ -36,27 +62,36 @@ void Data::AddCardToDrawer(int id) {
 
 void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {
 
+	// hacemos array auxiliar 
 	std::array<int, CARDS_IN_GAME> drawerAux;
+
+	// lo inicializamos vacio
 	for (int i = 0; i < CARDS_IN_GAME; i++)
 	{
 		drawerAux[i] = -1;
 	}
 
+	// recorre el drawer a guardar
 	for (int i = 0; i < newDrawer.size(); i++)
 	{
+		// si la carta ya estaba en el drawer
 		if (newDrawer[i] == drawer[i]) {
+
+			// se guarda en el aux en la pos correspondiente a su id
 			drawerAux[i] = newDrawer[i];
 		}
 	}
 
+	// se vacia
 	EmptyDrawer();
 
+	// se guardan las cartas que ya estuvieran
 	for (int i = 0; i < drawerAux.size(); i++)
 	{
 		drawer[i] = drawerAux[i];
 	}
 
-
+	// se guardan las cartas nuevas
 	for (int i = 0; i < newDrawer.size(); i++)
 	{
 		if (newDrawer[i] != drawer[i]) {
@@ -68,8 +103,10 @@ void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {
 void Data::SubtractCardFromDrawer(int id) {
 	drawer[id] = -1;
 }
+#pragma endregion
 
 // ------ FLUJO ------
+#pragma region FLUJO SETTERS
 //----NPCs:
 void Data::AddDefeatedNPC(int id) {
 	defeatedNPCS.push_back(id);
@@ -177,14 +214,23 @@ void Data::Write() {
 	file << currentCase << "\n";
 	file << currentSouls << "\n";
 
+	file << "Mazo_y_posiciones" << "\n";
+	//Guarda el mazo y posiciones en la pizarra
 	file << maze.size() << "\n";
-	for (const auto it : maze) {
-		file << it << "\n";
+	for (const auto it : maze_with_pos) {
+		file << it.first << "\n";
+		if (it.first != -1)
+		{
+			file << it.second.getX() << "\n" << it.second.getY() << "\n";
+		}
 	}
+	file << "Drawer" << "\n";
+	//Guarda las cartas desbloqueadas
 	file << CARDS_IN_GAME << "\n";
 	for (int i = 0; i < CARDS_IN_GAME; i++) {
 		file << drawer[i] << "\n";
 	}
+	//Guarda los npcs derrotados
 	file << defeatedNPCS.size() << "\n";
 	for (const auto it : defeatedNPCS) {
 		file << it << "\n";
@@ -205,14 +251,42 @@ void Data::Read() {
 
 	int number, iterations;
 
-	file >> currentMoney >> currentCase >> currentSouls >> iterations;
+	file >> currentMoney >> currentCase >> currentSouls;
+	std::string falsedades;
+	file >> falsedades;
 
+	//file >> iterations;
+	// Lee las posiciones del mazo en la pizarra
+	file >> iterations;
 	for (int i = 0; i < iterations; i++)
 	{
 		file >> number;
 		maze.push_back(number);
+
+		if (number != -1)
+		{
+			// lo busco en el map
+			auto it = maze_with_pos.find(number);
+
+			// si no esta en el map insertamos la key
+			if (it == maze_with_pos.end())
+			{
+				it = maze_with_pos.insert({ number,Vector2D() }).first;
+			}
+
+			// valores x e y de la carta en la pizarra
+			int x, y;
+
+			// cojo el valor 
+			file >> x >> y;
+
+			// guardamos el valor en la clave
+			(*it).second = Vector2D(x, y);
+		}
 	}
 
+	file >> falsedades;
+	// Lee cartas desbloqueadas
 	file >> iterations;
 	for (int i = 0; i < iterations; i++)
 	{
@@ -220,6 +294,7 @@ void Data::Read() {
 		drawer[i] = number;
 	}
 
+	// Lee los npcs derrotados
 	file >> iterations;
 	for (int i = 0; i < iterations; i++)
 	{
@@ -256,9 +331,16 @@ void Data::EmptyDrawer() {
 void Data::EmptyNPCS() {
 	defeatedNPCS.clear();
 }
+
 void Data::EmptyShopCards() {
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
 		shopCards[i] = -1;
 	}
 }
+
+void Data::EmptyMaze_With_pos()
+{
+	maze_with_pos.clear();
+}
+#pragma endregion

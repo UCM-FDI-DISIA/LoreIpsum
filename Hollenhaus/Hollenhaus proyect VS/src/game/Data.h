@@ -2,7 +2,8 @@
 #include <list>
 #include <array>
 
-const int CARDS_IN_GAME = 50,// Cantidad de cartas en el juego
+// ---- DECKBUILDING ----
+const int CARDS_IN_GAME = 50, // Cantidad de cartas en el juego
 MIN_CARDS_MAZE = 4, // Minimo de cartas en el mazo
 MAX_CARDS_MAZE = 6, // Maximo de cartas en el mazo
 // Cantidad de cartas de la tienda. Cambiar en shopComponent tambien.
@@ -12,6 +13,13 @@ CARDS_IN_SHOP = 4;
 class Data
 {
 private:
+	// ---- DECKBUILDING ----
+	std::array<int, CARDS_IN_GAME> drawer; // Id de las cartas desbloqueadas
+	std::list<int> maze; // Id de las cartas del mazo
+	
+	std::unordered_map<int, Vector2D> maze_with_pos;
+
+	// ---- FLUJO ----
 	int currentMoney = 0,
 		currentCase = 0,
 		currentSouls = 0,
@@ -25,6 +33,9 @@ private:
 	std::list<int> defeatedNPCS;
 	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
+
+	// True si la ultima partida ha sido ganado el jugador
+	bool playerWon; 
 
 	enum WINNER {
 		NONE,
@@ -40,11 +51,11 @@ public:
 	Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def);
 	~Data();
 
-	//------Setters:
-
-	// ------ DECKBUILDING ------
-	//----Mazo:
-	void SetNewMaze(std::list<int> newMaze);
+	// ---- Setters ----
+	#pragma region SETTERS
+	// -- DECKBUILDING --
+	// Mazo:
+	void SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos);
 	void SubtractCardFromMaze(int id);
 	//----Cajon:
 	void AddCardToDrawer(int id);
@@ -65,12 +76,13 @@ public:
 	//----Mete una carta al array de cartas de la tienda. Booleano pues por si acaso.
 	bool setShopCard(int id);
 
-	//------Getters:
 
-	// ------ DECKBUILDING ------
-	//----Mazo:
-	const std::list<int> GetMaze() { return maze; }
-	//----Cajon:
+	// ---- Getters ----
+	#pragma region GETTERS
+	// -- DECKBUILDING --
+	// Mazo:
+	const std::unordered_map<int, Vector2D> GetMaze() { return maze_with_pos; }
+	// Cajon:
 	std::array<int, CARDS_IN_GAME> GetDrawer() { return drawer; }
 	void SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer);
 
@@ -120,4 +132,5 @@ public:
 	void EmptyNPCS();
 	//----Vaciado del array de cartas de la tienda. Lo pone todo a (-1 ,-1, -1, -1).
 	void EmptyShopCards();
+	void EmptyMaze_With_pos();
 };

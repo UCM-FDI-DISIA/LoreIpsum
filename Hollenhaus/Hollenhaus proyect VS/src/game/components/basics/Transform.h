@@ -6,9 +6,9 @@ class Transform :
 {
 public:
     Transform()
-	: parent_(), isChild_(false), globalScale_(1, 1), relativeScale_(1,1),
+	: parent_(nullptr), isChild_(false), globalScale_(1, 1), relativeScale_(1,1),
 	  globalAngle_(0), relativeAngle_(0), layerToIncrease(1) {};
-    ~Transform() {};
+    ~Transform(){};
 
     void update() override;
 
@@ -16,13 +16,16 @@ public:
 
     void setLayerIncrementalInHierarchy(int layer);
 
-    // A�ade un padre
+    // Aniade un padre
     //
     void addParent(Transform* p);
 
     // Quitar un padre
     //
     void removeParent();
+
+    // Matar hijos
+    void killChilds();
 
     std::list<Transform*> getChildren();
 
@@ -55,6 +58,7 @@ public:
     void setGlobalAngle(float);
     void setGlobalScale(Vector2D);
     void setGlobalScale(float x, float y);
+    void setRelativePos(float x, float y);
 
     Transform* getParent();
     

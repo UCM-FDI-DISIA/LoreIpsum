@@ -14,7 +14,7 @@
 
 
 ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
-                                         std::vector<JsonData::CardEffect>& effects)
+                                         std::vector<JsonData::CardEffect>& effects,bool bocaAbajo)
 {
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
 
@@ -176,7 +176,7 @@ ecs::entity_t CardFactory_v0::createHand()
 			card.sprite(),
 			card.unblockable(),
 			card.effects()
-		)->setLayer(1);
+		,true)->setLayer(1);
 	}
 
 

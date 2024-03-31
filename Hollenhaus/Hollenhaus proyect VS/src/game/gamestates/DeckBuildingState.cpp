@@ -146,7 +146,8 @@ void DeckBuildingState::onEnter()
 	pizarra_ = pizarra->getComponent<PizarraManager>();
 
 	// ---- CAJON ----
-	Vector2D cajonPos(450, 420);
+	#pragma region CAJON
+	Vector2D cajonPos(375, 400);
 	ecs::entity_t cajon = Instantiate(cajonPos, ecs::grp::DROPZONE);
 	cajon->addComponent<Transform>();
 	cajon->addComponent<SpriteRenderer>("black_box");
@@ -155,7 +156,7 @@ void DeckBuildingState::onEnter()
 	cajon->addComponent<DropZone>();
 	cajon->getComponent<DropZone>()->setCallBack([this](Card* card) { moveToDrawer(card); });
 	cajon->getComponent<Transform>()->setGlobalPos(cajonPos);
-	cajon->getComponent<Transform>()->setGlobalScale(3, 1.5f);
+	cajon->getComponent<Transform>()->setGlobalScale(3.7f, 1.5f);
 	cajon->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	drawer_ = cajon->getComponent<DrawerManager>();
 
@@ -183,15 +184,17 @@ void DeckBuildingState::moveToPizarra(Card* card)
 {
 	//TuVieja("HOSTIA TIO QUE NO LO HE ENCHUFAO - to pizarra");
 	drawer_->removeCard(card->getID());
-	pizarra_->addCard(card->getID());
-
+	// se aniade a la pizarra
+	pizarra_->addCard(card->getID(), card->getEntity()->getComponent<Transform>());
 }
 
 void DeckBuildingState::moveToDrawer(Card* card)
 {
 	//TuVieja("HOSTIA TIO QUE NO LO HE ENCHUFAO - to cajon");
 	pizarra_->removeCard(card->getID());
-	drawer_->addCard(card->getID());
+
+	// se aniade al cajon
+	drawer_->addCard(card->getID(), card->getEntity());
 }
 
 ecs::entity_t DeckBuildingState::createCard(int id, Vector2D pos)
