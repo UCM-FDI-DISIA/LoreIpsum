@@ -36,7 +36,11 @@ void GameState::render() const
 void GameState::setWinnerOnData(int w)
 {
     data->setWinner(w);
+}
 
+void GameState::setLastPaulPos(Vector2D paulPos)
+{
+    data->SetCityPos(paulPos);
 }
 
 // para acceder al drawer del data desde el estado
@@ -49,6 +53,11 @@ std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 std::unordered_map<int,Vector2D> GameState::getMaze()
 {
     return data->GetMaze();
+}
+
+Vector2D GameState::getLastPaulPos()
+{
+    return data->getLastPaulPos();
 }
 
 // para settear el mazo del data desde el estado
