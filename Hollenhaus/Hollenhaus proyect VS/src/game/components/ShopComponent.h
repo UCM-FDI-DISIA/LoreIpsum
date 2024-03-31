@@ -41,6 +41,10 @@ public:
 	int calculatePrize(ecs::entity_t card);
 	//------Dado un id de una carta, devuelve su poscion en shopCards, shopCardsPrize y shopCardsPositions porque comparten indexacion.
 	int searchIndexById(int id);
+	//------Settea los textos de dinero y precio de las cartas.
+	void setTexts();
+	//------Actualiza los textos de dinero y precio de las cartas.
+	void updateTexts();
 private:
 	//----Guarda las CARDS_IN_SHOP cartas de la tienda.
 	int* shopCards;
@@ -55,5 +59,15 @@ private:
 	//----Dinero del jugador:
 	int money;
 	//------------------------------lo del precio de las cartas deberia de estar en el json. Todas en el mismo json.
+	//----Texto que muestra el dinero.
+	ecs::entity_t moneyText;
+	//----Texto que muestra el precio de la carta 0.
+	ecs::entity_t cardPrizeText0;
+	//----Texto que muestra el precio de la carta 1.
+	ecs::entity_t cardPrizeText1;
+	//----Texto que muestra el precio de la carta 2.
+	ecs::entity_t cardPrizeText2;
+	//----Texto que muestra el precio de la carta 3.
+	ecs::entity_t cardPrizeText3;
 };
 
