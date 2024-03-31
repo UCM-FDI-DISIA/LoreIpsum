@@ -81,8 +81,6 @@
     <ClCompile Include="src\game\factories\DecisionFactory.cpp" />
     <ClCompile Include="src\game\factories\DecisionFactory_V0.cpp" />
     <ClCompile Include="src\game\factories\DialogueFactory.cpp" />
-    <ClCompile Include="src\game\factories\DeckBuildingFactory.cpp" />
-    <ClCompile Include="src\game\factories\DeckBuildingFactory_v0.cpp" />
     <ClCompile Include="src\game\factories\DialogueFactory_V0.cpp" />
     <ClCompile Include="src\game\factories\Factory.cpp" />
     <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp" />

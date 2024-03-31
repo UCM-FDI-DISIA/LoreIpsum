@@ -605,6 +605,12 @@
     <ClInclude Include="src\game\components\managers\IA_manager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\factories\DeckBuildingFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
