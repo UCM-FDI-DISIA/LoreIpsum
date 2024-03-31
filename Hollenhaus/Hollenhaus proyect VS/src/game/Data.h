@@ -16,6 +16,10 @@ private:
 	
 	std::unordered_map<int, Vector2D> maze_with_pos;
 
+	// ---- MOVIMIENTO ----
+	// ultima pos de paul en la ciudad
+	Vector2D lastPaulPos;
+
 	// ---- FLUJO ----
 	int currentMoney = 0,
 		currentCase = 0,
@@ -45,11 +49,15 @@ public:
 	// -- DECKBUILDING --
 	// Mazo:
 	void SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos);
+	void SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer);
 	void SubtractCardFromMaze(int id);
 
 	//Cajon:
 	void AddCardToDrawer(int id);
 	void SubtractCardFromDrawer(int id);
+
+	// -- MOVIMIENTO --
+	void SetCityPos(Vector2D paulPos);
 
 	// -- FLUJO --
 	// NPCs:
@@ -76,7 +84,9 @@ public:
 	const std::unordered_map<int, Vector2D> GetMaze() { return maze_with_pos; }
 	// Cajon:
 	std::array<int, CARDS_IN_GAME> GetDrawer() { return drawer; }
-	void SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer);
+
+	// -- MOVIMIENTO --
+	Vector2D getLastPaulPos() { return lastPaulPos; }
 
 	// -- FLUJO --
 	// NPCs:

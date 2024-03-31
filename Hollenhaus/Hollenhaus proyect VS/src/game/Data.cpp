@@ -104,6 +104,12 @@ void Data::SubtractCardFromDrawer(int id) {
 }
 #pragma endregion
 
+// ------ MOVIMIENTO ------
+void Data::SetCityPos(Vector2D paulPos)
+{
+	lastPaulPos = paulPos;
+}
+
 // ------ FLUJO ------
 #pragma region FLUJO SETTERS
 //----NPCs:
