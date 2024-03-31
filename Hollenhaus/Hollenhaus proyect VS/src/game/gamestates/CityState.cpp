@@ -43,10 +43,14 @@ void CityState::onEnter()
 	cityText->addComponent<TextComponent>("CIUDAD", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, Text::CenterCenter, Text::Center);
 	cityText->setLayer(1);
 
-	//-----Ciudad de fondo:
+	// ---- FONDO CIUDAD ----
 	ecs::entity_t fondo = Instantiate();
+
+	// le aniade los componentes
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
+	fondo->addComponent<MoveOnClick>(2);
+
 	fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0,255,255,255);
 	fondo->addComponent<BoxCollider>();
 	//tamanyo de ciudadcompleta.png: 5754 x 1212
@@ -55,12 +59,33 @@ void CityState::onEnter()
 
 	Vector2D globalPos(-1200.0f, 0); //Posici�n inicial de la ciudad para que se vea por el centro.
 	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
-	//fondo->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	fondo->addComponent<MoveOnClick>();
-	//fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f);
+
+	// lo pone en la capa correcta
 	fondo->setLayer(0);
 
-	//------Personaje
+	// ---- SUELO ----
+	// instancia suelo
+	ecs::entity_t colliderSuelo = Instantiate();
+
+	// aniade los componentes
+	colliderSuelo->addComponent<Transform>();
+	colliderSuelo->addComponent<BoxCollider>();
+
+	// tamanio del collider del suelo
+	// x: el ancho de la imagen de fondo, y: alto del suelo
+	colliderSuelo->getComponent<BoxCollider>()->setSize(Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), 120));
+
+	// lo emparenta con el fondo
+	colliderSuelo->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
+
+	// posicion del collider del suelo
+	Vector2D vectorSueloPos(0, 520);
+	colliderSuelo->getComponent<Transform>()->getRelativePos().set(vectorSueloPos);
+
+	// registra el collider del suelo
+	fondo->getComponent<MoveOnClick>()->RegisterCollider(colliderSuelo->getComponent<BoxCollider>());
+
+	// ---- PLAYER ----
 	ecs::entity_t fantasmiko = Instantiate(Vector2D(sdlutils().width()/2 - 50, sdlutils().height() - 200));
 	fantasmiko->addComponent<SpriteRenderer>("fantasma");
 	fantasmiko->addComponent<BoxCollider>();
@@ -95,7 +120,7 @@ void CityState::onEnter()
 	npc4->addComponent<NPC>(3, 1);
 	npc4->setLayer(2);
 
-	//------Boton para volver al menu principal:
+	// --- Boton para volver al menu principal ---
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
 	exit->addComponent<SpriteRenderer>("boton_flecha");
@@ -106,7 +131,7 @@ void CityState::onEnter()
 	exit->addComponent<NPC>(0); // Lleva al menu (0).
 	exit->setLayer(2);
 
-
+	// SDLUTILS
 	// referencia a sdlutils
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("citytheme").play(-1);
