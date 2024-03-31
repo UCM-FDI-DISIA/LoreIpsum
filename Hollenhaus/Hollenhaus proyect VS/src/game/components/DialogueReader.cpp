@@ -5,6 +5,7 @@
 #include "DialogueEventCollection.h"
 #include "DialogueDestroyer.h"
 #include "../Entity.h"
+#include "../components/NextText.h"
 
 DialogueReader::DialogueReader(std::string owner, int convo, int firstNode)
 {
@@ -31,6 +32,7 @@ void DialogueReader::NextNode()
 	exeEvents(convo_->Node(actualNode_).NodeEventsFinish());
 	actualNode_++;
 	if (actualNode_ >= convo_->NodesVector().size()) {
+		ent_->getComponent<NextText>()->setDead(true);
 		dialogueDestroyer_->destroyDialogue();
 		return;
 	}

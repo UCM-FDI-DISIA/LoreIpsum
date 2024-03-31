@@ -27,9 +27,12 @@ public:
 	void reactToClick();
 	void callNextNode();
 	void setMoveOnClick(MoveOnClick* moveOnClick);
+	void setDead(bool a);
+	bool isDead() { return dead; }
 
 private:
 	bool click;
+	bool dead;
 
 	TypeWriter* typeWriter_; //para reiniciarlo cuando se cambie de nodo
 	DialogueReader* dialogueReader_;
