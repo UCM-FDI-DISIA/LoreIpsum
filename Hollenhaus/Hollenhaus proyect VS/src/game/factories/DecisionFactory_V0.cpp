@@ -6,7 +6,7 @@
 void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer)
 {
 	//tamanyo de los cuadros de texto
-	Vector2D scaleBox = Vector2D(2, 2);
+	Vector2D scaleBox = Vector2D(1, 0.7);
 
 	// ----------ENTIDAD ACEPTAR COMBATE-----------
 	ecs::entity_t accept = Instantiate();
@@ -21,7 +21,7 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	accept->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
 	accept->addComponent<TextComponent>("Si", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
-
+	accept->setLayer(layer);
 
 	// ----------ENTIDAD RECHAZAR COMBATE-----------
 	ecs::entity_t deny = Instantiate();
@@ -33,11 +33,15 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	//tamanyo de el cuadro de texto
 	deny->getComponent<Transform>()->getRelativeScale().set(scaleBox.getX(), scaleBox.getY()); //escala del whiteRect
 
-	deny->getComponent<Transform>()->setGlobalPos(pos); //aqui pos tiene q ser + en la x 
+	//LUGAR
+	Vector2D boxOffset = pos + Vector2D(130, 0);
+	
+	deny->getComponent<Transform>()->setGlobalPos(boxOffset);
+	deny->getComponent<Transform>()->getGlobalPos().setX(100);
 	deny->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
-	accept->addComponent<TextComponent>("Byebye", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
-
+	deny->addComponent<TextComponent>("Byebye", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
+	deny->setLayer(layer);
 }
 
 void DecisionFactory_V0::setTextValues(std::string fid, SDL_Color c, Uint32 wl, Text::BoxPivotPoint bpp, Text::TextAlignment ta)

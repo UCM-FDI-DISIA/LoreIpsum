@@ -11,13 +11,13 @@
               "text": "Mi campeon favorito",
               "eventStart": 0,
               "eventFinish": 0,
-		"events": [
-		{ 
-		  "timing": 1,
-		  "type": 0,
-		  "scene": 3
-		}
-		]
+		          "events": [
+		          { 
+		            "timing": 1,
+		            "type": 3,
+		            "scene": 3
+		          }
+		          ]
             },
             {
               "nodeID": "1",
@@ -40,8 +40,13 @@
               "text": "No tendra mucha defensa",
               "eventStart": 0,
               "eventFinish": 0,
-		"events": [
-		]
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 0,
+                  "scene": 0
+                }
+              ]
             },
             {
               "nodeID": "4",

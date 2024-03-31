@@ -20,15 +20,19 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent) //poli
 	factory->SetFactories(
 		static_cast<DecisionFactory*>(new DecisionFactory_V0())
 	);
-	factory->createDecision({ 0,0 }, //pos
-		{ 100,100 }, //size
-		parent, //parent
-		4, //layer
-		"8bit_size_12", //fontId
-		SDL_Color({ 0, 0, 0, 255 }), //color del txt
-		15, //wraplength
-		Text::BoxPivotPoint::LeftTop,
-		Text::TextAlignment::Center);
+
+	float x = parent->getComponent<Transform>()->getGlobalPos().getX();
+	float y = parent->getComponent<Transform>()->getGlobalPos().getY() + 100;
+
+	factory->createDecision({ x,y }, //pos
+							{ 0,0 }, //size
+							parent, //parent
+							4, //layer
+							"8bit_size_24", //fontId
+							SDL_Color({ 0, 0, 0, 255 }), //color del txt
+							100, //wraplength
+							Text::BoxPivotPoint::LeftTop,
+							Text::TextAlignment::Center);
 
 	delete factory;
 	factory = nullptr;
