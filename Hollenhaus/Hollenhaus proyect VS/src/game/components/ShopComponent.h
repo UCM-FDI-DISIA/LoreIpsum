@@ -2,8 +2,10 @@
 
 #include <list>
 
-// Cantidad de cartas de la tienda.
-const int CARDS_IN_SHOP = 4;
+
+const int CARDS_IN_SHOP = 4; // Cantidad de cartas de la tienda.
+const int COST_PER_COST = 100; // Precio que suma el coste de la carta al precio total.
+const int COST_PER_EFFECTS = 100; // Precio que suma cada efecto al precio total. Se multiplica este numero por numero de efectos.
 
 class Card;
 class Button;
@@ -37,7 +39,7 @@ public:
 	bool confirmPurchase();
 	//------Dada una carta calcula su precio según su coste y modificadores.
 	int calculatePrize(ecs::entity_t card);
-	//------
+	//------Dado un id de una carta, devuelve su poscion en shopCards, shopCardsPrize y shopCardsPositions porque comparten indexacion.
 	int searchIndexById(int id);
 private:
 	//----Guarda las CARDS_IN_SHOP cartas de la tienda.

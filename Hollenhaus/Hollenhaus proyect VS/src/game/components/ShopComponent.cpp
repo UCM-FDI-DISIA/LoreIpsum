@@ -10,8 +10,7 @@
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
 shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(440, 135),Vector2D(550, 280) ,Vector2D(440, 280) ,Vector2D(550, 135) }),
-shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0}),
-money(500)
+shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
 {}
 
 ShopComponent::~ShopComponent()
@@ -84,7 +83,6 @@ void ShopComponent::showCards() {
 
 void ShopComponent::buyCard()
 {
-
 	//------Esto para buscar el boton que ha sido pulsado para acceder a la carta de ese boton.
 	Button* buttonClicked = nullptr;
 	for (auto b : buttons) // Recorremos la lista de botones.
@@ -108,8 +106,8 @@ void ShopComponent::buyCard()
 			if (card != nullptr)
 			{
 				GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al cajon.
-				money -= shopCardsPrize[index];
-				GameStateMachine::instance()->getCurrentState()->changeMoney(shopCardsPrize[index]); // Restamos el dinero.
+				money -= shopCardsPrize[index]; // Restamos el dinero.
+				GameStateMachine::instance()->getCurrentState()->changeMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
 				showPrizes(); // Para que se actualicen los precios.
 			}
 		}
@@ -122,16 +120,15 @@ void ShopComponent::showPrizes()
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
 		ecs::entity_t shopText = Instantiate(Vector2D(shopCardsPositions[i].getX() + 30, shopCardsPositions[i].getY() + 40));
-		if (!cardIsBought(i))
+		if (!cardIsBought(i)) // Sino esta vendida aparece el precio.
 		{
 			txt = std::to_string(shopCardsPrize[i]);
 		}
-		else 
+		else // Sino, pone que esta vendida.
 		{
 			txt = "vendida";
 		}
-		shopText->addComponent<TextComponent>(txt, "8bit_40pt", SDL_Color({ 255, 0, 0, 255 }), 80,
-			Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		shopText->addComponent<TextComponent>(txt, "8bit_40pt", SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 		shopText->setLayer(6);
 	}
 }
@@ -139,8 +136,8 @@ void ShopComponent::showPrizes()
 int ShopComponent::calculatePrize(ecs::entity_t card)
 {
 	int prize = 0;
-	prize += (card->getComponent<Card>()->getCost() * 100);
-	prize += (card->getComponent<Card>()->getEffectSize() * 100);
+	prize += (card->getComponent<Card>()->getCost() * COST_PER_COST);
+	prize += (card->getComponent<Card>()->getEffectSize() * COST_PER_EFFECTS);
 	return prize;
 }
 
