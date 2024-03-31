@@ -120,7 +120,7 @@ void CityState::onEnter()
 	Vector2D npc4Pos(600, 425);
 	npc4->getComponent<Transform>()->setGlobalPos(npc4Pos);
 	npc4->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	npc4->addComponent<NPC>(3, 1);
+	npc4->addComponent<NPC>(3, 1, "El Xungo del Barrio");
 	npc4->setLayer(2);
 
 	// --- Boton para volver al menu principal ---

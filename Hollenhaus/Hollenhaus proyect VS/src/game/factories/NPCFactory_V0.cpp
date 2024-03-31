@@ -14,7 +14,7 @@ ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t par
 	Vector2D pos{ GameStateMachine::instance()->getCurrentState()->getLastPaulPos().getX() + info.getPos().getX(), info.getPos().getY()};
 	npc->getComponent<Transform>()->setGlobalPos(pos);
 	npc->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	npc->addComponent<NPC>(info.getScene());
+	npc->addComponent<NPC>(info.getScene(), info.getName());
 	npc->setLayer(info.getLayer());
 
     return npc;

@@ -176,33 +176,37 @@ namespace JsonData
 
 	struct ConvoData {
 		ConvoData();
-		ConvoData(const int convoID, const std::vector<NodeData>& nodes) :
-			convoID_(convoID),
+		ConvoData(const int convoID, const bool autoc, const std::vector<NodeData>& nodes) :
+			convoID_(convoID), auto_(autoc),
 			nodes_(nodes)
 		{};
 
 		int ConvoID() { return convoID_; }
 		std::vector<NodeData>& NodesVector() { return nodes_; }
 		NodeData& Node(int n) { return nodes_[n]; }
+		bool isAuto() { return auto_; }
 
 	private:
 		int convoID_;
+		bool auto_;
 		std::vector<NodeData> nodes_;
 	};
 
 	// Cada instancia de DialogueData es un owner con todas sus conversaciones y nodos correspondientes a cada conversacion
 	struct DialogueData {
 		DialogueData();
-		DialogueData(const std::string& NPCName, const std::vector<ConvoData>& convos) :
-			NPCName_(NPCName),
+		DialogueData(const std::string& NPCName, int id, const std::vector<ConvoData>& convos) :
+			NPCName_(NPCName), NPCID_(id),
 			convos_(convos)
 		{};
 
 		std::string& NPCName() { return NPCName_; }
 		std::vector<ConvoData>& ConvosVector() { return convos_; }
 		ConvoData& Convo(int n) { return convos_[n]; }
+		int ID() { return NPCID_; }
 	private:
 		std::string NPCName_;
+		int NPCID_;
 		std::vector<ConvoData> convos_;
 
 	};
