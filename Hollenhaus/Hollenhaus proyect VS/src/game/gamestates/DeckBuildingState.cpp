@@ -108,14 +108,14 @@ void DeckBuildingState::onEnter()
 	exit->setLayer(2);
 
 	// ---- Confirmar Mazo:
-	Vector2D botScale(.25f, .25f);
+	Vector2D botMazScale(.3f, .3f);
 	ecs::entity_t Confirm = Instantiate();
 	Confirm->addComponent<Transform>();
-	Confirm->addComponent<SpriteRenderer>("boton_ph");
+	Confirm->addComponent<SpriteRenderer>("SaveMazeBut");
 	Confirm->addComponent<BoxCollider>();
 	Vector2D ConfirmPos(260, 330);
 	Confirm->getComponent<Transform>()->setGlobalPos(ConfirmPos);
-	Confirm->getComponent<Transform>()->setGlobalScale(botScale);
+	Confirm->getComponent<Transform>()->setGlobalScale(botMazScale);
 	Confirm->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	Confirm->addComponent<Button>();
 	Confirm->getComponent<Button>()->connectToButton([this]() { pizarra_->saveMaze(); });
@@ -123,9 +123,10 @@ void DeckBuildingState::onEnter()
 	Confirm->setLayer(2);
 
 	// ---- Pasar cajon alante:
+	Vector2D botScale(.25f, .25f);
 	ecs::entity_t botPalante = Instantiate();
 	botPalante->addComponent<Transform>();
-	botPalante->addComponent<SpriteRenderer>("boton_ph");
+	botPalante->addComponent<SpriteRenderer>("UpDrawer");
 	botPalante->addComponent<BoxCollider>();
 	Vector2D botPalantePos(750, 420);
 	botPalante->getComponent<Transform>()->setGlobalPos(botPalantePos);
@@ -138,7 +139,7 @@ void DeckBuildingState::onEnter()
 	// ---- Pasar cajon atras:
 	ecs::entity_t botPatras = Instantiate();
 	botPatras->addComponent<Transform>();
-	botPatras->addComponent<SpriteRenderer>("boton_ph");
+	botPatras->addComponent<SpriteRenderer>("DownDrawer");
 	botPatras->addComponent<BoxCollider>();
 	Vector2D botPatrasPos(750, 500);
 	botPatras->getComponent<Transform>()->setGlobalPos(botPatrasPos);

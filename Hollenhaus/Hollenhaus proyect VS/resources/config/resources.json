@@ -46,7 +46,10 @@
         {"id": "DeckbuildingBG",       "file": "resources/images/DeckbuildingBG.png"  },      
         {"id": "boton_ph",       "file": "resources/images/botonph.png"  },  
         {"id": "DeckbuildingMesaBG",       "file": "resources/images/DeckBuildingMesaBG.png"  },  
-        {"id": "DeckbuildingCajonBG",       "file": "resources/images/DeckBuildingCajonBG.png"  }
+        {"id": "DeckbuildingCajonBG",       "file": "resources/images/DeckBuildingCajonBG.png"  },
+        {"id": "SaveMazeBut",       "file": "resources/images/boton_guardar_mazo.png"  },
+        {"id": "DownDrawer",       "file": "resources/images/down_drawer.png"  },
+        {"id": "UpDrawer",       "file": "resources/images/up_drawer.png"  }
     ],
     "fonts": [
       {
