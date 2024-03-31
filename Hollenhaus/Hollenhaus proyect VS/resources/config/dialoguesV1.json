@@ -2,7 +2,6 @@
   "owner": [
     {
       "NPCName": "El Xungo del Barrio",
-      "NPCID": 0,
       "convo": [
         {
           "convoID": "0",
@@ -86,7 +85,6 @@
     },
     {
       "NPCName": "Javivu24",
-      "NPCID": 2,
       "convo": [
         {
           "convoID": "0",

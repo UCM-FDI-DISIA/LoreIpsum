@@ -195,8 +195,8 @@ namespace JsonData
 	// Cada instancia de DialogueData es un owner con todas sus conversaciones y nodos correspondientes a cada conversacion
 	struct DialogueData {
 		DialogueData();
-		DialogueData(const std::string& NPCName, int id, const std::vector<ConvoData>& convos) :
-			NPCName_(NPCName), NPCID_(id),
+		DialogueData(const std::string& NPCName, const std::vector<ConvoData>& convos) :
+			NPCName_(NPCName),
 			convos_(convos)
 		{};
 

@@ -2,7 +2,7 @@
     "npcs":[
         {
             "npcID": "0",
-            "name": "El Xungo del Barrio",
+            "name": "Willirex",
             "sprite": "OficinaNPC",
             "scaleX": 0.3,
             "scaleY": 0.3,
@@ -20,7 +20,7 @@
             "scaleY": 0.3,
             "posX": 1700,
             "posY": 360,
-            "type": 1,
+            "type": 0,
             "scene": 3,
             "layer": 1
         },
@@ -32,9 +32,21 @@
             "scaleY": 0.3,
             "posX": 1300,
             "posY": 360,
-            "type": 1,
+            "type": 0,
             "scene": 6,
             "layer": 1
+        },
+ 	{
+            "npcID": "3",
+            "name": "El Xungo del Barrio",
+            "sprite": "NPCNPC",
+            "scaleX": 0.25,
+            "scaleY": 0.25,
+            "posX": 1600,
+            "posY": 425,
+            "type": 1,
+            "scene": 3,
+            "layer": 2
         }
     ]
 
