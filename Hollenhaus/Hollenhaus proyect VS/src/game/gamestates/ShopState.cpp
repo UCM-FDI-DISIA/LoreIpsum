@@ -87,7 +87,7 @@ void ShopState::onEnter()
 	ecs::entity_t coin1 = Instantiate();
 	coin1->addComponent<Transform>();
 	coin1->addComponent<SpriteRenderer>("moneda");
-	Vector2D coin1Pos(400, 400);
+	Vector2D coin1Pos(400, 500);
 	coin1->getComponent<Transform>()->setGlobalPos(coin1Pos);
 	coin1->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
 	//coin1->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
@@ -97,7 +97,7 @@ void ShopState::onEnter()
 	ecs::entity_t coin2 = Instantiate();
 	coin2->addComponent<Transform>();
 	coin2->addComponent<SpriteRenderer>("moneda");
-	Vector2D coin2Pos(420, 460);
+	Vector2D coin2Pos(420, 540);
 	coin2->getComponent<Transform>()->setGlobalPos(coin2Pos);
 	coin2->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
 	//coin2->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
@@ -107,7 +107,7 @@ void ShopState::onEnter()
 	ecs::entity_t coin3 = Instantiate();
 	coin3->addComponent<Transform>();
 	coin3->addComponent<SpriteRenderer>("moneda");
-	Vector2D coin3Pos(380, 420);
+	Vector2D coin3Pos(380, 525);
 	coin3->getComponent<Transform>()->setGlobalPos(coin3Pos);
 	coin3->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
 	//coin3->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
@@ -117,7 +117,7 @@ void ShopState::onEnter()
 	ecs::entity_t coin4 = Instantiate();
 	coin4->addComponent<Transform>();
 	coin4->addComponent<SpriteRenderer>("moneda");
-	Vector2D coin4Pos(480, 420);
+	Vector2D coin4Pos(480, 500);
 	coin4->getComponent<Transform>()->setGlobalPos(coin4Pos);
 	coin4->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
 	//coin4->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
@@ -127,7 +127,7 @@ void ShopState::onEnter()
 	ecs::entity_t coin5 = Instantiate();
 	coin5->addComponent<Transform>();
 	coin5->addComponent<SpriteRenderer>("moneda");
-	Vector2D coin5Pos(500, 440);
+	Vector2D coin5Pos(500, 540);
 	coin5->getComponent<Transform>()->setGlobalPos(coin5Pos);
 	coin5->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
 	//coin5->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
@@ -137,7 +137,7 @@ void ShopState::onEnter()
 	ecs::entity_t coin6 = Instantiate();
 	coin6->addComponent<Transform>();
 	coin6->addComponent<SpriteRenderer>("moneda");
-	Vector2D coin6Pos(570, 410);
+	Vector2D coin6Pos(570, 530);
 	coin6->getComponent<Transform>()->setGlobalPos(coin6Pos);
 	coin6->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
 	//coin6->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
@@ -147,7 +147,7 @@ void ShopState::onEnter()
 	ecs::entity_t coin7 = Instantiate();
 	coin7->addComponent<Transform>();
 	coin7->addComponent<SpriteRenderer>("moneda");
-	Vector2D coin7Pos(570, 410);
+	Vector2D coin7Pos(570, 500);
 	coin7->getComponent<Transform>()->setGlobalPos(coin7Pos);
 	coin7->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
 	//coin7->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
@@ -162,7 +162,7 @@ void ShopState::onEnter()
 	carta1->addComponent<ShineComponent>();
 	carta1->getComponent<ShineComponent>()->addEnt(coin7->getComponent<SpriteRenderer>(), "monedaIlu");
 	carta1->getComponent<ShineComponent>()->addEnt(coin6->getComponent<SpriteRenderer>(), "monedaIlu");
-	Vector2D card1Pos(440, 135);
+	Vector2D card1Pos(525, 80);
 	carta1->getComponent<Transform>()->setGlobalPos(card1Pos);
 	carta1->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta1->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
@@ -175,7 +175,7 @@ void ShopState::onEnter()
 	carta2->addComponent<SpriteRenderer>("card");
 	carta2->addComponent<ShineComponent>();
 	carta2->getComponent<ShineComponent>()->addEnt(coin3->getComponent<SpriteRenderer>(), "monedaIlu");
-	Vector2D card2Pos(550, 280);
+	Vector2D card2Pos(660, 200);
 	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
 	carta2->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta2->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
@@ -188,7 +188,7 @@ void ShopState::onEnter()
 	carta3->addComponent<SpriteRenderer>("card");
 	carta3->addComponent<ShineComponent>();
 	carta3->getComponent<ShineComponent>()->addEnt(coin5->getComponent<SpriteRenderer>(), "monedaIlu");
-	Vector2D card3Pos(440, 280);
+	Vector2D card3Pos(525, 200);
 	carta3->getComponent<Transform>()->setGlobalPos(card3Pos);
 	carta3->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta3->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
@@ -202,7 +202,7 @@ void ShopState::onEnter()
 	carta4->addComponent<ShineComponent>();
 	carta4->getComponent<ShineComponent>()->addEnt(coin1->getComponent<SpriteRenderer>(), "monedaIlu");
 	carta4->getComponent<ShineComponent>()->addEnt(coin2->getComponent<SpriteRenderer>(), "monedaIlu");
-	Vector2D card4Pos(550, 135);
+	Vector2D card4Pos(660, 80);
 	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
 	carta4->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta4->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);

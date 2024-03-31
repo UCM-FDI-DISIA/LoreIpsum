@@ -9,7 +9,7 @@
 #include "../components/basics/TextComponent.h"
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
-shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(440, 135),Vector2D(550, 280) ,Vector2D(440, 280) ,Vector2D(550, 135) }),
+shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(525, 80),Vector2D(660, 200) ,Vector2D(525, 200) ,Vector2D(660, 80) }),
 shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
 {}
 
@@ -128,7 +128,7 @@ void ShopComponent::showPrizes()
 		{
 			txt = "vendida";
 		}
-		shopText->addComponent<TextComponent>(txt, "8bit_40pt", SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		shopText->addComponent<TextComponent>(txt, "8bit_size_40", SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 		shopText->setLayer(6);
 	}
 }
