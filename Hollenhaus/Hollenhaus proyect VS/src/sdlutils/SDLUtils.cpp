@@ -412,6 +412,7 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 					JSONObject ownerObj = v->AsObject();	// guardamos el owner como JSONObject
 					std::string NPCName = ownerObj["NPCName"]->AsString();	// Obtenemos la key "NPCName" del JSONObject creado por cada owner
 
+
 					std::vector<JsonData::ConvoData> convos;		// Declaramos el vector para guardar las convos del owner
 																	// Las convos aun no se pueden guardar porque dentro hay varios datos que quedan por parsear
 					
@@ -420,6 +421,7 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 						if (c->IsObject()) {
 							JSONObject convoObj = c->AsObject();	// Guardamos la convo como objeto
 							int convoID = convoObj["convoID"]->AsNumber();	// Obteneos la key "convoID" del JSONObject creado por cada convo
+							bool auto_ = convoObj["autoConvo"]->AsBool();
 
 							std::vector<JsonData::NodeData> nodes;	// Declaramos el vector para guardar los nodos de la convo
 																	// Los nodos aun no se pueden guardar porque dentro hay varios datos que quedan por parsear
@@ -464,7 +466,7 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 								}
 							}
 
-							convos.emplace_back(convoID, nodes);
+							convos.emplace_back(convoID, auto_, nodes);
 						}
 					}
 #ifdef _DEBUG

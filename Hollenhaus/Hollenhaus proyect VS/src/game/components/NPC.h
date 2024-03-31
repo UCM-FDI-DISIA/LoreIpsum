@@ -9,7 +9,9 @@ class NPC : public ComponentUpdate
 {
 public:
 	NPC(int scene);
+	NPC(int scene, std::string name_);
 	NPC(int scene, int t);
+	NPC(int scene, int t, std::string name_);
 	~NPC();
 
 	void initComponent() override;
@@ -27,6 +29,7 @@ private:
 	bool click;
 	int type;
 	bool talking;
+	std::string name;
 	
 	BoxCollider* myBoxCollider;
 	Factory* factory;

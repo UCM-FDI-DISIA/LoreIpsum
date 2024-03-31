@@ -5,6 +5,7 @@
       "convo": [
         {
           "convoID": "0",
+          "autoConvo": true,
           "nodes": [
             {
               "nodeID": "0",
@@ -60,22 +61,23 @@
         },
         {
           "convoID": "1",
+          "autoConvo": false,
           "nodes": [
             {
               "nodeID": "0",
               "text": "Otra conversacion por aqui",
               "eventStart": 0,
               "eventFinish": 0,
-		"events": [
-		]
+              "events": [
+              ]
             },
             {
               "nodeID": "1",
               "text": "Ha quedado buena tarde",
               "eventStart": 0,
               "eventFinish": 0,
-		"events": [
-		]
+              "events": [
+              ]
             }
           ]
         }
@@ -86,6 +88,7 @@
       "convo": [
         {
           "convoID": "0",
+          "autoConvo": false,
           "nodes": [
             {
               "nodeID": "0",
