@@ -2,6 +2,7 @@
 
 #pragma once
 
+
 #include <SDL.h>
 #include <string>
 #include <unordered_map>
@@ -13,17 +14,13 @@
 #include "SoundEffect.h"
 #include "Texture.h"
 #include "VirtualTimer.h"
-#include "../Cell.h"
-#include "../EffectCollection.h"
-
-#include "../game/Card.h"
+#include "../game/Entity.h"
+#include "../game/Namespaces.h"
 #include "../json/JSON.h"
 
 class SDLUtils: public Singleton<SDLUtils> {
 
 	friend Singleton<SDLUtils> ; // needed to give access to private constructors
-
-public:
 
 	// we abstract away the actual data structure we use for
 	// tables. All we assume is that is has the following
@@ -69,8 +66,10 @@ public:
 		inline T& operator[](const std::string &key) {
 			return at(key);
 		}
-
+		
 	};
+	
+public:
 
 	virtual ~SDLUtils();
 
@@ -159,10 +158,17 @@ public:
 	inline auto& musics() {
 		return musicsAccessWrapper_;
 	}
-	// cards map
+
+// cards map
 	inline auto& cards()
 	{
-		return cardAccessWrapper;	
+		return cardAccessWrapper_;	
+	}
+
+// dialogue map
+	inline auto& dialogues()
+	{
+		return dialogueAccessWrapper_;
 	}
 
 
@@ -184,57 +190,31 @@ public:
 		return SDL_GetTicks();
 	}
 
-	/// CARD DATA STRUCT
-	struct CardEffect
-	{
-		using Directions = std::vector<Effects::Direction>;
-
-		CardEffect();
-		CardEffect(Effects::Type t, int v, Directions& d)
-			: type_(t), value_(v), directions_(d) {}
-
-		Effects::Type type() const	{ return type_; }
-		int value() const	{ return value_; }
-		Directions directions() const { return directions_; }
-
-	private:
-		Effects::Type type_;
-		int value_;
-		Directions directions_;
-	};
-
-	struct CardData
-	{ 
-		CardData();
-		CardData(int c, int v, std::string& s, bool u, std::vector<CardEffect>& e)
-			: cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e) {}
-
-		// getters con nombres simplificados para mas facil acceso desde sdlutils
-		int cost() const			{ return cost_; }
-		int value() const			{ return value_; }
-		std::string& sprite()		{ return sprite_; }
-		bool unblockable() const	{ return unblockable_; }
-		std::vector<CardEffect>& effects() { return effects_; }
-
-	private:
-		int cost_;
-		int value_;
-		std::string sprite_;
-		bool unblockable_;
-		std::vector<CardEffect> effects_;
-	};
 	void closeWindow();
 
 private:
 	SDLUtils();
 	SDLUtils(std::string windowTitle, int width, int height);
 	SDLUtils(std::string windowTitle, int width, int height,
-			std::string filename);
+			std::string filenameResources, std::string filenameCards, std::string filemaneDialogues);
 
 	void initWindow();
 	void initSDLExtensions(); // initialize resources (fonts, textures, audio, etc.)
 	void closeSDLExtensions(); // free resources the
-	void loadReasources(std::string filename); // load resources from the json file
+
+	void loadResources(std::string filenameResources, 
+		std::string filenameCards,
+		std::string filenameDialogues); // load resources from the json file
+
+	/// vamos a refactorizar el load resources:
+	///	un metodo por cada json
+	void loadFonts(JSONObject rootResources, std::string filenameResources);
+	void loadImages(JSONObject rootResources, std::string filenameResources);
+	void loadMusics(JSONObject rootResources, std::string filenameResources);
+	void loadSounds(JSONObject rootResources, std::string filenameResources);
+	void loadCards(JSONObject rootCards, std::string filenameCards);
+	void loadMessages(JSONObject rootResources, std::string filenameResources);
+	void loadDialogues(JSONObject rootDialogues, std::string filenameDialogues);
 
 	/// CARD PARSING estoy fatal de la cabezaaaa
 	std::vector<Effects::Direction>& loadDirections(JSONObject&, std::vector<Effects::Direction>&);
@@ -252,14 +232,16 @@ private:
 	sdl_resource_table<Texture> msgs_; // textures map (string -> texture)
 	sdl_resource_table<SoundEffect> sounds_; // sounds map (string -> sound)
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
-	sdl_resource_table<CardData> cards_; // cards map (string -> card)
+	sdl_resource_table<JsonData::CardData> cards_; // cards map (string -> card)
+	sdl_resource_table<JsonData::DialogueData> dialogues_; // dialogues map (string -> dialogue)
 
 	map_access_wrapper<Font> fontsAccessWrapper_;
 	map_access_wrapper<Texture> imagesAccessWrapper_;
 	map_access_wrapper<Texture> msgsAccessWrapper_;
 	map_access_wrapper<SoundEffect> soundsAccessWrapper_;
 	map_access_wrapper<Music> musicsAccessWrapper_;
-	map_access_wrapper<CardData> cardAccessWrapper;
+	map_access_wrapper<JsonData::CardData> cardAccessWrapper_;
+	map_access_wrapper<JsonData::DialogueData> dialogueAccessWrapper_;
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer

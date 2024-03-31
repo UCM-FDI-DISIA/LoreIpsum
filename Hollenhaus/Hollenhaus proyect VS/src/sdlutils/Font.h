@@ -5,7 +5,6 @@
 #include <SDL_ttf.h>
 #include <string>
 #include <cassert>
-#include <iostream>
 
 #include "macros.h"
 

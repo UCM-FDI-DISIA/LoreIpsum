@@ -1,4 +1,5 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
+#include "../../pchs/pch_c++_basic.h"
 
 #include "Vector2D.h"
 
@@ -6,6 +7,11 @@
 
 
 #define PI 3.14159265358979323846264338327950288f
+
+bool Vector2D::operator!=(const Vector2D& vector_2d) const
+{
+	return (x_ != vector_2d.x_) || (y_ != vector_2d.y_);
+}
 
 // for printing an object of type Vector2D
 std::ostream& operator<<(std::ostream &os, const Vector2D &v) {

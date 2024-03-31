@@ -1,5 +1,6 @@
+#include "pch.h"
 #include "Entity.h"
-#include "Manager.h"
+#include "components/managers/Manager.h"
 
 namespace ecs {
 
@@ -10,11 +11,14 @@ namespace ecs {
 		currCmpsU_.reserve(ecs::maxComponentUpdateId);
 		currCmpsR_.reserve(ecs::maxComponentRenderId);
 
+
+		//añadir a la layer
 		mngr().AddEntityMap(0, this);
 	}
 
 	void Entity::setLayer(int nextLayer) {
-		mngr().ChangeLayer(layer, nextLayer, this);
+		mngr().ChangeLayer(layer, nextLayer,this);
+		layer = nextLayer;
 	}
 
 }

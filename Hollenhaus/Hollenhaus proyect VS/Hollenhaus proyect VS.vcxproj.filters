@@ -43,11 +43,23 @@
     <Filter Include="Archivos de origen\Factories">
       <UniqueIdentifier>{0e3c1dcb-18ab-4f81-ba65-ac0e2df5d76f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado\Componentes\Componentes Basicos">
+    <Filter Include="Resources">
+      <UniqueIdentifier>{9b9d21a4-1277-4837-bb3d-8d346c3fa8d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Managers">
+      <UniqueIdentifier>{1df64758-cf12-473a-aa03-f3de64d23579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Managers">
+      <UniqueIdentifier>{c2437822-da3c-4295-985b-1b4a52d8e85c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Componentes\Basicos">
+      <UniqueIdentifier>{7fe60d75-e3bb-45be-8dd6-558968b62610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Componentes\Basicos">
       <UniqueIdentifier>{d589cee1-2132-48c7-9b03-936d3c3930d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de origen\Componentes\ComponentesBasicos">
-      <UniqueIdentifier>{7fe60d75-e3bb-45be-8dd6-558968b62610}</UniqueIdentifier>
+    <Filter Include="Archivos de encabezado\ECS">
+      <UniqueIdentifier>{55e656e6-65c5-463a-a718-c4e89217ee26}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,16 +72,10 @@
     <ClCompile Include="src\json\JSON.cpp">
       <Filter>Utilidades\JSON</Filter>
     </ClCompile>
-    <ClCompile Include="src\json\json_demo.cpp">
-      <Filter>Utilidades\JSON</Filter>
-    </ClCompile>
     <ClCompile Include="src\json\JSONValue.cpp">
       <Filter>Utilidades\JSON</Filter>
     </ClCompile>
     <ClCompile Include="src\sdlutils\SDLUtils.cpp">
-      <Filter>Utilidades\SDL_Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="src\sdlutils\sdlutils_demo.cpp">
       <Filter>Utilidades\SDL_Utils</Filter>
     </ClCompile>
     <ClCompile Include="src\sdlutils\SoundEffect.cpp">
@@ -84,155 +90,185 @@
     <ClCompile Include="src\utils\Vector2D.cpp">
       <Filter>Utilidades\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\CityState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\MainMenuState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\ShopState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\Manager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\GenID.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\CardStateManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\GenID.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\SamuState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\Board.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\CellManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\BoardManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\BoardState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\Drag.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\JimboState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\DragManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\CardFactory_v0.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\HandComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\Data.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\OfficeState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\DeckComponent.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\DropDetector.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\Transform.cpp">
-      <Filter>Archivos de origen\Componentes\ComponentesBasicos</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\SpriteRenderer.cpp">
-      <Filter>Archivos de origen\Componentes\ComponentesBasicos</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\BoxCollider.cpp">
-      <Filter>Archivos de origen\Componentes\ComponentesBasicos</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\ColliderRender.cpp">
-      <Filter>Archivos de origen\Componentes\ComponentesBasicos</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\Entity.cpp">
       <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\PaigroState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\NPC.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\MovementState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\MoveOnClick.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\GameState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\AndresState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EffectCollection.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\LuisState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\Factory.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\CardFactory.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\BoardFactory_v0.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\BoardFactory.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\Card.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Cell.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\Mouse.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\KeyManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\TextComponent.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\GameStateMachine.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\CardFactory_v1.cpp">
+    <ClCompile Include="src\game\gamestates\MainMenuState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\MatchOverState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\NievesState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\OfficeState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\PaigroState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\SamuState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\ShopState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\AndresState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\CityState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\JimboState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\LuisState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\CardFactory_v0.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\PlayerCardsManager.cpp">
+    <ClCompile Include="src\game\factories\CardFactory_v1.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\MatchStateUIFactory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\MatchStateUIFactory_v0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\BoardFactory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\BoardFactory_v0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\CardFactory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="pchs\pch_SDL.cpp">
+      <Filter>Archivos de origen\Auxiliares</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\pch.cpp">
+      <Filter>Archivos de origen\Auxiliares</Filter>
+    </ClCompile>
+    <ClCompile Include="pchs\pch_c++_basic.cpp">
+      <Filter>Archivos de origen\Auxiliares</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\EffectCollection.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\basics\Transform.cpp">
+      <Filter>Archivos de origen\Componentes\Basicos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\basics\BoxCollider.cpp">
+      <Filter>Archivos de origen\Componentes\Basicos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\basics\SpriteRenderer.cpp">
+      <Filter>Archivos de origen\Componentes\Basicos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\basics\TextComponent.cpp">
+      <Filter>Archivos de origen\Componentes\Basicos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\NPC.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\MatchOverState.cpp">
+    <ClCompile Include="src\game\components\Card.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Cell.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\ColliderRender.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DeckComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Drag.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DropDetector.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\EndTurnButton.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\HandComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\MoveOnClick.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\Factory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\GameState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\EndTurnButton.cpp">
+    <ClCompile Include="src\game\components\managers\CardStateManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\DragManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\KeyManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\Manager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\MatchManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\PlayerCardsManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\BoardManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\ShineComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\MatchManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
+    <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\NievesState.cpp">
+    <ClCompile Include="src\game\components\managers\PizarraManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\DrawerManager.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DragNoCombat.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DropZone.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Button.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\IA_manager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -242,13 +278,7 @@
     <ClInclude Include="src\game\checkML.h">
       <Filter>Archivos de encabezado\Auxiliares</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\GameState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="src\json\JSON.h">
-      <Filter>Utilidades\JSON</Filter>
-    </ClInclude>
-    <ClInclude Include="src\json\json_demo.h">
       <Filter>Utilidades\JSON</Filter>
     </ClInclude>
     <ClInclude Include="src\json\JSONValue.h">
@@ -273,9 +303,6 @@
       <Filter>Utilidades\SDL_Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\sdlutils\SDLUtils.h">
-      <Filter>Utilidades\SDL_Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\sdlutils_demo.h">
       <Filter>Utilidades\SDL_Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\sdlutils\SoundEffect.h">
@@ -305,140 +332,8 @@
     <ClInclude Include="src\utils\Vector2D.h">
       <Filter>Utilidades\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\Entity.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\ecs.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\MainMenuState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\ShopState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\CityState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\Manager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\GenID.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\CardStateManager.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\SamuState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\Board.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\CellManager.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\BoardState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\BoardManager.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\Drag.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\JimboState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\DragManager.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\CardFactory_v0.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\HandComponent.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\BoxCollider.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\Data.h">
       <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\OfficeState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\DeckComponent.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\DropDetector.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EffectCollection.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\Component.h">
-      <Filter>Archivos de encabezado\Componentes\Componentes Basicos</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\ComponentRender.h">
-      <Filter>Archivos de encabezado\Componentes\Componentes Basicos</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\ComponentUpdate.h">
-      <Filter>Archivos de encabezado\Componentes\Componentes Basicos</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\Transform.h">
-      <Filter>Archivos de encabezado\Componentes\Componentes Basicos</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\SpriteRenderer.h">
-      <Filter>Archivos de encabezado\Componentes\Componentes Basicos</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\BoxCollider.h">
-      <Filter>Archivos de encabezado\Componentes\Componentes Basicos</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\ColliderRender.h">
-      <Filter>Archivos de encabezado\Componentes\Componentes Basicos</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\PaigroState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\NPC.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\MovementState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\MoveOnClick.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\AndresState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\Factory.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\LuisState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\TextComponent.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\CardFactory.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\BoardFactory_v0.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\BoardFactory.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\Card.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cell.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\KeyManager.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\Mouse.h">
       <Filter>Archivos de encabezado</Filter>
@@ -446,23 +341,202 @@
     <ClInclude Include="src\game\GameStateMachine.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\CardFactory_v1.h">
+    <ClInclude Include="src\game\gamestates\LuisState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\MainMenuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\MatchOverState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\NievesState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\OfficeState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\PaigroState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\SamuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\ShopState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\AndresState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\CityState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\JimboState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\BoardFactory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\PlayerCardsManager.h">
+    <ClInclude Include="src\game\factories\BoardFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\CardFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\CardFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\CardFactory_v1.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\MatchStateUIFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\MatchStateUIFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\EffectCollection.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\basics\BoxCollider.h">
+      <Filter>Archivos de encabezado\Componentes\Basicos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\basics\SpriteRenderer.h">
+      <Filter>Archivos de encabezado\Componentes\Basicos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\basics\TextComponent.h">
+      <Filter>Archivos de encabezado\Componentes\Basicos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\basics\Transform.h">
+      <Filter>Archivos de encabezado\Componentes\Basicos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\NPC.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\MatchOverState.h">
+    <ClInclude Include="src\game\components\Card.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Cell.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\ColliderRender.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DeckComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Drag.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DropDetector.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\EndTurnButton.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\HandComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\MoveOnClick.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="pchs\pch_SDL.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\pch.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
+    <ClInclude Include="pchs\pch_c++_basic.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\ecs.h">
+      <Filter>Archivos de encabezado\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\GenID.h">
+      <Filter>Archivos de encabezado\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Entity.h">
+      <Filter>Archivos de encabezado\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\ComponentUpdate.h">
+      <Filter>Archivos de encabezado\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Component.h">
+      <Filter>Archivos de encabezado\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\ComponentRender.h">
+      <Filter>Archivos de encabezado\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\Factory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\GameState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\MatchManager.h">
+    <ClInclude Include="src\game\components\managers\BoardManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\CardStateManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\DragManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\KeyManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\Manager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\MatchManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\PlayerCardsManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Namespaces.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\ShineComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\NievesState.h">
+    <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\PizarraManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\DeckBuildingState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\EndTurnButton.h">
+    <ClInclude Include="src\game\components\managers\DrawerManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\factories\FakeCardFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DragNoCombat.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DropZone.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Button.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\IA_manager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\config\cards.json">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="resources\config\dialogues.json">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="resources\config\resources.json">
+      <Filter>Resources</Filter>
+    </None>
   </ItemGroup>
 </Project>

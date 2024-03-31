@@ -1,15 +1,19 @@
 #pragma once
 
 #include "ecs.h"
+#include "components/ComponentUpdate.h" // Si no peta
+#include "components/ComponentRender.h"
 #include <array>
 #include <vector>
 
-//class ComponentUpdate;
-//class ComponentRender;
+#include "components/basics/Transform.h"
+
+class ComponentUpdate;
+class ComponentRender;
 
 //CUIDADO: PODRIA HABER DEPENDENCIAS CIRCULARES, si ocurre, mover update y render a cpp
-#include "ComponentUpdate.h"
-#include "ComponentRender.h"
+//#include "ComponentUpdate.h"
+//#include "ComponentRender.h"
 
 /// <summary>
 /// Clase entity vista en clase con algunas modificiaciones:
@@ -70,6 +74,16 @@ public:
 	int getLayer() {
 		return layer;
 	};
+
+	int getLastLayer() {
+		int layer = getLayer();
+		if (getComponent<Transform>() != nullptr)
+		{
+			for (const auto child : getComponent<Transform>()->getChildren())
+				layer++;
+		}
+		return layer;
+	}
 
 private:
 

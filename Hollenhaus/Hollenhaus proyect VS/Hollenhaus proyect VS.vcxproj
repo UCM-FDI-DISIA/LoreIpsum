@@ -19,133 +19,224 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EffectCollection.cpp" />
-    <ClCompile Include="src\game\EndTurnButton.cpp" />
-    <ClCompile Include="src\game\MatchManager.cpp" />
-    <ClCompile Include="src\game\MatchOverState.cpp" />
+    <ClCompile Include="pchs\pch_c++_basic.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch_c++_basic.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch_c++_basic.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_c++_basic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_c++_basic.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="pchs\pch_SDL.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch_SDL.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch_SDL.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="src\game\components\basics\BoxCollider.cpp" />
+    <ClCompile Include="src\game\components\basics\SpriteRenderer.cpp" />
+    <ClCompile Include="src\game\components\basics\TextComponent.cpp" />
+    <ClCompile Include="src\game\components\basics\Transform.cpp" />
+    <ClCompile Include="src\game\components\Button.cpp" />
+    <ClCompile Include="src\game\components\Card.cpp" />
+    <ClCompile Include="src\game\components\Cell.cpp" />
+    <ClCompile Include="src\game\components\ColliderRender.cpp" />
+    <ClCompile Include="src\game\components\DeckComponent.cpp" />
+    <ClCompile Include="src\game\components\Drag.cpp" />
+    <ClCompile Include="src\game\components\DragNoCombat.cpp" />
+    <ClCompile Include="src\game\components\DropDetector.cpp" />
+    <ClCompile Include="src\game\components\DropZone.cpp" />
+    <ClCompile Include="src\game\components\EndTurnButton.cpp" />
+    <ClCompile Include="src\game\components\HandComponent.cpp" />
+    <ClCompile Include="src\game\components\managers\BoardManager.cpp" />
+    <ClCompile Include="src\game\components\managers\CardStateManager.cpp" />
+    <ClCompile Include="src\game\components\managers\DragManager.cpp" />
+    <ClCompile Include="src\game\components\managers\DrawerManager.cpp" />
+    <ClCompile Include="src\game\components\managers\IA_manager.cpp" />
+    <ClCompile Include="src\game\components\managers\KeyManager.cpp" />
+    <ClCompile Include="src\game\components\managers\Manager.cpp" />
+    <ClCompile Include="src\game\components\managers\MatchManager.cpp" />
+    <ClCompile Include="src\game\components\managers\PizarraManager.cpp" />
+    <ClCompile Include="src\game\components\managers\PlayerCardsManager.cpp" />
+    <ClCompile Include="src\game\components\MoveOnClick.cpp" />
+    <ClCompile Include="src\game\components\NPC.cpp" />
+    <ClCompile Include="src\game\components\ShineComponent.cpp" />
+    <ClCompile Include="src\game\EffectCollection.cpp" />
+    <ClCompile Include="src\game\factories\BoardFactory.cpp" />
+    <ClCompile Include="src\game\factories\BoardFactory_v0.cpp" />
+    <ClCompile Include="src\game\factories\CardFactory.cpp" />
+    <ClCompile Include="src\game\factories\CardFactory_v0.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\CardFactory_v1.cpp" />
+    <ClCompile Include="src\game\factories\Factory.cpp" />
+    <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp" />
+    <ClCompile Include="src\game\factories\MatchStateUIFactory.cpp" />
+    <ClCompile Include="src\game\factories\MatchStateUIFactory_v0.cpp" />
+    <ClCompile Include="src\game\gamestates\AndresState.cpp" />
+    <ClCompile Include="src\game\gamestates\CityState.cpp" />
+    <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp" />
+    <ClCompile Include="src\game\gamestates\GameState.cpp" />
+    <ClCompile Include="src\game\gamestates\JimboState.cpp" />
+    <ClCompile Include="src\game\gamestates\LuisState.cpp" />
+    <ClCompile Include="src\game\gamestates\MainMenuState.cpp" />
+    <ClCompile Include="src\game\gamestates\MatchOverState.cpp" />
+    <ClCompile Include="src\game\gamestates\NievesState.cpp" />
+    <ClCompile Include="src\game\gamestates\OfficeState.cpp" />
+    <ClCompile Include="src\game\gamestates\PaigroState.cpp" />
+    <ClCompile Include="src\game\gamestates\SamuState.cpp" />
+    <ClCompile Include="src\game\gamestates\ShopState.cpp" />
     <ClCompile Include="src\game\Mouse.cpp" />
-    <ClCompile Include="src\game\BoardFactory.cpp" />
-    <ClCompile Include="src\game\BoardFactory_v0.cpp" />
-    <ClCompile Include="src\game\CardFactory.cpp" />
-    <ClCompile Include="src\game\CardFactory_v1.cpp" />
-    <ClCompile Include="src\game\Factory.cpp" />
-    <ClCompile Include="src\game\NievesState.cpp" />
-    <ClCompile Include="src\game\PlayerCardsManager.cpp" />
-    <ClCompile Include="src\game\TextComponent.cpp" />
-    <ClCompile Include="src\game\AndresState.cpp" />
-    <ClCompile Include="src\game\BoardManager.cpp" />
-    <ClCompile Include="src\game\Board.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    <ClCompile Include="src\game\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="src\game\BoardState.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="src\game\BoxCollider.cpp" />
-    <ClCompile Include="src\game\Card.cpp" />
-    <ClCompile Include="src\game\CardFactory_v0.cpp" />
-    <ClCompile Include="src\Cell.cpp" />
-    <ClCompile Include="src\game\CellManager.cpp" />
-    <ClCompile Include="src\game\CardStateManager.cpp" />
-    <ClCompile Include="src\game\CityState.cpp" />
-    <ClCompile Include="src\game\ColliderRender.cpp" />
     <ClCompile Include="src\game\Data.cpp" />
-    <ClCompile Include="src\game\DeckComponent.cpp" />
-    <ClCompile Include="src\game\Drag.cpp" />
-    <ClCompile Include="src\game\DragManager.cpp" />
-    <ClCompile Include="src\game\DropDetector.cpp" />
     <ClCompile Include="src\game\Entity.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
-    <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
-    <ClCompile Include="src\game\GenID.cpp" />
-    <ClCompile Include="src\game\HandComponent.cpp" />
-    <ClCompile Include="src\game\KeyManager.cpp" />
-    <ClCompile Include="src\game\LuisState.cpp" />
+    <ClCompile Include="src\game\GenID.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\game\main.cpp" />
-    <ClCompile Include="src\game\MainMenuState.cpp" />
-    <ClCompile Include="src\game\Manager.cpp" />
-    <ClCompile Include="src\game\MovementState.cpp" />
-    <ClCompile Include="src\game\MoveOnClick.cpp" />
-    <ClCompile Include="src\game\NPC.cpp" />
-    <ClCompile Include="src\game\OfficeState.cpp" />
-    <ClCompile Include="src\game\PaigroState.cpp" />
-    <ClCompile Include="src\game\SamuState.cpp" />
-    <ClCompile Include="src\game\ShopState.cpp" />
-    <ClCompile Include="src\game\SpriteRenderer.cpp" />
-    <ClCompile Include="src\game\Transform.cpp" />
-    <ClCompile Include="src\json\JSON.cpp" />
-    <ClCompile Include="src\json\JSONValue.cpp" />
-    <ClCompile Include="src\json\json_demo.cpp" />
-    <ClCompile Include="src\sdlutils\SDLUtils.cpp" />
-    <ClCompile Include="src\sdlutils\sdlutils_demo.cpp" />
-    <ClCompile Include="src\sdlutils\SoundEffect.cpp" />
-    <ClCompile Include="src\sdlutils\Texture.cpp" />
-    <ClCompile Include="src\utils\Collisions.cpp" />
-    <ClCompile Include="src\utils\Vector2D.cpp" />
-    <ClCompile Include="src\game\JimboState.cpp" />
+    <ClCompile Include="src\json\JSON.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\pchs\pch_c++_basic.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_c++_basic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\pchs\pch_c++_basic.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_c++_basic.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="src\json\JSONValue.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\pchs\pch_c++_basic.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_c++_basic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\pchs\pch_c++_basic.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_c++_basic.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="src\sdlutils\SDLUtils.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\pchs\pch_SDL.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\pchs\pch_SDL.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="src\sdlutils\SoundEffect.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\pchs\pch_SDL.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\pchs\pch_SDL.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="src\sdlutils\Texture.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\pchs\pch_SDL.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\pchs\pch_SDL.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="src\utils\Collisions.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\pchs\pch_c++_basic.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_c++_basic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\pchs\pch_c++_basic.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_c++_basic.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="src\utils\Vector2D.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\pchs\pch_c++_basic.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_c++_basic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\pchs\pch_c++_basic.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_c++_basic.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\EffectCollection.h" />
-    <ClInclude Include="src\game\BoardFactory.h" />
-    <ClInclude Include="src\game\BoardFactory_v0.h" />
-    <ClInclude Include="src\game\Card.h" />
-    <ClInclude Include="src\game\EndTurnButton.h" />
-    <ClInclude Include="src\game\MatchManager.h" />
-    <ClInclude Include="src\game\MatchOverState.h" />
+    <ClInclude Include="pchs\pch_c++_basic.h" />
+    <ClInclude Include="pchs\pch_SDL.h" />
+    <ClInclude Include="src\game\components\basics\BoxCollider.h" />
+    <ClInclude Include="src\game\components\basics\SpriteRenderer.h" />
+    <ClInclude Include="src\game\components\basics\TextComponent.h" />
+    <ClInclude Include="src\game\components\basics\Transform.h" />
+    <ClInclude Include="src\game\components\Button.h" />
+    <ClInclude Include="src\game\components\Card.h" />
+    <ClInclude Include="src\game\components\Cell.h" />
+    <ClInclude Include="src\game\components\ColliderRender.h" />
+    <ClInclude Include="src\game\components\Component.h" />
+    <ClInclude Include="src\game\components\ComponentRender.h" />
+    <ClInclude Include="src\game\components\ComponentUpdate.h" />
+    <ClInclude Include="src\game\components\DeckComponent.h" />
+    <ClInclude Include="src\game\components\Drag.h" />
+    <ClInclude Include="src\game\components\DragNoCombat.h" />
+    <ClInclude Include="src\game\components\DropDetector.h" />
+    <ClInclude Include="src\game\components\DropZone.h" />
+    <ClInclude Include="src\game\components\EndTurnButton.h" />
+    <ClInclude Include="src\game\components\HandComponent.h" />
+    <ClInclude Include="src\game\components\managers\BoardManager.h" />
+    <ClInclude Include="src\game\components\managers\CardStateManager.h" />
+    <ClInclude Include="src\game\components\managers\DragManager.h" />
+    <ClInclude Include="src\game\components\managers\DrawerManager.h" />
+    <ClInclude Include="src\game\components\managers\IA_manager.h" />
+    <ClInclude Include="src\game\components\managers\KeyManager.h" />
+    <ClInclude Include="src\game\components\managers\Manager.h" />
+    <ClInclude Include="src\game\components\managers\MatchManager.h" />
+    <ClInclude Include="src\game\components\managers\PizarraManager.h" />
+    <ClInclude Include="src\game\components\managers\PlayerCardsManager.h" />
+    <ClInclude Include="src\game\components\MoveOnClick.h" />
+    <ClInclude Include="src\game\components\NPC.h" />
+    <ClInclude Include="src\game\components\ShineComponent.h" />
+    <ClInclude Include="src\game\EffectCollection.h" />
+    <ClInclude Include="src\game\factories\FakeCardFactory.h" />
+    <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
+    <ClInclude Include="src\game\Namespaces.h" />
+    <ClInclude Include="src\game\factories\BoardFactory.h" />
+    <ClInclude Include="src\game\factories\BoardFactory_v0.h" />
+    <ClInclude Include="src\game\factories\CardFactory.h" />
+    <ClInclude Include="src\game\factories\CardFactory_v0.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\CardFactory_v1.h" />
+    <ClInclude Include="src\game\factories\Factory.h" />
+    <ClInclude Include="src\game\factories\MatchStateUIFactory.h" />
+    <ClInclude Include="src\game\factories\MatchStateUIFactory_v0.h" />
+    <ClInclude Include="src\game\gamestates\AndresState.h" />
+    <ClInclude Include="src\game\gamestates\CityState.h" />
+    <ClInclude Include="src\game\gamestates\GameState.h" />
+    <ClInclude Include="src\game\gamestates\JimboState.h" />
+    <ClInclude Include="src\game\gamestates\LuisState.h" />
+    <ClInclude Include="src\game\gamestates\MainMenuState.h" />
+    <ClInclude Include="src\game\gamestates\MatchOverState.h" />
+    <ClInclude Include="src\game\gamestates\NievesState.h" />
+    <ClInclude Include="src\game\gamestates\OfficeState.h" />
+    <ClInclude Include="src\game\gamestates\PaigroState.h" />
+    <ClInclude Include="src\game\gamestates\SamuState.h" />
+    <ClInclude Include="src\game\gamestates\ShopState.h" />
     <ClInclude Include="src\game\Mouse.h" />
-    <ClInclude Include="src\game\CardFactory.h" />
-    <ClInclude Include="src\game\CardFactory_v1.h" />
-    <ClInclude Include="src\game\NievesState.h" />
-    <ClInclude Include="src\game\PlayerCardsManager.h" />
-    <ClInclude Include="src\game\TextComponent.h" />
-    <ClInclude Include="src\Cell.h" />
-    <ClInclude Include="src\game\AndresState.h" />
-    <ClInclude Include="src\game\Board.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="src\game\BoardManager.h" />
-    <ClInclude Include="src\game\BoardState.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="src\game\BoxCollider.h" />
-    <ClInclude Include="src\game\CardFactory_v0.h" />
-    <ClInclude Include="src\game\CellManager.h" />
-    <ClInclude Include="src\game\CardStateManager.h" />
+    <ClInclude Include="src\game\pch.h" />
     <ClInclude Include="src\game\checkML.h" />
-    <ClInclude Include="src\game\CityState.h" />
-    <ClInclude Include="src\game\ColliderRender.h" />
-    <ClInclude Include="src\game\Component.h" />
-    <ClInclude Include="src\game\ComponentRender.h" />
-    <ClInclude Include="src\game\ComponentUpdate.h" />
     <ClInclude Include="src\game\Data.h" />
-    <ClInclude Include="src\game\DeckComponent.h" />
-    <ClInclude Include="src\game\Drag.h" />
-    <ClInclude Include="src\game\DragManager.h" />
-    <ClInclude Include="src\game\DropDetector.h" />
     <ClInclude Include="src\game\ecs.h" />
     <ClInclude Include="src\game\Entity.h" />
-    <ClInclude Include="src\game\Factory.h" />
     <ClInclude Include="src\game\Game.h" />
-    <ClInclude Include="src\game\GameState.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
     <ClInclude Include="src\game\GenID.h" />
-    <ClInclude Include="src\game\HandComponent.h" />
-    <ClInclude Include="src\game\KeyManager.h" />
-    <ClInclude Include="src\game\LuisState.h" />
-    <ClInclude Include="src\game\MainMenuState.h" />
-    <ClInclude Include="src\game\Manager.h" />
-    <ClInclude Include="src\game\MovementState.h" />
-    <ClInclude Include="src\game\MoveOnClick.h" />
-    <ClInclude Include="src\game\NPC.h" />
-    <ClInclude Include="src\game\OfficeState.h" />
-    <ClInclude Include="src\game\PaigroState.h" />
-    <ClInclude Include="src\game\SamuState.h" />
-    <ClInclude Include="src\game\ShopState.h" />
-    <ClInclude Include="src\game\SpriteRenderer.h" />
-    <ClInclude Include="src\game\Transform.h" />
     <ClInclude Include="src\json\JSON.h" />
     <ClInclude Include="src\json\JSONValue.h" />
-    <ClInclude Include="src\json\json_demo.h" />
     <ClInclude Include="src\sdlutils\Font.h" />
     <ClInclude Include="src\sdlutils\InputHandler.h" />
     <ClInclude Include="src\sdlutils\macros.h" />
@@ -153,7 +244,6 @@
     <ClInclude Include="src\sdlutils\RandomNumberGenerator.h" />
     <ClInclude Include="src\sdlutils\SDLNetUtils.h" />
     <ClInclude Include="src\sdlutils\SDLUtils.h" />
-    <ClInclude Include="src\sdlutils\sdlutils_demo.h" />
     <ClInclude Include="src\sdlutils\SoundEffect.h" />
     <ClInclude Include="src\sdlutils\Texture.h" />
     <ClInclude Include="src\sdlutils\VirtualTimer.h" />
@@ -163,7 +253,11 @@
     <ClInclude Include="src\utils\ptr_iterator.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
-    <ClInclude Include="src\game\JimboState.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\config\cards.json" />
+    <None Include="resources\config\dialogues.json" />
+    <None Include="resources\config\resources.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -221,6 +315,12 @@
     <Import Project="..\Hollenhaus.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -255,6 +355,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -269,6 +371,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -1,4 +1,4 @@
-#include "checkML.h"
+#include "pch.h"
 #include "Game.h"
 
 
@@ -9,7 +9,8 @@
 
 Game::Game()
 {
-	SDLUtils::init("Hollenhaus", 800, 600, "./resources/config/resources.json");
+	SDLUtils::init("Hollenhaus", 800, 600,
+		"./resources/config/resources.json", "./resources/config/cards.json", "./resources/config/dialogues.json");
 
 	GameStateMachine::instance()->init();
 	gameStateMachine = GameStateMachine::instance();

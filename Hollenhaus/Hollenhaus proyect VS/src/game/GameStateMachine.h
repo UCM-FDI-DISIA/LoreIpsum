@@ -4,9 +4,11 @@
 #include "checkML.h"
 #include <stack>
 #include <functional>
-#include "GameState.h"
 #include "../utils/Singleton.h"
-#include "Data.h"
+
+
+class GameState;
+class Data;
 class Mouse;
 
 namespace ecs
@@ -18,18 +20,19 @@ namespace GameStates
 {
 	//Enum de estados del juego
 	enum game_states {
-		MAINMENU = 0,
+		MAINMENU,
 		CITY,
 		OFFICE,
 		SHOP,
 		BOARD,
 		PAIGRO,
-		SAMU,
+		LUIS,
 		NIEVES,
-		MATCHOVER
+		MATCHOVER,
+		DECKBUILDING
 	};
 }
-	
+
 
 class GameStateMachine : public Singleton<GameStateMachine>
 {
@@ -52,9 +55,12 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* boardState;
 	GameState* paigroState;
 	GameState* samuState;
+	GameState* jimboState;
 	GameState* nievesState;
 	GameState* movementState;
 	GameState* matchOverState;
+	GameState* luisState;
+	GameState* deckBuildingState;
 
 public:
 	ecs::Manager* getMngr()
@@ -100,14 +106,17 @@ public:
 		case GameStates::PAIGRO:
 			currentState = paigroState;
 			break;
-		case GameStates::SAMU:
-			currentState = samuState;
+		case GameStates::LUIS:
+			currentState = luisState;
 			break;
 		case GameStates::NIEVES:
 			currentState = nievesState;
 			break;
 		case GameStates::MATCHOVER:
 			currentState = matchOverState;
+			break;
+		case GameStates::DECKBUILDING:
+			currentState = deckBuildingState;
 			break;
 		default:
 			break;
