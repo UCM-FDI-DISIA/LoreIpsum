@@ -16,6 +16,7 @@ NPC::NPC(int scene)
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 	type = 0;
+	talking = false;
 
 
 	factory = new Factory();
@@ -33,6 +34,7 @@ NPC::NPC(int scene, int t)
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 	type = t;
+	talking = false;
 
 	factory = new Factory();
 	factory->SetFactories(
@@ -80,7 +82,7 @@ void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 
 void NPC::talkTo()
 {
-	if (!click && myBoxCollider->isCursorOver()) {
+	if (!click && myBoxCollider->isCursorOver() && !talking) {
 		TuVieja("Que charlatan el tio...");
 		
 		float x = ent_->getComponent<Transform>()->getGlobalPos().getX() - 150;
@@ -99,8 +101,15 @@ void NPC::talkTo()
 								150, //wrap length
 								Text::BoxPivotPoint::LeftTop, //lo de pivot no me deja centrar el texto con el cuadrado-> preguntar a Parres uwu
 								Text::TextAlignment::Center);
+
+		talking = true;
 	}
 
+}
+
+void NPC::stoppedTalking()
+{
+	talking = false;
 }
 
 void NPC::update() {
