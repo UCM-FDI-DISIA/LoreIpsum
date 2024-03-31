@@ -1,7 +1,7 @@
 #include "../pch.h"
 #include "../Namespaces.h"
 
-
+class Factory;
 
 class DialogueEventCollection
 {
@@ -17,13 +17,8 @@ public:
 	//ConfirmationPopUp
 	static void ConfirmationPopUp();
 
-
-	/*template<typename ...Ts>
-	void SetFactories(CardFactory* cf, Ts &&... args) {
-		cardFactory = cf;
-		SetFactories(std::forward<Ts>(args)...);
-	}*/
-
+	//para llamar a decisionFactory
+	static Factory* factory;
 
 	/// En funcion del indice, devuelve el callback del efecto
 	///	*** Esto es terrible, quiero que sirva para salir al paso

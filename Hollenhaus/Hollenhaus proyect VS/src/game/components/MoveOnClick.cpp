@@ -68,7 +68,8 @@ void MoveOnClick::update()
 void MoveOnClick::OnLeftClickDown()
 {
 	// Si pulsamos en el collider, efectuamos el movimiento
-	if (myBoxCollider_->isCursorOver()) {
+	if (myBoxCollider_->isCursorOver())
+	{
 		// guardas la posicion del raton en click
 		mousePos_ = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
 
@@ -94,10 +95,9 @@ void MoveOnClick::OnLeftClickDown()
 
 		movement_ = scrollVel_ * dir_;
 	}
+	else 
+	{
+		move_ = false;
+	}
 
-}
-
-void MoveOnClick::StopMoving()
-{
-	move_ = false;
 }

@@ -17,7 +17,6 @@ public:
 	void update() override;
 
 	void OnLeftClickDown();
-	void StopMoving();
 
 	// registra el collider que creas en la escena de la ciudad
 	void RegisterCollider(BoxCollider *collider)

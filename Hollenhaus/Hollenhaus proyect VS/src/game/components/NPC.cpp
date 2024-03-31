@@ -72,7 +72,7 @@ void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 			GameStateMachine::instance()->setState(scene);
 		}
 		else if (type == 1) {
-			talkTo();
+			talkTo();   
 		}
 		
 	}
