@@ -48,7 +48,7 @@
     ],
     "fonts": [
       {
-        "id": "8bit_8pt",
+        "id": "8bit_size_8",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
         "size": 8
       },
@@ -73,27 +73,27 @@
         "size": 24
       },
       {
-        "id": "8bit_32pt",
+        "id": "8bit_size_32",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
         "size": 32
       },
       {
-        "id": "8bit_40pt",
+        "id": "8bit_size_40",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
         "size": 40
       },
       {
-        "id": "8bit_48pt",
+        "id": "8bit_size_48",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
         "size": 48
       },
       {
-        "id": "8bit_64pt",
+        "id": "8bit_size_64",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
         "size": 64
       },
       {
-        "id": "8bit_72pt",
+        "id": "8bit_size_72",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
         "size": 72
       }

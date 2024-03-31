@@ -52,7 +52,7 @@ void ShopState::onEnter()
 
 	//------Texto de la tienda:
 	ecs::entity_t shopText = Instantiate(Vector2D(400, 30));
-	shopText->addComponent<TextComponent>("TIENDA", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, 
+	shopText->addComponent<TextComponent>("TIENDA", "8bit_size_40", SDL_Color({ 255, 255, 255, 255 }), 350, 
 		Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	shopText->setLayer(1);
 

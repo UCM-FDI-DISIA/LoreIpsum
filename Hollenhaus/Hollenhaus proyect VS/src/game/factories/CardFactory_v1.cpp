@@ -232,7 +232,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 			auto color = SDL_Color({255,50,50, 255});
 			if (rival) color = SDL_Color({40,200,200, 255});
-			valueChange->addComponent<TextComponent>(valueText, "8bit_16pt", color, 100);
+			valueChange->addComponent<TextComponent>(valueText, "8bit_size_16", color, 100);
 
 			valueChange->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
 			valueChange->getComponent<Transform>()->getRelativePos().set(-5, 0);

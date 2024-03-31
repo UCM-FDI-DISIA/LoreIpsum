@@ -48,7 +48,7 @@ void MainMenuState::onEnter()
 	//titleText->addComponent<TextComponent>("HÖLLENHAUS", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 450, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para un nuevo juego.
 	newGameButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 120));
-	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_32pt", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300,40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
@@ -62,7 +62,7 @@ void MainMenuState::onEnter()
 	//optionsText->addComponent<TextComponent>("OPTIONS", "8bit_24pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para salir.
 	exitButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 70));
-	exitButton->addComponent<TextComponent>("SALIR", "8bit_32pt", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	exitButton->addComponent<TextComponent>("SALIR", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	exitButton->addComponent<BoxCollider>();
 	exitButton->getComponent<BoxCollider>()->setSize(Vector2D(100,32));
 	exitButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(50, -16));
