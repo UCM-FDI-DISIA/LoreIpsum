@@ -22,7 +22,7 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent) //poli
 	);
 
 	float x = parent->getComponent<Transform>()->getGlobalPos().getX();
-	float y = parent->getComponent<Transform>()->getGlobalPos().getY() + 100;
+	float y = parent->getComponent<Transform>()->getGlobalPos().getY() + 150;
 
 	factory->createDecision({ x,y }, //pos
 							{ 0,0 }, //size

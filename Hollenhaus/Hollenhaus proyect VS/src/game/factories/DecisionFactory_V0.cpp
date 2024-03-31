@@ -6,7 +6,7 @@
 void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer)
 {
 	//tamanyo de los cuadros de texto
-	Vector2D scaleBox = Vector2D(1, 0.7);
+	Vector2D scaleBox = Vector2D(0.95, 0.7); //no tocar cerdos que se me descoloca
 
 	// ----------ENTIDAD ACEPTAR COMBATE-----------
 	ecs::entity_t accept = Instantiate();
