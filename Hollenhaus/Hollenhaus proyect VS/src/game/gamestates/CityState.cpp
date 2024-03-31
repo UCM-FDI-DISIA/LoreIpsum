@@ -38,11 +38,8 @@ void CityState::onEnter()
 	// le aniade los componentes
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
-	fondo->addComponent<MoveOnClick>(4);
+	fondo->addComponent<MoveOnClick>(2);
 
-	// tamanio de ciudadcompleta.png: 5754 x 1212 
-	fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f); // escalado para ciudadcompleta.png (porfi no toquetear)!!! 
-	Vector2D globalPos(-1200.0f, 0); // Posici�n inicial de la ciudad para que se vea por el centro
 	fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0,255,255,255);
 	fondo->addComponent<BoxCollider>();
 	//tamanyo de ciudadcompleta.png: 5754 x 1212

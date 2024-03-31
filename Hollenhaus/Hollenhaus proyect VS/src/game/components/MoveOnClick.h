@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ComponentUpdate.h"
-#include "BoxCollider.h"
+#include "../components/basics/BoxCollider.h"
 
 class Vector2D;
 
