@@ -2,6 +2,7 @@
 #include "DialogueDestroyer.h"
 #include "../Game.h"
 #include "../components/NPC.h"
+#include "../components/NextText.h"
 
 
 DialogueDestroyer::DialogueDestroyer(ecs::entity_t npc_)
@@ -22,7 +23,6 @@ void DialogueDestroyer::update()
 
 void DialogueDestroyer::destroyDialogue()
 {
-
 	npc->getComponent<NPC>()->stoppedTalking();
-	object->~Entity();
+	object->setAlive(false);
 }

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "NextText.h"
 #include "managers/Manager.h"
+#include "DialogueDestroyer.h"
 
 //Detecta el clickIzq con el BoxCollider del cuadro de texto (o de la pantalla?) y hace las siguientes operaciones:
 //->Se llama al EventoFinal del texto actual
@@ -11,6 +12,7 @@ NextText::NextText()
 {
 	click = false;
 	boxCollider_ = nullptr;
+	dead = false;
 
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
@@ -50,7 +52,7 @@ void NextText::OnLeftClickUp()
 
 void NextText::reactToClick()
 {
-	if (ent_) {
+	if (!dead) {
 		if (typeWriter_->ended() && mouseRaycast() == ent_)
 		{
 			TuVieja("ended: ");
@@ -72,6 +74,12 @@ void NextText::callNextNode()
 void NextText::setMoveOnClick(MoveOnClick* moveOnClick)
 {
 	moveOnClick_ = moveOnClick;
+}
+
+void NextText::setDead(bool a)
+{
+	this;
+	dead = a;
 }
 
 
