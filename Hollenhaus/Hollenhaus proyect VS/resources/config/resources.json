@@ -49,7 +49,11 @@
         {"id": "DeckbuildingCajonBG",       "file": "resources/images/DeckBuildingCajonBG.png"  },
         {"id": "SaveMazeBut",       "file": "resources/images/boton_guardar_mazo.png"  },
         {"id": "DownDrawer",       "file": "resources/images/down_drawer.png"  },
-        {"id": "UpDrawer",       "file": "resources/images/up_drawer.png"  }
+        {"id": "UpDrawer",       "file": "resources/images/up_drawer.png"  },
+        {"id": "TiendaNPC",       "file": "resources/images/tienda_dibujo.png"  },
+        {"id": "CompbateNPC",       "file": "resources/images/juego_dibujo.png"  },
+        {"id": "OficinaNPC",       "file": "resources/images/ofi_dibujo.png"  },
+        {"id": "NPCNPC",       "file": "resources/images/npc_dibujo.png"  }
     ],
     "fonts": [
       {

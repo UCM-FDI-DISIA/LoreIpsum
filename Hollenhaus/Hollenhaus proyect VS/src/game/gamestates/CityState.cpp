@@ -51,7 +51,7 @@ void CityState::onEnter()
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
 	fondo->addComponent<MoveOnClick>(2);
 
-	fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0, 255, 255, 255);
+	//fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 255);
 	fondo->addComponent<BoxCollider>();
 	//tamanyo de ciudadcompleta.png: 5754 x 1212
 	fondo->getComponent<Transform>()->setGlobalScale(0.495f, 0.495f);
@@ -92,7 +92,7 @@ void CityState::onEnter()
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
-	fantasmiko->setLayer(1);
+	fantasmiko->setLayer(2);
 
 	//------NPCs:
 	//----Para entrar en la oficina.
@@ -111,7 +111,7 @@ void CityState::onEnter()
 	//----Para hablar
 	ecs::entity_t npc4 = Instantiate();
 	npc4->addComponent<Transform>();
-	npc4->addComponent<SpriteRenderer>("npc");
+	npc4->addComponent<SpriteRenderer>("NPCNPC");
 	npc4->addComponent<BoxCollider>();
 	npc4->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
 	npc4->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
