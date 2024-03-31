@@ -15,7 +15,7 @@
 		          "events": [
 		          { 
 		            "timing": 1,
-		            "type": 3,
+		            "type": 0,
 		            "scene": 3
 		          }
 		          ]
@@ -54,11 +54,13 @@
               "text": "Pero me encanta",
               "eventStart": 0,
               "eventFinish": 0,
-		"events": [
-		]
-            }
-          ]
-        },
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 0
+                }
+            },
         {
           "convoID": "1",
           "autoConvo": false,
