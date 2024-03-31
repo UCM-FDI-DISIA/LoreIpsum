@@ -48,8 +48,8 @@ NPC::~NPC() {
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] {OnLeftClickUp(); });
 
-	//delete factory;
-	//factory = nullptr;
+	delete factory;
+	factory = nullptr;
 }
 
 void NPC::initComponent(){
