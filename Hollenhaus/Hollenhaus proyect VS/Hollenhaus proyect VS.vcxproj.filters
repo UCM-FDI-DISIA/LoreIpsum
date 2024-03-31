@@ -171,9 +171,6 @@
     <ClCompile Include="pchs\pch_c++_basic.cpp">
       <Filter>Archivos de origen\Auxiliares</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\EffectCollection.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\components\basics\Transform.cpp">
       <Filter>Archivos de origen\Componentes\Basicos</Filter>
     </ClCompile>
@@ -243,6 +240,30 @@
     <ClCompile Include="src\game\components\managers\BoardManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\DialogueReader.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\NextText.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\NPCFactory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\AutoDialogue.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Dialogue.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\NPCFactory_V0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\TypeWriter.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\DialogueFactory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
     <ClCompile Include="src\game\components\ShineComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
@@ -269,6 +290,24 @@
     </ClCompile>
     <ClCompile Include="src\game\components\Button.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DialogueDestroyer.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\EffectCollection.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\DialogueFactory_V0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DialogueEventCollection.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\DecisionFactory.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\DecisionFactory_V0.cpp">
+      <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
     <ClCompile Include="src\game\components\managers\IA_manager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
@@ -398,9 +437,6 @@
     <ClInclude Include="src\game\factories\MatchStateUIFactory_v0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\EffectCollection.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\components\basics\BoxCollider.h">
       <Filter>Archivos de encabezado\Componentes\Basicos</Filter>
     </ClInclude>
@@ -500,6 +536,33 @@
     <ClInclude Include="src\game\Namespaces.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\components\DialogueReader.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\NextText.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\AutoDialogue.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\NPCFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\NPCFactory_V0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Dialogue.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\TypeWriter.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\DialogueFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\DialogueFactory_V0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
     <ClInclude Include="src\game\components\ShineComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
@@ -530,8 +593,29 @@
     <ClInclude Include="src\game\components\Button.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\components\DialogueDestroyer.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\EffectCollection.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DialogueEventCollection.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\DecisionFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\DecisionFactory_V0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
     <ClInclude Include="src\game\components\managers\IA_manager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\DeckBuildingFactory.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -542,6 +626,9 @@
       <Filter>Resources</Filter>
     </None>
     <None Include="resources\config\resources.json">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="resources\config\dialoguesV1.json">
       <Filter>Resources</Filter>
     </None>
   </ItemGroup>

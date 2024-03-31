@@ -10,7 +10,8 @@
 Game::Game()
 {
 	SDLUtils::init("Hollenhaus", 800, 600,
-		"./resources/config/resources.json", "./resources/config/cards.json", "./resources/config/dialogues.json");
+		"./resources/config/resources.json", "./resources/config/cards.json", "./resources/config/dialoguesV1.json",
+		"./resources/config/npcs.json");
 
 	GameStateMachine::instance()->init();
 	gameStateMachine = GameStateMachine::instance();

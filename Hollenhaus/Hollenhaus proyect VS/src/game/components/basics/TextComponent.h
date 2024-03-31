@@ -10,9 +10,6 @@ class Transform;
 class TextComponent : public ComponentRender
 {
 public:
-
-
-
 	/// <summary>
 	/// Constructora para crear un componente texto.
 	/// Las propiedades del texto están definidas en los parámetros de la constructora.

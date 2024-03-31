@@ -3,8 +3,11 @@
 #include "CardFactory.h"
 #include "BoardFactory.h"
 #include "FakeCardFactory.h"
-
 #include "MatchStateUIFactory.h"
+#include "DialogueFactory.h"
+#include "NPCFactory.h"
+#include "DecisionFactory.h"
+
 
 ecs::entity_t Factory::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
 {
@@ -91,4 +94,42 @@ ecs::entity_t Factory::createVisual_BackgroundBlackBox(int posX, int posY, float
 ecs::entity_t Factory::createVisual_BackgroundFullImage()
 {
 	return matchStateUIFactory->createVisual_BackgroundBoard();
+}
+
+ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent)
+{
+	if (npcFactory == nullptr) {
+		throw "no existe npcFactory";
+	}
+
+
+	JsonData::NPCData info = sdlutils().npcs().at(std::to_string(i));
+
+	// PLACEHOLDER
+	return npcFactory->createNPC(info, parent);
+}
+
+
+ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
+	int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
+	Text::TextAlignment textAlignment)
+{
+	if (dialogueFactory == nullptr) {
+		throw "no existe dialogueFactory";
+	}
+
+	dialogueFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
+	return dialogueFactory->createDialogue(id, convo, node, pos, size, speed, cooldown, parent, layer, auto_);
+	
+}
+
+void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer,
+	std::string fontID, SDL_Color color, Uint32 wrapLenght,Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment)
+{
+	if (decisionFactory == nullptr) {
+		throw "no existe decisionFactory";
+	}
+
+	decisionFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
+	decisionFactory->createPopUp(pos, size, parent, layer);
 }

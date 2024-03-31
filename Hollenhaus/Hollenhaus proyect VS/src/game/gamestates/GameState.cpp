@@ -60,7 +60,11 @@ void GameState::render() const
 void GameState::setWinnerOnData(int w)
 {
 	data->setWinner(w);
+}
 
+void GameState::setLastPaulPos(Vector2D paulPos)
+{
+    data->SetCityPos(paulPos);
 }
 
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
@@ -75,6 +79,10 @@ std::unordered_map<int,Vector2D> GameState::getMaze()
 	return data->GetMaze();
 }
 
+Vector2D GameState::getLastPaulPos()
+{
+    return data->getLastPaulPos();
+}
 
 // para settear el mazo del data desde el estado
 void GameState::setMaze(std::list<int> mazeToSave, std::list<Vector2D> MazePosToSave)

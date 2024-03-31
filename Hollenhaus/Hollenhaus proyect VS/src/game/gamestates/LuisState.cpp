@@ -57,6 +57,8 @@ void LuisState::onEnter()
 {
 	TuVieja("\nEntering in LuisState");
 
+	TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
+
 	Factory* factory = new Factory();
 	factory->SetFactories(
 		static_cast<BoardFactory*>(new BoardFactory_v0(4)),

@@ -22,16 +22,17 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 		soundsAccessWrapper_(sounds_, "Sounds Table"), //
 		musicsAccessWrapper_(musics_, "Musics Table"), //
 		cardAccessWrapper_(cards_, "Cards Table"), //
-		dialogueAccessWrapper_(dialogues_, "Dialogues Table") //
+		dialogueAccessWrapper_(dialogues_, "Dialogues Table"), //
+		npcsAccessWrapper_(npcs_, "NPCs Table") //
 {
 	initWindow();
 	initSDLExtensions();
 }
 
 SDLUtils::SDLUtils(std::string windowTitle, int width, int height,
-		std::string filename, std::string filenameCards, std::string filemaneDialogues) :
+		std::string filename, std::string filenameCards, std::string filemaneDialogues, std::string filenameNPCs) :
 		SDLUtils(windowTitle, width, height) {
-	loadResources(filename,filenameCards,filemaneDialogues);
+	loadResources(filename,filenameCards,filemaneDialogues, filenameNPCs);
 }
 
 SDLUtils::~SDLUtils() {
@@ -116,7 +117,8 @@ void SDLUtils::initSDLExtensions() {
 }
 
 void SDLUtils::loadResources(std::string filenameResources,
-	std::string filenameCards, std::string filenameDialogues) {
+	std::string filenameCards, std::string filenameDialogues, 
+	std::string filenameNPCs) {
 	// TODO check the correctness of values and issue a corresponding
 	// exception. Now we just do some simple checks, and assume input
 	// is correct.
@@ -133,6 +135,7 @@ void SDLUtils::loadResources(std::string filenameResources,
 	std::unique_ptr<JSONValue> jValueRootResources(JSON::ParseFromFile(filenameResources));
 	std::unique_ptr<JSONValue> jValueRootCards(JSON::ParseFromFile(filenameCards));
 	std::unique_ptr<JSONValue> jValueRootDialogues(JSON::ParseFromFile(filenameDialogues));
+	std::unique_ptr<JSONValue> jValueRootNPCs(JSON::ParseFromFile(filenameNPCs));
 
 	// check it was loaded correctly
 	// the root must be a JSON object
@@ -149,11 +152,18 @@ void SDLUtils::loadResources(std::string filenameResources,
 	if (jValueRootDialogues == nullptr || !jValueRootDialogues->IsObject()) {
 		throw "Something went wrong while load/parsing '" + filenameDialogues + "'";
 	}
+	// check it was loaded correctly
+	// the root must be a JSON object
+	if (jValueRootNPCs == nullptr || !jValueRootNPCs->IsObject()) {
+		throw "Something went wrong while load/parsing '" + filenameNPCs + "'";
+	}
 
 	// we know the root is JSONObject
 	JSONObject rootResources = jValueRootResources->AsObject();
 	JSONObject rootCards = jValueRootCards->AsObject();
 	JSONObject rootDialogues = jValueRootDialogues->AsObject();
+	JSONObject rootNPCs = jValueRootNPCs->AsObject();
+
 
 
 	// TODO improve syntax error checks below, now we do not check
@@ -166,6 +176,7 @@ void SDLUtils::loadResources(std::string filenameResources,
 	loadMessages(rootResources, filenameResources);
 	loadCards(rootCards, filenameResources);
 	loadDialogues(rootDialogues, filenameDialogues);
+	loadNPCs(rootNPCs, filenameNPCs);
 }
 
 void SDLUtils::loadFonts(JSONObject rootResources, std::string filenameResources)
@@ -279,6 +290,50 @@ void SDLUtils::loadSounds(JSONObject rootResources, std::string filenameResource
 	}
 }
 
+
+void SDLUtils::loadMessages(JSONObject rootResources, std::string filenameResources)
+{
+	// load messages
+	const auto jValue = rootResources["messages"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			msgs_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString();
+					std::string txt = vObj["text"]->AsString();
+					auto& font = fonts_.at(vObj["font"]->AsString());
+#ifdef _DEBUG
+					std::cout << "Loading message with id: " << key
+						<< std::endl;
+#endif
+					if (vObj["bg"] == nullptr)
+						msgs_.emplace(key,
+							Texture(renderer(), txt, font,
+								build_sdlcolor(
+									vObj["color"]->AsString())));
+					else
+						msgs_.emplace(key,
+							Texture(renderer(), txt, font,
+								build_sdlcolor(
+									vObj["color"]->AsString()),
+								build_sdlcolor(
+									vObj["bg"]->AsString())));
+				}
+				else {
+					throw "'messages' array in '" + filenameResources
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'messages' is not an array in '" + filenameResources + "'";
+		}
+	}
+}
+
+
 void SDLUtils::loadCards(JSONObject rootCards, std::string filenameCards)
 {
 	/// CARD PARSING
@@ -343,62 +398,81 @@ void SDLUtils::loadCards(JSONObject rootCards, std::string filenameCards)
 	}
 }
 
-void SDLUtils::loadMessages(JSONObject rootResources, std::string filenameResources)
-{
-	// load messages
-	const auto jValue = rootResources["messages"];
-	if (jValue != nullptr) {
-		if (jValue->IsArray()) {
-			msgs_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto &v : jValue->AsArray()) {
-				if (v->IsObject()) {
-					JSONObject vObj = v->AsObject();
-					std::string key = vObj["id"]->AsString();
-					std::string txt = vObj["text"]->AsString();
-					auto &font = fonts_.at(vObj["font"]->AsString());
-#ifdef _DEBUG
-					std::cout << "Loading message with id: " << key
-							<< std::endl;
-#endif
-					if (vObj["bg"] == nullptr)
-						msgs_.emplace(key,
-								Texture(renderer(), txt, font,
-										build_sdlcolor(
-												vObj["color"]->AsString())));
-					else
-						msgs_.emplace(key,
-								Texture(renderer(), txt, font,
-										build_sdlcolor(
-												vObj["color"]->AsString()),
-										build_sdlcolor(
-												vObj["bg"]->AsString())));
-				} else {
-					throw "'messages' array in '" + filenameResources
-							+ "' includes and invalid value";
-				}
-			}
-		} else {
-			throw "'messages' is not an array in '" + filenameResources + "'";
-		}
-	}
-}
+
 
 void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialogues)
 {
-	// load dialogues
-	const auto jValue = rootDialogues["dialogues"];
-	if (jValue != nullptr) {
-		if (jValue->IsArray()) {
-			dialogues_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto& v : jValue->AsArray()) {
-				if (v->IsObject()) {
-					JSONObject vObj = v->AsObject();
-					std::string key = vObj["id"]->AsString();
-					std::string text = vObj["text"]->AsString();
+	// DIALOGUES PARSING
+	// Samir, Cynthia (feat. Luis & Ines)
+	const auto jValue = rootDialogues["owner"];	// key con todos los owners
+	if (jValue != nullptr) {	// si existe la key "owner"
+		if (jValue->IsArray()) {	// si existen owners
+			for (auto& v : jValue->AsArray()) {	// por cada owner
+				if (v->IsObject()) {	// si el owner es un objeto
+					JSONObject ownerObj = v->AsObject();	// guardamos el owner como JSONObject
+					std::string NPCName = ownerObj["NPCName"]->AsString();	// Obtenemos la key "NPCName" del JSONObject creado por cada owner
+
+
+					std::vector<JsonData::ConvoData> convos;		// Declaramos el vector para guardar las convos del owner
+																	// Las convos aun no se pueden guardar porque dentro hay varios datos que quedan por parsear
+					
+					JSONArray convosArray = ownerObj["convo"]->AsArray();	// Array de convos
+					for (auto& c : convosArray) {	// Por cada convo
+						if (c->IsObject()) {
+							JSONObject convoObj = c->AsObject();	// Guardamos la convo como objeto
+							int convoID = convoObj["convoID"]->AsNumber();	// Obteneos la key "convoID" del JSONObject creado por cada convo
+							bool auto_ = convoObj["autoConvo"]->AsBool();
+
+							std::vector<JsonData::NodeData> nodes;	// Declaramos el vector para guardar los nodos de la convo
+																	// Los nodos aun no se pueden guardar porque dentro hay varios datos que quedan por parsear
+					
+							JSONArray nodesArray = convoObj["nodes"]->AsArray();	// Array de nodes
+							for (auto& n : nodesArray) {		// Por cada node
+								if (n->IsObject()) {
+									JSONObject nodeObj = n->AsObject();
+									int nodeID = nodeObj["nodeID"]->AsNumber();
+									std::string text = nodeObj["text"]->AsString();
+
+									DialogueEvents::Events eventStart = static_cast<DialogueEvents::Events>(nodeObj["eventStart"]->AsNumber());
+									DialogueEvents::Events eventFinish = static_cast<DialogueEvents::Events>(nodeObj["eventFinish"]->AsNumber());
+
+									//vector de efectos
+									std::vector<JsonData::DialogueEventS> eventsS;
+									std::vector<JsonData::DialogueEventS> eventsF;
+
+									JSONArray eventsA = nodeObj["events"]->AsArray();	// Array de eventos iniciales
+									for (auto& ea : eventsA) {
+										if (ea->IsObject()) {
+											JSONObject eventObj = ea->AsObject();
+
+											// recoge los datos
+											int timing = eventObj["timing"]->AsNumber();
+											int type = eventObj["type"]->AsNumber();
+											int scene = eventObj["scene"]->AsNumber();
+
+											switch (timing) {
+											case 0:
+												eventsS.emplace_back(timing, type, scene);
+												break;
+											case 1:
+												eventsF.emplace_back(timing, type, scene);
+												break;
+											default:
+												break;
+											}
+										}
+									}
+									nodes.emplace_back(nodeID, text, eventStart, eventFinish, eventsS, eventsF);
+								}
+							}
+
+							convos.emplace_back(convoID, auto_, nodes);
+						}
+					}
 #ifdef _DEBUG
-					std::cout << "Loading dialogue with id: " << key << std::endl;
+					std::cout << "Loading dialogues of owner: " << NPCName << std::endl;
 #endif
-					dialogues_.emplace(key, JsonData::DialogueData(text));
+					dialogues_.emplace(NPCName, JsonData::DialogueData(NPCName, convos));
 				}
 				else {
 					throw "'dialogues' array in '" + filenameDialogues
@@ -410,6 +484,52 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 			throw "'dialogues' is not an array";
 		}
 	}
+}
+
+void SDLUtils::loadNPCs(JSONObject rootNPCSs, std::string filenameNPCs)
+{
+	/// CARD PARSING
+	///	Samir (feat. Ines)
+	const auto jValue = rootNPCSs["npcs"]; // key con todos los npcs
+	if (jValue != nullptr) { // si existe tal key
+		if (jValue->IsArray()) { // si tiene npcs dentro
+			npcs_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto& v : jValue->AsArray()) { // por cada npc
+				if (v->IsObject()) { // si el npc actual es objeto
+					// npc as JSON object
+					JSONObject npcObj = v->AsObject();
+					
+					/// >>> Lectura inicial de parametros basicos <<<
+					std::string id = npcObj["npcID"]->AsString();
+					std::string name = npcObj["name"]->AsString(); // id
+					std::string sprite = npcObj["sprite"]->AsString(); // sprite
+					float sX = npcObj["scaleX"]->AsNumber(); // scale X
+					float sY = npcObj["scaleY"]->AsNumber(); // scale Y
+					float pX = npcObj["posX"]->AsNumber(); // position X
+					float pY = npcObj["posY"]->AsNumber(); // position Y
+					int type = npcObj["type"]->AsNumber(); // type
+					int scene = npcObj["scene"]->AsNumber(); // scene
+					int layer = npcObj["layer"]->AsNumber(); // layer
+
+					JsonData::NPCData info(std::stoi(id), name, sprite, sX, sY, pX, pY, type, scene, layer);
+					JsonData::NPCData rinfo = static_cast<JsonData::NPCData>(info);
+
+#ifdef _DEBUG
+					std::cout << "Loading NPC with id: " << id << std::endl;
+#endif
+					npcs_.emplace(id, rinfo); // finalmente se anyaden al mapa
+				}
+				else {
+					throw "'npcs' array in '" + filenameNPCs
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'npcs' is not an array";
+		}
+	}
+
 }
 
 std::vector<Effects::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::vector<Effects::Direction>& directions)

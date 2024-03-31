@@ -7,6 +7,10 @@ class FakeCardFactory;
 class HandFactory;
 class BoardFactory;
 class MatchStateUIFactory;
+class DialogueFactory;
+class NPCFactory;
+class DecisionFactory;
+
 
 namespace ecs {
 	class Entity;
@@ -22,9 +26,9 @@ public:
 
 #pragma region Templates setFactories
 	/*
-		Si se añade un nuevo tipo de factory para objetos en especifico,
+		Si se aï¿½ade un nuevo tipo de factory para objetos en especifico,
 		hay que meter una nueva variable de ese tipo en esta clase y crear una
-		sobrecarga de este metodo con template como las que están ya hechas
+		sobrecarga de este metodo con template como las que estï¿½n ya hechas
 	*/
 
 
@@ -57,15 +61,37 @@ public:
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
+	template<typename ...Ts>
+	void SetFactories(DialogueFactory* df, Ts &&... args) {
+		dialogueFactory = df;
+		SetFactories(std::forward<Ts>(args)...);
+	}
+
+	template<typename ...Ts>
+	void SetFactories(NPCFactory* npcf, Ts &&... args) {
+		npcFactory = npcf;
+		SetFactories(std::forward<Ts>(args)...);
+	}
+
+	template<typename ...Ts>
+	void SetFactories(DecisionFactory* decisionF, Ts &&... args) {
+		decisionFactory = decisionF;
+		SetFactories(std::forward<Ts>(args)...);
+	}
+		
 
 #pragma endregion
 
-	Factory() :
-		boardFactory(nullptr),
-		cardFactory(nullptr),
-		handFactory(nullptr),
-		matchStateUIFactory(nullptr),
-		fakeCardFactory(nullptr)
+	Factory() : 
+	boardFactory(nullptr),
+	cardFactory(nullptr),
+	handFactory(nullptr),
+	matchStateUIFactory(nullptr),
+	dialogueFactory(nullptr),
+	npcFactory(nullptr),
+	fakeCardFactory(nullptr),
+	decisionFactory(nullptr)
+
 	{};
 
 
@@ -79,7 +105,7 @@ public:
 	ecs::entity_t createDeckJ2();
 	ecs::entity_t createBoard();
 
-	// Métodos para crear la UI en el MatchState
+	// Mï¿½todos para crear la UI en el MatchState
 	ecs::entity_t createVisual_EndTurnButton(int posX, int posY);
 	ecs::entity_t createVisual_ActionPointsCounter(int posX, int posY);
 	ecs::entity_t createVisual_ScoreCounter(int posX, int posY, SDL_Color color);
@@ -87,12 +113,29 @@ public:
 	ecs::entity_t createVisual_BackgroundBlackBox(int posX, int posY, float xPixelsSize, float yPixelsSize);
 	ecs::entity_t createVisual_BackgroundFullImage();
 
+	// metodos para los NPCs
+	// i de index para especificar el npc que quieres crear del json
+	ecs::entity_t createNPC(int i, ecs::entity_t parent);
+
+	// metodos para los dialogos
+	ecs::entity_t createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
+		int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
+		Text::TextAlignment textAlignment);
+
+	// metodos para las decisiones al acabar dialogo
+	void createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer,
+		std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment);
+
+
 public:
 
 	BoardFactory* boardFactory;
 	CardFactory* cardFactory;
 	HandFactory* handFactory;
 	MatchStateUIFactory* matchStateUIFactory;
+	DialogueFactory* dialogueFactory;
+	NPCFactory* npcFactory;
 	FakeCardFactory* fakeCardFactory;
+	DecisionFactory* decisionFactory;
 };
 

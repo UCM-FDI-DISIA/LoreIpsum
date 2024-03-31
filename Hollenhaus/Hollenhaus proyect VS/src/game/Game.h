@@ -3,6 +3,8 @@
 
 class GameStateMachine;
 
+
+	
 //Probablemente haya que hacer un enum de 
 class Game {
 public:

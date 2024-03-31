@@ -60,7 +60,7 @@ void ShopState::onEnter()
 
 	//------Texto de la tienda:
 	ecs::entity_t shopText = Instantiate(Vector2D(400, 30));
-	shopText->addComponent<TextComponent>("TIENDA", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 350, 
+	shopText->addComponent<TextComponent>("TIENDA", "8bit_size_40", SDL_Color({ 255, 255, 255, 255 }), 350, 
 		Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	shopText->setLayer(1);
 
@@ -68,11 +68,12 @@ void ShopState::onEnter()
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("fondoTienda");
-	fondo->getComponent<Transform>()->setGlobalScale(5.0f, 5.0f);
+	fondo->getComponent<Transform>()->setGlobalScale(0.475f, 0.475f);
 	//fondo->getComponent<Transform>()->getRelativeScale().set(5.0f, 5.0f);
 	fondo->setLayer(0);
 
 	//-----estanteria
+	/*
 	ecs::entity_t estanteria = Instantiate();
 	estanteria->addComponent<Transform>();
 	estanteria->addComponent<SpriteRenderer>("estanteria");
@@ -80,7 +81,7 @@ void ShopState::onEnter()
 	estanteria->getComponent<Transform>()->setGlobalPos(estanteriaPos);
 	estanteria->getComponent<Transform>()->setGlobalScale(1.5f, 1.5f);
 	//estanteria->getComponent<Transform>()->getRelativeScale().set(1.5f, 1.5f);
-	estanteria->setLayer(1);
+	estanteria->setLayer(1);*/
 
 	//moneda1
 	ecs::entity_t coin1 = Instantiate();
@@ -206,7 +207,7 @@ void ShopState::onEnter()
 	carta4->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta4->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
 	carta4->setLayer(2);
-	
+	/*
 	//tendero
 	ecs::entity_t tendero = Instantiate();
 	tendero->addComponent<Transform>();
@@ -226,7 +227,7 @@ void ShopState::onEnter()
 	mostrador->getComponent<Transform>()->setGlobalPos(mostradorPos);
 	mostrador->getComponent<Transform>()->setGlobalScale(2.0f, 2.0f);
 	//mostrador->getComponent<Transform>()->getRelativeScale().set(2.0f, 2.0f);
-	mostrador->setLayer(3);
+	mostrador->setLayer(3);*/
 	
 
 

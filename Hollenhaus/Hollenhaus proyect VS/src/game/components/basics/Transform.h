@@ -25,7 +25,7 @@ public:
     void removeParent();
 
     // Matar hijos
-    void killChilds();
+    void killChildren();
 
     std::list<Transform*> getChildren();
 

@@ -35,6 +35,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="src\game\components\AutoDialogue.cpp" />
     <ClCompile Include="src\game\components\basics\BoxCollider.cpp" />
     <ClCompile Include="src\game\components\basics\SpriteRenderer.cpp" />
     <ClCompile Include="src\game\components\basics\TextComponent.cpp" />
@@ -44,6 +45,9 @@
     <ClCompile Include="src\game\components\Cell.cpp" />
     <ClCompile Include="src\game\components\ColliderRender.cpp" />
     <ClCompile Include="src\game\components\DeckComponent.cpp" />
+    <ClCompile Include="src\game\components\DialogueDestroyer.cpp" />
+    <ClCompile Include="src\game\components\DialogueEventCollection.cpp" />
+    <ClCompile Include="src\game\components\DialogueReader.cpp" />
     <ClCompile Include="src\game\components\Drag.cpp" />
     <ClCompile Include="src\game\components\DragNoCombat.cpp" />
     <ClCompile Include="src\game\components\DropDetector.cpp" />
@@ -61,7 +65,10 @@
     <ClCompile Include="src\game\components\managers\PizarraManager.cpp" />
     <ClCompile Include="src\game\components\managers\PlayerCardsManager.cpp" />
     <ClCompile Include="src\game\components\MoveOnClick.cpp" />
+    <ClCompile Include="src\game\components\NextText.cpp" />
     <ClCompile Include="src\game\components\NPC.cpp" />
+    <ClCompile Include="src\game\components\TypeWriter.cpp" />
+    <ClCompile Include="src\game\Dialogue.cpp" />
     <ClCompile Include="src\game\components\ShineComponent.cpp" />
     <ClCompile Include="src\game\components\ShopComponent.cpp" />
     <ClCompile Include="src\game\EffectCollection.cpp" />
@@ -72,10 +79,16 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\game\factories\CardFactory_v1.cpp" />
+    <ClCompile Include="src\game\factories\DecisionFactory.cpp" />
+    <ClCompile Include="src\game\factories\DecisionFactory_V0.cpp" />
+    <ClCompile Include="src\game\factories\DialogueFactory.cpp" />
+    <ClCompile Include="src\game\factories\DialogueFactory_V0.cpp" />
     <ClCompile Include="src\game\factories\Factory.cpp" />
     <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp" />
     <ClCompile Include="src\game\factories\MatchStateUIFactory.cpp" />
     <ClCompile Include="src\game\factories\MatchStateUIFactory_v0.cpp" />
+    <ClCompile Include="src\game\factories\NPCFactory.cpp" />
+    <ClCompile Include="src\game\factories\NPCFactory_V0.cpp" />
     <ClCompile Include="src\game\gamestates\AndresState.cpp" />
     <ClCompile Include="src\game\gamestates\CityState.cpp" />
     <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp" />
@@ -167,6 +180,7 @@
   <ItemGroup>
     <ClInclude Include="pchs\pch_c++_basic.h" />
     <ClInclude Include="pchs\pch_SDL.h" />
+    <ClInclude Include="src\game\components\AutoDialogue.h" />
     <ClInclude Include="src\game\components\basics\BoxCollider.h" />
     <ClInclude Include="src\game\components\basics\SpriteRenderer.h" />
     <ClInclude Include="src\game\components\basics\TextComponent.h" />
@@ -179,6 +193,9 @@
     <ClInclude Include="src\game\components\ComponentRender.h" />
     <ClInclude Include="src\game\components\ComponentUpdate.h" />
     <ClInclude Include="src\game\components\DeckComponent.h" />
+    <ClInclude Include="src\game\components\DialogueDestroyer.h" />
+    <ClInclude Include="src\game\components\DialogueEventCollection.h" />
+    <ClInclude Include="src\game\components\DialogueReader.h" />
     <ClInclude Include="src\game\components\Drag.h" />
     <ClInclude Include="src\game\components\DragNoCombat.h" />
     <ClInclude Include="src\game\components\DropDetector.h" />
@@ -196,10 +213,22 @@
     <ClInclude Include="src\game\components\managers\PizarraManager.h" />
     <ClInclude Include="src\game\components\managers\PlayerCardsManager.h" />
     <ClInclude Include="src\game\components\MoveOnClick.h" />
+    <ClInclude Include="src\game\components\NextText.h" />
     <ClInclude Include="src\game\components\NPC.h" />
     <ClInclude Include="src\game\components\ShineComponent.h" />
     <ClInclude Include="src\game\components\ShopComponent.h" />
+    <ClInclude Include="src\game\components\TypeWriter.h" />
+    <ClInclude Include="src\game\Dialogue.h" />
     <ClInclude Include="src\game\EffectCollection.h" />
+    <ClInclude Include="src\game\factories\DecisionFactory.h" />
+    <ClInclude Include="src\game\factories\DecisionFactory_V0.h" />
+    <ClInclude Include="src\game\factories\DialogueFactory.h" />
+    <ClInclude Include="src\game\factories\DialogueFactory_V0.h" />
+    <ClInclude Include="src\game\factories\NPCFactory.h" />
+    <ClInclude Include="src\game\factories\NPCFactory_V0.h" />
+    <ClInclude Include="src\game\components\ShineComponent.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h" />
     <ClInclude Include="src\game\factories\FakeCardFactory.h" />
     <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -259,6 +288,7 @@
   <ItemGroup>
     <None Include="resources\config\cards.json" />
     <None Include="resources\config\dialogues.json" />
+    <None Include="resources\config\dialoguesV1.json" />
     <None Include="resources\config\resources.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -359,6 +389,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
