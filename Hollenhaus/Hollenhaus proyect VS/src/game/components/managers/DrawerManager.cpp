@@ -23,7 +23,7 @@ void DrawerManager::refreshExistencia()
 			ecs::entity_t ent = cardsAux[i];
 
 			// la mata
-			ent->getComponent<Transform>()->killChilds();
+			ent->getComponent<Transform>()->killChildren();
 			ent->setAlive(false);
 			cardsAux[i] = nullptr;
 		}
@@ -100,7 +100,7 @@ void DrawerManager::addCard(int id, ecs::entity_t ent)
 		id < CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos)
 	{
 		// se mata (a si misma y a sus hijos)
-		ent->getComponent<Transform>()->killChilds();
+		ent->getComponent<Transform>()->killChildren();
 		ent->setAlive(false);
 	}
 
