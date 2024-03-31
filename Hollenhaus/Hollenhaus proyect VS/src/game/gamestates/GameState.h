@@ -30,7 +30,6 @@ public:
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
 
-	virtual void setWinnerOnData(int w);
 	//----Mete una c carta al array de cartas de la tienda de Data.
 	virtual void setShopCard(int c);
 	//----Comprueba si el array de cartas de la tienda de Data esta vacia.
@@ -46,17 +45,9 @@ public:
 	//----Devuelve el dinero del jugador:
 	virtual int getMoney();
 
-	virtual ecs::entity_t createCard(int id, Vector2D pos) { return nullptr; };
-	virtual std::array<int, 50> getDrawer();
-	virtual std::list<int> getMaze();
-	virtual void setMaze(std::list<int> mazeToSave);
-	virtual void setDrawer(std::array<int, 50> drawerToSave);
 	virtual void saveData();
 	virtual void loadData();
 
-	// ---- setters ----
-	// settea la data
-	static void setData(Data* _data);
 	// ---- crea carta ----
 	virtual ecs::entity_t createCard(int id, Vector2D pos) { return nullptr; };
 

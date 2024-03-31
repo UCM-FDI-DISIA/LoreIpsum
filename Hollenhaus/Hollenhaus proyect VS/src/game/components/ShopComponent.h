@@ -9,7 +9,8 @@ class Card;
 class Button;
 
 class ShopComponent : public ComponentUpdate
-{public:
+{
+public:
 
 	ShopComponent();
 	~ShopComponent();
@@ -20,20 +21,22 @@ class ShopComponent : public ComponentUpdate
 	//------Genera las CARDS_IN_SHOP cartas que puede comprar el jugador.
 	void generateCards();
 	//------Comprueba si una carta ha sido comprada por el jugador, es decir, esta en el drawer (cajon).
-	bool checkCardIsBought(int id);
+	bool cardIsBought(int id);
 	//------Muestra las cartas disponibles para comprar.
 	void showCards();
 	//------Muestra los precios de las cartas.
 	void showPrizes();
-	void setButtons();
 	void buyCard();
 	bool confirmPurchase();
 
+	void checkCardsAreBought();
 	void onLeftClick();
+
+	int calculatePrize(ecs::entity_t ent);
 
 private:
 	//----Guarda las CARDS_IN_SHOP cartas de la tienda.
-	int* shopCards; 
+	int* shopCards;
 	//----Precio de las cartas.
 	int* shopCardsPrize;
 	//----Guarda las posiciones de las cartas.
@@ -46,6 +49,6 @@ private:
 	int money;
 	//------------------------------lo del precio de las cartas deberia de estar en el json. Todas en el mismo json.
 	//------------------------------array de precios de las cartas. Sus posiciones son las de las cartas pero bajando la y.
-	
+
 };
 

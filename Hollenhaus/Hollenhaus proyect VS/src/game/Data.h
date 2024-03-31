@@ -25,17 +25,10 @@ private:
 		currentSouls = 0,
 		winner = 0;
 
-	// ------ DECKBUILDING -------
-	std::array<int, CARDS_IN_GAME> drawer; // Id de las cartas desbloqueadas
-	std::list<int> maze; // Id de las cartas del mazo 
-
 	// ------ NS ------
 	std::list<int> defeatedNPCS;
 	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
-
-	// True si la ultima partida ha sido ganado el jugador
-	bool playerWon; 
 
 	enum WINNER {
 		NONE,
