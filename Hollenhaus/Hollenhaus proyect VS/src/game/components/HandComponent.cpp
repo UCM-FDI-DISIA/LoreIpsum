@@ -5,6 +5,9 @@
 #include "basics/SpriteRenderer.h"
 #include "managers/CardStateManager.h"
 
+#include "Card.h"
+#include "basics/TextComponent.h"
+
 HandComponent::HandComponent() :
 	transform_(), lastCardAdded_(nullptr)
 {
@@ -25,10 +28,9 @@ void HandComponent::addCard(ecs::entity_t card) {
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(Cards::ON_HAND);
 
-	if (owner_ == Players::PLAYER2)
+	if (owner_ == Players::IA)
 	{
 		card->getComponent<Transform>()->setGlobalAngle(180.0f);
-		//for (card->getComponent<Transform>().getChildren()) TODO: girar cada elemento dentro, pero como un transform no conoce a sus hijos....
 	}
 
 	card->getComponent<Transform>()->addParent(transform_);
@@ -62,15 +64,31 @@ void HandComponent::removeCard(ecs::entity_t card) {
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
 		if (cardsInHand_[i] != card)
-		{
+		{ // la carta esta en la manita del fantasmiko
 			auxVec.push_back(cardsInHand_[i]);
 			//numCards_++;
 			transform_->getGlobalPos().getX() + 10;
 		}
-		else
+		else // la carta es jugada
 		{
-
+			// cambia la escala para ajustarse a la celda del tablero
 			card->getComponent<Transform>()->setGlobalScale(cardScaleBoard_, cardScaleBoard_);
+
+			// ajusta tambien los textos
+			for (auto child : card->getComponent<Transform>()->getChildren())
+			{
+				auto texto = child->getEntity()->getComponent<TextComponent>();
+				if (texto != nullptr)
+				{
+					texto->setFont("8bit_16pt");
+					child->getRelativePos().set(
+						child->getRelativePos().getX(), 
+						child->getRelativePos().getY()-child->getRelativePos().getY()/6.25
+					);
+				}
+			}
+
+			// su parent ya no es la mano izq
 			cardsInHand_[i]->getComponent<Transform>()->removeParent();
 		}
 	}
@@ -79,6 +97,17 @@ void HandComponent::removeCard(ecs::entity_t card) {
 	cardsInHand_ = auxVec;
 
 	refreshPositions();
+}
+
+std::vector<Card*> HandComponent::getHand()
+{
+	std::vector<Card*> v;
+
+	for (auto e : cardsInHand_) {
+		v.push_back(new Card((*e->getComponent<Card>())));//copia para no usar la misma memoria?
+	}
+
+	return v;
 }
 
 void HandComponent::refreshPositions() {

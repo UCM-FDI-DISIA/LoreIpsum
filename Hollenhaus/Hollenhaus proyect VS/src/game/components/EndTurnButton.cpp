@@ -29,6 +29,11 @@ void EndTurnButton::update()
 {
 }
 
+void EndTurnButton::setIA(bool b)
+{
+	activeIA = true;
+}
+
 void EndTurnButton::ClickButton()
 {
 	// version con propietario:
@@ -38,8 +43,17 @@ void EndTurnButton::ClickButton()
 	//}
 
 	// version toggle
-	if (bc_->isCursorOver()) {
-		// Se pasa el turno al otro jugador
-		matchManager_->setActualState(matchManager_->getActualState() == Turns::J1 ? Turns::J2 : Turns::J1);
+	//if (bc_->isCursorOver()) {
+	//	// Se pasa el turno al otro jugador
+	//	matchManager_->setActualState(matchManager_->getActualState() == Turns::J1 ? Turns::J2 : Turns::J1);
+	//}
+
+	//version con IA
+	if (activeIA) {
+
+		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1) {
+			// Se pasa el turno al otro jugador
+			matchManager_->setActualState(Turns::IA);
+		}
 	}
 }

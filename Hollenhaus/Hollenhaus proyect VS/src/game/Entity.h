@@ -6,6 +6,8 @@
 #include <array>
 #include <vector>
 
+#include "components/basics/Transform.h"
+
 class ComponentUpdate;
 class ComponentRender;
 
@@ -72,6 +74,16 @@ public:
 	int getLayer() {
 		return layer;
 	};
+
+	int getLastLayer() {
+		int layer = getLayer();
+		if (getComponent<Transform>() != nullptr)
+		{
+			for (const auto child : getComponent<Transform>()->getChildren())
+				layer++;
+		}
+		return layer;
+	}
 
 private:
 

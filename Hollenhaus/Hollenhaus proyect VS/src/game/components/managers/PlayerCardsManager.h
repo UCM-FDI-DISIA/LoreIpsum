@@ -21,5 +21,7 @@ public:
 
     void initComponent() override;
 
+    //necesario para la IA
+    HandComponent* getHand();
 };
 

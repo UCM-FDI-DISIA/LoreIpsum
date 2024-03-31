@@ -184,6 +184,8 @@
 #include "ecs.h"
 #include "Namespaces.h"
 #include "components/managers/Manager.h"
+#include "../utils/tweeny-3.2.0.h"
+
 
 #pragma endregion
 

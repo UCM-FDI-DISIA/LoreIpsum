@@ -58,6 +58,7 @@
     <ClCompile Include="src\game\components\managers\CardStateManager.cpp" />
     <ClCompile Include="src\game\components\managers\DragManager.cpp" />
     <ClCompile Include="src\game\components\managers\DrawerManager.cpp" />
+    <ClCompile Include="src\game\components\managers\IA_manager.cpp" />
     <ClCompile Include="src\game\components\managers\KeyManager.cpp" />
     <ClCompile Include="src\game\components\managers\Manager.cpp" />
     <ClCompile Include="src\game\components\managers\MatchManager.cpp" />
@@ -73,7 +74,9 @@
     <ClCompile Include="src\game\factories\BoardFactory.cpp" />
     <ClCompile Include="src\game\factories\BoardFactory_v0.cpp" />
     <ClCompile Include="src\game\factories\CardFactory.cpp" />
-    <ClCompile Include="src\game\factories\CardFactory_v0.cpp" />
+    <ClCompile Include="src\game\factories\CardFactory_v0.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\game\factories\CardFactory_v1.cpp" />
     <ClCompile Include="src\game\factories\DecisionFactory.cpp" />
     <ClCompile Include="src\game\factories\DecisionFactory_V0.cpp" />
@@ -204,6 +207,7 @@
     <ClInclude Include="src\game\components\managers\CardStateManager.h" />
     <ClInclude Include="src\game\components\managers\DragManager.h" />
     <ClInclude Include="src\game\components\managers\DrawerManager.h" />
+    <ClInclude Include="src\game\components\managers\IA_manager.h" />
     <ClInclude Include="src\game\components\managers\KeyManager.h" />
     <ClInclude Include="src\game\components\managers\Manager.h" />
     <ClInclude Include="src\game\components\managers\MatchManager.h" />
@@ -225,13 +229,17 @@
     <ClInclude Include="src\game\factories\DeckBuildingFactory.h" />
     <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h" />
     <ClInclude Include="src\game\factories\FakeCardFactory.h" />
-    <ClInclude Include="src\game\factories\FakeCardFactory_v0.h" />
+    <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
     <ClInclude Include="src\game\Namespaces.h" />
     <ClInclude Include="src\game\factories\BoardFactory.h" />
     <ClInclude Include="src\game\factories\BoardFactory_v0.h" />
     <ClInclude Include="src\game\factories\CardFactory.h" />
-    <ClInclude Include="src\game\factories\CardFactory_v0.h" />
+    <ClInclude Include="src\game\factories\CardFactory_v0.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="src\game\factories\CardFactory_v1.h" />
     <ClInclude Include="src\game\factories\Factory.h" />
     <ClInclude Include="src\game\factories\MatchStateUIFactory.h" />

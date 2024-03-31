@@ -60,7 +60,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_BackgroundBlackBox(int posX, 
     ecs::entity_t blackBox = Instantiate(Vector2D(posX, posY)); // 600, 200
     blackBox->addComponent<SpriteRenderer>("black_box");
 
-    // Obtenemos la altura y anchura de "black_box" para definir el tamaño del sprite en pixeles
+    // Obtenemos la altura y anchura de "black_box" para definir el tamaï¿½o del sprite en pixeles
     int textureW = blackBox->getComponent<SpriteRenderer>()->getTexture()->width();
     int textureH = blackBox->getComponent<SpriteRenderer>()->getTexture()->height();
     blackBox->getComponent<Transform>()->setGlobalScale(xPixelsSize / textureW, yPixelsSize / textureH);

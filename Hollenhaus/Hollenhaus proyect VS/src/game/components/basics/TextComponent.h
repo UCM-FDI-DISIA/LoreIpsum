@@ -59,6 +59,9 @@ public:
 	// Método público para cambiar la alineación del texto respecto a la caja
 	void SetTextAlignment(Text::TextAlignment textAlignment);
 
+	// Metodo publico para cambiar la fuente del componente
+	void setFont(const std::string& font) { font_ = &sdl_.fonts().at(font); createTexture(); }
+
 private:
 
 	Transform* tr_;

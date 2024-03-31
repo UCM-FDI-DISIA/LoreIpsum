@@ -16,7 +16,8 @@ namespace Turns
 	enum State {
         J1,
         J2,
-        Finish
+        Finish,
+		IA
     };
 }
 
@@ -48,9 +49,10 @@ namespace Players
 	enum Owner
 	{
 		NONE,
-		PLAYER1,
-		PLAYER2,
-		NULO
+		PLAYER1,//jugador?
+		PLAYER2,//IA?
+		NULO,
+		IA
 	};
 }
 

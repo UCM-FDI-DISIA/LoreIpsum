@@ -13,7 +13,7 @@ ecs::entity_t FakeCardFactory_v0::createFakeCard(int id, Vector2D pos, int cost,
     fakeCard->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	fakeCard->getComponent<Transform>()->setGlobalScale(cardScale, cardScale);
 	fakeCard->getComponent<Transform>()->setGlobalPos(pos);
-    fakeCard->addComponent<Card>();
+    fakeCard->addComponent<Card>(cost, value, id, sprite, unblockable );
 	Card* cardComp = fakeCard->getComponent<Card>();
 
 	fakeCard->setLayer(2);
@@ -23,7 +23,6 @@ ecs::entity_t FakeCardFactory_v0::createFakeCard(int id, Vector2D pos, int cost,
 	addEffectsImages(fakeCard, effects);
 	return fakeCard;
 }
-
 
 void FakeCardFactory_v0::addValueCostTexts(ecs::entity_t card, int value, int cost)
 {
@@ -73,25 +72,18 @@ void FakeCardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonDa
 	for (int i = 0; i < effects.size(); i++)
 	{
 		effectImage = Instantiate(Vector2D(0, 0));
-
 		efectID = efectsIdsNames[effects[i].type()];
 
 		effectImage->addComponent<SpriteRenderer>(efectID);
-
-
 		effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
-
 		//effectImage->getComponent<Transform>()->getGlobalScale().set(1, 1);
-
 		effectImage->getComponent<Transform>()->setGlobalScale(scale, scale);
+
 		Vector2D gpos(initialX + ((i % nCols) * offSetX), initialY + ((i / nCols) * offSetY));
-
 		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
-
 		effectImage->setLayer(layer);
 
-
-		//si es una flecha, girarla
+		// si es una flecha, girarla
 		if (effects[i].type() >= 2 && effects[i].type() <= 4)
 		{
 			Effects::Direction dir = effects[i].directions()[0];
@@ -99,7 +91,7 @@ void FakeCardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonDa
 				dir == Effects::Right ? 90.f : dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
 		}
 
-		//poner el simbolo del valor
+		// poner el simbolo del valor
 		if (effects[i].value() != 0)
 		{
 			std::string valueText = effects[i].value() < 0 ? "-" : "+";
@@ -142,5 +134,3 @@ void FakeCardFactory_v0::addEffects(Card* cardComp, std::vector<JsonData::CardEf
 				);
 	}
 }
-
-

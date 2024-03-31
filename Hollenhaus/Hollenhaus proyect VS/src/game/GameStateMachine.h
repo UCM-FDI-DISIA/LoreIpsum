@@ -20,13 +20,13 @@ namespace GameStates
 {
 	//Enum de estados del juego
 	enum game_states {
-		MAINMENU = 0,
+		MAINMENU,
 		CITY,
 		OFFICE,
 		SHOP,
 		BOARD,
 		PAIGRO,
-		SAMU,
+		LUIS,
 		NIEVES,
 		MATCHOVER,
 		DECKBUILDING
@@ -59,6 +59,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* nievesState;
 	GameState* movementState;
 	GameState* matchOverState;
+	GameState* luisState;
 	GameState* deckBuildingState;
 
 public:
@@ -105,8 +106,8 @@ public:
 		case GameStates::PAIGRO:
 			currentState = paigroState;
 			break;
-		case GameStates::SAMU:
-			currentState = samuState;
+		case GameStates::LUIS:
+			currentState = luisState;
 			break;
 		case GameStates::NIEVES:
 			currentState = nievesState;

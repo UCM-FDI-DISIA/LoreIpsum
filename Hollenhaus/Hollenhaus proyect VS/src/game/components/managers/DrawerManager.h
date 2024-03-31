@@ -1,40 +1,69 @@
 #pragma once
 #include "../ComponentUpdate.h"
+#include "../../Data.h"
+#include "../../ecs.h"
+#include "../../../utils/Vector2D.h"
+#include <array>
 
-const int CANT_CARTAS_MOSTRADAS_DB = 6;
+// cuantas cartas hay por cajon
+const int CANT_CARTAS_MOSTRADAS_CAJON = 6;
+
 class DrawerManager : public ComponentUpdate
 {
 private:
+	// Cartas desbloqueadas
+	std::array<int, CARDS_IN_GAME> drawer;
+
+	// posiciones de la carta en el cajon
+	std::array<Vector2D, CANT_CARTAS_MOSTRADAS_CAJON> refreshPositions{
+		Vector2D(400, 420),
+		Vector2D(450, 420),
+		Vector2D(500, 420),
+		Vector2D(550, 420),
+		Vector2D(600, 420),
+		Vector2D(650, 420)
+	};
+
 	// lleva la cuenta de en que cajon estamos
 	int cajonesAbiertos;
 
+	// Array auxiliar para guardar las cartas actuales del cajon
+	std::array<ecs::entity_t, CANT_CARTAS_MOSTRADAS_CAJON> cardsAux;
+
 	// ---- Manageos externos ----
-	// crea las cartas del cajon en un rango
-	void refreshPos();
+	// crea las cartas del cajon en el rango CANT_CARTAS_MOSTRADAS_CAJON
+	void refreshExistencia();
+
+	// Refresca las posiciones de las cartas en el cajon
+	void refreshPos(int i, ecs::entity_t ent);
 
 public:
 	// ---- Constructora/Destructora ----
 	DrawerManager();
 	~DrawerManager();
 
-	// ---- Metodos heredados (no es TAAAAAAAAN importante) ----
+	// ---- Metodos heredados ----
 	void update() override;
 	void initComponent() override;
 
+	// ---- CAJON ----
+	// Guarda el drawer en el data
+	void saveDrawer();
 
-	// ---- Manageos de carta ----
+	// Comprueba si un id esta en el drawer
+	bool isOnDrawer(int id);
+
+	// ---- CARTAS ----
 	// Aniade carta
-	void addCard(int id);
+	void addCard(int id, ecs::entity_t);
 
 	// Quita carta
 	void removeCard(int id);
 
-	// ---- Manageos de botones ----
+	// ---- BOTONES ----
 	// muestra las siguientes n cartas
 	void drawerPalante();
 
 	// muestra las anteriores n cartas
 	void drawerPatras();
-
 };
-

@@ -18,6 +18,12 @@
 #include "../components/EndTurnButton.h"
 #include "../components/NPC.h"
 
+#include "../components/managers/IA_manager.h"
+
+#include "../components/managers/Manager.h"
+#include "../GameStateMachine.h"
+#include "../components/managers/PlayerCardsManager.h"
+
 LuisState::LuisState() : GameState()
 {
 	TuVieja("Loading LuisState");
@@ -76,8 +82,8 @@ void LuisState::onEnter()
 	ent->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
 
 	// Factoría de cartas. Con ella generamos la mano inicial
-	factory->createDeck();
-	factory->createDeckJ2();
+	ecs::entity_t deckPlayer1 = factory->createDeck();
+	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
 
 
 	// UI 
@@ -110,6 +116,36 @@ void LuisState::onEnter()
 	//sdl.musics().at("tryTheme").play();
 	sdlutils().soundEffects().at("battletheme").play(-1);
 	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
+
+
+	#pragma region Seccion IA
+
+	//crear la entidad y añadirle el componente
+	ecs::entity_t IA_controler = Instantiate();
+	IA_manager* ia_managerComponent = IA_controler->addComponent<IA_manager>();
+	
+	//le decimos al endTurn que existe la IA
+	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
+
+	
+
+	//seters de referencias de la ia
+
+	ia_managerComponent->setMatchManager(matchManagerComponent);
+	ia_managerComponent->setBoardManager(boardManagerComponent);
+
+	ia_managerComponent->setPlayerHand(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
+	ia_managerComponent->setEnemyHand(deckPlayer2->getComponent<PlayerCardsManager>()->getHand());
+
+	ia_managerComponent->setPlayerDeck(deckPlayer1->getComponent<DeckComponent>());
+	ia_managerComponent->setEnemyDeck(deckPlayer2->getComponent<DeckComponent>());
+
+	//set en el matchManager
+	matchManagerComponent->setIA_Manager(ia_managerComponent);
+
+
+	#pragma endregion
+
 }
 
 void LuisState::onExit()

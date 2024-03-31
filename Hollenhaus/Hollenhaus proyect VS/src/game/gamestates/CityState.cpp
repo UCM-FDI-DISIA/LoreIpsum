@@ -68,7 +68,7 @@ void CityState::onEnter()
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(1);
 
-	//------NPCs que demomento son Caitlyns:
+	//------NPCs:
 	//----Para entrar en la oficina.
 	//factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
 	factory->createNPC(0, fondo);
