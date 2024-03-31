@@ -10,8 +10,19 @@
 #include "MoveOnClick.h"
 #include "Entity.h"
 #include "Manager.h"
+#include "../sdlutils/InputHandler.h"
 
-MoveOnClick::MoveOnClick() {}
+#include <cmath>
+
+MoveOnClick::MoveOnClick() : myBoxCollider_(),
+							 myTransform_(),
+						     move_(false),
+						     scrollVel_(2),
+							 distance_(),
+							 vel_(),
+                             dir_(),
+							 halfScreen_(sdlutils().width() / 2){
+}
 
 MoveOnClick::~MoveOnClick()
 {
@@ -21,12 +32,7 @@ MoveOnClick::~MoveOnClick()
 
 void MoveOnClick::initComponent()
 {
-	myTransform = ent_->getComponent<Transform>(); // transform del fondo
-
-	move = false; // inicializa move a false
-
-	// se inicializa el movement al left top del fondo (independientemente de la pantalla, solo de la imagen)
-	ltBackroundCoor.setX(myTransform->getGlobalPos().getX());
+	myTransform_ = ent_->getComponent<Transform>(); // transform del fondo
 
 	// llamada al input
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
@@ -34,101 +40,58 @@ void MoveOnClick::initComponent()
 
 void MoveOnClick::update()
 {
-	// ---- Version de Andres y Nieves y Jesus Cristo amen ----
+	// ---- Version de Andres y Nieves y Jesus Cristo amen (y jimbo)----
+	const float posX = myTransform_->getGlobalPos().getX();
 
 	// ---- MOVE FALSE ----
-	// -> si la distancia a recorrer a llegado a cero o menos (se ha completado el mov.)
+	// -> si la diferencia entre la pos actual y la inicial es la distancia a recorrer (se ha completado el mov.)
 	// -> o cuando llegue a los limites de la ciudad por la derecha Y se pulse en la derecha
 	// -> o cuando llegue a los limites de la ciudad por la izquierda Y se pulse en la izquierda
-	if  (distance <= 0 || 
-		(((ltBackroundCoor.getX() >= 0) && (mousePos.getX() < halfScreen)) ||
-		((ltBackroundCoor.getX() <= BACKGROUND_SIZE) && (mousePos.getX() >= halfScreen))))
+	if  (abs(posX - myPos_.getX()) >= abs(distance_)   || 
+		(((posX >= 0) && (mousePos_.getX() < halfScreen_)) ||
+		((posX <= BACKGROUND_SIZE) && (mousePos_.getX() >= halfScreen_))))
 	{
-		move = false;
+		move_ = false;
 	}
-	else if (move) 
+	else if (move_) 
 	{
-		distance -= (scrollVel * direccionFondo);
-		distanceNow += (scrollVel * direccionFondo);
-		distanceNow += halfScreen;
-		ltBackroundCoor.setX(distanceNow);
-		myTransform->setGlobalPos(ltBackroundCoor);
+		Vector2D aux = Vector2D(posX + vel_, myTransform_->getGlobalPos().getY());
+		myTransform_->setGlobalPos(aux);
 	}
 
-#pragma region HOLAAA
-	/*
-	/*move = !((ltBackroundCoor.getX() == distanceToMove) ||
-		((ltBackroundCoor.getX() >= 0) && (mousePos.getX() < halfScreen)) ||
-		((ltBackroundCoor.getX() <= BACKGROUND_SIZE) && (mousePos.getX() >= halfScreen)));
-
-		// ---- MOVE FALSE ----
-		// -> si la coordenda x del lt del fondo coincide con el distanceToMove (se ha centrado)
-		// -> o cuando llegue a los limites de la ciudad por la derecha y se pulse en la derecha
-		// -> o cuando llegue a los limites de la ciudad por la izquierda y se pulse en la izquierda
-	if ((abs(ltBackroundCoor.getX()) <= abs(distanceToMove)) ||
-		((ltBackroundCoor.getX() >= 0) && (mousePos.getX() < halfScreen)) ||
-		((ltBackroundCoor.getX() <= BACKGROUND_SIZE) && (mousePos.getX() >= halfScreen)))
-	{
-		move = false;
-	}
-
-	// ---- MOVE TRUE ----
-	// -> si debe moverse
-	else if (move)
-	{
-		// JUGADOR HACIA LA DER, FONDO HACIA LA IZQ
-		if (mousePos.getX() >= halfScreen)
-		{
-			scrollCounter--;
-		}
-
-		// JUGADOR HACIA LA IZQ, FONDO HACIA LA DER
-		else if (mousePos.getX() < halfScreen)
-		{
-			scrollCounter++;
-		}
-
-		ltBackroundCoor.setX(myPos.getX() + scrollCounter * scrollVel);
-
-		myTransform->setGlobalPos(ltBackroundCoor);
-	}*/
-#pragma endregion 
+#if _DEBUG
+	std::cout << "DIS: " << distance_ << " " << move_ << "\n";
+	std::cout << abs(myTransform_->getGlobalPos().getX() - myPos_.getX()) << "\n";
+#endif
 }
 
 void MoveOnClick::OnLeftClickDown()
 {
 	// Si pulsamos en el collider, efectuamos el movimiento
-	if (myBoxCollider->isCursorOver()) {
-
+	if (myBoxCollider_->isCursorOver()) {
 		// guardas la posicion del raton en click
-		mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
+		mousePos_ = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
 
 		// posicion del fondo al hacer click
-		myPos = myTransform->getGlobalPos();
+		myPos_ = myTransform_->getGlobalPos();
 
 		// debe moverse al click
-		move = true;
-
-		// resetea la distancia a moverse en cada update que hay movimiento
-		scrollCounter = 1.0f;
-		distanceNow = myTransform->getGlobalPos().getX() - halfScreen;
-
-		// guardar en distanceToMove = (left top de la imagen en ese momento) - (donde hagas click - (mitad de la pantalla))
-		// le resta al left top de la imagen en ese momento la distancia entre el sitio a moverse y la mitad de la pantalla
-		distanceToMove = myTransform->getGlobalPos().getX() - (mousePos.getX() - halfScreen);
+		move_ = true;
 
 		// JUGADOR HACIA LA DER, FONDO HACIA LA IZQ
-		if (mousePos.getX() >= halfScreen)
+		if (mousePos_.getX() >= halfScreen_)
 		{
-			direccionFondo = -1;
-			distance = mousePos.getX() - halfScreen;
+			dir_ = -1;
+			distance_ = mousePos_.getX() - halfScreen_;
 		}
 
 		// JUGADOR HACIA LA IZQ, FONDO HACIA LA DER
-		else if (mousePos.getX() < halfScreen)
+		else if (mousePos_.getX() < halfScreen_)
 		{
-			direccionFondo = 1;
-			distance = halfScreen - mousePos.getX();
+			dir_ = 1;
+			distance_ = halfScreen_ - mousePos_.getX();
 		}
+
+		vel_ = scrollVel_ * dir_;
 	}
 }
