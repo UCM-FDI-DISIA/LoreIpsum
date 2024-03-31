@@ -257,6 +257,7 @@ void ShopState::onExit()
 {
 	std::cout << "\nEXIT SHOP.";
 
+	saveData();
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("shoptheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();

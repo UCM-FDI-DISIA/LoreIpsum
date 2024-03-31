@@ -10,8 +10,8 @@
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
 shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(525, 80),Vector2D(660, 200) ,Vector2D(525, 200) ,Vector2D(660, 80) }),
-shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0}),
-money(500)
+shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
+//,money(500)
 {}
 
 ShopComponent::~ShopComponent()
@@ -38,7 +38,7 @@ void ShopComponent::initComponent()
 		}
 	}
 
-	//money = GameStateMachine::instance()->getCurrentState()->getMoney();
+	money = GameStateMachine::instance()->getCurrentState()->getMoney();
 
 	showCards();
 	//showPrizes();
@@ -176,7 +176,7 @@ int ShopComponent::searchIndexById(int id)
 
 void ShopComponent::update()
 {
-	//std::cout << "Money: " << money << std::endl;
+	std::cout << "Money: " << money << std::endl;
 }
 
 void ShopComponent::setTexts()
