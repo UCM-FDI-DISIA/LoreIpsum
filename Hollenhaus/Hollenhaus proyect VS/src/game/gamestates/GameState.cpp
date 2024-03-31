@@ -122,3 +122,20 @@ void GameState::addCardToDrawer(int id)
 {
 	data->AddCardToDrawer(id);
 }
+
+void GameState::changeMoney(int money) 
+{
+	if (money<0)
+	{
+		data->SubtractMoney(money);
+	}
+	else 
+	{
+		data->AddMoney(money);
+	}
+}
+
+int GameState::getMoney()
+{
+	return data->GetMoney();
+}

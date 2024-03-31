@@ -248,6 +248,7 @@
     </ClCompile>
     <ClCompile Include="src\game\components\ShopComponent.cpp">
        <Filter>Archivos de origen\Componentes</Filter>
+	</ClCompile>
     <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>

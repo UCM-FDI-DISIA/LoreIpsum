@@ -30,6 +30,7 @@ class ShopComponent : public ComponentUpdate
 	bool confirmPurchase();
 
 	void onLeftClick();
+
 private:
 	//----Guarda las CARDS_IN_SHOP cartas de la tienda.
 	int* shopCards; 
@@ -39,9 +40,10 @@ private:
 	Vector2D* shopCardsPositions;
 	//----Guarda las cartas creadas para luego interactuar con ellas.
 	std::list<Card*> buyableCards;
-
+	//----Guarda los botones para luego poder acceder a la entidad del boton clickado.
 	std::list<Button*> buttons;
-	
+	//----Dinero del jugador:
+	int money;
 	//------------------------------lo del precio de las cartas deberia de estar en el json. Todas en el mismo json.
 	//------------------------------array de precios de las cartas. Sus posiciones son las de las cartas pero bajando la y.
 	

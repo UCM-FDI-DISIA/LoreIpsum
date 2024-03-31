@@ -32,6 +32,8 @@ void ShopComponent::initComponent()
 		}
 	}
 
+	money = GameStateMachine::instance()->getCurrentState()->getMoney();
+
 	showCards();
 }
 
@@ -78,25 +80,28 @@ void ShopComponent::showCards() {
 void ShopComponent::buyCard()
 {
 	std::cout << "compra." << std::endl;
-	if (confirmPurchase())
+	//------Esto para buscar el boton que ha sido pulsado para acceder a la carta de ese boton.
+	Button* buttonClicked = nullptr;
+	for (auto b : buttons) // Recorremos la lista de botones.
 	{
-		//------Esto para buscar el boton que ha sido pulsado para acceder a la carta de ese boton.
-		Button* buttonClicked = nullptr;
-		for (auto b : buttons) // Recorremos la lista de botones.
+		if (b->getCurrentButtonState() == 2) // 2 = boton pulsado.
 		{
-			if (b->getCurrentButtonState() == 2) // 2 = boton pulsado.
-			{
-				buttonClicked = b; // Guardamos el boton.
-			}
+			buttonClicked = b; // Guardamos el boton.
 		}
-		//------Esto para guardar la carta al drawer.
-		if (buttonClicked != nullptr)
-		{
-			auto card = buttonClicked->getEntity(); // Guardamos la carta del boton.
+	}
+
+	//------Esto para guardar la carta al drawer.
+	if (buttonClicked != nullptr)
+	{
+		auto card = buttonClicked->getEntity(); // Guardamos la carta del boton.
+		//------Esto para confirmar la compra.---------------------------------------------alomejor separar en dos if por si se quiere poner dialogo de no tener dinero suficiente.
+		if (/*money>=card.getPrize()&&*/confirmPurchase()) {
 			if (card != nullptr)
 			{
 				int id = card->getComponent<Card>()->getID(); // Guardamos el id de la carta.
-				GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al
+				GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al cajon.
+				//money-= card.getPrize();
+				//GameStateMachine::instance()->getCurrentState()->changeMoney(-card.getPrize()); // Restamos el dinero.
 				//------Esto para buscar dada la carta pulsada su indice en shopCards y ponerlo a -1 para que no se muestre.
 				int i = 0;
 				bool find = false;
@@ -109,11 +114,13 @@ void ShopComponent::buyCard()
 					}
 					i++;
 				}
+
+
 				//auto it = std::find(buyableCards.begin(), buyableCards.end(), id); // Buscamos y guardamos la carta en la lista.
 				//buyableCards.erase(it); // La eliminamos.
 				/*for (auto c : buyableCards)
 				{
-					delete c->getEntity();
+					delete c->getEntity(); //-------------------------------------------------------hay que eliminar las entidades pero da error de momento hasta que andres mire lo otro.
 				}*/
 				buyableCards.clear();
 				buttons.clear();
@@ -125,6 +132,6 @@ void ShopComponent::buyCard()
 
 bool ShopComponent::confirmPurchase()
 {
-	//----------------------preguntar a ines sobre el dialogo para confirmar.
+	//----------------------------------------------------------preguntar a ines sobre el dialogo para confirmar.
 	return true;
 }
