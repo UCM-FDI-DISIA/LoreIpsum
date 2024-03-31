@@ -40,7 +40,7 @@ void OfficeState::onEnter()
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("oficinafondo");
-	fondo->getComponent<Transform>()->setGlobalScale(0.85f, 0.85f);
+	fondo->getComponent<Transform>()->setGlobalScale(0.5f, 0.55f);
 	//fondo->getComponent<Transform>()->getGlobalScale().set(0.85f, 0.85f);
 	fondo->setLayer(0);
 
@@ -58,12 +58,14 @@ void OfficeState::onEnter()
 	//------Boton para deckBuilding:
 	ecs::entity_t db = Instantiate();
 	db->addComponent<Transform>();
-	db->addComponent<SpriteRenderer>("rice");
+	//db->addComponent<SpriteRenderer>("rice");
 	db->addComponent<BoxCollider>();
-	Vector2D dbPos(500, 10);
+	Vector2D dbSiz(400, 300);
+	db->getComponent<BoxCollider>()->setSize(dbSiz);
+	Vector2D dbPos(500, 90);
 	db->getComponent<Transform>()->setGlobalPos(dbPos);
-	db->getComponent<Transform>()->setGlobalScale(Vector2D(0.5f, 0.5f));
-	db->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	//db->getComponent<Transform>()->setGlobalScale(Vector2D(0.5f, 0.5f));
+	//db->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	db->addComponent<NPC>(9); // Lleva al deckbuilding (9).
 	db->setLayer(1);
 
