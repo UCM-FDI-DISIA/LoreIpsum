@@ -176,7 +176,7 @@ int ShopComponent::searchIndexById(int id)
 
 void ShopComponent::update()
 {
-	std::cout << "Money: " << money << std::endl;
+	//std::cout << "Money: " << money << std::endl;
 }
 
 void ShopComponent::setTexts()

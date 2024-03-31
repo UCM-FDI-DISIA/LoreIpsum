@@ -4,7 +4,7 @@
 
 
 //------Constructora y destructora:
-Data::Data() : currentMoney(0), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
+Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
 {
 	EmptyDrawer();
 	//Read();
