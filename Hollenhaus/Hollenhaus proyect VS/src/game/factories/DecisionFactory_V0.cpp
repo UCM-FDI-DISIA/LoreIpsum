@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "DecisionFactory_V0.h"
 #include "../components/basics/TextComponent.h"
+#include "../components/ClickDecision.h"
 
 
 void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer)
@@ -23,6 +24,8 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	accept->addComponent<TextComponent>("Si", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	accept->setLayer(layer);
 
+	accept->addComponent<ClickDecision>(0);
+
 	// ----------ENTIDAD RECHAZAR COMBATE-----------
 	ecs::entity_t deny = Instantiate();
 	deny->addComponent<Transform>();
@@ -43,11 +46,15 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	deny->addComponent<TextComponent>("Byebye", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	deny->setLayer(layer);
 
+	deny->addComponent<ClickDecision>(1);
+
 	//cuando aparezca el decision, el collider del parent (caja de dialogo) deberia anularse
 	if (parent->hasComponent<BoxCollider>())
 	{
 		parent->removeComponent<BoxCollider>();
 	}
+
+
 }
 
 void DecisionFactory_V0::setTextValues(std::string fid, SDL_Color c, Uint32 wl, Text::BoxPivotPoint bpp, Text::TextAlignment ta)
