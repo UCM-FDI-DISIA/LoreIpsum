@@ -5,6 +5,8 @@
 #include <functional>
 #include "..\..\Namespaces.h"
 
+#include "IA_manager.h" //intentar cambiarlo para quitarlo de aqui
+
 class Cell;
 class Card;
 using SDLEventCallback = std::function<void()>;
@@ -41,6 +43,9 @@ public:
     void setBoard(std::vector<std::vector<ecs::entity_t>>& board) { 
         _board = board;
         initBoard(); 
+
+        //llamamos tambien al init board para la IA
+        initBoardIA();
     }
 
     // Setters para las referencias de los elementos visuales
@@ -50,6 +55,16 @@ public:
     // Método para actualizar el aspecto de las referencias visuales del MatchManager
     void updateVisuals();
 
+
+    //IA
+    int heuristicIA(IA_manager::State* s);
+
+    void initBoardIA();
+
+    std::vector<std::vector<bool>> getBoardBoolsIA();
+    std::vector<std::vector<Card*>> getBoardCardsIA();
+    std::vector<std::vector<Players::Owner>> getBoardOwnerIA();
+
 private:
     void initBoard();
     //cleon: si en la entrega es una constante, os mataré. bueno, yo os mataré
@@ -57,6 +72,9 @@ private:
 
     // Un vector de vectores de entidades "Cell".
     std::vector<std::vector<ecs::entity_t>> _board;
+
+
+    std::vector<std::vector<Cell*>> _boardIA;
 
     int cardsOnBoard = 0;
 

@@ -5,13 +5,14 @@
 #include "../components/basics/Transform.h"
 #include "../components/HandComponent.h"
 #include "../components/managers/DragManager.h"
-#include "../factories/CardFactory_v0.h"
+#include "../factories/CardFactory_v1.h"
 #include "../factories/BoardFactory_v0.h"
 
+class CardFactory_v1;
 AndresState::AndresState() :
 	hand_()
 {
-	CardFactory_v0* factory = new CardFactory_v0();
+	CardFactory_v1* factory = new CardFactory_v1();
 	BoardFactory_v0* boardFactory = new BoardFactory_v0(4);
 	hand_->addComponent<Transform>();
 	hand_->addComponent<SpriteRenderer>("hand");

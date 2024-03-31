@@ -43,6 +43,21 @@ void DragManager::update()
 		Vector2D posAct = (mousePos - initialMousePos) + initialTransformPosWithOffSet;
 
 		dragTransform->setGlobalPos(posAct);
+
+		///PARA EL FEEDBACK -> Comprobamos si está encima de una celda
+		auto drop = mouseRaycast(ecs::grp::DROPS);
+
+		auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
+		if (drop != nullptr) {
+			
+			//Debug para que escriba en que celda está
+			std::cout << drop->getComponent<DropDetector>()->getBoardPos() << std::endl;
+
+			////Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
+			//dragTransform->getEntity()->getComponent<Card>()->getEffects();
+
+			//drop->getComponent<Cell>()->getEffects();
+		}
 	}
 
 }
@@ -124,8 +139,10 @@ bool DragManager::CardIsOfCurrentPlayer(ecs::entity_t card)
 {
 	const auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
 
-	const Players::Owner turnOwner = matchManager->getActualState() == Turns::J1
-		? Players::PLAYER1 : Players::PLAYER2;
+	const Players::Owner turnOwner =
+		matchManager->getActualState() == Turns::J1 ? Players::PLAYER1 :
+		matchManager->getActualState() == Turns::J2 ? Players::PLAYER2 :
+		Players::NONE;
 
 	Players::Owner cardOwner = Players::NULO;
 

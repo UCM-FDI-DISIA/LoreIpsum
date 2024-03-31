@@ -18,7 +18,7 @@ class Cell :public ComponentUpdate
 	bool center; // si la celda es centro de trablero o no
 	int totalValue; // puntuacion con los efectos aplicados
 	Players::Owner player; // a que jugador pertenece
-	Card* card; // carta posicionada en esta celda
+	Card* card = nullptr; // carta posicionada en esta celda
 	std::array<Cell*, ADJACENTS> adjacents; // punteros a las celdas adyacentes en cruz (arriba, abajo, izq, der)
 	std::list<SDLEventCallback> effectCallbacks; // lista de los efectos que tiene una celda concreta
 	std::list<SDLEventCallback>::iterator listIT;

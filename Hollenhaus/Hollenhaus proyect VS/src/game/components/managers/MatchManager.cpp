@@ -34,12 +34,13 @@ void MatchManager::update()
 	{
 		if (board_->isFull())
 		{
-			
+			//Finaliza la partida cuando se llena el tablero
 			setActualState(Turns::Finish);
 		}
 	}
 }
 
+//Aquí poner las transiciones de cambio de turno y fin de la partida
 void MatchManager::setActualState(Turns::State newState)
 {
 	actualState = newState;
@@ -64,6 +65,12 @@ void MatchManager::setActualState(Turns::State newState)
 #endif
 		setWinnerOnData();
 		GameStateMachine::instance()->setState(GameStates::MATCHOVER);
+		break;
+	case Turns::IA:
+#if _DEBUG 
+		std::cout << "Turno: IA" << std::endl;
+#endif
+		startTurnIA();
 		break;
 	default:
 		break;
@@ -91,6 +98,9 @@ Players::Owner MatchManager::getPlayerTurn() const
 	case Turns::Finish:
 		return Players::NONE;
 		break;
+	case Turns::IA:
+		return  Players::IA;
+		break;
 	default:
 		return Players::NONE;
 		break;
@@ -106,6 +116,7 @@ void MatchManager::substractActualPlayerActionPoints(int points)
 
 void MatchManager::updateVisuals()
 {
+	//Si queremos meterlo de forma digética es aquí cuando se pueda
 	// Actualiza los puntos de acción restantes de J1
 	actionPointsVisualJ1->getComponent<TextComponent>()->setTxt(
 		"Puntos de accion:\n" + std::to_string(actualActionPointsJ1));
@@ -115,10 +126,22 @@ void MatchManager::updateVisuals()
 		"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
 
 	// Actualiza el indicador del propietario del turno actual
+	//Habría que Hacer uan diferenciación también cuando recién cambia de turno para la animación
 	std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
 	SDL_Color color = actualState == Turns::J1 ? SDL_Color({ 102, 255, 102, 255 }) : SDL_Color({ 255, 102, 255, 255 });
 	actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
 	actualTurnVisual->getComponent<TextComponent>()->setColor(color);
+}
+
+void MatchManager::setIA_Manager(IA_manager* ia)
+{
+	ia_manager = ia;
+}
+
+void MatchManager::endTurnIA()
+{
+	setActualState(Turns::J1);
+
 }
 
 void MatchManager::resetActualActionPoints()
@@ -147,4 +170,9 @@ void MatchManager::setWinnerOnData()
 	{
 		GameStateMachine::instance()->getCurrentState()->setWinnerOnData(3);
 	}
+}
+
+void MatchManager::startTurnIA()
+{
+	ia_manager->StartTurn();
 }

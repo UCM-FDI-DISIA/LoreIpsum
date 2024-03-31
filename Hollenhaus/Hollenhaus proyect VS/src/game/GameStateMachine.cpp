@@ -35,21 +35,23 @@ GameStateMachine::GameStateMachine() {
 	mngr_ = new ecs::Manager();
 	mouse_ = new Mouse("mouse", 2);
 
-	//Creación de los estados
+	//Creaciï¿½n de los estados
 	mainMenuState = new MainMenuState();
 	cityState = new CityState();
 	officeState = new OfficeState();
 	shopState = new ShopState();
+	//boardState = new BoardState();
 	samuState = new SamuState();
 	jimboState = new JimboState();
 	nievesState = new NievesState();
 	matchOverState = new MatchOverState();
+	luisState = new LuisState();
 	deckBuildingState = new DeckBuildingState();
 
 	// Ponemos el estado actual
-	currentState = new MainMenuState();
+	//currentState = new MainMenuState();
 
-	//currentState = samuState;
+	currentState = luisState;
 
 	// crea la data en el current state
 	currentState->setData(new Data());

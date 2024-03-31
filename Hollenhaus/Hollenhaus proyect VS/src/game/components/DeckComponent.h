@@ -26,6 +26,9 @@ public:
 	void setOwner(Players::Owner value) { owner = value;}
 	Players::Owner getOwner() const { return owner; }
 
+	//solo para la IA
+	std::list<Card*> getDeck();
+
 private:
 	std::list<Card*> deck;
 	int drawCardCost;

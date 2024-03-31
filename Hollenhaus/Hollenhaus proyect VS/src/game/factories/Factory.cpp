@@ -38,7 +38,7 @@ ecs::entity_t Factory::createHand()
 	return cardFactory->createHand();
 }
 
-void Factory::createDeck()
+ecs::entity_t Factory::createDeck()
 {
 	if (cardFactory == nullptr) {
 		throw "no existe cardFactory";
@@ -47,7 +47,7 @@ void Factory::createDeck()
 	return cardFactory->createDeck();
 }
 
-void Factory::createDeckJ2()
+ecs::entity_t Factory::createDeckJ2()
 {
 	if (cardFactory == nullptr) {
 		throw "no existe cardFactory";
