@@ -52,7 +52,8 @@ void NextText::OnLeftClickUp()
 
 void NextText::reactToClick()
 {
-	if (!dead) {
+	if (!dead) 
+	{
 		if (typeWriter_->ended() && mouseRaycast() == ent_)
 		{
 			TuVieja("ended: ");
@@ -60,7 +61,6 @@ void NextText::reactToClick()
 			dialogueReader_->NextNode();
 		}
 	}
-	
 }
 
 void NextText::callNextNode()

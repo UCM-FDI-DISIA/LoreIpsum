@@ -1,5 +1,6 @@
 #pragma once
 #include "DecisionFactory.h"
+#include "../components/NextText.h"
 
 class DecisionFactory_V0 : public DecisionFactory
 {
