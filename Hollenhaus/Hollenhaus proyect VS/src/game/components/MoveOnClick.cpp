@@ -72,40 +72,32 @@ void MoveOnClick::OnLeftClickDown()
 		// guardas la posicion del raton en click
 		mousePos_ = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
 
-		//Si pulsamos en el collider, efectuamos el movimiento
-		if (myBoxCollider->isCursorOver() && mouseRaycast() == ent_) {
-			move = true;
-			scrollSpeed = 1.0f;
-			// posicion del fondo al hacer click
-			myPos_ = myTransform_->getGlobalPos();
+		// posicion del fondo al hacer click
+		myPos_ = myTransform_->getGlobalPos();
 
-			// debe moverse al click
-			move_ = true;
+		// debe moverse al click
+		move_ = true;
 
-			// JUGADOR HACIA LA DER, FONDO HACIA LA IZQ
-			if (mousePos_.getX() >= halfScreen_)
-			{
-				dir_ = -1;
-				distance_ = mousePos_.getX() - halfScreen_;
-			}
-
-			// JUGADOR HACIA LA IZQ, FONDO HACIA LA DER
-			else if (mousePos_.getX() < halfScreen_)
-			{
-				dir_ = 1;
-				distance_ = halfScreen_ - mousePos_.getX();
-			}
-
-			movement_ = scrollVel_ * dir_;
+		// JUGADOR HACIA LA DER, FONDO HACIA LA IZQ
+		if (mousePos_.getX() >= halfScreen_)
+		{
+			dir_ = -1;
+			distance_ = mousePos_.getX() - halfScreen_;
 		}
-		else {
-			move = false;
+
+		// JUGADOR HACIA LA IZQ, FONDO HACIA LA DER
+		else if (mousePos_.getX() < halfScreen_)
+		{
+			dir_ = 1;
+			distance_ = halfScreen_ - mousePos_.getX();
 		}
+
+		movement_ = scrollVel_ * dir_;
 	}
 
 }
 
 void MoveOnClick::StopMoving()
 {
-	move = false;
+	move_ = false;
 }
