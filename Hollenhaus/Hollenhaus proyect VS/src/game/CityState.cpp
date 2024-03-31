@@ -34,7 +34,7 @@ void CityState::onEnter()
 	// le aniade los componentes
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
-	fondo->addComponent<MoveOnClick>();
+	fondo->addComponent<MoveOnClick>(4);
 
 	// tamanio de ciudadcompleta.png: 5754 x 1212 
 	fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f); // escalado para ciudadcompleta.png (porfi no toquetear)!!! 

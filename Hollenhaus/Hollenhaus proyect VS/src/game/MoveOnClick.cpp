@@ -14,14 +14,15 @@
 
 #include <cmath>
 
-MoveOnClick::MoveOnClick() : myBoxCollider_(),
-							 myTransform_(),
-						     move_(false),
-						     scrollVel_(2),
-							 distance_(),
-							 vel_(),
-                             dir_(),
-							 halfScreen_(sdlutils().width() / 2){
+MoveOnClick::MoveOnClick(float vel) :
+	myBoxCollider_(),
+	myTransform_(),
+	move_(false),
+	scrollVel_(vel),
+	distance_(),
+	movement_(),
+	dir_(),
+	halfScreen_(sdlutils().width() / 2) {
 }
 
 MoveOnClick::~MoveOnClick()
@@ -55,12 +56,12 @@ void MoveOnClick::update()
 	}
 	else if (move_) 
 	{
-		Vector2D aux = Vector2D(posX + vel_, myTransform_->getGlobalPos().getY());
+		Vector2D aux = Vector2D(posX + movement_, myTransform_->getGlobalPos().getY());
 		myTransform_->setGlobalPos(aux);
 	}
 
 #if _DEBUG
-	std::cout << "DIS: " << distance_ << " " << move_ << "\n";
+	std::cout << "DISTANCE: " << distance_ << " " << move_ << "\n";
 	std::cout << abs(myTransform_->getGlobalPos().getX() - myPos_.getX()) << "\n";
 #endif
 }
@@ -92,6 +93,6 @@ void MoveOnClick::OnLeftClickDown()
 			distance_ = halfScreen_ - mousePos_.getX();
 		}
 
-		vel_ = scrollVel_ * dir_;
+		movement_ = scrollVel_ * dir_;
 	}
 }

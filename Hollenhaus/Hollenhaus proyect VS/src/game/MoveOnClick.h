@@ -10,7 +10,7 @@ constexpr int BACKGROUND_SIZE = -2049;
 class MoveOnClick : public ComponentUpdate
 {
 public:
-	MoveOnClick();
+	MoveOnClick(float vel);
 	~MoveOnClick() override;
 
 	void initComponent() override;
@@ -43,8 +43,8 @@ private:
 
 	float distance_;
 
-	// Velocidad real
-	float vel_;
+	// Movimiento real
+	float movement_;
 
 	// -1 izquierda, 1 derecha
 	int dir_;

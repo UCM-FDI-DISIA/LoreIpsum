@@ -33,7 +33,7 @@ void MovementState::onEnter()
 	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
 
 	//fondo->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	fondo->addComponent<MoveOnClick>();
+	fondo->addComponent<MoveOnClick>(2);
 }
 
 void MovementState::onExit() 
