@@ -25,7 +25,7 @@ void ColliderRender::initComponent()
 void ColliderRender::render() const
 {
 	//render debug
-	//SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 255, 0, 255);
-	//SDL_RenderDrawRect(sdlutils().renderer(), myBoxCollider->getRect());
-	//SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 255, 0, 255);
+	SDL_RenderDrawRect(sdlutils().renderer(), myBoxCollider->getRect());
+	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 0, 255);
 }

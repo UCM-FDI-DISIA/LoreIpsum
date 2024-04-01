@@ -147,8 +147,8 @@ void TextComponent::RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const
 	};
 
 	//render debug
-	//SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 255, 255);
-	//SDL_RenderDrawRect(sdlutils().renderer(), &textRect);
-	//SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 255, 255);
+	SDL_RenderDrawRect(sdlutils().renderer(), &textRect);
+	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 0, 255);
 }
 

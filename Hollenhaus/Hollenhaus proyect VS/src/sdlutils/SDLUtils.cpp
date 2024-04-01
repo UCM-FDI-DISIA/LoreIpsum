@@ -68,7 +68,7 @@ void SDLUtils::initWindow() {
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	assert(renderer_ != nullptr);
 
-#if (_DEBUG)
+#if !(_DEBUG)
 	toggleFullScreen();
 #endif
 
