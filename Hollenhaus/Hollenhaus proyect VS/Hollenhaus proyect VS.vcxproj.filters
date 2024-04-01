@@ -309,7 +309,9 @@
     <ClCompile Include="src\game\components\managers\IA_manager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\ClickDecision.cpp" />
+    <ClCompile Include="src\game\components\ClickDecision.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -612,7 +614,9 @@
     <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\ClickDecision.h" />
+    <ClInclude Include="src\game\components\ClickDecision.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">

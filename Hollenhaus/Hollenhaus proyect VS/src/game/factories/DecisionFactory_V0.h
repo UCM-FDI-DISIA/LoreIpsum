@@ -8,7 +8,7 @@ public:
 	DecisionFactory_V0() : DecisionFactory() {};
 	virtual ~DecisionFactory_V0() {};
 
-    void createPopUp(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer) override;
+    void createPopUp(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene) override;
 
 	void setTextValues(std::string fid, SDL_Color c, Uint32 wl, Text::BoxPivotPoint bpp, Text::TextAlignment ta) override;
 

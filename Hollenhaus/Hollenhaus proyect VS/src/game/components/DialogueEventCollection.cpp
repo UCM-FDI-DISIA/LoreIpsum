@@ -28,6 +28,7 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent) //poli
 							{ 0,0 }, //size
 							parent, //parent
 							4, //layer
+							3, //scene a la que se iria si pulsamos Si
 							"8bit_size_24", //fontId
 							SDL_Color({ 0, 0, 0, 255 }), //color del txt
 							100, //wraplength

@@ -3,11 +3,13 @@
 
 #include "../components/NextText.h"
 #include "../components/DialogueDestroyer.h"
+#include "../components/DialogueEventCollection.h"
 
-ClickDecision::ClickDecision(int decision, ecs::entity_t parent)
+ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 {
 	decision_ = decision;
 	parent_ = parent;
+	scene_ = scene,
 	click_ = false;
 
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
@@ -42,13 +44,15 @@ void ClickDecision::TakeDecision()
 	{
 	case 0:
 		TuVieja("SI");
-		//llamar al callEvent
+		parent_->getComponent<DialogueEventCollection>()->ChangeScene(scene_);
 		break;
 
 	case 1:
 		TuVieja("BYEBYE");
 		parent_->getComponent<NextText>()->setDead(true);
 		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+
+		//habria que hacer actual node ++?¿?¿
 		break;
 
 	default:

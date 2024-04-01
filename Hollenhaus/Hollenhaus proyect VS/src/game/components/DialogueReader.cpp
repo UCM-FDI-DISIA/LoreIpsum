@@ -43,7 +43,7 @@ void DialogueReader::NextNode()
 void DialogueReader::exeEvents(std::vector<JsonData::DialogueEventS> events)
 {
 	for (auto e : events) {
-		eventCollection_->callEvent(e.getType(), e.getScene(), getEntity())();
+		eventCollection_->callEvent(e.getType(), e.getScene(), getEntity());
 	}
 }
 
