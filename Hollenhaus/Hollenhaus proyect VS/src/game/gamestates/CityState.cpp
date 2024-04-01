@@ -24,19 +24,17 @@ void CityState::update()
 
 	/// TWEENSI DEL FANTASMIKO
 	//tweensy.progress() == 1.0 ? tweensy.backward() : tweensy.forward();
-	if (tweensy.progress() == 1.0)
-		tweensy.backward();
-	if (tweensy.progress() == 0.0)
-		tweensy.forward();
+	if (tweensy.progress() == 1.0) tweensy.backward();
+	if (tweensy.progress() == 0.0) tweensy.forward();
 	tweensy.step(1);
-	TuVieja(std::to_string(tweensy.peek()));
+	auto fanTrans = fantasmiko->getComponent<Transform>();
 	if (tweensy.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
 	{
 		Vector2D step(
-			fantasmiko->getComponent<Transform>()->getGlobalPos().getX(),
+			fanTrans->getGlobalPos().getX(),
 			tweensy.peek()
 		);
-		fantasmiko->getComponent<Transform>()->setGlobalPos(step);
+		fanTrans->setGlobalPos(step);
 	}
 }
 
