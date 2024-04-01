@@ -15,6 +15,8 @@ public:
 	void initComponent() override;
 	void NextNode();
 
+	void exeEvents(std::vector<JsonData::DialogueEventS> events);
+
 private:
 	JsonData::ConvoData* convo_;
 	int actualNode_;
@@ -22,7 +24,5 @@ private:
 	TypeWriter* typeWriter_;
 	DialogueEventCollection* eventCollection_;
 	DialogueDestroyer* dialogueDestroyer_;
-
-	void exeEvents(std::vector<JsonData::DialogueEventS> events);
 };
 

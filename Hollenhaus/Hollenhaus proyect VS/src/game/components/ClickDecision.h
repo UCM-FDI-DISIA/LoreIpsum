@@ -8,7 +8,7 @@ class ClickDecision :
     public ComponentUpdate
 {
 public:
-    ClickDecision(int decision);
+    ClickDecision(int decision, ecs::entity_t parent);
     ~ClickDecision(){}
 
 	void initComponent() override;
@@ -20,7 +20,7 @@ public:
     void TakeDecision();
 
 private:
-
+    ecs::entity_t parent_;
     int decision_;
     bool click_;
 
