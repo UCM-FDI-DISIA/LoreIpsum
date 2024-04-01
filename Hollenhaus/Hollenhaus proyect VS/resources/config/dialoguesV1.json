@@ -15,7 +15,7 @@
 		          "events": [
 		          { 
 		            "timing": 1,
-		            "type": 0,
+		            "type": 3,
 		            "scene": 3
 		          }
 		          ]
@@ -54,13 +54,11 @@
               "text": "Pero me encanta",
               "eventStart": 0,
               "eventFinish": 0,
-              "events": [
-                {
-                  "timing": 1,
-                  "type": 3,
-                  "scene": 0
-                }
-            },
+		"events": [
+		]
+            }
+          ]
+        },
         {
           "convoID": "1",
           "autoConvo": false,
@@ -70,16 +68,16 @@
               "text": "Otra conversacion por aqui",
               "eventStart": 0,
               "eventFinish": 0,
-              "events": [
-              ]
+		"events": [
+		]
             },
             {
               "nodeID": "1",
               "text": "Ha quedado buena tarde",
               "eventStart": 0,
               "eventFinish": 0,
-              "events": [
-              ]
+		"events": [
+		]
             }
           ]
         }
