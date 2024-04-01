@@ -80,7 +80,12 @@ public:
 		if (getComponent<Transform>() != nullptr)
 		{
 			for (const auto child : getComponent<Transform>()->getChildren())
-				layer++;
+			{
+				if (child->getEntity()->getLayer() > layer)
+				{
+					layer = child->getEntity()->getLayer();
+				}
+			}
 		}
 		return layer;
 	}
