@@ -4,7 +4,7 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/ShineComponent.h"
 #include "../components/NPC.h"
-#include "../components/shopComponent.h"
+#include "../components/ShopComponent.h"
 
 // Factorias:
 #include "../factories/Factory.h"

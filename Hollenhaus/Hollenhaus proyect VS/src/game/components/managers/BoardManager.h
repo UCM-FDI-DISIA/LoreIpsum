@@ -3,7 +3,7 @@
 #include <vector>
 #include <list>
 #include <functional>
-#include "..\..\Namespaces.h"
+#include "../../Namespaces.h"
 
 #include "IA_manager.h" //intentar cambiarlo para quitarlo de aqui
 

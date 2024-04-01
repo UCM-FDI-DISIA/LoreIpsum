@@ -1,6 +1,6 @@
 #include "ComponentUpdate.h"
 #include "../../sdlutils/SDLUtils.h"
-#include "..\Namespaces.h"
+#include "../Namespaces.h"
 
 #include "DialogueReader.h"
 #include "TypeWriter.h"
