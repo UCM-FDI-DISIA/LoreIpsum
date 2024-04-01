@@ -4,7 +4,7 @@
 
 #include <list>
 
-#include "..\Namespaces.h"
+#include "../Namespaces.h"
 
 class Card;
 
