@@ -33,6 +33,10 @@ DeckBuildingState::DeckBuildingState()
 void DeckBuildingState::update()
 {
 	GameState::update();
+
+	std::string cardsInMaze = std::to_string(pizarra_->getCantCartds()) + " / " + std::to_string(MAX_CARDS_MAZE) + "\n minimo: " + std::to_string(MIN_CARDS_MAZE);
+
+	cantCards_->setTxt(cardsInMaze);
 }
 
 void DeckBuildingState::render() const
@@ -63,9 +67,15 @@ void DeckBuildingState::onEnter()
 	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
 
 	// ---- TEXTO ----
+	// Nombre del estado:
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 10));
 	officeText->addComponent<TextComponent>("DECKBUILDING", "8bit_size_24", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	officeText->setLayer(1);
+
+	// Cantidad de cartas:
+	ecs::entity_t cantCards = Instantiate(Vector2D(260, 140));
+	cantCards_ = cantCards->addComponent<TextComponent>("xx / xx\nMinimo: xx", "8bit_size_24", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	cantCards->setLayer(1);
 
 	// ---- FONDO ----
 	// ---- pizarra:
@@ -74,7 +84,7 @@ void DeckBuildingState::onEnter()
 	fondo->addComponent<SpriteRenderer>("DeckbuildingBG");
 	fondo->getComponent<Transform>()->setGlobalScale(0.5f, 0.55f);
 	fondo->setLayer(0);
-	
+
 	/*
 	// ---- Mesa:
 	ecs::entity_t mesa = Instantiate();

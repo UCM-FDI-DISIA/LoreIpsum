@@ -5,6 +5,7 @@ class Card;
 class PizarraManager;
 class DrawerManager;
 class Factory;
+class TextComponent;
 
 class DeckBuildingState : public GameState
 {
@@ -27,6 +28,8 @@ public:
 private:
 	PizarraManager* pizarra_;
 	DrawerManager* drawer_;
+
+	TextComponent* cantCards_;
 
 	Factory* factory;
 	//Cambiar a combate (Tarotista) -> Teléfono
