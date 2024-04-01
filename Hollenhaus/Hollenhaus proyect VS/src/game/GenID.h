@@ -29,6 +29,7 @@ public:
 #endif // DEBUG
 			return myUpdateId;
 		}
+		return 0;
 
 	}
 
@@ -37,10 +38,11 @@ public:
 		if (std::is_base_of<ComponentRender, T>::value) {
 			static int myRenderId = renderId++;
 #ifdef _DEBUG
-			//std::cout << "Render cmp: " << renderId << '\n';
+			std::cout << "Render cmp: " << renderId << '\n';
 #endif // DEBUG
 			return myRenderId;
 		}
+		return 0;
 	}
 
 private:

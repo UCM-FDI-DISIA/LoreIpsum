@@ -16,6 +16,10 @@ project(HollenhausproyectVS)
 ################################################################################
 # Source groups
 ################################################################################
+################################################################################
+################################################################################
+include(vcxproj_list.cmake)
+
 set(no_group_source_files
     "src/game/components/Animation.cpp"
     "src/game/components/Animation.h"
@@ -282,28 +286,28 @@ set(Utilidades__Utils
 )
 source_group("Utilidades\\Utils" FILES ${Utilidades__Utils})
 
-set(ALL_FILES
-    ${no_group_source_files}
-    ${Archivos_de_encabezado}
-    ${Archivos_de_encabezado__Auxiliares}
-    ${Archivos_de_encabezado__Componentes}
-    ${Archivos_de_encabezado__Componentes__Basicos}
-    ${Archivos_de_encabezado__ECS}
-    ${Archivos_de_encabezado__Factories}
-    ${Archivos_de_encabezado__GameStates}
-    ${Archivos_de_encabezado__Managers}
-    ${Archivos_de_origen}
-    ${Archivos_de_origen__Auxiliares}
-    ${Archivos_de_origen__Componentes}
-    ${Archivos_de_origen__Componentes__Basicos}
-    ${Archivos_de_origen__Factories}
-    ${Archivos_de_origen__GameStates}
-    ${Archivos_de_origen__Managers}
-    ${Resources}
-    ${Utilidades__JSON}
-    ${Utilidades__SDL_Utils}
-    ${Utilidades__Utils}
-)
+#set(ALL_FILES
+#    ${no_group_source_files}
+#    ${Archivos_de_encabezado}
+#    ${Archivos_de_encabezado__Auxiliares}
+#    ${Archivos_de_encabezado__Componentes}
+#    ${Archivos_de_encabezado__Componentes__Basicos}
+#    ${Archivos_de_encabezado__ECS}
+#    ${Archivos_de_encabezado__Factories}
+#    ${Archivos_de_encabezado__GameStates}
+#    ${Archivos_de_encabezado__Managers}
+#    ${Archivos_de_origen}
+#    ${Archivos_de_origen__Auxiliares}
+#    ${Archivos_de_origen__Componentes}
+#    ${Archivos_de_origen__Componentes__Basicos}
+#    ${Archivos_de_origen__Factories}
+#    ${Archivos_de_origen__GameStates}
+#    ${Archivos_de_origen__Managers}
+#    ${Resources}
+#    ${Utilidades__JSON}
+#    ${Utilidades__SDL_Utils}
+#    ${Utilidades__Utils}
+#)
 
 
 ################################################################################
@@ -312,7 +316,7 @@ set(ALL_FILES
 find_package(SDL2 REQUIRED CONFIG REQUIRED COMPONENTS SDL2)
 find_package(SDL2 REQUIRED CONFIG COMPONENTS SDL2main)
 
-add_executable(${PROJECT_NAME} ${ALL_FILES})
+add_executable(${PROJECT_NAME} ${vcxproj_src})
 target_include_directories( ${PROJECT_NAME} INTERFACE "src" )
 target_include_directories( ${PROJECT_NAME} PUBLIC "src/game" )
 target_include_directories( ${PROJECT_NAME} INTERFACE "src/game" )
@@ -397,6 +401,12 @@ endif()
 ################################################################################
 # Compile and link options
 ################################################################################
+
+target_compile_options(${PROJECT_NAME} PRIVATE
+    -std=c++17
+    -W
+    -g
+)
 if(MSVC)
     if("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "x64")
         target_compile_options(${PROJECT_NAME} PRIVATE
