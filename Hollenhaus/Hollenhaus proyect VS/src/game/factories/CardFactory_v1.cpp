@@ -33,7 +33,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 
 	addInfo(card, cost, value, effects, !bocarriba);
 
-	//dif (!bocarriba)
+	if (!bocarriba)
 		addDeckImageChild(card);
 
 	return card;
@@ -233,11 +233,6 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 			if (rival) color = SDL_Color({40,200,200, 255});
 			auto valueChange = 
 				effectImage->addComponent<TextComponent>(valueText, "8bit_size_16", color, 100);
-
-			/*valueChange->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
-			valueChange->getComponent<Transform>()->getRelativePos().set(-5, 0);
-			TuVieja(std::to_string(effectImage->getLastLayer()));
-			valueChange->setLayer(effectImage->getLastLayer());*/
 		}
 	}
 }
