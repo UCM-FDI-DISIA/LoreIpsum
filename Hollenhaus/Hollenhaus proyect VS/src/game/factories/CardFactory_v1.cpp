@@ -33,7 +33,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 
 	addInfo(card, cost, value, effects, !bocarriba);
 
-	if (!bocarriba)
+	//dif (!bocarriba)
 		addDeckImageChild(card);
 
 	return card;
@@ -189,7 +189,6 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 	float scale = effects.size() == 1 ? 0.07 : 0.045;
 
 	ecs::entity_t effectImage;
-	ecs::entity_t valueChange;
 
 	std::vector<std::string> efectsIdsNames{"esquina", "centro", "flecha", "superflecha", "block", "unblockable"};
 	std::string efectID;
@@ -211,7 +210,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
 
-		effectImage->setLayer(card->getLastLayer() - 1);
+		effectImage->setLayer(card->getLastLayer());
 
 
 		//si es una flecha, girarla
@@ -228,16 +227,17 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 			std::string valueText = effects[i].value() < 0 ? "-" : "+";
 			valueText = valueText + std::to_string(effects[i].value());
 
-			valueChange = Instantiate(Vector2D(0, 0));
+			//valueChange = Instantiate(Vector2D(0, 0));
 
 			auto color = SDL_Color({255,50,50, 255});
 			if (rival) color = SDL_Color({40,200,200, 255});
-			valueChange->addComponent<TextComponent>(valueText, "8bit_size_16", color, 100);
+			auto valueChange = 
+				effectImage->addComponent<TextComponent>(valueText, "8bit_size_16", color, 100);
 
-			valueChange->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
+			/*valueChange->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
 			valueChange->getComponent<Transform>()->getRelativePos().set(-5, 0);
-
-			valueChange->setLayer(effectImage->getLastLayer() - 1);
+			TuVieja(std::to_string(effectImage->getLastLayer()));
+			valueChange->setLayer(effectImage->getLastLayer());*/
 		}
 	}
 }
@@ -253,7 +253,7 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 
 	textoValor->getComponent<Transform>()->getRelativePos().set(10, 102);
 
-	textoValor->setLayer(card->getLastLayer() - 1);
+	textoValor->setLayer(card->getLastLayer());
 
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
@@ -268,7 +268,7 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 	//textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
 
 
-	textoCoste->setLayer(card->getLastLayer() - 1);
+	textoCoste->setLayer(card->getLastLayer());
 }
 
 void CardFactory_v1::addEffects(Card* cardComp, std::vector<JsonData::CardEffect>& effects)
@@ -322,6 +322,5 @@ void CardFactory_v1::addDeckImageChild(ecs::entity_t card)
 	//if (opposite)
 	deckImage->getComponent<Transform>()->setGlobalAngle(180.0f);
 	deckImage->addComponent<SpriteRenderer>("reverseCard");
-
 	deckImage->setLayer(card->getLastLayer() + 1);
 }
