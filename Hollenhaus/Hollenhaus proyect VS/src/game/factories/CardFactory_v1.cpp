@@ -1,5 +1,7 @@
 #include "pch.h"
+#include "../Namespaces.h"
 #include "CardFactory_v1.h"
+
 #include "../components/managers/Manager.h"
 #include "../components/basics/Transform.h"
 #include "../components/basics/SpriteRenderer.h"
@@ -7,13 +9,14 @@
 #include "../components/DeckComponent.h"
 #include "../components/managers/PlayerCardsManager.h"
 #include "../components/managers/CardStateManager.h"
-#include "../EffectCollection.h"
-#include "../Namespaces.h"
 #include "../components/basics/TextComponent.h"
+
+#include "../EffectCollection.h"
+#include "../gamestates/GameState.h"
 
 
 ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
-                                         std::vector<JsonData::CardEffect>& effects, bool bocarriba)
+	std::vector<JsonData::CardEffect>& effects, bool bocarriba)
 {
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
 
@@ -85,20 +88,25 @@ ecs::entity_t CardFactory_v1::createDeck()
 	deck->setLayer(2);
 	deck->getComponent<DeckComponent>()->setOwner(Players::PLAYER1);
 
-	for (int i = 0; i < cardsOnDeck; i++)
+	auto maze = GameStateMachine::instance()->getCurrentState()->getMaze();
+
+	for (auto c : maze)
 	{
-		auto card = sdlutils().cards().at(std::to_string(i));
-		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
-		ecs::entity_t ent = createCard(
-			Vector2D(initX, initY),
-			card.cost(),
-			card.value(),
-			card.sprite(),
-			card.unblockable(),
-			card.effects()
-		);
-		ent->setLayer(1);
-		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
+		if (c.first > -1)
+		{
+			auto card = sdlutils().cards().at(std::to_string(c.first));
+			// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
+			ecs::entity_t ent = createCard(
+				Vector2D(initX, initY),
+				card.cost(),
+				card.value(),
+				card.sprite(),
+				card.unblockable(),
+				card.effects()
+			);
+			ent->setLayer(1);
+			deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
+		}
 	}
 	addDeckImage(initX, initY);
 	TuVieja("Deck1");
@@ -144,7 +152,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 	}
 
-	
+
 	//las añadimos otra vez para asegurar que el enemigo tenga cartas de sobra
 	for (int i = 0; i < cardsOnDeck; i++)
 	{
@@ -162,7 +170,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 		ent->setLayer(1);
 		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 	}
-	
+
 
 
 	addDeckImage(initX, initY, true);
@@ -190,7 +198,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 	ecs::entity_t effectImage;
 
-	std::vector<std::string> efectsIdsNames{"esquina", "centro", "flecha", "superflecha", "block", "unblockable"};
+	std::vector<std::string> efectsIdsNames{ "esquina", "centro", "flecha", "superflecha", "block", "unblockable" };
 	std::string efectID;
 
 
@@ -229,9 +237,9 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 			//valueChange = Instantiate(Vector2D(0, 0));
 
-			auto color = SDL_Color({255,50,50, 255});
-			if (rival) color = SDL_Color({40,200,200, 255});
-			auto valueChange = 
+			auto color = SDL_Color({ 255,50,50, 255 });
+			if (rival) color = SDL_Color({ 40,200,200, 255 });
+			auto valueChange =
 				effectImage->addComponent<TextComponent>(valueText, "8bit_size_16", color, 100);
 		}
 	}
@@ -241,8 +249,8 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 {
 	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
 
-	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_20", SDL_Color({255, 255, 255, 255}), 100,
-	                                        Text::CenterCenter, Text::Center);
+	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_20", SDL_Color({ 255, 255, 255, 255 }), 100,
+		Text::CenterCenter, Text::Center);
 
 	textoValor->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
@@ -253,8 +261,8 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
 
-	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_20", SDL_Color({255, 255, 255, 255}), 100,
-	                                        Text::CenterCenter, Text::Center);
+	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_20", SDL_Color({ 255, 255, 255, 255 }), 100,
+		Text::CenterCenter, Text::Center);
 
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
