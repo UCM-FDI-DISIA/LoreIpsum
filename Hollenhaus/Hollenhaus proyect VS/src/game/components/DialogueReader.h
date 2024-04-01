@@ -24,5 +24,6 @@ private:
 	DialogueDestroyer* dialogueDestroyer_;
 
 	void exeEvents(std::vector<JsonData::DialogueEventS> events);
+
 };
 

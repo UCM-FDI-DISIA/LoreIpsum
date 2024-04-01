@@ -4,7 +4,6 @@
 
 #include "DialogueReader.h"
 #include "TypeWriter.h"
-#include "MoveOnClick.h"
 
 //class TypeWriter;
 class DialogueEventCollection;
@@ -26,7 +25,6 @@ public:
 	void OnLeftClickUp();
 	void reactToClick();
 	void callNextNode();
-	void setMoveOnClick(MoveOnClick* moveOnClick);
 	void setDead(bool a);
 	bool isDead() { return dead; }
 
@@ -38,6 +36,5 @@ private:
 	DialogueReader* dialogueReader_;
 	DialogueEventCollection* eventCollection_;
 	BoxCollider* boxCollider_;
-	MoveOnClick* moveOnClick_;
 };
 
