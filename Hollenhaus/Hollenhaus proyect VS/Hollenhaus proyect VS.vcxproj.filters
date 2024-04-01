@@ -267,6 +267,9 @@
     <ClCompile Include="src\game\components\ShineComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\ShopComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
     <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
@@ -312,6 +315,8 @@
     <ClCompile Include="src\game\components\ClickDecision.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\Animation.cpp" />
+        </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -563,7 +568,7 @@
     <ClInclude Include="src\game\factories\DialogueFactory_V0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\ShineComponent.h">
+    <ClInclude Include="src\game\components\ShopComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
@@ -616,6 +621,8 @@
     </ClInclude>
     <ClInclude Include="src\game\components\ClickDecision.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Animation.h" />
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

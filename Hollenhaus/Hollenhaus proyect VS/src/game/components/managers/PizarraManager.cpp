@@ -15,6 +15,7 @@ void PizarraManager::update() {}
 
 void PizarraManager::initComponent()
 {
+
 	// guarda en un array aux las cartas que ya estuvieran en la pizarra
 	// recorre cada pair del map mazo de data
 	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
@@ -72,31 +73,42 @@ void PizarraManager::initComponent()
 		// recorres la lista de pos
 		itPos++;
 	}
+
+	cantCards = mazePrev.size();
 }
 
 // ---- Manageo pa cosas fuera de la pizarra ----
 // Guarda el mazo en el data.
 void PizarraManager::saveMaze()
 {
-	// limpias mazo de pos
-	mazePos.clear();
-
-	// recorres las cartas en pizarra
-	for (auto e : cards)
+	if (mazePrev.size() >= MIN_CARDS_MAZE && mazePrev.size() <= MAX_CARDS_MAZE)
 	{
-		// si existe la entidad
-		if (e != nullptr)
+		// limpias mazo de pos
+		mazePos.clear();
+
+		// recorres las cartas en pizarra
+		for (auto e : cards)
 		{
-			// guardas su pos en la lista de pos de cartas en pizarra
-			mazePos.push_back(e->getGlobalPos());
+			// si existe la entidad
+			if (e != nullptr)
+			{
+				// guardas su pos en la lista de pos de cartas en pizarra
+				mazePos.push_back(e->getGlobalPos());
+			}
 		}
+
+		// guardas el mazo pasando las listas de id y pos
+		GameStateMachine::instance()->getCurrentState()->setMaze(mazePrev, mazePos);
+
+		// DEBUG
+		TuVieja("saveMaze");
+	}
+	else {
+
+		// No hay las suficientes cartas
+		TuVieja("noGuardado");
 	}
 
-	// guardas el mazo pasando las listas de id y pos
-	GameStateMachine::instance()->getCurrentState()->setMaze(mazePrev, mazePos);
-
-	// DEBUG
-	TuVieja("saveMaze");
 }
 
 // Devuelve true si la carta (id) esta en la pizarra.

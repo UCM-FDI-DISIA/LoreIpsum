@@ -47,4 +47,7 @@ public:
 
 	// Quita carta de la pizarra
 	void removeCard(int id);
+
+	// Getter cantidad de cartas en la pizarra
+	int getCantCartds() { return cantCards; }
 };

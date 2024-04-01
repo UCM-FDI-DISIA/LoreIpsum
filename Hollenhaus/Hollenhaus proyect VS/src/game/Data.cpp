@@ -1,19 +1,22 @@
 #include "pch.h"
 #include "Data.h"
 
+
+
 //------Constructora y destructora:
-Data::Data() {
+Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
+{
 	EmptyDrawer();
 	//Read();
 }
-
 Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def)
-	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def) {};
-
-Data::~Data() {};
-
+	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[CARDS_IN_SHOP])
+{};
+Data::~Data() {
+	delete shopCards;
+};
 //------Setters:
-#pragma region SETTERS
+
 // ------ DECKBUILDING ------
 #pragma region DECKBUILDING SETTERS
 //----Mazo:
@@ -49,11 +52,9 @@ void Data::SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos) {
 		itPos++;
 	}
 }
-
 void Data::SubtractCardFromMaze(int id) {
 	maze.remove(id);
 }
-
 //----Cajon:
 void Data::AddCardToDrawer(int id) {
 	drawer[id] = id;
@@ -116,65 +117,101 @@ void Data::SetCityPos(Vector2D paulPos)
 void Data::AddDefeatedNPC(int id) {
 	defeatedNPCS.push_back(id);
 }
-
 //----Dinero:
 void Data::AddMoney(int m) {
 	currentMoney += m;
 }
-
 void Data::SubtractMoney(int m) {
 	currentMoney -= m;
 }
-
 //----Almas:
 void Data::AddSouls(int s) {
 	currentSouls += s;
 }
-
 //----Caso:
 void Data::AddCurrentCase() {
 	currentCase++;
 }
-
 //----Ganador:
 void Data::setWinner(int i) {
 	winner = WINNER(i);
 }
-#pragma endregion
+//----Carta de la tienda:
+bool Data::setShopCard(int id) {
+	int i = 0;
+	bool find = false;
+	while (!find && i < CARDS_IN_SHOP)
+	{
+		if (shopCards[i] == -1)
+		{
+			find = true; // Ha encontrado un hueco.
+			shopCards[i] = id; // Guarda la carta en el hueco libre.
+		}
+		i++;
+	}
+
+	if (find) { return true; }
+	else { return false; }
+}
 
 //------Busqueda:
-#pragma region BUSQUEDA
+
 // ------ DECKBUILDING ------
 //----Mazo:
 bool Data::IdIsInMaze(int id) {
-
-	// guarda en el iterador la ubicacion del id en maze
 	auto it = std::find(maze.begin(), maze.end(), id);
 
-	// devuelve true la pos es distinta al final
-	// (si el it fuese igual al final es que no ha encontrado nada)
 	return (it != maze.end()) ? true : false;
 }
 ;
 //----Cajon:
 bool Data::IdIsInDrawer(int id) {
-
-	// devuelve true si el id de la carta
-	// que esta en la pos id es igual al id
 	return drawer[id] == id;
 };
 
 // ------ FLUJO ------
 //----NPCs:
 bool Data::IdIsInDefeatedNPC(int id) {
-
 	auto it = std::find(defeatedNPCS.begin(), defeatedNPCS.end(), id);
+
 	return (it != defeatedNPCS.end()) ? true : false;
 };
-#pragma endregion
+//----Cartas de la tienda:
+bool Data::IdIsInShopCards(int id) {
+	int i = 0;
+	bool find = false;
 
-//------Escribir y leer el archivo:
-#pragma region LECTURA Y ESCRITURA
+	while (!find && i < CARDS_IN_SHOP) {
+		if (shopCards[i] == id)
+		{
+			find = true;
+		}
+		i++;
+	}
+
+	return find;
+};
+//------Getters:
+//----Cartas de la tienda:
+bool Data::shopCardsIsEmpty() {
+	int i = 0;
+	bool empty = true; // Suponemos que esta vacio.
+	while (empty && i < CARDS_IN_SHOP)
+	{
+		if (shopCards[i] != -1)
+		{
+			empty = false; // Si hay alguna cartra (no es -1) entonces no esta vacio.
+		}
+		i++;
+	}
+
+	return empty;
+}
+int Data::getShopCardById(int id) {
+	return shopCards[id];
+}
+
+//------Escribir en el archivo:
 void Data::Write() {
 	std::ofstream file;
 	file.open("save.txt");
@@ -203,6 +240,10 @@ void Data::Write() {
 	file << defeatedNPCS.size() << "\n";
 	for (const auto it : defeatedNPCS) {
 		file << it << "\n";
+	}
+	file << CARDS_IN_SHOP << "\n";
+	for (int i = 0;i < CARDS_IN_SHOP; i++) {
+		file << shopCards[i] << "\n";
 	}
 	file.close();
 }
@@ -267,38 +308,41 @@ void Data::Read() {
 		defeatedNPCS.push_back(number);
 	}
 
+	file >> iterations;
+	for (int i = 0; i < iterations; i++)
+	{
+		file >> number;
+		shopCards[i] = number;
+	}
+
 	file.close();
 }
-#pragma endregion
 
 //------Vaciar:
-#pragma region VACIADO
 void Data::EmptyLists() {
 	EmptyMaze();
 	EmptyDrawer();
 	EmptyNPCS();
+	EmptyShopCards();
 }
-
 void Data::EmptyMaze() {
-
-	// se limpia el mazo
 	maze.clear();
 }
-
 void Data::EmptyDrawer() {
-
-	// recorre todas las cartas del cajon y las pasa a -1
-	// (el cajon siempre tiene el tamanio de todas las cartas posibles
-	// y los huecos de las cartas que no hayas conseguido segun su id
-	// permanecen vacios)
 	for (int i = 0; i < CARDS_IN_GAME; i++)
 	{
 		drawer[i] = -1;
 	}
 }
-
 void Data::EmptyNPCS() {
 	defeatedNPCS.clear();
+}
+
+void Data::EmptyShopCards() {
+	for (int i = 0; i < CARDS_IN_SHOP; i++)
+	{
+		shopCards[i] = -1;
+	}
 }
 
 void Data::EmptyMaze_With_pos()

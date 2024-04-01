@@ -16,6 +16,8 @@ private:
 	void OnLeftClickDown();
 	void OnLeftClickUp();
 
+	bool conditionsValid();
+
 public:
 	DragNoCombat();
 	~DragNoCombat();

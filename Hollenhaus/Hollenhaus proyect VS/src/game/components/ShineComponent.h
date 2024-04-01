@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ComponentUpdate.h"
+#include <vector>
 
 class BoxCollider;
 namespace ecs {
@@ -10,20 +11,25 @@ namespace ecs {
 class ShineComponent : public ComponentUpdate {
 
 public: 
-	ShineComponent(ecs::entity_t ent, std::string fotoNueva);
+	ShineComponent();
 	~ShineComponent();
 
 	void initComponent() override;
 	void update() override;
 
+	void addEnt(SpriteRenderer* entitySR, std::string _newPic);
 	void Shine();
 
 private:
 
-	ecs::entity_t _entToShine;
-	BoxCollider* _myBoxCollider;
-	SpriteRenderer* _mySpriteRenderer;
-	Texture* _fotoantigua;
-	std::string _fotoNueva;
+	BoxCollider* _myBoxCollider; // box collider de la entidad a la que se le aniade el componente
+
+	ecs::entity_t _entToShine; // esta es la entidad que va a brillar (se hace una lista de todas ellas)
+
+	std::vector<SpriteRenderer*> _mySpriteRenderers; //vector de sprite renderers de entidades que brillan
+
+	std::vector<Texture*> _fotosAntiguas; //vector de texturas de fotos iniciales de entidades que brillan
+
+	std::vector<std::string> _fotoNueva; // el textID de foto con brillos
 
 };

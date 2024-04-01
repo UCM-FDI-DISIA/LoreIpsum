@@ -24,4 +24,7 @@ private:
 	ecs::entity_t fondo;
 	ecs::entity_t fantasmiko;
 	Factory* factory;
+
+	// tween fantasmiko
+	tweeny::tween<float> tweensy;
 };

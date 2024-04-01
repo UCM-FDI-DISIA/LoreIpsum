@@ -16,21 +16,35 @@ protected:
 
 	static Data* data; // puntero a la data
 
-	// LAS ENTIDADES ¡NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT
+	//LAS ENTIDADES ¡NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT 
 	GameState() {}; // constructoras de clases abstractas no deberian ser publicas
 
 public:
-	virtual ~GameState();	//Destructora
+	virtual ~GameState();		//Destructora
 
-	virtual void refresh(); // borra entidades no vivas
-	virtual void update();  //update de las entidades
+	virtual void refresh(); //borra entidades no vivas
+	virtual void update(); //update de las entidades
 	virtual void render() const; // render de las entidades
 
-	// Para testeo de estrada y salida de estados
+	//Para testeo de estrada y salida de estados
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
 
-	// ---- lectura y escritura ----
+	//----Mete una c carta al array de cartas de la tienda de Data.
+	virtual void setShopCard(int c);
+	//----Comprueba si el array de cartas de la tienda de Data esta vacia.
+	virtual bool checkDataShopCardsIsEmpty();
+	//----Comprueba si una carta con id id esta en el array de cartas de la tienda de Data.
+	virtual bool checkCardIsInDrawer(int id);
+	//----Devuelve una carta de shopCards dado un indice.
+	virtual int getShopCardById(int id);
+	//----Mete una carta con id id al cajon.
+	virtual void addCardToDrawer(int id);
+	//----Modifica el dinero del jugador:
+	virtual void changeMoney(int money);
+	//----Devuelve el dinero del jugador:
+	virtual int getMoney();
+
 	virtual void saveData();
 	virtual void loadData();
 
@@ -49,4 +63,5 @@ public:
 	virtual void setWinnerOnData(int w);
 	virtual void setLastPaulPos(Vector2D paulPos);
 };
+
 #endif // !GameState_H_

@@ -3,10 +3,8 @@
 #include "ShineComponent.h"
 
 
-ShineComponent::ShineComponent(ecs::entity_t ent, std::string fotoNueva)
+ShineComponent::ShineComponent()
 {
-	_entToShine = ent;
-	_fotoNueva = fotoNueva;
 }
 
 ShineComponent::~ShineComponent()
@@ -15,26 +13,40 @@ ShineComponent::~ShineComponent()
 
 void ShineComponent::initComponent()
 {
-    _myBoxCollider = ent_->getComponent<BoxCollider>();
-	_mySpriteRenderer = _entToShine->getComponent<SpriteRenderer>();
-	_fotoantigua = _mySpriteRenderer->getTexture();
+	_myBoxCollider = ent_->getComponent<BoxCollider>();
 }
 
 void ShineComponent::update()
 {
-	if (_myBoxCollider->isCursorOver()) {
-
-		Shine();
-		
-	}
-	else {
-		_mySpriteRenderer->setTexture(_fotoantigua);
-	}
+	Shine();
 }
+
+void ShineComponent::addEnt(SpriteRenderer* entitySR, std::string _newPic)
+{
+	_mySpriteRenderers.push_back(entitySR); //aniade un nuevo SR al vector
+	_fotoNueva.push_back(_newPic); // aniade una nueva textura al vector de estas (son las fotos con brillo)
+	_fotosAntiguas.push_back(entitySR->getTexture()); // coge la foto inicial para devolversela cuando deje de brillar
+}
+
 
 void ShineComponent::Shine()
 {
-	_mySpriteRenderer->setTexture(_fotoNueva);
+	//si detecta que el cursor esta encima
+	if (_myBoxCollider->isCursorOver()) {
+
+		//recorre todos los sprite renderers de las entidades que tenga que iluminar
+		for (int i = 0; i < _mySpriteRenderers.size(); i++) {
+		
+			_mySpriteRenderers[i]->setTexture(_fotoNueva[i]); // a cada uno le asigna una nueva textura con la foto del brillito
+		
+		}
+	}
+	else {
+		for (int i = 0; i < _mySpriteRenderers.size(); i++) {
+
+			_mySpriteRenderers[i]->setTexture(_fotosAntiguas[i]); // si no está el cursor encima les devuelve a todas su aspecto original
+		}
+	}
 	
 }
 
