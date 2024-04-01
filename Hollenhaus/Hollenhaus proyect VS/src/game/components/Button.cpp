@@ -34,7 +34,7 @@ void Button::update()
 	}
 	else
 	{
-		currentState == MOUSE_OUT;
+		currentState = MOUSE_OUT;
 	}
 }
 
