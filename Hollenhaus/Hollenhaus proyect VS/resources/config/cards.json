@@ -102,6 +102,29 @@
       "effects": [
         {"type": 3,"value": -2,"directions": ["izquierda","Derecha"]}
       ]
+    },
+    {"id": "20","cost": 4,"value": 4,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 3,"value": 2,"directions": ["izquierda","Derecha"]},
+        {"type": 3,"value": 2,"directions": ["arriba","abajo"]}
+      ]
+    },
+    {"id": "21","cost": 4,"value": 8,"sprite": "card","unblockable": true,
+      "effects": []
+    },
+    {"id": "22","cost": 4,"value": 2,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 3,"value": 2,"directions": ["izquierda","Derecha"]},
+        {"type": 3,"value": 2,"directions": ["arriba","abajo"]},
+        {"type": 3,"value": 2,"directions": ["abajo","arriba"]},
+        {"type": 3,"value": 2,"directions": ["derecha","izquierda"]}
+      ]
+    },
+    {"id": "23","cost": 4,"value": 2,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 3,"value": -2,"directions": ["arriba","abajo", "Derecha", "izquierda"]},
+        {"type": 1,"value": 8}
+      ]
     }
   ]
 
