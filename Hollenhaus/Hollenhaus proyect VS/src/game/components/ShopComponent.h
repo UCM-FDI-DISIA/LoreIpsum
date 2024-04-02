@@ -37,6 +37,8 @@ public:
 	int getCardPrice(int i);
 	//------Logica de la compra.
 	void buyCard();
+	//------devuelve el dinero del jugador
+	int getPlayerMoney();
 	//------Para abrir el diálogo de confirmacion de compra.
 	bool confirmPurchase();
 	//------Dada una carta calcula su precio según su coste y modificadores.

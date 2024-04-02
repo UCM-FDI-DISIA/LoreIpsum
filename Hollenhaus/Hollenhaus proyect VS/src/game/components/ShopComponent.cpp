@@ -131,6 +131,11 @@ void ShopComponent::buyCard()
 	}
 }
 
+int ShopComponent::getPlayerMoney()
+{
+	return money;
+}
+
 /*void ShopComponent::showPrizes()
 {
 	std::string txt = "";

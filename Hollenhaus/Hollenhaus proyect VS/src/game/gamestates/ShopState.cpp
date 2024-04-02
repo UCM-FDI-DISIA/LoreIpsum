@@ -88,21 +88,22 @@ void ShopState::onEnter()
 	estanteria->getComponent<Transform>()->setGlobalPos(estanteriaPos);
 	estanteria->getComponent<Transform>()->setGlobalScale(1.5f, 1.5f);
 	//estanteria->getComponent<Transform>()->getRelativeScale().set(1.5f, 1.5f);
-	estanteria->setLayer(1);*/
-
-	//-----MONEDAS
-	coins.push_back(createCoin(400, 500));
-	coins.push_back(createCoin(420, 540));
-	coins.push_back(createCoin(380, 525));
-	coins.push_back(createCoin(480, 500));
-	coins.push_back(createCoin(500, 540));
-	coins.push_back(createCoin(570, 530));
-	coins.push_back(createCoin(570, 500));
+	estanteria->setLayer(1);
 	
-	while (k < i && index < coins.size()) {
-		//showCoin(coins[index]); hacer lo del iterador
-		k += 100;
-		index++;
+	*/
+	
+	//-----MONEDAS
+	createCoin(400, 500);
+	createCoin(420, 540);
+	createCoin(380, 525);
+	createCoin(480, 500);
+	createCoin(500, 540);
+	createCoin(570, 530);
+	createCoin(570, 500);
+	int a = shopManager->getComponent<ShopComponent>()->getPlayerMoney();
+	int money =  a / 100;
+	for (int i = 0; i < money; i++) {
+		showCoin(mngr().getEntities(ecs::grp::COINS)[i]);
 	}
 
 	//-----Cartas sobre la estanteria
@@ -264,7 +265,7 @@ ecs::entity_t ShopState::createCard(int id, Vector2D pos)
 
 ecs::entity_t ShopState::createCoin(int x, int y)
 {
-	ecs::entity_t coin = Instantiate();
+	ecs::entity_t coin = Instantiate(ecs::grp::COINS);
 	coin->addComponent<Transform>();
 	Vector2D coinPos(x, y);
 	coin->getComponent<Transform>()->setGlobalPos(coinPos);
@@ -272,7 +273,7 @@ ecs::entity_t ShopState::createCoin(int x, int y)
 	//coin7->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
 	coin->setLayer(4);
 
-	return ecs::entity_t();
+	return coin;
 }
 
 void ShopState::showCoin(ecs::entity_t coinToShow)

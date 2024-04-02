@@ -26,12 +26,8 @@ public:
 
 private:
 	Factory* factory;
-	int i = GameStateMachine::instance()->getCurrentState()->getMoney();
-	int k = 0;
-	int index = 0;
 
-
-	std::list<ecs::entity_t> coins;
+	//std::list<ecs::entity_t> coins;
 	//Volver a la ciudad
 	//Comprar ??
 	//Dinero  ??
