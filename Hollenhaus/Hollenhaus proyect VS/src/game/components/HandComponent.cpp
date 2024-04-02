@@ -52,7 +52,43 @@ void HandComponent::addCard(ecs::entity_t card) {
 	cardsInHand_.push_back(card);
 	lastCardAdded_ = card;
 	//card->setLayer(cardsInHand_.size());
+
+	//Aquí se calcula la posición a la que tiene que llegar, no se bien como implementarlo en el tween
 	refreshPositions();
+
+	///Tween
+	carta = card;
+	tweenDrawCard =
+		tweeny::from(card->getComponent<Transform>()->getGlobalPos().getY() - 100)
+		.to(card->getComponent<Transform>()->getGlobalPos().getY() + 100)
+		.to(card->getComponent<Transform>()->getGlobalPos().getY() - 100)
+		.during(60)
+		.via(tweeny::easing::sinusoidalInOut);
+	tween = true;
+
+	
+}
+
+void HandComponent::update()
+{
+	//Habría que hacer cuando esté el tween definitivo que cuando 
+	// llegue al sitio en el que se tiene que quedar ponga el bool a falso
+	if (tween) {
+		/// TWEENS???
+		//Habría que hacer que comience en el mazo y se mueva hasta su posición
+		if (tweenDrawCard.progress() == 1.0) tweenDrawCard.backward();
+		if (tweenDrawCard.progress() == 0.0) tweenDrawCard.forward();
+		tweenDrawCard.step(1);
+		if (tweenDrawCard.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+		{
+			Vector2D step(
+				carta->getComponent<Transform>()->getGlobalPos().getX(),
+				tweenDrawCard.peek()
+			);
+			carta->getComponent<Transform>()->setGlobalPos(step);
+		}
+	}
+	
 }
 
 void HandComponent::removeCard(ecs::entity_t card) {
@@ -120,6 +156,7 @@ void HandComponent::refreshPositions() {
 		// y = (x^2)/CARD_SEPARATION
 		int x = ((i - cardsInHand_.size() / 2) * CARD_SEPARATION);
 
+		//Posición de la carta (El vector 2D)
 		positions.push_back(Vector2D(x, pow(x, 2) / (ARCH_AMPLITUDE * sign)));
 	}
 

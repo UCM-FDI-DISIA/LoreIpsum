@@ -23,6 +23,8 @@ public:
 	/// <returns>Si ha anadido la carta devuelve true, si no false.</returns>
 	void addCard(ecs::entity_t card);
 
+	void update() override;
+
 	/// <summary>
 	/// Saca una carta de
 	/// </summary>
@@ -58,4 +60,9 @@ private:
 	/// movidas que estoy haciendo para girar el mazo al segundo jugador
 	bool downwards_ = true;
 	Players::Owner owner_;
+
+	//Cosas del tween
+	tweeny::tween<float> tweenDrawCard;
+	ecs::entity_t carta;
+	bool tween = false;
 };
