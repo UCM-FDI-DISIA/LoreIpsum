@@ -4,8 +4,8 @@
 
 // ---- DECKBUILDING ----
 const int CARDS_IN_GAME = 50, // Cantidad de cartas en el juego
-MIN_CARDS_MAZE = 1, // Minimo de cartas en el mazo
-MAX_CARDS_MAZE = 6, // Maximo de cartas en el mazo
+MIN_CARDS_MAZE = 10, // Minimo de cartas en el mazo
+MAX_CARDS_MAZE = 20, // Maximo de cartas en el mazo
 // Cantidad de cartas de la tienda. Cambiar en shopComponent tambien.
 CARDS_IN_SHOP = 4;
 
