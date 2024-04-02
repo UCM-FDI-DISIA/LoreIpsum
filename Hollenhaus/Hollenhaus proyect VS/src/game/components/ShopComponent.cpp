@@ -59,7 +59,13 @@ void ShopComponent::generateCards()
 
 bool ShopComponent::cardIsBought(int id)
 {
-	return GameStateMachine::instance()->getCurrentState()->checkCardIsInDrawer(id);
+	bool isBought = false;
+	isBought = GameStateMachine::instance()->getCurrentState()->checkCardIsInDrawer(id);
+	if (!isBought)
+	{
+		isBought = GameStateMachine::instance()->getCurrentState()->checkCardIsInMaze(id);
+	}
+	return isBought;
 }
 
 void ShopComponent::showCards() {
