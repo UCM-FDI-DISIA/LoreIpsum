@@ -91,6 +91,11 @@ void ShopComponent::showCards() {
 	}
 }
 
+int ShopComponent::getCardPrice(int i)
+{
+	return shopCardsPrize[i];
+}
+
 void ShopComponent::buyCard()
 {
 	//------Esto para buscar el boton que ha sido pulsado para acceder a la carta de ese boton.

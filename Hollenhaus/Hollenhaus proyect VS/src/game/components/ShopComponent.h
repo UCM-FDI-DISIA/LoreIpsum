@@ -33,6 +33,8 @@ public:
 	void showCards();
 	//------Muestra los precios de las cartas.
 	void showPrizes();
+	//------Devuelve el precio de la carta
+	int getCardPrice(int i);
 	//------Logica de la compra.
 	void buyCard();
 	//------Para abrir el diálogo de confirmacion de compra.
