@@ -9,7 +9,7 @@
 #include "../components/basics/TextComponent.h"
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
-shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(525, 80),Vector2D(660, 200) ,Vector2D(525, 200) ,Vector2D(660, 80) }),
+shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(525, 80),Vector2D(660, 80) ,Vector2D(525, 200) ,Vector2D(660, 200) }),
 shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
 //,money(500)
 {}
@@ -50,15 +50,22 @@ void ShopComponent::generateCards()
 	//-------------------------------------------------Esto luego sera random del json demomento es el i del for.
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
-		GameStateMachine::instance()->getCurrentState()->setShopCard(i);
-		shopCards[i] = i;
+		int cardId = 20 + i;
+		GameStateMachine::instance()->getCurrentState()->setShopCard(cardId);
+		shopCards[i] = cardId;
 		std::cout << shopCards[i] << std::endl;
 	}
 }
 
 bool ShopComponent::cardIsBought(int id)
 {
-	return GameStateMachine::instance()->getCurrentState()->checkCardIsInDrawer(id);
+	bool isBought = false;
+	isBought = GameStateMachine::instance()->getCurrentState()->checkCardIsInDrawer(id);
+	if (!isBought)
+	{
+		isBought = GameStateMachine::instance()->getCurrentState()->checkCardIsInMaze(id);
+	}
+	return isBought;
 }
 
 void ShopComponent::showCards() {
@@ -70,7 +77,8 @@ void ShopComponent::showCards() {
 			GameStateMachine::instance()->getCurrentState()->addCardToDrawer(shopCards[i]);
 		}*/
 		auto card = GameStateMachine::instance()->getCurrentState()->createCard(shopCards[i], shopCardsPositions[i]);
-		if (!cardIsBought(i)) // Si la carta ya esta comprada entonces no debe de ser un boton pero igualmente tiene que aparecer pero oscurecida.
+		int id = card->getComponent<Card>()->getID();
+		if (!cardIsBought(id)) // Si la carta ya esta comprada entonces no debe de ser un boton pero igualmente tiene que aparecer pero oscurecida.
 		{
 			if (card != nullptr)
 			{
@@ -132,7 +140,7 @@ void ShopComponent::buyCard()
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
 		ecs::entity_t shopText = Instantiate(Vector2D(shopCardsPositions[i].getX() + 30, shopCardsPositions[i].getY() + 40));
-		if (!cardIsBought(i)) // Sino esta vendida aparece el precio.
+		if (!cardIsBought(shopCards[i])) // Sino esta vendida aparece el precio.
 		{
 			txt = std::to_string(shopCardsPrize[i]);
 		}
@@ -149,7 +157,7 @@ int ShopComponent::calculatePrize(ecs::entity_t card)
 {
 	int prize = 0;
 	prize += (card->getComponent<Card>()->getCost() * COST_PER_COST);
-	prize += (card->getComponent<Card>()->getEffectSize() * COST_PER_EFFECTS);
+	prize += (card->getComponent<Card>()->getValue() * COST_PER_VALUE);
 	return prize;
 }
 
@@ -187,7 +195,7 @@ void ShopComponent::setTexts()
 	//--------Esta muy feo ya lo siento a quien mire esto :).
 	//----Carta 0----
 	cardPrizeText0 = Instantiate(Vector2D(shopCardsPositions[0].getX() + 30, shopCardsPositions[0].getY() + 40));
-	if (!cardIsBought(0))
+	if (!cardIsBought(shopCards[0]))
 	{
 		cardPrizeText0->addComponent<TextComponent>(std::to_string(shopCardsPrize[0]), "8bit_size_40", SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
@@ -197,7 +205,7 @@ void ShopComponent::setTexts()
 	cardPrizeText0->setLayer(10);
 	//----Carta 1----
 	cardPrizeText1 = Instantiate(Vector2D(shopCardsPositions[1].getX() + 30, shopCardsPositions[1].getY() + 40));
-	if (!cardIsBought(1))
+	if (!cardIsBought(shopCards[1]))
 	{
 		cardPrizeText1->addComponent<TextComponent>(std::to_string(shopCardsPrize[1]), "8bit_size_40", SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
@@ -207,7 +215,7 @@ void ShopComponent::setTexts()
 	cardPrizeText1->setLayer(10);
 	//----Carta 2----
 	cardPrizeText2 = Instantiate(Vector2D(shopCardsPositions[2].getX() + 30, shopCardsPositions[2].getY() + 40));
-	if (!cardIsBought(2))
+	if (!cardIsBought(shopCards[2]))
 	{
 		cardPrizeText2->addComponent<TextComponent>(std::to_string(shopCardsPrize[2]), "8bit_size_40", SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
@@ -217,7 +225,7 @@ void ShopComponent::setTexts()
 	cardPrizeText2->setLayer(10);
 	//----Carta 3----
 	cardPrizeText3 = Instantiate(Vector2D(shopCardsPositions[3].getX() + 30, shopCardsPositions[3].getY() + 40));
-	if (!cardIsBought(3))
+	if (!cardIsBought(shopCards[3]))
 	{
 		cardPrizeText3->addComponent<TextComponent>(std::to_string(shopCardsPrize[3]), "8bit_size_40", SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
@@ -231,22 +239,22 @@ void ShopComponent::updateTexts()
 	//----Dinero----
 	moneyText->getComponent<TextComponent>()->setTxt(std::to_string(money));
 	//----Carta 0----
-	if (cardIsBought(0))
+	if (cardIsBought(shopCards[0]))
 	{
 		cardPrizeText0->getComponent<TextComponent>()->setTxt("vendida");
 	}
 	//----Carta 1----
-	if (cardIsBought(1))
+	if (cardIsBought(shopCards[1]))
 	{
 		cardPrizeText1->getComponent<TextComponent>()->setTxt("vendida");
 	}
 	//----Carta 2----
-	if (cardIsBought(2))
+	if (cardIsBought(shopCards[2]))
 	{
 		cardPrizeText2->getComponent<TextComponent>()->setTxt("vendida");
 	}
 	//----Carta 3----
-	if (cardIsBought(3))
+	if (cardIsBought(shopCards[3]))
 	{
 		cardPrizeText3->getComponent<TextComponent>()->setTxt("vendida");
 	}

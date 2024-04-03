@@ -22,12 +22,13 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent) //poli
 	);
 
 	float x = parent->getComponent<Transform>()->getGlobalPos().getX();
-	float y = parent->getComponent<Transform>()->getGlobalPos().getY() + 100;
+	float y = parent->getComponent<Transform>()->getGlobalPos().getY() + 150;
 
 	factory->createDecision({ x,y }, //pos
 							{ 0,0 }, //size
 							parent, //parent
 							4, //layer
+							3, //scene a la que se iria si pulsamos Si
 							"8bit_size_24", //fontId
 							SDL_Color({ 0, 0, 0, 255 }), //color del txt
 							100, //wraplength

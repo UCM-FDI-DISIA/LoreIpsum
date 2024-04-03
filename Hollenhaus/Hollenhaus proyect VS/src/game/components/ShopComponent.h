@@ -5,7 +5,7 @@
 
 const int CARDS_IN_SHOP = 4; // Cantidad de cartas de la tienda.
 const int COST_PER_COST = 100; // Precio que suma el coste de la carta al precio total.
-const int COST_PER_EFFECTS = 100; // Precio que suma cada efecto al precio total. Se multiplica este numero por numero de efectos.
+const int COST_PER_VALUE = 50; // Precio que suma cada efecto al precio total. Se multiplica este numero por numero de efectos.
 
 class Card;
 class Button;

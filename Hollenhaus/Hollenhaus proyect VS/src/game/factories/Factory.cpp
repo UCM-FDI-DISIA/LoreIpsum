@@ -123,7 +123,7 @@ ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vecto
 	
 }
 
-void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer,
+void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene,
 	std::string fontID, SDL_Color color, Uint32 wrapLenght,Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment)
 {
 	if (decisionFactory == nullptr) {
@@ -131,5 +131,5 @@ void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, 
 	}
 
 	decisionFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
-	decisionFactory->createPopUp(pos, size, parent, layer);
+	decisionFactory->createPopUp(pos, size, parent, layer, scene);
 }
