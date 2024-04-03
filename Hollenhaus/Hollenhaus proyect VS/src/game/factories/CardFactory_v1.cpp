@@ -232,7 +232,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 		//poner el simbolo del valor
 		if (effects[i].value() != 0)
 		{
-			std::string valueText = effects[i].value() < 0 ? "-" : "+";
+			std::string valueText = effects[i].value() < 0 ? "" : "+";
 			valueText = valueText + std::to_string(effects[i].value());
 
 			//valueChange = Instantiate(Vector2D(0, 0));

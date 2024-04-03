@@ -59,9 +59,8 @@ void HandComponent::addCard(ecs::entity_t card) {
 	///Tween
 	carta = card;
 	tweenDrawCard =
-		tweeny::from(card->getComponent<Transform>()->getGlobalPos().getY() - 100)
-		.to(card->getComponent<Transform>()->getGlobalPos().getY() + 100)
-		.to(card->getComponent<Transform>()->getGlobalPos().getY() - 100)
+		tweeny::from(card->getComponent<Transform>()->getGlobalPos().getX() + 250)
+		.to(card->getComponent<Transform>()->getGlobalPos().getX())
 		.during(60)
 		.via(tweeny::easing::sinusoidalInOut);
 	tween = true;
@@ -76,14 +75,12 @@ void HandComponent::update()
 	if (tween) {
 		/// TWEENS???
 		//Habría que hacer que comience en el mazo y se mueva hasta su posición
-		if (tweenDrawCard.progress() == 1.0) tweenDrawCard.backward();
-		if (tweenDrawCard.progress() == 0.0) tweenDrawCard.forward();
 		tweenDrawCard.step(1);
 		if (tweenDrawCard.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
 		{
 			Vector2D step(
-				carta->getComponent<Transform>()->getGlobalPos().getX(),
-				tweenDrawCard.peek()
+				tweenDrawCard.peek(),
+				carta->getComponent<Transform>()->getGlobalPos().getY()
 			);
 			carta->getComponent<Transform>()->setGlobalPos(step);
 		}
