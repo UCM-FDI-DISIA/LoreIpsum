@@ -77,9 +77,10 @@ void LuisState::onEnter()
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
-	ecs::entity_t ent = Instantiate();
-	ent->addComponent<DragManager>();
-	ent->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
+	ecs::entity_t dragManager = Instantiate();
+	dragManager->addComponent<DragManager>();
+	dragManager->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
+	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::DRAG_MANAGER, dragManager);
 
 	// Factoría de cartas. Con ella generamos la mano inicial
 	ecs::entity_t deckPlayer1 = factory->createDeck();

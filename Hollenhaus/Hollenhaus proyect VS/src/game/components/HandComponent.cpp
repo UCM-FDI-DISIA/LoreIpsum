@@ -7,6 +7,7 @@
 
 #include "Card.h"
 #include "basics/TextComponent.h"
+#include "managers/DragManager.h"
 
 HandComponent::HandComponent() :
 	transform_(), lastCardAdded_(nullptr)
@@ -72,17 +73,24 @@ void HandComponent::update()
 {
 	//Habría que hacer cuando esté el tween definitivo que cuando 
 	// llegue al sitio en el que se tiene que quedar ponga el bool a falso
-	if (tween) {
+	if (tween && owner_ == Players::PLAYER1) {
 		/// TWEENS???
 		//Habría que hacer que comience en el mazo y se mueva hasta su posición
+		auto drag = mngr_->getHandler(ecs::hdlr::DRAG_MANAGER)->getComponent<DragManager>();
 		tweenDrawCard.step(1);
 		if (tweenDrawCard.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
 		{
+			if (drag != nullptr) drag->setDraggable(false);
 			Vector2D step(
 				tweenDrawCard.peek(),
 				carta->getComponent<Transform>()->getGlobalPos().getY()
 			);
 			carta->getComponent<Transform>()->setGlobalPos(step);
+		}
+		if (tweenDrawCard.progress() == 1.0)
+		{
+			tween = false;
+			if (drag != nullptr) drag->setDraggable(true);
 		}
 	}
 	

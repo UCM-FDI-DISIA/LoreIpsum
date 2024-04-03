@@ -68,7 +68,7 @@ void DragManager::OnLeftClickDown()
 
 	auto card = mouseRaycast(ecs::grp::CARDS);
 
-	if (card != nullptr && CardOnHand(card) && CardIsOfCurrentPlayer(card)) 
+	if (card != nullptr && draggable && CardOnHand(card) && CardIsOfCurrentPlayer(card)) 
 	{
 		//se guarda la posicion/ transform de como estaba la carta
 		dragTransform = card->getComponent<Transform>();
