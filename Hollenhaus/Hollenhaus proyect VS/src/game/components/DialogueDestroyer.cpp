@@ -24,6 +24,8 @@ void DialogueDestroyer::update()
 void DialogueDestroyer::destroyDialogue()
 {
 	npc->getComponent<NPC>()->stoppedTalking();
+	object->getComponent<Transform>()->getParent()->getParent()->killChildren();
 	object->getComponent<Transform>()->killChildren();
+	
 	object->setAlive(false);
 }
