@@ -100,6 +100,7 @@ void ShopState::onEnter()
 	createCoin(500, 540);
 	createCoin(570, 530);
 	createCoin(570, 500);
+	createCoin(590, 550);
 	updateCoinsOnTable(shopManager);
 
 	//-----Cartas sobre la estanteria

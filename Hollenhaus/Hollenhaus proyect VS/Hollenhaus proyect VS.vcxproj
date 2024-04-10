@@ -219,6 +219,7 @@
     <ClInclude Include="src\game\components\MoveOnClick.h" />
     <ClInclude Include="src\game\components\NextText.h" />
     <ClInclude Include="src\game\components\NPC.h" />
+    <ClInclude Include="src\game\components\ShineComponent.h" />
     <ClInclude Include="src\game\components\ShopComponent.h" />
     <ClInclude Include="src\game\components\TypeWriter.h" />
     <ClInclude Include="src\game\Dialogue.h" />
