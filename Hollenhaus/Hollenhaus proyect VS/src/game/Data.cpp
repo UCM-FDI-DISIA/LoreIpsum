@@ -355,7 +355,7 @@ void Data::setSocketRival(TCPsocket _rival)
 {
 	rival = _rival;
 }
-TCPsocket Data::getSocketRival(TCPsocket _rival)
+TCPsocket Data::getSocketRival()
 {
 	return rival;
 }

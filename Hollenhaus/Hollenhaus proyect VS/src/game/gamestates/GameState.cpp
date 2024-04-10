@@ -67,6 +67,21 @@ void GameState::setLastPaulPos(Vector2D paulPos)
 	data->SetCityPos(paulPos);
 }
 
+void GameState::setSocketRival(TCPsocket _rival)
+{
+	data->setSocketRival(_rival);
+}
+
+TCPsocket GameState::getSocketRival()
+{
+	return data->getSocketRival();
+}
+
+void GameState::resetSocketRival()
+{
+	data->resetSocketRival();
+}
+
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
 	return data->GetDrawer();

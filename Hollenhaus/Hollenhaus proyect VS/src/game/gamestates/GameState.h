@@ -2,6 +2,8 @@
 #define GameState_H_
 #include <array>
 
+#include <SDL_net.h>
+
 /// <summary>
 /// Clase GameState (o Manager) vista en clase
 /// </summary>
@@ -64,6 +66,14 @@ public:
 	virtual void setDrawer(std::array<int, 50> drawerToSave);
 	virtual void setWinnerOnData(int w);
 	virtual void setLastPaulPos(Vector2D paulPos);
+
+
+	//MULTIPLAYER
+
+	virtual void setSocketRival(TCPsocket _rival);
+	virtual TCPsocket getSocketRival();
+
+	virtual void resetSocketRival();
 };
 
 #endif // !GameState_H_

@@ -148,7 +148,7 @@ public:
 	//MULTIPLAYER
 
 	void setSocketRival(TCPsocket _rival);
-	TCPsocket getSocketRival(TCPsocket _rival);
+	TCPsocket getSocketRival();
 
 	void resetSocketRival();
 
