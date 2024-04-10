@@ -194,6 +194,7 @@ void ShopComponent::setTexts()
 	//----Dinero-----
 	moneyText = Instantiate(Vector2D(40, 100));
 	moneyText->addComponent<TextComponent>(std::to_string(money), "8bit_size_40", SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	moneyText->setLayer(10);
 	//--------Esta muy feo ya lo siento a quien mire esto :).
 	//----Carta 0----
 	cardPrizeText0 = Instantiate(Vector2D(shopCardsPositions[0].getX() + 30, shopCardsPositions[0].getY() + 40));
