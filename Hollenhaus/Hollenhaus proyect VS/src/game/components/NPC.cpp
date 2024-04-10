@@ -145,16 +145,17 @@ void NPC::talkTo()
 		int node = 0;
 
 		// crear dialogo del FACTORY de dialogos
+		//// Mirar comentario en el interior de la función
 		factory->createDialogue(dialogue.NPCName(), conv, node,
-								{x,y}, //POS
-								{100,100}, //SIZE (poli: no cambia nada?¿)
+								{x, y},//POS
+								{100,100}, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
 								5, 10, getEntity(), 
 								3, dialogue.Convo(conv).isAuto(),  //LAYER
 								"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
 								SDL_Color({0, 0, 0, 255}), 
-								150, //wrap length
-								Text::BoxPivotPoint::LeftTop, //lo de pivot no me deja centrar el texto con el cuadrado-> preguntar a Parres uwu
-								Text::TextAlignment::Center);
+								220, //wrap length
+								Text::BoxPivotPoint::LeftTop,
+								Text::TextAlignment::Left);
 
 		//si estamos lejos del npc, el dialogo se destruye -> AYUDA INES
 		if (!closeToPaul) 
