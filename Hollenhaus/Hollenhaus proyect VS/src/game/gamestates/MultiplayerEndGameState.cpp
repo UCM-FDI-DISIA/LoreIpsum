@@ -34,5 +34,6 @@ void MultiplayerEndGameState::onEnter()
 void MultiplayerEndGameState::onExit()
 {
 	TuVieja("EXIT MultiplayerEndGameState");
+	mngr().Free();
 
 }
