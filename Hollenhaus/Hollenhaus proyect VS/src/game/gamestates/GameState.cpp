@@ -47,6 +47,10 @@ void GameState::refresh()
 	GameStateMachine::instance()->getMngr()->refresh();
 }
 
+
+/**
+* llama a tu padre
+*/
 void GameState::update()
 {
 	GameStateMachine::instance()->getMngr()->update();

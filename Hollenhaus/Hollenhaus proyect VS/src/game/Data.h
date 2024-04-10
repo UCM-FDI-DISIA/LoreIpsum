@@ -100,7 +100,7 @@ public:
 	//----NPCs:
 	const std::list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
 	//----Dinero:
-	const int GetMoney() { return currentMoney; }
+	const int GetMoney() const  { return currentMoney; }
 	//----Almas:
 	const int GetSouls() { return currentSouls; };
 	//----Caso:

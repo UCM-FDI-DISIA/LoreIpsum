@@ -20,3 +20,35 @@ void NetGame::initComponent()
 void NetGame::update()
 {
 }
+
+void NetGame::setMatchManager(MatchManager* matchM)
+{
+	matchManager = matchM;
+}
+
+void NetGame::setBoardManager(BoardManager* boardM)
+{
+	boardManager = boardM;
+}
+
+void NetGame::setRivalHand(HandComponent* rivalH)
+{
+	rivalHandCmp = rivalH;
+}
+
+void NetGame::setRivalDeck(DeckComponent* rivalD)
+{
+	rivalDeckCmp = rivalD;
+}
+
+void NetGame::drawCard()
+{
+}
+
+void NetGame::playCard(int i, Vector2D pos)
+{
+}
+
+void NetGame::nextTurn()
+{
+}
