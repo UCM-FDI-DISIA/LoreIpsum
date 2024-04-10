@@ -129,7 +129,7 @@ void Data::AddSouls(int s) {
 	currentSouls += s;
 }
 //----Caso:
-void Data::AddCurrentCase() {
+void Data::AddCaseIndex() {
 	currentCase++;
 }
 //----Ganador:
@@ -292,6 +292,7 @@ void Data::Read() {
 	}
 
 	file >> falsedades;
+
 	// Lee cartas desbloqueadas
 	file >> iterations;
 	for (int i = 0; i < iterations; i++)
@@ -325,15 +326,18 @@ void Data::EmptyLists() {
 	EmptyNPCS();
 	EmptyShopCards();
 }
+
 void Data::EmptyMaze() {
 	maze.clear();
 }
+
 void Data::EmptyDrawer() {
 	for (int i = 0; i < CARDS_IN_GAME; i++)
 	{
 		drawer[i] = -1;
 	}
 }
+
 void Data::EmptyNPCS() {
 	defeatedNPCS.clear();
 }
