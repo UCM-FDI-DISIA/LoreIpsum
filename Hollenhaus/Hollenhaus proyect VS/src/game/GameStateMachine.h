@@ -66,10 +66,10 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* luisState;
 	GameState* deckBuildingState;
 
-	GameState* multiplayerLobby;
-	GameState* multiplayerPreGame;
-	GameState* multiplayerGame;
-	GameState* multiplayerEndGame;
+	GameState* multiplayerLobbyState;
+	GameState* multiplayerPreGameState;
+	GameState* multiplayerGameState;
+	GameState* multiplayerEndGameState;
 
 public:
 	ecs::Manager* getMngr()
@@ -128,16 +128,16 @@ public:
 			currentState = deckBuildingState;
 			break;
 		case GameStates::MULTIPLAYER_LOBBY:
-			currentState = multiplayerLobby;
+			currentState = multiplayerLobbyState;
 			break;
 		case GameStates::MULTIPLAYER_PREGAME:
-			currentState = multiplayerPreGame;
+			currentState = multiplayerPreGameState;
 			break;
 		case GameStates::MULTIPLAYER_GAME:
-			currentState = multiplayerGame;
+			currentState = multiplayerGameState;
 			break;
 		case GameStates::MULTIPLAYER_END_GAME:
-			currentState = multiplayerEndGame;
+			currentState = multiplayerEndGameState;
 			break;
 		default:
 			break;
