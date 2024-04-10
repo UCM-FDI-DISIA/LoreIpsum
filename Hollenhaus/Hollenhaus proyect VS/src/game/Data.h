@@ -2,6 +2,10 @@
 #include <list>
 #include <array>
 
+#include <SDL_net.h>
+
+
+
 // ---- DECKBUILDING ----
 const int CARDS_IN_GAME = 50, // Cantidad de cartas en el juego
 MIN_CARDS_MAZE = 10, // Minimo de cartas en el mazo
@@ -40,6 +44,9 @@ private:
 		PLAYER1,
 		PLAYER2
 	};
+
+	//MULTIPLAYER
+	TCPsocket rival;
 
 public:
 
@@ -136,4 +143,14 @@ public:
 	//----Vaciado del array de cartas de la tienda. Lo pone todo a (-1 ,-1, -1, -1).
 	void EmptyShopCards();
 	void EmptyMaze_With_pos();
+
+
+	//MULTIPLAYER
+
+	void setSocketRival(TCPsocket _rival);
+	TCPsocket getSocketRival(TCPsocket _rival);
+
+	void resetSocketRival();
+
+
 };

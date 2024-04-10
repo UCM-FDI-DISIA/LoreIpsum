@@ -1,11 +1,13 @@
 #include "pch.h"
 #include "Data.h"
 
+#include <SDL_net.h>
 
 
 //------Constructora y destructora:
 Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
 {
+	//TCPsocket;
 	EmptyDrawer();
 	//Read();
 }
@@ -348,5 +350,17 @@ void Data::EmptyShopCards() {
 void Data::EmptyMaze_With_pos()
 {
 	maze_with_pos.clear();
+}
+void Data::setSocketRival(TCPsocket _rival)
+{
+	rival = _rival;
+}
+TCPsocket Data::getSocketRival(TCPsocket _rival)
+{
+	return rival;
+}
+void Data::resetSocketRival()
+{
+	rival = nullptr;
 }
 #pragma endregion
