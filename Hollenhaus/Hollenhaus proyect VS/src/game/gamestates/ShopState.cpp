@@ -100,7 +100,7 @@ void ShopState::onEnter()
 	createCoin(500, 540);
 	createCoin(570, 530);
 	createCoin(570, 500);
-	int a = shopManager->getComponent<ShopComponent>()->getPlayerMoney();
+	int a = shopManager->getComponent<ShopComponent>()->getPlayerMoney();;
 	int money =  a / 100;
 	for (int i = 0; i < money; i++) {
 		showCoin(mngr().getEntities(ecs::grp::COINS)[i]);
@@ -113,56 +113,17 @@ void ShopState::onEnter()
 	carta1->addComponent<BoxCollider>();
 	carta1->addComponent<SpriteRenderer>("card");
 	carta1->addComponent<ShineComponent>();
-	/*
+	
 	int k = shopManager->getComponent<ShopComponent>()->getCardPrice(0);
-	if (k == 100 && coin1->getComponent<SpriteRenderer>() != nullptr) {
 
-		carta1->getComponent<ShineComponent>()->addEnt(coin1->getComponent<SpriteRenderer>(), "monedaIlu");
+	int nCoins = k / 100, i = 0;
+	while (i < nCoins) {
+		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
+			carta1->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
+		}
+		i++;
 	}
-	else if (k == 200 && coin1->getComponent<SpriteRenderer>() != nullptr && coin2->getComponent<SpriteRenderer>() != nullptr) {
-		carta1->getComponent<ShineComponent>()->addEnt(coin1->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin2->getComponent<SpriteRenderer>(), "monedaIlu");
-	}
-	else if (k == 300 && coin1->getComponent<SpriteRenderer>() != nullptr &&
-		coin2->getComponent<SpriteRenderer>() != nullptr && coin3->getComponent<SpriteRenderer>() != nullptr) {
-		carta1->getComponent<ShineComponent>()->addEnt(coin1->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin2->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin3->getComponent<SpriteRenderer>(), "monedaIlu");
-	}
-	else if (k == 400 && coin1->getComponent<SpriteRenderer>() != nullptr &&
-		coin2->getComponent<SpriteRenderer>() != nullptr && coin3->getComponent<SpriteRenderer>() != nullptr &&
-		coin4->getComponent<SpriteRenderer>() != nullptr) {
 
-		carta1->getComponent<ShineComponent>()->addEnt(coin1->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin2->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin3->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin4->getComponent<SpriteRenderer>(), "monedaIlu");
-	}
-	else if (k == 500 && coin1->getComponent<SpriteRenderer>() != nullptr &&
-		coin2->getComponent<SpriteRenderer>() != nullptr && coin3->getComponent<SpriteRenderer>() != nullptr &&
-		coin4->getComponent<SpriteRenderer>() != nullptr && coin5->getComponent<SpriteRenderer>() != nullptr) {
-
-		carta1->getComponent<ShineComponent>()->addEnt(coin1->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin2->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin3->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin4->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin5->getComponent<SpriteRenderer>(), "monedaIlu");
-	}
-	else if (k == 600 && coin1->getComponent<SpriteRenderer>() != nullptr &&
-		coin2->getComponent<SpriteRenderer>() != nullptr && coin3->getComponent<SpriteRenderer>() != nullptr &&
-		coin4->getComponent<SpriteRenderer>() != nullptr && coin5->getComponent<SpriteRenderer>() != nullptr &&
-		coin6->getComponent<SpriteRenderer>() != nullptr) {
-
-		carta1->getComponent<ShineComponent>()->addEnt(coin1->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin2->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin3->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin4->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin5->getComponent<SpriteRenderer>(), "monedaIlu");
-		carta1->getComponent<ShineComponent>()->addEnt(coin6->getComponent<SpriteRenderer>(), "monedaIlu");
-	}
-	
-	*/
-	
 	Vector2D card1Pos(525, 80);
 	carta1->getComponent<Transform>()->setGlobalPos(card1Pos);
 	carta1->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
@@ -175,6 +136,16 @@ void ShopState::onEnter()
 	carta2->addComponent<BoxCollider>();
 	carta2->addComponent<SpriteRenderer>("card");
 	carta2->addComponent<ShineComponent>();
+
+	k = shopManager->getComponent<ShopComponent>()->getCardPrice(1);
+
+	nCoins = k / 100; i = 0;
+	while (i < nCoins) {
+		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
+			carta2->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
+		}
+		i++;
+	}
 	Vector2D card2Pos(660, 200);
 	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
 	carta2->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
@@ -187,6 +158,16 @@ void ShopState::onEnter()
 	carta3->addComponent<BoxCollider>();
 	carta3->addComponent<SpriteRenderer>("card");
 	carta3->addComponent<ShineComponent>();
+
+	k = shopManager->getComponent<ShopComponent>()->getCardPrice(2);
+
+	nCoins = k / 100; i = 0;
+	while (i < nCoins) {
+		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
+			carta3->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
+		}
+		i++;
+	}
 	Vector2D card3Pos(525, 200);
 	carta3->getComponent<Transform>()->setGlobalPos(card3Pos);
 	carta3->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
@@ -199,6 +180,15 @@ void ShopState::onEnter()
 	carta4->addComponent<BoxCollider>();
 	carta4->addComponent<SpriteRenderer>("card");
 	carta4->addComponent<ShineComponent>();
+	k = shopManager->getComponent<ShopComponent>()->getCardPrice(3);
+
+	nCoins = k / 100; i = 0;
+	while (i < nCoins) {
+		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
+			carta4->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
+		}
+		i++;
+	}
 	Vector2D card4Pos(660, 80);
 	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
 	carta4->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
