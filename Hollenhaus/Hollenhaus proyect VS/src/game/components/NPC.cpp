@@ -6,6 +6,8 @@
 #include "../factories/Factory.h"
 #include "../factories/DialogueFactory_V0.h"
 #include "../factories/CardFactory_v1.h"
+#include "../components/NextText.h"
+#include "../components/DialogueDestroyer.h"
 
 
 NPC::NPC(int scene)
@@ -19,6 +21,7 @@ NPC::NPC(int scene)
 	talking = false;
 	_id = 0;
 
+	closeToPaul = true;
 
 	factory = new Factory();
 	factory->SetFactories(
@@ -92,12 +95,21 @@ NPC::~NPC() {
 
 void NPC::initComponent(){
 	myBoxCollider = mngr_->getComponent<BoxCollider>(ent_);
+	myTransform = mngr_->getComponent<Transform>(ent_);
 }
 
-void NPC::OnLeftClickDown(int scene) {
-	myBoxCollider;
-	reactToClick(scene);
-	click = true;
+void NPC::OnLeftClickDown(int scene) 
+{
+	pos = myTransform->getGlobalPos().getX();
+	closeToPaul = pos > 200 && pos < sdlutils().width() - 150;
+
+	//si Paul no esta cerca del NPC, no se le podra hacer clic :O
+	if (closeToPaul) 
+	{
+		myBoxCollider;
+		reactToClick(scene);
+		click = true;
+	}
 }
 void NPC::OnLeftClickUp() {
 	click = false; // Resetea el click al soltar para que se pueda volver a pulsar.
@@ -144,9 +156,15 @@ void NPC::talkTo()
 								Text::BoxPivotPoint::LeftTop, //lo de pivot no me deja centrar el texto con el cuadrado-> preguntar a Parres uwu
 								Text::TextAlignment::Center);
 
+		//si estamos lejos del npc, el dialogo se destruye -> AYUDA INES
+		if (!closeToPaul) 
+		{
+			//ent_->getComponent<NextText>()->setDead(true);
+			//dialogueDestroyer_->destroyDialogue();
+		}
+
 		talking = true;
 	}
-
 }
 
 void NPC::stoppedTalking()
@@ -154,6 +172,8 @@ void NPC::stoppedTalking()
 	talking = false;
 }
 
-void NPC::update() {
+void NPC::update() 
+{
+
 
 }
