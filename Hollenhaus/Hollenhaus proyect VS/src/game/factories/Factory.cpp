@@ -109,7 +109,7 @@ ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent)
 	return npcFactory->createNPC(info, parent);
 }
 
-
+// Mirar comentario de createDialogue(), la función del return
 ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
 	int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
 	Text::TextAlignment textAlignment)
