@@ -113,7 +113,7 @@ void DrawerManager::addCard(int id, ecs::entity_t ent)
 	}
 
 	// DEBUG
-	std::cout << drawer[id] << std::endl;
+	std::cout << "Add card: " << drawer[id] << std::endl;
 }
 
 void DrawerManager::removeCard(int id)
@@ -125,7 +125,7 @@ void DrawerManager::removeCard(int id)
 	cardsAux[id % CANT_CARTAS_MOSTRADAS_CAJON] = nullptr;
 
 	// DEBUG
-	std::cout << drawer[id] << std::endl;
+	std::cout << "Remove card: " << drawer[id]  << std::endl;
 }
 #pragma endregion
 

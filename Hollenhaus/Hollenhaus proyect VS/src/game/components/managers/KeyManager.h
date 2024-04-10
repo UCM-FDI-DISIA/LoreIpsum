@@ -23,8 +23,7 @@ private:
     int lastKey_;
 
     std::vector<std::string> descs_;
-    std::vector<ecs::entity_t> images_;
-    std::vector<std::string> imageIDs_;
+    std::vector<std::pair<ecs::entity_t, ecs::entity_t>> keys_; // 1. Imagen / 2. Texto
 
     Transform* tr_;
     Vector2D pos_;

@@ -22,7 +22,7 @@ public:
 
 private:
 	float cardScale = 0.55f;
-	int cardsOnDeck = 9;
+	int cardsOnDeck = 16;
 	ecs::entity_t createHandJ2();
 
 	void addInfo(ecs::entity_t card, int cost, int value, std::vector<JsonData::CardEffect>& effects, bool bocabajo);

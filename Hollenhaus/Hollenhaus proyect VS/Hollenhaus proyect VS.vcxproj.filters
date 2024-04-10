@@ -315,9 +315,9 @@
     <ClCompile Include="src\game\components\ClickDecision.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-	<ClCompile Include="src\game\components\Animation.cpp">
-		<Filter>Archivos de origen\Componentes</Filter>
-	</ClCompile>
+    <ClCompile Include="src\game\components\Animation.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -614,18 +614,12 @@
     <ClInclude Include="src\game\components\managers\IA_manager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\factories\DeckBuildingFactory.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\components\ClickDecision.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-	<ClInclude Include="src\game\components\Animation.h">
-		<Filter>Archivos de encabezado\Componentes</Filter>
-	</ClInclude>
+    <ClInclude Include="src\game\components\Animation.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
@@ -638,6 +632,9 @@
       <Filter>Resources</Filter>
     </None>
     <None Include="resources\config\dialoguesV1.json">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="resources\config\npcs.json">
       <Filter>Resources</Filter>
     </None>
   </ItemGroup>
