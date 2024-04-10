@@ -55,11 +55,15 @@ void MainMenuState::onEnter()
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300,40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	newGameButton->addComponent<NPC>(1, 0); // Esto es graciosisimo
+	newGameButton->addComponent<NPC>(GameStates::CITY, 0); // Esto es graciosisimo
 
 	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
 	multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	multiplayerButton->addComponent<BoxCollider>();
+	multiplayerButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
+	multiplayerButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
+	multiplayerButton->addComponent<NPC>(GameStates::MULTIPLAYER_LOBBY,0);
+
 
 	//----Texto para continuar partida.
 	//ecs::entity_t continueText = Instantiate(Vector2D(400, 250));
