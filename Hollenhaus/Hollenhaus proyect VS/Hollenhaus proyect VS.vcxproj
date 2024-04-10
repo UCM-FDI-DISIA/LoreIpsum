@@ -56,6 +56,7 @@
     <ClCompile Include="src\game\components\DropZone.cpp" />
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
     <ClCompile Include="src\game\components\HandComponent.cpp" />
+    <ClCompile Include="src\game\components\InputForTextWritter.cpp" />
     <ClCompile Include="src\game\components\managers\BoardManager.cpp" />
     <ClCompile Include="src\game\components\managers\CardStateManager.cpp" />
     <ClCompile Include="src\game\components\managers\DragManager.cpp" />
@@ -70,6 +71,7 @@
     <ClCompile Include="src\game\components\multiplayer\NetGame.cpp" />
     <ClCompile Include="src\game\components\NextText.cpp" />
     <ClCompile Include="src\game\components\NPC.cpp" />
+    <ClCompile Include="src\game\components\TextWritter.cpp" />
     <ClCompile Include="src\game\components\TypeWriter.cpp" />
     <ClCompile Include="src\game\Dialogue.cpp" />
     <ClCompile Include="src\game\components\ShineComponent.cpp" />
@@ -211,6 +213,7 @@
     <ClInclude Include="src\game\components\DropZone.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
     <ClInclude Include="src\game\components\HandComponent.h" />
+    <ClInclude Include="src\game\components\InputForTextWritter.h" />
     <ClInclude Include="src\game\components\managers\BoardManager.h" />
     <ClInclude Include="src\game\components\managers\CardStateManager.h" />
     <ClInclude Include="src\game\components\managers\DragManager.h" />
@@ -226,6 +229,7 @@
     <ClInclude Include="src\game\components\NextText.h" />
     <ClInclude Include="src\game\components\NPC.h" />
     <ClInclude Include="src\game\components\ShopComponent.h" />
+    <ClInclude Include="src\game\components\TextWritter.h" />
     <ClInclude Include="src\game\components\TypeWriter.h" />
     <ClInclude Include="src\game\Dialogue.h" />
     <ClInclude Include="src\game\EffectCollection.h" />
