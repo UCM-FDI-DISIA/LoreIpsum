@@ -1,2 +1,0 @@
-cvdump HOLLENHAUS.pdb
-doskey /HISTORY > history.txt
