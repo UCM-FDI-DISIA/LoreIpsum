@@ -85,7 +85,6 @@ void NextText::callFullText()
 
 void NextText::setDead(bool a)
 {
-	this;
 	dead = a;
 }
 
