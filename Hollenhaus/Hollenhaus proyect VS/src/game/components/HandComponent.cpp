@@ -76,6 +76,7 @@ void HandComponent::update()
 		/// TWEENS???
 		//Habría que hacer que comience en el mazo y se mueva hasta su posición
 		tweenDrawCard.step(1);
+		if (tweenDrawCard.progress() == 1.0) tween = false;
 		if (tweenDrawCard.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
 		{
 			Vector2D step(
