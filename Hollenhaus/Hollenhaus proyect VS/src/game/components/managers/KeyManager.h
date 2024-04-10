@@ -27,5 +27,7 @@ private:
 
     Transform* tr_;
     Vector2D pos_;
+
+    std::string font_;
 };
 
