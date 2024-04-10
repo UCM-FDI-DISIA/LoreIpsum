@@ -50,12 +50,16 @@ void MainMenuState::onEnter()
 	//ecs::entity_t titleText = Instantiate(Vector2D(400, 50));
 	//titleText->addComponent<TextComponent>("HÖLLENHAUS", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 450, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para un nuevo juego.
-	newGameButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 120));
+	newGameButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() -250));
 	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300,40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	newGameButton->addComponent<NPC>(1, 0); // Esto es graciosisimo
+
+	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
+	multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	multiplayerButton->addComponent<BoxCollider>();
 
 	//----Texto para continuar partida.
 	//ecs::entity_t continueText = Instantiate(Vector2D(400, 250));

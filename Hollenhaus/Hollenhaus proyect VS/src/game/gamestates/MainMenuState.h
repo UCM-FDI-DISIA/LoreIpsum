@@ -16,6 +16,7 @@ public:
 
 private:
 	ecs::entity_t newGameButton;
+	ecs::entity_t multiplayerButton;
 	ecs::entity_t exitButton;
 	void exitGame();
 	//Fondo

@@ -29,7 +29,11 @@ namespace GameStates
 		LUIS,
 		NIEVES,
 		MATCHOVER,
-		DECKBUILDING
+		DECKBUILDING,
+		MULTIPLAYER_LOBBY,
+		MULTIPLAYER_PREGAME,
+		MULTIPLAYER_GAME,
+		MULTIPLAYER_END_GAME
 	};
 }
 
@@ -61,6 +65,11 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* matchOverState;
 	GameState* luisState;
 	GameState* deckBuildingState;
+
+	GameState* multiplayerLobby;
+	GameState* multiplayerPreGame;
+	GameState* multiplayerGame;
+	GameState* multiplayerEndGame;
 
 public:
 	ecs::Manager* getMngr()
@@ -117,6 +126,18 @@ public:
 			break;
 		case GameStates::DECKBUILDING:
 			currentState = deckBuildingState;
+			break;
+		case GameStates::MULTIPLAYER_LOBBY:
+			currentState = multiplayerLobby;
+			break;
+		case GameStates::MULTIPLAYER_PREGAME:
+			currentState = multiplayerPreGame;
+			break;
+		case GameStates::MULTIPLAYER_GAME:
+			currentState = multiplayerGame;
+			break;
+		case GameStates::MULTIPLAYER_END_GAME:
+			currentState = multiplayerEndGame;
 			break;
 		default:
 			break;
