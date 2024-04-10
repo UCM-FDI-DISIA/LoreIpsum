@@ -67,6 +67,7 @@
     <ClCompile Include="src\game\components\managers\PizarraManager.cpp" />
     <ClCompile Include="src\game\components\managers\PlayerCardsManager.cpp" />
     <ClCompile Include="src\game\components\MoveOnClick.cpp" />
+    <ClCompile Include="src\game\components\multiplayer\NetGame.cpp" />
     <ClCompile Include="src\game\components\NextText.cpp" />
     <ClCompile Include="src\game\components\NPC.cpp" />
     <ClCompile Include="src\game\components\TypeWriter.cpp" />
@@ -221,6 +222,7 @@
     <ClInclude Include="src\game\components\managers\PizarraManager.h" />
     <ClInclude Include="src\game\components\managers\PlayerCardsManager.h" />
     <ClInclude Include="src\game\components\MoveOnClick.h" />
+    <ClInclude Include="src\game\components\multiplayer\NetGame.h" />
     <ClInclude Include="src\game\components\NextText.h" />
     <ClInclude Include="src\game\components\NPC.h" />
     <ClInclude Include="src\game\components\ShopComponent.h" />

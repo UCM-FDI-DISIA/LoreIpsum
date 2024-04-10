@@ -61,6 +61,12 @@
     <Filter Include="Archivos de encabezado\ECS">
       <UniqueIdentifier>{55e656e6-65c5-463a-a718-c4e89217ee26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Componentes\Multiplayer">
+      <UniqueIdentifier>{b4419bd1-14e6-44f1-983c-3d7598acfab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Componentes\Multiplayer">
+      <UniqueIdentifier>{209522f0-3fa3-410d-aa25-4ebc0a4f7acd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\Game.cpp">
@@ -329,6 +335,9 @@
     </ClCompile>
     <ClCompile Include="src\game\gamestates\MultiplayerEndGameState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\multiplayer\NetGame.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -643,6 +652,9 @@
     </ClInclude>
     <ClInclude Include="src\game\gamestates\MultiplayerEndGameState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\multiplayer\NetGame.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
