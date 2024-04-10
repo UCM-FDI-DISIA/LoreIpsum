@@ -22,6 +22,8 @@ public:
 
 	ecs::entity_t createCoin(int x, int y);
 	void showCoin(ecs::entity_t coinToShow);
+	void makeCoinShine(int cardIndex, ecs::entity_t card, ecs::entity_t shopMngr);
+	void updateCoinsOnTable(ecs::entity_t shopMngr);
 
 
 private:

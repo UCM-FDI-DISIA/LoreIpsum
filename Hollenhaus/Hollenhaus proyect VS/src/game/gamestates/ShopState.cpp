@@ -20,6 +20,7 @@ ShopState::ShopState()
 void ShopState::update()
 {
 	GameState::update();
+
 }
 
 void ShopState::render() const  
@@ -100,11 +101,7 @@ void ShopState::onEnter()
 	createCoin(500, 540);
 	createCoin(570, 530);
 	createCoin(570, 500);
-	int a = shopManager->getComponent<ShopComponent>()->getPlayerMoney();;
-	int money =  a / 100;
-	for (int i = 0; i < money; i++) {
-		showCoin(mngr().getEntities(ecs::grp::COINS)[i]);
-	}
+	updateCoinsOnTable(shopManager);
 
 	//-----Cartas sobre la estanteria
 	//carta1
@@ -114,15 +111,7 @@ void ShopState::onEnter()
 	carta1->addComponent<SpriteRenderer>("card");
 	carta1->addComponent<ShineComponent>();
 	
-	int k = shopManager->getComponent<ShopComponent>()->getCardPrice(0);
-
-	int nCoins = k / 100, i = 0;
-	while (i < nCoins) {
-		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
-			carta1->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
-		}
-		i++;
-	}
+	makeCoinShine(0, carta1, shopManager);
 
 	Vector2D card1Pos(525, 80);
 	carta1->getComponent<Transform>()->setGlobalPos(card1Pos);
@@ -137,15 +126,8 @@ void ShopState::onEnter()
 	carta2->addComponent<SpriteRenderer>("card");
 	carta2->addComponent<ShineComponent>();
 
-	k = shopManager->getComponent<ShopComponent>()->getCardPrice(1);
+	makeCoinShine(1, carta2, shopManager);
 
-	nCoins = k / 100; i = 0;
-	while (i < nCoins) {
-		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
-			carta2->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
-		}
-		i++;
-	}
 	Vector2D card2Pos(660, 200);
 	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
 	carta2->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
@@ -159,15 +141,8 @@ void ShopState::onEnter()
 	carta3->addComponent<SpriteRenderer>("card");
 	carta3->addComponent<ShineComponent>();
 
-	k = shopManager->getComponent<ShopComponent>()->getCardPrice(2);
+	makeCoinShine(2, carta3, shopManager);
 
-	nCoins = k / 100; i = 0;
-	while (i < nCoins) {
-		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
-			carta3->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
-		}
-		i++;
-	}
 	Vector2D card3Pos(525, 200);
 	carta3->getComponent<Transform>()->setGlobalPos(card3Pos);
 	carta3->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
@@ -180,15 +155,9 @@ void ShopState::onEnter()
 	carta4->addComponent<BoxCollider>();
 	carta4->addComponent<SpriteRenderer>("card");
 	carta4->addComponent<ShineComponent>();
-	k = shopManager->getComponent<ShopComponent>()->getCardPrice(3);
 
-	nCoins = k / 100; i = 0;
-	while (i < nCoins) {
-		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
-			carta4->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
-		}
-		i++;
-	}
+	makeCoinShine(3, carta4, shopManager);
+
 	Vector2D card4Pos(660, 80);
 	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
 	carta4->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
@@ -269,4 +238,26 @@ ecs::entity_t ShopState::createCoin(int x, int y)
 void ShopState::showCoin(ecs::entity_t coinToShow)
 {
 	coinToShow->addComponent<SpriteRenderer>("moneda");
+}
+
+void ShopState::makeCoinShine(int cardIndex, ecs::entity_t card, ecs::entity_t shopMngr)
+{
+	int k = shopMngr->getComponent<ShopComponent>()->getCardPrice(cardIndex);
+
+	int nCoins = k / 100, i = 0;
+	while (i < nCoins) {
+		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
+			card->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
+		}
+		i++;
+	}
+}
+
+void ShopState::updateCoinsOnTable(ecs::entity_t shopMngr)
+{
+	int a = shopMngr->getComponent<ShopComponent>()->getPlayerMoney();
+	int money = a / 100;
+	for (int i = 0; i < money; i++) {
+		showCoin(mngr().getEntities(ecs::grp::COINS)[i]);
+	}
 }
