@@ -25,6 +25,7 @@ public:
 	void OnLeftClickUp();
 	void reactToClick();
 	void callNextNode();
+	void callFullText();
 	void setDead(bool a);
 	bool isDead() { return dead; }
 

@@ -5,7 +5,7 @@
       "convo": [
         {
           "convoID": "0",
-          "autoConvo": true,
+          "autoConvo": false,
           "nodes": [
             {
               "nodeID": "0",
