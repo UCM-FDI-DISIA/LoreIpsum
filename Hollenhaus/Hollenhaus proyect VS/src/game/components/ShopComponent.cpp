@@ -123,7 +123,7 @@ void ShopComponent::buyCard()
 				GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al cajon.
 				card->getComponent<SpriteRenderer>()->setMultiplyColor(100, 100, 100, 255); // Cambiamos el color.
 				money -= shopCardsPrize[index]; // Restamos el dinero.
-				GameStateMachine::instance()->getCurrentState()->changeMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
+				GameStateMachine::instance()->getCurrentState()->substractMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
 				//showPrizes(); // Para que se actualicen los precios.
 				updateTexts();
 			}

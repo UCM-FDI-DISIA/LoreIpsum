@@ -64,7 +64,7 @@ void GameState::setWinnerOnData(int w)
 
 void GameState::setLastPaulPos(Vector2D paulPos)
 {
-    data->SetCityPos(paulPos);
+	data->SetCityPos(paulPos);
 }
 
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
@@ -74,20 +74,20 @@ std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 
 
 // para acceder al mazo del data desde el estado
-std::unordered_map<int,Vector2D> GameState::getMaze()
+std::unordered_map<int, Vector2D> GameState::getMaze()
 {
 	return data->GetMaze();
 }
 
 Vector2D GameState::getLastPaulPos()
 {
-    return data->getLastPaulPos();
+	return data->getLastPaulPos();
 }
 
 // para settear el mazo del data desde el estado
 void GameState::setMaze(std::list<int> mazeToSave, std::list<Vector2D> MazePosToSave)
 {
-    data->SetNewMaze(mazeToSave, MazePosToSave);
+	data->SetNewMaze(mazeToSave, MazePosToSave);
 }
 
 void GameState::setDrawer(std::array<int, 50> drawerToSave)
@@ -135,16 +135,14 @@ void GameState::addCardToDrawer(int id)
 	data->AddCardToDrawer(id);
 }
 
-void GameState::changeMoney(int money) 
+void GameState::addMoney(int money)
 {
-	if (money<0)
-	{
-		data->SubtractMoney(money);
-	}
-	else 
-	{
-		data->AddMoney(money);
-	}
+	data->AddMoney(money);
+}
+
+void GameState::substractMoney(int money)
+{
+	data->SubtractMoney(money);
 }
 
 int GameState::getMoney()

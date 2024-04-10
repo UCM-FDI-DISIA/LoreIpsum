@@ -40,8 +40,10 @@ public:
 	virtual int getShopCardById(int id);
 	//----Mete una carta con id id al cajon.
 	virtual void addCardToDrawer(int id);
-	//----Modifica el dinero del jugador:
-	virtual void changeMoney(int money);
+	//----Mete dinero al jugador:
+	virtual void addMoney(int money);
+	//----Quita dinero al jugador.
+	virtual void substractMoney(int money);
 	//----Devuelve el dinero del jugador:
 	virtual int getMoney();
 
