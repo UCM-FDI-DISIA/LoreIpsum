@@ -99,6 +99,7 @@
     <ClCompile Include="src\game\gamestates\LuisState.cpp" />
     <ClCompile Include="src\game\gamestates\MainMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\MatchOverState.cpp" />
+    <ClCompile Include="src\game\gamestates\MultiplayerGameState.cpp" />
     <ClCompile Include="src\game\gamestates\MultiplayerLobbyState.cpp" />
     <ClCompile Include="src\game\gamestates\MultiplayerPreGameState.cpp" />
     <ClCompile Include="src\game\gamestates\NievesState.cpp" />
@@ -236,6 +237,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
+    <ClInclude Include="src\game\gamestates\MultiplayerGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h" />
     <ClInclude Include="src\game\Namespaces.h" />

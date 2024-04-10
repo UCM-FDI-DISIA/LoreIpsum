@@ -321,7 +321,12 @@
     <ClCompile Include="src\game\gamestates\MultiplayerLobbyState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\gamestates\MultiplayerPreGameState.cpp" />
+    <ClCompile Include="src\game\gamestates\MultiplayerPreGameState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\MultiplayerGameState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -627,7 +632,12 @@
     <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h" />
+    <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\MultiplayerGameState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
