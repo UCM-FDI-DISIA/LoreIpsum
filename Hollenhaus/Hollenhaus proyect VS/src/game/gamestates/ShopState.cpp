@@ -7,7 +7,6 @@
 #include "../components/NPC.h"
 #include "../components/shopComponent.h"
 #include "../GameStateMachine.h"
-
 // Factorias:
 #include "../factories/Factory.h"
 #include "../factories/FakeCardFactory_v0.h"
@@ -208,6 +207,7 @@ void ShopState::onExit()
 {
 	std::cout << "\nEXIT SHOP.";
 
+	saveData();
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("shoptheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();

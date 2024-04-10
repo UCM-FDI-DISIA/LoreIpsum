@@ -268,8 +268,8 @@
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\components\ShopComponent.cpp">
-       <Filter>Archivos de origen\Componentes</Filter>
-	</ClCompile>
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
     <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
@@ -311,6 +311,12 @@
     </ClCompile>
     <ClCompile Include="src\game\components\managers\IA_manager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\ClickDecision.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Animation.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -563,9 +569,6 @@
     <ClInclude Include="src\game\factories\DialogueFactory_V0.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\ShineComponent.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\components\ShopComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
@@ -611,11 +614,11 @@
     <ClInclude Include="src\game\components\managers\IA_manager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\factories\DeckBuildingFactory.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
+    <ClInclude Include="src\game\components\ClickDecision.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
+    <ClInclude Include="src\game\components\Animation.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -629,6 +632,9 @@
       <Filter>Resources</Filter>
     </None>
     <None Include="resources\config\dialoguesV1.json">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="resources\config\npcs.json">
       <Filter>Resources</Filter>
     </None>
   </ItemGroup>

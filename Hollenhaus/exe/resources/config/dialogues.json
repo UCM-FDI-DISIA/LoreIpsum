@@ -1,0 +1,32 @@
+{
+  "dialogues": [
+    {
+      "id": "paco_01_01",
+      "text": "Hola"
+    },
+    {
+      "id": "paco_01_02",
+      "text": "mundo"
+    },
+    {
+      "id": "paco_02_01",
+      "text": "Buenas tardes"
+    },
+    {
+      "id": "paco_02_02",
+      "text": "a los que ya han comido"
+    },
+    {
+      "id": "paco_02_03",
+      "text": "y buenos dias a los que no"
+    },
+    {
+      "id": "lucia_01_01",
+      "text": "Cuando el ninio se desperto"
+    },
+    {
+      "id": "lucia_01_02",
+      "text": "el dinosaurio ya no estaba alli"
+    }
+  ]
+}

@@ -32,6 +32,7 @@
 //
 #define _HDLRS_LIST_ \
     MATCH_MANAGER, \
+    DRAG_MANAGER, \
 	PADDLE
 
 // Systems list - must have at least one element

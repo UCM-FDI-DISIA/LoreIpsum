@@ -33,6 +33,9 @@ void MainMenuState::onEnter()
 {
 	std::cout << "\nENTER MENU.\n";
 
+	// Carga la data
+	loadData();
+
 	/// Fondo
 	//-----Ciudad de fondo:
 	ecs::entity_t fondo = Instantiate(Vector2D(0,0));

@@ -33,6 +33,7 @@ private:
 
 	// debe moverse
 	bool move_;
+
 	// true derecha false izquierda
 	bool faceTo_;
 

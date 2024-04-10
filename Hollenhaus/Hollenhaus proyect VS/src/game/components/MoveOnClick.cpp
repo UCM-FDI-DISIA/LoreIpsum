@@ -17,6 +17,7 @@ MoveOnClick::MoveOnClick(float vel) :
 	myBoxCollider_(),
 	myTransform_(),
 	move_(false),
+	faceTo_(),
 	scrollVel_(vel),
 	distance_(),
 	movement_(),

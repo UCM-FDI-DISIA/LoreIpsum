@@ -46,6 +46,8 @@ public:
 	virtual void substractMoney(int money);
 	//----Devuelve el dinero del jugador:
 	virtual int getMoney();
+	//----Comprueba si una carta con id id esta en el mazo.
+	virtual bool checkCardIsInMaze(int id);
 
 	virtual void saveData();
 	virtual void loadData();

@@ -7,6 +7,7 @@
 
 #include "Card.h"
 #include "basics/TextComponent.h"
+#include "managers/DragManager.h"
 
 HandComponent::HandComponent() :
 	transform_(), lastCardAdded_(nullptr)
@@ -52,7 +53,48 @@ void HandComponent::addCard(ecs::entity_t card) {
 	cardsInHand_.push_back(card);
 	lastCardAdded_ = card;
 	//card->setLayer(cardsInHand_.size());
+
+	//Aquí se calcula la posición a la que tiene que llegar, no se bien como implementarlo en el tween
 	refreshPositions();
+
+	///Tween
+	carta = card;
+	tweenDrawCard =
+		tweeny::from(card->getComponent<Transform>()->getGlobalPos().getX() + 250)
+		.to(card->getComponent<Transform>()->getGlobalPos().getX())
+		.during(60)
+		.via(tweeny::easing::sinusoidalInOut);
+	tween = true;
+
+	
+}
+
+void HandComponent::update()
+{
+	//Habría que hacer cuando esté el tween definitivo que cuando 
+	// llegue al sitio en el que se tiene que quedar ponga el bool a falso
+	if (tween && owner_ == Players::PLAYER1) {
+		/// TWEENS???
+		//Habría que hacer que comience en el mazo y se mueva hasta su posición
+		auto drag = mngr_->getHandler(ecs::hdlr::DRAG_MANAGER)->getComponent<DragManager>();
+		tweenDrawCard.step(1);
+		if (tweenDrawCard.progress() == 1.0) tween = false;
+		if (tweenDrawCard.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+		{
+			if (drag != nullptr) drag->setDraggable(false);
+			Vector2D step(
+				tweenDrawCard.peek(),
+				carta->getComponent<Transform>()->getGlobalPos().getY()
+			);
+			carta->getComponent<Transform>()->setGlobalPos(step);
+		}
+		if (tweenDrawCard.progress() == 1.0)
+		{
+			tween = false;
+			if (drag != nullptr) drag->setDraggable(true);
+		}
+	}
+	
 }
 
 void HandComponent::removeCard(ecs::entity_t card) {
@@ -120,6 +162,7 @@ void HandComponent::refreshPositions() {
 		// y = (x^2)/CARD_SEPARATION
 		int x = ((i - cardsInHand_.size() / 2) * CARD_SEPARATION);
 
+		//Posición de la carta (El vector 2D)
 		positions.push_back(Vector2D(x, pow(x, 2) / (ARCH_AMPLITUDE * sign)));
 	}
 

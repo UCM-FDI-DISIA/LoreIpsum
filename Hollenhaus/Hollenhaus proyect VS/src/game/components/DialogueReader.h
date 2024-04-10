@@ -2,7 +2,7 @@
 #include "ComponentUpdate.h"
 #include <string>
 
-#include "..\Namespaces.h"
+#include "../Namespaces.h"
 
 class TypeWriter;
 class DialogueEventCollection;
@@ -24,5 +24,6 @@ private:
 	DialogueDestroyer* dialogueDestroyer_;
 
 	void exeEvents(std::vector<JsonData::DialogueEventS> events);
+
 };
 

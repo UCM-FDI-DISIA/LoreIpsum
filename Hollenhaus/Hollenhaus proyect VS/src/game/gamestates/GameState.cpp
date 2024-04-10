@@ -149,3 +149,7 @@ int GameState::getMoney()
 {
 	return data->GetMoney();
 }
+
+bool GameState::checkCardIsInMaze(int id) {
+	return data->IdIsInMaze(id);
+}

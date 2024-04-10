@@ -15,16 +15,34 @@ CityState::CityState()
 {
 	TuVieja("Loading CityState");
 }
+
 void CityState::update()
 {
 	GameState::update();
 
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(fondo->getComponent<MoveOnClick>()->getDir());
+
+	/// TWEENSI DEL FANTASMIKO
+	//tweensy.progress() == 1.0 ? tweensy.backward() : tweensy.forward();
+	if (tweensy.progress() == 1.0) tweensy.backward();
+	if (tweensy.progress() == 0.0) tweensy.forward();
+	tweensy.step(1);
+	auto fanTrans = fantasmiko->getComponent<Transform>();
+	if (tweensy.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+	{
+		Vector2D step(
+			fanTrans->getGlobalPos().getX(),
+			tweensy.peek()
+		);
+		fanTrans->setGlobalPos(step);
+	}
 }
+
 void CityState::render() const
 {
 	GameState::render();
 }
+
 void CityState::refresh()
 {
 	GameState::refresh();
@@ -42,7 +60,8 @@ void CityState::onEnter()
 
 	//------Texto de la ciudad:
 	ecs::entity_t cityText = Instantiate(Vector2D(500, 30));
-	cityText->addComponent<TextComponent>("CIUDAD", "8bit_size_40", SDL_Color({ 255, 255, 255, 255 }), 350, Text::CenterCenter, Text::Center);
+	cityText->addComponent<TextComponent>("CIUDAD", "8bit_size_40", SDL_Color({255, 255, 255, 255}), 350,
+	                                      Text::CenterCenter, Text::Center);
 	cityText->setLayer(1);
 
 	// ---- FONDO CIUDAD ----
@@ -76,7 +95,8 @@ void CityState::onEnter()
 
 	// tamanio del collider del suelo
 	// x: el ancho de la imagen de fondo, y: alto del suelo
-	colliderSuelo->getComponent<BoxCollider>()->setSize(Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), 120));
+	colliderSuelo->getComponent<BoxCollider>()->setSize(
+		Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), 120));
 
 	// lo emparenta con el fondo
 	colliderSuelo->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
@@ -95,6 +115,15 @@ void CityState::onEnter()
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(2);
+	// twinsiiiis
+	auto fanX = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
+	tweensy =
+		tweeny::from(fanX - 5)
+		.to(fanX + 5)
+		.to(fanX - 5)
+		.during(60)
+		.via(tweeny::easing::sinusoidalInOut);
+
 
 	//------NPCs:
 	//----Para entrar en la oficina.
@@ -109,7 +138,7 @@ void CityState::onEnter()
 	//factory->createNPC("el que te vende la droga idk", "hombre", { 1.0f, 1.0f }, { 800, 425 }, 1, 3, 2, fondo);
 
 	//----Para empezar la batalla.
-	 //factory->createNPC("Cailtyn", "npc", {0.25f, 0.25f}, {400, 425}, 1, 6, 2, fondo);
+	//factory->createNPC("Cailtyn", "npc", {0.25f, 0.25f}, {400, 425}, 1, 6, 2, fondo);
 
 	////----Para hablar
 	//ecs::entity_t npc4 = Instantiate();
@@ -151,4 +180,3 @@ void CityState::onExit()
 	sdl.soundEffects().at("citytheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
 }
-

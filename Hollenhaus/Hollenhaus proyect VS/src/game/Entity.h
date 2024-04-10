@@ -80,7 +80,16 @@ public:
 		if (getComponent<Transform>() != nullptr)
 		{
 			for (const auto child : getComponent<Transform>()->getChildren())
-				layer++;
+			{
+				if (!child->getChildren().empty())
+				{ // si el hijo tiene hijos
+					return child->getEntity()->getLastLayer();
+				} // si el hijo no es padre
+				if (child->getEntity()->getLayer() > layer)
+				{
+					layer = child->getEntity()->getLayer();
+				}
+			}
 		}
 		return layer;
 	}
