@@ -318,7 +318,7 @@
     <ClCompile Include="src\game\components\Animation.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\gamestates\MultiplayerLobby.cpp">
+    <ClCompile Include="src\game\gamestates\MultiplayerLobbyState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
@@ -623,7 +623,7 @@
     <ClInclude Include="src\game\components\Animation.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\gamestates\MultiplayerLobby.h">
+    <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
   </ItemGroup>

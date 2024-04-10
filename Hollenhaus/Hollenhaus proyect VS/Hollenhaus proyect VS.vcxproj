@@ -99,7 +99,7 @@
     <ClCompile Include="src\game\gamestates\LuisState.cpp" />
     <ClCompile Include="src\game\gamestates\MainMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\MatchOverState.cpp" />
-    <ClCompile Include="src\game\gamestates\MultiplayerLobby.cpp" />
+    <ClCompile Include="src\game\gamestates\MultiplayerLobbyState.cpp" />
     <ClCompile Include="src\game\gamestates\NievesState.cpp" />
     <ClCompile Include="src\game\gamestates\OfficeState.cpp" />
     <ClCompile Include="src\game\gamestates\PaigroState.cpp" />
@@ -235,7 +235,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
-    <ClInclude Include="src\game\gamestates\MultiplayerLobby.h" />
+    <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
     <ClInclude Include="src\game\Namespaces.h" />
     <ClInclude Include="src\game\factories\BoardFactory.h" />
     <ClInclude Include="src\game\factories\BoardFactory_v0.h" />

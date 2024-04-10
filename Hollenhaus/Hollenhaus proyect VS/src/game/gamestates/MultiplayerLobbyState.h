@@ -1,12 +1,12 @@
 #pragma once
 #include "GameState.h"
 
-class MultiplayerLobby
+class MultiplayerLobbyState
     :public GameState
 {
 public:
-    MultiplayerLobby();
-    virtual ~MultiplayerLobby();
+    MultiplayerLobbyState();
+    virtual ~MultiplayerLobbyState();
 
 
     void refresh() override;
