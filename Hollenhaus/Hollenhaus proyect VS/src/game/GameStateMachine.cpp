@@ -16,6 +16,12 @@
 #include "gamestates/NievesState.h"
 #include "gamestates/MatchOverState.h"
 #include "gamestates/DeckBuildingState.h"
+
+#include "gamestates/MultiplayerLobbyState.h"
+#include "gamestates/MultiplayerPreGameState.h"
+#include "gamestates/MultiplayerGameState.h"
+#include "gamestates/MultiplayerEndGameState.h"
+
 #include "components/managers/Manager.h"
 #include "Mouse.h"
 #include "gamestates/GameState.h"
@@ -47,6 +53,12 @@ GameStateMachine::GameStateMachine() {
 	matchOverState = new MatchOverState();
 	luisState = new LuisState();
 	deckBuildingState = new DeckBuildingState();
+
+	multiplayerLobbyState = new MultiplayerLobbyState();
+	multiplayerPreGameState = new MultiplayerPreGameState();
+	multiplayerGameState = new MultiplayerGameState();
+	multiplayerEndGameState = new MultiplayerEndGameState();
+
 
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();
