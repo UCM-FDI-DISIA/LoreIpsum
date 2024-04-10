@@ -216,6 +216,8 @@ void Data::Write() {
 	std::ofstream file;
 	file.open("save.txt");
 
+	if (!file.is_open()) return;
+
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
 	file << currentSouls << "\n";
@@ -254,6 +256,8 @@ void Data::Read() {
 
 	std::ifstream file;
 	file.open("save.txt");
+
+	if (!file.is_open()) return;
 
 	int number, iterations;
 
