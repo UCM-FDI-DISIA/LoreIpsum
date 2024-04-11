@@ -55,7 +55,7 @@
 - [Hito 2](https://docs.google.com/presentation/d/1RRbo9XOWkO9gCZej6tLlH4qD4hG9qMLc2hf5ba_PbnE/edit?usp=sharing)
 - Hito final
 ## Arquitectura 
-(TO-DO: insertar aquí UMLS)
+Enlace al [UML general](https://www.figma.com/file/QBQ7K1ngk58sNtPMxOUhRx/Hollenhaus-UML?type=whiteboard&node-id=0-1&t=s07Dx0HenMNke7FV-0 ).
 ## GDD
 <p align="center">
   Paula Alemany, Nieves Alonso, Samuel García, Andrés García, Pablo Iglesias, Luis Parres, Inés Primo, Ariadna Ruiz, Paula Sierra, Cynthia Tristán, Jaime Vicente
