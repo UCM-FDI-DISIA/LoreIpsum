@@ -15,7 +15,7 @@ NetLobby::NetLobby(int port)
 	// Since the host in 'ip' is 0 (we provided 'nullptr' above), SDLNet_TCP_Open starts
 	// a server listening at the port specified in 'ip', and returns a socket for listening
 	// to connection requests
-	masterSocket = SDLNet_TCP_Open(&ip);
+	masterSocket = SDLNet_TCP_Open(&ip);	// Esto peta. Por algún motivo el masterSocket se queda en nullptr. Creo que la ip se está seteando bien en la función anterior, asi que no sé cual es el problema....
 	if (!masterSocket) {
 		error();
 	}
