@@ -62,6 +62,11 @@ public:
 	// Metodo publico para cambiar la fuente del componente
 	void setFont(const std::string& font) { font_ = &sdl_.fonts().at(font); createTexture(); }
 
+
+	// GETTERS
+	std::string getText() { return txt_; }
+	SDL_Color getColor() { return color_; }
+
 private:
 
 	Transform* tr_;

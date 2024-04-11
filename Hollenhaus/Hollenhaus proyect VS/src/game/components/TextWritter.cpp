@@ -2,7 +2,6 @@
 #include "TextWritter.h"
 #include "basics/TextComponent.h"
 
-
 TextWritter::TextWritter()
 {
 	text = "";
@@ -19,7 +18,7 @@ void TextWritter::initComponent()
 
 void TextWritter::update()
 {
-
+    
 }
 
 void TextWritter::UpdateText(std::string s)

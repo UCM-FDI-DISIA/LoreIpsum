@@ -57,5 +57,6 @@ void MultiplayerLobbyState::onEnter()
 void MultiplayerLobbyState::onExit()
 {
 	TuVieja("EXIT MultiplayerLobbyState");
+
 	mngr().Free();
 }
