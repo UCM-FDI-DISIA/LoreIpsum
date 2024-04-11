@@ -31,7 +31,7 @@ void TextWritter::UpdateText(std::string s)
 void TextWritter::DeleteLastChar()
 {
 	std::string text = tc->getText();
-	if (text.size() > 1) {
+	if (text.size() > 0) {
 		text.pop_back();
 		tc->setTxt(text);
 	}

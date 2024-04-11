@@ -48,7 +48,7 @@ void TextComponent::render() const
 
 void TextComponent::setTxt(std::string txt)
 {
-	if (txt.empty()) txt_ = "";
+	if (txt.empty()) txt_ = " ";
 	else txt_ = txt;
 	createTexture();
 }
