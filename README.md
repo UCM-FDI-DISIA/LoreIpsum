@@ -48,7 +48,7 @@
 ### Vídeo
 ...
 ### Página
-[Enlace a página web](https://ucm-fdi-disia.github.io/LoreIpsum/)
+Enlace a la [página web](https://ucm-fdi-disia.github.io/LoreIpsum/)
 ## Presentaciones
 - [Hito 0](https://docs.google.com/presentation/d/14X1H2WW96c6soYmThStQAicIRp_3ZJsN-hTsZ-rOBvw/edit?usp=drive_link)
 - [Hito 1](https://docs.google.com/presentation/d/1n5Ko22xPMVLtqO-oFY6cvgndLT4iQ3dGm4_wTjoHPe4/edit?usp=sharing)
