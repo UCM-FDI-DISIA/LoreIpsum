@@ -27,3 +27,12 @@ void TextWritter::UpdateText(std::string s)
 	text = text + s;
 	tc->setTxt(text);
 }
+
+void TextWritter::DeleteLastChar()
+{
+	std::string text = tc->getText();
+	if (text.size() > 1) {
+		text.pop_back();
+		tc->setTxt(text);
+	}
+}

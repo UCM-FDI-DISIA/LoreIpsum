@@ -13,7 +13,7 @@ public:
 	void update() override;
 
 	void UpdateText(std::string s);
-
+	void DeleteLastChar();
 private:
 	TextComponent* tc;
 };

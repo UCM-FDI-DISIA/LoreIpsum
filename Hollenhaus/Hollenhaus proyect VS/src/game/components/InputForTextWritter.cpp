@@ -52,6 +52,9 @@ void InputForTextWritter::update()
 		if (ih().isKeyDown(SDLK_PERIOD)) {
 			tw->UpdateText(".");
 		}
+		if (ih().isKeyDown(SDLK_BACKSPACE)) {
+			tw->DeleteLastChar();
+		}
 	}
 
 }
