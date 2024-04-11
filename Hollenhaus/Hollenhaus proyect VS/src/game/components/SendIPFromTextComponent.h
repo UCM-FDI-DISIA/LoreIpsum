@@ -8,7 +8,7 @@ class NetLobby;
 class SendIPFromTextComponent : public ComponentUpdate
 {
 public:
-	SendIPFromTextComponent(TextComponent* tc);
+	SendIPFromTextComponent(TextComponent* tc, NetLobby* nl);
 	~SendIPFromTextComponent();
 
 	void initComponent() override;

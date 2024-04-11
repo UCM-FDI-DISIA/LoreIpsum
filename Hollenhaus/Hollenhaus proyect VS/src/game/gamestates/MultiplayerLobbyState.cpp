@@ -8,6 +8,7 @@
 #include "../components/PasteOnTextComponentButton.h"
 #include "../components/SendIPFromTextComponent.h"
 #include "../components/SendInvitationButton.h"
+#include "../components/multiplayer/NetLobby.h"
 
 
 
@@ -65,18 +66,23 @@ void MultiplayerLobbyState::onEnter()
 	pasteButton->addComponent<PasteOnTextComponentButton>(cuadroTexto->getComponent<TextComponent>());
 
 	ecs::entity_t idHint = Instantiate(Vector2D(100, 100));
-	idHint->addComponent<TextComponent>("123.456.789", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 300, Text::BoxPivotPoint::LeftTop, Text::TextAlignment::Left);
+	idHint->addComponent<TextComponent>("localhost", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 300, Text::BoxPivotPoint::LeftTop, Text::TextAlignment::Left);
 
 	ecs::entity_t copyButton = Instantiate(Vector2D(400, 100));
 	copyButton->addComponent<SpriteRenderer>("black_box");
 	copyButton->addComponent<BoxCollider>()->setAnchoredToSprite(true);
 	copyButton->addComponent<CopyTextComponentOnClipboardButton>(idHint->getComponent<TextComponent>());
 
+	ecs::entity_t netLobby = Instantiate();
+	netLobby->addComponent<NetLobby>(2000);
+
 	ecs::entity_t sendInvButton = Instantiate(Vector2D(600, 400));
 	sendInvButton->addComponent<SpriteRenderer>("black_box");
 	sendInvButton->addComponent<BoxCollider>()->setAnchoredToSprite(true);
-	sendInvButton->addComponent<SendIPFromTextComponent>(cuadroTexto->getComponent<TextComponent>());
+	sendInvButton->addComponent<SendIPFromTextComponent>(cuadroTexto->getComponent<TextComponent>(), netLobby->getComponent<NetLobby>());
 	sendInvButton->addComponent<SendInvitationButton>();
+
+
 }
 
 void MultiplayerLobbyState::onExit()
