@@ -55,6 +55,9 @@ void InputForTextWritter::update()
 		if (ih().isKeyDown(SDLK_BACKSPACE)) {
 			tw->DeleteLastChar();
 		}
+		if (ih().isKeyDown(SDLK_RETURN) || ih().isKeyDown(SDLK_RETURN2)) {
+			tw->DeleteLastChar();
+		}
 	}
 
 }

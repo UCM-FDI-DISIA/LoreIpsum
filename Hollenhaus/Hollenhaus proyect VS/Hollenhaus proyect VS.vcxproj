@@ -56,6 +56,7 @@
     <ClCompile Include="src\game\components\DropDetector.cpp" />
     <ClCompile Include="src\game\components\DropZone.cpp" />
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
+    <ClCompile Include="src\game\components\GetIPFromTextComponet.cpp" />
     <ClCompile Include="src\game\components\HandComponent.cpp" />
     <ClCompile Include="src\game\components\InputForTextWritter.cpp" />
     <ClCompile Include="src\game\components\managers\BoardManager.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="src\game\components\DropDetector.h" />
     <ClInclude Include="src\game\components\DropZone.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
+    <ClInclude Include="src\game\components\GetIPFromTextComponet.h" />
     <ClInclude Include="src\game\components\HandComponent.h" />
     <ClInclude Include="src\game\components\InputForTextWritter.h" />
     <ClInclude Include="src\game\components\managers\BoardManager.h" />

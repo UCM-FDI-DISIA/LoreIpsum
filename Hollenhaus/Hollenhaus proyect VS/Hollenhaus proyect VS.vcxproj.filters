@@ -341,6 +341,9 @@
     </ClCompile>
     <ClCompile Include="src\game\components\InputForTextWritter.cpp" />
     <ClCompile Include="src\game\components\TextWritter.cpp" />
+    <ClCompile Include="src\game\components\CopyTextComponentOnClipboardButton.cpp" />
+    <ClCompile Include="src\game\components\PasteOnTextComponentButton.cpp" />
+    <ClCompile Include="src\game\components\GetIPFromTextComponet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -660,6 +663,9 @@
     </ClInclude>
     <ClInclude Include="src\game\components\InputForTextWritter.h" />
     <ClInclude Include="src\game\components\TextWritter.h" />
+    <ClInclude Include="src\game\components\CopyTextComponentOnClipboardButton.h" />
+    <ClInclude Include="src\game\components\PasteOnTextComponentButton.h" />
+    <ClInclude Include="src\game\components\GetIPFromTextComponet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
