@@ -15,7 +15,6 @@ public:
 	void UpdateText(std::string s);
 
 private:
-	std::string text;
 	TextComponent* tc;
 };
 

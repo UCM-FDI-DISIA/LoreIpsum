@@ -4,7 +4,6 @@
 
 TextWritter::TextWritter()
 {
-	text = "";
 }
 
 TextWritter::~TextWritter()
@@ -23,6 +22,8 @@ void TextWritter::update()
 
 void TextWritter::UpdateText(std::string s)
 {
+	
+	std::string text = tc->getText();
 	text = text + s;
 	tc->setTxt(text);
 }
