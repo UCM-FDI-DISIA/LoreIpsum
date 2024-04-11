@@ -52,7 +52,7 @@
 ## Presentaciones
 - [Hito 0](https://docs.google.com/presentation/d/14X1H2WW96c6soYmThStQAicIRp_3ZJsN-hTsZ-rOBvw/edit?usp=drive_link)
 - [Hito 1](https://docs.google.com/presentation/d/1n5Ko22xPMVLtqO-oFY6cvgndLT4iQ3dGm4_wTjoHPe4/edit?usp=sharing)
-- Hito 2
+- [Hito 2](https://docs.google.com/presentation/d/1RRbo9XOWkO9gCZej6tLlH4qD4hG9qMLc2hf5ba_PbnE/edit?usp=sharing)
 - Hito final
 ## Arquitectura 
 (TO-DO: insertar aquí UMLS)
