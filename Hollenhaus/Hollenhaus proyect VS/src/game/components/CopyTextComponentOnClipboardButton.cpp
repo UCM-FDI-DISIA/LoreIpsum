@@ -5,8 +5,9 @@
 #include "basics/BoxCollider.h"
 #include <windows.h>
 
-CopyTextComponentOnClipboardButton::CopyTextComponentOnClipboardButton()
+CopyTextComponentOnClipboardButton::CopyTextComponentOnClipboardButton(TextComponent* textComponent)
 {
+    tc = textComponent;
 }
 
 CopyTextComponentOnClipboardButton::~CopyTextComponentOnClipboardButton()
@@ -16,7 +17,6 @@ CopyTextComponentOnClipboardButton::~CopyTextComponentOnClipboardButton()
 
 void CopyTextComponentOnClipboardButton::initComponent()
 {
-	tc = ent_->getComponent<TextComponent>();
     bc = ent_->getComponent<BoxCollider>();
     ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { clickButton(); });
 }

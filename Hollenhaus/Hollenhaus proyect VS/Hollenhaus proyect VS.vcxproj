@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\components\CopyTextComponentOnClipboardButton.cpp" />
     <ClCompile Include="pchs\pch_c++_basic.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch_c++_basic.h</PrecompiledHeaderFile>
@@ -71,6 +72,7 @@
     <ClCompile Include="src\game\components\multiplayer\NetGame.cpp" />
     <ClCompile Include="src\game\components\NextText.cpp" />
     <ClCompile Include="src\game\components\NPC.cpp" />
+    <ClCompile Include="src\game\components\PasteOnTextComponentButton.cpp" />
     <ClCompile Include="src\game\components\TextWritter.cpp" />
     <ClCompile Include="src\game\components\TypeWriter.cpp" />
     <ClCompile Include="src\game\Dialogue.cpp" />
@@ -187,6 +189,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\components\CopyTextComponentOnClipboardButton.h" />
     <ClInclude Include="pchs\pch_c++_basic.h" />
     <ClInclude Include="pchs\pch_SDL.h" />
     <ClInclude Include="src\game\components\Animation.h" />
@@ -228,6 +231,7 @@
     <ClInclude Include="src\game\components\multiplayer\NetGame.h" />
     <ClInclude Include="src\game\components\NextText.h" />
     <ClInclude Include="src\game\components\NPC.h" />
+    <ClInclude Include="src\game\components\PasteOnTextComponentButton.h" />
     <ClInclude Include="src\game\components\ShopComponent.h" />
     <ClInclude Include="src\game\components\TextWritter.h" />
     <ClInclude Include="src\game\components\TypeWriter.h" />

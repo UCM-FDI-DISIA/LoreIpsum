@@ -6,7 +6,7 @@ class TextComponent;
 class PasteOnTextComponentButton : public ComponentUpdate
 {
 public:
-    PasteOnTextComponentButton();
+    PasteOnTextComponentButton(TextComponent* textComponent);
     ~PasteOnTextComponentButton();
 
     void initComponent() override;

@@ -52,6 +52,8 @@ void MultiplayerLobbyState::onEnter()
 	cuadroTexto->addComponent<TextComponent>("Introducir ip", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	cuadroTexto->addComponent<TextWritter>();
 	cuadroTexto->addComponent<InputForTextWritter>();
+
+
 }
 
 void MultiplayerLobbyState::onExit()

@@ -4,8 +4,11 @@
 #include "basics/BoxCollider.h"
 #include <windows.h>
 
-PasteOnTextComponentButton::PasteOnTextComponentButton()
+// Este componente necesita un BoxCollider en su entidad para actuar de botón
+// Además, debe recibir un textComponent (normalmente de otra entidad) para modificarlo al activar el botón
+PasteOnTextComponentButton::PasteOnTextComponentButton(TextComponent* textComponent)
 {
+	tc = textComponent;
 }
 
 PasteOnTextComponentButton::~PasteOnTextComponentButton()
@@ -15,7 +18,7 @@ PasteOnTextComponentButton::~PasteOnTextComponentButton()
 
 void PasteOnTextComponentButton::initComponent()
 {
-	tc = ent_->getComponent<TextComponent>();
+	
 	bc = ent_->getComponent<BoxCollider>();
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { clickButton(); });
 }
