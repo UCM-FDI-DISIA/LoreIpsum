@@ -6,6 +6,9 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/CopyTextComponentOnClipboardButton.h"
 #include "../components/PasteOnTextComponentButton.h"
+#include "../components/SendIPFromTextComponent.h"
+#include "../components/SendInvitationButton.h"
+
 
 
 MultiplayerLobbyState::MultiplayerLobbyState()
@@ -68,6 +71,12 @@ void MultiplayerLobbyState::onEnter()
 	copyButton->addComponent<SpriteRenderer>("black_box");
 	copyButton->addComponent<BoxCollider>()->setAnchoredToSprite(true);
 	copyButton->addComponent<CopyTextComponentOnClipboardButton>(idHint->getComponent<TextComponent>());
+
+	ecs::entity_t sendInvButton = Instantiate(Vector2D(600, 400));
+	sendInvButton->addComponent<SpriteRenderer>("black_box");
+	sendInvButton->addComponent<BoxCollider>()->setAnchoredToSprite(true);
+	cuadroTexto->addComponent<SendIPFromTextComponent>(cuadroTexto->getComponent<TextComponent>());
+	sendInvButton->addComponent<SendInvitationButton>();
 }
 
 void MultiplayerLobbyState::onExit()

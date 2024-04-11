@@ -27,5 +27,6 @@ void SendInvitationButton::update()
 
 void SendInvitationButton::clickButton()
 {
-    getIP->sendIP();
+    if(bc->isCursorOver())
+   getIP->sendIP();
 }

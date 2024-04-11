@@ -2,17 +2,17 @@
 #include "SendIPFromTextComponent.h"
 #include "basics/TextComponent.h"
 
-SendIPFromTextComponent::SendIPFromTextComponent()
+SendIPFromTextComponent::SendIPFromTextComponent(TextComponent* textComponent)
 {
+	tc = textComponent;
 }
 
 SendIPFromTextComponent::~SendIPFromTextComponent()
 {
 }
 
-void SendIPFromTextComponent::initComponent()
+void SendIPFromTextComponent::initComponent() 
 {
-	tc = ent_->getComponent<TextComponent>();
 }
 
 void SendIPFromTextComponent::update()
