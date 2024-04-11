@@ -30,11 +30,25 @@ void PasteOnTextComponentButton::update()
 void PasteOnTextComponentButton::clickButton()
 {
 	if (bc->isCursorOver()) {
-		// Se pega el contenido del clipboard en el TextComponent
-		OpenClipboard(0);
-		std::string myval = *(std::string*)GetClipboardData(CF_TEXT);
+
+		// Open clipboard
+		OpenClipboard(nullptr);
+
+		// Get handle of clipboard object for ANSI text
+		HANDLE hData = GetClipboardData(CF_TEXT);
+
+		// Lock the handle to get the actual text pointer
+		char* pszText = static_cast<char*>(GlobalLock(hData));
+
+		// Save text in a string class instance
+		std::string text(pszText);
+
+		// Release the lock
+		GlobalUnlock(hData);
+
+		// Release the clipboard
 		CloseClipboard();
 
-		tc->setTxt(myval);
+		tc->setTxt(text);
 	}
 }

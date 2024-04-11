@@ -28,8 +28,10 @@ void CopyTextComponentOnClipboardButton::update()
 void CopyTextComponentOnClipboardButton::clickButton()
 {
     if (bc->isCursorOver()) {
+        TuVieja(tc->getText());
         // Se copia el contenido del TextComponent en el clipboard
-        const char* output = tc->getText().c_str();
+        std::string textString = tc->getText();
+        const char* output = textString.c_str();
         const size_t len = strlen(output) + 1;
         HGLOBAL hMem = GlobalAlloc(GMEM_MOVEABLE, len);
         memcpy(GlobalLock(hMem), output, len);
