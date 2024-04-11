@@ -5,11 +5,11 @@ class TextComponent;
 class NetLobby;
 
 // Método que recoge una IP de un TextComponent y la envía a NetLobby
-class GetIPFromTextComponet : public ComponentUpdate
+class SendIPFromTextComponent : public ComponentUpdate
 {
 public:
-	GetIPFromTextComponet();
-	~GetIPFromTextComponet();
+	SendIPFromTextComponent();
+	~SendIPFromTextComponent();
 
 	void initComponent() override;
 	void update() override;

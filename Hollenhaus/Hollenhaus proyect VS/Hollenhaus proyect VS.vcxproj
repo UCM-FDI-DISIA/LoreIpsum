@@ -56,7 +56,7 @@
     <ClCompile Include="src\game\components\DropDetector.cpp" />
     <ClCompile Include="src\game\components\DropZone.cpp" />
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
-    <ClCompile Include="src\game\components\GetIPFromTextComponet.cpp" />
+    <ClCompile Include="src\game\components\SendIPFromTextComponent.cpp" />
     <ClCompile Include="src\game\components\HandComponent.cpp" />
     <ClCompile Include="src\game\components\InputForTextWritter.cpp" />
     <ClCompile Include="src\game\components\managers\BoardManager.cpp" />
@@ -74,6 +74,7 @@
     <ClCompile Include="src\game\components\NextText.cpp" />
     <ClCompile Include="src\game\components\NPC.cpp" />
     <ClCompile Include="src\game\components\PasteOnTextComponentButton.cpp" />
+    <ClCompile Include="src\game\components\SendInvitationButton.cpp" />
     <ClCompile Include="src\game\components\TextWritter.cpp" />
     <ClCompile Include="src\game\components\TypeWriter.cpp" />
     <ClCompile Include="src\game\Dialogue.cpp" />
@@ -216,7 +217,7 @@
     <ClInclude Include="src\game\components\DropDetector.h" />
     <ClInclude Include="src\game\components\DropZone.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
-    <ClInclude Include="src\game\components\GetIPFromTextComponet.h" />
+    <ClInclude Include="src\game\components\SendIPFromTextComponent.h" />
     <ClInclude Include="src\game\components\HandComponent.h" />
     <ClInclude Include="src\game\components\InputForTextWritter.h" />
     <ClInclude Include="src\game\components\managers\BoardManager.h" />
@@ -234,6 +235,7 @@
     <ClInclude Include="src\game\components\NextText.h" />
     <ClInclude Include="src\game\components\NPC.h" />
     <ClInclude Include="src\game\components\PasteOnTextComponentButton.h" />
+    <ClInclude Include="src\game\components\SendInvitationButton.h" />
     <ClInclude Include="src\game\components\ShopComponent.h" />
     <ClInclude Include="src\game\components\TextWritter.h" />
     <ClInclude Include="src\game\components\TypeWriter.h" />

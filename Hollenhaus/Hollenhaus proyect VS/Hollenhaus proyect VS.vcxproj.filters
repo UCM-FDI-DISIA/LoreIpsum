@@ -343,7 +343,8 @@
     <ClCompile Include="src\game\components\TextWritter.cpp" />
     <ClCompile Include="src\game\components\CopyTextComponentOnClipboardButton.cpp" />
     <ClCompile Include="src\game\components\PasteOnTextComponentButton.cpp" />
-    <ClCompile Include="src\game\components\GetIPFromTextComponet.cpp" />
+    <ClCompile Include="src\game\components\SendIPFromTextComponent.cpp" />
+    <ClCompile Include="src\game\components\SendInvitationButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -665,7 +666,8 @@
     <ClInclude Include="src\game\components\TextWritter.h" />
     <ClInclude Include="src\game\components\CopyTextComponentOnClipboardButton.h" />
     <ClInclude Include="src\game\components\PasteOnTextComponentButton.h" />
-    <ClInclude Include="src\game\components\GetIPFromTextComponet.h" />
+    <ClInclude Include="src\game\components\SendIPFromTextComponent.h" />
+    <ClInclude Include="src\game\components\SendInvitationButton.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
