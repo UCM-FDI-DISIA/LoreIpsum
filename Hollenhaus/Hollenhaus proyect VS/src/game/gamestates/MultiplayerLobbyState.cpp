@@ -74,7 +74,9 @@ void MultiplayerLobbyState::onEnter()
 	copyButton->addComponent<CopyTextComponentOnClipboardButton>(idHint->getComponent<TextComponent>());
 
 	ecs::entity_t netLobby = Instantiate();
-	netLobby->addComponent<NetLobby>(2000);
+	int a;
+	std::cin >> a;
+	netLobby->addComponent<NetLobby>(static_cast < Uint16>(a));
 
 	ecs::entity_t sendInvButton = Instantiate(Vector2D(600, 400));
 	sendInvButton->addComponent<SpriteRenderer>("black_box");

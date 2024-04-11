@@ -3,8 +3,17 @@
 
 using namespace std;
 
-NetLobby::NetLobby(int port)
-{
+NetLobby::NetLobby(Uint16 port) :
+	result(0),
+	ip({0, 0}),
+	masterSocket(nullptr),
+	socketSet(nullptr),
+	conn(nullptr)
+{	
+	// initialize SDLNet
+	if (SDLNet_Init() < 0) {
+		error();
+	}
 
 	// fill in the address in 'ip' -- note that the 2nd parameter is 'nullptr'
 	// which means that we want to use 'ip' to start a server
@@ -44,7 +53,7 @@ void NetLobby::update()
 	// in socketSet. The 2nd parameter tells the method to wait up to SDL_MAX_UINT32
 	// if there is no activity -- no need to put it 0 unless we really don't want to
 	// block. With 0 it would consume CPU unnecessarily
-	if (SDLNet_CheckSockets(socketSet, SDL_MAX_UINT32) > 0) {
+	if (SDLNet_CheckSockets(socketSet, 0) > 0) {
 
 		// if there is an activity in masterSocket we process it. Note that
 		// before calling SDLNet_SocketReady we must have called SDLNet_CheckSockets
@@ -52,9 +61,10 @@ void NetLobby::update()
 			conectionRequestedFromClient();
 		}
 	}
+
 }
 
-bool NetLobby::SendInvitation(const char* host, const int port)
+bool NetLobby::SendInvitation(const char* host, const Uint16 port)
 {
 	return connectToServer(host, port);
 }
@@ -67,9 +77,10 @@ bool NetLobby::conectionRequestedFromClient()
 	
 }
 
+// Método que usa la instancia que hace de Server. Se conecta con el cliente que lo pide
 bool NetLobby::connectToClient()
 {
-	if (conn = nullptr) {
+	if (conn == nullptr) {
 		// Accept the connection (activity on master socket is always a connection request.
 		// Sending and receiving data is done via the socket returned by
 		// SDLNet_TCP_Accept. This way we can serve several clients.
@@ -88,6 +99,7 @@ bool NetLobby::connectToClient()
 	return true;
 }
 
+// Método que usa la instancia que hace de Cliente. Sirve para mandar una request al server
 bool NetLobby::connectToServer(const char* host, const int port)
 {
 	// fill in the address in 'ip'

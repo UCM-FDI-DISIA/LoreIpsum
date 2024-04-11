@@ -23,5 +23,5 @@ void SendIPFromTextComponent::update()
 
 void SendIPFromTextComponent::sendIP()
 {
-	nl->SendInvitation(tc->getText().c_str(), 2000);
+	nl->SendInvitation(tc->getText().c_str(), static_cast<Uint16>(2000));
 }

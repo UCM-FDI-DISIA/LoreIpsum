@@ -10,19 +10,19 @@
 class NetLobby : public ComponentUpdate
 {
 public:
-	NetLobby(int port);
+	NetLobby(Uint16 port);
 	~NetLobby();
 
 	void initComponent() override;
 	void update() override;
 
-	bool SendInvitation(const char* host, const int port);
+	bool SendInvitation(const char* host, const Uint16 port);
 
 private:
 
 	// some auxiliary variables for sending/receiving information
 	char buffer[256];
-	int result = 0;
+	int result;
 
 	// a variable that represents the address -- in this case only the port
 	IPaddress ip;
