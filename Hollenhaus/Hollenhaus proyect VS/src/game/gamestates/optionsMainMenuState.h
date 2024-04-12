@@ -4,6 +4,7 @@
 
 class optionsMainMenuState : public GameState
 {
+public:
     optionsMainMenuState();
     virtual ~optionsMainMenuState();
 

@@ -4,6 +4,7 @@
 
 class checkMazeMenuState : public GameState
 {
+public:
     checkMazeMenuState();
     virtual ~checkMazeMenuState();
 

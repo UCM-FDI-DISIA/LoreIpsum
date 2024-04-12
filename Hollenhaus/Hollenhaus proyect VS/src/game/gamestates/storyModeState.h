@@ -2,6 +2,7 @@
 #include "GameState.h"
 class storyModeState : public GameState
 {
+public:
     storyModeState();
     virtual ~storyModeState();
 

@@ -2,6 +2,7 @@
 #include "GameState.h"
 class transitionTextMenuState : public GameState
 {
+public:
     transitionTextMenuState();
     virtual ~transitionTextMenuState();
 

@@ -4,6 +4,7 @@
 
 class cinematicIntroState : public GameState
 {
+public:
     cinematicIntroState();
     virtual ~cinematicIntroState();
 

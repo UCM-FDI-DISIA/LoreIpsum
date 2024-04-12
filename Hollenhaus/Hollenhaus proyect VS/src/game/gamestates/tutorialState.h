@@ -6,6 +6,7 @@ class Factory;
 
 class tutorialState : public GameState
 {
+public:
 	tutorialState();
     virtual ~tutorialState();
 

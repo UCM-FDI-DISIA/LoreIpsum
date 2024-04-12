@@ -2,6 +2,7 @@
 #include "GameState.h"
 class pauseMenuState : public GameState
 {
+public:
     pauseMenuState();
     virtual ~pauseMenuState();
 

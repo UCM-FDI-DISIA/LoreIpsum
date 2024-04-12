@@ -4,6 +4,7 @@
 
 class multiplayerModeState : public GameState
 {
+public:
     multiplayerModeState();
     virtual ~multiplayerModeState();
 
