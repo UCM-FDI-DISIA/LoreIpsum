@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "NetLobby.h"
-
+#include "../../gamestates/GameState.h"
 using namespace std;
 
 NetLobby::NetLobby(Uint16 port) :
@@ -95,7 +95,14 @@ bool NetLobby::connectToClient()
 	}
 	else return false;
 
+	// Guardamos el socket del rival en la clase Data par viajar a la siguiente escena
+	GameStateMachine::instance()->getCurrentState()->setSocketRival(conn);
+
 	cout << "I AM SERVER!" << endl;
+
+	// La conexión ha sido realizada, ahora cambiamos de escena
+	//GameStateMachine::instance()->setState(¿sceneIndex?);
+
 	return true;
 }
 
@@ -104,6 +111,7 @@ bool NetLobby::connectToServer(const char* host, const int port)
 {
 	// fill in the address in 'ip'
 	if (SDLNet_ResolveHost(&ip, host, port) < 0) {
+		std::cout << "ERROR: Probablemente la ip esté mal";
 		error();
 	}
 
@@ -119,7 +127,13 @@ bool NetLobby::connectToServer(const char* host, const int port)
 		error(); // something went wrong
 	}
 
+	// Guardamos el socket del rival en la clase Data par viajar a la siguiente escena
+	GameStateMachine::instance()->getCurrentState()->setSocketRival(conn);
+
 	cout << "I AM CLIENT!" << endl;
+
+	// La conexión ha sido realizada, ahora cambiamos de escena
+	//GameStateMachine::instance()->setState(¿sceneIndex?);
 
 	return true;
 }
