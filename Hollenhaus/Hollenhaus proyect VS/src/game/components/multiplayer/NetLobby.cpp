@@ -10,11 +10,7 @@ NetLobby::NetLobby(Uint16 port) :
 	socketSet(nullptr),
 	conn(nullptr)
 {	
-	// initialize SDLNet
-	if (SDLNet_Init() < 0) {
-		error();
-	}
-
+	
 	// fill in the address in 'ip' -- note that the 2nd parameter is 'nullptr'
 	// which means that we want to use 'ip' to start a server
 	if (SDLNet_ResolveHost(&ip, nullptr, port) < 0) {

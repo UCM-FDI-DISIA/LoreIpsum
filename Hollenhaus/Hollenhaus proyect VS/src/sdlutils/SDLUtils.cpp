@@ -8,6 +8,8 @@
 
 #include "../json/JSON.h"
 
+#include "SDLNetUtils.h"
+
 SDLUtils::SDLUtils() :
 		SDLUtils("SDL Demo", 600, 400) {
 }
@@ -48,7 +50,14 @@ void SDLUtils::initWindow() {
 
 	// Initialize SDL
 	int sdlInit_ret = SDL_Init(SDL_INIT_EVERYTHING);
+
 	assert(sdlInit_ret == 0);
+
+	// Initialize SDL_Net
+	SDLNetUtils::initSDLNet();
+	
+	
+
 
 #ifdef _DEBUG
 	std::cout << "Creating SDL window" << std::endl;
