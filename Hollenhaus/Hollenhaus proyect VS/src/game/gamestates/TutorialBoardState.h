@@ -27,6 +27,7 @@ private:
 
     //
     void setBoard();
+    void setBaseEntity();
     void createPopUp(float x, float y, std::string popup);
 
     //
@@ -41,11 +42,12 @@ private:
     };
 
     //
-    int currentState;
-    int nextState;
-    bool ended;
+    int currentState;       //
+    int nextState;          //
+    bool ended;             //
 
-    Factory* factory;
+    Factory* factory;       //
+    ecs::entity_t base;     // entidad para colocar los popups, se va moviendo segun donde los queramos
 
     // gestion de estados individuales
     void setINIT();

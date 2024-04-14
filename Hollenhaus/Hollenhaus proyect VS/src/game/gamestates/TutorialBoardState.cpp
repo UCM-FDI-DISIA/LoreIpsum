@@ -28,11 +28,18 @@
 TutorialBoardState::TutorialBoardState()
 {
 	TuVieja("Loading Tutorial Board");
+
+	factory = new Factory();
+	factory->SetFactories(
+		static_cast<DialogueFactory*>(new DialogueFactory_V0())
+	);
 }
 
 TutorialBoardState::~TutorialBoardState()
 {
 
+	delete factory;
+	factory = nullptr;
 }
 
 void TutorialBoardState::refresh()
@@ -69,6 +76,7 @@ void TutorialBoardState::onEnter()
 	ended = false;
 
 	setBoard();
+	setBaseEntity();
 
 }
 
@@ -201,6 +209,17 @@ void TutorialBoardState::setBoard()
 	#pragma endregion
 }
 
+void TutorialBoardState::setBaseEntity()
+{
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//npc->getComponent<Transform>()->getRelativeScale().set(info.getScale().getX(), info.getScale().getY());
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
+}
+
 void TutorialBoardState::createPopUp(float x, float y, std::string popup)
 {
 	TuVieja("Creando PopUp...");
@@ -214,7 +233,7 @@ void TutorialBoardState::createPopUp(float x, float y, std::string popup)
 	factory->createDialogue(dialogue.NPCName(), conv, node,
 		{ x, y },//POS
 		{ 100,100 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-		5, 10, nullptr,
+		5, 10, base,
 		3, dialogue.Convo(conv).isAuto(),  //LAYER
 		"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
 		SDL_Color({ 0, 0, 0, 255 }),
@@ -226,6 +245,9 @@ void TutorialBoardState::createPopUp(float x, float y, std::string popup)
 void TutorialBoardState::setINIT()
 {
 
+	TuVieja("Setting INIT");
+
+	createPopUp(200, 200, "Board Tutorial");
 
 }
 
