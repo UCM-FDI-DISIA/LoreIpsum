@@ -27,5 +27,4 @@ private:
 
 	// tween fantasmiko
 	tweeny::tween<float> fantastween;
-	tweeny::tween<float> movement_tween;
 };

@@ -18,7 +18,7 @@ public:
 
 	void OnLeftClickDown();
 
-	bool getDir() { return faceTo_; };
+	bool getDir() const { return faceTo_; };
 
 	// registra el collider que creas en la escena de la ciudad
 	void RegisterCollider(BoxCollider* collider)
@@ -55,4 +55,9 @@ private:
 	int dir_;
 
 	float halfScreen_;
+
+	/// FEEDBACK
+	tweeny::tween<float> movement_tween;
+	ecs::entity_t feedback_flecha;
+	ecs::entity_t feedback_punto;
 };

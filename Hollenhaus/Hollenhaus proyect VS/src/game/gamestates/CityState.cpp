@@ -24,8 +24,7 @@ void CityState::update()
 
 	/// TWEENSI DEL FANTASMIKO
 	//fantastween.progress() == 1.0 ? fantastween.backward() : fantastween.forward();
-	if (fantastween.progress() == 1.0) fantastween.backward();
-	if (fantastween.progress() == 0.0) fantastween.forward();
+	fantastween.loop();
 	fantastween.step(1);
 	auto fanTrans = fantasmiko->getComponent<Transform>();
 	if (fantastween.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
@@ -96,13 +95,13 @@ void CityState::onEnter()
 	// tamanio del collider del suelo
 	// x: el ancho de la imagen de fondo, y: alto del suelo
 	colliderSuelo->getComponent<BoxCollider>()->setSize(
-		Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), 120));
+		Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), sdlutils().height()*2));
 
 	// lo emparenta con el fondo
 	colliderSuelo->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
 
 	// posicion del collider del suelo
-	Vector2D vectorSueloPos(0, 520);
+	Vector2D vectorSueloPos(0, sdlutils().height()/2);
 	colliderSuelo->getComponent<Transform>()->setRelativePos(vectorSueloPos.getX(), vectorSueloPos.getY());
 
 	// registra el collider del suelo
