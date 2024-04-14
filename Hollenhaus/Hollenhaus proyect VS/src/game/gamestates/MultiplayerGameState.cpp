@@ -115,8 +115,8 @@ void MultiplayerGameState::onEnter()
 
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
-	sdlutils().soundEffects().at("battletheme").play(-1);
-	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
+	//sdlutils().soundEffects().at("battletheme").play(-1);
+	//sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 
 
 #pragma endregion
@@ -131,7 +131,7 @@ void MultiplayerGameState::onEnter()
 	NetGame* netGameCmp = netController->addComponent<NetGame>();
 
 	//le decimos al endTurn que existe netGame
-	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
+	visual_EndTurnButton->getComponent<EndTurnButton>()->setMultiplayer(true);
 
 	//seters de referencias del netGame
 	netGameCmp->setMatchManager(matchManagerComponent);

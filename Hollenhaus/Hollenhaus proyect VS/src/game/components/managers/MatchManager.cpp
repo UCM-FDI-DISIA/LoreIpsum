@@ -6,6 +6,7 @@
 #include "../../GameStateMachine.h"
 #include "../../gamestates/GameState.h"
 #include "../../components/basics/TextComponent.h"
+#include "../../components/multiplayer/NetGame.h"
 
 MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm) :
 	board_(bm),
@@ -71,6 +72,12 @@ void MatchManager::setActualState(Turns::State newState)
 		std::cout << "Turno: IA" << std::endl;
 #endif
 		startTurnIA();
+		break;
+	case Turns::J2_MULTIPLAYER:
+#if _DEBUG 
+		std::cout << "Turno: J2_MULTIPLAYER" << std::endl;
+#endif
+		changeTurnMultiplayer();
 		break;
 	default:
 		break;
@@ -180,4 +187,9 @@ void MatchManager::setWinnerOnData()
 void MatchManager::startTurnIA()
 {
 	ia_manager->StartTurn();
+}
+
+void MatchManager::changeTurnMultiplayer()
+{
+	netGame->nextTurn();
 }

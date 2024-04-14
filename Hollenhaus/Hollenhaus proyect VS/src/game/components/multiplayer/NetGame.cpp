@@ -3,6 +3,8 @@
 
 #include "../../gamestates/GameState.h"
 
+#include "../../../sdlutils/SDLNetUtils.h"
+
 
 NetGame::NetGame()
 {
@@ -51,4 +53,5 @@ void NetGame::playCard(int i, Vector2D pos)
 
 void NetGame::nextTurn()
 {
+	//SDLNetUtils::serializedSend(, rival);
 }

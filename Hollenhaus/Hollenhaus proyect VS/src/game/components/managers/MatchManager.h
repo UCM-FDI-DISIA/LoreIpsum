@@ -74,8 +74,9 @@ private:
     // Método para pasarle el ganador al GameState y guardarlo en data.
     void setWinnerOnData();
 
-
     void startTurnIA();
+
+    void changeTurnMultiplayer();
 };
 
 
