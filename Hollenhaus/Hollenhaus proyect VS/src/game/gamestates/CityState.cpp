@@ -7,7 +7,6 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/TypeWriter.h"
 #include "../components/NextText.h"
-
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
 
