@@ -36,6 +36,8 @@ void MainMenuState::onEnter()
 	// Carga la data
 	loadData();
 
+	std::cout << "DINERO: " << getMoney() << std::endl;
+
 	/// Fondo
 	//-----Ciudad de fondo:
 	ecs::entity_t fondo = Instantiate(Vector2D(0,0));

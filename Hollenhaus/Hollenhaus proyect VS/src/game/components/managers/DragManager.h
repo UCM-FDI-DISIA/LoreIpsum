@@ -19,7 +19,9 @@ public:
     void update() override;
 
     void setBoardManager(BoardManager* _boardManager) { boardManager = _boardManager; }
-
+    
+    bool isDraggable() const { return draggable; }
+    void setDraggable(bool value) { draggable = value; }
 private:
     
     Transform* dragTransform;
@@ -29,20 +31,15 @@ private:
     Vector2D initialTransformPosWithOffSet;
 
     void OnLeftClickDown();
-
     void OnLeftClickUp();
-
     void putCardAnimation(DropDetector* cell);
-
     bool CardOnHand(ecs::entity_t card);
-
     bool CardIsOfCurrentPlayer(ecs::entity_t card);
-
     bool enoughPoints(ecs::entity_t card);
-
     void putCardOnBoard(ecs::entity_t card,DropDetector* cell);
 
     BoardManager* boardManager;
+	bool draggable = true;
 
 };
 
