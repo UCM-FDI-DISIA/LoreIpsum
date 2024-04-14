@@ -57,7 +57,10 @@ private:
 	float halfScreen_;
 
 	/// FEEDBACK
-	tweeny::tween<float> movement_tween;
-	ecs::entity_t feedback_flecha;
-	ecs::entity_t feedback_punto;
+	tweeny::tween<float> movementTween;
+	ecs::entity_t feedbackFlecha;
+	ecs::entity_t feedbackPunto;
+	void onStop();
+	void enableFeedback();
+	void disableFeedback();
 };

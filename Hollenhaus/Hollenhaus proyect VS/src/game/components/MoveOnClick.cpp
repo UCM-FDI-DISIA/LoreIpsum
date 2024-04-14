@@ -35,6 +35,13 @@ void MoveOnClick::initComponent()
 {
 	myTransform_ = ent_->getComponent<Transform>(); // transform del fondo
 
+	feedbackFlecha = Instantiate(Vector2D());
+	feedbackPunto = Instantiate(Vector2D());
+	feedbackFlecha->addComponent<SpriteRenderer>("feedback_flecha");
+	feedbackPunto->addComponent<SpriteRenderer>("feedback_circulo");
+	feedbackFlecha->setLayer(2);
+	feedbackPunto->setLayer(2);
+
 	// llamada al input
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 }
@@ -52,7 +59,7 @@ void MoveOnClick::update()
 		(((posX >= 0) && (mousePos_.getX() < halfScreen_)) ||
 		((posX <= BACKGROUND_SIZE) && (mousePos_.getX() >= halfScreen_))))
 	{
-		move_ = false;
+		onStop();
 	}
 	else if (move_) 
 	{
@@ -80,6 +87,7 @@ void MoveOnClick::OnLeftClickDown()
 
 		// debe moverse al click
 		move_ = true;
+		enableFeedback();
 
 		// JUGADOR HACIA LA DER, FONDO HACIA LA IZQ
 		if (mousePos_.getX() >= halfScreen_)
@@ -101,7 +109,37 @@ void MoveOnClick::OnLeftClickDown()
 	}
 	else 
 	{
-		move_ = false;
+		onStop();
 	}
+}
 
+void MoveOnClick::onStop()
+{
+	disableFeedback();
+	move_ = false;
+}
+
+void MoveOnClick::enableFeedback()
+{
+	/*feedbackFlecha->setAlive(true);
+	feedbackPunto->setAlive(true);*/
+
+	auto mousePos = ih().getMousePos();
+	auto flechaTrans = feedbackFlecha->getComponent<Transform>();
+	auto puntoTrans = feedbackPunto->getComponent<Transform>();
+
+	flechaTrans->setGlobalPos(
+		mousePos.first, 
+		sdlutils().height() - 200
+	);
+	puntoTrans->setGlobalPos(
+		mousePos.first, 
+		sdlutils().height() - 200
+	);
+}
+
+void MoveOnClick::disableFeedback()
+{
+	/*feedbackFlecha->setAlive(false);
+	feedbackPunto->setAlive(false);*/
 }

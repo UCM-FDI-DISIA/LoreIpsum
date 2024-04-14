@@ -105,6 +105,14 @@ Transform::setGlobalPos(Vector2D& pos) {
 		relativePos_ = globalPos_ - parent_->getGlobalPos();
 }
 
+void
+Transform::setGlobalPos(int x, int y) {
+	globalPos_.setX(x);
+	globalPos_.setY(y);
+	if (isChild_)
+		relativePos_ = globalPos_ - parent_->getGlobalPos();
+}
+
 void 
 Transform::setGlobalAngle(float angle) {
 	globalAngle_ = angle;

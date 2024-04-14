@@ -114,11 +114,11 @@ void CityState::onEnter()
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(2);
 	// twinsiiiis
-	auto fanX = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
+	auto fanY = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
 	fantastween =
-		tweeny::from(fanX - 5)
-		.to(fanX + 5)
-		.to(fanX - 5)
+		tweeny::from(fanY - 5)
+		.to(fanY + 5)
+		.to(fanY - 5)
 		.during(60)
 		.via(tweeny::easing::sinusoidalInOut);
 

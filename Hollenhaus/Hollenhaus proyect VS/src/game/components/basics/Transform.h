@@ -55,6 +55,7 @@ public:
     float& getRelativeAngle();
 
     void setGlobalPos(Vector2D& v);
+    void setGlobalPos(int, int);
     void setGlobalAngle(float);
     void setGlobalScale(Vector2D);
     void setGlobalScale(float x, float y);
