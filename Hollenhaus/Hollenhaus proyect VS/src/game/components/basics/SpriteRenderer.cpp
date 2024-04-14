@@ -37,6 +37,8 @@ void SpriteRenderer::setTexture(Texture* _textu)
 // Para renderizar la textura
 void SpriteRenderer::render() const
 {
+	if (!enabled_) return;
+
 	// Settea el flip de la textura.
 	SDL_RendererFlip flip;
 	if (flipX_)

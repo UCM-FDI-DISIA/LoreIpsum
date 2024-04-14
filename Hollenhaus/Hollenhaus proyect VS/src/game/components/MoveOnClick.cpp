@@ -8,10 +8,9 @@
 
 #include "pch.h"
 #include "MoveOnClick.h"
-#include "../Entity.h"
-#include "managers/Manager.h"
-
 #include <cmath>
+
+constexpr Uint32 FEEDBACK_PADDING = 60;
 
 MoveOnClick::MoveOnClick(float vel) :
 	myBoxCollider_(),
@@ -37,8 +36,8 @@ void MoveOnClick::initComponent()
 
 	feedbackFlecha = Instantiate(Vector2D());
 	feedbackPunto = Instantiate(Vector2D());
-	feedbackFlecha->addComponent<SpriteRenderer>("feedback_flecha");
-	feedbackPunto->addComponent<SpriteRenderer>("feedback_circulo");
+	feedbackFlecha->addComponent<SpriteRenderer>("feedback_flecha")->enable(false);
+	feedbackPunto->addComponent<SpriteRenderer>("feedback_circulo")->enable(false);
 	feedbackFlecha->setLayer(2);
 	feedbackPunto->setLayer(2);
 
@@ -121,25 +120,34 @@ void MoveOnClick::onStop()
 
 void MoveOnClick::enableFeedback()
 {
-	/*feedbackFlecha->setAlive(true);
-	feedbackPunto->setAlive(true);*/
-
-	auto mousePos = ih().getMousePos();
-	auto flechaTrans = feedbackFlecha->getComponent<Transform>();
-	auto puntoTrans = feedbackPunto->getComponent<Transform>();
+	const auto mousePos = ih().getMousePos();
+	const auto flechaTrans = feedbackFlecha->getComponent<Transform>();
+	const auto puntoTrans = feedbackPunto->getComponent<Transform>();
+	const auto flechaSprite = feedbackFlecha->getComponent<SpriteRenderer>();
+	const auto puntoSprite = feedbackPunto->getComponent<SpriteRenderer>();
 
 	flechaTrans->setGlobalPos(
-		mousePos.first, 
-		sdlutils().height() - 200
+		mousePos.first - flechaSprite->getTexture()->width()/2, 
+		sdlutils().height()
+			- FEEDBACK_PADDING 
+			- flechaSprite->getTexture()->height()/2
+			- puntoSprite->getTexture()->height()*2
 	);
 	puntoTrans->setGlobalPos(
-		mousePos.first, 
-		sdlutils().height() - 200
+		mousePos.first - puntoSprite->getTexture()->width()/2, 
+		sdlutils().height() 
+			- FEEDBACK_PADDING 
+			- puntoSprite->getTexture()->height()/2
 	);
+
+	flechaSprite->enable(true);
+	puntoSprite->enable(true);
 }
 
 void MoveOnClick::disableFeedback()
 {
-	/*feedbackFlecha->setAlive(false);
-	feedbackPunto->setAlive(false);*/
+	const auto flechaSprite = feedbackFlecha->getComponent<SpriteRenderer>();
+	const auto puntoSprite = feedbackPunto->getComponent<SpriteRenderer>();
+	flechaSprite->enable(false);
+	puntoSprite->enable(false);
 }
