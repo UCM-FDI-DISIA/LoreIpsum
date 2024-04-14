@@ -68,7 +68,7 @@ bool BoardManager::setCard(int x, int y, Card* c, Players::Owner o)
 		cell->addEffect(e);
 
 	//Cambia el color de la carta si es del jugador 2
-	if (o == Players::PLAYER2 || o == Players::IA)
+	if (o == Players::PLAYER2 || o == Players::IA || o == Players::PLAYER2_MULTIPLAYER)
 	{
 		c->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(104, 52, 177, 200);
 		auto children = c->getEntity()->getComponent<Transform>()->getChildren();
@@ -109,7 +109,8 @@ void BoardManager::updateScore()
 			if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::PLAYER1)
 				pPlayer1 += _board[i][j]->getComponent<Cell>()->getTotalValue();
 			//si es el jugador 2 (normalmente npc)
-			else if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::IA)
+			else if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::IA ||
+					_board[i][j]->getComponent<Cell>()->getOwner() == Players::PLAYER2_MULTIPLAYER)
 				pPlayer2 += _board[i][j]->getComponent<Cell>()->getTotalValue();
 		}
 	}

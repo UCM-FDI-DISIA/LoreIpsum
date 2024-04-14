@@ -140,12 +140,14 @@ void MultiplayerGameState::onEnter()
 	netGameCmp->setRivalHand(deckPlayer2->getComponent<PlayerCardsManager>()->getHand());
 	netGameCmp->setRivalDeck(deckPlayer2->getComponent<DeckComponent>());
 
+	netGameCmp->setPlayerHand(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
+
 	//set en el matchManager
 	matchManagerComponent->setNetGame(netGameCmp);
 
 	deckPlayer1->getComponent<DeckComponent>()->setNetGame(netGameCmp);
 	
-
+	dragManager->getComponent<DragManager>()->setNetGame(netGameCmp);
 
 #pragma endregion
 

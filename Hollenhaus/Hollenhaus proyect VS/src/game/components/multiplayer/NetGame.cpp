@@ -7,10 +7,15 @@
 #include "../../../sdlutils/SDLNetUtils.h"
 
 #include "../managers/MatchManager.h"
+#include "../managers/BoardManager.h"
 #include "../DeckComponent.h"
 #include "../HandComponent.h"
 #include "../Card.h"
 
+#include "../DropDetector.h"
+#include "../basics/Transform.h"
+#include "../managers/CardStateManager.h"
+#include "../Cell.h"
 
 NetGame::NetGame()
 {
@@ -75,9 +80,11 @@ void NetGame::update()
 				TuVieja("Mensaje : _PLAY_CARD_, RECIBIDO");
 
 				//procesar el mensaje
-				NetMsgs::PlayCard playMsg;
 
+				NetMsgs::PlayCard playMsg;
 				playMsg.deserialize(result.buffer);
+
+				processPlayCard(playMsg.index, Vector2D(playMsg.posX, playMsg.posY));
 
 			}
 			else if (msg._type == NetMsgs::_END_GAME_) {
@@ -109,8 +116,10 @@ void NetGame::setMatchManager(MatchManager* matchM)
 	matchManager = matchM;
 
 
-	//si no somos el host
+	//si no somos el host,return 
 	if (!GameStateMachine::instance()->getCurrentState()->getIsHost()) return;
+
+	//si sí somos el host
 	//decidir quien saca aleatoriamente
 
 	Turns::State  myTurn;
@@ -152,6 +161,11 @@ void NetGame::setRivalDeck(DeckComponent* rivalD)
 	rivalDeckCmp = rivalD;
 }
 
+void NetGame::setPlayerHand(HandComponent* playerH)
+{
+	playerHandCmp = playerH;
+}
+
 void NetGame::drawCard()
 {
 	NetMsgs::Msg msg(NetMsgs::_DRAW_CARD_);
@@ -159,11 +173,22 @@ void NetGame::drawCard()
 	SDLNetUtils::serializedSend(msg, rival);
 }
 
-void NetGame::playCard(int i, Vector2D pos)
+void NetGame::playCard(ecs::entity_t e, Vector2D pos)
 {
-	NetMsgs::PlayCard msg(i,pos);
 
-	SDLNetUtils::serializedSend(msg, rival);
+	int index = playerHandCmp->indexOf(e);
+
+	if (index == -1) {
+		//lanzar error
+	}
+	else {
+
+		NetMsgs::PlayCard msg(index,pos);
+
+		SDLNetUtils::serializedSend(msg, rival);
+	}
+
+
 }
 
 void NetGame::nextTurn()
@@ -176,6 +201,8 @@ void NetGame::nextTurn()
 
 }
 
+
+
 void NetGame::processDrawCard()
 {
 	rivalHandCmp->addCard(rivalDeckCmp->drawCard()->getEntity());
@@ -183,6 +210,20 @@ void NetGame::processDrawCard()
 
 void NetGame::processPlayCard(int i, Vector2D pos)
 {
+	Card* card = rivalHandCmp->getHand()[i];
+
+	//dropDetector ocupado
+	const auto dropDet = boardManager->getCell(pos.getX(), pos.getY())->getEntity()->getComponent<DropDetector>();
+	dropDet->setOcuped(true);
+
+	//colocar la carta en el tablero
+	card->getEntity()->getComponent<Transform>()->setGlobalPos(dropDet->getCardPos());
+	card->getEntity()->getComponent<CardStateManager>()->putOnBoard();
+
+	//comunicacion con el boardManager
+	const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
+	boardManager->setCard(pos.getX(), pos.getY(), card, playerTurn);
+	
 }
 
 void NetGame::processNextTurn()

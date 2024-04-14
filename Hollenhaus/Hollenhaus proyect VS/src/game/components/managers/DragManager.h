@@ -26,6 +26,8 @@ public:
 
 
     void setNetGame(NetGame* _netGame);
+
+    void playCardMultiplayer(ecs::entity_t e, Vector2D pos);
 private:
     
     Transform* dragTransform;

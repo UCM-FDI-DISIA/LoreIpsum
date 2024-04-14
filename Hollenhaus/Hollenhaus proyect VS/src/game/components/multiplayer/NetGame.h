@@ -26,9 +26,12 @@ public:
 	void setRivalHand(HandComponent* rivalH);
 	void setRivalDeck(DeckComponent* rivalD);
 
+	void setPlayerHand(HandComponent* playerH);
+
 	void drawCard();
-	void playCard(int i, Vector2D pos);
+	void playCard(ecs::entity_t e, Vector2D pos);
 	void nextTurn();
+
 
 
 private:
@@ -42,6 +45,8 @@ private:
 	HandComponent* rivalHandCmp;
 	DeckComponent* rivalDeckCmp;
 
+	//para saber que carta estamos colocando
+	HandComponent* playerHandCmp;
 
 	void processDrawCard();
 

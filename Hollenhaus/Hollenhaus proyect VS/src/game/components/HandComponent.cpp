@@ -151,6 +151,13 @@ std::vector<Card*> HandComponent::getHand()
 	return v;
 }
 
+int HandComponent::indexOf(ecs::entity_t c)
+{
+	auto it = std::find(cardsInHand_.begin(), cardsInHand_.end(), c);
+
+	return it == cardsInHand_.end() ? -1 : it - cardsInHand_.begin();
+}
+
 void HandComponent::refreshPositions() {
 	std::vector<Vector2D>positions;
 

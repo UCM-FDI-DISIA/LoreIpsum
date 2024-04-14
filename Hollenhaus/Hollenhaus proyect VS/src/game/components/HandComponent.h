@@ -41,6 +41,10 @@ public:
 	//para la IA
 	std::vector<Card*> getHand();
 
+	//para multiplayer
+
+	int indexOf(ecs::entity_t c);
+
 private:
 	float cardScale_ = 0.65f;
 	float cardScaleBoard_ = 0.53f;
