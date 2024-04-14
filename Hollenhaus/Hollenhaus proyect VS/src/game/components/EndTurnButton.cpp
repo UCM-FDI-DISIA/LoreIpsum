@@ -72,6 +72,7 @@ void EndTurnButton::ClickButton()
 		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1) {
 			// Se pasa el turno al otro jugador
 			matchManager_->setActualState(Turns::J2_MULTIPLAYER);
+			matchManager_->changeTurnMultiplayer();
 		}
 	}
 }

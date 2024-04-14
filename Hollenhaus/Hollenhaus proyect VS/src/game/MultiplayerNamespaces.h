@@ -11,7 +11,8 @@ namespace NetMsgs {
 		_PLAY_CARD_ , //
 		_DRAW_CARD_, //
 		_CHANGE_TURN_, //
-		_END_GAME_ //
+		_END_GAME_, //
+		_FIRST_TURN_OWNER_ //
 	};
 
 	struct Msg {
@@ -44,4 +45,15 @@ namespace NetMsgs {
 		_IMPL_SERIALIAZION_WITH_BASE_(Msg, index, posX, posY)
 	};
 
+
+	struct FirstTurn : Msg {
+
+		FirstTurn() {};
+		FirstTurn(Uint8 myMultiplayerTurn)
+		:myMultiplayerTurn(myMultiplayerTurn){};
+		
+		Uint8 myMultiplayerTurn;
+
+		_IMPL_SERIALIAZION_WITH_BASE_(Msg, myMultiplayerTurn)
+	};
 }

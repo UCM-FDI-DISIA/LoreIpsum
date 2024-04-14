@@ -55,6 +55,7 @@ namespace Players
 		NONE,
 		PLAYER1,//jugador?
 		PLAYER2,//IA?
+		PLAYER2_MULTIPLAYER,
 		NULO,
 		IA
 	};

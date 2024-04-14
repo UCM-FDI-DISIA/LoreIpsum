@@ -74,6 +74,10 @@ public:
 	virtual TCPsocket getSocketRival();
 
 	virtual void resetSocketRival();
+
+	virtual void setIsHost(bool b);
+	virtual bool getIsHost();
+
 };
 
 #endif // !GameState_H_

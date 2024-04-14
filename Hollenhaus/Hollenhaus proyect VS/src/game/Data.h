@@ -48,6 +48,8 @@ private:
 	//MULTIPLAYER
 	TCPsocket rival;
 
+	bool isHost = false;
+
 public:
 
 	//------Constructora y destructora:
@@ -151,6 +153,9 @@ public:
 	TCPsocket getSocketRival();
 
 	void resetSocketRival();
+
+	void setIsHost(bool b);
+	bool getIsHost();
 
 
 };

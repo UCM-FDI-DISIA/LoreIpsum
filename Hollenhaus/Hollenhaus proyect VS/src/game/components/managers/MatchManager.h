@@ -47,6 +47,9 @@ public:
     void setNetGame(NetGame* ng);
     //solo la IA deberia llamar a este metodo
     void endTurnIA();
+
+    void changeTurnMultiplayer();
+
 private:
 
     Turns::State actualState;
@@ -76,7 +79,6 @@ private:
 
     void startTurnIA();
 
-    void changeTurnMultiplayer();
 };
 
 

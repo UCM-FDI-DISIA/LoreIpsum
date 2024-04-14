@@ -363,4 +363,12 @@ void Data::resetSocketRival()
 {
 	rival = nullptr;
 }
+void Data::setIsHost(bool b)
+{
+	isHost = b;
+}
+bool Data::getIsHost()
+{
+	return isHost;
+}
 #pragma endregion

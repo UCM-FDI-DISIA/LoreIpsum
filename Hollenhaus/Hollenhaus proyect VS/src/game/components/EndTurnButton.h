@@ -33,6 +33,8 @@ private:
 
     Turns::State buttonPropietary_;   // Esto es temporal (o no)
 
+    Turns::State myMultiplayerTurn; 
+
     bool activeIA = false;
 
     bool activeMultiplayer = false;

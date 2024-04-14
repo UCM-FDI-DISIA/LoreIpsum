@@ -95,6 +95,10 @@ bool NetLobby::connectToClient()
 	// Guardamos el socket del rival en la clase Data par viajar a la siguiente escena
 	GameStateMachine::instance()->getCurrentState()->setSocketRival(conn);
 
+	//guardar que somos el host
+	GameStateMachine::instance()->getCurrentState()->setIsHost(true);
+
+
 	cout << "I AM SERVER!" << endl;
 
 	// La conexión ha sido realizada, ahora cambiamos de escena
@@ -126,6 +130,9 @@ bool NetLobby::connectToServer(const char* host, const int port)
 
 	// Guardamos el socket del rival en la clase Data par viajar a la siguiente escena
 	GameStateMachine::instance()->getCurrentState()->setSocketRival(conn);
+
+	//guardar que no somos el host
+	GameStateMachine::instance()->getCurrentState()->setIsHost(false);
 
 	cout << "I AM CLIENT!" << endl;
 

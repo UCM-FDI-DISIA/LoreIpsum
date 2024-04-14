@@ -86,6 +86,16 @@ void GameState::resetSocketRival()
 	data->resetSocketRival();
 }
 
+void GameState::setIsHost(bool b)
+{
+	data->setIsHost(b);
+}
+
+bool GameState::getIsHost()
+{
+	return data->getIsHost();
+}
+
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
 	return data->GetDrawer();

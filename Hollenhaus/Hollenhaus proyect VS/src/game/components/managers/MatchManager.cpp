@@ -77,7 +77,6 @@ void MatchManager::setActualState(Turns::State newState)
 #if _DEBUG 
 		std::cout << "Turno: J2_MULTIPLAYER" << std::endl;
 #endif
-		changeTurnMultiplayer();
 		break;
 	default:
 		break;
@@ -107,6 +106,9 @@ Players::Owner MatchManager::getPlayerTurn() const
 		break;
 	case Turns::IA:
 		return  Players::IA;
+		break;
+	case Turns::J2_MULTIPLAYER:
+		return  Players::PLAYER2_MULTIPLAYER;
 		break;
 	default:
 		return Players::NONE;

@@ -581,5 +581,7 @@ void SDLUtils::closeSDLExtensions() {
 	Mix_Quit(); // quit SDL_mixer
 	IMG_Quit(); // quit SDL_image
 	TTF_Quit(); // quit SDL_ttf
+
+	SDLNetUtils::closeSDLNet();
 }
 

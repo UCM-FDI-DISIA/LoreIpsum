@@ -30,6 +30,7 @@ public:
 	void playCard(int i, Vector2D pos);
 	void nextTurn();
 
+
 private:
 
 	TCPsocket rival;
@@ -41,5 +42,10 @@ private:
 	HandComponent* rivalHandCmp;
 	DeckComponent* rivalDeckCmp;
 
+
+	void processDrawCard();
+
+	void processPlayCard(int i, Vector2D pos);
+	void processNextTurn();
 };
 
