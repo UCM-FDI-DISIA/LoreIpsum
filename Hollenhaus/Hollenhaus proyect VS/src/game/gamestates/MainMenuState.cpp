@@ -79,8 +79,8 @@ void MainMenuState::onEnter()
 	exitButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(50, -16));
 	ih().insertFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
 
-	sdlutils().soundEffects().at("menutheme").play(-1);
-	sdlutils().soundEffects().at("menutheme").setChannelVolume(10);
+	//sdlutils().soundEffects().at("menutheme").play(-1);
+	//sdlutils().soundEffects().at("menutheme").setChannelVolume(10);
 }
 
 void MainMenuState::onExit() {

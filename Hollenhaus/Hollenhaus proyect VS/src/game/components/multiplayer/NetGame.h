@@ -41,6 +41,5 @@ private:
 	HandComponent* rivalHandCmp;
 	DeckComponent* rivalDeckCmp;
 
-
 };
 

@@ -8,9 +8,17 @@
 
 
 
+
+
 NetGame::NetGame()
 {
 	rival = GameStateMachine::instance()->getCurrentState()->getSocketRival();
+
+	//creacion del socketSet
+	socketSet = SDLNet_AllocSocketSet(1);
+
+	// añadir el socker al sockerSet
+	SDLNet_TCP_AddSocket(socketSet, rival);
 }
 
 NetGame::~NetGame()
@@ -23,6 +31,55 @@ void NetGame::initComponent()
 
 void NetGame::update()
 {
+	if (SDLNet_CheckSockets(socketSet, 0) > 0) {
+
+		if (SDLNet_SocketReady(rival)) {
+
+			NetMsgs::Msg msg;
+
+			SDLNetUtils::deserializedReceive(msg, rival);
+
+
+			//identificar el mensaje
+			if (msg._type == NetMsgs::_NONE_) {
+				TuVieja("Mensaje : _NONE_, RECIBIDO");
+
+				//procesar el mensaje/ lanzar error
+
+			}
+			else if (msg._type == NetMsgs::_CHANGE_TURN_) {
+				TuVieja("Mensaje : CHANGE_TURN, RECIBIDO");
+
+				//procesar el mensaje
+
+			}
+			else if (msg._type == NetMsgs::_DRAW_CARD_) {
+				TuVieja("Mensaje : _DRAW_CARD_, RECIBIDO");
+
+				//procesar el mensaje
+
+			}
+			else if (msg._type == NetMsgs::_PLAY_CARD_) {
+				TuVieja("Mensaje : _PLAY_CARD_, RECIBIDO");
+
+				//procesar el mensaje
+				NetMsgs::PlayCard playMsg;
+
+				SDLNetUtils::deserializedReceive(playMsg, rival);
+
+
+			}
+			else if (msg._type == NetMsgs::_END_GAME_) {
+				TuVieja("Mensaje : _END_GAME_, RECIBIDO");
+
+				//procesar el mensaje
+
+			}
+			
+		}
+
+	}
+
 }
 
 void NetGame::setMatchManager(MatchManager* matchM)
