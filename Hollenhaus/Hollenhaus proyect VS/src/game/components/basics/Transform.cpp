@@ -130,6 +130,17 @@ void Transform::setGlobalScale(float x, float y)
 		relativeScale_.set(globalScale_);
 }
 
+void Transform::setRelativePos(Vector2D& newValue)
+{
+	relativePos_ = newValue;
+}
+
+void Transform::setRelativePos(float x, float y)
+{
+	relativePos_.setX(x);
+	relativePos_.setY(y);
+}
+
 Transform* 
 Transform::getParent() {
 	return parent_;

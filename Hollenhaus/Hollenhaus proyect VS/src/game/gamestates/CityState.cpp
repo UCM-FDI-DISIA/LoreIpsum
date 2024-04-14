@@ -23,16 +23,16 @@ void CityState::update()
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(fondo->getComponent<MoveOnClick>()->getDir());
 
 	/// TWEENSI DEL FANTASMIKO
-	//tweensy.progress() == 1.0 ? tweensy.backward() : tweensy.forward();
-	if (tweensy.progress() == 1.0) tweensy.backward();
-	if (tweensy.progress() == 0.0) tweensy.forward();
-	tweensy.step(1);
+	//fantastween.progress() == 1.0 ? fantastween.backward() : fantastween.forward();
+	if (fantastween.progress() == 1.0) fantastween.backward();
+	if (fantastween.progress() == 0.0) fantastween.forward();
+	fantastween.step(1);
 	auto fanTrans = fantasmiko->getComponent<Transform>();
-	if (tweensy.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+	if (fantastween.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
 	{
 		Vector2D step(
 			fanTrans->getGlobalPos().getX(),
-			tweensy.peek()
+			fantastween.peek()
 		);
 		fanTrans->setGlobalPos(step);
 	}
@@ -103,7 +103,7 @@ void CityState::onEnter()
 
 	// posicion del collider del suelo
 	Vector2D vectorSueloPos(0, 520);
-	colliderSuelo->getComponent<Transform>()->getRelativePos().set(vectorSueloPos);
+	colliderSuelo->getComponent<Transform>()->setRelativePos(vectorSueloPos.getX(), vectorSueloPos.getY());
 
 	// registra el collider del suelo
 	fondo->getComponent<MoveOnClick>()->RegisterCollider(colliderSuelo->getComponent<BoxCollider>());
@@ -117,7 +117,7 @@ void CityState::onEnter()
 	fantasmiko->setLayer(2);
 	// twinsiiiis
 	auto fanX = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
-	tweensy =
+	fantastween =
 		tweeny::from(fanX - 5)
 		.to(fanX + 5)
 		.to(fanX - 5)
