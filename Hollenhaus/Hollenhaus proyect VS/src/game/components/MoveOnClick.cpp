@@ -21,7 +21,8 @@ MoveOnClick::MoveOnClick(float vel) :
 	distance_(),
 	movement_(),
 	dir_(),
-	halfScreen_(sdlutils().width() / 2) {
+	halfScreen_(sdlutils().width() / 2)
+{
 }
 
 MoveOnClick::~MoveOnClick()
@@ -40,6 +41,10 @@ void MoveOnClick::initComponent()
 	feedbackPunto->addComponent<SpriteRenderer>("feedback_circulo")->enable(false);
 	feedbackFlecha->setLayer(2);
 	feedbackPunto->setLayer(2);
+	flechaTrans = feedbackFlecha->getComponent<Transform>();
+	puntoTrans = feedbackPunto->getComponent<Transform>();
+	/*flechaTrans->addParent(myTransform_); esto hace que se comporte muy raro
+	puntoTrans->addParent(myTransform_);*/
 
 	// llamada al input
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
@@ -54,17 +59,17 @@ void MoveOnClick::update()
 	// -> si la diferencia entre la pos actual y la inicial es la distancia a recorrer (se ha completado el mov.)
 	// -> o cuando llegue a los limites de la ciudad por la derecha Y se pulse en la derecha
 	// -> o cuando llegue a los limites de la ciudad por la izquierda Y se pulse en la izquierda
-	if  (abs(posX - myPos_.getX()) >= abs(distance_)   || 
+	if (abs(posX - myPos_.getX()) >= abs(distance_) ||
 		(((posX >= 0) && (mousePos_.getX() < halfScreen_)) ||
-		((posX <= BACKGROUND_SIZE) && (mousePos_.getX() >= halfScreen_))))
+			((posX <= BACKGROUND_SIZE) && (mousePos_.getX() >= halfScreen_))))
 	{
 		onStop();
 	}
-	else if (move_) 
+	else if (move_)
 	{
-		Vector2D aux = Vector2D(posX + movement_, myTransform_->getGlobalPos().getY());
-
+		auto aux = Vector2D(posX + movement_, myTransform_->getGlobalPos().getY());
 		myTransform_->setGlobalPos(aux);
+		moveFeedback();
 	}
 
 #if _DEBUG
@@ -86,7 +91,6 @@ void MoveOnClick::OnLeftClickDown()
 
 		// debe moverse al click
 		move_ = true;
-		enableFeedback();
 
 		// JUGADOR HACIA LA DER, FONDO HACIA LA IZQ
 		if (mousePos_.getX() >= halfScreen_)
@@ -105,8 +109,10 @@ void MoveOnClick::OnLeftClickDown()
 		}
 
 		movement_ = scrollVel_ * dir_;
+
+		enableFeedback();
 	}
-	else 
+	else
 	{
 		onStop();
 	}
@@ -118,30 +124,51 @@ void MoveOnClick::onStop()
 	move_ = false;
 }
 
+void MoveOnClick::moveFeedback()
+{
+	tweenMovimiento.step(1);
+	if (tweenMovimiento.peek() > 0)
+	{
+		flechaTrans->setGlobalPos(
+			tweenMovimiento.peek(),
+			flechaTrans->getGlobalPos().getY()
+		);
+		puntoTrans->setGlobalPos(
+			tweenMovimiento.peek(),
+			puntoTrans->getGlobalPos().getY()
+		);
+	}
+}
+
 void MoveOnClick::enableFeedback()
 {
-	const auto mousePos = ih().getMousePos();
-	const auto flechaTrans = feedbackFlecha->getComponent<Transform>();
-	const auto puntoTrans = feedbackPunto->getComponent<Transform>();
 	const auto flechaSprite = feedbackFlecha->getComponent<SpriteRenderer>();
 	const auto puntoSprite = feedbackPunto->getComponent<SpriteRenderer>();
 
 	flechaTrans->setGlobalPos(
-		mousePos.first - flechaSprite->getTexture()->width()/2, 
+		mousePos_.getX() - flechaSprite->getTexture()->width() / 2,
 		sdlutils().height()
-			- FEEDBACK_PADDING 
-			- flechaSprite->getTexture()->height()/2
-			- puntoSprite->getTexture()->height()*2
+			- FEEDBACK_PADDING
+			- flechaSprite->getTexture()->height() / 2
+			- puntoSprite->getTexture()->height() * 2
 	);
 	puntoTrans->setGlobalPos(
-		mousePos.first - puntoSprite->getTexture()->width()/2, 
-		sdlutils().height() 
-			- FEEDBACK_PADDING 
-			- puntoSprite->getTexture()->height()/2
+		mousePos_.getX() - puntoSprite->getTexture()->width() / 2,
+		sdlutils().height()
+			- FEEDBACK_PADDING
+			- puntoSprite->getTexture()->height() / 2
 	);
 
 	flechaSprite->enable(true);
 	puntoSprite->enable(true);
+
+	auto x = mousePos_.getX();
+	tweenMovimiento =
+		tweeny::from(x)
+		.to(sdlutils().width()/2)
+		.during(60);
+	tweenMovimiento.forward();
+		//.via(tweeny::easing::sinusoidalInOut);
 }
 
 void MoveOnClick::disableFeedback()

@@ -60,7 +60,12 @@ private:
 	tweeny::tween<float> movementTween;
 	ecs::entity_t feedbackFlecha;
 	ecs::entity_t feedbackPunto;
+	Transform* flechaTrans;
+	Transform* puntoTrans;
+	tweeny::tween<float> tweenMovimiento; // movimiento del propio feedback de izq o der al centro
+	tweeny::tween<float> tweenFlecha; // la flecha flota
 	void onStop();
+	void moveFeedback();
 	void enableFeedback();
 	void disableFeedback();
 };
