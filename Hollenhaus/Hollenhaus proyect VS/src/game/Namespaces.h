@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../sdlutils/SDLNetUtils.h"
-#include "../utils/Vector2D.h"
+
 
 
 namespace Cards
@@ -247,39 +246,3 @@ namespace JsonData
 }
 
 
-//esto probablemente haya que cambiarlo de archivo para evitar recompilaciones largas
-namespace MultiplayerStructs {
-
-	enum MsgType : Uint8 {
-		_PLAY_CARD_ = 0, //
-		_DRAW_CARD_, //
-		_CHANGE_TURN_, //
-		_END_GAME_ //
-	};
-
-	struct Msg {
-		Uint8 _type;
-
-		_IMPL_SERIALIAZION_(_type)
-	};
-
-	struct PlayCard : Msg {
-		
-		PlayCard(int index,Vector2D pos) 
-			:index(index),posX(pos.getX()),posY(pos.getY()) {
-			_type = _PLAY_CARD_;
-
-		}
-
-		Uint8 index;
-
-		Uint8 posX;
-		Uint8 posY;
-
-		_IMPL_SERIALIAZION_WITH_BASE_(Msg, index, posX, posY)
-
-	};
-
-	
-
-}

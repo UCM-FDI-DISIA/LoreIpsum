@@ -258,6 +258,7 @@
     <ClInclude Include="src\game\gamestates\MultiplayerGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h" />
+    <ClInclude Include="src\game\MultiplayerNamespaces.h" />
     <ClInclude Include="src\game\Namespaces.h" />
     <ClInclude Include="src\game\factories\BoardFactory.h" />
     <ClInclude Include="src\game\factories\BoardFactory_v0.h" />

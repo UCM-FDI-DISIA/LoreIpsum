@@ -670,6 +670,7 @@
     <ClInclude Include="src\game\components\SendIPFromTextComponent.h" />
     <ClInclude Include="src\game\components\SendInvitationButton.h" />
     <ClInclude Include="src\game\components\multiplayer\NetLobby.h" />
+    <ClInclude Include="src\game\MultiplayerNamespaces.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
