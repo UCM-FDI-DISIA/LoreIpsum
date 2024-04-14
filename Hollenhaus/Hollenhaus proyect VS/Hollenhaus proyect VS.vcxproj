@@ -104,6 +104,7 @@
     <ClCompile Include="src\game\gamestates\PaigroState.cpp" />
     <ClCompile Include="src\game\gamestates\SamuState.cpp" />
     <ClCompile Include="src\game\gamestates\ShopState.cpp" />
+    <ClCompile Include="src\game\gamestates\TutorialBoardState.cpp" />
     <ClCompile Include="src\game\Mouse.cpp" />
     <ClCompile Include="src\game\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -234,6 +235,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
+    <ClInclude Include="src\game\gamestates\TutorialBoardState.h" />
     <ClInclude Include="src\game\Namespaces.h" />
     <ClInclude Include="src\game\factories\BoardFactory.h" />
     <ClInclude Include="src\game\factories\BoardFactory_v0.h" />

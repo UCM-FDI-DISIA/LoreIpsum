@@ -29,7 +29,8 @@ namespace GameStates
 		LUIS,
 		NIEVES,
 		MATCHOVER,
-		DECKBUILDING
+		DECKBUILDING,
+		TUTORIALBOARD
 	};
 }
 
@@ -61,6 +62,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* matchOverState;
 	GameState* luisState;
 	GameState* deckBuildingState;
+	GameState* tutorialBoardState;
 
 public:
 	ecs::Manager* getMngr()
@@ -117,6 +119,9 @@ public:
 			break;
 		case GameStates::DECKBUILDING:
 			currentState = deckBuildingState;
+			break;
+		case GameStates::TUTORIALBOARD:
+			currentState = tutorialBoardState;
 			break;
 		default:
 			break;

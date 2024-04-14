@@ -1,6 +1,8 @@
 #pragma once
 #include "GameState.h"
 
+class Factory;
+
 class TutorialBoardState :
     public GameState
 {
@@ -23,10 +25,12 @@ private:
     void updateTutorialState();
 
     //
-    void createPopUp();
+    void setBoard();
+    void createPopUp(float x, float y, std::string popup);
 
     //
     enum Tutorial {
+        NONE,
         INIT,
         CARD,
         DECK,
@@ -38,4 +42,14 @@ private:
     //
     int currentState;
     int nextState;
+
+    Factory* factory;
+
+    // gestion de estados individuales
+    void setINIT();
+
+    void setCARD();
+
+    void setDECK();
+
 };

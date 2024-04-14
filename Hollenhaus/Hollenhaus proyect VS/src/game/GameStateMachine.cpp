@@ -16,6 +16,7 @@
 #include "gamestates/NievesState.h"
 #include "gamestates/MatchOverState.h"
 #include "gamestates/DeckBuildingState.h"
+#include "gamestates/TutorialBoardState.h"
 #include "components/managers/Manager.h"
 #include "Mouse.h"
 #include "gamestates/GameState.h"
@@ -47,6 +48,7 @@ GameStateMachine::GameStateMachine() {
 	matchOverState = new MatchOverState();
 	luisState = new LuisState();
 	deckBuildingState = new DeckBuildingState();
+	tutorialBoardState = new TutorialBoardState();
 
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();
