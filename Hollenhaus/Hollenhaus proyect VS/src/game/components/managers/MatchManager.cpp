@@ -138,6 +138,11 @@ void MatchManager::setIA_Manager(IA_manager* ia)
 	ia_manager = ia;
 }
 
+void MatchManager::setNetGame(NetGame* ng)
+{
+	netGame = ng;
+}
+
 void MatchManager::endTurnIA()
 {
 	setActualState(Turns::J1);

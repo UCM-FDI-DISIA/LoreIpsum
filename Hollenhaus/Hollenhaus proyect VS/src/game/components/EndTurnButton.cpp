@@ -32,6 +32,15 @@ void EndTurnButton::update()
 void EndTurnButton::setIA(bool b)
 {
 	activeIA = true;
+	activeMultiplayer = false;
+
+}
+
+void EndTurnButton::setMultiplayer(bool b)
+{
+	activeMultiplayer = true;
+	activeIA = false;
+
 }
 
 void EndTurnButton::ClickButton()
@@ -50,6 +59,15 @@ void EndTurnButton::ClickButton()
 
 	//version con IA
 	if (activeIA) {
+
+		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1) {
+			// Se pasa el turno al otro jugador
+			matchManager_->setActualState(Turns::IA);
+		}
+	}
+	else if (activeMultiplayer) {
+
+		//hacer cosas con el netGame
 
 		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1) {
 			// Se pasa el turno al otro jugador

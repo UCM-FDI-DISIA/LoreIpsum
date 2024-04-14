@@ -20,6 +20,8 @@ public:
     //para decir que vamos a jugar contra la IA
     void setIA(bool b);
 
+    void setMultiplayer(bool b);
+
 private:
 
     void ClickButton();
@@ -32,5 +34,7 @@ private:
     Turns::State buttonPropietary_;   // Esto es temporal (o no)
 
     bool activeIA = false;
+
+    bool activeMultiplayer = false;
 };
 

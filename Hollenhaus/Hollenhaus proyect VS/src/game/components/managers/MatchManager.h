@@ -3,6 +3,7 @@
 #include "BoardManager.h"
 
 class IA_manager;
+class NetGame;
 
 class MatchManager : public ComponentUpdate
 {
@@ -42,6 +43,8 @@ public:
     void updateVisuals();
 
     void setIA_Manager(IA_manager* ia);
+
+    void setNetGame(NetGame* ng);
     //solo la IA deberia llamar a este metodo
     void endTurnIA();
 private:
@@ -63,6 +66,8 @@ private:
     ecs::entity_t actionPointsVisualJ2;
 
     IA_manager* ia_manager;
+
+    NetGame* netGame;
 
     void resetActualActionPoints();
 

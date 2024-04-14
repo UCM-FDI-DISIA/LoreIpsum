@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "NetLobby.h"
 #include "../../gamestates/GameState.h"
+
 using namespace std;
 
 NetLobby::NetLobby(Uint16 port) :
@@ -97,7 +98,7 @@ bool NetLobby::connectToClient()
 	cout << "I AM SERVER!" << endl;
 
 	// La conexión ha sido realizada, ahora cambiamos de escena
-	//GameStateMachine::instance()->setState(¿sceneIndex?);
+	GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_GAME);
 
 	return true;
 }
@@ -129,7 +130,7 @@ bool NetLobby::connectToServer(const char* host, const int port)
 	cout << "I AM CLIENT!" << endl;
 
 	// La conexión ha sido realizada, ahora cambiamos de escena
-	//GameStateMachine::instance()->setState(¿sceneIndex?);
+	GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_GAME);
 
 	return true;
 }
