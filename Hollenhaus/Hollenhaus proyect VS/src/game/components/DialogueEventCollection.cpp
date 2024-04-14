@@ -42,5 +42,7 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent) //poli
 void DialogueEventCollection::ActionEnded()
 {
 
+	TuVieja("SE ACABOOOOOOOOO");
+
 
 }

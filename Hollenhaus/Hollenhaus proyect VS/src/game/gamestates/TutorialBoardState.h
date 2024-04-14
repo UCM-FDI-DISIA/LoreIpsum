@@ -28,7 +28,7 @@ private:
     //
     void setBoard();
     void setBaseEntity();
-    void createPopUp(float x, float y, std::string popup);
+    void createPopUp(float x, float y, std::string popup, int convo);
 
     //
     enum Tutorial {

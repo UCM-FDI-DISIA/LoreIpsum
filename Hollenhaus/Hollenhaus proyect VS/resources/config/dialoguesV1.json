@@ -173,8 +173,35 @@
               "events": [
                 {
                   "timing": 1,
-                  "type": 3,
-                  "scene": 3
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": "1",
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": "0",
+              "text": "Esto es una carta",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": "1",
+              "text": "La cartas guardan informacion",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 0,
+                  "type": 4,
+                  "scene": 0
                 }
               ]
             }

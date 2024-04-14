@@ -214,27 +214,27 @@ void TutorialBoardState::setBaseEntity()
 	base = Instantiate();
 	base->addComponent<Transform>();
 	//base->getComponent<Transform>()->addParent(nullptr);
-	//npc->getComponent<Transform>()->getRelativeScale().set(info.getScale().getX(), info.getScale().getY());
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
 	Vector2D pos{ 200, 200 };
 	base->getComponent<Transform>()->setGlobalPos(pos);
 	base->setLayer(2);
 }
 
-void TutorialBoardState::createPopUp(float x, float y, std::string popup)
+void TutorialBoardState::createPopUp(float x, float y, std::string popup, int convo)
 {
 	TuVieja("Creando PopUp...");
 
 	JsonData::DialogueData dialogue = sdlutils().dialogues().at(popup);
-	int conv = 0;
+	//int conv = 0;
 	int node = 0;
 
 	// crear dialogo del FACTORY de dialogos
 	//// Mirar comentario en el interior de la función
-	factory->createDialogue(dialogue.NPCName(), conv, node,
+	factory->createDialogue(dialogue.NPCName(), convo, node,
 		{ x, y },//POS
-		{ 100,100 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
+		{ 0.25, 0.25 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
 		5, 10, base,
-		3, dialogue.Convo(conv).isAuto(),  //LAYER
+		3, dialogue.Convo(convo).isAuto(),  //LAYER
 		"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
 		SDL_Color({ 0, 0, 0, 255 }),
 		220, //wrap length
@@ -247,10 +247,13 @@ void TutorialBoardState::setINIT()
 
 	TuVieja("Setting INIT");
 
-	createPopUp(200, 200, "Board Tutorial");
+	createPopUp(250 , 200, "Board Tutorial", 0);
 
 }
 
 void TutorialBoardState::setCARD()
 {
+	TuVieja("Setting CARD");
+
+	createPopUp(250, 200, "Board Tutorial", 1);
 }
