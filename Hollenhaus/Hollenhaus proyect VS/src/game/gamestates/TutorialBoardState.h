@@ -23,6 +23,7 @@ private:
     //
     void nextTutorialState();
     void updateTutorialState();
+    bool actionEnded();
 
     //
     void setBoard();
@@ -42,6 +43,7 @@ private:
     //
     int currentState;
     int nextState;
+    bool ended;
 
     Factory* factory;
 

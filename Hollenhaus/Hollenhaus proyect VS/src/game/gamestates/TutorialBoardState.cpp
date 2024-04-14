@@ -44,6 +44,13 @@ void TutorialBoardState::update()
 {
 	GameState::update();
 
+	if (actionEnded()) {
+
+		nextTutorialState();
+
+		ended = false;
+	}
+
 	updateTutorialState();
 }
 
@@ -59,6 +66,7 @@ void TutorialBoardState::onEnter()
 
 	currentState = NONE;
 	nextState = INIT;
+	ended = false;
 
 	setBoard();
 
@@ -87,6 +95,11 @@ void TutorialBoardState::updateTutorialState()
 
 		currentState = nextState;
 	}
+}
+
+bool TutorialBoardState::actionEnded()
+{
+	return ended;
 }
 
 void TutorialBoardState::nextTutorialState()
@@ -208,8 +221,6 @@ void TutorialBoardState::createPopUp(float x, float y, std::string popup)
 		220, //wrap length
 		Text::BoxPivotPoint::LeftTop,
 		Text::TextAlignment::Left);
-
-
 }
 
 void TutorialBoardState::setINIT()

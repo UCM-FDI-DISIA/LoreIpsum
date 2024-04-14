@@ -38,3 +38,9 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent) //poli
 	delete factory;
 	factory = nullptr;
 }
+
+void DialogueEventCollection::ActionEnded()
+{
+
+
+}
