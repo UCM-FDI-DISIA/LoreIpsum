@@ -48,6 +48,7 @@ public:
     //solo la IA deberia llamar a este metodo
     void endTurnIA();
 
+    //envia el mensaje correspondiente
     void changeTurnMultiplayer();
 
 private:

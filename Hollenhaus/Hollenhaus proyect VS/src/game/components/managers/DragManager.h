@@ -7,6 +7,7 @@ class Transform;
 class BoardManager;
 class Vector2D;
 class DropDetector;
+class NetGame;
 
 class DragManager :
     public ComponentUpdate
@@ -22,6 +23,9 @@ public:
     
     bool isDraggable() const { return draggable; }
     void setDraggable(bool value) { draggable = value; }
+
+
+    void setNetGame(NetGame* _netGame);
 private:
     
     Transform* dragTransform;
@@ -39,6 +43,9 @@ private:
     void putCardOnBoard(ecs::entity_t card,DropDetector* cell);
 
     BoardManager* boardManager;
+
+    NetGame* netGame;
+
 	bool draggable = true;
 
 };

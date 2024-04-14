@@ -14,6 +14,8 @@
 #include "../HandComponent.h"
 #include "MatchManager.h"
 
+#include "../multiplayer/NetGame.h"
+
 DragManager::DragManager()
 {
 }
@@ -60,6 +62,11 @@ void DragManager::update()
 		}
 	}
 
+}
+
+void DragManager::setNetGame(NetGame* _netGame)
+{
+	netGame = _netGame;
 }
 
 void DragManager::OnLeftClickDown()

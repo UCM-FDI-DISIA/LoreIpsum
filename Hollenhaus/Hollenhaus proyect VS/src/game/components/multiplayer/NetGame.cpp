@@ -7,7 +7,9 @@
 #include "../../../sdlutils/SDLNetUtils.h"
 
 #include "../managers/MatchManager.h"
-
+#include "../DeckComponent.h"
+#include "../HandComponent.h"
+#include "../Card.h"
 
 
 NetGame::NetGame()
@@ -65,6 +67,8 @@ void NetGame::update()
 				TuVieja("Mensaje : _DRAW_CARD_, RECIBIDO");
 
 				//procesar el mensaje
+
+				processDrawCard();
 
 			}
 			else if (msg._type == NetMsgs::_PLAY_CARD_) {
@@ -174,6 +178,7 @@ void NetGame::nextTurn()
 
 void NetGame::processDrawCard()
 {
+	rivalHandCmp->addCard(rivalDeckCmp->drawCard()->getEntity());
 }
 
 void NetGame::processPlayCard(int i, Vector2D pos)

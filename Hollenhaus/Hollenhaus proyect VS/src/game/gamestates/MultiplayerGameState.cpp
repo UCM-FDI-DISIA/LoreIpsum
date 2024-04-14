@@ -143,6 +143,9 @@ void MultiplayerGameState::onEnter()
 	//set en el matchManager
 	matchManagerComponent->setNetGame(netGameCmp);
 
+	deckPlayer1->getComponent<DeckComponent>()->setNetGame(netGameCmp);
+	
+
 
 #pragma endregion
 
