@@ -50,7 +50,10 @@ namespace NetMsgs {
 
 		FirstTurn() {};
 		FirstTurn(Uint8 myMultiplayerTurn)
-		:myMultiplayerTurn(myMultiplayerTurn){};
+		:myMultiplayerTurn(myMultiplayerTurn)
+		{
+			_type = _FIRST_TURN_OWNER_;
+		};
 		
 		Uint8 myMultiplayerTurn;
 

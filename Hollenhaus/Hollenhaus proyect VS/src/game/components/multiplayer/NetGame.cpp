@@ -43,8 +43,9 @@ void NetGame::update()
 
 			NetMsgs::Msg msg;
 
-			SDLNetUtils::deserializedReceive(msg, rival);
+			auto result =  SDLNetUtils::receiveMsg(rival);
 
+			msg.deserialize(result.buffer);
 
 			//identificar el mensaje
 			if (msg._type == NetMsgs::_NONE_) {
@@ -72,8 +73,7 @@ void NetGame::update()
 				//procesar el mensaje
 				NetMsgs::PlayCard playMsg;
 
-				SDLNetUtils::deserializedReceive(playMsg, rival);
-
+				playMsg.deserialize(result.buffer);
 
 			}
 			else if (msg._type == NetMsgs::_END_GAME_) {
@@ -89,7 +89,7 @@ void NetGame::update()
 
 				NetMsgs::FirstTurn firstMsg;
 
-				SDLNetUtils::deserializedReceive(firstMsg, rival);
+				firstMsg.deserialize(result.buffer);
 
 				matchManager->setActualState((Turns::State)firstMsg.myMultiplayerTurn);
 			}
@@ -127,6 +127,8 @@ void NetGame::setMatchManager(MatchManager* matchM)
 	NetMsgs::FirstTurn msg(rivalTurn);
 
 	SDLNetUtils::serializedSend(msg, rival);
+
+
 
 	TuVieja("Envio del mensaje del primer turno");
 }
