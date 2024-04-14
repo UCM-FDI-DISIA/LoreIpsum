@@ -4,7 +4,7 @@
 #include "../utils/Vector2D.h"
 
 
-namespace MultiplayerStructs {
+namespace NetMsgs {
 
 	enum MsgType : Uint8 {
 		_NONE_,
@@ -27,6 +27,7 @@ namespace MultiplayerStructs {
 
 	struct PlayCard : Msg {
 
+		PlayCard() {};
 		PlayCard(int index, Vector2D pos)
 			:index(index), posX(pos.getX()), posY(pos.getY()) 
 		{

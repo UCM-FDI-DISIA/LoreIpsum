@@ -52,9 +52,9 @@ class SDLNetUtils {
 
 	using msgSize_t = Uint16;
 	static constexpr std::size_t bufferSize_ = 1024;
-	static Uint8 buffer[bufferSize_];
-
+	inline static Uint8 buffer[bufferSize_];
 public:
+
 
 	/*
 	 * Initialize SDL
@@ -438,6 +438,8 @@ public:
 		// serialize the message into the buffer, it returns
 		// a pointer to the cell after the buffer. We assume
 		// the caller knows that the buffer size if bufferSize_
+
+
 		Uint8 *end = v.serialize(buffer);
 		msgSize_t msgSize = end - buffer;
 
@@ -584,3 +586,4 @@ private:
 	}
 
 };
+
