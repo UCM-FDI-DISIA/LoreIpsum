@@ -18,6 +18,7 @@ public:
     
     void initComponent() override;
 
+    // Añade una descripcion a la leyenda
     void addKey();
 
 private:
@@ -25,9 +26,12 @@ private:
 
     int lastKey_;
 
+    // Vector de nombres de iconos
     std::vector<std::string> keyNames_;
+    // Vector de descripciones
     std::vector<std::string> descs_;
-    std::vector<std::pair<ecs::entity_t, ecs::entity_t>> keys_; // 1. Imagen / 2. Texto
+    // Vector de entidades icono + desc, 1. Imagen / 2. Texto
+    std::vector<std::pair<ecs::entity_t, ecs::entity_t>> keys_;
 
     Transform* tr_;
     Vector2D pos_;
