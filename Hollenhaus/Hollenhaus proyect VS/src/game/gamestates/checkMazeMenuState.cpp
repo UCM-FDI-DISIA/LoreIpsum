@@ -4,7 +4,30 @@
 #include "../components/basics/Transform.h"
 #include "checkMazeMenuState.h"
 
-checkMazeMenuState::checkMazeMenuState()
+CheckMazeMenuState::CheckMazeMenuState()
 {
-	
+}
+
+CheckMazeMenuState::~CheckMazeMenuState()
+{
+}
+
+void CheckMazeMenuState::refresh()
+{
+}
+
+void CheckMazeMenuState::update()
+{
+}
+
+void CheckMazeMenuState::render() const
+{
+}
+
+void CheckMazeMenuState::onEnter()
+{
+}
+
+void CheckMazeMenuState::onExit()
+{
 }

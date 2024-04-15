@@ -9,3 +9,27 @@ MultiplayerModeState::MultiplayerModeState()
 	
 }
 
+MultiplayerModeState::~MultiplayerModeState()
+{
+}
+
+void MultiplayerModeState::refresh()
+{
+}
+
+void MultiplayerModeState::update()
+{
+}
+
+void MultiplayerModeState::render() const
+{
+}
+
+void MultiplayerModeState::onEnter()
+{
+}
+
+void MultiplayerModeState::onExit()
+{
+}
+

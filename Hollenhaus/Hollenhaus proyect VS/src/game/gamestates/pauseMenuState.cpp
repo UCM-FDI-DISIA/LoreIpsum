@@ -4,7 +4,30 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/basics/Transform.h"
 
-pauseMenuState::pauseMenuState()
+PauseMenuState::PauseMenuState()
 {
-	
+}
+
+PauseMenuState::~PauseMenuState()
+{
+}
+
+void PauseMenuState::refresh()
+{
+}
+
+void PauseMenuState::update()
+{
+}
+
+void PauseMenuState::render() const
+{
+}
+
+void PauseMenuState::onEnter()
+{
+}
+
+void PauseMenuState::onExit()
+{
 }
