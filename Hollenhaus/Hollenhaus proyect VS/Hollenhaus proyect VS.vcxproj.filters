@@ -691,8 +691,5 @@
     <None Include="resources\config\npcs.json">
       <Filter>Resources</Filter>
     </None>
-    <None Include="resources\config\keytexts.json">
-      <Filter>Resources</Filter>
-    </None>
   </ItemGroup>
 </Project>
