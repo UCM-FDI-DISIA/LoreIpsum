@@ -8,6 +8,9 @@
 #include "../../game/components/managers/Manager.h"
 #include "../components/basics/TextComponent.h"
 
+#include "../factories/Factory.h"
+#include "../factories/DialogueFactory_V0.h"
+
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
 shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(525, 80),Vector2D(660, 80) ,Vector2D(525, 200) ,Vector2D(660, 200) }),
 shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
@@ -23,6 +26,9 @@ ShopComponent::~ShopComponent()
 
 void ShopComponent::initComponent()
 {
+	factory2 = new Factory();
+	factory2->SetFactories(static_cast<DialogueFactory*>(new DialogueFactory_V0()));
+	
 	if (GameStateMachine::instance()->getCurrentState()->checkDataShopCardsIsEmpty()) // Si no hay cartas de la tienda en Data entonces se tienen que generar.
 	{
 		std::cout << "\nTienda genera cartas:" << std::endl;
@@ -124,7 +130,7 @@ void ShopComponent::buyCard()
 		int id = card->getComponent<Card>()->getID(); // Id de la carta.
 		int index = searchIndexById(id); // Indice de la carta en shopCards, shopCardspositions y shopCardsPrize.
 		//------Esto para confirmar la compra.---------------------------------------------alomejor separar en dos if por si se quiere poner dialogo de no tener dinero suficiente.
-		if (money >= shopCardsPrize[index] && confirmPurchase())
+		if (money >= shopCardsPrize[index] && confirmPurchase(shopCardsPrize[index]))
 		{
 			std::cout << "Compra." << std::endl;
 			if (card != nullptr)
@@ -147,25 +153,6 @@ int ShopComponent::getPlayerMoney()
 	return money;
 }
 
-/*void ShopComponent::showPrizes()
-{
-	std::string txt = "";
-	for (int i = 0; i < CARDS_IN_SHOP; i++)
-	{
-		ecs::entity_t shopText = Instantiate(Vector2D(shopCardsPositions[i].getX() + 30, shopCardsPositions[i].getY() + 40));
-		if (!cardIsBought(shopCards[i])) // Sino esta vendida aparece el precio.
-		{
-			txt = std::to_string(shopCardsPrize[i]);
-		}
-		else // Sino, pone que esta vendida.
-		{
-			txt = "vendida";
-		}
-		shopText->addComponent<TextComponent>(txt, "8bit_size_40", SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
-		shopText->setLayer(6);
-	}
-}*/
-
 int ShopComponent::calculatePrize(ecs::entity_t card)
 {
 	int prize = 0;
@@ -174,9 +161,20 @@ int ShopComponent::calculatePrize(ecs::entity_t card)
 	return prize;
 }
 
-bool ShopComponent::confirmPurchase()
+bool ShopComponent::confirmPurchase(int prize)
 {
-	//----------------------------------------------------------preguntar a ines sobre el dialogo para confirmar.
+	GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
+	//----------------------------------------------------------preguntar a ines/poli sobre el dialogo para confirmar.
+	factory2->createDialogue("Tienda", 0, 0,
+		{ 200, 200 },//POS
+		{ 100,100 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
+		5, 10, getEntity(),
+		3, 2,  //LAYER
+		"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
+		SDL_Color({ 0, 0, 0, 255 }),
+		220, //wrap length
+		Text::BoxPivotPoint::LeftTop,
+		Text::TextAlignment::Left);
 	return true;
 }
 

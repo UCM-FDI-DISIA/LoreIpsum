@@ -9,6 +9,7 @@ const int COST_PER_VALUE = 50; // Precio que suma cada efecto al precio total. S
 
 class Card;
 class Button;
+class Factory;
 
 class ShopComponent : public ComponentUpdate
 {
@@ -31,8 +32,6 @@ public:
 	bool cardIsBought(int id);
 	//------Muestra las cartas disponibles para comprar.
 	void showCards();
-	//------Muestra los precios de las cartas.
-	void showPrizes();
 	//------Devuelve el precio de la carta
 	int getCardPrice(int i);
 	//------Logica de la compra.
@@ -40,7 +39,7 @@ public:
 	//------devuelve el dinero del jugador
 	int getPlayerMoney();
 	//------Para abrir el diálogo de confirmacion de compra.
-	bool confirmPurchase();
+	bool confirmPurchase(int prize);
 	//------Dada una carta calcula su precio según su coste y modificadores.
 	int calculatePrize(ecs::entity_t card);
 	//------Dado un id de una carta, devuelve su poscion en shopCards, shopCardsPrize y shopCardsPositions porque comparten indexacion.
@@ -73,5 +72,7 @@ private:
 	ecs::entity_t cardPrizeText2;
 	//----Texto que muestra el precio de la carta 3.
 	ecs::entity_t cardPrizeText3;
+	//----Factoria para el dialogo de confimacion.
+	Factory* factory2;
 };
 

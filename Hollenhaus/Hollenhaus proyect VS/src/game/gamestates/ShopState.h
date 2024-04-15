@@ -2,12 +2,13 @@
 #include "GameState.h"
 #include <list>
 
+const int COIN_VALUE = 100; // Valor de cada moneda.
 
 class Factory;
 
 class ShopState : public GameState
 {
-public: 
+public:
 
 	ShopState();	//Constructora
 
@@ -17,6 +18,11 @@ public:
 
 	void onEnter() override;
 	void onExit() override;
+
+	void cardSelected(int prize) override;
+	void deSelected() override;
+
+	void shine(int nCoins);
 
 	ecs::entity_t createCard(int id, Vector2D pos) override;
 

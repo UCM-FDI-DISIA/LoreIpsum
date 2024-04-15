@@ -22,7 +22,7 @@ void ShopState::update()
 
 }
 
-void ShopState::render() const  
+void ShopState::render() const
 {
 	GameState::render();
 }
@@ -39,6 +39,7 @@ void ShopState::onEnter()
 	// ---- CARDS ----
 	factory = new Factory();
 	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
+
 
 	//COSAS QUE HAY EN CADA CAPA:
 	//---layer 0
@@ -67,7 +68,7 @@ void ShopState::onEnter()
 
 	//------Texto de la tienda:
 	ecs::entity_t shopText = Instantiate(Vector2D(400, 30));
-	shopText->addComponent<TextComponent>("TIENDA", "8bit_size_40", SDL_Color({ 255, 255, 255, 255 }), 350, 
+	shopText->addComponent<TextComponent>("TIENDA", "8bit_size_40", SDL_Color({ 255, 255, 255, 255 }), 350,
 		Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	shopText->setLayer(1);
 
@@ -89,9 +90,9 @@ void ShopState::onEnter()
 	estanteria->getComponent<Transform>()->setGlobalScale(1.5f, 1.5f);
 	//estanteria->getComponent<Transform>()->getRelativeScale().set(1.5f, 1.5f);
 	estanteria->setLayer(1);
-	
+
 	*/
-	
+
 	//-----MONEDAS
 	createCoin(400, 500);
 	createCoin(420, 540);
@@ -110,7 +111,7 @@ void ShopState::onEnter()
 	carta1->addComponent<BoxCollider>();
 	carta1->addComponent<SpriteRenderer>("card");
 	carta1->addComponent<ShineComponent>();
-	
+
 	makeCoinShine(0, carta1, shopManager);
 
 	Vector2D card1Pos(525, 80);
@@ -118,7 +119,7 @@ void ShopState::onEnter()
 	carta1->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta1->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
 	carta1->setLayer(2);
-	
+
 	//carta2
 	ecs::entity_t carta2 = Instantiate();
 	carta2->addComponent<Transform>();
@@ -133,7 +134,7 @@ void ShopState::onEnter()
 	carta2->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta2->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
 	carta2->setLayer(2);
-	
+
 	//carta3
 	ecs::entity_t carta3 = Instantiate();
 	carta3->addComponent<Transform>();
@@ -148,7 +149,7 @@ void ShopState::onEnter()
 	carta3->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta3->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
 	carta3->setLayer(2);
-	
+
 	//carta4
 	ecs::entity_t carta4 = Instantiate();
 	carta4->addComponent<Transform>();
@@ -173,8 +174,8 @@ void ShopState::onEnter()
 	tendero->getComponent<Transform>()->setGlobalScale(3.0f, 3.0f);
 	//tendero->getComponent<Transform>()->getRelativeScale().set(3.0f, 3.0f);
 	tendero->setLayer(1);
-	
-	
+
+
 	//mostrador
 	ecs::entity_t mostrador = Instantiate();
 	mostrador->addComponent<Transform>();
@@ -204,7 +205,7 @@ void ShopState::onEnter()
 	sdl.soundEffects().at("shoptheme").setChannelVolume(10);
 }
 
-void ShopState::onExit() 
+void ShopState::onExit()
 {
 	std::cout << "\nEXIT SHOP.";
 
@@ -213,6 +214,28 @@ void ShopState::onExit()
 	sdl.soundEffects().at("shoptheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
 }
+
+void ShopState::cardSelected(int prize)
+{
+	shine(prize / COIN_VALUE);
+}
+
+void ShopState::deSelected() 
+{
+	for (int i = 0; i < 8; i++)
+	{
+		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda");
+	}
+}
+
+void ShopState::shine(int nCoins)
+{
+	for (int i = 0; i < nCoins; i++)
+	{
+		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("monedaIlu");
+	}
+}
+
 
 ecs::entity_t ShopState::createCard(int id, Vector2D pos)
 {

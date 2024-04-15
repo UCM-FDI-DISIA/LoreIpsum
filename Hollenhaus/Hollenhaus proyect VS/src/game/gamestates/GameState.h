@@ -48,6 +48,10 @@ public:
 	virtual int getMoney();
 	//----Comprueba si una carta con id id esta en el mazo.
 	virtual bool checkCardIsInMaze(int id);
+	//----
+	virtual void cardSelected(int prize) {}
+	//----
+	virtual void deSelected() {}
 
 	virtual void saveData();
 	virtual void loadData();
