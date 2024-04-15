@@ -82,9 +82,6 @@ void MultiplayerGameState::onEnter()
 	dragManager->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::DRAG_MANAGER, dragManager);
 
-	// Factoría de cartas. Con ella generamos la mano inicial
-	ecs::entity_t deckPlayer1 = factory->createDeck();
-	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
 
 
 	// UI 
@@ -118,6 +115,14 @@ void MultiplayerGameState::onEnter()
 	//sdlutils().soundEffects().at("battletheme").play(-1);
 	//sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 
+
+
+	// Factoría de cartas. Con ella generamos la mano inicial
+	ecs::entity_t deckPlayer1 = factory->createDeck();
+
+
+
+	ecs::entity_t deckPlayer2 = factory->createDeckJ2Multiplayer();
 
 #pragma endregion
 

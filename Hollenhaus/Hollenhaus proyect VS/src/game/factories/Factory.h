@@ -103,6 +103,7 @@ public:
 	ecs::entity_t createHand();
 	ecs::entity_t createDeck();
 	ecs::entity_t createDeckJ2();
+	ecs::entity_t createDeckJ2Multiplayer();
 	ecs::entity_t createBoard();
 
 	// M�todos para crear la UI en el MatchState

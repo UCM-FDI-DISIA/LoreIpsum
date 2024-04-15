@@ -30,7 +30,6 @@ NetGame::NetGame()
 	SDLNet_TCP_AddSocket(socketSet, rival);
 
 
-	
 
 }
 
@@ -54,29 +53,30 @@ void NetGame::update()
 
 			msg.deserialize(result.buffer);
 
-			//identificar el mensaje
-			if (msg._type == NetMsgs::_NONE_) {
+			switch (msg._type)
+			{
+			case NetMsgs::_NONE_:	
 				TuVieja("Mensaje : _NONE_, RECIBIDO");
 
 				//procesar el mensaje/ lanzar error
-
-			}
-			else if (msg._type == NetMsgs::_CHANGE_TURN_) {
+				break;
+			case NetMsgs::_CHANGE_TURN_:
 				TuVieja("Mensaje : CHANGE_TURN, RECIBIDO");
 
 				//procesar el mensaje
 				processNextTurn();
 
-			}
-			else if (msg._type == NetMsgs::_DRAW_CARD_) {
+				break;
+			case NetMsgs::_DRAW_CARD_:
 				TuVieja("Mensaje : _DRAW_CARD_, RECIBIDO");
 
 				//procesar el mensaje
 
 				processDrawCard();
 
-			}
-			else if (msg._type == NetMsgs::_PLAY_CARD_) {
+				break;
+			case NetMsgs::_PLAY_CARD_: {
+
 				TuVieja("Mensaje : _PLAY_CARD_, RECIBIDO");
 
 				//procesar el mensaje
@@ -86,14 +86,16 @@ void NetGame::update()
 
 				processPlayCard(playMsg.index, Vector2D(playMsg.posX, playMsg.posY));
 
+				break;
 			}
-			else if (msg._type == NetMsgs::_END_GAME_) {
+			case NetMsgs::_END_GAME_:
 				TuVieja("Mensaje : _END_GAME_, RECIBIDO");
 
 				//procesar el mensaje
 
-			}
-			else if (msg._type == NetMsgs::_FIRST_TURN_OWNER_) {
+				break;
+			case NetMsgs::_FIRST_TURN_OWNER_: {
+
 				TuVieja("Mensaje : _FIRST_TURN_OWNER_, RECIBIDO");
 
 				//procesar el mensaje
@@ -103,8 +105,14 @@ void NetGame::update()
 				firstMsg.deserialize(result.buffer);
 
 				matchManager->setActualState((Turns::State)firstMsg.myMultiplayerTurn);
+
+				break;
 			}
-			
+			default:
+				break;
+			}
+
+	
 		}
 
 	}

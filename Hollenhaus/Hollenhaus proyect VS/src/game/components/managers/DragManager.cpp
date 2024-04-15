@@ -71,8 +71,10 @@ void DragManager::setNetGame(NetGame* _netGame)
 
 void DragManager::playCardMultiplayer(ecs::entity_t e ,Vector2D pos)
 {
-	TuVieja("Se envia el mesaje de jugar una carta");
-	netGame->playCard(e, pos);
+	if (netGame != nullptr) {
+		TuVieja("Se envia el mesaje de jugar una carta");
+		netGame->playCard(e, pos);
+	}
 }
 
 void DragManager::OnLeftClickDown()

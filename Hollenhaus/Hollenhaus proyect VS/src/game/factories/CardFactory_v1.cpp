@@ -179,6 +179,71 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 	return deck;
 }
 
+ecs::entity_t CardFactory_v1::createDeckJ2Multiplayer()
+{
+	int initX = 600;
+	int initY = -12;
+
+	ecs::entity_t hand = createHandJ2();
+
+	Vector2D deckPos(initX, initY);
+
+	ecs::entity_t deck = Instantiate(deckPos);
+	deck->addComponent<BoxCollider>()->setPosOffset(Vector2D(-15, 0));
+	deck->addComponent<DeckComponent>()->setOwner(Players::PLAYER2);
+	deck->addComponent<PlayerCardsManager>(
+		hand->getComponent<HandComponent>(),
+		deck->getComponent<DeckComponent>()
+	);
+	deck->setLayer(2);
+
+	//instantie
+
+	//añadir las cartas al mazo
+	for (int i = 0; i < cardsOnDeck; i++)
+	{
+		auto card = sdlutils().cards().at(std::to_string(i));
+		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
+		ecs::entity_t ent = createCard(
+			Vector2D(initX, initY),
+			card.cost(),
+			card.value(),
+			card.sprite(),
+			card.unblockable(),
+			card.effects(),
+			false
+		);
+		ent->setLayer(1);
+		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
+	}
+
+
+	//las añadimos otra vez para asegurar que el enemigo tenga cartas de sobra
+	for (int i = 0; i < cardsOnDeck; i++)
+	{
+		auto card = sdlutils().cards().at(std::to_string(i));
+		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
+		ecs::entity_t ent = createCard(
+			Vector2D(initX, initY),
+			card.cost(),
+			card.value(),
+			card.sprite(),
+			card.unblockable(),
+			card.effects(),
+			false
+		);
+		ent->setLayer(1);
+		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
+	}
+
+
+
+	addDeckImage(initX, initY, true);
+	TuVieja("Deck2");
+
+	return deck;
+}
+
 void CardFactory_v1::addInfo(ecs::entity_t card, int cost, int value, std::vector<JsonData::CardEffect>& effects, bool bocabajo)
 {
 	addEffects(card->getComponent<Card>(), effects);
