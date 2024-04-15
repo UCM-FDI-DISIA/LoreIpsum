@@ -115,19 +115,22 @@ void NPC::OnLeftClickUp()
 void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 {
 	pos = myTransform->getGlobalPos().getX();
-	closeToPaul = pos > 200 && pos < sdlutils().width() - 200;
+	closeToPaul = pos > 200 && pos < sdlutils().width() - 170;
 
-	if (!click && myBoxCollider->isCursorOver()) 
+	if (!click && myBoxCollider->isCursorOver() && closeToPaul) 
 	{
 		if (type == 0) {
 			TuVieja("Cambio de escena.");
 			GameStateMachine::instance()->setState(scene);
 		}
-		else if (type == 1 && closeToPaul) 
+		else if (type == 1) 
 		{
 			talkTo();   
 		}
 	}
+	//aqui iria-> si el dialogo ha sido creado y !closeToPaul entonces destruir dialog
+	//npcDialogue->getComponent<NextText>()->setDead(true);
+	//npcDialogue->getComponent<DialogueDestroyer>()->destroyDialogue();
 }
 
 void NPC::talkTo()
