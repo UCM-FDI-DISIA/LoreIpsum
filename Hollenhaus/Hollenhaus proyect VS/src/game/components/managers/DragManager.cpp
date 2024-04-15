@@ -53,6 +53,8 @@ void DragManager::update()
 			//Debug para que escriba en que celda está
 			std::cout << drop->getComponent<DropDetector>()->getBoardPos() << std::endl;
 
+			auto c = dragTransform->getEntity()->getComponent<Card>();
+
 			////Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
 			//dragTransform->getEntity()->getComponent<Card>()->getEffects();
 
@@ -68,7 +70,7 @@ void DragManager::OnLeftClickDown()
 
 	auto card = mouseRaycast(ecs::grp::CARDS);
 
-	if (card != nullptr && CardOnHand(card) && CardIsOfCurrentPlayer(card)) 
+	if (card != nullptr && draggable && CardOnHand(card) && CardIsOfCurrentPlayer(card)) 
 	{
 		//se guarda la posicion/ transform de como estaba la carta
 		dragTransform = card->getComponent<Transform>();

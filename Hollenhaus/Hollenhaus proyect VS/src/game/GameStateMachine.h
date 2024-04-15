@@ -6,7 +6,6 @@
 #include <functional>
 #include "../utils/Singleton.h"
 
-
 class GameState;
 class Data;
 class Mouse;
@@ -30,10 +29,18 @@ namespace GameStates
 		NIEVES,
 		MATCHOVER,
 		DECKBUILDING,
-		TUTORIALBOARD
+		TUTORIALBOARD,
+		TUTORIAL,
+		STORYMODEMENU,
+		MULTIPLAYERMODEMENU,
+		OPTIONSMENU,
+		TRANSITIONTEXT,
+		CINEMATICINTRO,
+		PAUSEMENU,
+		MAZEMENU,
+		CLUESMENU
 	};
 }
-
 
 class GameStateMachine : public Singleton<GameStateMachine>
 {
@@ -47,22 +54,42 @@ class GameStateMachine : public Singleton<GameStateMachine>
 
 	Mouse* mouse_;
 
-	//Creaci�n de los distintos estados del juego
+	//Creacion de los distintos estados del juego
+	// 
+	// Current
 	GameState* currentState;
+
+	// Estados de juego
 	GameState* mainMenuState;
 	GameState* cityState;
 	GameState* officeState;
 	GameState* shopState;
+	GameState* matchOverState;
 	GameState* boardState;
+	GameState* deckBuildingState;
+	GameState* tutorialState;
+
+	// Estados de gente
 	GameState* paigroState;
 	GameState* samuState;
 	GameState* jimboState;
 	GameState* nievesState;
-	GameState* movementState;
-	GameState* matchOverState;
 	GameState* luisState;
 	GameState* deckBuildingState;
 	GameState* tutorialBoardState;
+
+	// Estados de menuses
+	GameState* storyModeState;
+	GameState* multiplayerModeState;
+	GameState* optionsMainMenuState;
+	GameState* cinematicIntroState;
+	GameState* transitionTextMenuState;
+	GameState* pauseMenuState;
+	GameState* checkMazeMenuState;
+	GameState* checkCluesMenuState;
+	 
+	// Estados auxiliares
+	GameState* movementState;
 
 public:
 	ecs::Manager* getMngr()
@@ -123,10 +150,38 @@ public:
 		case GameStates::TUTORIALBOARD:
 			currentState = tutorialBoardState;
 			break;
+		case GameStates::TUTORIAL:
+			currentState = tutorialState;
+			break; 
+		case GameStates::STORYMODEMENU:
+				currentState = storyModeState;
+			break; 
+		case GameStates::MULTIPLAYERMODEMENU:
+			currentState = multiplayerModeState;
+			break;
+		case GameStates::OPTIONSMENU:
+			currentState = optionsMainMenuState;
+			break; 
+		case GameStates::TRANSITIONTEXT:
+			currentState = transitionTextMenuState;
+			break; 
+		case GameStates::CINEMATICINTRO:
+			currentState = cinematicIntroState;
+			break; 
+		case GameStates::PAUSEMENU:
+			currentState = pauseMenuState;
+			break; 
+		case GameStates::MAZEMENU:
+			currentState = checkMazeMenuState;
+			break; 
+		case GameStates::CLUESMENU:
+			currentState = checkCluesMenuState;
+			break;
 		default:
 			break;
 		}
 	};
+
 	bool Empty() const { return gameStack.empty(); }
 
 	GameState* getCurrentState() { return currentState; }

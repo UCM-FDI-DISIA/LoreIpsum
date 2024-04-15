@@ -9,10 +9,12 @@
 
 #include <sstream>
 
-KeyManager::KeyManager() : addToY_(100), lastKey_(0), tr_(), pos_() {}
+KeyManager::KeyManager() : addToY_(100), lastKey_(0), tr_(), pos_(), font_("8bit_size_20") {}
 
 void 
 KeyManager::initComponent() {
+	descs_.emplace_back(sdlutils().keys().at("amai").text());
+
 	tr_ = ent_->getComponent<Transform>();
 	assert(tr_ != nullptr);
 
@@ -30,7 +32,12 @@ KeyManager::addKey(std::string s) {
 	ecs::entity_t txt = Instantiate(pos_ + Vector2D(e->getComponent<SpriteRenderer>()->getImageSize().getX(), 0));
 
 	txt->addComponent<Transform>()->addParent(e->getComponent<Transform>());
-	//txt->addComponent<TextComponent>(descs_[lastKey_]);
+	txt->addComponent<TextComponent>(descs_[lastKey_], 
+									font_, 
+									SDL_Color({ 0, 0, 0, 255 }), 
+									150,
+									Text::BoxPivotPoint::LeftTop, 
+									Text::TextAlignment::Center);
 
 	keys_.emplace_back(e, txt);
 	pos_ = pos_ + Vector2D(0, addToY_);

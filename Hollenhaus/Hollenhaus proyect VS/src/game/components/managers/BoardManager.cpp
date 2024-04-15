@@ -130,7 +130,6 @@ void BoardManager::applyAllEffects() const
 			auto card = cell->getCard();
 			if (card != nullptr) {
 				cell->applyValue(card);
-
 			}
 		}
 			//if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)

@@ -1702,6 +1702,13 @@ namespace tweeny {
             int direction() const;
 
             /**
+             * @brief Returns the current direction of this tween
+             *
+             * @returns -1 If it is mobin backwards in time, 1 if it is moving forward in time
+             */
+            bool loop();
+
+            /**
              * @brief Jumps to a specific tween point
              *
              * This will seek the tween to a percentage matching the beginning of that step.
@@ -1787,6 +1794,7 @@ namespace tweeny {
             tween<T> & forward(); ///< @sa tween::forward
             tween<T> & backward(); ///< @sa tween::backward
             int direction() const; ///< @sa tween::direction
+            bool loop();
             const T & jump(size_t point, bool suppressCallbacks = false); ///< @sa tween::jump
             uint16_t point() const; ///< @sa tween::point
 
@@ -2191,6 +2199,16 @@ namespace tweeny {
     }
 
     template<typename T, typename... Ts>
+    bool tween<T, Ts...>::loop() {
+        if (currentProgress >= 1.0f || currentProgress <= 0.001f) 
+        {
+            currentDirection *= -1;
+            return true;
+        }
+        return false;
+    }
+
+    template<typename T, typename... Ts>
     inline const typename detail::tweentraits<T, Ts...>::valuesType & tween<T, Ts...>::jump(std::size_t p, bool suppress) {
         p = detail::clip(p, static_cast<size_t>(0), points.size() -1);
         return seek(static_cast<int32_t>(points.at(p).stacked), suppress);
@@ -2517,6 +2535,16 @@ namespace tweeny {
     template<typename T>
     int tween<T>::direction() const {
         return currentDirection;
+    }
+
+    template<typename T>
+    bool tween<T>::loop() {
+        if (currentProgress >= 1.0f || currentProgress <= 0.001f) 
+        {
+            currentDirection *= -1;
+            return true;
+        }
+        return false;
     }
 
     template<typename T>
