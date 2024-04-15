@@ -25,8 +25,9 @@ NextText::~NextText()
 
 void NextText::initComponent()
 {
-	boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
-	assert(boxCollider_ != nullptr);
+
+	//boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
+	//assert(boxCollider_ != nullptr);
 
 	dialogueReader_ = ent_->getComponent<DialogueReader>();
 	assert(dialogueReader_ != nullptr);
@@ -54,7 +55,7 @@ void NextText::reactToClick()
 {
 	if (!dead) 
 	{
-		if (mouseRaycast() == ent_)
+		if (boxCollider_->isCursorOver())
 		{
 			TuVieja("ended: ");
 			//TuVieja(typeWriter_->ended());
@@ -87,5 +88,11 @@ void NextText::setDead(bool a)
 {
 	dead = a;
 }
+
+void NextText::setCollider(BoxCollider* coll)
+{
+	boxCollider_ = coll;
+}
+
 
 
