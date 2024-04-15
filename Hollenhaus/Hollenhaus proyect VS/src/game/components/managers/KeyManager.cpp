@@ -14,6 +14,7 @@ KeyManager::KeyManager() :
 	pos_(), 
 	font_("8bit_size_20") 
 {
+	// Inicializacion del vector con los nombres
 	keyNames_.reserve(NUMBER_OF_KEYS);
 
 	keyNames_.emplace_back("esquina");
@@ -27,7 +28,7 @@ KeyManager::KeyManager() :
 void 
 KeyManager::initComponent() {
 	for (int i = 0; i < NUMBER_OF_KEYS; ++i) {
-		descs_.emplace_back(sdlutils().keys().at(keyNames_[i]).text());
+		descs_.emplace_back(sdlutils().keys().at(keyNames_[i]).text()); // Descripciones desde el map
 	}
 
 	tr_ = ent_->getComponent<Transform>();
@@ -54,23 +55,12 @@ KeyManager::addKey() {
 									Text::BoxPivotPoint::LeftTop, 
 									Text::TextAlignment::Center);
 
+	// Se añade el par al vector
 	keys_.emplace_back(e, txt);
-	pos_ = pos_ + Vector2D(0, addToY_);
+	pos_ = pos_ + Vector2D(0, addToY_); // Actualizamos la pos para la siguiente
 
+	// Proxima key
 	++lastKey_;
 	if (lastKey_ == 3)
 		pos_ = tr_->getGlobalPos() + Vector2D(110, 0);
 }
-
-/*{
-  "id": "flecha",
-  "text": "Su efecto se aplica a la carta adyacente en la dirección a la que apunta"
-},
-{
-  "id": "superflecha",
-  "text": "Su efecto se aplica todas las cartas en la dirección a la que apunta"
-},
-{
-  "id": "block",
-  "text": "Anula la habilidad de la carta adyacente en la dirección en la que apunta"
-}*/
