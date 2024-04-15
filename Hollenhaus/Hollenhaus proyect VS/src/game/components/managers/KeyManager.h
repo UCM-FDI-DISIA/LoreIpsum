@@ -18,7 +18,7 @@ public:
     
     void initComponent() override;
 
-    // Añade una descripcion a la leyenda
+    // Anyade una descripcion a la leyenda
     void addKey();
 
 private:
