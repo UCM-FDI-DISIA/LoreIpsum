@@ -4,7 +4,7 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/basics/Transform.h"
 
-tutorialState::tutorialState()
+TutorialState::TutorialState()
 {
 	
 }
