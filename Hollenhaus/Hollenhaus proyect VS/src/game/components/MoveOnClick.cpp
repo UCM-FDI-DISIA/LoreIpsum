@@ -38,8 +38,8 @@ void MoveOnClick::initComponent()
 	feedbackPunto = Instantiate(Vector2D());
 	feedbackFlecha = Instantiate(Vector2D());
 
-	feedbackPunto->addComponent<SpriteRenderer>("feedback_circulo")->enable(false);
-	feedbackFlecha->addComponent<SpriteRenderer>("feedback_flecha")->enable(false);
+	feedbackPunto->addComponent<SpriteRenderer>("feedback_circulo");
+	feedbackFlecha->addComponent<SpriteRenderer>("feedback_flecha");
 
 	feedbackPunto->setLayer(2);
 	feedbackFlecha->setLayer(2);
@@ -53,6 +53,15 @@ void MoveOnClick::initComponent()
 	puntoTrans->setGlobalScale(2.5f, 2.5f);
 	flechaTrans->addParent(myTransform_);
 	flechaTrans->setGlobalScale(2.5f, 2.5f);
+
+	flechaSprite->setOpacity(0);
+	puntoSprite->setOpacity(0);
+
+	tweenFade =
+		tweeny::from(0)
+		.to(255)
+		.during(10)
+		.via(tweeny::easing::sinusoidalIn);
 
 	// llamada al input
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
@@ -83,6 +92,10 @@ void MoveOnClick::update()
 		myTransform_->setGlobalPos(aux);
 		moveFeedback();
 	}
+
+	tweenFade.step(1);
+	flechaSprite->setOpacity(tweenFade.peek());
+	puntoSprite->setOpacity(tweenFade.peek());
 
 #if _DEBUG
 	//std::cout << "DISTANCE: " << distance_ << " " << move_ << "\n";
@@ -170,9 +183,6 @@ void MoveOnClick::enableFeedback()
 			- puntoSprite->getTexture()->height() / 2
 	);
 
-	flechaSprite->enable(true);
-	puntoSprite->enable(true);
-
 	auto fanY = flechaTrans->getGlobalPos().getY();
 	tweenFlecha =
 		tweeny::from(fanY - 10)
@@ -180,10 +190,14 @@ void MoveOnClick::enableFeedback()
 		.to(fanY - 10)
 		.during(30)
 		.via(tweeny::easing::sinusoidalInOut);
+
+	tweenFade.seek(0);
+	flechaSprite->setOpacity(0);
+	puntoSprite->setOpacity(0);
+	tweenFade.forward();
 }
 
 void MoveOnClick::disableFeedback()
 {
-	flechaSprite->enable(false);
-	puntoSprite->enable(false);
+	tweenFade.backward();
 }

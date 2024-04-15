@@ -65,7 +65,7 @@ private:
 	SpriteRenderer* flechaSprite;
 	SpriteRenderer* puntoSprite;
 	tweeny::tween<float> tweenFlecha; // la flecha flota
-	tweeny::tween<float> tweenFade; // fade in/out del feedback
+	tweeny::tween<int> tweenFade; // fade in/out del feedback
 	void onStop();
 	void moveFeedback();
 	void enableFeedback();
