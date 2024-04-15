@@ -318,6 +318,9 @@
     <ClCompile Include="src\game\components\Animation.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\gamestates\TutorialBoardState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -619,6 +622,9 @@
     </ClInclude>
     <ClInclude Include="src\game\components\Animation.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\TutorialBoardState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
