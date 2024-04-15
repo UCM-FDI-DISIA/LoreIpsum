@@ -44,5 +44,6 @@ void DialogueEventCollection::ActionEnded()
 
 	TuVieja("SE ACABOOOOOOOOO");
 
+	// handler del tutorial para tocar el action done
 
 }

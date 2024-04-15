@@ -12,29 +12,29 @@
               "text": "Mi campeon favorito",
               "eventStart": 0,
               "eventFinish": 0,
-		          "events": [
-		          { 
-		            "timing": 1,
-		            "type": 3,
-		            "scene": 3
-		          }
-		          ]
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 3
+                }
+              ]
             },
             {
               "nodeID": "1",
               "text": "Sin duda alguna, Anivia, la Criofenix",
               "eventStart": 0,
               "eventFinish": 0,
-		"events": [
-		]
+              "events": [
+              ]
             },
             {
               "nodeID": "2",
               "text": "No tendra mucho ataque",
               "eventStart": 0,
               "eventFinish": 0,
-		"events": [
-		]
+              "events": [
+              ]
             },
             {
               "nodeID": "3",
@@ -54,8 +54,8 @@
               "text": "Pero me encanta",
               "eventStart": 0,
               "eventFinish": 0,
-		"events": [
-		]
+              "events": [
+              ]
             }
           ]
         },
@@ -68,16 +68,16 @@
               "text": "Otra conversacion por aqui",
               "eventStart": 0,
               "eventFinish": 0,
-		"events": [
-		]
+              "events": [
+              ]
             },
             {
               "nodeID": "1",
               "text": "Ha quedado buena tarde",
               "eventStart": 0,
               "eventFinish": 0,
-		"events": [
-		]
+              "events": [
+              ]
             }
           ]
         }
@@ -212,8 +212,3 @@
 
   ]
 }
-
-
-  
-
-
