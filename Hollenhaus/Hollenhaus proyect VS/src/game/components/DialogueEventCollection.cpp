@@ -2,6 +2,7 @@
 #include "DialogueEventCollection.h"
 #include "../factories/Factory.h"
 #include "../factories/DecisionFactory_V0.h"
+#include "../TutorialManager.h"
 
 DialogueEventCollection::DialogueEventCollection()
 {
@@ -45,5 +46,9 @@ void DialogueEventCollection::ActionEnded()
 	TuVieja("SE ACABOOOOOOOOO");
 
 	// handler del tutorial para tocar el action done
+	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
+	ent->getComponent<TutorialManager>()->actionEnded();
+
+	// AQUI
 
 }

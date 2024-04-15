@@ -1,17 +1,6 @@
 #pragma once
-#include "../ComponentUpdate.h"
-#include <vector>
-#include <list>
-#include <functional>
-#include "../../Namespaces.h"
+#include "pch.h"
 
-#include "IA_manager.h" //intentar cambiarlo para quitarlo de aqui
-
-
-namespace ecs {
-    class Entity;
-    using entity_t = Entity*;
-}
 
 class TutorialManager : public ComponentUpdate
 {
@@ -19,7 +8,17 @@ public:
     TutorialManager();
     ~TutorialManager() override;
 
+    void initComponent() override;
+    void update() override;
+
+
+    void actionEnded();
+    void resetAction();
+
+    bool hasEnded() { return ended; }
+
 private:
 
+    bool ended;
 
 };

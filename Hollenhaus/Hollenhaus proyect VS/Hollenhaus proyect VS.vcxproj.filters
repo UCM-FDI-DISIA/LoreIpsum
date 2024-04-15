@@ -321,6 +321,7 @@
     <ClCompile Include="src\game\gamestates\TutorialBoardState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\TutorialManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -626,6 +627,7 @@
     <ClInclude Include="src\game\gamestates\TutorialBoardState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\TutorialManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">

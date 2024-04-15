@@ -31,7 +31,8 @@
 //
 #define _HDLRS_LIST_ \
     MATCH_MANAGER, \
-	PADDLE
+	PADDLE, \
+	TUTORIAL_MANAGER
 
 // Systems list - must have at least one element
 //

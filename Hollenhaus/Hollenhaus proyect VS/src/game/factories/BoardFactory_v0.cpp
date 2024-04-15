@@ -67,5 +67,6 @@ ecs::entity_t BoardFactory_v0::createBoard()
 	//añadimos a la entidad el componente boardManager y le seteamos el board que hemos creado
 	boardEntity->addComponent<BoardManager>()->setBoard(_board);
 
+
 	return boardEntity;
 }
