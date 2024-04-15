@@ -131,6 +131,7 @@ void CityState::onEnter()
 	factory->createNPC(1, fondo);
 	factory->createNPC(2, fondo);
 	factory->createNPC(3, fondo);
+	//factory->createNPC(4, fondo);
 
 
 	//----Para entrar en la tienda.

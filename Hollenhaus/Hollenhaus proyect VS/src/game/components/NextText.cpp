@@ -54,11 +54,13 @@ void NextText::reactToClick()
 {
 	if (!dead) 
 	{
-		if (typeWriter_->ended() && mouseRaycast() == ent_)
+		if (mouseRaycast() == ent_)
 		{
 			TuVieja("ended: ");
 			//TuVieja(typeWriter_->ended());
-			dialogueReader_->NextNode();
+			//dialogueReader_->NextNode();
+
+			callNextNode();
 		}
 	}
 }
@@ -69,11 +71,20 @@ void NextText::callNextNode()
 		TuVieja("Cambio de nodo.");
 		dialogueReader_->NextNode();
 	}
+	else {
+
+		typeWriter_->finishTypewrite();
+	}
+}
+
+void NextText::callFullText()
+{
+
+
 }
 
 void NextText::setDead(bool a)
 {
-	this;
 	dead = a;
 }
 

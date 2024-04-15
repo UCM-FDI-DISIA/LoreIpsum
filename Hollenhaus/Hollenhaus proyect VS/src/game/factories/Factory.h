@@ -123,7 +123,7 @@ public:
 		Text::TextAlignment textAlignment);
 
 	// metodos para las decisiones al acabar dialogo
-	void createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene,
+	void createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene, int greenDecision, int redDecision,
 		std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment);
 
 

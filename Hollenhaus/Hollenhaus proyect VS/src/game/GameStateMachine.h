@@ -29,6 +29,7 @@ namespace GameStates
 		NIEVES,
 		MATCHOVER,
 		DECKBUILDING,
+		TUTORIALBOARD,
 		TUTORIAL,
 		STORYMODEMENU,
 		MULTIPLAYERMODEMENU,
@@ -67,6 +68,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* boardState;
 	GameState* deckBuildingState;
 	GameState* tutorialState;
+	GameState* tutorialBoardState;
 
 	// Estados de gente
 	GameState* paigroState;
@@ -144,6 +146,9 @@ public:
 		case GameStates::DECKBUILDING:
 			currentState = deckBuildingState;
 			break;
+		case GameStates::TUTORIALBOARD:
+			currentState = tutorialBoardState;
+			break;
 		case GameStates::TUTORIAL:
 			currentState = tutorialState;
 			break; 
@@ -171,7 +176,6 @@ public:
 		case GameStates::CLUESMENU:
 			currentState = checkCluesMenuState;
 			break;
-
 		default:
 			break;
 		}

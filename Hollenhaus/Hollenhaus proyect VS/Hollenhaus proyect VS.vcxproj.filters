@@ -318,6 +318,12 @@
     <ClCompile Include="src\game\components\Animation.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\gamestates\TutorialBoardState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\TutorialManager.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
     <ClCompile Include="src\game\gamestates\tutorialState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
@@ -645,6 +651,12 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\Animation.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\TutorialBoardState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\TutorialManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\gamestates\checkCluesMenuState.h">

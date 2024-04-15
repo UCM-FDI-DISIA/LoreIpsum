@@ -17,6 +17,9 @@ public:
 	//ConfirmationPopUp
 	static void ConfirmationPopUp(ecs::entity_t parent);
 
+	//ActionEnded
+	static void ActionEnded();
+
 	//para llamar a decisionFactory
 	Factory* factory;
 
@@ -50,6 +53,11 @@ public:
 			return [parent]
 				{
 					ConfirmationPopUp(parent);
+				};
+		case DialogueEvents::ActionEnded:
+			return []
+				{
+					ActionEnded();
 				};
 		default:
 			return nullptr;

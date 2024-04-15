@@ -20,6 +20,9 @@
 #include "gamestates/LuisState.h"
 #include "gamestates/PaigroState.h"
 #include "gamestates/NievesState.h"
+#include "gamestates/MatchOverState.h"
+#include "gamestates/DeckBuildingState.h"
+#include "gamestates/TutorialBoardState.h"
 
 #include "gamestates/checkCluesMenuState.h"
 #include "gamestates/checkMazeMenuState.h"
@@ -72,6 +75,8 @@ GameStateMachine::GameStateMachine() {
 	jimboState = new JimboState();
 	nievesState = new NievesState();
 	luisState = new LuisState();
+	deckBuildingState = new DeckBuildingState();
+	tutorialBoardState = new TutorialBoardState();
 
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();
