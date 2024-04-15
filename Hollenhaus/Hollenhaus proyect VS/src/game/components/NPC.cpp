@@ -148,7 +148,7 @@ void NPC::talkTo()
 		//// Mirar comentario en el interior de la función
 		factory->createDialogue(dialogue.NPCName(), conv, node,
 								{x, y},//POS
-								{100,100}, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
+								{2,2}, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
 								5, 10, getEntity(), 
 								3, dialogue.Convo(conv).isAuto(),  //LAYER
 								"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
