@@ -64,17 +64,3 @@ KeyManager::addKey() {
 	if (lastKey_ == 3)
 		pos_ = tr_->getGlobalPos() + Vector2D(110, 0);
 }
-
-// QUE TE JODAN JSON
-/*{
-  "id": "flecha",
-  "text": "Su efecto se aplica a la carta adyacente en la dirección a la que apunta"
-},
-{
-  "id": "superflecha",
-  "text": "Su efecto se aplica todas las cartas en la dirección a la que apunta"
-},
-{
-  "id": "block",
-  "text": "Anula la habilidad de la carta adyacente en la dirección en la que apunta"
-}*/
