@@ -46,7 +46,7 @@ private:
 
     BoardManager* boardManager;
 
-    NetGame* netGame;
+    NetGame* netGame = nullptr;
 
 	bool draggable = true;
 
