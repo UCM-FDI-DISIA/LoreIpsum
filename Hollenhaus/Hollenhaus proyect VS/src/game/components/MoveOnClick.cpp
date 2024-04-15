@@ -71,7 +71,7 @@ void MoveOnClick::update()
 {
 	// ---- Version de Andres y Nieves y Jesus Cristo amen (y jimbo)----
 	const float posX = myTransform_->getGlobalPos().getX();
-	const float diff = abs(posX - myPos_.getX());
+	const float diff = abs(posX - initialPos_.getX());
 
 	// ---- MOVE FALSE ----
 	// -> si la diferencia entre la pos actual y la inicial es la distancia a recorrer (se ha completado el mov.)
@@ -99,7 +99,7 @@ void MoveOnClick::update()
 
 #if _DEBUG
 	//std::cout << "DISTANCE: " << distance_ << " " << move_ << "\n";
-	//std::cout << abs(myTransform_->getGlobalPos().getX() - myPos_.getX()) << "\n";
+	//std::cout << abs(myTransform_->getGlobalPos().getX() - initialPos_.getX()) << "\n";
 #endif
 }
 
@@ -112,7 +112,7 @@ void MoveOnClick::OnLeftClickDown()
 		mousePos_ = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
 
 		// posicion del fondo al hacer click
-		myPos_ = myTransform_->getGlobalPos();
+		initialPos_ = myTransform_->getGlobalPos();
 
 		// debe moverse al click
 		move_ = true;
@@ -137,10 +137,7 @@ void MoveOnClick::OnLeftClickDown()
 
 		enableFeedback();
 	}
-	else
-	{
-		onStop();
-	}
+	else onStop();
 }
 
 void MoveOnClick::onStop()

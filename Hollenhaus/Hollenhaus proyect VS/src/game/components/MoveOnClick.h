@@ -41,7 +41,7 @@ private:
 	Vector2D mousePos_;
 
 	// posicion inicial del fondo
-	Vector2D myPos_;
+	Vector2D initialPos_;
 
 	// velocidad de movimiento de scroll
 	float scrollVel_;
@@ -57,7 +57,6 @@ private:
 	float halfScreen_;
 
 	/// FEEDBACK
-	tweeny::tween<float> movementTween;
 	ecs::entity_t feedbackFlecha;
 	ecs::entity_t feedbackPunto;
 	Transform* flechaTrans;
@@ -66,6 +65,7 @@ private:
 	SpriteRenderer* puntoSprite;
 	tweeny::tween<float> tweenFlecha; // la flecha flota
 	tweeny::tween<int> tweenFade; // fade in/out del feedback
+	tweeny::tween<float> movementTween;
 	void onStop();
 	void moveFeedback();
 	void enableFeedback();
