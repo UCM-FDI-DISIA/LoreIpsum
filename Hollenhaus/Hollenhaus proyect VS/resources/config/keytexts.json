@@ -1,0 +1,16 @@
+{
+  "keys": [
+    {
+      "id": "esquina",
+      "text": "Activa su efecto si se encuentra en las esquinas"
+    },
+    {
+      "id": "centro",
+      "text": "Activa su efecto si se encuentra en el centro"
+    },
+    {
+      "id": "unblockable",
+      "text": "No le afectan modificadores"
+    }
+  ]
+}

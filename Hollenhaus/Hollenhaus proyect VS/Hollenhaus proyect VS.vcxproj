@@ -307,6 +307,7 @@
     <None Include="resources\config\cards.json" />
     <None Include="resources\config\dialogues.json" />
     <None Include="resources\config\dialoguesV1.json" />
+    <None Include="resources\config\keytexts.json" />
     <None Include="resources\config\npcs.json" />
     <None Include="resources\config\resources.json" />
   </ItemGroup>
