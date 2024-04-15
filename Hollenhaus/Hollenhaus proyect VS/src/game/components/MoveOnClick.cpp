@@ -35,24 +35,24 @@ void MoveOnClick::initComponent()
 {
 	myTransform_ = ent_->getComponent<Transform>(); // transform del fondo
 
-	feedbackFlecha = Instantiate(Vector2D());
 	feedbackPunto = Instantiate(Vector2D());
+	feedbackFlecha = Instantiate(Vector2D());
 
-	feedbackFlecha->addComponent<SpriteRenderer>("feedback_flecha")->enable(false);
 	feedbackPunto->addComponent<SpriteRenderer>("feedback_circulo")->enable(false);
+	feedbackFlecha->addComponent<SpriteRenderer>("feedback_flecha")->enable(false);
 
-	feedbackFlecha->setLayer(2);
 	feedbackPunto->setLayer(2);
+	feedbackFlecha->setLayer(2);
 
 	flechaTrans = feedbackFlecha->getComponent<Transform>();
 	flechaSprite = feedbackFlecha->getComponent<SpriteRenderer>();
 	puntoTrans = feedbackPunto->getComponent<Transform>();
 	puntoSprite = feedbackPunto->getComponent<SpriteRenderer>();
 
-	flechaTrans->addParent(myTransform_); //esto hace que se comporte muy raro
 	puntoTrans->addParent(myTransform_);
-	flechaTrans->setGlobalScale(2.1f, 2.1f);
-	puntoTrans->setGlobalScale(2.1f, 2.1f);
+	puntoTrans->setGlobalScale(2.5f, 2.5f);
+	flechaTrans->addParent(myTransform_);
+	flechaTrans->setGlobalScale(2.5f, 2.5f);
 
 	// llamada al input
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
@@ -62,14 +62,18 @@ void MoveOnClick::update()
 {
 	// ---- Version de Andres y Nieves y Jesus Cristo amen (y jimbo)----
 	const float posX = myTransform_->getGlobalPos().getX();
+	const float diff = abs(posX - myPos_.getX());
 
 	// ---- MOVE FALSE ----
 	// -> si la diferencia entre la pos actual y la inicial es la distancia a recorrer (se ha completado el mov.)
 	// -> o cuando llegue a los limites de la ciudad por la derecha Y se pulse en la derecha
 	// -> o cuando llegue a los limites de la ciudad por la izquierda Y se pulse en la izquierda
-	if (abs(posX - myPos_.getX()) >= abs(distance_) ||
-		(((posX >= 0) && (mousePos_.getX() < halfScreen_)) ||
-			((posX <= BACKGROUND_SIZE) && (mousePos_.getX() >= halfScreen_))))
+	if (move_ && 
+		(diff >= abs(distance_) 
+		|| ((posX >= 0 
+			&& mousePos_.getX() < halfScreen_) 
+		|| (posX <= BACKGROUND_SIZE 
+			&& mousePos_.getX() >= halfScreen_))))
 	{
 		onStop();
 	}
@@ -130,6 +134,7 @@ void MoveOnClick::onStop()
 {
 	disableFeedback();
 	move_ = false;
+	movement_ = 0;
 }
 
 void MoveOnClick::moveFeedback()
@@ -141,7 +146,7 @@ void MoveOnClick::moveFeedback()
 	{
 		Vector2D step(
 			flechaTrans->getGlobalPos().getX(),
-			tweenFlecha.peek()
+			tweenFlecha.peek() 
 		);
 		flechaTrans->setGlobalPos(step);
 	}
@@ -150,7 +155,9 @@ void MoveOnClick::moveFeedback()
 void MoveOnClick::enableFeedback()
 {
 	flechaTrans->setGlobalPos(
-		mousePos_.getX() - flechaSprite->getTexture()->width() / 2,
+		mousePos_.getX() 
+			- puntoSprite->getTexture()->width() / 2 
+			+ flechaSprite->getTexture()->width() / 2 - 2,
 		sdlutils().height()
 			- FEEDBACK_PADDING
 			- flechaSprite->getTexture()->height() / 2
