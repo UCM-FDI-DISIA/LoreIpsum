@@ -128,9 +128,15 @@ void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 			talkTo();   
 		}
 	}
-	//aqui iria-> si el dialogo ha sido creado y !closeToPaul entonces destruir dialog
-	//npcDialogue->getComponent<NextText>()->setDead(true);
-	//npcDialogue->getComponent<DialogueDestroyer>()->destroyDialogue();
+
+	//si el dialogo ha sido creado y !closeToPaul entonces destruir dialog
+	if (talking && !closeToPaul) 
+	{
+		//npcDialogue->getComponent<NextText>()->setDead(true);
+		//npcDialogue->getComponent<DialogueDestroyer>()->destroyDialogue();
+
+		//me da errores extranios
+	}
 }
 
 void NPC::talkTo()
