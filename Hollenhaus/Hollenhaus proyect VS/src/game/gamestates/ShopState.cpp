@@ -112,7 +112,7 @@ void ShopState::onEnter()
 	}
 
 	updateCoinsOnTable();
-
+	/*
 	//-----Cartas sobre la estanteria
 	//carta1
 	ecs::entity_t carta1 = Instantiate();

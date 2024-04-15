@@ -28,7 +28,7 @@ void ShopComponent::initComponent()
 {
 	factory2 = new Factory();
 	factory2->SetFactories(static_cast<DialogueFactory*>(new DialogueFactory_V0()));
-	
+
 	if (GameStateMachine::instance()->getCurrentState()->checkDataShopCardsIsEmpty()) // Si no hay cartas de la tienda en Data entonces se tienen que generar.
 	{
 		std::cout << "\nTienda genera cartas:" << std::endl;
@@ -47,7 +47,6 @@ void ShopComponent::initComponent()
 	money = GameStateMachine::instance()->getCurrentState()->getMoney();
 
 	showCards();
-	//showPrizes();
 	setTexts();
 }
 
@@ -140,7 +139,7 @@ void ShopComponent::buyCard()
 				money -= shopCardsPrize[index]; // Restamos el dinero.
 
 				GameStateMachine::instance()->getCurrentState()->substractMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
-				
+
 				//showPrizes(); // Para que se actualicen los precios.
 				updateTexts();
 			}
@@ -166,10 +165,10 @@ bool ShopComponent::confirmPurchase(int prize)
 	GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
 	//----------------------------------------------------------preguntar a ines/poli sobre el dialogo para confirmar.
 	factory2->createDialogue("Tienda", 0, 0,
-		{ 200, 200 },//POS
+		{ 50, 50 },//POS
 		{ 100,100 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-		5, 10, getEntity(),
-		3, 2,  //LAYER
+		5, 10, this->getEntity(),
+		3, false,  //LAYER
 		"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
 		SDL_Color({ 0, 0, 0, 255 }),
 		220, //wrap length

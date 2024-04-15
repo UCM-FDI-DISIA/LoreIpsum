@@ -1,276 +1,246 @@
 {
-  "owner": [
-    {
-      "NPCName": "El Xungo del Barrio",
-      "convo": [
+    "owner": [
         {
-          "convoID": "0",
-          "autoConvo": false,
-          "nodes": [
-            {
-              "nodeID": "0",
-              "text": "Mi campeon favorito",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
+            "NPCName": "El Xungo del Barrio",
+            "convo": [
                 {
-                  "timing": 1,
-                  "type": 3,
-                  "scene": 3
-                }
-              ]
-            },
-            {
-              "nodeID": "1",
-              "text": "Sin duda alguna, Anivia, la Criofenix",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": "2",
-              "text": "No tendra mucho ataque",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": "3",
-              "text": "No tendra mucha defensa",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
+                    "convoID": "0",
+                    "autoConvo": false,
+                    "nodes": [
+                        {
+                            "nodeID": "0",
+                            "text": "Mi campeon favorito",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                                {
+                                    "timing": 1,
+                                    "type": 3,
+                                    "scene": 3
+                                }
+                            ]
+                        },
+                        {
+                            "nodeID": "1",
+                            "text": "Sin duda alguna, Anivia, la Criofenix",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": "2",
+                            "text": "No tendra mucho ataque",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": "3",
+                            "text": "No tendra mucha defensa",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                                {
+                                    "timing": 1,
+                                    "type": 0,
+                                    "scene": 0
+                                }
+                            ]
+                        },
+                        {
+                            "nodeID": "4",
+                            "text": "Pero me encanta",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        }
+                    ]
+                },
                 {
-                  "timing": 1,
-                  "type": 0,
-                  "scene": 0
+                    "convoID": "1",
+                    "autoConvo": false,
+                    "nodes": [
+                        {
+                            "nodeID": "0",
+                            "text": "Otra conversacion por aqui",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": "1",
+                            "text": "Ha quedado buena tarde",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        }
+                    ]
                 }
-              ]
-            },
-            {
-              "nodeID": "4",
-              "text": "Pero me encanta",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            }
-          ]
+            ]
         },
         {
-          "convoID": "1",
-          "autoConvo": false,
-          "nodes": [
-            {
-              "nodeID": "0",
-              "text": "Otra conversacion por aqui",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": "1",
-              "text": "Ha quedado buena tarde",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-        "NPCName": "Javivu24",
-        "convo": [
-            {
-                "convoID": "0",
-                "autoConvo": false,
-                "nodes": [
-                    {
-                        "nodeID": "0",
-                        "text": "que",
-                        "eventStart": 0,
-                        "eventFinish": 0,
-                        "events": [
-                        ]
-                    },
-                    {
-                        "nodeID": "1",
-                        "text": "jajaja....",
-                        "eventStart": 0,
-                        "eventFinish": 0,
-                        "events": [
-                        ]
-                    },
-                    {
-                        "nodeID": "2",
-                        "text": "es completamente IMPOSIBLE que funciones",
-                        "eventStart": 0,
-                        "eventFinish": 0,
-                        "events": [
-                        ]
-                    },
-                    {
-                        "nodeID": "3",
-                        "text": "a la pared ya, estas tardando",
-                        "eventStart": 0,
-                        "eventFinish": 0,
-                        "events": [
-                        ]
-                    },
-                    {
-                        "nodeID": "4",
-                        "text": "vamos, el coach rcibiendo un balon",
-                        "eventStart": 0,
-                        "eventFinish": 0,
-                        "events": [
-                        ]
-                    }
-                ]
-              "nodeID": "0",
-              "text": "que",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": "1",
-              "text": "jajaja....",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": "2",
-              "text": "es completamente IMPOSIBLE que funciones",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": "3",
-              "text": "a la pared ya, estas tardando",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": "4",
-              "text": "vamos, el coach rcibiendo un balon",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "NPCName": "Board Tutorial",
-      "convo": [
-        {
-          "convoID": "0",
-          "autoConvo": false,
-          "nodes": [
-            {
-              "nodeID": "0",
-              "text": "Hola",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": "1",
-              "text": "Soy un dialogo de tutorial",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": "2",
-              "text": "Te voy a explicar el juego",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": "3",
-              "text": "Disfruta",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
+            "NPCName": "Javivu24",
+            "convo": [
                 {
-                  "timing": 1,
-                  "type": 4,
-                  "scene": 0
+                    "convoID": "0",
+                    "autoConvo": false,
+                    "nodes": [
+                        {
+                            "nodeID": "0",
+                            "text": "que",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": "1",
+                            "text": "jajaja....",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": "2",
+                            "text": "es completamente IMPOSIBLE que funciones",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": "3",
+                            "text": "a la pared ya, estas tardando",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": "4",
+                            "text": "vamos, el coach rcibiendo un balon",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        }
+                    ],
+                    "nodeID": "0",
+                    "text": "que",
+                    "eventStart": 0,
+                    "eventFinish": 0,
+                    "events": [
+                    ]
                 }
-              ]
-            }
-          ]
-        },
-        {
-          "convoID": "1",
-          "autoConvo": false,
-          "nodes": [
-            {
-              "nodeID": "0",
-              "text": "Esto es una carta",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": "1",
-              "text": "La cartas guardan informacion",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-                {
-                  "timing": 0,
-                  "type": 4,
-                  "scene": 0
-                }
-              ]
-            }
-        ]
-    },
-    {
-        "NPCName": "Tienda",
-        "convo": [
-            {
-                "convoID": "0",
-                "autoConvo": false,
-                "nodes": [
-                    {
-                        "nodeID": "0",
-                        "text": "De verdad quieres comprar esta carta",
-                        "eventStart": 0,
-                        "eventFinish": 0,
-                        "events": [
-                            {
-                                "timing": 1,
-                                "type": 3,
-                                "scene": 0
-                            }
-                        ]
-                    }                
-                ]
-            }
-        ]
-    }
+            ]
 
-  ]
+
+        },
+        {
+            "NPCName": "Board Tutorial",
+            "convo": [
+                {
+                    "convoID": "0",
+                    "autoConvo": false,
+                    "nodes": [
+                        {
+                            "nodeID": "0",
+                            "text": "Hola",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": "1",
+                            "text": "Soy un dialogo de tutorial",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": "2",
+                            "text": "Te voy a explicar el juego",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": "3",
+                            "text": "Disfruta",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                                {
+                                    "timing": 1,
+                                    "type": 4,
+                                    "scene": 0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "convoID": "1",
+                    "autoConvo": false,
+                    "nodes": [
+                        {
+                            "nodeID": "0",
+                            "text": "Esto es una carta",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": "1",
+                            "text": "La cartas guardan informacion",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                                {
+                                    "timing": 0,
+                                    "type": 4,
+                                    "scene": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "NPCName": "Tienda",
+            "convo": [
+                {
+                    "convoID": "0",
+                    "autoConvo": false,
+                    "nodes": [
+                        {
+                            "nodeID": "0",
+                            "text": "Seguro que quieres comprar esta carta?",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                                {
+                                    "timing": 1,
+                                    "type": 3,
+                                    "scene": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ]
 }
