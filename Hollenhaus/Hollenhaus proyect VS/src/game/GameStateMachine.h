@@ -75,7 +75,6 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* jimboState;
 	GameState* nievesState;
 	GameState* luisState;
-	GameState* deckBuildingState;
 	GameState* tutorialBoardState;
 
 	// Estados de menuses
