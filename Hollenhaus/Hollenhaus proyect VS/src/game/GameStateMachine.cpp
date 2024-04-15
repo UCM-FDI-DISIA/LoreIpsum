@@ -62,7 +62,7 @@ GameStateMachine::GameStateMachine() {
 	optionsMainMenuState = new OptionsMainMenuState();
 	transitionTextMenuState = new TransitionTextMenuState();
 	cinematicIntroState = new CinematicIntroState();
-	pauseMenuState = new PauseMenuState(-1);
+	pauseMenuState = new PauseMenuState();
 	checkMazeMenuState = new CheckMazeMenuState();
 	checkCluesMenuState = new CheckCluesMenuState();
 	matchOverState = new MatchOverState();

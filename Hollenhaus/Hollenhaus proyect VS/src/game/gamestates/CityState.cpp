@@ -10,6 +10,7 @@
 
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
+#include "pauseMenuState.h"
 
 CityState::CityState()
 {
@@ -192,6 +193,9 @@ void CityState::onExit()
 
 void CityState::onPause()
 {
-	
+	//GameStateMachine::instance()->getCurrentState()->setLastState(1);
 	GameStateMachine::instance()->setState(16);
+
+	// wtf
+	//GameStateMachine::instance()->pushState(new PauseMenuState());
 }

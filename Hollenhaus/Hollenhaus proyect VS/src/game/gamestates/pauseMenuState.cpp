@@ -37,5 +37,6 @@ void PauseMenuState::onExit()
 
 void PauseMenuState::onDespause()
 {
-	GameStateMachine::instance()->setState(previousState);
+	GameStateMachine::instance()->setState(GameStateMachine::instance()->getCurrentState()->getLastState());
+	//GameStateMachine::instance()->popState();
 }

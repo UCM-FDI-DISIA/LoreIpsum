@@ -26,7 +26,8 @@ private:
 	int currentMoney = 0,
 		currentCase = 0,
 		currentSouls = 0,
-		winner = 0;
+		winner = 0,
+		lastState = 1;
 	std::list<int> defeatedNPCS;
 	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
@@ -75,6 +76,8 @@ public:
 	void setWinner(int i);
 	//----Mete una carta al array de cartas de la tienda. Booleano pues por si acaso.
 	bool setShopCard(int id);
+	// 
+	void setLastState(int ls);
 
 	// ---- Getters ----
 	#pragma region GETTERS
@@ -102,6 +105,8 @@ public:
 	bool shopCardsIsEmpty();
 	//----Devuelve una shopCard dado un id:
 	int getShopCardById(int id);
+	//----Devuelve ultimo estado antes de entrar a pausa
+	int getLastState() { return lastState; }
 
 	//------Busqueda:
 
