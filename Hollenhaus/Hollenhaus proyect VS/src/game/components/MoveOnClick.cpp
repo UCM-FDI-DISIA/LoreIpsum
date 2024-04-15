@@ -37,18 +37,22 @@ void MoveOnClick::initComponent()
 
 	feedbackFlecha = Instantiate(Vector2D());
 	feedbackPunto = Instantiate(Vector2D());
+
 	feedbackFlecha->addComponent<SpriteRenderer>("feedback_flecha")->enable(false);
 	feedbackPunto->addComponent<SpriteRenderer>("feedback_circulo")->enable(false);
+
 	feedbackFlecha->setLayer(2);
 	feedbackPunto->setLayer(2);
+
 	flechaTrans = feedbackFlecha->getComponent<Transform>();
 	flechaSprite = feedbackFlecha->getComponent<SpriteRenderer>();
 	puntoTrans = feedbackPunto->getComponent<Transform>();
 	puntoSprite = feedbackPunto->getComponent<SpriteRenderer>();
+
 	flechaTrans->addParent(myTransform_); //esto hace que se comporte muy raro
 	puntoTrans->addParent(myTransform_);
-	flechaTrans->setGlobalScale(2.01f, 2.01f);
-	puntoTrans->setGlobalScale(2.01f, 2.01f);
+	flechaTrans->setGlobalScale(2.1f, 2.1f);
+	puntoTrans->setGlobalScale(2.1f, 2.1f);
 
 	// llamada al input
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
@@ -130,21 +134,17 @@ void MoveOnClick::onStop()
 
 void MoveOnClick::moveFeedback()
 {
-	// DEPRECATED MOVEMENT TWEEN:
-	//tweenMovimiento.step(1);
-	//std::cout << tweenMovimiento.peek() << std::endl;
-	//flechaTrans->setGlobalPos(
-	//	tweenMovimiento.peek() + puntoSprite->getTexture()->width()/2 - flechaSprite->getTexture()->width()/2,
-	//	flechaTrans->getGlobalPos().getY()
-	//);
-	//puntoTrans->setGlobalPos(
-	//	tweenMovimiento.peek(),
-	//	puntoTrans->getGlobalPos().getY()
-	//);
-
-
 	/// Flecha flotando tween:
 	tweenFlecha.loop();
+	tweenFlecha.step(1);
+	if (tweenFlecha.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+	{
+		Vector2D step(
+			flechaTrans->getGlobalPos().getX(),
+			tweenFlecha.peek()
+		);
+		flechaTrans->setGlobalPos(step);
+	}
 }
 
 void MoveOnClick::enableFeedback()
@@ -166,12 +166,12 @@ void MoveOnClick::enableFeedback()
 	flechaSprite->enable(true);
 	puntoSprite->enable(true);
 
-	auto x = mousePos_.getX();
-	auto diff = sdlutils().width()/2 - x;
-	tweenMovimiento =
-		tweeny::from(x)
-		.to(sdlutils().width()/2)
-		.during(abs(diff/scrollVel_))
+	auto fanY = flechaTrans->getGlobalPos().getY();
+	tweenFlecha =
+		tweeny::from(fanY - 10)
+		.to(fanY + 5)
+		.to(fanY - 10)
+		.during(30)
 		.via(tweeny::easing::sinusoidalInOut);
 }
 

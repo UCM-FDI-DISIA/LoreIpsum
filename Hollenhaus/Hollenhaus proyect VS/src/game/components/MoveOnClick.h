@@ -64,8 +64,8 @@ private:
 	Transform* puntoTrans;
 	SpriteRenderer* flechaSprite;
 	SpriteRenderer* puntoSprite;
-	tweeny::tween<float> tweenMovimiento; // movimiento del propio feedback de izq o der al centro
 	tweeny::tween<float> tweenFlecha; // la flecha flota
+	tweeny::tween<float> tweenFade; // fade in/out del feedback
 	void onStop();
 	void moveFeedback();
 	void enableFeedback();
