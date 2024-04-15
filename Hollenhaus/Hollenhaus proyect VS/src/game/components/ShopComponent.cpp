@@ -77,6 +77,7 @@ void ShopComponent::showCards() {
 			GameStateMachine::instance()->getCurrentState()->addCardToDrawer(shopCards[i]);
 		}*/
 		auto card = GameStateMachine::instance()->getCurrentState()->createCard(shopCards[i], shopCardsPositions[i]);
+		card->setLayer(3);
 		int id = card->getComponent<Card>()->getID();
 		if (!cardIsBought(id)) // Si la carta ya esta comprada entonces no debe de ser un boton pero igualmente tiene que aparecer pero oscurecida.
 		{

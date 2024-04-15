@@ -128,7 +128,7 @@ void ShopState::onEnter()
 
 	makeCoinShine(1, carta2, shopManager);
 
-	Vector2D card2Pos(660, 200);
+	Vector2D card2Pos(660, 80);
 	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
 	carta2->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta2->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
@@ -158,7 +158,7 @@ void ShopState::onEnter()
 
 	makeCoinShine(3, carta4, shopManager);
 
-	Vector2D card4Pos(660, 80);
+	Vector2D card4Pos(660, 200);
 	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
 	carta4->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta4->getComponent<Transform>()->getRelativeScale().set(0.6f, 0.6f);
@@ -183,8 +183,8 @@ void ShopState::onEnter()
 	mostrador->getComponent<Transform>()->setGlobalPos(mostradorPos);
 	mostrador->getComponent<Transform>()->setGlobalScale(2.0f, 2.0f);
 	//mostrador->getComponent<Transform>()->getRelativeScale().set(2.0f, 2.0f);
-	mostrador->setLayer(3);*/
-	
+	mostrador->setLayer(3);*
+	*/
 
 
 	//------Boton para volver:
