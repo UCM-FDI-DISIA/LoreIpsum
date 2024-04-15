@@ -7,13 +7,28 @@
 #include "../basics/Transform.h"
 #include "../basics/TextComponent.h"
 
-#include <sstream>
+KeyManager::KeyManager() : 
+	addToY_(100), 
+	lastKey_(0), 
+	tr_(), 
+	pos_(), 
+	font_("8bit_size_20") 
+{
+	keyNames_.reserve(NUMBER_OF_KEYS);
 
-KeyManager::KeyManager() : addToY_(100), lastKey_(0), tr_(), pos_(), font_("8bit_size_20") {}
+	keyNames_.emplace_back("esquina");
+	keyNames_.emplace_back("centro");
+	keyNames_.emplace_back("unblockable");
+	keyNames_.emplace_back("flecha");
+	keyNames_.emplace_back("superflecha");
+	keyNames_.emplace_back("block");
+}
 
 void 
 KeyManager::initComponent() {
-	descs_.emplace_back(sdlutils().keys().at("amai").text());
+	for (int i = 0; i < NUMBER_OF_KEYS; ++i) {
+		descs_.emplace_back(sdlutils().keys().at(keyNames_[i]).text());
+	}
 
 	tr_ = ent_->getComponent<Transform>();
 	assert(tr_ != nullptr);
@@ -22,11 +37,11 @@ KeyManager::initComponent() {
 }
 
 void
-KeyManager::addKey(std::string s) {
+KeyManager::addKey() {
 	ecs::entity_t e = Instantiate(pos_); // Creamos la imagen
 
 	e->getComponent<Transform>()->addParent(getEntity()->getComponent<Transform>());
-	e->addComponent<SpriteRenderer>(s);
+	e->addComponent<SpriteRenderer>(keyNames_[lastKey_]);
 
 	// Creamos el texto
 	ecs::entity_t txt = Instantiate(pos_ + Vector2D(e->getComponent<SpriteRenderer>()->getImageSize().getX(), 0));
