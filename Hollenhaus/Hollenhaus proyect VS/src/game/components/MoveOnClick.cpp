@@ -10,6 +10,8 @@
 #include "MoveOnClick.h"
 #include "../Entity.h"
 #include "managers/Manager.h"
+#include "../../sdlutils/InputHandler.h"
+#include "../../sdlutils/SDLUtils.h"
 
 #include <cmath>
 

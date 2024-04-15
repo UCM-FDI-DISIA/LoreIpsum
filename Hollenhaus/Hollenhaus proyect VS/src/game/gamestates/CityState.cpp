@@ -14,6 +14,15 @@
 CityState::CityState()
 {
 	TuVieja("Loading CityState");
+
+	// llamada al input
+	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPause(); });
+}
+
+CityState::~CityState()
+{
+	// se desuscribe al evento
+	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPause(); });
 }
 
 void CityState::update()
@@ -179,4 +188,10 @@ void CityState::onExit()
 	setLastPaulPos(fondo->getComponent<Transform>()->getGlobalPos());
 	sdl.soundEffects().at("citytheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
+}
+
+void CityState::onPause()
+{
+	
+	GameStateMachine::instance()->setState(16);
 }
