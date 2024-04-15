@@ -7,7 +7,6 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/TypeWriter.h"
 #include "../components/NextText.h"
-
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
 
@@ -23,16 +22,15 @@ void CityState::update()
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(fondo->getComponent<MoveOnClick>()->getDir());
 
 	/// TWEENSI DEL FANTASMIKO
-	//tweensy.progress() == 1.0 ? tweensy.backward() : tweensy.forward();
-	if (tweensy.progress() == 1.0) tweensy.backward();
-	if (tweensy.progress() == 0.0) tweensy.forward();
-	tweensy.step(1);
+	//fantastween.progress() == 1.0 ? fantastween.backward() : fantastween.forward();
+	fantastween.loop();
+	fantastween.step(1);
 	auto fanTrans = fantasmiko->getComponent<Transform>();
-	if (tweensy.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+	if (fantastween.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
 	{
 		Vector2D step(
 			fanTrans->getGlobalPos().getX(),
-			tweensy.peek()
+			fantastween.peek()
 		);
 		fanTrans->setGlobalPos(step);
 	}
@@ -70,7 +68,7 @@ void CityState::onEnter()
 	// le aniade los componentes
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
-	fondo->addComponent<MoveOnClick>(2);
+	fondo->addComponent<MoveOnClick>(2.5f);
 
 	//fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 255);
 	fondo->addComponent<BoxCollider>();
@@ -96,14 +94,14 @@ void CityState::onEnter()
 	// tamanio del collider del suelo
 	// x: el ancho de la imagen de fondo, y: alto del suelo
 	colliderSuelo->getComponent<BoxCollider>()->setSize(
-		Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), 120));
+		Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), sdlutils().height()*2));
 
 	// lo emparenta con el fondo
 	colliderSuelo->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
 
 	// posicion del collider del suelo
-	Vector2D vectorSueloPos(0, 520);
-	colliderSuelo->getComponent<Transform>()->getRelativePos().set(vectorSueloPos);
+	Vector2D vectorSueloPos(0, sdlutils().height()/2);
+	colliderSuelo->getComponent<Transform>()->setRelativePos(vectorSueloPos.getX(), vectorSueloPos.getY());
 
 	// registra el collider del suelo
 	fondo->getComponent<MoveOnClick>()->RegisterCollider(colliderSuelo->getComponent<BoxCollider>());
@@ -116,11 +114,11 @@ void CityState::onEnter()
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(2);
 	// twinsiiiis
-	auto fanX = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
-	tweensy =
-		tweeny::from(fanX - 5)
-		.to(fanX + 5)
-		.to(fanX - 5)
+	auto fanY = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
+	fantastween =
+		tweeny::from(fanY - 5)
+		.to(fanY + 5)
+		.to(fanY - 5)
 		.during(60)
 		.via(tweeny::easing::sinusoidalInOut);
 
@@ -132,6 +130,7 @@ void CityState::onEnter()
 	factory->createNPC(1, fondo);
 	factory->createNPC(2, fondo);
 	factory->createNPC(3, fondo);
+	//factory->createNPC(4, fondo);
 
 
 	//----Para entrar en la tienda.

@@ -53,6 +53,8 @@ void DragManager::update()
 			//Debug para que escriba en que celda está
 			std::cout << drop->getComponent<DropDetector>()->getBoardPos() << std::endl;
 
+			auto c = dragTransform->getEntity()->getComponent<Card>();
+
 			////Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
 			//dragTransform->getEntity()->getComponent<Card>()->getEffects();
 

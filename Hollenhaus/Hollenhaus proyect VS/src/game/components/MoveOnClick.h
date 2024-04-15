@@ -18,7 +18,7 @@ public:
 
 	void OnLeftClickDown();
 
-	bool getDir() { return faceTo_; };
+	bool getDir() const { return faceRight_; };
 
 	// registra el collider que creas en la escena de la ciudad
 	void RegisterCollider(BoxCollider* collider)
@@ -32,27 +32,45 @@ private:
 	Transform* myTransform_;
 
 	// debe moverse
-	bool move_;
+	bool shouldMove_;
 
 	// true derecha false izquierda
-	bool faceTo_;
+	bool faceRight_;
 
 	// posicion del raton en clock para saber cuanto moverse
 	Vector2D mousePos_;
 
 	// posicion inicial del fondo
-	Vector2D myPos_;
+	Vector2D initialPos_;
 
 	// velocidad de movimiento de scroll
-	float scrollVel_;
+	float scrollFactor_;
 
-	float distance_;
+	// distancia entre la posición inicial y la del click
+	float absDistance_;
 
 	// Movimiento real
-	float movement_;
+	float movementSpeed_;
 
 	// -1 izquierda, 1 derecha
 	int dir_;
 
 	float halfScreen_;
+
+	/// FEEDBACK
+	ecs::entity_t feedbackFlecha;
+	ecs::entity_t feedbackPunto;
+	Transform* flechaTrans;
+	Transform* puntoTrans;
+	SpriteRenderer* flechaSprite;
+	SpriteRenderer* puntoSprite;
+	tweeny::tween<float> tweenFlecha; // la flecha flota
+	tweeny::tween<int> tweenFade; // fade in/out del feedback
+	tweeny::tween<float> tweenMovement;
+	void onStop();
+	void moveFeedback();
+	void enableFeedback();
+	void disableFeedback();
+	void enableLerp();
+	void disableLerp();
 };

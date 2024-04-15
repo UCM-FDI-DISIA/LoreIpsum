@@ -83,7 +83,8 @@ namespace DialogueEvents
 		None,				// No ocurre nada
 		ChangeScene,		// Evento para cambiar de escena
 		StartAnimation,		// Evento para lanzar una animación
-		ConfirmMatchPopUp	// Evento para mostrar una ventana donde el jugador acepta o rechaza una partida inminente
+		ConfirmMatchPopUp,	// Evento para mostrar una ventana donde el jugador acepta o rechaza una partida inminente
+		ActionEnded
 	};
 }
 
@@ -237,6 +238,15 @@ namespace JsonData
 		int scene;
 		int layer;
 
+	};
+
+	struct KeyData {
+		KeyData();
+		KeyData(std::string text) : text_(text) {};
+
+		std::string text() { return text_; }
+	private:
+		std::string text_;
 	};
 
 }

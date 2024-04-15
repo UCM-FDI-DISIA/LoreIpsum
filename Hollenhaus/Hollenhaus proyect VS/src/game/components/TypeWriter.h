@@ -13,6 +13,7 @@ public:
 	void update() override;
 
 	void typeWrite(std::string text);
+	void finishTypewrite();
 
 	bool ended();
 
