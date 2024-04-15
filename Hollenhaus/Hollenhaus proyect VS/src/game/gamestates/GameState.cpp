@@ -96,6 +96,16 @@ bool GameState::getIsHost()
 	return data->getIsHost();
 }
 
+void GameState::setMazeRival(std::vector<int> mazeRival)
+{
+	data->SetNewMazeRival(mazeRival);
+}
+
+std::vector<int> GameState::getMazeRival()
+{
+	return data->GetMazeRival();
+}
+
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
 	return data->GetDrawer();

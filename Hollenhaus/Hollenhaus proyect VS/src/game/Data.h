@@ -20,6 +20,8 @@ private:
 	// ---- DECKBUILDING ----
 	std::array<int, CARDS_IN_GAME> drawer; // Id de las cartas desbloqueadas
 	std::list<int> maze; // Id de las cartas del mazo
+
+	std::vector<int> mazeRival; // Id de las cartas del mazo del rival
 	
 	std::unordered_map<int, Vector2D> maze_with_pos;
 
@@ -62,6 +64,7 @@ public:
 	// -- DECKBUILDING --
 	// Mazo:
 	void SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos);
+	void SetNewMazeRival(std::vector<int> newMaze);
 	void SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer);
 	void SubtractCardFromMaze(int id);
 	//----Cajon:
@@ -92,6 +95,8 @@ public:
 	// -- DECKBUILDING --
 	// Mazo:
 	const std::unordered_map<int, Vector2D> GetMaze() { return maze_with_pos; }
+
+	const std::vector<int> GetMazeRival() { return mazeRival; }
 	// Cajon:
 	std::array<int, CARDS_IN_GAME> GetDrawer() { return drawer; }
 

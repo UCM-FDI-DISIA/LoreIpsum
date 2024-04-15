@@ -78,6 +78,9 @@ public:
 	virtual void setIsHost(bool b);
 	virtual bool getIsHost();
 
+	virtual void setMazeRival(std::vector<int> mazeRival);
+	virtual std::vector<int> getMazeRival();
+
 };
 
 #endif // !GameState_H_

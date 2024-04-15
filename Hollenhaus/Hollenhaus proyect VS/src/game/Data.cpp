@@ -54,6 +54,12 @@ void Data::SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos) {
 		itPos++;
 	}
 }
+void Data::SetNewMazeRival(std::vector<int> newMaze)
+{
+	mazeRival.clear();
+	for (auto i : newMaze)mazeRival.emplace_back(i);
+
+}
 void Data::SubtractCardFromMaze(int id) {
 	maze.remove(id);
 }
