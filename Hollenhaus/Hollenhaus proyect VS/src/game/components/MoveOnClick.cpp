@@ -63,8 +63,8 @@ void MoveOnClick::initComponent()
 	tweenFade =
 		tweeny::from(0)
 		.to(255)
-		.during(10)
-		.via(tweeny::easing::sinusoidalIn);
+		.during(3)
+		.via(tweeny::easing::linear);
 
 	tweenMovement =
 		tweeny::from(0.0f)
@@ -122,8 +122,8 @@ void MoveOnClick::update()
 
 	/// TWEEN DE LA OPACIDAD DEL FEEDBACK
 	tweenFade.step(1);
-	flechaSprite->setOpacity(tweenFade.peek());
 	puntoSprite->setOpacity(tweenFade.peek());
+	flechaSprite->setOpacity(tweenFade.peek());
 
 #if _DEBUG
 	//std::cout << "DISTANCE: " << absDistance_ << " " << shouldMove_ << "\n";

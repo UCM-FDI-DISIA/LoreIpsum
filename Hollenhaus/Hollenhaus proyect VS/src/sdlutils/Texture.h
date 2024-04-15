@@ -103,13 +103,12 @@ public:
 	/// <param name="color">Color a multiplicar</param>
 	inline void render(int x, int y, float mulScaleX, float mulScaleY, float angle, 
 		SDL_RendererFlip flip = SDL_FLIP_NONE, SDL_Color color = { 255,255,255,0 },
-		Uint8 alpha = 255)
+		int alpha = 255)
 	{
 		SDL_Rect dest = { x, y, width_ * mulScaleX, height_ * mulScaleY };
 		SDL_Rect src = { 0, 0, width_, height_ };
 
-		if (alpha != 255) 
-			applyOpacity(alpha);
+		applyOpacity(alpha);
 
 		multiplyColor(color.r, color.g, color.b, color.a);
 
@@ -130,7 +129,7 @@ public:
 	/// <summary>
 	/// Cambia la opacidad de la textura
 	/// </summary>
-	void applyOpacity(Uint8 alpha = 255)
+	void applyOpacity(int alpha = 255)
 	{
 		SDL_SetTextureAlphaMod(texture_, alpha);
 	}
