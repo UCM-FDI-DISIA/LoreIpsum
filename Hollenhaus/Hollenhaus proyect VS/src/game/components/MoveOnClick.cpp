@@ -15,11 +15,11 @@ constexpr Uint32 FEEDBACK_PADDING = 60;
 MoveOnClick::MoveOnClick(float vel) :
 	myBoxCollider_(),
 	myTransform_(),
-	move_(false),
-	faceTo_(),
-	scrollVel_(vel),
-	distance_(),
-	movement_(),
+	shouldMove_(false),
+	faceRight_(),
+	scrollFactor_(vel),
+	absDistance_(),
+	movementSpeed_(),
 	dir_(),
 	halfScreen_(sdlutils().width() / 2)
 {
@@ -63,6 +63,12 @@ void MoveOnClick::initComponent()
 		.during(10)
 		.via(tweeny::easing::sinusoidalIn);
 
+	tweenMovement =
+		tweeny::from(0.0f)
+		.to(scrollFactor_ * dir_)
+		.during(30)
+		.via(tweeny::easing::linear);
+
 	// llamada al input
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 }
@@ -73,12 +79,16 @@ void MoveOnClick::update()
 	const float posX = myTransform_->getGlobalPos().getX();
 	const float diff = abs(posX - initialPos_.getX());
 
+	tweenMovement.step(1);
+	std::cout << tweenMovement.peek() << std::endl;
+	movementSpeed_ = tweenMovement.peek();
+
 	// ---- MOVE FALSE ----
 	// -> si la diferencia entre la pos actual y la inicial es la distancia a recorrer (se ha completado el mov.)
 	// -> o cuando llegue a los limites de la ciudad por la derecha Y se pulse en la derecha
 	// -> o cuando llegue a los limites de la ciudad por la izquierda Y se pulse en la izquierda
-	if (move_ && 
-		(diff >= abs(distance_) 
+	if (shouldMove_ && 
+		(diff >= absDistance_
 		|| ((posX >= 0 
 			&& mousePos_.getX() < halfScreen_) 
 		|| (posX <= BACKGROUND_SIZE 
@@ -86,19 +96,20 @@ void MoveOnClick::update()
 	{
 		onStop();
 	}
-	else if (move_)
+	else if (shouldMove_)
 	{
-		auto aux = Vector2D(posX + movement_, myTransform_->getGlobalPos().getY());
-		myTransform_->setGlobalPos(aux);
 		moveFeedback();
 	}
+
+	auto aux = Vector2D(posX + movementSpeed_, myTransform_->getGlobalPos().getY());
+	myTransform_->setGlobalPos(aux);
 
 	tweenFade.step(1);
 	flechaSprite->setOpacity(tweenFade.peek());
 	puntoSprite->setOpacity(tweenFade.peek());
 
 #if _DEBUG
-	//std::cout << "DISTANCE: " << distance_ << " " << move_ << "\n";
+	//std::cout << "DISTANCE: " << absDistance_ << " " << shouldMove_ << "\n";
 	//std::cout << abs(myTransform_->getGlobalPos().getX() - initialPos_.getX()) << "\n";
 #endif
 }
@@ -115,26 +126,27 @@ void MoveOnClick::OnLeftClickDown()
 		initialPos_ = myTransform_->getGlobalPos();
 
 		// debe moverse al click
-		move_ = true;
+		shouldMove_ = true;
 
 		// JUGADOR HACIA LA DER, FONDO HACIA LA IZQ
 		if (mousePos_.getX() >= halfScreen_)
 		{
 			dir_ = -1;
-			distance_ = mousePos_.getX() - halfScreen_;
-			faceTo_ = true;
+			absDistance_ = mousePos_.getX() - halfScreen_;
+			faceRight_ = true;
 		}
 
 		// JUGADOR HACIA LA IZQ, FONDO HACIA LA DER
 		else if (mousePos_.getX() < halfScreen_)
 		{
 			dir_ = 1;
-			distance_ = halfScreen_ - mousePos_.getX();
-			faceTo_ = false;
+			absDistance_ = halfScreen_ - mousePos_.getX();
+			faceRight_ = false;
 		}
 
-		movement_ = scrollVel_ * dir_;
+		//movementSpeed_ = scrollFactor_ * dir_;
 
+		enableLerp();
 		enableFeedback();
 	}
 	else onStop();
@@ -143,8 +155,9 @@ void MoveOnClick::OnLeftClickDown()
 void MoveOnClick::onStop()
 {
 	disableFeedback();
-	move_ = false;
-	movement_ = 0;
+	shouldMove_ = false;
+	//movementSpeed_ = 0;
+	tweenMovement.backward();
 }
 
 void MoveOnClick::moveFeedback()
@@ -197,4 +210,19 @@ void MoveOnClick::enableFeedback()
 void MoveOnClick::disableFeedback()
 {
 	tweenFade.backward();
+}
+
+void MoveOnClick::enableLerp()
+{
+	tweenMovement =
+		tweeny::from(0.0f)
+		.to(scrollFactor_ * dir_)
+		.during(30)
+		.via(tweeny::easing::linear);
+	if (movementSpeed_ <= 0)
+	{
+		tweenMovement.seek(0);
+		movementSpeed_ = 0;
+	}
+	tweenMovement.forward();
 }
