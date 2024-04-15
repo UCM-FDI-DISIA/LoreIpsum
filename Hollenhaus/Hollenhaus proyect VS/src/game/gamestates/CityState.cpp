@@ -113,6 +113,7 @@ void CityState::onEnter()
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(2);
+	fondo->getComponent<MoveOnClick>()->registerFantasmaTrans(fantasmiko);
 	// twinsiiiis
 	auto fanY = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
 	fantastween =

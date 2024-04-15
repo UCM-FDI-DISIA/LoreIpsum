@@ -11,7 +11,9 @@
 #include <cmath>
 
 constexpr Uint32 FEEDBACK_PADDING = 60,
-				 ACC_DURATION = 20;
+                 ACC_DURATION = 10;
+constexpr int MOVE_OFFSET = 10;
+                 
 
 MoveOnClick::MoveOnClick(float vel) :
 	myBoxCollider_(),
@@ -70,6 +72,13 @@ void MoveOnClick::initComponent()
 		.during(ACC_DURATION)
 		.via(tweeny::easing::linear);
 
+	tweenFantasmiko =
+		tweeny::from(halfScreen_ - 50.0f)
+		.to(halfScreen_ - 50.0f + MOVE_OFFSET * dir_)
+		.during(ACC_DURATION)
+		.via(tweeny::easing::linear);
+
+
 	// llamada al input
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 }
@@ -80,31 +89,38 @@ void MoveOnClick::update()
 	const float posX = myTransform_->getGlobalPos().getX();
 	const float diff = abs(posX - initialPos_.getX());
 
+	/// PROGRESO DE LOS TWEENS DE MOVIMIENTO
 	tweenMovement.step(1);
-	std::cout << tweenMovement.peek() << std::endl;
-	movementSpeed_ = tweenMovement.peek();
+	tweenFantasmiko.step(1);
 
 	// ---- MOVE FALSE ----
 	// -> si la diferencia entre la pos actual y la inicial es la distancia a recorrer (se ha completado el mov.)
 	// -> o cuando llegue a los limites de la ciudad por la derecha Y se pulse en la derecha
 	// -> o cuando llegue a los limites de la ciudad por la izquierda Y se pulse en la izquierda
-	if (shouldMove_ && 
+	if (shouldMove_ &&
 		(diff >= absDistance_
-		|| ((posX >= 0 
-			&& mousePos_.getX() < halfScreen_) 
-		|| (posX <= BACKGROUND_SIZE 
-			&& mousePos_.getX() >= halfScreen_))))
+			|| ((posX >= 0
+					&& mousePos_.getX() < halfScreen_)
+				|| (posX <= BACKGROUND_SIZE
+					&& mousePos_.getX() >= halfScreen_))))
 	{
 		onStop();
 	}
 	else if (shouldMove_)
-	{
-		moveFeedback();
-	}
+		moveFeedback(); // TWEEN DEL FEEDBACK
 
+	/// MOVIMIENTO DEL FONDO
+	movementSpeed_ = tweenMovement.peek();
 	auto aux = Vector2D(posX + movementSpeed_, myTransform_->getGlobalPos().getY());
 	myTransform_->setGlobalPos(aux);
 
+	/// TWEEN DEL FANTASMA
+	fanTrans->setGlobalPos(
+		tweenFantasmiko.peek(),
+		fanTrans->getGlobalPos().getY()
+	);
+
+	/// TWEEN DE LA OPACIDAD DEL FEEDBACK
 	tweenFade.step(1);
 	flechaSprite->setOpacity(tweenFade.peek());
 	puntoSprite->setOpacity(tweenFade.peek());
@@ -169,7 +185,7 @@ void MoveOnClick::moveFeedback()
 	{
 		Vector2D step(
 			flechaTrans->getGlobalPos().getX(),
-			tweenFlecha.peek() 
+			tweenFlecha.peek()
 		);
 		flechaTrans->setGlobalPos(step);
 	}
@@ -178,19 +194,19 @@ void MoveOnClick::moveFeedback()
 void MoveOnClick::enableFeedback()
 {
 	flechaTrans->setGlobalPos(
-		mousePos_.getX() 
-			- puntoSprite->getTexture()->width() / 2 
-			+ flechaSprite->getTexture()->width() / 2 - 2,
+		mousePos_.getX()
+		- puntoSprite->getTexture()->width() / 2
+		+ flechaSprite->getTexture()->width() / 2 - 2,
 		sdlutils().height()
-			- FEEDBACK_PADDING
-			- flechaSprite->getTexture()->height() / 2
-			- puntoSprite->getTexture()->height() * 2
+		- FEEDBACK_PADDING
+		- flechaSprite->getTexture()->height() / 2
+		- puntoSprite->getTexture()->height() * 2
 	);
 	puntoTrans->setGlobalPos(
 		mousePos_.getX() - puntoSprite->getTexture()->width() / 2,
 		sdlutils().height()
-			- FEEDBACK_PADDING
-			- puntoSprite->getTexture()->height() / 2
+		- FEEDBACK_PADDING
+		- puntoSprite->getTexture()->height() / 2
 	);
 
 	auto fanY = flechaTrans->getGlobalPos().getY();
@@ -214,6 +230,7 @@ void MoveOnClick::disableFeedback()
 
 void MoveOnClick::enableLerp()
 {
+	/// DEL PROPIO FONDO
 	tweenMovement =
 		tweeny::from(0.0f)
 		.to(scrollFactor_ * dir_)
@@ -225,9 +242,23 @@ void MoveOnClick::enableLerp()
 		movementSpeed_ = 0;
 	}
 	tweenMovement.forward();
+
+	/// DEL FANTASMIKO
+	assert (fanTrans != nullptr);
+	auto fanX = fanTrans->getGlobalPos().getX();
+	tweenFantasmiko =
+		tweeny::from(halfScreen_ - 50.0f)
+		.to(halfScreen_ - 50.0f + MOVE_OFFSET * dir_)
+		.during(ACC_DURATION)
+		.via(tweeny::easing::linear);
+
+	if (movementSpeed_ <= 0)
+		tweenFantasmiko.seek(0);
+	tweenFantasmiko.forward();
 }
 
 void MoveOnClick::disableLerp()
 {
-	tweenMovement.backward();
+	tweenMovement.backward(); // del fondo
+	tweenFantasmiko.backward();
 }
