@@ -85,7 +85,8 @@ NPC::NPC(int scene, int t, std::string name_)
 
 }
 
-NPC::~NPC() {
+NPC::~NPC() 
+{
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] {OnLeftClickUp(); });
 
@@ -93,40 +94,39 @@ NPC::~NPC() {
 	factory = nullptr;
 }
 
-void NPC::initComponent(){
+void NPC::initComponent()
+{
 	myBoxCollider = mngr_->getComponent<BoxCollider>(ent_);
 	myTransform = mngr_->getComponent<Transform>(ent_);
 }
 
 void NPC::OnLeftClickDown(int scene) 
 {
-	pos = myTransform->getGlobalPos().getX();
-	closeToPaul = pos > 200 && pos < sdlutils().width() - 150;
-
-	//si Paul no esta cerca del NPC, no se le podra hacer clic :O
-	if (closeToPaul) 
-	{
 		myBoxCollider;
 		reactToClick(scene);
 		click = true;
-	}
+
 }
-void NPC::OnLeftClickUp() {
+void NPC::OnLeftClickUp() 
+{
 	click = false; // Resetea el click al soltar para que se pueda volver a pulsar.
 }
 
 void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 {
-	if (!click && myBoxCollider->isCursorOver()) {
+	pos = myTransform->getGlobalPos().getX();
+	closeToPaul = pos > 200 && pos < sdlutils().width() - 200;
 
+	if (!click && myBoxCollider->isCursorOver()) 
+	{
 		if (type == 0) {
 			TuVieja("Cambio de escena.");
 			GameStateMachine::instance()->setState(scene);
 		}
-		else if (type == 1) {
+		else if (type == 1 && closeToPaul) 
+		{
 			talkTo();   
 		}
-		
 	}
 }
 
@@ -146,7 +146,7 @@ void NPC::talkTo()
 
 		// crear dialogo del FACTORY de dialogos
 		//// Mirar comentario en el interior de la función
-		factory->createDialogue(dialogue.NPCName(), conv, node,
+		npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
 								{x, y},//POS
 								{2,2}, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
 								5, 10, getEntity(), 
@@ -156,13 +156,6 @@ void NPC::talkTo()
 								220, //wrap length
 								Text::BoxPivotPoint::LeftTop,
 								Text::TextAlignment::Left);
-
-		//si estamos lejos del npc, el dialogo se destruye -> AYUDA INES
-		if (!closeToPaul) 
-		{
-			//ent_->getComponent<NextText>()->setDead(true);
-			//dialogueDestroyer_->destroyDialogue();
-		}
 
 		talking = true;
 	}
@@ -175,6 +168,4 @@ void NPC::stoppedTalking()
 
 void NPC::update() 
 {
-
-
 }
