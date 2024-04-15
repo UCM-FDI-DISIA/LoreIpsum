@@ -99,6 +99,8 @@ bool NetLobby::connectToClient()
 	GameStateMachine::instance()->getCurrentState()->setIsHost(true);
 
 
+
+
 	cout << "I AM SERVER!" << endl;
 
 	// Cerramos el masterSocket antes de salir de la escena. Ahora los dos jugadores solo guardan un socket (la conexión con el rival)
