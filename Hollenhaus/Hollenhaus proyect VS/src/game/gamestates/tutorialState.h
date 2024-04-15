@@ -4,11 +4,11 @@
 
 class Factory;
 
-class tutorialState : public GameState
+class TutorialState : public GameState
 {
 public:
-	tutorialState();
-    virtual ~tutorialState();
+	TutorialState();
+    virtual ~TutorialState();
 
     void refresh() override;
     void update() override;

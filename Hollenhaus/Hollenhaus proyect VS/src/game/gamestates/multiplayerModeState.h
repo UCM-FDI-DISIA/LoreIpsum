@@ -2,11 +2,11 @@
 
 #include "GameState.h"
 
-class multiplayerModeState : public GameState
+class MultiplayerModeState : public GameState
 {
 public:
-    multiplayerModeState();
-    virtual ~multiplayerModeState();
+    MultiplayerModeState();
+    virtual ~MultiplayerModeState();
 
     void refresh() override;
     void update() override;

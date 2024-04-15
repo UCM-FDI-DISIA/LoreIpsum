@@ -2,11 +2,11 @@
 
 #include "GameState.h"
 
-class optionsMainMenuState : public GameState
+class OptionsMainMenuState : public GameState
 {
 public:
-    optionsMainMenuState();
-    virtual ~optionsMainMenuState();
+    OptionsMainMenuState();
+    virtual ~OptionsMainMenuState();
 
     void refresh() override;
     void update() override;

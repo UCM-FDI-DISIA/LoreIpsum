@@ -1,10 +1,10 @@
 #pragma once
 #include "GameState.h"
-class transitionTextMenuState : public GameState
+class TransitionTextMenuState : public GameState
 {
 public:
-    transitionTextMenuState();
-    virtual ~transitionTextMenuState();
+    TransitionTextMenuState();
+    virtual ~TransitionTextMenuState();
 
     void refresh() override;
     void update() override;

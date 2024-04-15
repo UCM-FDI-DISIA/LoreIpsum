@@ -4,7 +4,8 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/basics/Transform.h"
 
-multiplayerModeState::multiplayerModeState()
+MultiplayerModeState::MultiplayerModeState()
 {
 	
 }
+

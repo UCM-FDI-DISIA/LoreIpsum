@@ -2,11 +2,11 @@
 
 #include "GameState.h"
 
-class cinematicIntroState : public GameState
+class CinematicIntroState : public GameState
 {
 public:
-    cinematicIntroState();
-    virtual ~cinematicIntroState();
+    CinematicIntroState();
+    virtual ~CinematicIntroState();
 
     void refresh() override;
     void update() override;

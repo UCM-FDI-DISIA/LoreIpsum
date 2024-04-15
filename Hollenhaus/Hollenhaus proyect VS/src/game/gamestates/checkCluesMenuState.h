@@ -2,11 +2,11 @@
 
 #include "GameState.h"
 
-class checkCluesMenuState : public GameState
+class CheckCluesMenuState : public GameState
 {
 public:
-    checkCluesMenuState();
-    virtual ~checkCluesMenuState();
+    CheckCluesMenuState();
+    virtual ~CheckCluesMenuState();
 
     void refresh() override;
     void update() override;

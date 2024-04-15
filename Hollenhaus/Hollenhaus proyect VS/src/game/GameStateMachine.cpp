@@ -52,19 +52,19 @@ GameStateMachine::GameStateMachine() {
 	officeState = new OfficeState();
 	shopState = new ShopState();
 	deckBuildingState = new DeckBuildingState();
-	tutorialState = new tutorialState();
+	tutorialState = new TutorialState();
 	//boardState = new BoardState();
 
 	// Estados de menuses
 	mainMenuState = new MainMenuState();
-	storyModeState = new storyModeState();
-	multiplayerModeState = new multiplayerModeState();
-	optionsMainMenuState = new optionsMainMenuState();
-	transitionTextMenuState = new transitionTextMenuState();
-	cinematicIntroState = new cinematicIntroState();
-	pauseMenuState = new pauseMenuState();
-	checkMazeMenuState = new checkMazeMenuState();
-	checkCluesMenuState = new checkCluesMenuState();
+	storyModeState = new StoryModeState();
+	multiplayerModeState = new MultiplayerModeState();
+	optionsMainMenuState = new OptionsMainMenuState();
+	transitionTextMenuState = new TransitionTextMenuState();
+	cinematicIntroState = new CinematicIntroState();
+	pauseMenuState = new PauseMenuState();
+	checkMazeMenuState = new CheckMazeMenuState();
+	checkCluesMenuState = new CheckCluesMenuState();
 	matchOverState = new MatchOverState();
 
 	// Estados de gente

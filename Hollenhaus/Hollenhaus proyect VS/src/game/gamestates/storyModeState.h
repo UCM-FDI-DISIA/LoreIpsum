@@ -1,10 +1,10 @@
 #pragma once
 #include "GameState.h"
-class storyModeState : public GameState
+class StoryModeState : public GameState
 {
 public:
-    storyModeState();
-    virtual ~storyModeState();
+    StoryModeState();
+    virtual ~StoryModeState();
 
     void refresh() override;
     void update() override;
