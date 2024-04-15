@@ -8,3 +8,27 @@ StoryModeState::StoryModeState()
 {
 	
 }
+
+StoryModeState::~StoryModeState()
+{
+}
+
+void StoryModeState::refresh()
+{
+}
+
+void StoryModeState::update()
+{
+}
+
+void StoryModeState::render() const
+{
+}
+
+void StoryModeState::onEnter()
+{
+}
+
+void StoryModeState::onExit()
+{
+}

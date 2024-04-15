@@ -8,3 +8,27 @@ TutorialState::TutorialState()
 {
 	
 }
+
+TutorialState::~TutorialState()
+{
+}
+
+void TutorialState::refresh()
+{
+}
+
+void TutorialState::update()
+{
+}
+
+void TutorialState::render() const
+{
+}
+
+void TutorialState::onEnter()
+{
+}
+
+void TutorialState::onExit()
+{
+}

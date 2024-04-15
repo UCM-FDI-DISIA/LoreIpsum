@@ -4,7 +4,31 @@
 #include "../components/basics/Transform.h"
 #include "checkCluesMenuState.h"
 
-checkCluesMenuState::checkCluesMenuState()
+
+CheckCluesMenuState::CheckCluesMenuState()
 {
-	
+}
+
+CheckCluesMenuState::~CheckCluesMenuState()
+{
+}
+
+void CheckCluesMenuState::refresh()
+{
+}
+
+void CheckCluesMenuState::update()
+{
+}
+
+void CheckCluesMenuState::render() const
+{
+}
+
+void CheckCluesMenuState::onEnter()
+{
+}
+
+void CheckCluesMenuState::onExit()
+{
 }

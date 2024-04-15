@@ -4,7 +4,30 @@
 #include "../components/basics/Transform.h"
 #include "cinematicIntroState.h"
 
-cinematicIntroState::cinematicIntroState()
+CinematicIntroState::CinematicIntroState()
 {
-	
+}
+
+CinematicIntroState::~CinematicIntroState()
+{
+}
+
+void CinematicIntroState::refresh()
+{
+}
+
+void CinematicIntroState::update()
+{
+}
+
+void CinematicIntroState::render() const
+{
+}
+
+void CinematicIntroState::onEnter()
+{
+}
+
+void CinematicIntroState::onExit()
+{
 }

@@ -4,7 +4,30 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/basics/Transform.h"
 
-transitionTextMenuState::transitionTextMenuState()
+TransitionTextMenuState::TransitionTextMenuState()
 {
-	
+}
+
+TransitionTextMenuState::~TransitionTextMenuState()
+{
+}
+
+void TransitionTextMenuState::refresh()
+{
+}
+
+void TransitionTextMenuState::update()
+{
+}
+
+void TransitionTextMenuState::render() const
+{
+}
+
+void TransitionTextMenuState::onEnter()
+{
+}
+
+void TransitionTextMenuState::onExit()
+{
 }
