@@ -24,6 +24,7 @@
 #include "../components/managers/Manager.h"
 #include "../GameStateMachine.h"
 #include "../components/managers/PlayerCardsManager.h"
+#include "../TutorialManager.h"
 
 TutorialBoardState::TutorialBoardState()
 {
@@ -77,6 +78,7 @@ void TutorialBoardState::onEnter()
 
 	setBoard();
 	setBaseEntity();
+	initTutorial();
 
 }
 
@@ -240,6 +242,15 @@ void TutorialBoardState::createPopUp(float x, float y, std::string popup, int co
 		220, //wrap length
 		Text::BoxPivotPoint::LeftTop,
 		Text::TextAlignment::Left);
+}
+
+void TutorialBoardState::initTutorial()
+{
+	// entidad tutorial para gestionar cositas
+	tutorial = Instantiate();
+
+	tutorial->addComponent<TutorialManager>();
+	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
 }
 
 void TutorialBoardState::setINIT()

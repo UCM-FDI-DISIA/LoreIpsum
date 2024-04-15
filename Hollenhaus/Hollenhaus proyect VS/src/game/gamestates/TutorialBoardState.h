@@ -2,6 +2,7 @@
 #include "GameState.h"
 
 class Factory;
+class TutorialManager;
 
 class TutorialBoardState :
     public GameState
@@ -29,6 +30,7 @@ private:
     void setBoard();
     void setBaseEntity();
     void createPopUp(float x, float y, std::string popup, int convo);
+    void initTutorial();
 
     //
     enum Tutorial {
@@ -46,8 +48,9 @@ private:
     int nextState;          //
     bool ended;             //
 
-    Factory* factory;       //
-    ecs::entity_t base;     // entidad para colocar los popups, se va moviendo segun donde los queramos
+    Factory* factory;           //
+    ecs::entity_t base;         // entidad para colocar los popups, se va moviendo segun donde los queramos
+    ecs::entity_t tutorial;
 
     // gestion de estados individuales
     void setINIT();
