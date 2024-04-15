@@ -10,7 +10,8 @@
 #include "MoveOnClick.h"
 #include <cmath>
 
-constexpr Uint32 FEEDBACK_PADDING = 60;
+constexpr Uint32 FEEDBACK_PADDING = 60,
+				 ACC_DURATION = 20;
 
 MoveOnClick::MoveOnClick(float vel) :
 	myBoxCollider_(),
@@ -66,7 +67,7 @@ void MoveOnClick::initComponent()
 	tweenMovement =
 		tweeny::from(0.0f)
 		.to(scrollFactor_ * dir_)
-		.during(30)
+		.during(ACC_DURATION)
 		.via(tweeny::easing::linear);
 
 	// llamada al input
@@ -156,8 +157,7 @@ void MoveOnClick::onStop()
 {
 	disableFeedback();
 	shouldMove_ = false;
-	//movementSpeed_ = 0;
-	tweenMovement.backward();
+	disableLerp();
 }
 
 void MoveOnClick::moveFeedback()
@@ -217,7 +217,7 @@ void MoveOnClick::enableLerp()
 	tweenMovement =
 		tweeny::from(0.0f)
 		.to(scrollFactor_ * dir_)
-		.during(30)
+		.during(ACC_DURATION)
 		.via(tweeny::easing::linear);
 	if (movementSpeed_ <= 0)
 	{
@@ -225,4 +225,9 @@ void MoveOnClick::enableLerp()
 		movementSpeed_ = 0;
 	}
 	tweenMovement.forward();
+}
+
+void MoveOnClick::disableLerp()
+{
+	tweenMovement.backward();
 }

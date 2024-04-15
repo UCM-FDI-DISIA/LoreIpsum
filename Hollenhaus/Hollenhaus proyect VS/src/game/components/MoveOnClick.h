@@ -72,4 +72,5 @@ private:
 	void enableFeedback();
 	void disableFeedback();
 	void enableLerp();
+	void disableLerp();
 };
