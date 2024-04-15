@@ -56,7 +56,7 @@ void MultiplayerLobbyState::onEnter()
 	ecs::entity_t cuadroTexto = Instantiate(Vector2D(sdlutils().width()/2, sdlutils().height()/2));
 	//cuadroTexto->addComponent<SpriteRenderer>("black_box");
 	//cuadroTexto->addComponent<BoxCollider>()->setAnchoredToSprite(true);
-	cuadroTexto->addComponent<TextComponent>("Introducir ip", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	cuadroTexto->addComponent<TextComponent>("", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 301, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	cuadroTexto->addComponent<TextWritter>();
 	cuadroTexto->addComponent<InputForTextWritter>();
 
