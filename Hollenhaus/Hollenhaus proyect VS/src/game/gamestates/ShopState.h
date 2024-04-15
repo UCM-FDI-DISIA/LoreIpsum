@@ -1,6 +1,6 @@
 #pragma once
 #include "GameState.h"
-#include <list>
+#include <vector>
 
 const int COIN_VALUE = 100; // Valor de cada moneda.
 
@@ -29,11 +29,14 @@ public:
 	ecs::entity_t createCoin(int x, int y);
 	void showCoin(ecs::entity_t coinToShow);
 	void makeCoinShine(int cardIndex, ecs::entity_t card, ecs::entity_t shopMngr);
-	void updateCoinsOnTable(ecs::entity_t shopMngr);
+	void updateCoinsOnTable();
 
 
 private:
 	Factory* factory;
+
+	std::vector<int> posX;
+	std::vector<int> posY;
 
 	//std::list<ecs::entity_t> coins;
 	//Volver a la ciudad

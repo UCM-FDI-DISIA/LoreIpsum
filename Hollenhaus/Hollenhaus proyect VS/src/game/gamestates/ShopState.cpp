@@ -19,7 +19,6 @@ ShopState::ShopState()
 void ShopState::update()
 {
 	GameState::update();
-
 }
 
 void ShopState::render() const
@@ -94,15 +93,25 @@ void ShopState::onEnter()
 	*/
 
 	//-----MONEDAS
-	createCoin(400, 500);
-	createCoin(420, 540);
-	createCoin(380, 525);
-	createCoin(480, 500);
-	createCoin(500, 540);
-	createCoin(570, 530);
-	createCoin(570, 500);
-	createCoin(590, 550);
-	updateCoinsOnTable(shopManager);
+
+	posX.push_back(400); posY.push_back(500);
+	posX.push_back(420); posY.push_back(540);
+	posX.push_back(380); posY.push_back(525);
+	posX.push_back(480); posY.push_back(500);
+	posX.push_back(500); posY.push_back(540);
+	posX.push_back(570); posY.push_back(530);
+	posX.push_back(570); posY.push_back(500);
+	posX.push_back(590); posY.push_back(550);
+	posX.push_back(650); posY.push_back(555);
+
+	int a = getMoney();
+	int money = a / 100;
+
+	for (int i = 0; i < money; i++) {
+		createCoin(posX[i], posY[i]);
+	}
+
+	updateCoinsOnTable();
 
 	//-----Cartas sobre la estanteria
 	//carta1
@@ -269,17 +278,18 @@ void ShopState::makeCoinShine(int cardIndex, ecs::entity_t card, ecs::entity_t s
 	int k = shopMngr->getComponent<ShopComponent>()->getCardPrice(cardIndex);
 
 	int nCoins = k / 100, i = 0;
+
 	while (i < nCoins) {
 		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
 			card->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
+			i++;
 		}
-		i++;
 	}
 }
 
-void ShopState::updateCoinsOnTable(ecs::entity_t shopMngr)
+void ShopState::updateCoinsOnTable()
 {
-	int a = shopMngr->getComponent<ShopComponent>()->getPlayerMoney();
+	int a = getMoney();
 	int money = a / 100;
 	for (int i = 0; i < money; i++) {
 		showCoin(mngr().getEntities(ecs::grp::COINS)[i]);
