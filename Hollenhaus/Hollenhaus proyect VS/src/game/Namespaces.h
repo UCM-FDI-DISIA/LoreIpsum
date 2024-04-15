@@ -239,4 +239,13 @@ namespace JsonData
 
 	};
 
+	struct KeyData {
+		KeyData();
+		KeyData(std::string text) : text_(text) {};
+
+		std::string text() { return text_; }
+	private:
+		std::string text_;
+	};
+
 }

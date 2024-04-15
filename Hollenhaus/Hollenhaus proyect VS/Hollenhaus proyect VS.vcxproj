@@ -92,6 +92,9 @@
     <ClCompile Include="src\game\factories\NPCFactory.cpp" />
     <ClCompile Include="src\game\factories\NPCFactory_V0.cpp" />
     <ClCompile Include="src\game\gamestates\AndresState.cpp" />
+    <ClCompile Include="src\game\gamestates\checkCluesMenuState.cpp" />
+    <ClCompile Include="src\game\gamestates\checkMazeMenuState.cpp" />
+    <ClCompile Include="src\game\gamestates\cinematicIntroState.cpp" />
     <ClCompile Include="src\game\gamestates\CityState.cpp" />
     <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp" />
     <ClCompile Include="src\game\gamestates\GameState.cpp" />
@@ -99,11 +102,17 @@
     <ClCompile Include="src\game\gamestates\LuisState.cpp" />
     <ClCompile Include="src\game\gamestates\MainMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\MatchOverState.cpp" />
+    <ClCompile Include="src\game\gamestates\multiplayerModeState.cpp" />
     <ClCompile Include="src\game\gamestates\NievesState.cpp" />
     <ClCompile Include="src\game\gamestates\OfficeState.cpp" />
+    <ClCompile Include="src\game\gamestates\optionsMainMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\PaigroState.cpp" />
+    <ClCompile Include="src\game\gamestates\pauseMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\SamuState.cpp" />
     <ClCompile Include="src\game\gamestates\ShopState.cpp" />
+    <ClCompile Include="src\game\gamestates\storyModeState.cpp" />
+    <ClCompile Include="src\game\gamestates\transitionTextMenuState.cpp" />
+    <ClCompile Include="src\game\gamestates\tutorialState.cpp" />
     <ClCompile Include="src\game\Mouse.cpp" />
     <ClCompile Include="src\game\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -233,7 +242,16 @@
     <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="src\game\gamestates\checkCluesMenuState.h" />
+    <ClInclude Include="src\game\gamestates\checkMazeMenuState.h" />
+    <ClInclude Include="src\game\gamestates\cinematicIntroState.h" />
     <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
+    <ClInclude Include="src\game\gamestates\multiplayerModeState.h" />
+    <ClInclude Include="src\game\gamestates\optionsMainMenuState.h" />
+    <ClInclude Include="src\game\gamestates\pauseMenuState.h" />
+    <ClInclude Include="src\game\gamestates\storyModeState.h" />
+    <ClInclude Include="src\game\gamestates\transitionTextMenuState.h" />
+    <ClInclude Include="src\game\gamestates\tutorialState.h" />
     <ClInclude Include="src\game\Namespaces.h" />
     <ClInclude Include="src\game\factories\BoardFactory.h" />
     <ClInclude Include="src\game\factories\BoardFactory_v0.h" />
