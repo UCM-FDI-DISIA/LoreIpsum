@@ -199,26 +199,24 @@ ecs::entity_t CardFactory_v1::createDeckJ2Multiplayer()
 
 	//instantie
 
-	auto maze = GameStateMachine::instance()->getCurrentState()->getMaze();
+	auto maze = GameStateMachine::instance()->getCurrentState()->getMazeRival();
 
 	for (auto c : maze)
-	{
-		if (c.first > -1)
-		{
-			auto card = sdlutils().cards().at(std::to_string(c.first));
-			// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
-			ecs::entity_t ent = createCard(
-				Vector2D(initX, initY),
-				card.cost(),
-				card.value(),
-				card.sprite(),
-				card.unblockable(),
-				card.effects(),
-				false
-			);
-			ent->setLayer(1);
-			deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
-		}
+	{	
+		auto card = sdlutils().cards().at(std::to_string(c));
+		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
+		ecs::entity_t ent = createCard(
+			Vector2D(initX, initY),
+			card.cost(),
+			card.value(),
+			card.sprite(),
+			card.unblockable(),
+			card.effects(),
+			false
+		);
+		ent->setLayer(1);
+		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
+		
 	}
 
 

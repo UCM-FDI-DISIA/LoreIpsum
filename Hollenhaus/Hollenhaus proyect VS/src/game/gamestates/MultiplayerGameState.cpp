@@ -120,8 +120,6 @@ void MultiplayerGameState::onEnter()
 	// Factoría de cartas. Con ella generamos la mano inicial
 	ecs::entity_t deckPlayer1 = factory->createDeck();
 
-
-
 	ecs::entity_t deckPlayer2 = factory->createDeckJ2Multiplayer();
 
 #pragma endregion
