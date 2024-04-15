@@ -12,7 +12,7 @@
 #include "Transform.h"
 #include "../../../utils/Vector2D.h"
 
-BoxCollider::BoxCollider() :BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
+BoxCollider::BoxCollider() : BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
 {}
 
 BoxCollider::BoxCollider(Vector2D posOffset, Vector2D size) :

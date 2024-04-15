@@ -37,6 +37,8 @@ void SpriteRenderer::setTexture(Texture* _textu)
 // Para renderizar la textura
 void SpriteRenderer::render() const
 {
+	if (!enabled_) return;
+
 	// Settea el flip de la textura.
 	SDL_RendererFlip flip;
 	if (flipX_)
@@ -59,6 +61,7 @@ void SpriteRenderer::render() const
 }
 Vector2D SpriteRenderer::getImageSize()
 {
-	return Vector2D(texture_->width(), texture_->height());
+	return Vector2D(texture_->width() * transform_->getRelativeScale().getX(), 
+		texture_->height() * transform_->getRelativeScale().getY());
 }
 ;

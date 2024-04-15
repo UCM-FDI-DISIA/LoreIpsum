@@ -56,16 +56,16 @@ void HandComponent::addCard(ecs::entity_t card) {
 
 	//Aquí se calcula la posición a la que tiene que llegar, no se bien como implementarlo en el tween
 	refreshPositions();
-
-	///Tween
-	carta = card;
-	tweenDrawCard =
-		tweeny::from(card->getComponent<Transform>()->getGlobalPos().getX() + 250)
-		.to(card->getComponent<Transform>()->getGlobalPos().getX())
-		.during(60)
-		.via(tweeny::easing::sinusoidalInOut);
-	tween = true;
-
+	if (owner_ == Players::PLAYER1) {
+		///Tween
+		carta = card;
+		tweenDrawCard =
+			tweeny::from(card->getComponent<Transform>()->getGlobalPos().getX() + 250)
+			.to(card->getComponent<Transform>()->getGlobalPos().getX())
+			.during(60)
+			.via(tweeny::easing::sinusoidalInOut);
+		tween = true;
+	}
 	
 }
 
