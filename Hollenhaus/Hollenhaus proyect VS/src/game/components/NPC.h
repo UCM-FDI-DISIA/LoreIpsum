@@ -31,6 +31,7 @@ private:
 	int type;
 	bool talking;
 	std::string name;
+	ecs::entity_t npcDialogue;
 
 	float pos;
 	bool closeToPaul; //si esta cerca de Paul, podra hablar, si no, no
