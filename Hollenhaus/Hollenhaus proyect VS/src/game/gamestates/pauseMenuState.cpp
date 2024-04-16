@@ -23,9 +23,15 @@ void PauseMenuState::refresh()
 	GameState::refresh();
 }
 
-void PauseMenuState::update() {}
+void PauseMenuState::update()
+{
+	GameState::update();
+}
 
-void PauseMenuState::render() const {}
+void PauseMenuState::render() const
+{
+	GameState::render();
+}
 
 void PauseMenuState::onEnter()
 {

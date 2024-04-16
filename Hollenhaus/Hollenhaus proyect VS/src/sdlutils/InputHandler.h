@@ -165,7 +165,7 @@ public:
 				return KEY_F11_DOWN;
 			}
 
-			else if (event.button.button == SDL_SCANCODE_SPACE) 
+			else if (event.button.button == SDL_SCANCODE_ESCAPE) 
 			{
 				return PAUSEKEY_DOWN;
 			}
@@ -178,7 +178,7 @@ public:
 				return KEY_F11_UP;
 			}
 
-			else if (event.button.button == SDL_SCANCODE_SPACE)
+			else if (event.button.button == SDL_SCANCODE_ESCAPE)
 			{
 				return PAUSEKEY_UP;
 			}
