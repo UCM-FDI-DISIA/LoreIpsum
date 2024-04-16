@@ -74,5 +74,7 @@ private:
 	ecs::entity_t cardPrizeText3;
 	//----Factoria para el dialogo de confimacion.
 	Factory* factory2;
+	//
+	ecs::entity_t shopDialogue;
 };
 

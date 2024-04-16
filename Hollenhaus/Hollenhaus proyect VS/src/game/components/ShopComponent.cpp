@@ -166,16 +166,33 @@ bool ShopComponent::confirmPurchase(int prize)
 {
 	//GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
 	//---------------------------------------------------------------------preguntar a ines/poli sobre el dialogo para confirmar.
-	factory2->createDialogue("Tienda", 0, 0,
+
+	JsonData::DialogueData dialogue = sdlutils().dialogues().at("Tienda");
+
+	auto a = getEntity();
+
+	shopDialogue = factory2->createDialogue("Tienda", 0, 0,
 		{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f },// POS
 		{ 0.3,0.1 }, // SIZE
 		5, 10, this->getEntity(),
-		3, false,  // LAYER
+		3,			// capa
+		false,		// auto
 		"8bit_size_20",	// mirar el JSON para cambiar el tamanio de texto
 		SDL_Color({ 0, 0, 0, 255 }),
 		220, // wrap length
 		Text::BoxPivotPoint::LeftTop,
 		Text::TextAlignment::Center);
+
+	//npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
+	//	{ x, y },//POS
+	//	{ 2,2 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
+	//	5, 10, getEntity(),
+	//	3, dialogue.Convo(conv).isAuto(),  //LAYER
+	//	"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
+	//	SDL_Color({ 0, 0, 0, 255 }),
+	//	220, //wrap length
+	//	Text::BoxPivotPoint::LeftTop,
+	//	Text::TextAlignment::Left);
 	//GameStateMachine::instance()->getCurrentState()->deSelected();
 	return true;
 }

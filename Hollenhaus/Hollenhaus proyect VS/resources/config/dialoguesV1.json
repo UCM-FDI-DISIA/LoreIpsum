@@ -234,6 +234,14 @@
                                     "scene": 3
                                 }
                             ]
+                        },
+                        {
+                            "nodeID": "1",
+                            "text": " ",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
                         }
                     ]
                 }
