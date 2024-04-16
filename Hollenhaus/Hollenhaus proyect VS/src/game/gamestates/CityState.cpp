@@ -68,7 +68,7 @@ void CityState::onEnter()
 	// le aniade los componentes
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
-	fondo->addComponent<MoveOnClick>(2.5f);
+	fondo->addComponent<MoveOnClick>(3.0f);
 
 	//fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 255);
 	fondo->addComponent<BoxCollider>();
@@ -113,6 +113,7 @@ void CityState::onEnter()
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(2);
+	fondo->getComponent<MoveOnClick>()->registerFantasmaTrans(fantasmiko);
 	// twinsiiiis
 	auto fanY = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
 	fantastween =

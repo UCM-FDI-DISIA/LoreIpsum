@@ -45,6 +45,7 @@ public:
 	}
 
 	void setOpacity(Uint8 alpha) { opacity = alpha; }
+	int getOpacity() const { return opacity; }
 
 	// Para inicializar el componenete si es necesario.
 	void initComponent() override;
@@ -81,7 +82,7 @@ private:
 	SDL_Color color;
 
 	// Alfa de la textura
-	Uint8 opacity = 255;
+	int opacity = 255;
 
 };
 

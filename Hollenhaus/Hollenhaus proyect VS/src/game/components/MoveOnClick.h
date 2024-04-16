@@ -26,6 +26,11 @@ public:
 		myBoxCollider_ = collider;
 	}
 
+	void registerFantasmaTrans(ecs::entity_t entity)
+	{
+		fanTrans = entity->getComponent<Transform>();
+	}
+
 private:
 	// collider y transform del fondo
 	BoxCollider* myBoxCollider_;
@@ -67,10 +72,14 @@ private:
 	tweeny::tween<float> tweenFlecha; // la flecha flota
 	tweeny::tween<int> tweenFade; // fade in/out del feedback
 	tweeny::tween<float> tweenMovement;
+
 	void onStop();
 	void moveFeedback();
 	void enableFeedback();
 	void disableFeedback();
 	void enableLerp();
 	void disableLerp();
+
+	Transform* fanTrans;
+	tweeny::tween<float> tweenFantasmiko;
 };
