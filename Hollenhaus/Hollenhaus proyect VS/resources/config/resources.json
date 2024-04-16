@@ -54,7 +54,8 @@
         {"id": "CompbateNPC",       "file": "resources/images/juego_dibujo.png"  },
         {"id": "OficinaNPC",       "file": "resources/images/ofi_dibujo.png"  },
         {"id": "NPCNPC",       "file": "resources/images/npc_dibujo.png"  },
-        {"id": "lobby_bg",       "file": "resources/images/lobby_bg.png"  }
+        {"id": "multiplayer_lobby_bg",       "file": "resources/images/multiplayer_lobby_bg.png"  },
+        {"id": "multiplayer_pregame_bg",       "file": "resources/images/multiplayer_pregame_bg.png"  }
     ],
     "fonts": [
       {

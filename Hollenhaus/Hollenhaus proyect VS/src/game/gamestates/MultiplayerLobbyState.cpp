@@ -43,7 +43,7 @@ void MultiplayerLobbyState::onEnter()
 
 	// Imagen de fondo para el lobby
 	ecs::entity_t lobbyBG = Instantiate(Vector2D(0, 0));
-	lobbyBG->addComponent<SpriteRenderer>("lobby_bg");
+	lobbyBG->addComponent<SpriteRenderer>("multiplayer_lobby_bg");
 
 	// --- Boton para volver al menu principal ---
 	ecs::entity_t exit = Instantiate();

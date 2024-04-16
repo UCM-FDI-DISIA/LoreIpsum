@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "MultiplayerPreGameState.h"
-
+#include "../components/basics/TextComponent.h"
+#include "../components/basics/SpriteRenderer.h"
 
 MultiplayerPreGameState::MultiplayerPreGameState()
 {
@@ -29,6 +30,10 @@ void MultiplayerPreGameState::render() const
 void MultiplayerPreGameState::onEnter()
 {
 	TuVieja("ENTER MultiplayerPreGameState");
+
+	// Imagen de fondo para el lobby
+	ecs::entity_t pregameBG = Instantiate(Vector2D(0, 0));
+	pregameBG->addComponent<SpriteRenderer>("multiplayer_pregame_bg");
 
 }
 
