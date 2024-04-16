@@ -67,7 +67,7 @@ void GameState::setLastPaulPos(Vector2D paulPos)
 	data->SetCityPos(paulPos);
 }
 
-void GameState::SetLastState(int ls)
+void GameState::setLastState(int ls)
 {
 	data->setLastState(ls);
 }
@@ -88,7 +88,7 @@ Vector2D GameState::getLastPaulPos()
 	return data->getLastPaulPos();
 }
 
-int GameState::GetLastState()
+int GameState::getLastState()
 {
 	return data->getLastState();
 }
