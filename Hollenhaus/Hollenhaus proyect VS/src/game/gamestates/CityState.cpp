@@ -68,7 +68,7 @@ void CityState::onEnter()
 	// le aniade los componentes
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
-	fondo->addComponent<MoveOnClick>(2.5f);
+	fondo->addComponent<MoveOnClick>(3.0f);
 
 	//fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 255);
 	fondo->addComponent<BoxCollider>();
