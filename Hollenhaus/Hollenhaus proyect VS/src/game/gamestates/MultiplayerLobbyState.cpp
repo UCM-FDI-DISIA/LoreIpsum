@@ -41,6 +41,9 @@ void MultiplayerLobbyState::onEnter()
 {
 	TuVieja("ENTER MultiplayerLobbyState");
 
+	// Imagen de fondo para el lobby
+	ecs::entity_t lobbyBG = Instantiate(Vector2D(0, 0));
+	lobbyBG->addComponent<SpriteRenderer>("lobby_bg");
 
 	// --- Boton para volver al menu principal ---
 	ecs::entity_t exit = Instantiate();
@@ -68,11 +71,11 @@ void MultiplayerLobbyState::onEnter()
 	pasteButton->addComponent<PasteOnTextComponentButton>(cuadroTexto->getComponent<TextComponent>());
 
 	// Texto que guarda y muestra tu IP
-	ecs::entity_t idHint = Instantiate(Vector2D(400, 50));
-	idHint->addComponent<TextComponent>("localhost", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	ecs::entity_t idHint = Instantiate(Vector2D(700, 50));
+	idHint->addComponent<TextComponent>("localhost", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 
 	// Botón para copiar tu IP al clipboard
-	ecs::entity_t copyButton = Instantiate(Vector2D(400, 100));
+	ecs::entity_t copyButton = Instantiate(Vector2D(700, 100));
 	copyButton->addComponent<TextComponent>("COPY IP", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	copyButton->addComponent<BoxCollider>();
 	copyButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 40));

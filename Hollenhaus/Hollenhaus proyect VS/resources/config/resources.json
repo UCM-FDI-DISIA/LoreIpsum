@@ -53,7 +53,8 @@
         {"id": "TiendaNPC",       "file": "resources/images/tienda_dibujo.png"  },
         {"id": "CompbateNPC",       "file": "resources/images/juego_dibujo.png"  },
         {"id": "OficinaNPC",       "file": "resources/images/ofi_dibujo.png"  },
-        {"id": "NPCNPC",       "file": "resources/images/npc_dibujo.png"  }
+        {"id": "NPCNPC",       "file": "resources/images/npc_dibujo.png"  },
+        {"id": "lobby_bg",       "file": "resources/images/lobby_bg.png"  }
     ],
     "fonts": [
       {
