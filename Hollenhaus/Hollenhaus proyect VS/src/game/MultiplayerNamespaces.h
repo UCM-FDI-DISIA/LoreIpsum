@@ -8,9 +8,10 @@ namespace NetMsgs {
 
 	enum MsgType : Uint8 {
 		_NONE_,
-		_INVITATION_RECEIVED_, //
+		_INVITATION_RECEIVED_, // 
 		_ACCEPT_CONNECTION_, //
 		_DECLINE_CONNECTION_, //
+		_READY_TO_PLAY, //
 		_PLAY_CARD_ , //
 		_DRAW_CARD_, //
 		_CHANGE_TURN_, //

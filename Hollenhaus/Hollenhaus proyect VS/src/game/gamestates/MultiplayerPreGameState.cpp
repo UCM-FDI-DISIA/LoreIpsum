@@ -52,7 +52,7 @@ void MultiplayerPreGameState::onEnter()
 	readyButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 40));
 	readyButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -20));
 	readyButton->addComponent<Button>();
-	//setMazeButton->getComponent<Button>()->connectToButton([tc] {setTxt(); });
+	readyButton->getComponent<Button>()->connectToButton([this, tc] {tc->setColor(SDL_Color({0, 255, 0 ,0})); });
 }
 
 void MultiplayerPreGameState::onExit()

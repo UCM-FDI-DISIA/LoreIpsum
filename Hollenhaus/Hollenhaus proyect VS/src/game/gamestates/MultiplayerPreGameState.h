@@ -1,6 +1,8 @@
 #pragma once
 #include "GameState.h"
 
+class TextComponent;
+
 class MultiplayerPreGameState
     :public GameState
 {
@@ -18,5 +20,7 @@ public:
     void onExit() override;
 
 private:
+
+   // TextComponent* tc;
 };
 
