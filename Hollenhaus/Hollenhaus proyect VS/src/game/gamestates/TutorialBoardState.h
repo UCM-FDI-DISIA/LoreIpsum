@@ -25,6 +25,7 @@ private:
     void nextTutorialState();
     void updateTutorialState();
     bool actionEnded();
+    void resetEnded();
 
     //
     void setBoard();

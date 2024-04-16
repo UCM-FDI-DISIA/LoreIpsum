@@ -56,7 +56,7 @@ void TutorialBoardState::update()
 
 		nextTutorialState();
 
-		ended = false;
+		resetEnded();
 	}
 
 	updateTutorialState();
@@ -109,7 +109,12 @@ void TutorialBoardState::updateTutorialState()
 
 bool TutorialBoardState::actionEnded()
 {
-	return ended;
+	return tutorial->getComponent<TutorialManager>()->hasEnded();
+}
+
+void TutorialBoardState::resetEnded()
+{
+	tutorial->getComponent<TutorialManager>()->resetAction();
 }
 
 void TutorialBoardState::nextTutorialState()
