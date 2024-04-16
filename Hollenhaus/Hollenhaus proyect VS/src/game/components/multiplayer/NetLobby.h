@@ -50,6 +50,10 @@ private:
 	void AcceptConection();
 	void DeclineConection();
 
+	void ProcessServerMessages();
+
+	void JumpToPregameScene(bool isHost);
+
 
 	void error();
 };

@@ -23,7 +23,7 @@ NetLobby::NetLobby(Uint16 port) :
 	// Since the host in 'ip' is 0 (we provided 'nullptr' above), SDLNet_TCP_Open starts
 	// a server listening at the port specified in 'ip', and returns a socket for listening
 	// to connection requests
-	masterSocket = SDLNet_TCP_Open(&ip);	// Esto peta. Por algún motivo el masterSocket se queda en nullptr. Creo que la ip se está seteando bien en la función anterior, asi que no sé cual es el problema....
+	masterSocket = SDLNet_TCP_Open(&ip);
 	if (!masterSocket) {
 		error();
 	}
@@ -31,6 +31,9 @@ NetLobby::NetLobby(Uint16 port) :
 	// We want to use non-blocking communication, the way to do this is via a socket set.
 	// We add sockets to this set and then we can ask if any has some activity without blocking.
 	// Non-blocking communication is the adequate one for video games!
+	// Usamos dos sockets:
+	//		Uno para el masterSocket, y actuar como servidor
+	//		Otro para almacenar la conexión con el rival, y actuar de cliente
 	socketSet = SDLNet_AllocSocketSet(2);
 
 	// add the masterSocket to the set
@@ -50,12 +53,12 @@ void NetLobby::initComponent()
 
 void NetLobby::update()
 {
-	// The call to SDLNet_CheckSockets returns the number of sockets with activity in socketSet.
-	// The 2nd parameter tells the method to wait if there is no activity
-	// You want to put it on 0 if you dont want to block (consumes more CPU)
+	// La llamada a SDLNet_CheckSockets devuelve el número de sockets con actividad en socketSet.
+	// El 2º parámetro indica al método que debe esperar si no encuentra actividad
+	// 2º parámetro debe estar en 0 si no quieres bloquear el programa (consume más CPU)
 	if (SDLNet_CheckSockets(socketSet, 0) > 0) {
 
-		// If there is an activity in masterSocket we process it (we act as a server)
+		// Procesamos si hay actividad en el master socket (actuamos como servidor)
 		if (SDLNet_SocketReady(masterSocket)) {
 			// Instanciamos panel de invitación
 			InstantiateInvitationPanel();
@@ -63,60 +66,13 @@ void NetLobby::update()
 			connectToClient();
 		}
 
-		// If there is an activity in connectionSocket we process it (we act as a client)
+		// Procesamos si hay actividad en el socket de conexión con el rival (actuamos como cliente)
 		if (SDLNet_SocketReady(conn)) {
 
 			// Entramos aquí si hemos enviado una invitación de conexión a otra IP
 			// y la otra IP nos ha mandado un mensaje de vuelta
 			// Es decir, somos clientes
-
-			// Podemos recibir dos mensajes de vuelta:
-			// Conexión aceptada
-			// Conexión declinada
-
-			NetMsgs::Msg msg;
-
-			auto result = SDLNetUtils::receiveMsg(conn);
-
-			msg.deserialize(result.buffer);
-
-			switch (msg._type)
-			{
-			case NetMsgs::_NONE_:
-				TuVieja("Mensaje : _NONE_, RECIBIDO");
-				//procesar el mensaje/ lanzar error
-				break;
-
-			case NetMsgs::_INVITATION_RECEIVED_:
-				TuVieja("Mensaje: EL SERVER A RECIBIDO LA INVITACIÓN");
-				break;
-
-			case NetMsgs::_ACCEPT_CONNECTION_:
-				TuVieja("Mensaje : CONEXIÓN ACEPTADA, RECIBIDO");
-
-				// Guardamos el socket del rival en la clase Data par viajar a la siguiente escena
-				GameStateMachine::instance()->getCurrentState()->setSocketRival(conn);
-
-				// Guardar que somos el host. sirve para casos concretos dentro del juego,
-				// como decidir estados aleatorios por los dos. En la practica no somos host.
-				GameStateMachine::instance()->getCurrentState()->setIsHost(false);
-
-				// Ahora cambiamos de escena
-				GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_GAME);
-				//procesar el mensaje
-
-				break;
-
-			case NetMsgs::_DECLINE_CONNECTION_:
-				TuVieja("Mensaje : CONEXIÓN DECLINADA, RECIBIDO");
-
-				//procesar el mensaje
-
-				break;
-
-			default:
-				break;
-			}
+			ProcessServerMessages();
 		}
 	}
 
@@ -151,7 +107,9 @@ void NetLobby::connectToClient()
 	cout << "I AM SERVER!" << endl;
 }
 
-// Método que usa la instancia que hace de Cliente. Sirve para mandar una request al server
+// LLamamos al método cuando el jugador hace click en el botón para
+// mandar una invitación a una IP
+// Pasan cosas malas si la IP es incorrecta o no hay conexión :(
 void NetLobby::connectToServer(const char* host, const int port)
 {
 	// Limpiamos el socket por si antes hubo otra conexión
@@ -176,6 +134,7 @@ void NetLobby::connectToServer(const char* host, const int port)
 	cout << "I AM CLIENT!" << endl;
 }
 
+// Recibimos una invitación, y lanzamos un panel para que el jugador la gestione
 void NetLobby::InstantiateInvitationPanel()
 {
 	ecs::entity_t acceptButton = Instantiate(Vector2D(100, 530));
@@ -195,23 +154,13 @@ void NetLobby::InstantiateInvitationPanel()
 	declineButton->getComponent<Button>()->connectToButton([this] {DeclineConection(); });
 }
 
+// Función llamada cuando aceptamos la invitación
 void NetLobby::AcceptConection()
 {
-	// Avisamos al cliente de que hemos aceptado la invitación de juego
-	NetMsgs::Msg msg(NetMsgs::_ACCEPT_CONNECTION_);
-	SDLNetUtils::serializedSend(msg, conn);
-
-	// Guardamos el socket del rival en la clase Data par viajar a la siguiente escena
-	GameStateMachine::instance()->getCurrentState()->setSocketRival(conn);
-
-	// Guardar que somos el host. sirve para casos concretos dentro del juego,
-	// como decidir estados aleatorios por los dos. En la practica no somos host.
-	GameStateMachine::instance()->getCurrentState()->setIsHost(true);
-
-	// Ahora cambiamos de escena
-	GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_GAME);
+	JumpToPregameScene(true);
 }
 
+// Función llamada cuando declinamos la invitación
 void NetLobby::DeclineConection()
 {
 	// Avisamos al cliente de que hemos declinado la invitación de juego
@@ -219,6 +168,69 @@ void NetLobby::DeclineConection()
 	SDLNetUtils::serializedSend(msg, conn);
 
 	TuVieja("Conexión DECLINADA");
+}
+
+// Función llamada cuando recibimos un mensaje del server
+// al que hemos enviado una invitación de juego
+void NetLobby::ProcessServerMessages()
+{
+	NetMsgs::Msg msg;
+	auto result = SDLNetUtils::receiveMsg(conn);
+	msg.deserialize(result.buffer);
+	
+
+	switch (msg._type)
+	{
+	case NetMsgs::_NONE_:
+		TuVieja("Mensaje : _NONE_, RECIBIDO");
+
+		// Procesamos el mensaje
+		// Habría que lanzar error
+
+		break;
+
+	case NetMsgs::_INVITATION_RECEIVED_:
+		TuVieja("Mensaje del server: LA INVITACIÓN HA SIDO RECIBIDA");
+
+		// Procesamos el mensaje
+
+
+		break;
+
+	case NetMsgs::_ACCEPT_CONNECTION_:
+		TuVieja("Mensaje del server: LA CONEXIÓN HA SIDO ACEPTADA");
+
+		// Procesamos el mensaje
+		JumpToPregameScene(false);
+
+		break;
+
+	case NetMsgs::_DECLINE_CONNECTION_:
+		TuVieja("Mensaje del server: LA CONEXIÓN HA SIDO DECLINADA");
+
+		// Procesamos el mensaje
+
+
+		break;
+
+	default:
+		break;
+	}
+
+}
+
+// La invitación ha sido aceptada, pasamos a la escena de PREGAME
+void NetLobby::JumpToPregameScene(bool isHost)
+{
+	// Guardamos el socket del rival en la clase Data par viajar a la siguiente escena
+	GameStateMachine::instance()->getCurrentState()->setSocketRival(conn);
+
+	// Guardar que somos el host. sirve para casos concretos dentro del juego,
+	// como decidir estados aleatorios por los dos. En la practica no somos host.
+	GameStateMachine::instance()->getCurrentState()->setIsHost(isHost);
+
+	// Ahora cambiamos de escena
+	GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_GAME);
 }
 
 void NetLobby::error() {
