@@ -7,7 +7,6 @@
 using namespace std;
 
 NetLobby::NetLobby(Uint16 port) :
-	result(0),
 	ip({0, 0}),
 	masterSocket(nullptr),
 	socketSet(nullptr),

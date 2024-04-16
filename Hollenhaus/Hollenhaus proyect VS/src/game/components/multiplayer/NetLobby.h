@@ -16,13 +16,10 @@ public:
 	void initComponent() override;
 	void update() override;
 
+	// Método usado por el botón de enviar invitación
 	void SendInvitation(const char* host, const Uint16 port);
 
 private:
-
-	// some auxiliary variables for sending/receiving information
-	char buffer[256];
-	int result;
 
 	// a variable that represents the address -- in this case only the port
 	IPaddress ip;
@@ -37,23 +34,30 @@ private:
 	TCPsocket conn;
 
 
-	// when user accepts invitation
-	void connectToClient();
+	// MÉTODOS DEL SERVIDOR
+	
+		// cuando recibimos una request del cliente
+		void connectToClient();
 
-	// when the user wants to send invitation
-	void connectToServer(const char* host, const int port);
+		// Called when a request is received. Triggers invitation panel
+		void InstantiateInvitationPanel();
 
-	// Called when a request is received. Triggers invitation panel
-	void InstantiateInvitationPanel();
+		// Invitation panel buttons
+		void AcceptConection();
+		void DeclineConection();
 
-	// Invitation panel buttons
-	void AcceptConection();
-	void DeclineConection();
 
-	void ProcessServerMessages();
+	// MÉTODOS DEL CLIENTE
+	
+		// cuando enviamos una invitación al servidor
+		void connectToServer(const char* host, const int port);
 
+		// cuando recibimos mensajes del servidor
+		void ProcessServerMessages();
+
+
+	// Para el cliente y el server. Lanzamos la siguiente escena
 	void JumpToPregameScene(bool isHost);
-
 
 	void error();
 };
