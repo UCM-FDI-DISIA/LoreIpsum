@@ -10,7 +10,9 @@ NetLobby::NetLobby(Uint16 port) :
 	ip({0, 0}),
 	masterSocket(nullptr),
 	socketSet(nullptr),
-	conn(nullptr)
+	conn(nullptr),
+	acceptButton(nullptr),
+	declineButton(nullptr)
 {	
 	
 	// fill in the address in 'ip' -- note that the 2nd parameter is 'nullptr'
@@ -136,7 +138,7 @@ void NetLobby::connectToServer(const char* host, const int port)
 // Recibimos una invitación, y lanzamos un panel para que el jugador la gestione
 void NetLobby::InstantiateInvitationPanel()
 {
-	ecs::entity_t acceptButton = Instantiate(Vector2D(100, 530));
+	acceptButton = Instantiate(Vector2D(100, 530));
 	acceptButton->addComponent<TextComponent>("ACCEPT INV", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	acceptButton->addComponent<BoxCollider>();
 	acceptButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 40));
@@ -144,7 +146,7 @@ void NetLobby::InstantiateInvitationPanel()
 	acceptButton->addComponent<Button>();
 	acceptButton->getComponent<Button>()->connectToButton([this] {AcceptConection(); });
 
-	ecs::entity_t declineButton = Instantiate(Vector2D(200, 530));
+	declineButton = Instantiate(Vector2D(200, 530));
 	declineButton->addComponent<TextComponent>("DECLINE INV", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	declineButton->addComponent<BoxCollider>();
 	declineButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 40));
@@ -173,6 +175,13 @@ void NetLobby::DeclineConection()
 	SDLNet_TCP_DelSocket(socketSet, conn);
 	SDLNet_TCP_Close(conn);
 	conn = nullptr;
+
+	// Eliminamos el panel de invitación
+	acceptButton->setAlive(false);
+	acceptButton = nullptr;
+	declineButton->setAlive(false);
+	declineButton = nullptr;
+
 
 	TuVieja("Conexión DECLINADA");
 }

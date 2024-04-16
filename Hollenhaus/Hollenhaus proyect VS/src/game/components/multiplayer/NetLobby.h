@@ -34,6 +34,9 @@ private:
 	TCPsocket conn;
 
 
+	ecs::entity_t acceptButton;
+	ecs::entity_t declineButton;
+
 	// MÉTODOS DEL SERVIDOR
 	
 		// cuando recibimos una request del cliente
