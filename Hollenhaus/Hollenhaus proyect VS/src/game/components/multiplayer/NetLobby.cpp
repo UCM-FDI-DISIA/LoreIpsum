@@ -4,15 +4,17 @@
 #include "../../MultiplayerNamespaces.h"
 #include "../basics/TextComponent.h"
 #include "../Button.h"
+#include "../LobbyStatusIndicator.h"
 using namespace std;
 
-NetLobby::NetLobby(Uint16 port) :
+NetLobby::NetLobby(Uint16 port, LobbyStatusIndicator* lobbyStatus) :
 	ip({0, 0}),
 	masterSocket(nullptr),
 	socketSet(nullptr),
 	conn(nullptr),
 	acceptButton(nullptr),
-	declineButton(nullptr)
+	declineButton(nullptr),
+	statusIndicator(lobbyStatus)
 {	
 	
 	// fill in the address in 'ip' -- note that the 2nd parameter is 'nullptr'
@@ -40,6 +42,8 @@ NetLobby::NetLobby(Uint16 port) :
 	// add the masterSocket to the set
 	SDLNet_TCP_AddSocket(socketSet, masterSocket);
 
+	// Indicamos al lobbyStatus que estamos listos para buscar invitaciones
+	statusIndicator->setStatus(LobbyStatusIndicator::SearchingForInvitations);
 }
 
 NetLobby::~NetLobby()
@@ -61,8 +65,13 @@ void NetLobby::update()
 
 		// Procesamos si hay actividad en el master socket (actuamos como servidor)
 		if (SDLNet_SocketReady(masterSocket)) {
+
+			// Indicamos al lobbyStatus que hemos recibido una invitación
+			statusIndicator->setStatus(LobbyStatusIndicator::InvitationReceived);
+
 			// Instanciamos panel de invitación
 			InstantiateInvitationPanel();
+
 			// Establecemos conexión con el cliente para enviar mensajitos
 			connectToClient();
 		}
@@ -70,7 +79,7 @@ void NetLobby::update()
 		// Procesamos si hay actividad en el socket de conexión con el rival (actuamos como cliente)
 		if (SDLNet_SocketReady(conn)) {
 
-			// Entramos aquí si hemos enviado una invitación de conexión a otra IP
+				// Entramos aquí si hemos enviado una invitación de conexión a otra IP
 			// y la otra IP nos ha mandado un mensaje de vuelta
 			// Es decir, somos clientes
 			ProcessServerMessages();
@@ -146,7 +155,7 @@ void NetLobby::InstantiateInvitationPanel()
 	acceptButton->addComponent<Button>();
 	acceptButton->getComponent<Button>()->connectToButton([this] {AcceptConection(); });
 
-	declineButton = Instantiate(Vector2D(200, 530));
+	declineButton = Instantiate(Vector2D(300, 530));
 	declineButton->addComponent<TextComponent>("DECLINE INV", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	declineButton->addComponent<BoxCollider>();
 	declineButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 40));
@@ -182,6 +191,9 @@ void NetLobby::DeclineConection()
 	declineButton->setAlive(false);
 	declineButton = nullptr;
 
+	// Indicamos al lobbyStatus que la invitación ha sido declinada
+	statusIndicator->setStatus(LobbyStatusIndicator::SearchingForInvitations);
+
 
 	TuVieja("Conexión DECLINADA");
 }
@@ -208,8 +220,8 @@ void NetLobby::ProcessServerMessages()
 	case NetMsgs::_INVITATION_RECEIVED_:
 		TuVieja("Mensaje del server: LA INVITACIÓN HA SIDO RECIBIDA");
 
-		// Procesamos el mensaje
-
+		// Indicamos al lobbyStatus que la invitación ha llegado con éxito a su destino
+		statusIndicator->setStatus(LobbyStatusIndicator::InvitationSent);
 
 		break;
 
@@ -228,6 +240,9 @@ void NetLobby::ProcessServerMessages()
 		SDLNet_TCP_DelSocket(socketSet, conn);
 		SDLNet_TCP_Close(conn);
 		conn = nullptr;
+
+		// Indicamos al lobbyStatus que la invitación ha sido declinada
+		statusIndicator->setStatus(LobbyStatusIndicator::SearchingForInvitations);
 
 		break;
 

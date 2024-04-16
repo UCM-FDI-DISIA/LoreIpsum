@@ -9,6 +9,7 @@
 #include "../components/SendIPFromTextComponent.h"
 #include "../components/SendInvitationButton.h"
 #include "../components/multiplayer/NetLobby.h"
+#include "../components/LobbyStatusIndicator.h"
 
 
 
@@ -78,12 +79,24 @@ void MultiplayerLobbyState::onEnter()
 	copyButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -20));
 	copyButton->addComponent<CopyTextComponentOnClipboardButton>(idHint->getComponent<TextComponent>());
 
+
+	// Texto que renderiza el estado del lobby
+	ecs::entity_t lobbyStatusRenderer = Instantiate(Vector2D(400, 400));
+	lobbyStatusRenderer->addComponent<TextComponent>("", "8bit_size_16", SDL_Color({ 0, 0,0 ,0 }), 500, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+
+
+	// Para almacenar el estado del lobby
+	ecs::entity_t lobbyStatus = Instantiate();
+	lobbyStatus->addComponent<LobbyStatusIndicator>(lobbyStatusRenderer->getComponent<TextComponent>());
+
+
 	// El NetLobby.
 	// Ahora mismo necesita pasarle el puerto, para no crear dos instancias en el mismo puerto.
 	ecs::entity_t netLobby = Instantiate();
 	int a;
 	std::cin >> a;
-	netLobby->addComponent<NetLobby>(static_cast<Uint16>(a));
+	netLobby->addComponent<NetLobby>(static_cast<Uint16>(a), lobbyStatus->getComponent<LobbyStatusIndicator>());
+
 
 	// Botón para enviar una invitación a aquella IP que esté guardada en el cuadro de texto
 	ecs::entity_t sendInvButton = Instantiate(Vector2D(600, 530));
@@ -93,8 +106,6 @@ void MultiplayerLobbyState::onEnter()
 	sendInvButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	sendInvButton->addComponent<SendIPFromTextComponent>(cuadroTexto->getComponent<TextComponent>(), netLobby->getComponent<NetLobby>());
 	sendInvButton->addComponent<SendInvitationButton>();
-
-
 }
 
 void MultiplayerLobbyState::onExit()

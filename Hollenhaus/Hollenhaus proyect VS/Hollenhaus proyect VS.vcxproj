@@ -56,6 +56,7 @@
     <ClCompile Include="src\game\components\DropDetector.cpp" />
     <ClCompile Include="src\game\components\DropZone.cpp" />
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
+    <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetLobby.cpp" />
     <ClCompile Include="src\game\components\SendIPFromTextComponent.cpp" />
     <ClCompile Include="src\game\components\HandComponent.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="src\game\components\DropDetector.h" />
     <ClInclude Include="src\game\components\DropZone.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
+    <ClInclude Include="src\game\components\LobbyStatusIndicator.h" />
     <ClInclude Include="src\game\components\multiplayer\NetLobby.h" />
     <ClInclude Include="src\game\components\SendIPFromTextComponent.h" />
     <ClInclude Include="src\game\components\HandComponent.h" />

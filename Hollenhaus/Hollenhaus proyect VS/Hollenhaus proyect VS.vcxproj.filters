@@ -360,6 +360,7 @@
     <ClCompile Include="src\game\components\TextWritter.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -701,6 +702,7 @@
     <ClInclude Include="src\game\MultiplayerNamespaces.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\components\LobbyStatusIndicator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">

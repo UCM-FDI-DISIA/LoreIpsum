@@ -2,6 +2,7 @@
 #include "../ComponentUpdate.h"
 #include <SDL_net.h>
 
+class LobbyStatusIndicator;
 // NetLobby por defecto actua de server. 
 // La ip se configura en la constructora para crear un masterSocket y recibir solicitudes de conexión
 // Se crea un socketSet con dos espacios, uno de ellos será el masterSocket
@@ -10,7 +11,7 @@
 class NetLobby : public ComponentUpdate
 {
 public:
-	NetLobby(Uint16 port);
+	NetLobby(Uint16 port, LobbyStatusIndicator* lobbystatus);
 	~NetLobby();
 
 	void initComponent() override;
@@ -36,6 +37,8 @@ private:
 
 	ecs::entity_t acceptButton;
 	ecs::entity_t declineButton;
+
+	LobbyStatusIndicator* statusIndicator;
 
 	// MÉTODOS DEL SERVIDOR
 	

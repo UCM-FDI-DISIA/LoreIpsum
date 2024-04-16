@@ -28,7 +28,6 @@ void CopyTextComponentOnClipboardButton::update()
 void CopyTextComponentOnClipboardButton::clickButton()
 {
     if (bc->isCursorOver()) {
-        TuVieja(tc->getText());
         // Se copia el contenido del TextComponent en el clipboard
         std::string textString = tc->getText();
         const char* output = textString.c_str();
