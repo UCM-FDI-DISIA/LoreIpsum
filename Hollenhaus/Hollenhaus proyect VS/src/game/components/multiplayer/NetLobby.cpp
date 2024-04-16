@@ -157,6 +157,9 @@ void NetLobby::InstantiateInvitationPanel()
 // Función llamada cuando aceptamos la invitación
 void NetLobby::AcceptConection()
 {
+	// Avisamos al cliente de que hemos aceptado la invitación de juego
+	NetMsgs::Msg msg(NetMsgs::_ACCEPT_CONNECTION_);
+	SDLNetUtils::serializedSend(msg, conn);
 	JumpToPregameScene(true);
 }
 
@@ -166,6 +169,11 @@ void NetLobby::DeclineConection()
 	// Avisamos al cliente de que hemos declinado la invitación de juego
 	NetMsgs::Msg msg(NetMsgs::_DECLINE_CONNECTION_);
 	SDLNetUtils::serializedSend(msg, conn);
+
+	// Cerramos la conexión con el cliente
+	SDLNet_TCP_DelSocket(socketSet, conn);
+	SDLNet_TCP_Close(conn);
+	conn = nullptr;
 
 	TuVieja("Conexión DECLINADA");
 }
@@ -200,7 +208,7 @@ void NetLobby::ProcessServerMessages()
 	case NetMsgs::_ACCEPT_CONNECTION_:
 		TuVieja("Mensaje del server: LA CONEXIÓN HA SIDO ACEPTADA");
 
-		// Procesamos el mensaje
+		// Pasamos a la siguiente escena
 		JumpToPregameScene(false);
 
 		break;
@@ -208,8 +216,10 @@ void NetLobby::ProcessServerMessages()
 	case NetMsgs::_DECLINE_CONNECTION_:
 		TuVieja("Mensaje del server: LA CONEXIÓN HA SIDO DECLINADA");
 
-		// Procesamos el mensaje
-
+		// Cerramos la conexión con el server 
+		SDLNet_TCP_DelSocket(socketSet, conn);
+		SDLNet_TCP_Close(conn);
+		conn = nullptr;
 
 		break;
 
