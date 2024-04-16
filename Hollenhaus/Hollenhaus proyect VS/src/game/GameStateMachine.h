@@ -68,6 +68,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* boardState;
 	GameState* deckBuildingState;
 	GameState* tutorialState;
+	GameState* tutorialBoardState;
 
 	// Estados de gente
 	GameState* paigroState;
@@ -75,7 +76,6 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* jimboState;
 	GameState* nievesState;
 	GameState* luisState;
-	GameState* tutorialBoardState;
 
 	// Estados de menuses
 	GameState* storyModeState;
