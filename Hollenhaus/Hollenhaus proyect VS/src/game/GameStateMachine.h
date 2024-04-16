@@ -148,7 +148,7 @@ public:
 			currentState = tutorialState;
 			break; 
 		case GameStates::STORYMODEMENU:
-				currentState = storyModeState;
+			currentState = storyModeState;
 			break; 
 		case GameStates::MULTIPLAYERMODEMENU:
 			currentState = multiplayerModeState;

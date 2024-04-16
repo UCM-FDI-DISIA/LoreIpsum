@@ -57,7 +57,7 @@ public:
 	virtual std::array<int, 50> getDrawer();
 	virtual std::unordered_map<int, Vector2D> getMaze();
 	virtual Vector2D getLastPaulPos();
-	virtual int getLastState();
+	virtual int GetLastState();
 	static Data* getData() { return data; }
 
 	// ---- setters ----
@@ -66,7 +66,7 @@ public:
 	virtual void setDrawer(std::array<int, 50> drawerToSave);
 	virtual void setWinnerOnData(int w);
 	virtual void setLastPaulPos(Vector2D paulPos);
-	virtual void setLastState(int ls);
+	virtual void SetLastState(int ls);
 };
 
 #endif // !GameState_H_
