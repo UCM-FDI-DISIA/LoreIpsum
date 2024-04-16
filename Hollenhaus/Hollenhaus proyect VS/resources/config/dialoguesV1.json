@@ -139,8 +139,6 @@
                     ]
                 }
             ]
-
-
         },
         {
             "NPCName": "Board Tutorial",
@@ -233,7 +231,7 @@
                                 {
                                     "timing": 1,
                                     "type": 3,
-                                    "scene": 0
+                                    "scene": 3
                                 }
                             ]
                         }

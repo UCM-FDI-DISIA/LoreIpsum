@@ -23,7 +23,7 @@ public:
 	//------Inicializacion del componente.
 	void initComponent() override;
 
-
+	//------Update.
 	void update() override;
 
 	//------Genera las CARDS_IN_SHOP cartas que puede comprar el jugador.

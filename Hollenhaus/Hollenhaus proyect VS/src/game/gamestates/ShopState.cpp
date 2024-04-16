@@ -7,6 +7,7 @@
 #include "../components/NPC.h"
 #include "../components/shopComponent.h"
 #include "../GameStateMachine.h"
+#include "../components/Button.h"
 // Factorias:
 #include "../factories/Factory.h"
 #include "../factories/FakeCardFactory_v0.h"
@@ -112,7 +113,7 @@ void ShopState::onEnter()
 	}
 
 	updateCoinsOnTable();
-	/*
+	
 	//-----Cartas sobre la estanteria
 	//carta1
 	ecs::entity_t carta1 = Instantiate();
@@ -197,16 +198,23 @@ void ShopState::onEnter()
 	*/
 
 
-	//------Boton para volver:
-	ecs::entity_t exit = Instantiate();
-	exit->addComponent<Transform>();
-	exit->addComponent<SpriteRenderer>("boton_flecha");
-	exit->addComponent<BoxCollider>();
-	Vector2D exitPos(10, 10);
-	exit->getComponent<Transform>()->setGlobalPos(exitPos);
-	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
-	exit->setLayer(1);
+	////------Boton para volver:
+	//ecs::entity_t exit = Instantiate();
+	//exit->addComponent<Transform>();
+	//exit->addComponent<BoxCollider>();
+	//Vector2D exitPos(10, 10);
+	//exit->getComponent<Transform>()->setGlobalPos(exitPos);
+	//exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
+	//exit->setLayer(1);
+
+
+	ecs::entity_t exitButton = Instantiate(Vector2D(10, 10));
+	exitButton->addComponent<Transform>();
+	exitButton->addComponent<BoxCollider>();
+	exitButton->addComponent<SpriteRenderer>("boton_flecha");
+	//exitButton->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	exitButton->addComponent<Button>();
+	exitButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(1);});
 
 
 	auto& sdl = *SDLUtils::instance();
@@ -229,7 +237,7 @@ void ShopState::cardSelected(int prize)
 	shine(prize / COIN_VALUE);
 }
 
-void ShopState::deSelected() 
+void ShopState::deSelected()
 {
 	for (int i = 0; i < 8; i++)
 	{

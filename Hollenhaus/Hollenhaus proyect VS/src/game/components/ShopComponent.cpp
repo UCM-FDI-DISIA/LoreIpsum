@@ -7,7 +7,9 @@
 #include "Button.h"
 #include "../../game/components/managers/Manager.h"
 #include "../components/basics/TextComponent.h"
-
+//------CheckML.
+#include"../checkML.h"
+//------Factorias.
 #include "../factories/Factory.h"
 #include "../factories/DialogueFactory_V0.h"
 
@@ -162,18 +164,19 @@ int ShopComponent::calculatePrize(ecs::entity_t card)
 
 bool ShopComponent::confirmPurchase(int prize)
 {
-	GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
-	//----------------------------------------------------------preguntar a ines/poli sobre el dialogo para confirmar.
+	//GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
+	//---------------------------------------------------------------------preguntar a ines/poli sobre el dialogo para confirmar.
 	factory2->createDialogue("Tienda", 0, 0,
-		{ 50, 50 },//POS
-		{ 100,100 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
+		{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f },// POS
+		{ 0.3,0.1 }, // SIZE
 		5, 10, this->getEntity(),
-		3, false,  //LAYER
-		"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
+		3, false,  // LAYER
+		"8bit_size_20",	// mirar el JSON para cambiar el tamanio de texto
 		SDL_Color({ 0, 0, 0, 255 }),
-		220, //wrap length
+		220, // wrap length
 		Text::BoxPivotPoint::LeftTop,
-		Text::TextAlignment::Left);
+		Text::TextAlignment::Center);
+	//GameStateMachine::instance()->getCurrentState()->deSelected();
 	return true;
 }
 
