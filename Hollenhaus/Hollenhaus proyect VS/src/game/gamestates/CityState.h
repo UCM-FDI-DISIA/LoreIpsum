@@ -1,4 +1,5 @@
 #include "GameState.h"
+#include "../../utils/tweeny-3.2.0.h"
 
 class Factory;
 
@@ -30,5 +31,6 @@ private:
 	Factory* factory;
 
 	// tween fantasmiko
-	tweeny::tween<float> tweensy;
+	tweeny::tween<float> fantastween;
+
 };

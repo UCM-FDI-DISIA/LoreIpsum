@@ -56,16 +56,16 @@ void HandComponent::addCard(ecs::entity_t card) {
 
 	//Aquí se calcula la posición a la que tiene que llegar, no se bien como implementarlo en el tween
 	refreshPositions();
-
-	///Tween
-	carta = card;
-	tweenDrawCard =
-		tweeny::from(card->getComponent<Transform>()->getGlobalPos().getX() + 250)
-		.to(card->getComponent<Transform>()->getGlobalPos().getX())
-		.during(60)
-		.via(tweeny::easing::sinusoidalInOut);
-	tween = true;
-
+	if (owner_ == Players::PLAYER1) {
+		///Tween
+		carta = card;
+		tweenDrawCard =
+			tweeny::from(card->getComponent<Transform>()->getGlobalPos().getX() + 250)
+			.to(card->getComponent<Transform>()->getGlobalPos().getX())
+			.during(60)
+			.via(tweeny::easing::sinusoidalInOut);
+		tween = true;
+	}
 	
 }
 
@@ -78,6 +78,7 @@ void HandComponent::update()
 		//Habría que hacer que comience en el mazo y se mueva hasta su posición
 		auto drag = mngr_->getHandler(ecs::hdlr::DRAG_MANAGER)->getComponent<DragManager>();
 		tweenDrawCard.step(1);
+		if (tweenDrawCard.progress() == 1.0) tween = false;
 		if (tweenDrawCard.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
 		{
 			if (drag != nullptr) drag->setDraggable(false);

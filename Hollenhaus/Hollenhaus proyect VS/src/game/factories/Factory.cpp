@@ -109,7 +109,7 @@ ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent)
 	return npcFactory->createNPC(info, parent);
 }
 
-
+// Mirar comentario de createDialogue(), la función del return
 ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
 	int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
 	Text::TextAlignment textAlignment)
@@ -123,7 +123,7 @@ ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vecto
 	
 }
 
-void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene,
+void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene, int greenDecision, int redDecision,
 	std::string fontID, SDL_Color color, Uint32 wrapLenght,Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment)
 {
 	if (decisionFactory == nullptr) {
@@ -131,5 +131,5 @@ void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, 
 	}
 
 	decisionFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
-	decisionFactory->createPopUp(pos, size, parent, layer, scene);
+	decisionFactory->createPopUp(pos, size, parent, layer, scene, greenDecision, redDecision);
 }

@@ -6,6 +6,8 @@
 #include "../factories/Factory.h"
 #include "../factories/DialogueFactory_V0.h"
 #include "../factories/CardFactory_v1.h"
+#include "../components/NextText.h"
+#include "../components/DialogueDestroyer.h"
 
 
 NPC::NPC(int scene)
@@ -19,6 +21,7 @@ NPC::NPC(int scene)
 	talking = false;
 	_id = 0;
 
+	closeToPaul = true;
 
 	factory = new Factory();
 	factory->SetFactories(
@@ -82,7 +85,8 @@ NPC::NPC(int scene, int t, std::string name_)
 
 }
 
-NPC::~NPC() {
+NPC::~NPC() 
+{
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] {OnLeftClickUp(); });
 
@@ -90,31 +94,48 @@ NPC::~NPC() {
 	factory = nullptr;
 }
 
-void NPC::initComponent(){
+void NPC::initComponent()
+{
 	myBoxCollider = mngr_->getComponent<BoxCollider>(ent_);
+	myTransform = mngr_->getComponent<Transform>(ent_);
 }
 
-void NPC::OnLeftClickDown(int scene) {
-	myBoxCollider;
-	reactToClick(scene);
-	click = true;
+void NPC::OnLeftClickDown(int scene) 
+{
+		myBoxCollider;
+		reactToClick(scene);
+		click = true;
+
 }
-void NPC::OnLeftClickUp() {
+void NPC::OnLeftClickUp() 
+{
 	click = false; // Resetea el click al soltar para que se pueda volver a pulsar.
 }
 
 void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 {
-	if (!click && myBoxCollider->isCursorOver()) {
+	pos = myTransform->getGlobalPos().getX();
+	closeToPaul = pos > 200 && pos < sdlutils().width() - 170;
 
+	if (!click && myBoxCollider->isCursorOver() && closeToPaul) 
+	{
 		if (type == 0) {
 			TuVieja("Cambio de escena.");
 			GameStateMachine::instance()->setState(scene);
 		}
-		else if (type == 1) {
+		else if (type == 1) 
+		{
 			talkTo();   
 		}
-		
+	}
+
+	//si el dialogo ha sido creado y !closeToPaul entonces destruir dialog
+	if (talking && !closeToPaul) 
+	{
+		//npcDialogue->getComponent<NextText>()->setDead(true);
+		//npcDialogue->getComponent<DialogueDestroyer>()->destroyDialogue();
+
+		//me da errores extranios
 	}
 }
 
@@ -133,20 +154,20 @@ void NPC::talkTo()
 		int node = 0;
 
 		// crear dialogo del FACTORY de dialogos
-		factory->createDialogue(dialogue.NPCName(), conv, node,
-								{x,y}, //POS
-								{100,100}, //SIZE (poli: no cambia nada?¿)
+		//// Mirar comentario en el interior de la función
+		npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
+								{x, y},//POS
+								{2,2}, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
 								5, 10, getEntity(), 
 								3, dialogue.Convo(conv).isAuto(),  //LAYER
 								"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
 								SDL_Color({0, 0, 0, 255}), 
-								150, //wrap length
-								Text::BoxPivotPoint::LeftTop, //lo de pivot no me deja centrar el texto con el cuadrado-> preguntar a Parres uwu
-								Text::TextAlignment::Center);
+								220, //wrap length
+								Text::BoxPivotPoint::LeftTop,
+								Text::TextAlignment::Left);
 
 		talking = true;
 	}
-
 }
 
 void NPC::stoppedTalking()
@@ -154,6 +175,6 @@ void NPC::stoppedTalking()
 	talking = false;
 }
 
-void NPC::update() {
-
+void NPC::update() 
+{
 }

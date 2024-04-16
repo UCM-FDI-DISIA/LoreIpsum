@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Data.h"
 
-
+const std::string SAVE_FILE = "./resources/saves/save.txt";
 
 //------Constructora y destructora:
 Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
@@ -25,7 +25,6 @@ void Data::SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos) {
 	// vacia el anterior
 	EmptyMaze();
 	EmptyMaze_With_pos();
-
 	// guarda iterador al inicio (indice)
 	auto itPos = mazePos.begin();
 
@@ -219,7 +218,15 @@ int Data::getShopCardById(int id) {
 //------Escribir en el archivo:
 void Data::Write() {
 	std::ofstream file;
-	file.open("save.txt");
+	file.open(SAVE_FILE);
+
+	if (!file.is_open()) 
+	{
+#ifdef _DEBUG
+		TuVieja("ERROR DE LECTURA: No se ha podido leer el archivo de guardado.");
+#endif
+		return;
+	}
 
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
@@ -258,7 +265,15 @@ void Data::Read() {
 	EmptyLists();
 
 	std::ifstream file;
-	file.open("save.txt");
+	file.open(SAVE_FILE);
+
+	if (!file.is_open())
+	{
+#ifdef _DEBUG
+		TuVieja("ERROR DE ESCRITURA: No se ha podido abrir el archivo de guardado.");
+#endif
+		return;
+	}
 
 	int number, iterations;
 

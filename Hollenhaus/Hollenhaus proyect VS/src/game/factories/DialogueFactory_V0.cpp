@@ -8,6 +8,15 @@
 //#include "../components/DialogueEventCollection.h"
 #include "../components/DialogueDestroyer.h"
 
+
+// De Luis: Esto habría que refactorizarlo en algún momento.
+// El tamanio del diálogo depende del tamanio de la textura "whiteRect", motivo por el cual no funciona el parámetro size.
+// Además, el transform del dialogue es escalado, lo cual no es buena idea ya que afecta a los tamanios de otros elementos.
+// He metido el texto en una entidad hija del dialogue, pero el componente transform no trabaja correctamente con los hijos, 
+// asi que hay que hacer apanios un poco feos
+// El margen entre el texto y la caja de diálogo tambien es un numero mágico
+// En general hay qe refactorizar para que crear diálogos sea una tarea sencilla y parametrizable.
+
 ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size, 
 	int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_)
 {
@@ -20,21 +29,32 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	dialogue->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
 	
 	//tamanyo de el cuadro de texto
-	Vector2D scaleBox = Vector2D(2,2);
-	dialogue->getComponent<Transform>()->getRelativeScale().set(scaleBox.getX(), scaleBox.getY()); //escala del whiteRect
+	Vector2D scaleBox = Vector2D(2,2);	
+	//dialogue->getComponent<Transform>()->getRelativeScale().set(scaleBox.getX(), scaleBox.getY()); //escala del whiteRect
+	dialogue->getComponent<Transform>()->getRelativeScale().set(size.getX(), size.getY()); //escala del whiteRect
 
 	dialogue->getComponent<Transform>()->setGlobalPos(pos);
 	dialogue->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
-	//textou
-	dialogue->addComponent<DialogueDestroyer>(parent);
-	dialogue->addComponent<TextComponent>(" ", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
-	dialogue->addComponent<TypeWriter>(speed);
-	dialogue->addComponent<DialogueReader>(id, convo);
-	dialogue->addComponent<NextText>(); 
+	// el texto se encuentra en una entidad hija
+	Vector2D margin = Vector2D(10, 10);
+	ecs::entity_t text = Instantiate();
+	auto textTR = text->addComponent<Transform>();
+	textTR->addParent(dialogue->getComponent<Transform>());
+	//text->addComponent<BoxCollider>()->setSize(dialogue->getComponent<SpriteRenderer>()->getImageSize() - margin * 8);
+	Vector2D localPos = dialogue->getComponent<Transform>()->getGlobalPos();
+	localPos = localPos + margin;
+	textTR->setGlobalPos(localPos);
+	text->addComponent<DialogueDestroyer>(parent);
+	text->addComponent<TextComponent>(" ", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
+	text->addComponent<TypeWriter>(speed);
+	text->addComponent<DialogueReader>(id, convo);
+	text->addComponent<NextText>();
+
+	text->getComponent<NextText>()->setCollider(dialogue->getComponent<BoxCollider>());
 
 	if (auto_) {
-		dialogue->addComponent<AutoDialogue>(cooldown);
+		text->addComponent<AutoDialogue>(cooldown);
 	}
 	else {
 		// quitar el collider¿¿?¿?¿
@@ -42,7 +62,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 
 
 	dialogue->setLayer(layer);
-	
+	text->setLayer(layer + 1);
 
 	return dialogue;
 }

@@ -59,6 +59,13 @@ void TypeWriter::typeWrite(std::string newtext)
 	i = 0;
 }
 
+void TypeWriter::finishTypewrite()
+{
+	finaltext = text;
+	// actualiza el texto
+	setText();
+}
+
 bool TypeWriter::ended()
 {
 	return finaltext == text;

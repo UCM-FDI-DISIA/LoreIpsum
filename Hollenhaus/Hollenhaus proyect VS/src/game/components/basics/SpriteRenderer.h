@@ -37,12 +37,15 @@ public:
 	/// <param name="g">Cantidad de verde 0-255</param>
 	/// <param name="b">Cantidad de azul 0-255</param>
 	/// <param name="a">0 - no multiplica, 255 - multiplica todo el color</param>
-	void setMultiplyColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a = 0) { 
+	void setMultiplyColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255) { 
 		color.r = r;
 		color.g = g;
 		color.b = b;
 		color.a = a;
 	}
+
+	void setOpacity(Uint8 alpha) { opacity = alpha; }
+	int getOpacity() const { return opacity; }
 
 	// Para inicializar el componenete si es necesario.
 	void initComponent() override;
@@ -77,6 +80,9 @@ private:
 
 	// Color que multiplica la textura
 	SDL_Color color;
+
+	// Alfa de la textura
+	int opacity = 255;
 
 };
 
