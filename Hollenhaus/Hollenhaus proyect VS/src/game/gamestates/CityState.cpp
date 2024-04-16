@@ -14,8 +14,6 @@
 CityState::CityState()
 {
 	TuVieja("Loading CityState");
-
-
 }
 
 CityState::~CityState()
@@ -183,7 +181,6 @@ void CityState::onExit()
 {
 	// se desuscribe al evento
 	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPause(); });
-
 
 	std::cout << "\nEXIT CITY.\n";
 

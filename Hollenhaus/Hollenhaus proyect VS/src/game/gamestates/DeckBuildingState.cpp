@@ -54,6 +54,9 @@ void DeckBuildingState::onEnter()
 {
 	std::cout << "\nENTER DECKBUILDING.\n";
 
+	// llamada al input
+	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPauseDB(); });
+
 	// carga el data
 	loadData();
 
@@ -215,6 +218,9 @@ void DeckBuildingState::onEnter()
 // ---- EXIT ESTADO ----
 void DeckBuildingState::onExit()
 {
+	// se desuscribe al evento
+	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPauseDB(); });
+
 	// al salir del estado guardas la info
 	saveData();
 
@@ -225,6 +231,12 @@ void DeckBuildingState::onExit()
 	GameStateMachine::instance()->getMngr()->Free();
 
 	std::cout << "\nEXIT DECKBUILDING.\n";
+}
+
+void DeckBuildingState::onPauseDB()
+{
+	SetLastState(9);
+	GameStateMachine::instance()->setState(16);
 }
 
 #pragma region DECKBUILDING

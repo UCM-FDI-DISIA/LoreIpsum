@@ -20,6 +20,8 @@ public:
 	void onEnter() override;
 	void onExit() override;
 
+	void onPauseDB();
+
 	void moveToPizarra(Card* card);
 	void moveToDrawer(Card* card);
 

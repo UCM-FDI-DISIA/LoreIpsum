@@ -30,6 +30,8 @@ public:
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
 
+	//virtual void onPause();
+
 	//----Mete una c carta al array de cartas de la tienda de Data.
 	virtual void setShopCard(int c);
 	//----Comprueba si el array de cartas de la tienda de Data esta vacia.
