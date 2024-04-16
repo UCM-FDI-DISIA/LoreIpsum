@@ -16,14 +16,12 @@ CityState::CityState()
 {
 	TuVieja("Loading CityState");
 
-	// llamada al input
-	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPause(); });
+
 }
 
 CityState::~CityState()
 {
-	// se desuscribe al evento
-	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPause(); });
+
 }
 
 void CityState::update()
@@ -60,6 +58,9 @@ void CityState::refresh()
 
 void CityState::onEnter()
 {
+	// llamada al input
+	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPause(); });
+
 	std::cout << "\nENTER CITY.\n";
 
 	factory = new Factory();
@@ -82,13 +83,10 @@ void CityState::onEnter()
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
 	fondo->addComponent<MoveOnClick>(2);
 
-	//fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 255);
 	fondo->addComponent<BoxCollider>();
 	//tamanyo de ciudadcompleta.png: 5754 x 1212
 	fondo->getComponent<Transform>()->setGlobalScale(0.495f, 0.495f);
-	//fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f); //escalado para ciudadcompleta.png (porfi no toquetear)!!! 
 
-	//Vector2D globalPos(-1200.0f, 0); //Posici�n inicial de la ciudad para que se vea por el centro.
 	Vector2D globalPos = getLastPaulPos();
 	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
 
@@ -183,6 +181,10 @@ void CityState::onEnter()
 
 void CityState::onExit()
 {
+	// se desuscribe al evento
+	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPause(); });
+
+
 	std::cout << "\nEXIT CITY.\n";
 
 	auto& sdl = *SDLUtils::instance();
@@ -193,8 +195,9 @@ void CityState::onExit()
 
 void CityState::onPause()
 {
-	//GameStateMachine::instance()->getCurrentState()->setLastState(1);
+	SetLastState(1);
 	GameStateMachine::instance()->setState(16);
+	std::cout << "last state in city: " << GetLastState() << "\n";
 
 	// wtf
 	//GameStateMachine::instance()->pushState(new PauseMenuState());
