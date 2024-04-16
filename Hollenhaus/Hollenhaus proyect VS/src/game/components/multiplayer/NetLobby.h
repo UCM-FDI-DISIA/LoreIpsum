@@ -16,7 +16,7 @@ public:
 	void initComponent() override;
 	void update() override;
 
-	bool SendInvitation(const char* host, const Uint16 port);
+	void SendInvitation(const char* host, const Uint16 port);
 
 private:
 
@@ -36,14 +36,19 @@ private:
 	// a socket for sending and receiving data
 	TCPsocket conn;
 
-	// called when a request is received. Triggers invitation
-	bool conectionRequestedFromClient();
 
 	// when user accepts invitation
-	bool connectToClient();
+	void connectToClient();
 
 	// when the user wants to send invitation
-	bool connectToServer(const char* host, const int port);
+	void connectToServer(const char* host, const int port);
+
+	// Called when a request is received. Triggers invitation panel
+	void InstantiateInvitationPanel();
+
+	// Invitation panel buttons
+	void AcceptConection();
+	void DeclineConection();
 
 
 	void error();
