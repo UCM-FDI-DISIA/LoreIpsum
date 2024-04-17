@@ -361,6 +361,7 @@
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp" />
+    <ClCompile Include="src\game\components\multiplayer\NetPregame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -703,6 +704,7 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\LobbyStatusIndicator.h" />
+    <ClInclude Include="src\game\components\multiplayer\NetPregame.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">

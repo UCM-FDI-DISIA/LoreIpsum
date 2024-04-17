@@ -3,6 +3,7 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/Button.h"
+#include "../components/multiplayer/NetPregame.h"
 
 MultiplayerPreGameState::MultiplayerPreGameState()
 {
@@ -53,6 +54,8 @@ void MultiplayerPreGameState::onEnter()
 	readyButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -20));
 	readyButton->addComponent<Button>();
 	readyButton->getComponent<Button>()->connectToButton([this, tc] {tc->setColor(SDL_Color({0, 255, 0 ,0})); });
+
+	
 }
 
 void MultiplayerPreGameState::onExit()
