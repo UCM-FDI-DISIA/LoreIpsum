@@ -178,7 +178,7 @@ void NPC::update()
 	{
 		TuVieja("Destruye dialog");
 		//npcDialogue->getComponent<NextText>()->setDead(true); //me da error AYUDA INES
-		//npcDialogue->getComponent<DialogueDestroyer>()->destroyDialogue();
+		npcDialogue->getComponent<DialogueDestroyer>()->destroyDialogue();
 
 		talking = false;
 		
