@@ -67,11 +67,15 @@ void GameState::setLastPaulPos(Vector2D paulPos)
 	data->SetCityPos(paulPos);
 }
 
+void GameState::SetLastState(int ls)
+{
+	data->setLastState(ls);
+}
+
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
 	return data->GetDrawer();
 }
-
 
 // para acceder al mazo del data desde el estado
 std::unordered_map<int, Vector2D> GameState::getMaze()
@@ -82,6 +86,11 @@ std::unordered_map<int, Vector2D> GameState::getMaze()
 Vector2D GameState::getLastPaulPos()
 {
 	return data->getLastPaulPos();
+}
+
+int GameState::GetLastState()
+{
+	return data->getLastState();
 }
 
 // para settear el mazo del data desde el estado

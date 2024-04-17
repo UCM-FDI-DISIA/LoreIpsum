@@ -8,6 +8,11 @@
 
 #include "pch.h"
 #include "MoveOnClick.h"
+#include "../Entity.h"
+#include "managers/Manager.h"
+#include "../../sdlutils/InputHandler.h"
+#include "../../sdlutils/SDLUtils.h"
+
 #include <cmath>
 
 constexpr Uint32 FEEDBACK_PADDING = 60,

@@ -8,6 +8,7 @@ class CityState : public GameState
 public:
 
 	CityState(); //Constructora
+	~CityState();
 
 	void update() override;
 	void render() const override;
@@ -15,6 +16,9 @@ public:
 
 	void onEnter() override;
 	void onExit() override;
+
+	void onPause();
+
 private:
 
 	//Velocidad del fondo (mov)

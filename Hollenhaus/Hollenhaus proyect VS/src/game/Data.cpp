@@ -153,6 +153,11 @@ bool Data::setShopCard(int id) {
 	else { return false; }
 }
 
+void Data::setLastState(int ls)
+{
+	lastState = ls;
+}
+
 //------Busqueda:
 
 // ------ DECKBUILDING ------
