@@ -32,7 +32,9 @@ public:
 		MOUSE_LEFT_CLICK_DOWN,
 		MOUSE_LEFT_CLICK_UP,
 		KEY_F11_DOWN,
-		KEY_F11_UP
+		KEY_F11_UP,
+		PAUSEKEY_DOWN,
+		PAUSEKEY_UP
 	};
 
 	virtual ~InputHandler() {
@@ -155,11 +157,17 @@ public:
 			}
 		}
 
+		// CUALQUIER KEY
 		if (event.type == SDL_KEYDOWN)
 		{
 			if (event.button.button == SDL_SCANCODE_F11)
 			{
 				return KEY_F11_DOWN;
+			}
+
+			else if (event.button.button == SDL_SCANCODE_ESCAPE) 
+			{
+				return PAUSEKEY_DOWN;
 			}
 		}
 
@@ -168,6 +176,11 @@ public:
 			if (event.button.button == SDL_SCANCODE_F11)
 			{
 				return KEY_F11_UP;
+			}
+
+			else if (event.button.button == SDL_SCANCODE_ESCAPE)
+			{
+				return PAUSEKEY_UP;
 			}
 		}
 

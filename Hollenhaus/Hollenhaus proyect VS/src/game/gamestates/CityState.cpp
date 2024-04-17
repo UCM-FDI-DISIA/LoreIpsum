@@ -9,10 +9,18 @@
 #include "../components/NextText.h"
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
+#include "pauseMenuState.h"
 
 CityState::CityState()
 {
 	TuVieja("Loading CityState");
+
+
+}
+
+CityState::~CityState()
+{
+
 }
 
 void CityState::update()
@@ -48,6 +56,9 @@ void CityState::refresh()
 
 void CityState::onEnter()
 {
+	// llamada al input
+	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPause(); });
+
 	std::cout << "\nENTER CITY.\n";
 
 	factory = new Factory();
@@ -68,15 +79,12 @@ void CityState::onEnter()
 	// le aniade los componentes
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
-	fondo->addComponent<MoveOnClick>(2.5f);
+	fondo->addComponent<MoveOnClick>(3.0f);
 
-	//fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 255);
 	fondo->addComponent<BoxCollider>();
 	//tamanyo de ciudadcompleta.png: 5754 x 1212
 	fondo->getComponent<Transform>()->setGlobalScale(0.495f, 0.495f);
-	//fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f); //escalado para ciudadcompleta.png (porfi no toquetear)!!! 
 
-	//Vector2D globalPos(-1200.0f, 0); //Posici�n inicial de la ciudad para que se vea por el centro.
 	Vector2D globalPos = getLastPaulPos();
 	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
 
@@ -131,7 +139,7 @@ void CityState::onEnter()
 	factory->createNPC(1, fondo);
 	factory->createNPC(2, fondo);
 	factory->createNPC(3, fondo);
-	//factory->createNPC(4, fondo);
+	factory->createNPC(4, fondo);
 
 
 	//----Para entrar en la tienda.
@@ -173,10 +181,24 @@ void CityState::onEnter()
 
 void CityState::onExit()
 {
+	// se desuscribe al evento
+	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPause(); });
+
+
 	std::cout << "\nEXIT CITY.\n";
 
 	auto& sdl = *SDLUtils::instance();
 	setLastPaulPos(fondo->getComponent<Transform>()->getGlobalPos());
 	sdl.soundEffects().at("citytheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
+}
+
+void CityState::onPause()
+{
+	SetLastState(1);
+	GameStateMachine::instance()->setState(16);
+	std::cout << "last state in city: " << GetLastState() << "\n";
+
+	// wtf
+	//GameStateMachine::instance()->pushState(new PauseMenuState());
 }

@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "MainMenuState.h"
 #include "../components/managers/Manager.h"
 #include "../components/NPC.h"
@@ -50,7 +50,7 @@ void MainMenuState::onEnter()
 	//------Textos del menu principal:
 	//----Texto del titulo.
 	//ecs::entity_t titleText = Instantiate(Vector2D(400, 50));
-	//titleText->addComponent<TextComponent>("H�LLENHAUS", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 450, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
+	//titleText->addComponent<TextComponent>("HÖLLENHAUS", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 450, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para un nuevo juego.
 	newGameButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 120));
 	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
@@ -72,6 +72,15 @@ void MainMenuState::onEnter()
 	exitButton->getComponent<BoxCollider>()->setSize(Vector2D(100,32));
 	exitButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(50, -16));
 	ih().insertFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
+
+	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
+	multiplayerButton->addComponent<TextComponent>("MULTIJUGADOR", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	multiplayerButton->addComponent<BoxCollider>();
+	multiplayerButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
+	multiplayerButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
+	multiplayerButton->addComponent<NPC>(13, 0);
+
+
 
 	sdlutils().soundEffects().at("menutheme").play(-1);
 	sdlutils().soundEffects().at("menutheme").setChannelVolume(10);

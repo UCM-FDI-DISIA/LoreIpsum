@@ -153,6 +153,11 @@ bool Data::setShopCard(int id) {
 	else { return false; }
 }
 
+void Data::setLastState(int ls)
+{
+	lastState = ls;
+}
+
 //------Busqueda:
 
 // ------ DECKBUILDING ------
@@ -194,12 +199,13 @@ bool Data::IdIsInShopCards(int id) {
 //----Cartas de la tienda:
 bool Data::shopCardsIsEmpty() {
 	int i = 0;
-	bool empty = true; // Suponemos que esta vacio.
-	while (empty && i < CARDS_IN_SHOP)
+	bool empty = false; // Suponemos que no esta vacio.
+
+	while (!empty && i < CARDS_IN_SHOP)
 	{
-		if (shopCards[i] != -1)
+		if (shopCards[i] == -1)
 		{
-			empty = false; // Si hay alguna cartra (no es -1) entonces no esta vacio.
+			empty = true; // Si alguna carta esta en -1 entonces esta vacia.
 		}
 		i++;
 	}
@@ -215,7 +221,7 @@ void Data::Write() {
 	std::ofstream file;
 	file.open(SAVE_FILE);
 
-	if (!file.is_open()) 
+	if (!file.is_open())
 	{
 #ifdef _DEBUG
 		TuVieja("ERROR DE LECTURA: No se ha podido leer el archivo de guardado.");
