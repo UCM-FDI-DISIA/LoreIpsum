@@ -57,11 +57,21 @@ void DragManager::update()
 			auto c = dragTransform->getEntity()->getComponent<Card>();
 
 			//Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
-			auto efect = c->getEffects();
 			auto id = c->getID();
-			TuVieja(std::to_string(id));
 			auto l = sdlutils().cards().at(std::to_string(id));
 			
+			for (auto e : l.effects()) {
+				//Diferenciamos los tipos de efectos (Solo nos interesa el 2, 3, 4; luego de eso vemos las direcciones)
+				if ((e.type() == Effects::Superflecha) || (e.type() == Effects::Flecha) || (e.type() == Effects::Centro)) {
+
+					for (auto d : e.directions()) {
+
+						
+					}
+				}
+
+				
+			}
 
 			//drop->getComponent<Cell>()->getEffects();
 		}
