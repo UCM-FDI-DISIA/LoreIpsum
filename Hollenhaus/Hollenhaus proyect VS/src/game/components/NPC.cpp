@@ -102,11 +102,11 @@ void NPC::initComponent()
 
 void NPC::OnLeftClickDown(int scene) 
 {
-		myBoxCollider;
-		reactToClick(scene);
-		click = true;
-
+	myBoxCollider;
+	reactToClick(scene);
+	click = true;
 }
+
 void NPC::OnLeftClickUp() 
 {
 	click = false; // Resetea el click al soltar para que se pueda volver a pulsar.
@@ -114,10 +114,7 @@ void NPC::OnLeftClickUp()
 
 void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 {
-	pos = myTransform->getGlobalPos().getX();
-	closeToPaul = pos > 200 && pos < sdlutils().width() - 170;
-
-	if (!click && myBoxCollider->isCursorOver() && closeToPaul) 
+	if (!click && myBoxCollider->isCursorOver()) // Recoge click para el cambio de escena.
 	{
 		if (type == 0) {
 			TuVieja("Cambio de escena.");
@@ -128,20 +125,16 @@ void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 			talkTo();   
 		}
 	}
-
-	//si el dialogo ha sido creado y !closeToPaul entonces destruir dialog
-	if (talking && !closeToPaul) 
-	{
-		//npcDialogue->getComponent<NextText>()->setDead(true);
-		//npcDialogue->getComponent<DialogueDestroyer>()->destroyDialogue();
-
-		//me da errores extranios
-	}
 }
 
 void NPC::talkTo()
 {
-	if (!click && myBoxCollider->isCursorOver() && !talking) {
+	// Recoge la posicion X del NPC y determina si esta cerca de Paul.
+	pos = myTransform->getGlobalPos().getX();
+	closeToPaul = pos > 200 && pos < sdlutils().width() - 170;
+
+	if (!click && myBoxCollider->isCursorOver() && !talking && closeToPaul) // Recoge click para hablar con un NPC.
+	{
 		TuVieja("Que charlatan el tio...");
 		
 		float x = ent_->getComponent<Transform>()->getGlobalPos().getX() - 150;
