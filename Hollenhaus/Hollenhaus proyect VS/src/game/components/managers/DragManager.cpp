@@ -62,15 +62,12 @@ void DragManager::update()
 			
 			for (auto e : l.effects()) {
 				//Diferenciamos los tipos de efectos (Solo nos interesa el 2, 3, 4; luego de eso vemos las direcciones)
-				if ((e.type() == Effects::Superflecha) || (e.type() == Effects::Flecha) || (e.type() == Effects::Centro)) {
+				std::cout << e.type() << std::endl;
 
-					for (auto d : e.directions()) {
+				if (e.type() == Effects::Superflecha || e.type() == Effects::Flecha || e.type() == Effects::Centro) {
+					std::cout << e.type() << std::endl;
 
-						
-					}
 				}
-
-				
 			}
 
 			//drop->getComponent<Cell>()->getEffects();
