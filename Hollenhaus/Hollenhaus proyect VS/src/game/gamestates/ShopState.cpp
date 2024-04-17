@@ -36,6 +36,9 @@ void ShopState::onEnter()
 {
 	std::cout << "\nENTER SHOP.";
 
+	// llamada al input
+	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPauseSH(); });
+
 	// ---- CARDS ----
 	factory = new Factory();
 	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
@@ -222,11 +225,21 @@ void ShopState::onExit()
 {
 	std::cout << "\nEXIT SHOP.";
 
+	// se desuscribe al evento
+	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPauseSH(); });
+
 	saveData();
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("shoptheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
 }
+
+void ShopState::onPauseSH()
+{
+	SetLastState(3);
+	GameStateMachine::instance()->setState(17);
+}
+
 
 void ShopState::cardSelected(int prize)
 {
@@ -248,7 +261,6 @@ void ShopState::shine(int nCoins)
 		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("monedaIlu");
 	}
 }
-
 
 ecs::entity_t ShopState::createCard(int id, Vector2D pos)
 {

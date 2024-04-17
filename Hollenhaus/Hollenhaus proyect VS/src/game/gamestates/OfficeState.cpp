@@ -30,6 +30,9 @@ void OfficeState::refresh()
 void OfficeState::onEnter()
 {
 	std::cout << "\nENTER OFFICE.\n";
+
+	// llamada al input
+	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPauseOF(); });
 	
 	//------Texto de la oficina.
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
@@ -80,9 +83,18 @@ void OfficeState::onExit()
 {
 	std::cout << "\nEXIT OFFICE.\n";
 
+	// se desuscribe al evento
+	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPauseOF(); });
+
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
 
 	GameStateMachine::instance()->getMngr()->Free();
+}
+
+void OfficeState::onPauseOF()
+{
+	SetLastState(2);
+	GameStateMachine::instance()->setState(17);
 }
 

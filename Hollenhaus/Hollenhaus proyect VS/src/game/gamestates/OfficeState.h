@@ -14,6 +14,9 @@ public:
 
 	void onEnter() override;
 	void onExit() override;
+
+	void onPauseOF();
+
 private:
 
 	//Cambiar a combate (Tarotista) -> Teléfono

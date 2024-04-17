@@ -19,6 +19,8 @@ public:
 	void onEnter() override;
 	void onExit() override;
 
+	void onPauseSH();
+
 	void cardSelected(int prize) override;
 	void deSelected() override;
 

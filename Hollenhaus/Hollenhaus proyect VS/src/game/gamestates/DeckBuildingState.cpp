@@ -108,8 +108,8 @@ void DeckBuildingState::onEnter()
 	caj->setLayer(0);
 
 	// ---- BOTONES ----
-#pragma region BOTONES
-// ---- Salir:
+	#pragma region BOTONES
+	// ---- Salir:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
 	exit->addComponent<SpriteRenderer>("boton_flecha");
@@ -161,10 +161,10 @@ void DeckBuildingState::onEnter()
 	botPatras->addComponent<Button>();
 	botPatras->getComponent<Button>()->connectToButton([this]() { drawer_->drawerPatras(); });
 	botPatras->setLayer(2);
-#pragma endregion 
+	#pragma endregion 
 
 	// ---- PIZARRA ----
-#pragma region PIZARRA
+	#pragma region PIZARRA
 	Vector2D pizarraPos(260, 40);
 	ecs::entity_t pizarra = Instantiate(pizarraPos, ecs::grp::DROPZONE);
 
@@ -185,10 +185,10 @@ void DeckBuildingState::onEnter()
 
 	// lo guarda
 	pizarra_ = pizarra->getComponent<PizarraManager>();
-#pragma endregion
+	#pragma endregion
 
 	// ---- CAJON ----
-#pragma region CAJON
+	#pragma region CAJON
 	Vector2D cajonPos(340, 430);
 	ecs::entity_t cajon = Instantiate(cajonPos, ecs::grp::DROPZONE);
 
@@ -207,7 +207,7 @@ void DeckBuildingState::onEnter()
 
 	// lo guarda
 	drawer_ = cajon->getComponent<DrawerManager>();
-#pragma endregion
+	#pragma endregion
 
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
@@ -235,8 +235,14 @@ void DeckBuildingState::onExit()
 
 void DeckBuildingState::onPauseDB()
 {
+	//ecs::entity_t officeText = Instantiate(Vector2D(210, 10));
+	//officeText->addComponent<TextComponent>("PAUSA", "8bit_size_24", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	//officeText->setLayer(1);
+
 	SetLastState(9);
-	GameStateMachine::instance()->setState(16);
+	pizarra_->saveMaze();
+	drawer_->saveDrawer();
+	GameStateMachine::instance()->setState(17);
 }
 
 #pragma region DECKBUILDING
