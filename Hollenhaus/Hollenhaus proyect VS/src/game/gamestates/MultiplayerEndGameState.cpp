@@ -43,22 +43,33 @@ void MultiplayerEndGameState::onEnter()
 
 	//------Boton para volver:
 	auto playAgainButton = Instantiate(Vector2D(sdlutils().width()/2, 230));
-	playAgainButton->addComponent<TextComponent>("Jugar Otra Vez", "8bit_size_32", SDL_Color({ 255, 255,255 ,255 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	auto playAgainText = playAgainButton->addComponent<TextComponent>("Jugar Otra Vez", "8bit_size_32", SDL_Color({ 255, 255,255 ,255 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	playAgainButton->addComponent<BoxCollider>();
 	playAgainButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	playAgainButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
 	playAgainButton->addComponent<Button>();
 	playAgainButton->getComponent<Button>()->connectToButton([this, netEndGame] { netEndGame->playAgain(); });
+	playAgainButton->getComponent<Button>()->connectToButton(
+		[this, netEndGame, playAgainText]
+		{
+			swapColor(playAgainText, netEndGame->getPlayAgainSelected());
+		});
 	playAgainButton->setLayer(1);
 
 	//------Boton para cambiar mazo:
 	auto changeMazeButton = Instantiate(Vector2D(sdlutils().width() / 2, 330));
-	changeMazeButton->addComponent<TextComponent>("Cambiar Mazo", "8bit_size_32", SDL_Color({ 255, 255,255 ,255 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	auto changeMazeText = changeMazeButton->addComponent<TextComponent>("Cambiar Mazo", "8bit_size_32", SDL_Color({ 255, 255,255 ,255 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	changeMazeButton->addComponent<BoxCollider>();
 	changeMazeButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	changeMazeButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
 	changeMazeButton->addComponent<Button>();
 	changeMazeButton->getComponent<Button>()->connectToButton([this, netEndGame] {netEndGame->changeMaze(); });
+	changeMazeButton->getComponent<Button>()->connectToButton(
+		[this, netEndGame, changeMazeText] 
+		{
+			swapColor(changeMazeText, netEndGame->getChangeMazeSelected()); 
+		});
+
 	changeMazeButton->setLayer(1);
 
 
@@ -123,6 +134,12 @@ void MultiplayerEndGameState::setWindow(int lastWinner)
 
 	// ---- Resetea el ganador a nulo al salir del estado ----
 	data->setWinner(0);
+}
+
+
+void MultiplayerEndGameState::swapColor(TextComponent* tc, bool b)
+{
+	tc->setColor(b ? SDL_Color({ 0, 255, 0, 255 }) :  SDL_Color({ 255, 255, 255, 255 }));
 }
 
 

@@ -21,12 +21,19 @@ public:
 	void changeMaze();
 	void exit();
 
+	bool getPlayAgainSelected();
+	bool getChangeMazeSelected();
+
 private:
 
 	//el jugador contra el que estamos jugando
 	TCPsocket rival = nullptr;
 	SDLNet_SocketSet socketSet; //para recibir los mensajes con comunicacion NO-Bloqueante
 
+	bool changeMazeSelected = false;
+	bool playAgainSelected = false;
 
+	bool rivalChangeMazeSelected = false;
+	bool rivalPlayAgainSelected = false;
 };
 

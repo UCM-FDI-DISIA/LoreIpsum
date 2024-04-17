@@ -58,6 +58,22 @@ void NetEndGame::update()
 			case NetMsgs::_CHANGE_MAZE_END_GAME_:
 				TuVieja("Mensaje : _CHANGE_MAZE_END_GAME_, RECIBIDO");
 
+				//swapea el estado de mazeChangeSelected del rival
+				rivalChangeMazeSelected = !rivalChangeMazeSelected;
+
+				//si los 2 queremos ir al estado,cambiamos de estado
+				if (rivalChangeMazeSelected && changeMazeSelected) {
+					//mandar mensaje de cambio de estado
+
+
+					//ir al menu de MultiplayerPreGame(sin cerrar el socket del rival)
+					
+					
+					//se cierra el socket set
+					SDLNet_FreeSocketSet(socketSet);
+				}
+
+
 				//procesar el mensaje/ lanzar error
 				break;
 			case NetMsgs::_PLAY_AGAIN_END_GAME_:
@@ -78,17 +94,23 @@ void NetEndGame::playAgain()
 {
 	TuVieja("Boton de jugar otra vez pulsado");
 
+	playAgainSelected = !playAgainSelected;
 	//ir al menu de MultiplayerGame(sin cerrar el socket del rival)
+
+
 	//se cierra el socketSet
 }
 
 void NetEndGame::changeMaze()
 {
-
 	TuVieja("Boton de cambiar mazo pulsado");
 
-	//ir al menu de MultiplayerPreGame(sin cerrar el socket del rival)
-	//se cierra el socket set
+	//swapea el estado de mazeChangeSelected
+	changeMazeSelected = !changeMazeSelected;
+
+	//enviar el mensaje de que se ha pulsado el boton
+	NetMsgs::Msg exit = NetMsgs::Msg(NetMsgs::_CHANGE_MAZE_END_GAME_);
+	SDLNetUtils::serializedSend(exit, rival);
 }
 
 
@@ -107,4 +129,14 @@ void NetEndGame::exit()
 
 	//ir al menu principal
 	GameStateMachine::instance()->setState(GameStates::MAINMENU);
+}
+
+bool NetEndGame::getPlayAgainSelected()
+{
+	return playAgainSelected;
+}
+
+bool NetEndGame::getChangeMazeSelected()
+{
+	return changeMazeSelected;
 }
