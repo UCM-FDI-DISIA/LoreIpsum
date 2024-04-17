@@ -3,6 +3,8 @@
 #include "../components/managers/Manager.h"
 #include "../../sdlutils/InputHandler.h"
 #include "../components/basics/TextComponent.h"
+#include "../factories/Factory.h"
+#include "../factories/NPCFactory_V0.h"
 
 #include "../components/NPC.h"
 
@@ -31,6 +33,11 @@ void OfficeState::onEnter()
 {
 	std::cout << "\nENTER OFFICE.\n";
 	
+	factory = new Factory();
+	factory->SetFactories(
+		static_cast<NPCFactory*>(new NPCFactory_V0())
+	);
+
 	//------Texto de la oficina.
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
 	officeText->addComponent<TextComponent>("OFICINA", "8bit_size_20", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
@@ -68,6 +75,20 @@ void OfficeState::onEnter()
 	//db->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	db->addComponent<NPC>(9); // Lleva al deckbuilding (9).
 	db->setLayer(1);
+
+	//------Boton para telefono: (WIP de Poli)
+	ecs::entity_t telf = Instantiate();
+	telf->addComponent<Transform>();
+	telf->addComponent<BoxCollider>();
+	Vector2D telfSize(100, 100);
+	telf->getComponent<BoxCollider>()->setSize(telfSize);
+	Vector2D telfPos(300, 400);
+	telf->getComponent<Transform>()->setGlobalPos(telfPos);
+
+	// Lleva al dialogo de caso. 
+	// Investigar como hacer para que no muestre imagen, y que al clicar aparezca el dialog, como si fuera un NPC sobre el telefono.
+	factory->createNPC(5, fondo); 
+	telf->setLayer(1);
 
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").play(-1);
