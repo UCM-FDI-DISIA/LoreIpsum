@@ -21,16 +21,11 @@ NetGame::NetGame()
 {
 	rival = GameStateMachine::instance()->getCurrentState()->getSocketRival();
 
-
-
 	//creacion del socketSet
 	socketSet = SDLNet_AllocSocketSet(1);
 
 	// añadir el socker al sockerSet
 	SDLNet_TCP_AddSocket(socketSet, rival);
-
-
-
 }
 
 NetGame::~NetGame()
@@ -43,6 +38,7 @@ void NetGame::initComponent()
 
 void NetGame::update()
 {
+	//recibir y procesar mensajes
 	if (SDLNet_CheckSockets(socketSet, 0) > 0) {
 
 		if (SDLNet_SocketReady(rival)) {
@@ -183,7 +179,6 @@ void NetGame::drawCard()
 
 void NetGame::playCard(ecs::entity_t e, Vector2D pos)
 {
-
 	int index = playerHandCmp->indexOf(e);
 
 	if (index == -1) {
@@ -195,8 +190,6 @@ void NetGame::playCard(ecs::entity_t e, Vector2D pos)
 
 		SDLNetUtils::serializedSend(msg, rival);
 	}
-
-
 }
 
 void NetGame::nextTurn()
@@ -205,8 +198,7 @@ void NetGame::nextTurn()
 
 	SDLNetUtils::serializedSend(msg, rival);
 
-	TuVieja("Envio de mensaje next Tunrn");
-
+	TuVieja("Envio de mensaje next Turn");
 }
 
 

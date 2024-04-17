@@ -65,7 +65,13 @@ void MatchManager::setActualState(Turns::State newState)
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
 #endif
 		setWinnerOnData();
-		GameStateMachine::instance()->setState(GameStates::MATCHOVER);
+		if (netGame == nullptr) {
+
+			GameStateMachine::instance()->setState(GameStates::MATCHOVER);
+		}
+		else {
+			GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_END_GAME);
+		}
 		break;
 	case Turns::IA:
 #if _DEBUG 
