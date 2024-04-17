@@ -4,6 +4,19 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/managers/MatchManager.h"
 #include "../components/EndTurnButton.h"
+#include "../components/Button.h"
+
+ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
+{
+    ecs::entity_t keyButton = Instantiate(Vector2D(posX, posY));
+    keyButton->getComponent<Transform>()->setGlobalScale(0.15, 0.15);
+    keyButton->addComponent<SpriteRenderer>("rice");
+    keyButton->addComponent<BoxCollider>();
+    keyButton->addComponent<Button>()->connectToButton([] { GameStateMachine::instance()->setState(20); });
+    keyButton->setLayer(4);
+
+    return keyButton;
+}
 
 ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int posY)
 {

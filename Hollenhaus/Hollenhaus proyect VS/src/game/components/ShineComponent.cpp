@@ -31,6 +31,10 @@ void ShineComponent::addEnt(SpriteRenderer* entitySR, std::string _newPic)
 
 void ShineComponent::Shine()
 {
+	
+	
+	
+	
 	//si detecta que el cursor esta encima
 	if (_myBoxCollider->isCursorOver()) {
 
@@ -47,6 +51,7 @@ void ShineComponent::Shine()
 			_mySpriteRenderers[i]->setTexture(_fotosAntiguas[i]); // si no está el cursor encima les devuelve a todas su aspecto original
 		}
 	}
+	
 	
 }
 

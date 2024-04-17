@@ -25,6 +25,7 @@
 #define _GRPS_LIST_ \
 	CARDS, \
 	DROPS, \
+	COINS, \
 	DROPZONE
 
 // Handlers list - must have at least one element
