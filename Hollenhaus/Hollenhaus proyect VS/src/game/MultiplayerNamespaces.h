@@ -31,7 +31,7 @@ namespace NetMsgs {
 		_IMPL_SERIALIAZION_(_type)
 	};
 
-	struct SendMaze : Msg {
+	/*struct SendMaze : Msg {
 
 		SendMaze();
 		SendMaze(Uint8* _maze, Uint8 _size)
@@ -45,7 +45,7 @@ namespace NetMsgs {
 		Uint8 size;
 
 		_IMPL_SERIALIAZION_WITH_BASE_(Msg, maze, size)
-	};
+	};*/
 
 	struct PlayCard : Msg {
 

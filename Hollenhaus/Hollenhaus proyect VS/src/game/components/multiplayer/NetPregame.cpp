@@ -49,20 +49,20 @@ void NetPregame::update()
 			// Indicamos que el rival ya está listo para jugar
 			SetRivalReady(true);
 
-			// Procesamos los datos del mensaje (el mazo del rival)
-			NetMsgs::SendMaze sendMazeMsg;
-			sendMazeMsg.deserialize(result.buffer);
+			//// Procesamos los datos del mensaje (el mazo del rival)
+			//NetMsgs::SendMaze sendMazeMsg;
+			//sendMazeMsg.deserialize(result.buffer);
 
-			// Guardamos el mazo del rival en la clase Data
-			GameStateMachine::instance()->getCurrentState()->getMazeRival().clear();
-			for (int i = 0; i < sendMazeMsg.size; i++) {
-				GameStateMachine::instance()->getCurrentState()->getMazeRival().push_back(sendMazeMsg.maze[i]);
-			}
+			//// Guardamos el mazo del rival en la clase Data
+			//GameStateMachine::instance()->getCurrentState()->getMazeRival().clear();
+			//for (int i = 0; i < sendMazeMsg.size; i++) {
+			//	GameStateMachine::instance()->getCurrentState()->getMazeRival().push_back(sendMazeMsg.maze[i]);
+			//}
 
-			//DEBUG
-			for (int i = 0; i < sendMazeMsg.size; i++) {
-				std::cout << sendMazeMsg.maze[i] << std::endl;
-			}
+			////DEBUG
+			//for (int i = 0; i < sendMazeMsg.size; i++) {
+			//	std::cout << sendMazeMsg.maze[i] << std::endl;
+			//}
 
 			// Si nosotros ya estabamos listos, comenzamos el juego
 			if (GetPlayerReady()) {
@@ -103,7 +103,7 @@ void NetPregame::SetPlayerReady(bool isReady)
 
 void NetPregame::PlayerReady()
 {
-	Uint8* maze;
+	/*Uint8* maze;
 	Uint8 i = 0;
 	for (Uint8 e : GameStateMachine::instance()->getCurrentState()->getMaze())
 	{
@@ -113,6 +113,6 @@ void NetPregame::PlayerReady()
 
 	NetMsgs::SendMaze msg(maze, i);
 
-	SDLNetUtils::serializedSend(msg, conn);
+	SDLNetUtils::serializedSend(msg, conn);*/
 }
 
