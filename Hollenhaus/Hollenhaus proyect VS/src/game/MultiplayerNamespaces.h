@@ -12,6 +12,7 @@ namespace NetMsgs {
 		_ACCEPT_CONNECTION_, //
 		_DECLINE_CONNECTION_, //
 		_READY_TO_PLAY, //
+		_NOT_READY_TO_PLAY, //W
 		_PLAY_CARD_ , //
 		_DRAW_CARD_, //
 		_CHANGE_TURN_, //
@@ -28,6 +29,22 @@ namespace NetMsgs {
 		Uint8 _type;
 
 		_IMPL_SERIALIAZION_(_type)
+	};
+
+	struct SendMaze : Msg {
+
+		SendMaze();
+		SendMaze(int _maze[], int _size)
+		{	
+			for (int i = 0; i < _size; i++) maze[i] = _maze[i];
+			size = _size;
+			_type = _READY_TO_PLAY;
+		}
+
+		int maze[100];
+		int size;
+
+		_IMPL_SERIALIAZION_WITH_BASE_(Msg, maze, size)
 	};
 
 	struct PlayCard : Msg {
