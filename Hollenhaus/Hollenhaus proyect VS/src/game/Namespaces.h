@@ -110,10 +110,11 @@ namespace JsonData
 
 	struct CardData {
 		CardData();
-		CardData(int c, int v, std::string& s, bool u, std::vector<CardEffect>& e)
-			: cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e) {}
+		CardData(int c, int v, int i, std::string& s, bool u, std::vector<CardEffect>& e)
+			: cost_(c), value_(v), id_(i), sprite_(s), unblockable_(u), effects_(e) {}
 
 		// getters con nombres simplificados para mas facil acceso desde sdlutils
+		int id() const				{ return id_; }
 		int cost() const			{ return cost_; }
 		int value() const			{ return value_; }
 		std::string& sprite()		{ return sprite_; }
@@ -121,6 +122,7 @@ namespace JsonData
 		std::vector<CardEffect>& effects() { return effects_; }
 
 	private:
+		int id_;
 		int cost_;
 		int value_;
 		std::string sprite_;
