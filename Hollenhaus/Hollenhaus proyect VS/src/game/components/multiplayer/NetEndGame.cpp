@@ -64,10 +64,11 @@ void NetEndGame::update()
 				//si los 2 queremos ir al estado,cambiamos de estado
 				if (rivalChangeMazeSelected && changeMazeSelected) {
 					//mandar mensaje de cambio de estado
-
+					NetMsgs::Msg changeState = NetMsgs::Msg(NetMsgs::_CHANGE_STATE_PREGAME_END_GAME_);
+					SDLNetUtils::serializedSend(changeState, rival);
 
 					//ir al menu de MultiplayerPreGame(sin cerrar el socket del rival)
-					
+					GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_LOBBY);//cambiar por preGame cuando se mergee la rama
 					
 					//se cierra el socket set
 					SDLNet_FreeSocketSet(socketSet);
@@ -78,6 +79,14 @@ void NetEndGame::update()
 				break;
 			case NetMsgs::_PLAY_AGAIN_END_GAME_:
 				TuVieja("Mensaje : _PLAY_AGAIN_END_GAME_, RECIBIDO");
+
+
+				//procesar el mensaje/ lanzar error
+				break;
+			case NetMsgs::_CHANGE_STATE_PREGAME_END_GAME_:
+				TuVieja("Mensaje : _CHANGE_STATE_PREGAME_END_GAME_, RECIBIDO");
+
+				GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_LOBBY);//cambiar por preGame cuando se mergee la rama
 
 
 				//procesar el mensaje/ lanzar error

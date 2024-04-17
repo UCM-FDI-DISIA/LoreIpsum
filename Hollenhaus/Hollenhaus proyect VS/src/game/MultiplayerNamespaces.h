@@ -19,6 +19,8 @@ namespace NetMsgs {
 		_EXIT_END_GAME_, //
 		_CHANGE_MAZE_END_GAME_, //
 		_PLAY_AGAIN_END_GAME_, //
+		_CHANGE_STATE_PREGAME_END_GAME_, //
+		_CHANGE_STATE_GAME_END_GAME_, //
 	};
 
 	struct Msg {
