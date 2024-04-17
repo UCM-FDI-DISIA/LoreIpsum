@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "DragManager.h"
+#include "../../../sdlutils/SDLUtils.h"
 #include "../../../sdlutils/InputHandler.h"
 #include "../basics/Transform.h"
 #include "Manager.h"
@@ -55,8 +56,12 @@ void DragManager::update()
 
 			auto c = dragTransform->getEntity()->getComponent<Card>();
 
-			////Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
-			//dragTransform->getEntity()->getComponent<Card>()->getEffects();
+			//Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
+			auto efect = c->getEffects();
+			auto id = c->getID();
+			TuVieja(std::to_string(id));
+			auto l = sdlutils().cards().at(std::to_string(id));
+			
 
 			//drop->getComponent<Cell>()->getEffects();
 		}
