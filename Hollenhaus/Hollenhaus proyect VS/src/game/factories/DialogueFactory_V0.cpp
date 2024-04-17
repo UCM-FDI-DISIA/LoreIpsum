@@ -41,7 +41,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	ecs::entity_t text = Instantiate();
 	auto textTR = text->addComponent<Transform>();
 	textTR->addParent(dialogue->getComponent<Transform>());
-	text->addComponent<BoxCollider>()->setSize(dialogue->getComponent<SpriteRenderer>()->getImageSize() - margin * 8);
+	//text->addComponent<BoxCollider>()->setSize(dialogue->getComponent<SpriteRenderer>()->getImageSize() - margin * 8);
 	Vector2D localPos = dialogue->getComponent<Transform>()->getGlobalPos();
 	localPos = localPos + margin;
 	textTR->setGlobalPos(localPos);
@@ -50,6 +50,8 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	text->addComponent<TypeWriter>(speed);
 	text->addComponent<DialogueReader>(id, convo);
 	text->addComponent<NextText>();
+
+	text->getComponent<NextText>()->setCollider(dialogue->getComponent<BoxCollider>());
 
 	if (auto_) {
 		text->addComponent<AutoDialogue>(cooldown);
