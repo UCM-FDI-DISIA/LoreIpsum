@@ -122,7 +122,6 @@ void ShopState::onEnter()
 	carta1->addComponent<SpriteRenderer>("card");
 	carta1->addComponent<ShineComponent>();
 
-	makeCoinShine(0, carta1, shopManager);
 
 	Vector2D card1Pos(525, 80);
 	carta1->getComponent<Transform>()->setGlobalPos(card1Pos);
@@ -137,7 +136,6 @@ void ShopState::onEnter()
 	carta2->addComponent<SpriteRenderer>("card");
 	carta2->addComponent<ShineComponent>();
 
-	makeCoinShine(1, carta2, shopManager);
 
 	Vector2D card2Pos(660, 80);
 	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
@@ -152,7 +150,6 @@ void ShopState::onEnter()
 	carta3->addComponent<SpriteRenderer>("card");
 	carta3->addComponent<ShineComponent>();
 
-	makeCoinShine(2, carta3, shopManager);
 
 	Vector2D card3Pos(525, 200);
 	carta3->getComponent<Transform>()->setGlobalPos(card3Pos);
@@ -167,7 +164,6 @@ void ShopState::onEnter()
 	carta4->addComponent<SpriteRenderer>("card");
 	carta4->addComponent<ShineComponent>();
 
-	makeCoinShine(3, carta4, shopManager);
 
 	Vector2D card4Pos(660, 200);
 	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);

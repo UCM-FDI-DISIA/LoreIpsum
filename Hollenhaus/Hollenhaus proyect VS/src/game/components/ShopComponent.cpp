@@ -167,6 +167,8 @@ bool ShopComponent::confirmPurchase(int prize)
 	//GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
 	//---------------------------------------------------------------------preguntar a ines/poli sobre el dialogo para confirmar.
 
+	GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
+
 	JsonData::DialogueData dialogue = sdlutils().dialogues().at("Tienda");
 
 	auto a = getEntity();
