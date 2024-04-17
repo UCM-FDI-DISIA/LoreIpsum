@@ -144,9 +144,14 @@ void GameState::addCardToDrawer(int id)
 	data->AddCardToDrawer(id);
 }
 
-void GameState::changeMoney(int money)
+void GameState::addMoney(int money)
 {
 	data->AddMoney(money);
+}
+
+void GameState::substractMoney(int money)
+{
+	data->SubtractMoney(money);
 }
 
 int GameState::getMoney()

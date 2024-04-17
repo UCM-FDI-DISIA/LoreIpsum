@@ -230,6 +230,7 @@
     <ClInclude Include="src\game\components\MoveOnClick.h" />
     <ClInclude Include="src\game\components\NextText.h" />
     <ClInclude Include="src\game\components\NPC.h" />
+    <ClInclude Include="src\game\components\ShineComponent.h" />
     <ClInclude Include="src\game\components\ShopComponent.h" />
     <ClInclude Include="src\game\components\TypeWriter.h" />
     <ClInclude Include="src\game\Dialogue.h" />
@@ -240,6 +241,8 @@
     <ClInclude Include="src\game\factories\DialogueFactory_V0.h" />
     <ClInclude Include="src\game\factories\NPCFactory.h" />
     <ClInclude Include="src\game\factories\NPCFactory_V0.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h" />
     <ClInclude Include="src\game\factories\FakeCardFactory.h" />
     <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
