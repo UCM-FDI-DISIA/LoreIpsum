@@ -54,16 +54,14 @@ void CityState::refresh()
 
 void CityState::onEnter()
 {
+	std::cout << "\nENTER CITY.\n";
+
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPause(); });
 
-	std::cout << "\nENTER CITY.\n";
-
 	factory = new Factory();
 	factory->SetFactories(
-		static_cast<NPCFactory*>(new NPCFactory_V0())
-	);
-
+		static_cast<NPCFactory*>(new NPCFactory_V0()));
 
 	//------Texto de la ciudad:
 	ecs::entity_t cityText = Instantiate(Vector2D(500, 30));
@@ -193,9 +191,5 @@ void CityState::onExit()
 void CityState::onPause()
 {
 	SetLastState(1);
-	GameStateMachine::instance()->setState(16);
-	std::cout << "last state in city: " << GetLastState() << "\n";
-
-	// wtf
-	//GameStateMachine::instance()->pushState(new PauseMenuState());
+	GameStateMachine::instance()->setState(17);
 }

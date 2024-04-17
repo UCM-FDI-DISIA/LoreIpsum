@@ -16,6 +16,8 @@ public:
 	void onEnter() override;
 	void onExit() override;
 
+	void onPauseSH();
+
 	ecs::entity_t createCard(int id, Vector2D pos) override;
 
 private:

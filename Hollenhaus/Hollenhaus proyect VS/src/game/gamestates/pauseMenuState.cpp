@@ -10,17 +10,12 @@
 
 PauseMenuState::PauseMenuState()
 {
-	
+	TuVieja("Loading PauseMenuState");
 }
 
 PauseMenuState::~PauseMenuState() 
 {
 
-}
-
-void PauseMenuState::refresh()
-{
-	GameState::refresh();
 }
 
 void PauseMenuState::update()
@@ -33,12 +28,19 @@ void PauseMenuState::render() const
 	GameState::render();
 }
 
+void PauseMenuState::refresh()
+{
+	GameState::refresh();
+}
+
 void PauseMenuState::onEnter()
 {
+	std::cout << "\nENTER PAUSE.\n";
+
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onDespause(); });
 
-	// ---- Salir:
+	//// ---- Salir:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
 	exit->addComponent<SpriteRenderer>("boton_flecha");
@@ -48,8 +50,6 @@ void PauseMenuState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(GetLastState()); // Lleva a la oficina (2).
 	exit->setLayer(5);
-
-	std::cout << "\nENTER PAUSE.\n";
 
 	sdlutils().virtualTimer().pause();
 }
@@ -66,8 +66,7 @@ void PauseMenuState::onExit()
 
 void PauseMenuState::onDespause()
 {
-	std::cout << "last state in pause: " << GetLastState() << "\n";
+	std::cout << "holaaaaa" << "\n";
 
 	GameStateMachine::instance()->setState(GetLastState());
-	//GameStateMachine::instance()->popState();
 }
