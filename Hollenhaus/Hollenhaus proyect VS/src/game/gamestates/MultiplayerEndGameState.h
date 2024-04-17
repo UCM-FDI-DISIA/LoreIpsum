@@ -21,11 +21,6 @@ private:
 
     void setWindow(int lastWiner);
 
-    void playAgain();
-    void changeMaze();
-    void exit();
-
-
     std::string _background, _text;
 };
 

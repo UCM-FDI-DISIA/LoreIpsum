@@ -202,7 +202,6 @@ void NetGame::nextTurn()
 }
 
 
-
 void NetGame::processDrawCard()
 {
 	rivalHandCmp->addCard(rivalDeckCmp->drawCard()->getEntity());

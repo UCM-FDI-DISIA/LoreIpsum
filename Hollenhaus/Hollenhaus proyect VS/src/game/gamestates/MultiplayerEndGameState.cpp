@@ -4,6 +4,7 @@
 #include "../components/NPC.h"
 #include "../components/Button.h"
 #include "../components/basics/TextComponent.h"
+#include "../components/multiplayer/NetEndGame.h"
 #include "../Data.h"
 
 
@@ -36,6 +37,10 @@ void MultiplayerEndGameState::onEnter()
 	TuVieja("ENTER MultiplayerEndGameState");
 
 
+	auto netMn = Instantiate();
+
+	auto netEndGame = netMn->addComponent<NetEndGame>();
+
 	//------Boton para volver:
 	auto playAgainButton = Instantiate(Vector2D(sdlutils().width()/2, 230));
 	playAgainButton->addComponent<TextComponent>("Jugar Otra Vez", "8bit_size_32", SDL_Color({ 255, 255,255 ,255 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
@@ -43,7 +48,7 @@ void MultiplayerEndGameState::onEnter()
 	playAgainButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	playAgainButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
 	playAgainButton->addComponent<Button>();
-	playAgainButton->getComponent<Button>()->connectToButton([this] {playAgain(); });
+	playAgainButton->getComponent<Button>()->connectToButton([this, netEndGame] { netEndGame->playAgain(); });
 	playAgainButton->setLayer(1);
 
 	//------Boton para cambiar mazo:
@@ -53,7 +58,7 @@ void MultiplayerEndGameState::onEnter()
 	changeMazeButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	changeMazeButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
 	changeMazeButton->addComponent<Button>();
-	changeMazeButton->getComponent<Button>()->connectToButton([this] {changeMaze(); });
+	changeMazeButton->getComponent<Button>()->connectToButton([this, netEndGame] {netEndGame->changeMaze(); });
 	changeMazeButton->setLayer(1);
 
 
@@ -64,7 +69,7 @@ void MultiplayerEndGameState::onEnter()
 	exitButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 40));
 	exitButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -20));
 	exitButton->addComponent<Button>();
-	exitButton->getComponent<Button>()->connectToButton([this] {exit(); });
+	exitButton->getComponent<Button>()->connectToButton([this, netEndGame] {netEndGame->exit(); });
 	exitButton->setLayer(1);
 
 
@@ -120,32 +125,4 @@ void MultiplayerEndGameState::setWindow(int lastWinner)
 	data->setWinner(0);
 }
 
-void MultiplayerEndGameState::playAgain()
-{
-	TuVieja("Boton de jugar otra vez pulsado");
 
-	//ir al menu de MultiplayerGame(sin cerrar el socket del rival)
-	//se cierra el socketSet
-
-}
-
-void MultiplayerEndGameState::changeMaze()
-{
-	TuVieja("Boton de cambiar mazo pulsado");
-
-	//ir al menu de MultiplayerPreGame(sin cerrar el socket del rival)
-	//se cierra el socket set
-
-
-}
-
-void MultiplayerEndGameState::exit()
-{
-	TuVieja("Boton de salir pulsado");
-
-	//cerrar socket del rival y el socketSet
-
-
-	//ir al menu principal
-	GameStateMachine::instance()->setState(GameStates::MAINMENU);
-}
