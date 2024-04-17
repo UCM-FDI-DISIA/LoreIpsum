@@ -53,4 +53,15 @@ private:
 
     void setDECK();
 
+    void setDRAWCARD();
+
+    void setCELL();
+
+    void setPLACECARD();
+
+    void setACTION();
+
+    void setACTIONPTS();
+
+
 };

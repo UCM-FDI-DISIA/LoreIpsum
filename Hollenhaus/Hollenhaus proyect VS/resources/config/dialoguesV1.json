@@ -241,6 +241,52 @@
               ]
             }
           ]
+        },
+        {
+          "convoID": "3",
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": "0",
+              "text": "Bien hecho!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": "1",
+              "text": "Acabas de robar una carta de tu mazo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": "2",
+              "text": "Solo podras usar cartas que tienes en manos",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": "3",
+              "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": "4",
+              "text": "Prueba a arrastrar la carta a una celda!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
         }
       ]
     }

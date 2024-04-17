@@ -139,18 +139,26 @@ void TutorialBoardState::setState()
 	case Tutorials::Board::DECK:
 		setDECK();
 		break;
+	case Tutorials::Board::DRAW_CARD:
+		setDRAWCARD();
+		break;
 	case Tutorials::Board::CELL:
-		TuVieja("si hombre");
+		setCELL();
+		break;
+	case Tutorials::Board::PLACE_CARD:
+		setPLACECARD();
 		break;
 	case Tutorials::Board::ACTION:
-		TuVieja("AAAAAAAAAAAAAAA");
+		setACTION();
 		break;
 	case Tutorials::Board::ACTION_PTS:
-		TuVieja("pts");
+		setACTIONPTS();
 		break;
 	default:
 		break;
 	}
+
+
 
 	currentState = nextState;
 
@@ -327,4 +335,31 @@ void TutorialBoardState::setDECK()
 
 	createPopUp(550, 300, "Board Tutorial", 2);
 
+}
+
+void TutorialBoardState::setDRAWCARD()
+{
+
+}
+
+void TutorialBoardState::setCELL()
+{
+	TuVieja("Setting CELL");
+
+	createPopUp(250, 200, "Board Tutorial", 3);
+}
+
+void TutorialBoardState::setPLACECARD()
+{
+	TuVieja("Setting PLACE CARD");
+
+	createPopUp(250, 200, "Board Tutorial", 4);
+}
+
+void TutorialBoardState::setACTION()
+{
+}
+
+void TutorialBoardState::setACTIONPTS()
+{
 }
