@@ -54,8 +54,9 @@ void PlayerCardsManager::drawCard()
 
 			// AQUI INES -> esto se tiene que ir tbh
 			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
-			ent->getComponent<TutorialManager>()->tutorialActionEnded();
+			ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::DRAW_CARD);
 			//TuVieja("AAAAAAAAAAAA");
+
 		}
 	}
 }

@@ -72,8 +72,8 @@ void TutorialBoardState::onEnter()
 
 	TuVieja("ENTRANDO AL TUTORIAL...");
 
-	currentState = NONE;
-	nextState = INIT;
+	currentState = Tutorials::Board::BOARD_NONE;
+	nextState = Tutorials::Board::INIT;
 	ended = false;
 
 	setBoard();
@@ -81,6 +81,13 @@ void TutorialBoardState::onEnter()
 	initTutorial();
 
 	tutorial->getComponent<TutorialManager>()->startTutorial();
+	tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::BOARD);
+	tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Board::BOARD_NONE);
+	tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Board::INIT);
+
+
+
+	int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
 }
 
@@ -96,6 +103,10 @@ void TutorialBoardState::onExit()
 
 void TutorialBoardState::updateTutorialState()
 {
+
+	currentState;
+	nextState;
+
 	if (currentState != nextState) {
 		tutorial->getComponent<TutorialManager>()->wait( [this] { setState(); } );
 	}
@@ -115,24 +126,26 @@ void TutorialBoardState::resetEnded()
 
 void TutorialBoardState::setState()
 {
-	switch (nextState)
+	int t = tutorial->getComponent<TutorialManager>()->getNextState();
+
+	switch (t)
 	{
-	case INIT:
+	case Tutorials::Board::INIT:
 		setINIT();
 		break;
-	case CARD:
+	case Tutorials::Board::CARD:
 		setCARD();
 		break;
-	case DECK:
+	case Tutorials::Board::DECK:
 		setDECK();
 		break;
-	case CELL:
+	case Tutorials::Board::CELL:
 		TuVieja("si hombre");
 		break;
-	case ACTION:
+	case Tutorials::Board::ACTION:
 		TuVieja("AAAAAAAAAAAAAAA");
 		break;
-	case ACTION_PTS:
+	case Tutorials::Board::ACTION_PTS:
 		TuVieja("pts");
 		break;
 	default:
@@ -140,11 +153,16 @@ void TutorialBoardState::setState()
 	}
 
 	currentState = nextState;
+
+	tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(t);
+
+	//tutorial->getComponent<TutorialManager>()->nextState();
 }
 
 void TutorialBoardState::nextTutorialState()
 {
-	nextState++;
+	nextState = tutorial->getComponent<TutorialManager>()->nextState();
+
 }
 
 void TutorialBoardState::setBoard()

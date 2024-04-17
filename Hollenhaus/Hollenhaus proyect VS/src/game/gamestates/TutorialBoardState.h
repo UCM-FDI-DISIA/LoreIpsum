@@ -35,17 +35,6 @@ private:
     void initTutorial();
 
     //
-    enum Tutorial {
-        NONE,
-        INIT,
-        CARD,
-        DECK,
-        CELL,
-        ACTION,
-        ACTION_PTS
-    };
-
-    //
     int currentState;       //
     int nextState;          //
     bool ended;             //

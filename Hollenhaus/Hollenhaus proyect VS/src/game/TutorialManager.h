@@ -15,12 +15,23 @@ public:
     void actionEnded();
     void resetAction();
     void wait(std::function<void()> callback);
-    void tutorialActionEnded();
+    void tutorialActionEnded(Tutorials::Tutorials t, int i);
 
     bool hasEnded() { return ended; }
     bool Next() { return next; }
     void startTutorial() { isTutorial = true; }
     void endTutorial() { isTutorial = false; }
+    void setCurrentTutorial(Tutorials::Tutorials t) { currtut = t; }
+    void setCurrentTutorialState(int t) { currstate = t; }
+    void setNextTutorialState(int t) { nextstate = t; }
+
+    Tutorials::Tutorials getTutorial() { return currtut; }
+    int getTutorialState() { return currstate; }
+    int getNextState() { return nextstate; }
+
+    int nextState() {
+        return ++nextstate;
+    }
 
 private:
 
@@ -31,5 +42,9 @@ private:
     int count, cooldown;
 
     bool isTutorial;
+
+    Tutorials::Tutorials currtut;
+    int currstate;
+    int nextstate;
 
 };

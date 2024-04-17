@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "TutorialManager.h"
+#include "../game/gamestates/TutorialBoardState.h"
 
 TutorialManager::TutorialManager() : ended(false)
 {
@@ -56,10 +57,9 @@ void TutorialManager::wait(std::function<void()> callback)
 	}
 }
 
-void TutorialManager::tutorialActionEnded()
+void TutorialManager::tutorialActionEnded(Tutorials::Tutorials t, int i)
 {
-
-	if (isTutorial) {
+	if (isTutorial && t == currtut && i == currstate) {
 
 		actionEnded();
 	}
