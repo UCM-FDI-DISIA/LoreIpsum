@@ -73,25 +73,33 @@ void NetEndGame::update()
 					//se cierra el socket set
 					SDLNet_FreeSocketSet(socketSet);
 				}
-
-
-				//procesar el mensaje/ lanzar error
 				break;
 			case NetMsgs::_PLAY_AGAIN_END_GAME_:
 				TuVieja("Mensaje : _PLAY_AGAIN_END_GAME_, RECIBIDO");
 
+				//swap del estado del boton
+				rivalPlayAgainSelected = !rivalPlayAgainSelected;
 
-				//procesar el mensaje/ lanzar error
+				if (rivalPlayAgainSelected && playAgainSelected) {
+
+					//mandar mensaje de cambio de estado
+					NetMsgs::Msg changeState = NetMsgs::Msg(NetMsgs::_CHANGE_STATE_GAME_END_GAME_);
+					SDLNetUtils::serializedSend(changeState, rival);
+
+					//ir al menu de MultiplayerPreGame(sin cerrar el socket del rival)
+					GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_GAME);
+					//se cierra el socket set
+					SDLNet_FreeSocketSet(socketSet);
+				}
 				break;
 			case NetMsgs::_CHANGE_STATE_PREGAME_END_GAME_:
 				TuVieja("Mensaje : _CHANGE_STATE_PREGAME_END_GAME_, RECIBIDO");
-
 				GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_LOBBY);//cambiar por preGame cuando se mergee la rama
-
-
-				//procesar el mensaje/ lanzar error
 				break;
-
+			case NetMsgs::_CHANGE_STATE_GAME_END_GAME_:
+				TuVieja("Mensaje : _CHANGE_STATE_GAME_END_GAME_, RECIBIDO");
+				GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_GAME);
+				break;
 			default:
 				break;
 			}
@@ -103,11 +111,12 @@ void NetEndGame::playAgain()
 {
 	TuVieja("Boton de jugar otra vez pulsado");
 
+	//swap del estado 
 	playAgainSelected = !playAgainSelected;
-	//ir al menu de MultiplayerGame(sin cerrar el socket del rival)
 
-
-	//se cierra el socketSet
+	//enviar el mensaje de que se ha pulsado el boton
+	NetMsgs::Msg msg = NetMsgs::Msg(NetMsgs::_PLAY_AGAIN_END_GAME_);
+	SDLNetUtils::serializedSend(msg, rival);
 }
 
 void NetEndGame::changeMaze()
@@ -118,8 +127,8 @@ void NetEndGame::changeMaze()
 	changeMazeSelected = !changeMazeSelected;
 
 	//enviar el mensaje de que se ha pulsado el boton
-	NetMsgs::Msg exit = NetMsgs::Msg(NetMsgs::_CHANGE_MAZE_END_GAME_);
-	SDLNetUtils::serializedSend(exit, rival);
+	NetMsgs::Msg msg = NetMsgs::Msg(NetMsgs::_CHANGE_MAZE_END_GAME_);
+	SDLNetUtils::serializedSend(msg, rival);
 }
 
 
@@ -128,7 +137,6 @@ void NetEndGame::exit()
 	TuVieja("Boton de salir pulsado");
 
 	//enviar mensaje de salir del menu
-
 	NetMsgs::Msg exit = NetMsgs::Msg(NetMsgs::_EXIT_END_GAME_);
 	SDLNetUtils::serializedSend(exit, rival);
 
