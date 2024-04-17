@@ -73,6 +73,7 @@ private:
 	tweeny::tween<int> tweenFade; // fade in/out del feedback
 	tweeny::tween<float> tweenMovement;
 
+	void onStart();
 	void onStop();
 	void moveFeedback();
 	void enableFeedback();

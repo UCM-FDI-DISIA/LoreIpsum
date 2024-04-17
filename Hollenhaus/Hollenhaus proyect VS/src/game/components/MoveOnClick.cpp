@@ -170,10 +170,15 @@ void MoveOnClick::OnLeftClickDown()
 
 		//movementSpeed_ = scrollFactor_ * dir_;
 
-		enableLerp();
-		enableFeedback();
+		onStart();
 	}
 	else onStop();
+}
+
+void MoveOnClick::onStart()
+{
+	enableLerp();
+	enableFeedback();
 }
 
 void MoveOnClick::onStop()
@@ -243,12 +248,12 @@ void MoveOnClick::enableLerp()
 		.to(scrollFactor_ * dir_)
 		.during(ACC_DURATION*2)
 		.via(tweeny::easing::sinusoidalInOut);
-	if (movementSpeed_ <= 0)
-	{
-		tweenMovement.seek(0);
-		movementSpeed_ = 0;
-	}
-	tweenMovement.forward();
+	//if (movementSpeed_ <= 0)
+	//{
+	//	tweenMovement.seek(0);
+	//	movementSpeed_ = 0;
+	//}
+	//tweenMovement.forward();
 
 	/// DEL FANTASMIKO
 	tweenFantasmiko =
@@ -257,9 +262,9 @@ void MoveOnClick::enableLerp()
 		.during(ACC_DURATION * 2)
 		.via(tweeny::easing::sinusoidalInOut);
 
-	if (movementSpeed_ <= 0)
-		tweenFantasmiko.seek(0);
-	tweenFantasmiko.forward();
+	//if (movementSpeed_ <= 0)
+	//	tweenFantasmiko.seek(0);
+	//tweenFantasmiko.forward();
 }
 
 void MoveOnClick::disableLerp()
