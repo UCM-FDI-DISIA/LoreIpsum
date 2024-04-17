@@ -7,6 +7,7 @@
 #include "../components/AutoDialogue.h"
 //#include "../components/DialogueEventCollection.h"
 #include "../components/DialogueDestroyer.h"
+#include "../components/DialogueBoxDestroyer.h"
 
 
 // De Luis: Esto habría que refactorizarlo en algún momento.
@@ -36,6 +37,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	dialogue->getComponent<Transform>()->setGlobalPos(pos);
 	dialogue->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
+
 	// el texto se encuentra en una entidad hija
 	Vector2D margin = Vector2D(10, 10);
 	ecs::entity_t text = Instantiate();
@@ -52,6 +54,9 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	text->addComponent<NextText>();
 
 	text->getComponent<NextText>()->setCollider(dialogue->getComponent<BoxCollider>());
+
+	// Componente dialogueboxdestroyer que tiene metodo destroy que llama al metodo del dialogue desroyer del hijo
+	dialogue->addComponent<DialogueBoxDestroyer>(text);
 
 	if (auto_) {
 		text->addComponent<AutoDialogue>(cooldown);

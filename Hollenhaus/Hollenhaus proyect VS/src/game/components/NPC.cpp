@@ -7,7 +7,7 @@
 #include "../factories/DialogueFactory_V0.h"
 #include "../factories/CardFactory_v1.h"
 #include "../components/NextText.h"
-#include "../components/DialogueDestroyer.h"
+#include "../components/DialogueBoxDestroyer.h"
 
 
 NPC::NPC(int scene)
@@ -114,6 +114,10 @@ void NPC::OnLeftClickUp()
 
 void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 {
+	// Recoge la posicion X del NPC y determina si esta cerca de Paul (se usa luego en talkTo).
+	pos = myTransform->getGlobalPos().getX();
+	closeToPaul = pos > 200 && pos < sdlutils().width() - 200;
+
 	if (!click && myBoxCollider->isCursorOver()) // Recoge click para el cambio de escena.
 	{
 		if (type == 0) {
@@ -129,10 +133,6 @@ void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 
 void NPC::talkTo()
 {
-	// Recoge la posicion X del NPC y determina si esta cerca de Paul.
-	pos = myTransform->getGlobalPos().getX();
-	closeToPaul = pos > 200 && pos < sdlutils().width() - 170;
-
 	if (!click && myBoxCollider->isCursorOver() && !talking && closeToPaul) // Recoge click para hablar con un NPC.
 	{
 		TuVieja("Que charlatan el tio...");
@@ -150,11 +150,14 @@ void NPC::talkTo()
 		//// Mirar comentario en el interior de la función
 		npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
 								{x, y},//POS
-								{2,2}, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-								5, 10, getEntity(), 
-								3, dialogue.Convo(conv).isAuto(),  //LAYER
-								"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
-								SDL_Color({0, 0, 0, 255}), 
+								{2,2}, //SIZE
+								5, //Speed
+								10, //Cooldown
+								getEntity(), //Parent 
+								3, //LAYER
+								dialogue.Convo(conv).isAuto(), //Si el texto es auto o no
+								"8bit_size_20",	//mirar el JSON resources para cambiar el tamanio de texto
+								SDL_Color({0, 0, 0, 255}), //Color black
 								220, //wrap length
 								Text::BoxPivotPoint::LeftTop,
 								Text::TextAlignment::Left);
@@ -170,4 +173,10 @@ void NPC::stoppedTalking()
 
 void NPC::update() 
 {
+	// Si el dialogo ha sido creado y no estamos cerca de Paul -> destruir dialog, y dejamos de hablar.
+	if (talking && !closeToPaul)
+	{
+		npcDialogue->getComponent<DialogueBoxDestroyer>()->destroy();
+		talking = false;
+	}
 }
