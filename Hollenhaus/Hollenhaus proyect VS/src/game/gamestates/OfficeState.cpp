@@ -77,6 +77,7 @@ void OfficeState::onEnter()
 	db->setLayer(1);
 
 	//------Boton para telefono: (WIP de Poli)
+	// La idea es poner como un NPC invisible (sobre el telefono), que al clicarlo haga que aparezca el dialogo.
 	ecs::entity_t telf = Instantiate();
 	telf->addComponent<Transform>();
 	telf->addComponent<BoxCollider>();
@@ -86,7 +87,7 @@ void OfficeState::onEnter()
 	telf->getComponent<Transform>()->setGlobalPos(telfPos);
 
 	// Lleva al dialogo de caso. 
-	// Investigar como hacer para que no muestre imagen, y que al clicar aparezca el dialog, como si fuera un NPC sobre el telefono.
+	// Investigar como hacer para que no muestre imagen del npc, crear uno nuevo en el json??¿? ire mirando
 	factory->createNPC(5, fondo); 
 	telf->setLayer(1);
 
