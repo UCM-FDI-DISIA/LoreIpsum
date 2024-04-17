@@ -35,7 +35,7 @@ void TutorialManager::resetAction()
 	ended = false;
 }
 
-void TutorialManager::wait()
+void TutorialManager::wait(std::function<void()> callback)
 {
 	// tiempo de espera
 	if (count < cooldown) {
@@ -45,7 +45,7 @@ void TutorialManager::wait()
 	else {
 		
 		//
-		//
+		callback();
 
 		//
 		count = 0;

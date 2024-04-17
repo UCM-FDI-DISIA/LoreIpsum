@@ -26,8 +26,7 @@ private:
     void updateTutorialState();
     bool actionEnded();
     void resetEnded();
-    void waitTime();
-    void a();
+    void setState();
 
     //
     void setBoard();

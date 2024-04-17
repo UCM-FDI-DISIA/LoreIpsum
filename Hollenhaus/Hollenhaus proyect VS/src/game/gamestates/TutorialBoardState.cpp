@@ -91,7 +91,7 @@ void TutorialBoardState::onExit()
 void TutorialBoardState::updateTutorialState()
 {
 	if (currentState != nextState) {
-		waitTime();
+		tutorial->getComponent<TutorialManager>()->wait( [this] { setState(); } );
 	}
 }
 
@@ -105,24 +105,9 @@ void TutorialBoardState::resetEnded()
 	tutorial->getComponent<TutorialManager>()->resetAction();
 }
 
-void TutorialBoardState::waitTime()
-{
-	// tiempo de espera
-	if (count < cooldown) {
 
-		count++;
-	}
-	else {
 
-		//
-		a();
-
-		//
-		count = 0;
-	}
-}
-
-void TutorialBoardState::a()
+void TutorialBoardState::setState()
 {
 	switch (nextState)
 	{
@@ -131,6 +116,9 @@ void TutorialBoardState::a()
 		break;
 	case CARD:
 		setCARD();
+		break;
+	case DECK:
+		setDECK();
 		break;
 	default:
 		break;
@@ -294,4 +282,12 @@ void TutorialBoardState::setCARD()
 	TuVieja("Setting CARD");
 
 	createPopUp(250, 200, "Board Tutorial", 1);
+}
+
+void TutorialBoardState::setDECK()
+{
+	TuVieja("Setting DECK");
+
+	createPopUp(550, 300, "Board Tutorial", 2);
+
 }
