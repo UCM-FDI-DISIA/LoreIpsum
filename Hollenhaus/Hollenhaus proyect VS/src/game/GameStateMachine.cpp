@@ -63,7 +63,7 @@ GameStateMachine::GameStateMachine() {
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();
 
-	currentState = multiplayerEndGameState;
+	currentState = mainMenuState;
 
 	// crea la data en el current state
 	currentState->setData(new Data());

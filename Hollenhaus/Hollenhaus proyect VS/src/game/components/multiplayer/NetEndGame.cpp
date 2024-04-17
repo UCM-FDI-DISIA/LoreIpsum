@@ -44,6 +44,29 @@ void NetEndGame::update()
 
 				//procesar el mensaje/ lanzar error
 				break;
+			case NetMsgs::_EXIT_END_GAME_:
+				TuVieja("Mensaje : _EXIT_END_GAME_, RECIBIDO");
+
+				//procesar el mensaje/ lanzar error
+				//cerrar socket del rival y el socketSet
+				SDLNet_TCP_Close(rival);
+				SDLNet_FreeSocketSet(socketSet);
+
+				//ir al menu principal
+				GameStateMachine::instance()->setState(GameStates::MAINMENU);
+				break;
+			case NetMsgs::_CHANGE_MAZE_END_GAME_:
+				TuVieja("Mensaje : _CHANGE_MAZE_END_GAME_, RECIBIDO");
+
+				//procesar el mensaje/ lanzar error
+				break;
+			case NetMsgs::_PLAY_AGAIN_END_GAME_:
+				TuVieja("Mensaje : _PLAY_AGAIN_END_GAME_, RECIBIDO");
+
+
+				//procesar el mensaje/ lanzar error
+				break;
+
 			default:
 				break;
 			}
@@ -68,12 +91,19 @@ void NetEndGame::changeMaze()
 	//se cierra el socket set
 }
 
+
 void NetEndGame::exit()
 {
 	TuVieja("Boton de salir pulsado");
 
-	//cerrar socket del rival y el socketSet
+	//enviar mensaje de salir del menu
 
+	NetMsgs::Msg exit = NetMsgs::Msg(NetMsgs::_EXIT_END_GAME_);
+	SDLNetUtils::serializedSend(exit, rival);
+
+	//cerrar socket del rival y el socketSet
+	SDLNet_TCP_Close(rival);
+	SDLNet_FreeSocketSet(socketSet);
 
 	//ir al menu principal
 	GameStateMachine::instance()->setState(GameStates::MAINMENU);

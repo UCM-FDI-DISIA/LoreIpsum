@@ -15,7 +15,10 @@ namespace NetMsgs {
 		_DRAW_CARD_, //
 		_CHANGE_TURN_, //
 		_END_GAME_, //
-		_FIRST_TURN_OWNER_ //
+		_FIRST_TURN_OWNER_, //
+		_EXIT_END_GAME_, //
+		_CHANGE_MAZE_END_GAME_, //
+		_PLAY_AGAIN_END_GAME_, //
 	};
 
 	struct Msg {

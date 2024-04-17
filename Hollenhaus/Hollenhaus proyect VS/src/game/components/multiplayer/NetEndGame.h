@@ -24,11 +24,8 @@ public:
 private:
 
 	//el jugador contra el que estamos jugando
-	TCPsocket rival;
+	TCPsocket rival = nullptr;
 	SDLNet_SocketSet socketSet; //para recibir los mensajes con comunicacion NO-Bloqueante
-
-
-
 
 
 };
