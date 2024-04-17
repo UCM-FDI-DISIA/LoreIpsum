@@ -47,6 +47,7 @@
     <ClCompile Include="src\game\components\ClickDecision.cpp" />
     <ClCompile Include="src\game\components\ColliderRender.cpp" />
     <ClCompile Include="src\game\components\DeckComponent.cpp" />
+    <ClCompile Include="src\game\components\DialogueBoxDestroyer.cpp" />
     <ClCompile Include="src\game\components\DialogueDestroyer.cpp" />
     <ClCompile Include="src\game\components\DialogueEventCollection.cpp" />
     <ClCompile Include="src\game\components\DialogueReader.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="src\game\components\ComponentRender.h" />
     <ClInclude Include="src\game\components\ComponentUpdate.h" />
     <ClInclude Include="src\game\components\DeckComponent.h" />
+    <ClInclude Include="src\game\components\DialogueBoxDestroyer.h" />
     <ClInclude Include="src\game\components\DialogueDestroyer.h" />
     <ClInclude Include="src\game\components\DialogueEventCollection.h" />
     <ClInclude Include="src\game\components\DialogueReader.h" />
