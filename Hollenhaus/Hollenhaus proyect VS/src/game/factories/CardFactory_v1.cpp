@@ -88,7 +88,7 @@ ecs::entity_t CardFactory_v1::createDeck()
 	deck->setLayer(2);
 	deck->getComponent<DeckComponent>()->setOwner(Players::PLAYER1);
 
-	auto maze = GameStateMachine::instance()->getCurrentState()->getMaze();
+	auto maze = GameStateMachine::instance()->getCurrentState()->getMazeWithPos();
 
 	for (auto c : maze)
 	{

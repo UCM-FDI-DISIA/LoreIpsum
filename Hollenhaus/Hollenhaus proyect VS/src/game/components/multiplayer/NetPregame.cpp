@@ -103,9 +103,9 @@ void NetPregame::SetPlayerReady(bool isReady)
 
 void NetPregame::PlayerReady()
 {
-	int maze[100];
-	int i = 0;
-	for (int e : GameStateMachine::instance()->getCurrentState()->getMaze())
+	Uint8* maze;
+	Uint8 i = 0;
+	for (Uint8 e : GameStateMachine::instance()->getCurrentState()->getMaze())
 	{
 		maze[i] = e;
 		i++;

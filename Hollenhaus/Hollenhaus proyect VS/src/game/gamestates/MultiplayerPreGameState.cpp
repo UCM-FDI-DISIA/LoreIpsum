@@ -46,6 +46,11 @@ void MultiplayerPreGameState::onEnter()
 	setMazeButton->addComponent<Button>();
 	//setMazeButton->getComponent<Button>()->connectToButton([this] {AcceptConection(); });
 
+	// el pregame y tal
+	ecs::entity_t pregameEntity = Instantiate(Vector2D(400, 400));
+	pregameEntity->addComponent<TextComponent>("OponentNotReady", "8bit_size_16", SDL_Color({ 0, 0, 0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	NetPregame* netPregame = pregameEntity->addComponent<NetPregame>();
+
 	// Botón que prepara tu estado para comenzar la partida
 	ecs::entity_t readyButton = Instantiate(Vector2D(650, 500));
 	TextComponent* tc = readyButton->addComponent<TextComponent>("READY", "8bit_size_32", SDL_Color({ 255, 0, 0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
@@ -53,10 +58,11 @@ void MultiplayerPreGameState::onEnter()
 	readyButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 40));
 	readyButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -20));
 	readyButton->addComponent<Button>();
-	readyButton->getComponent<Button>()->connectToButton([this, tc] {tc->setColor(SDL_Color({0, 255, 0 ,0})); });
-
-	
+	readyButton->getComponent<Button>()->connectToButton([this, netPregame] {netPregame->SetPlayerReady(!netPregame->GetPlayerReady()); });
 }
+
+
+
 
 void MultiplayerPreGameState::onExit()
 {

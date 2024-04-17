@@ -34,15 +34,15 @@ namespace NetMsgs {
 	struct SendMaze : Msg {
 
 		SendMaze();
-		SendMaze(int _maze[], int _size)
+		SendMaze(Uint8* _maze, Uint8 _size)
 		{	
-			for (int i = 0; i < _size; i++) maze[i] = _maze[i];
+			for (Uint8 i = 0; i < _size; i++) maze[i] = _maze[i];
 			size = _size;
 			_type = _READY_TO_PLAY;
 		}
 
-		int maze[100];
-		int size;
+		Uint8* maze;
+		Uint8 size;
 
 		_IMPL_SERIALIAZION_WITH_BASE_(Msg, maze, size)
 	};
