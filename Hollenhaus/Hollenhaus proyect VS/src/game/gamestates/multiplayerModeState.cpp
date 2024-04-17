@@ -55,7 +55,7 @@ void MultiplayerModeState::onEnter()
 	iniGameButton->addComponent<BoxCollider>();
 	iniGameButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
 	iniGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-50, -20));
-	iniGameButton->addComponent<NPC>(0, 0);
+	iniGameButton->addComponent<NPC>(13, 0);
 
 
 }
