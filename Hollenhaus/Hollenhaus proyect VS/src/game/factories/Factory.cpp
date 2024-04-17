@@ -64,6 +64,11 @@ ecs::entity_t Factory::createBoard()
 	return boardFactory->createBoard();
 }
 
+ecs::entity_t Factory::createVisual_KeyButton(int posX, int posY)
+{
+	return matchStateUIFactory->createVisual_KeyButton(posX, posY);
+}
+
 ecs::entity_t Factory::createVisual_EndTurnButton(int posX, int posY)
 {
 	return matchStateUIFactory->createVisual_NextTurnButton(posX, posY);

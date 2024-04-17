@@ -38,7 +38,8 @@ namespace GameStates
 		CINEMATICINTRO,
 		PAUSEMENU,
 		MAZEMENU,
-		CLUESMENU
+		CLUESMENU,
+		KEYMENU
 	};
 }
 
@@ -86,6 +87,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* pauseMenuState;
 	GameState* checkMazeMenuState;
 	GameState* checkCluesMenuState;
+	GameState* keyMenuState;
 	 
 	// Estados auxiliares
 	GameState* movementState;
@@ -175,6 +177,9 @@ public:
 			break; 
 		case GameStates::CLUESMENU:
 			currentState = checkCluesMenuState;
+			break;
+		case GameStates::KEYMENU:
+			currentState = keyMenuState;
 			break;
 		default:
 			break;

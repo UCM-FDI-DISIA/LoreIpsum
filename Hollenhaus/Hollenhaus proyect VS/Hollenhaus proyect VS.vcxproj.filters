@@ -351,6 +351,9 @@
     <ClCompile Include="src\game\gamestates\pauseMenuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\gamestates\KeyMenuState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -684,6 +687,9 @@
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\game\gamestates\tutorialState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\KeyMenuState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
   </ItemGroup>

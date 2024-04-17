@@ -31,6 +31,7 @@
 #include "gamestates/pauseMenuState.h"
 #include "gamestates/storyModeState.h"
 #include "gamestates/transitionTextMenuState.h"
+#include "gamestates/KeyMenuState.h"
 
 #include "components/managers/Manager.h"
 #include "Mouse.h"
@@ -69,6 +70,7 @@ GameStateMachine::GameStateMachine() {
 	checkMazeMenuState = new CheckMazeMenuState();
 	checkCluesMenuState = new CheckCluesMenuState();
 	matchOverState = new MatchOverState();
+	keyMenuState = new KeyMenuState();
 
 	// Estados de gente
 	samuState = new SamuState();
