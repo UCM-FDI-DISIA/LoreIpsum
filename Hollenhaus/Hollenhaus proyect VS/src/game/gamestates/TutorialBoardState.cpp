@@ -80,6 +80,8 @@ void TutorialBoardState::onEnter()
 	setBaseEntity();
 	initTutorial();
 
+	tutorial->getComponent<TutorialManager>()->startTutorial();
+
 }
 
 void TutorialBoardState::onExit()
@@ -87,6 +89,8 @@ void TutorialBoardState::onExit()
 	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
 	GameStateMachine::instance()->getMngr()->Free();
+
+	tutorial->getComponent<TutorialManager>()->endTutorial();
 
 }
 
@@ -124,6 +128,12 @@ void TutorialBoardState::setState()
 		break;
 	case CELL:
 		TuVieja("si hombre");
+		break;
+	case ACTION:
+		TuVieja("AAAAAAAAAAAAAAA");
+		break;
+	case ACTION_PTS:
+		TuVieja("pts");
 		break;
 	default:
 		break;

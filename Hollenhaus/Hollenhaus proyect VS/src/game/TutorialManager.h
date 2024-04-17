@@ -15,9 +15,12 @@ public:
     void actionEnded();
     void resetAction();
     void wait(std::function<void()> callback);
+    void tutorialActionEnded();
 
     bool hasEnded() { return ended; }
     bool Next() { return next; }
+    void startTutorial() { isTutorial = true; }
+    void endTutorial() { isTutorial = false; }
 
 private:
 
@@ -26,5 +29,7 @@ private:
     bool next;
 
     int count, cooldown;
+
+    bool isTutorial;
 
 };

@@ -18,6 +18,10 @@ void TutorialManager::initComponent()
 	cooldown = 10;
 
 	resetAction();
+
+	isTutorial = false;
+
+	//data =
 }
 
 void TutorialManager::update()
@@ -49,5 +53,14 @@ void TutorialManager::wait(std::function<void()> callback)
 
 		//
 		count = 0;
+	}
+}
+
+void TutorialManager::tutorialActionEnded()
+{
+
+	if (isTutorial) {
+
+		actionEnded();
 	}
 }
