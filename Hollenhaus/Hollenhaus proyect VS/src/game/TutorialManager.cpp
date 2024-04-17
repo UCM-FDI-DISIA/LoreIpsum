@@ -14,6 +14,9 @@ TutorialManager::~TutorialManager()
 void TutorialManager::initComponent()
 {
 
+	count = 0;
+	cooldown = 10;
+
 	resetAction();
 }
 
@@ -30,4 +33,21 @@ void TutorialManager::actionEnded()
 void TutorialManager::resetAction()
 {
 	ended = false;
+}
+
+void TutorialManager::wait()
+{
+	// tiempo de espera
+	if (count < cooldown) {
+
+		count++;
+	}
+	else {
+		
+		//
+		//
+
+		//
+		count = 0;
+	}
 }

@@ -91,19 +91,7 @@ void TutorialBoardState::onExit()
 void TutorialBoardState::updateTutorialState()
 {
 	if (currentState != nextState) {
-		switch (nextState)
-		{
-		case INIT:
-			setINIT();
-			break;
-		case CARD:
-			setCARD();
-			break;
-		default:
-			break;
-		}
-
-		currentState = nextState;
+		waitTime();
 	}
 }
 
@@ -115,6 +103,40 @@ bool TutorialBoardState::actionEnded()
 void TutorialBoardState::resetEnded()
 {
 	tutorial->getComponent<TutorialManager>()->resetAction();
+}
+
+void TutorialBoardState::waitTime()
+{
+	// tiempo de espera
+	if (count < cooldown) {
+
+		count++;
+	}
+	else {
+
+		//
+		a();
+
+		//
+		count = 0;
+	}
+}
+
+void TutorialBoardState::a()
+{
+	switch (nextState)
+	{
+	case INIT:
+		setINIT();
+		break;
+	case CARD:
+		setCARD();
+		break;
+	default:
+		break;
+	}
+
+	currentState = nextState;
 }
 
 void TutorialBoardState::nextTutorialState()

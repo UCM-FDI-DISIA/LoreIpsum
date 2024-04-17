@@ -14,11 +14,14 @@ public:
 
     void actionEnded();
     void resetAction();
+    void wait();
 
     bool hasEnded() { return ended; }
 
 private:
 
     bool ended;
+
+    int count, cooldown;
 
 };

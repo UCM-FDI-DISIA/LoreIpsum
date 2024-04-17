@@ -26,6 +26,8 @@ private:
     void updateTutorialState();
     bool actionEnded();
     void resetEnded();
+    void waitTime();
+    void a();
 
     //
     void setBoard();
@@ -52,6 +54,9 @@ private:
     Factory* factory;           //
     ecs::entity_t base;         // entidad para colocar los popups, se va moviendo segun donde los queramos
     ecs::entity_t tutorial;
+
+    int cooldown = 10;
+    int count = 0;
 
     // gestion de estados individuales
     void setINIT();
