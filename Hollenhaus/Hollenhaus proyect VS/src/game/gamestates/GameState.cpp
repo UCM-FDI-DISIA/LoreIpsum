@@ -148,3 +148,8 @@ int GameState::getMoney()
 bool GameState::checkCardIsInMaze(int id) {
 	return data->IdIsInMaze(id);
 }
+
+int GameState::getCurrentCase()
+{
+	return data->GetCurrentCase();
+}
