@@ -17,21 +17,6 @@ MultiplayerEndGameState::~MultiplayerEndGameState()
 {
 }
 
-void MultiplayerEndGameState::refresh()
-{
-	GameState::refresh();
-}
-
-void MultiplayerEndGameState::update()
-{
-	GameState::update();
-}
-
-void MultiplayerEndGameState::render() const
-{
-	GameState::render();
-}
-
 void MultiplayerEndGameState::onEnter()
 {
 	TuVieja("ENTER MultiplayerEndGameState");
@@ -48,7 +33,9 @@ void MultiplayerEndGameState::onEnter()
 	playAgainButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	playAgainButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
 	playAgainButton->addComponent<Button>();
+	//conectar la funcion del netEndGame
 	playAgainButton->getComponent<Button>()->connectToButton([this, netEndGame] { netEndGame->playAgain(); });
+	//conectar swapColor
 	playAgainButton->getComponent<Button>()->connectToButton(
 		[this, netEndGame, playAgainText]
 		{
@@ -63,7 +50,10 @@ void MultiplayerEndGameState::onEnter()
 	changeMazeButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	changeMazeButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
 	changeMazeButton->addComponent<Button>();
+
+	//conectar la funcion del netEndGame
 	changeMazeButton->getComponent<Button>()->connectToButton([this, netEndGame] {netEndGame->changeMaze(); });
+	//conectar swapColor
 	changeMazeButton->getComponent<Button>()->connectToButton(
 		[this, netEndGame, changeMazeText] 
 		{
@@ -80,9 +70,9 @@ void MultiplayerEndGameState::onEnter()
 	exitButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 40));
 	exitButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -20));
 	exitButton->addComponent<Button>();
+	//conectar la funcion del netEndGame
 	exitButton->getComponent<Button>()->connectToButton([this, netEndGame] {netEndGame->exit(); });
 	exitButton->setLayer(1);
-
 
 
 	setWindow(data->getWinner());
@@ -92,8 +82,6 @@ void MultiplayerEndGameState::onExit()
 {
 	TuVieja("EXIT MultiplayerEndGameState");
 	mngr().Free();
-
-
 }
 
 void MultiplayerEndGameState::setWindow(int lastWinner)
@@ -136,9 +124,10 @@ void MultiplayerEndGameState::setWindow(int lastWinner)
 	data->setWinner(0);
 }
 
-
+//cambia el color del texto del textComponent entre verde y blanco
 void MultiplayerEndGameState::swapColor(TextComponent* tc, bool b)
 {
+	//color verde si seleccionado, blanco sino
 	tc->setColor(b ? SDL_Color({ 0, 255, 0, 255 }) :  SDL_Color({ 255, 255, 255, 255 }));
 }
 

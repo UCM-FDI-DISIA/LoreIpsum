@@ -20,10 +20,6 @@ NetEndGame::~NetEndGame()
 {
 }
 
-void NetEndGame::initComponent()
-{
-}
-
 void NetEndGame::update()
 {
 	//recibir y procesar mensajes

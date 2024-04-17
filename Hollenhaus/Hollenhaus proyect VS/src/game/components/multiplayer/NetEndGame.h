@@ -23,7 +23,6 @@ public:
 	NetEndGame();
 	~NetEndGame();
 
-	void initComponent() override;
 	void update() override;
 
 	//Metodos que envian mensajes(deben estar suscritos a los botones del estado)

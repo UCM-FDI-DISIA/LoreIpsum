@@ -27,7 +27,6 @@ public:
 	NetGame();
 	~NetGame();
 
-	void initComponent() override;
 	void update() override;
 
 	//SETTERS DE REFERENCIAS

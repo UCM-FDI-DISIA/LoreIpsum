@@ -32,10 +32,6 @@ NetGame::~NetGame()
 {
 }
 
-void NetGame::initComponent()
-{
-}
-
 void NetGame::update()
 {
 	//recibir y procesar mensajes
@@ -106,13 +102,9 @@ void NetGame::update()
 			}
 			default:
 				break;
-			}
-
-	
+			}	
 		}
-
 	}
-
 }
 
 void NetGame::setMatchManager(MatchManager* matchM)
@@ -144,8 +136,6 @@ void NetGame::setMatchManager(MatchManager* matchM)
 	NetMsgs::FirstTurn msg(rivalTurn);
 
 	SDLNetUtils::serializedSend(msg, rival);
-
-
 
 	TuVieja("Envio del mensaje del primer turno");
 }
