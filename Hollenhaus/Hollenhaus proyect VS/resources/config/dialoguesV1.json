@@ -199,7 +199,42 @@
               "eventFinish": 0,
               "events": [
                 {
-                  "timing": 0,
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": "2",
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": "0",
+              "text": "Este es tu mazo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": "1",
+              "text": "El mazo se compone de las cartas que tu quieras!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": "2",
+              "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
                   "type": 4,
                   "scene": 0
                 }

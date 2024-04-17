@@ -91,19 +91,7 @@ void TutorialBoardState::onExit()
 void TutorialBoardState::updateTutorialState()
 {
 	if (currentState != nextState) {
-		switch (nextState)
-		{
-		case INIT:
-			setINIT();
-			break;
-		case CARD:
-			setCARD();
-			break;
-		default:
-			break;
-		}
-
-		currentState = nextState;
+		tutorial->getComponent<TutorialManager>()->wait( [this] { setState(); } );
 	}
 }
 
@@ -115,6 +103,28 @@ bool TutorialBoardState::actionEnded()
 void TutorialBoardState::resetEnded()
 {
 	tutorial->getComponent<TutorialManager>()->resetAction();
+}
+
+
+
+void TutorialBoardState::setState()
+{
+	switch (nextState)
+	{
+	case INIT:
+		setINIT();
+		break;
+	case CARD:
+		setCARD();
+		break;
+	case DECK:
+		setDECK();
+		break;
+	default:
+		break;
+	}
+
+	currentState = nextState;
 }
 
 void TutorialBoardState::nextTutorialState()
@@ -272,4 +282,12 @@ void TutorialBoardState::setCARD()
 	TuVieja("Setting CARD");
 
 	createPopUp(250, 200, "Board Tutorial", 1);
+}
+
+void TutorialBoardState::setDECK()
+{
+	TuVieja("Setting DECK");
+
+	createPopUp(550, 300, "Board Tutorial", 2);
+
 }
