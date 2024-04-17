@@ -5,6 +5,7 @@
 #include "MatchManager.h"
 #include "../../../sdlutils/InputHandler.h"
 #include "../../components/Cell.h"
+#include "../../TutorialManager.h"
 
 class BoxCollider;
 
@@ -49,6 +50,11 @@ void PlayerCardsManager::drawCard()
 		)
 		{
 			hand_->addCard(deck_->drawCard()->getEntity());
+
+
+			// AQUI INES -> esto se tiene que ir tbh
+			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
+			ent->getComponent<TutorialManager>()->actionEnded();
 			//TuVieja("AAAAAAAAAAAA");
 		}
 	}

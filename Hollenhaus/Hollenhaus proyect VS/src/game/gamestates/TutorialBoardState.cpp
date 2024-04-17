@@ -50,8 +50,6 @@ void TutorialBoardState::refresh()
 
 void TutorialBoardState::update()
 {
-	GameState::update();
-
 	if (actionEnded()) {
 
 		nextTutorialState();
@@ -60,6 +58,8 @@ void TutorialBoardState::update()
 	}
 
 	updateTutorialState();
+
+	GameState::update();
 }
 
 void TutorialBoardState::render() const
@@ -84,7 +84,9 @@ void TutorialBoardState::onEnter()
 
 void TutorialBoardState::onExit()
 {
+	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
+	GameStateMachine::instance()->getMngr()->Free();
 
 }
 
@@ -120,6 +122,9 @@ void TutorialBoardState::setState()
 	case DECK:
 		setDECK();
 		break;
+	case CELL:
+		TuVieja("si hombre");
+		break;
 	default:
 		break;
 	}
@@ -134,9 +139,9 @@ void TutorialBoardState::nextTutorialState()
 
 void TutorialBoardState::setBoard()
 {
-	TuVieja("\nEntering in LuisState");
+	TuVieja("\n SETTING TUTORIAL BOARD");
 
-	TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
+	//TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
 
 	Factory* factory = new Factory();
 	factory->SetFactories(
@@ -156,13 +161,16 @@ void TutorialBoardState::setBoard()
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
-	ecs::entity_t ent = Instantiate();
-	ent->addComponent<DragManager>();
-	ent->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
+	ecs::entity_t dragManager = Instantiate();
+	dragManager->addComponent<DragManager>();
+	dragManager->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
+	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::DRAG_MANAGER, dragManager);
 
 	// Factoría de cartas. Con ella generamos la mano inicial
 	ecs::entity_t deckPlayer1 = factory->createDeck();
 	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
+
+
 
 
 	// UI 
@@ -197,7 +205,7 @@ void TutorialBoardState::setBoard()
 	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 
 
-	#pragma region Seccion IA
+#pragma region Seccion IA
 
 	//crear la entidad y añadirle el componente
 	ecs::entity_t IA_controler = Instantiate();
@@ -223,7 +231,8 @@ void TutorialBoardState::setBoard()
 	matchManagerComponent->setIA_Manager(ia_managerComponent);
 
 
-	#pragma endregion
+#pragma endregion
+
 }
 
 void TutorialBoardState::setBaseEntity()
