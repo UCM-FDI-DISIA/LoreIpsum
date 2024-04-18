@@ -94,7 +94,8 @@ public:
 	#pragma region GETTERS
 	// -- DECKBUILDING --
 	// Mazo:
-	const std::unordered_map<int, Vector2D> GetMaze() { return maze_with_pos; }
+	const std::unordered_map<int, Vector2D> GetMazeWithPos() { return maze_with_pos; }
+	const std::list<int> GetMaze() { return maze; }
 
 	const std::vector<int> GetMazeRival() { return mazeRival; }
 	// Cajon:

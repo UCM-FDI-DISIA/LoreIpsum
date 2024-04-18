@@ -132,8 +132,6 @@ public:
 					return cb.target<void()>() == Callback.target<void()>(); 
 			}), list.end());
 
-		//debug
-		std::cout << "se quita" << std::endl;
 	}
 
 	//devuelve el enumerado correspondiente al evento de SDL

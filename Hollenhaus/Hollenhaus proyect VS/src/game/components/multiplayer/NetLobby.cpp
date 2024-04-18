@@ -263,7 +263,7 @@ void NetLobby::JumpToPregameScene(bool isHost)
 	GameStateMachine::instance()->getCurrentState()->setIsHost(isHost);
 
 	// Ahora cambiamos de escena
-	GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_GAME);
+	GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_PREGAME);
 }
 
 void NetLobby::error() {

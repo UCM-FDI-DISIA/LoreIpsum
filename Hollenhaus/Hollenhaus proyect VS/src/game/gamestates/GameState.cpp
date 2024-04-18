@@ -113,7 +113,13 @@ std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 
 
 // para acceder al mazo del data desde el estado
-std::unordered_map<int, Vector2D> GameState::getMaze()
+std::unordered_map<int, Vector2D> GameState::getMazeWithPos()
+{
+	return data->GetMazeWithPos();
+}
+
+// para acceder al mazo del data desde el estado
+std::list<int> GameState::getMaze()
 {
 	return data->GetMaze();
 }

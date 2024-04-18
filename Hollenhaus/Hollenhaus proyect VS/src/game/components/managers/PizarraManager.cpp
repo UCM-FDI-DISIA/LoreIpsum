@@ -18,7 +18,7 @@ void PizarraManager::initComponent()
 
 	// guarda en un array aux las cartas que ya estuvieran en la pizarra
 	// recorre cada pair del map mazo de data
-	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
+	for (auto e : GameStateMachine::instance()->getCurrentState()->getMazeWithPos()) {
 
 		// si la primera componente de la pareja (id) ya estaba en la pizarra
 		if (isOnPizarra(e.first)) {
@@ -46,7 +46,7 @@ void PizarraManager::initComponent()
 	}
 
 	// aniade las nuevas
-	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
+	for (auto e : GameStateMachine::instance()->getCurrentState()->getMazeWithPos()) {
 
 		// si la primera componente de la pareja (id) NO estaba en la pizarra
 		if (!isOnPizarra(e.first)) {

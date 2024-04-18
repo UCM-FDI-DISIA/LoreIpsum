@@ -8,9 +8,11 @@ namespace NetMsgs {
 
 	enum MsgType : Uint8 {
 		_NONE_,
-		_INVITATION_RECEIVED_, //
+		_INVITATION_RECEIVED_, // 
 		_ACCEPT_CONNECTION_, //
 		_DECLINE_CONNECTION_, //
+		_READY_TO_PLAY, //
+		_NOT_READY_TO_PLAY, //W
 		_PLAY_CARD_ , //
 		_DRAW_CARD_, //
 		_CHANGE_TURN_, //
@@ -32,6 +34,29 @@ namespace NetMsgs {
 		Uint8 _type;
 
 		_IMPL_SERIALIAZION_(_type)
+	};
+
+	// Mensaje para enviar tu mazo al rival cuando estes listo para jugar
+	struct SendMaze : Msg {
+
+		SendMaze() {};
+		SendMaze(Uint8 _maze[], Uint8 _size)
+		{	
+			for (Uint8 i = 0; i < _size; i++) 
+				maze[i] = _maze[i];
+			size = _size;
+			_type = _READY_TO_PLAY;
+		}
+
+		// El mazo se envia en un array de tamanio fijo ya que es la única forma posible
+		// segun la implementación de SDLNetUtils
+		// Tamanio 100 ya que no debería haber un mazo de mayor tamanio.
+		Uint8 maze[100];
+		Uint8 size;
+
+		// Importante enviar el tamanio del array justo detrás del mismo. 
+		// Mas importante aun especificar que el tamanio es unsigned (u). Sino, no compila.
+		_IMPL_SERIALIAZION_WITH_BASE_(Msg, maze, 100u, size)
 	};
 
 	struct PlayCard : Msg {
