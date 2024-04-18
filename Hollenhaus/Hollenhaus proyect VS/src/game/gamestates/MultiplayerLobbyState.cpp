@@ -74,7 +74,7 @@ void MultiplayerLobbyState::onEnter()
 	// Texto que guarda y muestra tu IP
 	ecs::entity_t idHint = Instantiate(Vector2D(700, 50));
 	auto tcIDHint = idHint->addComponent<TextComponent>("localhost", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
-	idHint->addComponent<GetIPv4>(tcIDHint);
+	//idHint->addComponent<GetIPv4>(tcIDHint);
 
 	// Botón para copiar tu IP al clipboard
 	ecs::entity_t copyButton = Instantiate(Vector2D(700, 100));

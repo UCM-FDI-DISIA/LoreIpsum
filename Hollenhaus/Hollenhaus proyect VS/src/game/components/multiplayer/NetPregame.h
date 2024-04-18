@@ -8,17 +8,16 @@ class TextComponent;
 class NetPregame : public ComponentUpdate
 {
 public:
-	NetPregame();
+	NetPregame(TextComponent* oponentReadyText, TextComponent* readyButtonText);
 	~NetPregame();
 
-	void initComponent() override;
 	void update() override;
 
 	bool GetPlayerReady() { return playerReady; }
 	bool GetRivalReady() { return rivalReady; }
 
 	void SetPlayerReady(bool isReady);
-	void SetRivalReady(bool isReady) { rivalReady = isReady; }
+	void SetRivalReady(bool isReady);
 private:
 
 	// We want to use non-blocking communication, the way to do this is via a socket set.
@@ -27,11 +26,13 @@ private:
 	// a socket for sending and receiving data
 	TCPsocket conn;
 
-	TextComponent* tc;
+	TextComponent* _oponentReadyText;
+	TextComponent* _readyButtonText;
 
 	bool playerReady;
 	bool rivalReady;
 
-	void PlayerReady();
+	void SendMsgPlayerReady();
+	void SendMsgPlayerNotReady();
 };
 
