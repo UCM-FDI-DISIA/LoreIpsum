@@ -61,7 +61,11 @@ private:
 	std::list<Button*> buttons;
 	//----Dinero del jugador:
 	int money;
-	//------------------------------lo del precio de las cartas deberia de estar en el json. Todas en el mismo json.
+	//----Factoria para el dialogo de confimacion.
+	Factory* factory;
+	//----Dialogo de confirmacion de compra.
+	ecs::entity_t shopDialogue;
+	//------Esta feo esto por favor no mirar mucho :)
 	//----Texto que muestra el dinero.
 	ecs::entity_t moneyText;
 	//----Texto que muestra el precio de la carta 0.
@@ -72,9 +76,5 @@ private:
 	ecs::entity_t cardPrizeText2;
 	//----Texto que muestra el precio de la carta 3.
 	ecs::entity_t cardPrizeText3;
-	//----Factoria para el dialogo de confimacion.
-	Factory* factory2;
-	//
-	ecs::entity_t shopDialogue;
 };
 

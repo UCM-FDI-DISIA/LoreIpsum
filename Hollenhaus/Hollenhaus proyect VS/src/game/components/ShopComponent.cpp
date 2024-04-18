@@ -12,11 +12,12 @@
 //------Factorias.
 #include "../factories/Factory.h"
 #include "../factories/DialogueFactory_V0.h"
+#include "../factories/DecisionFactory_V0.h"
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
 shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(525, 80),Vector2D(660, 80) ,Vector2D(525, 200) ,Vector2D(660, 200) }),
 shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
-//,money(500)
+//,money(800)
 {}
 
 ShopComponent::~ShopComponent()
@@ -28,8 +29,10 @@ ShopComponent::~ShopComponent()
 
 void ShopComponent::initComponent()
 {
-	factory2 = new Factory();
-	factory2->SetFactories(static_cast<DialogueFactory*>(new DialogueFactory_V0()));
+	//factory = new Factory();
+	//factory->SetFactories(static_cast<DialogueFactory*>(new DialogueFactory_V0()));
+	factory = new Factory();
+	factory->SetFactories(static_cast<DecisionFactory_V0*>(new DecisionFactory_V0()));
 
 	if (GameStateMachine::instance()->getCurrentState()->checkDataShopCardsIsEmpty()) // Si no hay cartas de la tienda en Data entonces se tienen que generar.
 	{
@@ -78,11 +81,6 @@ bool ShopComponent::cardIsBought(int id)
 void ShopComponent::showCards() {
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
-		/*if (shopCards[i] == 2)
-		{
-			std::cout << "Pruebita para ver si las que ya estan no las pone en pantalla." << std::endl;
-			GameStateMachine::instance()->getCurrentState()->addCardToDrawer(shopCards[i]);
-		}*/
 		auto card = GameStateMachine::instance()->getCurrentState()->createCard(shopCards[i], shopCardsPositions[i]);
 		card->setLayer(3);
 		int id = card->getComponent<Card>()->getID();
@@ -142,7 +140,6 @@ void ShopComponent::buyCard()
 
 				GameStateMachine::instance()->getCurrentState()->substractMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
 
-				//showPrizes(); // Para que se actualicen los precios.
 				updateTexts();
 			}
 		}
@@ -164,7 +161,6 @@ int ShopComponent::calculatePrize(ecs::entity_t card)
 
 bool ShopComponent::confirmPurchase(int prize)
 {
-	//GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
 	//---------------------------------------------------------------------preguntar a ines/poli sobre el dialogo para confirmar.
 
 	GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
@@ -173,28 +169,31 @@ bool ShopComponent::confirmPurchase(int prize)
 
 	auto a = getEntity();
 
-	shopDialogue = factory2->createDialogue("Tienda", 0, 0,
-		{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f },// POS
-		{ 0.3,0.1 }, // SIZE
-		5, 10, this->getEntity(),
-		3,			// capa
-		false,		// auto
-		"8bit_size_20",	// mirar el JSON para cambiar el tamanio de texto
-		SDL_Color({ 0, 0, 0, 255 }),
-		220, // wrap length
+	shopDialogue = factory->createDialogue("Tienda", 0, 0,
+		{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f }, // Posicion.
+		{ 0.3,0.1 }, // Tamanyo.
+		5, // Velocidad.
+		10, // Cooldown.
+		this->getEntity(), // Padre.
+		3,			// Capa.
+		false,		// Auto.
+		"8bit_size_20",	// Font.
+		SDL_Color({ 0, 0, 0, 255 }), // Color.
+		220, // Wrap length.
 		Text::BoxPivotPoint::LeftTop,
 		Text::TextAlignment::Center);
-
-	//npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
-	//	{ x, y },//POS
-	//	{ 2,2 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-	//	5, 10, getEntity(),
-	//	3, dialogue.Convo(conv).isAuto(),  //LAYER
-	//	"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
-	//	SDL_Color({ 0, 0, 0, 255 }),
-	//	220, //wrap length
-	//	Text::BoxPivotPoint::LeftTop,
-	//	Text::TextAlignment::Left);
+	/*factory->createDecision(Vector2D(0, 0),
+		Vector2D(0.3, 0.3), 
+		this->getEntity(),
+		3, //layer
+		3, 
+		2, 
+		3, 
+		"8bit_size_20", 
+		SDL_Color({ 0, 0, 0, 255 }), 
+		220, 
+		Text::BoxPivotPoint::LeftTop,
+		Text::TextAlignment::Center);*/
 	//GameStateMachine::instance()->getCurrentState()->deSelected();
 	return true;
 }
@@ -267,6 +266,7 @@ void ShopComponent::setTexts()
 	}
 	cardPrizeText3->setLayer(10);
 }
+
 void ShopComponent::updateTexts()
 {
 	//----Dinero----

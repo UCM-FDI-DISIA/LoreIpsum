@@ -250,7 +250,7 @@ void TutorialBoardState::initTutorial()
 	tutorial = Instantiate();
 
 	tutorial->addComponent<TutorialManager>();
-	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
+	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial); // PAIGRO AQUI
 }
 
 void TutorialBoardState::setINIT()

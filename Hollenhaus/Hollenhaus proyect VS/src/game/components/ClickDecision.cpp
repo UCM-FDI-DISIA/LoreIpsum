@@ -44,7 +44,9 @@ void ClickDecision::TakeDecision()
 	{
 	case 0:
 		TuVieja("SI");
+		//parent_->getComponent<DialogueEventCollection>()->ChangeScene(scene_);
 		parent_->getComponent<DialogueEventCollection>()->ChangeScene(scene_);
+
 		break;
 
 	case 1:
@@ -54,11 +56,15 @@ void ClickDecision::TakeDecision()
 
 		//habria que hacer actual node ++?¿?¿
 		break;
+	case 2:
+		TuVieja("carta no comprada.");
+		
+		break;
+	case 3: 
+		TuVieja("carta comprada");
 
 	default:
 		TuVieja("Esta decision no existe. Añadir en ClickDecision.cpp");
 		break;
 	}
 }
-
-
