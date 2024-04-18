@@ -7,7 +7,10 @@ class DialogueDestroyer : public ComponentUpdate
 {
 public:
 	DialogueDestroyer(ecs::entity_t parent_);
-	~DialogueDestroyer() {}
+
+	~DialogueDestroyer() override
+	{
+	}
 
 	void initComponent() override;
 	void update() override;
@@ -15,7 +18,6 @@ public:
 	void destroyDialogue();
 
 private:
-	
 	ecs::entity_t npc;
 	ecs::entity_t object;
 };

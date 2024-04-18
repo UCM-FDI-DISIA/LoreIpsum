@@ -5,26 +5,24 @@
 class TutorialManager : public ComponentUpdate
 {
 public:
-    TutorialManager();
-    ~TutorialManager() override;
+	TutorialManager();
+	~TutorialManager() override;
 
-    void initComponent() override;
-    void update() override;
+	void initComponent() override;
+	void update() override;
 
 
-    void actionEnded();
-    void resetAction();
-    void wait(std::function<void()> callback);
+	void actionEnded();
+	void resetAction();
+	void wait(std::function<void()> callback);
 
-    bool hasEnded() { return ended; }
-    bool Next() { return next; }
+	bool hasEnded() { return ended; }
+	bool Next() { return next; }
 
 private:
+	//
+	bool ended;
+	bool next;
 
-    //
-    bool ended;
-    bool next;
-
-    int count, cooldown;
-
+	int count, cooldown;
 };

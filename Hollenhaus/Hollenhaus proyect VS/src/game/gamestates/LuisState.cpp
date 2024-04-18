@@ -59,7 +59,7 @@ void LuisState::onEnter()
 
 	TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
 
-	Factory* factory = new Factory();
+	auto factory = new Factory();
 	factory->SetFactories(
 		static_cast<BoardFactory*>(new BoardFactory_v0(4)),
 		static_cast<CardFactory*>(new CardFactory_v1()),
@@ -73,7 +73,8 @@ void LuisState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, Turns::J1, boardManagerComponent);
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(
+		4, 4, Turns::J1, boardManagerComponent);
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
@@ -97,7 +98,7 @@ void LuisState::onEnter()
 	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 
 	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, {102, 255, 255, 255});
-	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, { 255, 102, 255, 255 });
+	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, {255, 102, 255, 255});
 
 	ecs::entity_t visual_BackgroundBoard = factory->createVisual_BackgroundFullImage();
 
@@ -119,16 +120,15 @@ void LuisState::onEnter()
 	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 
 
-	#pragma region Seccion IA
+#pragma region Seccion IA
 
 	//crear la entidad y añadirle el componente
 	ecs::entity_t IA_controler = Instantiate();
 	IA_manager* ia_managerComponent = IA_controler->addComponent<IA_manager>();
-	
+
 	//le decimos al endTurn que existe la IA
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
 
-	
 
 	//seters de referencias de la ia
 
@@ -145,8 +145,7 @@ void LuisState::onEnter()
 	matchManagerComponent->setIA_Manager(ia_managerComponent);
 
 
-	#pragma endregion
-
+#pragma endregion
 }
 
 void LuisState::onExit()

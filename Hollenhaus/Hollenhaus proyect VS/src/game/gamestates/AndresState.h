@@ -2,19 +2,17 @@
 #include "GameState.h"
 
 class AndresState :
-    public GameState
+	public GameState
 {
 public:
-    AndresState();
-    virtual ~AndresState();
+	AndresState();
+	~AndresState() override;
 
 
-    void refresh() override;
-    void update() override;
-    void render() const override;
+	void refresh() override;
+	void update() override;
+	void render() const override;
 
 private:
-    ecs::entity_t hand_;
-
+	ecs::entity_t hand_;
 };
-

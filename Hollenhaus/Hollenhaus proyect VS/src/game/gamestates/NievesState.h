@@ -1,24 +1,23 @@
 #include "GameState.h"
 
 class NievesState :
-    public GameState
+	public GameState
 {
 public:
-    NievesState();
-    virtual ~NievesState();
+	NievesState();
+	~NievesState() override;
 
 
-    void refresh() override;
-    void update() override;
-    void render() const override;
+	void refresh() override;
+	void update() override;
+	void render() const override;
 
-    void onEnter() override;
-    void onExit() override;
+	void onEnter() override;
+	void onExit() override;
 
-    void setWinnerOnData(int w) override;
+	void setWinnerOnData(int w) override;
 
 private:
-    ecs::entity_t card;
-    ecs::entity_t board;
+	ecs::entity_t card;
+	ecs::entity_t board;
 };
-

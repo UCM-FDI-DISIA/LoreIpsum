@@ -3,7 +3,7 @@
 #include "NextText.h"
 #include "../components/TypeWriter.h"
 
-AutoDialogue::AutoDialogue(int cd) 
+AutoDialogue::AutoDialogue(int cd)
 	: cooldown(cd)
 {
 	count = 0;
@@ -22,14 +22,15 @@ void AutoDialogue::initComponent()
 void AutoDialogue::update()
 {
 	// si ha acabado
-	if (writer->ended()) {
+	if (writer->ended())
+	{
 		// tiempo de espera
-		if (count < cooldown) {
-
+		if (count < cooldown)
+		{
 			count++;
 		}
-		else {
-
+		else
+		{
 			// llama a next text
 			nexttxt->callNextNode();
 

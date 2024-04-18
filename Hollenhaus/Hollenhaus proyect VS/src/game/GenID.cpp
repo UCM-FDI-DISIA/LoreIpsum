@@ -5,12 +5,12 @@
 int GenID::renderId = 0;
 int GenID::updateId = 0;
 
-GenID::GenID() {
+GenID::GenID()
+{
 	// TODO Auto-generated constructor stub
-
 }
 
-GenID::~GenID() {
+GenID::~GenID()
+{
 	// TODO Auto-generated destructor stub
 }
-

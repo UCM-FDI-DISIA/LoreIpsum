@@ -19,7 +19,8 @@
  * position, velocity, etc.)
  */
 
-inline SDL_Rect build_sdlrect(Vector2D &pos, float w, float h) {
+inline SDL_Rect build_sdlrect(Vector2D& pos, float w, float h)
+{
 	return
 	{
 		static_cast<int>(pos.getX()),
@@ -29,7 +30,8 @@ inline SDL_Rect build_sdlrect(Vector2D &pos, float w, float h) {
 	};
 }
 
-inline SDL_Rect build_sdlrect(float x, float y, float w, float h) {
+inline SDL_Rect build_sdlrect(float x, float y, float w, float h)
+{
 	return
 	{
 		static_cast<int>(x),
@@ -51,17 +53,19 @@ inline SDL_Rect build_sdlrect(float x, float y, float w, float h) {
  * as well, i.e, build_sdlcolor("0x44112233") which is useful when providing
  * colors in JSON files (JSON does not accept hex)
  */
-inline SDL_Color build_sdlcolor(unsigned long num) {
+inline SDL_Color build_sdlcolor(unsigned long num)
+{
 	return
 	{
-	 static_cast<Uint8>((num >> 24) & 0xff),
-	 static_cast<Uint8>((num >> 16) & 0xff),
-	 static_cast<Uint8>((num >> 8) & 0xff),
-	 static_cast<Uint8>(num & 0xff)
+		static_cast<Uint8>((num >> 24) & 0xff),
+		static_cast<Uint8>((num >> 16) & 0xff),
+		static_cast<Uint8>((num >> 8) & 0xff),
+		static_cast<Uint8>(num & 0xff)
 	};
 }
 
-inline SDL_Color build_sdlcolor(std::string strnum) {
+inline SDL_Color build_sdlcolor(std::string strnum)
+{
 	return build_sdlcolor(stoul(strnum.erase(0, 2), nullptr, 16));
 }
 
@@ -83,5 +87,3 @@ inline SDL_Color build_sdlcolor(std::string strnum) {
  */
 #define COLOREXP(color) \
 	color.r, color.g, color.b, color.a
-
-

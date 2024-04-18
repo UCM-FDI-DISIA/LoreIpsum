@@ -5,7 +5,8 @@
 // Llama a todos los Callbacks
 void Button::useCallback() const
 {
-	for (auto e : callbacks) {
+	for (auto e : callbacks)
+	{
 		e();
 	}
 }
@@ -22,14 +23,15 @@ Button::Button()
 
 Button::~Button()
 {
-	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(); });
-	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] {OnLeftClickUp(); });
+	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
 void Button::update()
 {
 	// Si el cursor esta sobre el boton pasan cosas
-	if (myBoxCollider->isCursorOver()) {
+	if (myBoxCollider->isCursorOver())
+	{
 		currentState = MOUSE_OVER;
 	}
 	else
@@ -40,9 +42,7 @@ void Button::update()
 
 void Button::initComponent()
 {
-
 	myBoxCollider = mngr_->getComponent<BoxCollider>(ent_);
-
 }
 
 // Aniade callbacks a la lista

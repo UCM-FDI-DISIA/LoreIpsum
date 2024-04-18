@@ -3,7 +3,6 @@
 
 class CardStateManager : public ComponentUpdate
 {
-
 public:
 	CardStateManager();
 

@@ -8,29 +8,34 @@
 
 #include "RandomNumberGenerator.h"
 
-class RandomNumberGenerator {
+class RandomNumberGenerator
+{
 public:
-
 	RandomNumberGenerator(const RandomNumberGenerator&) = delete;
 	RandomNumberGenerator& operator=(RandomNumberGenerator&) = delete;
 
 	RandomNumberGenerator() :
-		RandomNumberGenerator(static_cast<unsigned int>(std::time(0))) {
+		RandomNumberGenerator(static_cast<unsigned int>(std::time(nullptr)))
+	{
 	}
 
 	RandomNumberGenerator(unsigned seed) :
-			gen_(seed), dist_() {
+		gen_(seed), dist_()
+	{
 	}
 
-	virtual ~RandomNumberGenerator() {
+	virtual ~RandomNumberGenerator()
+	{
 	}
 
-	inline int nextInt() {
+	int nextInt()
+	{
 		return dist_(gen_);
 	}
 
 	// return an integer between low (inclusive) and high (exclusive)
-	inline int nextInt(int low, int high) {
+	int nextInt(int low, int high)
+	{
 		assert(low < high);
 		return low + (nextInt() % (high - low));
 	}
@@ -38,6 +43,4 @@ public:
 private:
 	std::mt19937 gen_;
 	std::uniform_int_distribution<int> dist_;
-
 };
-

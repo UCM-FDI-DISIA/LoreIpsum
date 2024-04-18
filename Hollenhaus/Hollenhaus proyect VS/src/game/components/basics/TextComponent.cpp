@@ -4,10 +4,11 @@
 #include "../../../sdlutils/SDLUtils.h"
 #include "../../Entity.h"
 
-TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment) :
+TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght,
+                             Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment) :
 	text_(nullptr),
-	color_(color),
 	font_(&sdl_.fonts().at(fontID)),
+	color_(color),
 	wrapLenght_(wrapLenght),
 	boxPivotPoint_(boxPivotPoint),
 	textAlignment_(textAlignment)
@@ -34,16 +35,14 @@ void TextComponent::initComponent()
 
 void TextComponent::render() const
 {
-
 	//PROVISIONAL
-	Vector2D aux  = GetRenderPosAcordingPivotPoint();
+	Vector2D aux = GetRenderPosAcordingPivotPoint();
 
 	text_->render(aux.getX(), aux.getY());
 
 #ifdef _DEBUG
-	RenderDebugRect( 0, 0, 255, 255 );
+	RenderDebugRect(0, 0, 255, 255);
 #endif // DEBUG
-	
 }
 
 void TextComponent::setTxt(std::string txt)
@@ -77,11 +76,11 @@ void TextComponent::SetTextAlignment(Text::TextAlignment textAlignment)
 	// No hace falta crear textura nueva
 }
 
-void TextComponent::createTexture() {
-
-	if(text_!= nullptr)
+void TextComponent::createTexture()
+{
+	if (text_ != nullptr)
 		delete text_;
-	
+
 	// Se utiliza una nueva constructora específica para crear una textura a partir de un texto embebido en una caja
 	text_ = new Texture(sdl_.renderer(), txt_, *font_, color_, wrapLenght_, textAlignment_);
 }
@@ -140,8 +139,8 @@ Vector2D TextComponent::GetRenderPosAcordingPivotPoint() const
 void TextComponent::RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const
 {
 	SDL_Rect textRect = {
-		(int)renderPos_.getX(),
-		(int)renderPos_.getY(),
+		static_cast<int>(renderPos_.getX()),
+		static_cast<int>(renderPos_.getY()),
 		text_->width(),
 		text_->height()
 	};
@@ -151,4 +150,3 @@ void TextComponent::RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const
 	SDL_RenderDrawRect(sdlutils().renderer(), &textRect);
 	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 0, 255);
 }
-

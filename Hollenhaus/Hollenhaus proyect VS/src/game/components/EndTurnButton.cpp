@@ -49,9 +49,10 @@ void EndTurnButton::ClickButton()
 	//}
 
 	//version con IA
-	if (activeIA) {
-
-		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1) {
+	if (activeIA)
+	{
+		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1)
+		{
 			// Se pasa el turno al otro jugador
 			matchManager_->setActualState(Turns::IA);
 		}

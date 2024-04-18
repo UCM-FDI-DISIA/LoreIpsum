@@ -4,32 +4,28 @@
 class Vector2D;
 
 class DropDetector :
-    public ComponentUpdate
+	public ComponentUpdate
 {
 public:
+	DropDetector();
+	~DropDetector() override;
 
-    DropDetector();
-    ~DropDetector();
-
-    void initComponent() override;
-    void update() override;
+	void initComponent() override;
+	void update() override;
 
 private:
+	bool ocuped = false;
 
-    bool ocuped = false;
+	Vector2D cardPos;
 
-    Vector2D cardPos;
-
-    Vector2D boardPos;
+	Vector2D boardPos;
 
 public:
+	void setOcuped(bool b) { ocuped = b; }
 
-    void setOcuped(bool b) { ocuped = b; }
+	bool isOcuped() { return ocuped; }
 
-    bool isOcuped() { return ocuped; }
+	Vector2D& getCardPos() { return cardPos; };
 
-    Vector2D& getCardPos() { return cardPos; };
-
-    Vector2D& getBoardPos() { return boardPos; };
+	Vector2D& getBoardPos() { return boardPos; };
 };
-

@@ -7,8 +7,6 @@
 
 Drag::Drag()
 {
-
-
 }
 
 Drag::~Drag()
@@ -19,24 +17,21 @@ Drag::~Drag()
 
 void Drag::initComponent()
 {
-
 	myTransform = mngr_->getComponent<Transform>(ent_);
 	myBoxCollider = mngr_->getComponent<BoxCollider>(ent_);
-	
+
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
-
-
 }
 
 void Drag::update()
 {
-	if (isDraged) {
-
-		Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
+	if (isDraged)
+	{
+		auto mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
 
 		Vector2D posAct = mousePos - initialMousePos + initialTransformPos;
-		
+
 
 		myTransform->getGlobalPos().set(posAct);
 	}
@@ -44,35 +39,35 @@ void Drag::update()
 
 void Drag::OnLeftClickDown()
 {
-	Vector2D mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
+	auto mousePos = Vector2D(ih().getMousePos().first, ih().getMousePos().second);
 
-	if (myBoxCollider->isCursorOver() && conditionsValid()) {
+	if (myBoxCollider->isCursorOver() && conditionsValid())
+	{
 		isDraged = true;
 		initialMousePos = mousePos;
 		initialTransformPos = myTransform->getGlobalPos();
-
 	}
 }
 
 void Drag::OnLeftClickUp()
 {
-	if (isDraged) {
+	if (isDraged)
+	{
 		isDraged = false;
 
 
 		SDL_Rect windowRect = build_sdlrect(0, 0, sdlutils().width(), sdlutils().height());
-		if (!SDL_HasIntersection(myBoxCollider->getRect(),&windowRect )) {
-			myTransform->getGlobalPos().set(initialTransformPos);//quitar? poner en otro component?
-
+		if (!SDL_HasIntersection(myBoxCollider->getRect(), &windowRect))
+		{
+			myTransform->getGlobalPos().set(initialTransformPos); //quitar? poner en otro component?
 		}
 	}
-
 }
 
 bool Drag::conditionsValid()
 {
 	if (conditions.size() == 0) return true;
-	
+
 
 	auto it = conditions.begin();
 

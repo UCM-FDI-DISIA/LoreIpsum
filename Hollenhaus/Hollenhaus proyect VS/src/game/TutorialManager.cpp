@@ -3,8 +3,6 @@
 
 TutorialManager::TutorialManager() : ended(false)
 {
-
-
 }
 
 TutorialManager::~TutorialManager()
@@ -13,7 +11,6 @@ TutorialManager::~TutorialManager()
 
 void TutorialManager::initComponent()
 {
-
 	count = 0;
 	cooldown = 10;
 
@@ -27,7 +24,6 @@ void TutorialManager::update()
 void TutorialManager::actionEnded()
 {
 	ended = true;
-
 }
 
 void TutorialManager::resetAction()
@@ -38,12 +34,12 @@ void TutorialManager::resetAction()
 void TutorialManager::wait(std::function<void()> callback)
 {
 	// tiempo de espera
-	if (count < cooldown) {
-
+	if (count < cooldown)
+	{
 		count++;
 	}
-	else {
-		
+	else
+	{
 		//
 		callback();
 

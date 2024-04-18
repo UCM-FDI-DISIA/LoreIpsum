@@ -14,7 +14,7 @@
 
 
 ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
-                                         std::vector<JsonData::CardEffect>& effects,bool bocaAbajo)
+                                         std::vector<JsonData::CardEffect>& effects, bool bocaAbajo)
 {
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
 
@@ -61,7 +61,8 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 					Effects::None
 				)
 			);
-		else for (const auto d : e.directions())
+		else
+			for (const auto d : e.directions())
 				cardComp->addCardEffect(
 					EffectCollection::getEffect(
 						e.type(),
@@ -79,7 +80,6 @@ ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std:
 		return state == CardStateManager::ON_HAND;
 	});
 	*/
-
 
 
 	addValueCostTexts(card, value, cost);
@@ -167,8 +167,9 @@ ecs::entity_t CardFactory_v0::createHand()
 		size++;*/
 
 	for (int i = 0; i < cardsOnHand; i++)
-	{ 
-		auto card = sdlutils().cards().at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
+	{
+		auto card = sdlutils().cards().at(std::to_string(i));
+		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		createCard(
 			Vector2D(initX + offSetX * i, initY),
 			card.cost(),
@@ -176,7 +177,7 @@ ecs::entity_t CardFactory_v0::createHand()
 			card.sprite(),
 			card.unblockable(),
 			card.effects()
-		,true)->setLayer(1);
+			, true)->setLayer(1);
 	}
 
 
@@ -197,7 +198,6 @@ ecs::entity_t CardFactory_v0::createHand()
 
 void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonData::CardEffect>& effects)
 {
-
 	int initialX = 15;
 	int initialY = 55;
 	int offSetX = 25;
@@ -209,13 +209,12 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 	ecs::entity_t effectImage;
 	ecs::entity_t valueChange;
 
-	std::vector<std::string> efectsIdsNames{ "esquina" ,"centro","flecha" ,"superflecha" ,"block" , "unblockable" };
+	std::vector<std::string> efectsIdsNames{"esquina", "centro", "flecha", "superflecha", "block", "unblockable"};
 	std::string efectID;
 
 
-
-	for (int i = 0; i < effects.size(); i++) {
-
+	for (int i = 0; i < effects.size(); i++)
+	{
 		effectImage = Instantiate(Vector2D(0, 0));
 
 		efectID = efectsIdsNames[effects[i].type()];
@@ -235,12 +234,11 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 		effectImage->setLayer(layer);
 
 
-		
-		if (effects[i].type() >= 2 && effects[i].type() <= 4) {
-			
+		if (effects[i].type() >= 2 && effects[i].type() <= 4)
+		{
 			Effects::Direction dir = effects[i].directions()[0];
-			effectImage->getComponent<Transform>()->getGlobalAngle() = 
-				 dir == Effects::Right ?  90.f :  dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
+			effectImage->getComponent<Transform>()->getGlobalAngle() =
+				dir == Effects::Right ? 90.f : dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
 		}
 
 
@@ -263,12 +261,12 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 		//}
 
 
-		if (effects[i].value() != 0) {
-
+		if (effects[i].value() != 0)
+		{
 			std::string valueText = effects[i].value() < 0 ? "-" : "+";
 			valueText = valueText + std::to_string(effects[i].value());
 
-			valueChange = Instantiate(Vector2D(0,0));
+			valueChange = Instantiate(Vector2D(0, 0));
 
 			valueChange->addComponent<TextComponent>(valueText, "8bit_size_8", SDL_Color({0, 0, 0, 255}), 100);
 
@@ -278,15 +276,14 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 			valueChange->setLayer(layer + 1);
 		}
 	}
-
-
 }
 
-void CardFactory_v0::addValueCostTexts(ecs::entity_t card,  int value, int cost)
+void CardFactory_v0::addValueCostTexts(ecs::entity_t card, int value, int cost)
 {
 	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
 
-	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }), 100,Text::BoxPivotPoint::CenterCenter,Text::TextAlignment::Center);
+	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_12", SDL_Color({255, 255, 255, 255}), 100,
+	                                        Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 
 	textoValor->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
@@ -297,7 +294,8 @@ void CardFactory_v0::addValueCostTexts(ecs::entity_t card,  int value, int cost)
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
 
-	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }),100, Text::BoxPivotPoint::CenterCenter,Text::TextAlignment::Center);
+	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_12", SDL_Color({255, 255, 255, 255}), 100,
+	                                        Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 

@@ -38,7 +38,6 @@ TutorialBoardState::TutorialBoardState()
 
 TutorialBoardState::~TutorialBoardState()
 {
-
 	delete factory;
 	factory = nullptr;
 }
@@ -52,8 +51,8 @@ void TutorialBoardState::update()
 {
 	GameState::update();
 
-	if (actionEnded()) {
-
+	if (actionEnded())
+	{
 		nextTutorialState();
 
 		resetEnded();
@@ -69,7 +68,6 @@ void TutorialBoardState::render() const
 
 void TutorialBoardState::onEnter()
 {
-
 	TuVieja("ENTRANDO AL TUTORIAL...");
 
 	currentState = NONE;
@@ -79,19 +77,17 @@ void TutorialBoardState::onEnter()
 	setBoard();
 	setBaseEntity();
 	initTutorial();
-
 }
 
 void TutorialBoardState::onExit()
 {
-
-
 }
 
 void TutorialBoardState::updateTutorialState()
 {
-	if (currentState != nextState) {
-		tutorial->getComponent<TutorialManager>()->wait( [this] { setState(); } );
+	if (currentState != nextState)
+	{
+		tutorial->getComponent<TutorialManager>()->wait([this] { setState(); });
 	}
 }
 
@@ -104,7 +100,6 @@ void TutorialBoardState::resetEnded()
 {
 	tutorial->getComponent<TutorialManager>()->resetAction();
 }
-
 
 
 void TutorialBoardState::setState()
@@ -138,7 +133,7 @@ void TutorialBoardState::setBoard()
 
 	TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
 
-	Factory* factory = new Factory();
+	auto factory = new Factory();
 	factory->SetFactories(
 		static_cast<BoardFactory*>(new BoardFactory_v0(4)),
 		static_cast<CardFactory*>(new CardFactory_v1()),
@@ -152,7 +147,8 @@ void TutorialBoardState::setBoard()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, Turns::J1, boardManagerComponent);
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(
+		4, 4, Turns::J1, boardManagerComponent);
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
@@ -174,8 +170,8 @@ void TutorialBoardState::setBoard()
 
 	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 
-	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, { 102, 255, 255, 255 });
-	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, { 255, 102, 255, 255 });
+	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, {102, 255, 255, 255});
+	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, {255, 102, 255, 255});
 
 	ecs::entity_t visual_BackgroundBoard = factory->createVisual_BackgroundFullImage();
 
@@ -197,7 +193,7 @@ void TutorialBoardState::setBoard()
 	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 
 
-	#pragma region Seccion IA
+#pragma region Seccion IA
 
 	//crear la entidad y añadirle el componente
 	ecs::entity_t IA_controler = Instantiate();
@@ -205,7 +201,6 @@ void TutorialBoardState::setBoard()
 
 	//le decimos al endTurn que existe la IA
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
-
 
 
 	//seters de referencias de la ia
@@ -223,7 +218,7 @@ void TutorialBoardState::setBoard()
 	matchManagerComponent->setIA_Manager(ia_managerComponent);
 
 
-	#pragma endregion
+#pragma endregion
 }
 
 void TutorialBoardState::setBaseEntity()
@@ -232,7 +227,7 @@ void TutorialBoardState::setBaseEntity()
 	base->addComponent<Transform>();
 	//base->getComponent<Transform>()->addParent(nullptr);
 	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
-	Vector2D pos{ 200, 200 };
+	Vector2D pos{200, 200};
 	base->getComponent<Transform>()->setGlobalPos(pos);
 	base->setLayer(2);
 }
@@ -248,15 +243,16 @@ void TutorialBoardState::createPopUp(float x, float y, std::string popup, int co
 	// crear dialogo del FACTORY de dialogos
 	//// Mirar comentario en el interior de la función
 	factory->createDialogue(dialogue.NPCName(), convo, node,
-		{ x, y },//POS
-		{ 0.25, 0.25 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-		5, 10, base,
-		3, dialogue.Convo(convo).isAuto(),  //LAYER
-		"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
-		SDL_Color({ 0, 0, 0, 255 }),
-		220, //wrap length
-		Text::BoxPivotPoint::LeftTop,
-		Text::TextAlignment::Left);
+	                        {x, y}, //POS
+	                        {0.25, 0.25},
+	                        //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
+	                        5, 10, base,
+	                        3, dialogue.Convo(convo).isAuto(), //LAYER
+	                        "8bit_size_20", //mirar el JSON para cambiar el tamanio de texto
+	                        SDL_Color({0, 0, 0, 255}),
+	                        220, //wrap length
+	                        Text::BoxPivotPoint::LeftTop,
+	                        Text::TextAlignment::Left);
 }
 
 void TutorialBoardState::initTutorial()
@@ -270,11 +266,9 @@ void TutorialBoardState::initTutorial()
 
 void TutorialBoardState::setINIT()
 {
-
 	TuVieja("Setting INIT");
 
-	createPopUp(250 , 200, "Board Tutorial", 0);
-
+	createPopUp(250, 200, "Board Tutorial", 0);
 }
 
 void TutorialBoardState::setCARD()
@@ -289,5 +283,4 @@ void TutorialBoardState::setDECK()
 	TuVieja("Setting DECK");
 
 	createPopUp(550, 300, "Board Tutorial", 2);
-
 }

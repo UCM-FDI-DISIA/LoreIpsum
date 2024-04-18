@@ -34,31 +34,29 @@ public:
 		{
 		case DialogueEvents::None:
 			return []
-				{
-					
-				};
+			{
+			};
 		case DialogueEvents::ChangeScene:
 			return [scene]
-				{
-					ChangeScene(scene);
-				};
-			
+			{
+				ChangeScene(scene);
+			};
+
 			break;
 		case DialogueEvents::StartAnimation:
 			return []
-				{
-
-				};
+			{
+			};
 		case DialogueEvents::ConfirmMatchPopUp:
 			return [parent]
-				{
-					ConfirmationPopUp(parent);
-				};
+			{
+				ConfirmationPopUp(parent);
+			};
 		case DialogueEvents::ActionEnded:
 			return []
-				{
-					ActionEnded();
-				};
+			{
+				ActionEnded();
+			};
 		default:
 			return nullptr;
 		}

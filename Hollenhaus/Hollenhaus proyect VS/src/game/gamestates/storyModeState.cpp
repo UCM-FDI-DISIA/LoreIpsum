@@ -6,7 +6,6 @@
 
 StoryModeState::StoryModeState()
 {
-	
 }
 
 StoryModeState::~StoryModeState()

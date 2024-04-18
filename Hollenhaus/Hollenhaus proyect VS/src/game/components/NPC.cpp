@@ -27,7 +27,6 @@ NPC::NPC(int scene)
 	factory->SetFactories(
 		static_cast<DialogueFactory*>(new DialogueFactory_V0())
 	);
-
 }
 
 NPC::NPC(int scene, std::string name_)
@@ -46,7 +45,6 @@ NPC::NPC(int scene, std::string name_)
 	factory->SetFactories(
 		static_cast<DialogueFactory*>(new DialogueFactory_V0())
 	);
-
 }
 
 NPC::NPC(int scene, int t)
@@ -63,7 +61,6 @@ NPC::NPC(int scene, int t)
 	factory->SetFactories(
 		static_cast<DialogueFactory*>(new DialogueFactory_V0())
 	);
-
 }
 
 NPC::NPC(int scene, int t, std::string name_)
@@ -81,14 +78,12 @@ NPC::NPC(int scene, int t, std::string name_)
 	factory->SetFactories(
 		static_cast<DialogueFactory*>(new DialogueFactory_V0())
 	);
-
-
 }
 
-NPC::~NPC() 
+NPC::~NPC()
 {
-	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
-	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] {OnLeftClickUp(); });
+	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
+	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 
 	delete factory;
 	factory = nullptr;
@@ -100,14 +95,14 @@ void NPC::initComponent()
 	myTransform = mngr_->getComponent<Transform>(ent_);
 }
 
-void NPC::OnLeftClickDown(int scene) 
+void NPC::OnLeftClickDown(int scene)
 {
 	myBoxCollider;
 	reactToClick(scene);
 	click = true;
 }
 
-void NPC::OnLeftClickUp() 
+void NPC::OnLeftClickUp()
 {
 	click = false; // Resetea el click al soltar para que se pueda volver a pulsar.
 }
@@ -120,13 +115,14 @@ void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 
 	if (!click && myBoxCollider->isCursorOver()) // Recoge click para el cambio de escena.
 	{
-		if (type == 0) {
+		if (type == 0)
+		{
 			TuVieja("Cambio de escena.");
 			GameStateMachine::instance()->setState(scene);
 		}
-		else if (type == 1) 
+		else if (type == 1)
 		{
-			talkTo();   
+			talkTo();
 		}
 	}
 }
@@ -136,7 +132,7 @@ void NPC::talkTo()
 	if (!click && myBoxCollider->isCursorOver() && !talking && closeToPaul) // Recoge click para hablar con un NPC.
 	{
 		TuVieja("Que charlatan el tio...");
-		
+
 		float x = ent_->getComponent<Transform>()->getGlobalPos().getX() - 150;
 		float y = ent_->getComponent<Transform>()->getGlobalPos().getY() - 250;
 
@@ -149,18 +145,18 @@ void NPC::talkTo()
 		// crear dialogo del FACTORY de dialogos
 		//// Mirar comentario en el interior de la función
 		npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
-								{x, y},//POS
-								{2,2}, //SIZE
-								5, //Speed
-								10, //Cooldown
-								getEntity(), //Parent 
-								3, //LAYER
-								dialogue.Convo(conv).isAuto(), //Si el texto es auto o no
-								"8bit_size_20",	//mirar el JSON resources para cambiar el tamanio de texto
-								SDL_Color({0, 0, 0, 255}), //Color black
-								220, //wrap length
-								Text::BoxPivotPoint::LeftTop,
-								Text::TextAlignment::Left);
+		                                      {x, y}, //POS
+		                                      {2, 2}, //SIZE
+		                                      5, //Speed
+		                                      10, //Cooldown
+		                                      getEntity(), //Parent 
+		                                      3, //LAYER
+		                                      dialogue.Convo(conv).isAuto(), //Si el texto es auto o no
+		                                      "8bit_size_20", //mirar el JSON resources para cambiar el tamanio de texto
+		                                      SDL_Color({0, 0, 0, 255}), //Color black
+		                                      220, //wrap length
+		                                      Text::BoxPivotPoint::LeftTop,
+		                                      Text::TextAlignment::Left);
 
 		talking = true;
 	}
@@ -171,7 +167,7 @@ void NPC::stoppedTalking()
 	talking = false;
 }
 
-void NPC::update() 
+void NPC::update()
 {
 	// Si el dialogo ha sido creado y no estamos cerca de Paul -> destruir dialog, y dejamos de hablar.
 	if (talking && !closeToPaul)
@@ -181,6 +177,5 @@ void NPC::update()
 		//npcDialogue->getComponent<DialogueDestroyer>()->destroyDialogue();
 
 		talking = false;
-		
 	}
 }

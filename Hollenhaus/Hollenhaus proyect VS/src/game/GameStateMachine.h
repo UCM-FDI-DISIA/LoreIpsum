@@ -18,7 +18,8 @@ namespace ecs
 namespace GameStates
 {
 	//Enum de estados del juego
-	enum game_states {
+	enum game_states
+	{
 		MAINMENU,
 		CITY,
 		OFFICE,
@@ -86,7 +87,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* pauseMenuState;
 	GameState* checkMazeMenuState;
 	GameState* checkCluesMenuState;
-	 
+
 	// Estados auxiliares
 	GameState* movementState;
 
@@ -112,8 +113,8 @@ public:
 	void Update();
 	void Refresh();
 
-	inline void setState(int state) {
-
+	void setState(int state)
+	{
 		switch (state)
 		{
 		case GameStates::MAINMENU:
@@ -151,28 +152,28 @@ public:
 			break;
 		case GameStates::TUTORIAL:
 			currentState = tutorialState;
-			break; 
+			break;
 		case GameStates::STORYMODEMENU:
 			currentState = storyModeState;
-			break; 
+			break;
 		case GameStates::MULTIPLAYERMODEMENU:
 			currentState = multiplayerModeState;
 			break;
 		case GameStates::OPTIONSMENU:
 			currentState = optionsMainMenuState;
-			break; 
+			break;
 		case GameStates::TRANSITIONTEXT:
 			currentState = transitionTextMenuState;
-			break; 
+			break;
 		case GameStates::CINEMATICINTRO:
 			currentState = cinematicIntroState;
-			break; 
+			break;
 		case GameStates::PAUSEMENU:
 			currentState = pauseMenuState;
-			break; 
+			break;
 		case GameStates::MAZEMENU:
 			currentState = checkMazeMenuState;
-			break; 
+			break;
 		case GameStates::CLUESMENU:
 			currentState = checkCluesMenuState;
 			break;

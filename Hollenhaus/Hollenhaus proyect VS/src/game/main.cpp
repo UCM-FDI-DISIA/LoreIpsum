@@ -10,16 +10,18 @@
 
 using namespace std;
 
-int main(int argc, char* argv[]) {
-
-	try {
-		Game* game = new Game();
+int main(int argc, char* argv[])
+{
+	try
+	{
+		auto game = new Game();
 
 		game->Run();
 
 		delete game;
 	}
-	catch (exception e) {
+	catch (exception e)
+	{
 		SDL_ShowSimpleMessageBox(0, "Error tu vieja", e.what(), nullptr);
 	}
 

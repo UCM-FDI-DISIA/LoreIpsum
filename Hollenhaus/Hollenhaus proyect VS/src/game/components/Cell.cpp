@@ -3,7 +3,6 @@
 
 Cell::Cell() : active(true), corner(false), center(false), totalValue(0), player(Players::NONE), card(nullptr)
 {
-
 }
 
 Cell::Cell(Cell& cell)
@@ -67,14 +66,14 @@ void Cell::setCard(Card* c, Players::Owner o)
 
 void Cell::blockEffects(Cell* c)
 {
-	 c->cleanEffectList(); // elimina todos los efectos de la celda
+	c->cleanEffectList(); // elimina todos los efectos de la celda
 }
 
 void Cell::emit() const
 {
-	for (SDLEventCallback cellCallback : effectCallbacks) {
+	for (SDLEventCallback cellCallback : effectCallbacks)
+	{
 		cellCallback(); // llama a todas las funciones registradas
 		//this->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(104, 52, 177, 200);
 	}
-		
 }

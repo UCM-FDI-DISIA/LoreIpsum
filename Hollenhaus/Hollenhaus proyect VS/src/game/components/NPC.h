@@ -13,7 +13,7 @@ public:
 	NPC(int scene, std::string name_);
 	NPC(int scene, int t);
 	NPC(int scene, int t, std::string name_);
-	~NPC();
+	~NPC() override;
 
 	void initComponent() override;
 	void update() override;
@@ -35,11 +35,10 @@ private:
 
 	float pos;
 	bool closeToPaul; //si esta cerca de Paul, podra hablar, si no, no
-	
+
 	BoxCollider* myBoxCollider;
 	Factory* factory;
 	Transform* myTransform; //para saber si estamos cerca de Paul o no
 
 	//para destruir el dialogo si estamos lejos de paul
-
 };

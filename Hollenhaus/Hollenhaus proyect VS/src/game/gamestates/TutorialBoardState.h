@@ -5,63 +5,62 @@ class Factory;
 class TutorialManager;
 
 class TutorialBoardState :
-    public GameState
+	public GameState
 {
 public:
-    TutorialBoardState();
-    virtual ~TutorialBoardState();
+	TutorialBoardState();
+	~TutorialBoardState() override;
 
 
-    void refresh() override;
-    void update() override;
-    void render() const override;
+	void refresh() override;
+	void update() override;
+	void render() const override;
 
-    void onEnter() override;
-    void onExit() override;
+	void onEnter() override;
+	void onExit() override;
 
 private:
+	//
+	void nextTutorialState();
+	void updateTutorialState();
+	bool actionEnded();
+	void resetEnded();
+	void setState();
 
-    //
-    void nextTutorialState();
-    void updateTutorialState();
-    bool actionEnded();
-    void resetEnded();
-    void setState();
+	//
+	void setBoard();
+	void setBaseEntity();
+	void createPopUp(float x, float y, std::string popup, int convo);
+	void initTutorial();
 
-    //
-    void setBoard();
-    void setBaseEntity();
-    void createPopUp(float x, float y, std::string popup, int convo);
-    void initTutorial();
+	//
+	enum Tutorial
+	{
+		NONE,
+		INIT,
+		CARD,
+		DECK,
+		CELL,
+		ACTION,
+		ACTION_PTS
+	};
 
-    //
-    enum Tutorial {
-        NONE,
-        INIT,
-        CARD,
-        DECK,
-        CELL,
-        ACTION,
-        ACTION_PTS
-    };
+	//
+	int currentState; //
+	int nextState; //
+	bool ended; //
 
-    //
-    int currentState;       //
-    int nextState;          //
-    bool ended;             //
+	Factory* factory; //
+	ecs::entity_t base; // entidad para colocar los popups, se va moviendo segun donde los queramos
+	ecs::entity_t tutorial;
 
-    Factory* factory;           //
-    ecs::entity_t base;         // entidad para colocar los popups, se va moviendo segun donde los queramos
-    ecs::entity_t tutorial;
+	int cooldown = 10;
+	int count = 0;
 
-    int cooldown = 10;
-    int count = 0;
+	// gestion de estados individuales
+	void setINIT();
 
-    // gestion de estados individuales
-    void setINIT();
+	void setCARD();
 
-    void setCARD();
-
-    void setDECK();
-
+	void setDECK();
 };
