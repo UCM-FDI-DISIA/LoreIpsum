@@ -2,18 +2,16 @@
 #include "ComponentUpdate.h"
 #include <string>
 
-class TextComponent;
-
+// Componente para obtener la IPv4 de tu máquina
 class GetIPv4 : public ComponentUpdate
 {
 public:
-	GetIPv4(TextComponent* textComponent);
+
+	GetIPv4();
 	~GetIPv4();
 
 	std::string GetIP() { return ipv4; }
 private:
-	
-	TextComponent* tc;
 
 	std::string ipv4;
 
