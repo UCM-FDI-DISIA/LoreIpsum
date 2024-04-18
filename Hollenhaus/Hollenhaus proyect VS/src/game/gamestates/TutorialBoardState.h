@@ -31,7 +31,7 @@ private:
     //
     void setBoard();
     void setBaseEntity();
-    void createPopUp(float x, float y, std::string popup, int convo);
+    ecs::entity_t createPopUp(float x, float y, std::string popup, int convo);
     void initTutorial();
 
     //
@@ -39,9 +39,10 @@ private:
     int nextState;          //
     bool ended;             //
 
-    Factory* factory;           //
-    ecs::entity_t base;         // entidad para colocar los popups, se va moviendo segun donde los queramos
+    Factory* factory;               //
+    ecs::entity_t base;             // entidad para colocar los popups, se va moviendo segun donde los queramos
     ecs::entity_t tutorial;
+    ecs::entity_t colliderWallBase;
 
     int cooldown = 10;
     int count = 0;

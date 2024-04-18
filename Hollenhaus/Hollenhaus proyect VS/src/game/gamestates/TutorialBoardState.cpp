@@ -280,9 +280,16 @@ void TutorialBoardState::setBaseEntity()
 	Vector2D pos{ 200, 200 };
 	base->getComponent<Transform>()->setGlobalPos(pos);
 	base->setLayer(2);
+
+	colliderWallBase = Instantiate();
+	colliderWallBase->addComponent<Transform>();
+	Vector2D pos2{ 0, 0 };
+	colliderWallBase->getComponent<Transform>()->setGlobalPos(pos2);
+	colliderWallBase->setLayer(2);
+	
 }
 
-void TutorialBoardState::createPopUp(float x, float y, std::string popup, int convo)
+ecs::entity_t TutorialBoardState::createPopUp(float x, float y, std::string popup, int convo)
 {
 	TuVieja("Creando PopUp...");
 
@@ -292,7 +299,7 @@ void TutorialBoardState::createPopUp(float x, float y, std::string popup, int co
 
 	// crear dialogo del FACTORY de dialogos
 	//// Mirar comentario en el interior de la función
-	factory->createDialogue(dialogue.NPCName(), convo, node,
+	ecs::entity_t pop = factory->createDialogue(dialogue.NPCName(), convo, node,
 		{ x, y },//POS
 		{ 0.25, 0.25 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
 		5, 10, base,
@@ -302,6 +309,8 @@ void TutorialBoardState::createPopUp(float x, float y, std::string popup, int co
 		220, //wrap length
 		Text::BoxPivotPoint::LeftTop,
 		Text::TextAlignment::Left);
+
+	return pop;
 }
 
 void TutorialBoardState::initTutorial()
@@ -333,7 +342,13 @@ void TutorialBoardState::setDECK()
 {
 	TuVieja("Setting DECK");
 
-	createPopUp(550, 300, "Board Tutorial", 2);
+	ecs::entity_t pop = createPopUp(550, 300, "Board Tutorial", 2);
+
+	std::vector<ecs::entity_t>vec;
+
+	vec.push_back(pop);
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(vec, colliderWallBase);
 
 }
 

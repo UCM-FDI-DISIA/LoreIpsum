@@ -16,6 +16,7 @@ public:
     void resetAction();
     void wait(std::function<void()> callback);
     void tutorialActionEnded(Tutorials::Tutorials t, int i);
+    void setColliderWall(std::vector<ecs::entity_t> e, ecs::entity_t parent);
 
     bool hasEnded() { return ended; }
     bool Next() { return next; }
@@ -46,5 +47,8 @@ private:
     Tutorials::Tutorials currtut;
     int currstate;
     int nextstate;
+
+    ecs::entity_t colliderWall;
+    std::vector<int> layers;
 
 };

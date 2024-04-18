@@ -151,7 +151,8 @@ void CityState::onEnter()
 	//npc4->getComponent<Transform>()->setGlobalPos(npc4Pos);
 	//npc4->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	//npc4->addComponent<NPC>(3, 1, "El Xungo del Barrio");
-	//npc4->setLayer(2);
+	//npc4->
+	// (2);
 
 	// --- Boton para volver al menu principal ---
 	ecs::entity_t exit = Instantiate();
