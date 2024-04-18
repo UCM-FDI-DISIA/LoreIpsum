@@ -40,12 +40,18 @@ public:
 	virtual int getShopCardById(int id);
 	//----Mete una carta con id id al cajon.
 	virtual void addCardToDrawer(int id);
-	//----Modifica el dinero del jugador:
-	virtual void changeMoney(int money);
+	//----Mete dinero al jugador:
+	virtual void addMoney(int money);
+	//----Quita dinero al jugador.
+	virtual void substractMoney(int money);
 	//----Devuelve el dinero del jugador:
 	virtual int getMoney();
 	//----Comprueba si una carta con id id esta en el mazo.
 	virtual bool checkCardIsInMaze(int id);
+	//----
+	virtual void cardSelected(int prize) {}
+	//----
+	virtual void deSelected() {}
 
 	virtual void saveData();
 	virtual void loadData();
@@ -57,6 +63,8 @@ public:
 	virtual std::array<int, 50> getDrawer();
 	virtual std::unordered_map<int, Vector2D> getMaze();
 	virtual Vector2D getLastPaulPos();
+	virtual int GetLastState();
+	static Data* getData() { return data; }
 
 	// ---- setters ----
 	static void setData(Data* _data); // settea la data
@@ -64,6 +72,7 @@ public:
 	virtual void setDrawer(std::array<int, 50> drawerToSave);
 	virtual void setWinnerOnData(int w);
 	virtual void setLastPaulPos(Vector2D paulPos);
+	virtual void SetLastState(int ls);
 };
 
 #endif // !GameState_H_

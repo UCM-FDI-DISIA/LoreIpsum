@@ -12,5 +12,16 @@ public:
 
     void onEnter() override;
     void onExit() override;
+
+    void setPreviousState(int ps)
+    {
+        previousState = ps;
+    }
+
+    int previousState;
+
+private:
+
+    void onDespause();
 };
 

@@ -394,7 +394,7 @@ void SDLUtils::loadCards(JSONObject rootCards, std::string filenameCards)
 #ifdef _DEBUG
 					std::cout << "Loading cards with id: " << key << std::endl;
 #endif
-					cards_.emplace(key, JsonData::CardData(cost, value, sprite, unblockable, effects)); // finalmente se anyaden al mapa
+					cards_.emplace(key, JsonData::CardData(cost, value, std::stoi(key), sprite, unblockable, effects)); // finalmente se anyaden al mapa
 
 				} else {
 					throw "'cards' array in '" + filenameCards

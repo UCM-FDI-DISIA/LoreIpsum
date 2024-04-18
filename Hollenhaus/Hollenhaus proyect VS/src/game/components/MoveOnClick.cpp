@@ -8,6 +8,11 @@
 
 #include "pch.h"
 #include "MoveOnClick.h"
+#include "../Entity.h"
+#include "managers/Manager.h"
+#include "../../sdlutils/InputHandler.h"
+#include "../../sdlutils/SDLUtils.h"
+
 #include <cmath>
 
 constexpr Uint32 FEEDBACK_PADDING = 60,
@@ -38,6 +43,8 @@ void MoveOnClick::initComponent()
 {
 	myTransform_ = ent_->getComponent<Transform>(); // transform del fondo
 
+
+#pragma region FEEDBACK INIT
 	feedbackPunto = Instantiate(Vector2D());
 	feedbackFlecha = Instantiate(Vector2D());
 
@@ -77,7 +84,7 @@ void MoveOnClick::initComponent()
 		.to(halfScreen_ - 50.0f + MOVE_OFFSET * dir_)
 		.during(ACC_DURATION)
 		.via(tweeny::easing::linear);
-
+#pragma endregion
 
 	// llamada al input
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
@@ -163,10 +170,15 @@ void MoveOnClick::OnLeftClickDown()
 
 		//movementSpeed_ = scrollFactor_ * dir_;
 
-		enableLerp();
-		enableFeedback();
+		onStart();
 	}
 	else onStop();
+}
+
+void MoveOnClick::onStart()
+{
+	enableLerp();
+	enableFeedback();
 }
 
 void MoveOnClick::onStop()
@@ -234,27 +246,25 @@ void MoveOnClick::enableLerp()
 	tweenMovement =
 		tweeny::from(0.0f)
 		.to(scrollFactor_ * dir_)
-		.during(ACC_DURATION)
-		.via(tweeny::easing::linear);
-	if (movementSpeed_ <= 0)
-	{
-		tweenMovement.seek(0);
-		movementSpeed_ = 0;
-	}
-	tweenMovement.forward();
+		.during(ACC_DURATION*2)
+		.via(tweeny::easing::sinusoidalInOut);
+	//if (movementSpeed_ <= 0)
+	//{
+	//	tweenMovement.seek(0);
+	//	movementSpeed_ = 0;
+	//}
+	//tweenMovement.forward();
 
 	/// DEL FANTASMIKO
-	assert (fanTrans != nullptr);
-	auto fanX = fanTrans->getGlobalPos().getX();
 	tweenFantasmiko =
 		tweeny::from(halfScreen_ - 50.0f)
-		.to(halfScreen_ - 50.0f + MOVE_OFFSET * dir_)
-		.during(ACC_DURATION)
-		.via(tweeny::easing::linear);
+		.to(halfScreen_ - 50.0f + MOVE_OFFSET*2 * dir_)
+		.during(ACC_DURATION * 2)
+		.via(tweeny::easing::sinusoidalInOut);
 
-	if (movementSpeed_ <= 0)
-		tweenFantasmiko.seek(0);
-	tweenFantasmiko.forward();
+	//if (movementSpeed_ <= 0)
+	//	tweenFantasmiko.seek(0);
+	//tweenFantasmiko.forward();
 }
 
 void MoveOnClick::disableLerp()

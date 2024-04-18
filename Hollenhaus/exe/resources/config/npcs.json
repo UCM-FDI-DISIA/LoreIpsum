@@ -36,18 +36,30 @@
             "scene": 6,
             "layer": 1
         },
- 	{
-            "npcID": "3",
-            "name": "El Xungo del Barrio",
-            "sprite": "NPCNPC",
-            "scaleX": 0.25,
-            "scaleY": 0.25,
-            "posX": 1600,
-            "posY": 425,
-            "type": 1,
-            "scene": 3,
-            "layer": 2
-        }
+      {
+        "npcID": "3",
+        "name": "El Xungo del Barrio",
+        "sprite": "NPCNPC",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1600,
+        "posY": 425,
+        "type": 1,
+        "scene": 3,
+        "layer": 2
+      },
+      {
+        "npcID": "4",
+        "name": "Tutorial",
+        "sprite": "CompbateNPC",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1200,
+        "posY": 425,
+        "type": 0,
+        "scene": 10,
+        "layer": 1
+      }
     ]
 
 }

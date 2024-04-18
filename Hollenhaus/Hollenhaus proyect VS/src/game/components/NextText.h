@@ -27,6 +27,7 @@ public:
 	void callNextNode();
 	void callFullText();
 	void setDead(bool a);
+	void setCollider(BoxCollider* coll);
 	bool isDead() { return dead; }
 
 private:
