@@ -360,9 +360,15 @@
     <ClCompile Include="src\game\components\TextWritter.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp" />
-    <ClCompile Include="src\game\components\multiplayer\NetPregame.cpp" />
-    <ClCompile Include="src\game\components\GetIPv4.cpp" />
+    <ClCompile Include="src\game\components\multiplayer\NetPregame.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\GetIPv4.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -704,9 +710,15 @@
     <ClInclude Include="src\game\MultiplayerNamespaces.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\LobbyStatusIndicator.h" />
-    <ClInclude Include="src\game\components\multiplayer\NetPregame.h" />
-    <ClInclude Include="src\game\components\GetIPv4.h" />
+    <ClInclude Include="src\game\components\multiplayer\NetPregame.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\GetIPv4.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\LobbyStatusIndicator.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
