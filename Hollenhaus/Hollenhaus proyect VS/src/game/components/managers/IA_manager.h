@@ -3,12 +3,15 @@
 #include "../ComponentUpdate.h"
 
 #include "../../../utils/Vector2D.h"
+//#include "../../../utils/tweeny-3.2.0.h"
+#include <array>
 
 class Card;
 class BoardManager;
 class HandComponent;
 class DeckComponent;
 class MatchManager;
+
 
 class IA_manager : public ComponentUpdate
 {
@@ -71,6 +74,7 @@ public:
 		//mazo del jugador y enemigo
 		std::vector<Card*> playerDeck;
 		std::vector<Card*> enemyDeck;
+
 
 		int actionPoints;
 
@@ -195,6 +199,11 @@ private:
 	DeckComponent* enemyDeckCmp;
 
 	#pragma endregion
+
+
+	//tweens cartas 
+	//std::array<tweeny::tween<float>, 7> _tweensCardsPositionsX; 
+	//std::array<tweeny::tween<float>, 7> _tweensCardsPositionsY;
 
 };
 

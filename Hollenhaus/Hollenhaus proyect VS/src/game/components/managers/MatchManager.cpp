@@ -141,6 +141,7 @@ void MatchManager::setIA_Manager(IA_manager* ia)
 void MatchManager::endTurnIA()
 {
 	setActualState(Turns::J1);
+	// Animacion gira la estatua
 
 }
 

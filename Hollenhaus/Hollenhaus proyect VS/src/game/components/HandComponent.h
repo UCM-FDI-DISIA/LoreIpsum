@@ -2,6 +2,8 @@
 #include "ComponentUpdate.h"
 #include <vector>
 #include "basics/Transform.h"
+#include "../../utils/tweeny-3.2.0.h"
+#include <array>
 
 const int	
 					CARD_SEPARATION = 50,
@@ -54,6 +56,7 @@ private:
 
 	// Vector cartas en la mano
 	std::vector<ecs::entity_t> cardsInHand_;
+	std::vector<Vector2D> cardPositions_;
 
 	ecs::entity_t lastCardAdded_; // Para order in layer
 
@@ -62,7 +65,8 @@ private:
 	Players::Owner owner_;
 
 	//Cosas del tween
-	tweeny::tween<float> tweenDrawCard;
+	std::array<tweeny::tween<float>,7 >tweenDrawCardX;
+	std::array<tweeny::tween<float>,7 >tweenDrawCardY;
 	ecs::entity_t carta;
 	bool tween = false;
 };
