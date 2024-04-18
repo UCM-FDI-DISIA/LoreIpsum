@@ -11,18 +11,23 @@ NetPregame::NetPregame(TextComponent* oponentReadyText, TextComponent* readyButt
 	rivalReady(false)
 {
 
-	// Get the rival socket setted on LobbyState
+	// Obtenemos el socket del rival setteado en LobbyState y guardado en Data
 	conn = GameStateMachine::instance()->getCurrentState()->getSocketRival();
+
+	// Generamos un espacio en el socket set para el socket del rival que ya hemos obtenido
 	socketSet = SDLNet_AllocSocketSet(1);
 
-	// add the socket to the socketSet for non-blocking communication
+	// Aniadimos el socket del rival al socketSet para tener comunicacion no-bloqueante
 	SDLNet_TCP_AddSocket(socketSet, conn);
+
 
 	_oponentReadyText->setColor(SDL_Color({ 255, 0, 0, 0 }));
 	_oponentReadyText->setTxt("Oponent is NOT ready!");
 	_readyButtonText->setColor(SDL_Color({ 255, 0, 0, 0 }));
 	_readyButtonText->setTxt("READY");
+
 }
+
 
 NetPregame::~NetPregame()
 {
@@ -31,12 +36,14 @@ NetPregame::~NetPregame()
 
 void NetPregame::update()
 {
-
+	// La llamada a SDLNet_CheckSockets devuelve el número de sockets con actividad en socketSet.
+	// El 2º parámetro indica al método que debe esperar si no encuentra actividad
+	// 2º parámetro debe estar en 0 si no quieres bloquear el programa (consume más CPU)
 	if (SDLNet_CheckSockets(socketSet, 0) > 0) {
-		TuVieja("HOLAaa");
+
 		// Procesamos si hay actividad en el socket de conexión con el rival (actuamos como cliente)
 		if (SDLNet_SocketReady(conn)) {
-			TuVieja("HOLA");
+
 			NetMsgs::Msg msg;
 			auto result = SDLNetUtils::receiveMsg(conn);
 			msg.deserialize(result.buffer);
@@ -70,11 +77,6 @@ void NetPregame::update()
 				}
 				GameStateMachine::instance()->getCurrentState()->setMazeRival(mazeRival);
 
-				//DEBUG
-				for (int i = 0; i < sendMazeMsg.size; i++) {
-					std::cout << (int)(sendMazeMsg.maze[i]) << std::endl;
-				}
-
 				// Si nosotros ya estabamos listos, comenzamos el juego
 				if (GetPlayerReady()) {
 					GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_GAME);
@@ -84,8 +86,10 @@ void NetPregame::update()
 			}
 
 			case NetMsgs::_NOT_READY_TO_PLAY:
+				
 				TuVieja("Mensaje del rival: RIVAL NO ESTA LISTO PARA JUGAR");
 
+				// Indicamos que el rival NO está listo para jugar
 				SetRivalReady(false);
 
 				break;
@@ -97,9 +101,13 @@ void NetPregame::update()
 	}
 }
 
+
+// Cambio en nuestro estado
+// Cambiamos el visual y avisamos al oponente.
 void NetPregame::SetPlayerReady(bool isReady)
 {
 	playerReady = isReady;
+
 	if (isReady) {
 		_readyButtonText->setColor(SDL_Color({ 0, 255, 0, 0 }));
 		SendMsgPlayerReady();
@@ -109,12 +117,16 @@ void NetPregame::SetPlayerReady(bool isReady)
 		SendMsgPlayerNotReady();
 	}
 	
-
+	// Si estamos listos y nuestro oponente también estaba listo, cambio de escena
 	if (GetRivalReady()) {
 		GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_GAME);
 	}
 }
 
+
+// Cambio en el estado del oponente
+// Simplemente modificamos los visuales
+// Update() se engarga de procesar el mensaje del oponente
 void NetPregame::SetRivalReady(bool isReady)
 {
 	rivalReady = isReady;
@@ -129,8 +141,12 @@ void NetPregame::SetRivalReady(bool isReady)
 	}
 }
 
+
+// Avisamos al oponente que estamos listos.
+// Le enviamos nuestro mazo
 void NetPregame::SendMsgPlayerReady()
 {
+	// Generamos los datos que pide el constructor del mensaje para enviar el mazo
 	Uint8 maze[100];
 	Uint8 i = 0;
 	for (Uint8 e : GameStateMachine::instance()->getCurrentState()->getMaze())
@@ -146,6 +162,8 @@ void NetPregame::SendMsgPlayerReady()
 	SDLNetUtils::serializedSend(msg, conn);
 }
 
+
+// Avisamos al oponente que NO estamos listos
 void NetPregame::SendMsgPlayerNotReady()
 {
 	NetMsgs::Msg msg(NetMsgs::_NOT_READY_TO_PLAY);

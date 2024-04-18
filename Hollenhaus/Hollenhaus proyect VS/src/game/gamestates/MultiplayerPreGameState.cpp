@@ -58,7 +58,7 @@ void MultiplayerPreGameState::onEnter()
 
 	// el pregame y tal
 	ecs::entity_t pregameEntity = Instantiate(Vector2D(400, 400));
-	pregameEntity->addComponent<TextComponent>("OponentNotReady", "8bit_size_16", SDL_Color({ 0, 0, 0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	pregameEntity->addComponent<TextComponent>("OponentNotReady", "8bit_size_16", SDL_Color({ 0, 0, 0 ,0 }), 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	NetPregame* netPregame = pregameEntity->addComponent<NetPregame>(pregameEntity->getComponent<TextComponent>(), tc);
 
 

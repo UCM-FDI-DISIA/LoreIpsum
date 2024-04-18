@@ -4,7 +4,9 @@
 
 class TextComponent;
 
-// Este componente necesita un TextComponent en su misma entidad
+// Este componente necesita dos TextComponent:
+//		El primero para renderizar el estado del oponente (Ready/Not-Ready)
+//		El segundo para renderizar tu propio estado (Ready/Not-Ready)
 class NetPregame : public ComponentUpdate
 {
 public:
@@ -26,12 +28,15 @@ private:
 	// a socket for sending and receiving data
 	TCPsocket conn;
 
+	// Referencias a los TextComponent
 	TextComponent* _oponentReadyText;
 	TextComponent* _readyButtonText;
 
+	// Tu estado y el del rival
 	bool playerReady;
 	bool rivalReady;
 
+	// Métodos para avisar al oponente de un cambio en nuestro estado
 	void SendMsgPlayerReady();
 	void SendMsgPlayerNotReady();
 };
