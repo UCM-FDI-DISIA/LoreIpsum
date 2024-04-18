@@ -34,6 +34,7 @@
     MATCH_MANAGER, \
 	PADDLE, \
 	TUTORIAL_MANAGER, \
+	DECISION_MANAGER, \
     DRAG_MANAGER			// PAIGRO AQUI
 
 // Systems list - must have at least one element

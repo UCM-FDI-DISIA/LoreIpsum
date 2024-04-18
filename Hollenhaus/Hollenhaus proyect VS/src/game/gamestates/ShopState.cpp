@@ -159,6 +159,9 @@ void ShopState::onEnter()
 	exitButton->addComponent<Button>();
 	exitButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(1);});
 
+
+	setDecisionManager();
+
 	//------Sonido de la tienda:
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("shoptheme").play(-1);
@@ -244,4 +247,15 @@ void ShopState::updateCoinsOnTable()
 	for (int i = 0; i < money; i++) {
 		showCoin(mngr().getEntities(ecs::grp::COINS)[i]);
 	}
+}
+
+void ShopState::setDecisionManager()
+{
+
+	manager = Instantiate();
+
+	//manager->addComponent<TutorialManager>();
+	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::DECISION_MANAGER, manager);
+
+
 }

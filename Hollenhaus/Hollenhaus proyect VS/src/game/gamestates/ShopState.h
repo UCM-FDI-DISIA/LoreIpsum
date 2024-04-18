@@ -31,9 +31,18 @@ public:
 	void makeCoinShine(int cardIndex, ecs::entity_t card, ecs::entity_t shopMngr);
 	void updateCoinsOnTable();
 
+	void setDecisionManager();
+
 
 private:
 	Factory* factory;
+
+	ecs::entity_t manager;
+	//examen ig 3 horas.
+	//teoria : esto hace tal eso hace eso, textura hace nsq. relacionado con la infomatica grafica.pipeline, vistas... 30
+	//pratica : la practica como base. 70
+	// simulacro de examen el dia 8.
+	// hace falta aprobar las dos partes para poder aprobar.
 
 	std::vector<int> posX;
 	std::vector<int> posY;
