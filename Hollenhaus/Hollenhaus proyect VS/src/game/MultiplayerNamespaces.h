@@ -31,21 +31,22 @@ namespace NetMsgs {
 		_IMPL_SERIALIAZION_(_type)
 	};
 
-	/*struct SendMaze : Msg {
+	struct SendMaze : Msg {
 
-		SendMaze();
-		SendMaze(Uint8* _maze, Uint8 _size)
+		SendMaze() {};
+		SendMaze(Uint8 _maze[], Uint8 _size)
 		{	
 			for (Uint8 i = 0; i < _size; i++) maze[i] = _maze[i];
 			size = _size;
 			_type = _READY_TO_PLAY;
 		}
 
-		Uint8* maze;
+
+		Uint8 maze[100];
 		Uint8 size;
 
-		_IMPL_SERIALIAZION_WITH_BASE_(Msg, maze, size)
-	};*/
+		_IMPL_SERIALIAZION_WITH_BASE_(Msg, maze, 100u, size)
+	};
 
 	struct PlayCard : Msg {
 
