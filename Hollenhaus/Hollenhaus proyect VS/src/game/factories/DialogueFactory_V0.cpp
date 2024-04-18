@@ -17,8 +17,8 @@
 // El margen entre el texto y la caja de diálogo tambien es un numero mágico
 // En general hay qe refactorizar para que crear diálogos sea una tarea sencilla y parametrizable.
 
-ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
-                                                 int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_)
+ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size, 
+	int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_)
 {
 	ecs::entity_t dialogue = Instantiate();
 
@@ -27,9 +27,9 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	dialogue->addComponent<SpriteRenderer>("whiteRect");
 	dialogue->addComponent<BoxCollider>(); //pos -> se le suma la posicion de la entidad
 	dialogue->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
-
+	
 	//tamanyo de el cuadro de texto
-	auto scaleBox = Vector2D(2, 2);
+	Vector2D scaleBox = Vector2D(2,2);	
 	//dialogue->getComponent<Transform>()->getRelativeScale().set(scaleBox.getX(), scaleBox.getY()); //escala del whiteRect
 	dialogue->getComponent<Transform>()->getRelativeScale().set(size.getX(), size.getY()); //escala del whiteRect
 
@@ -37,7 +37,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	dialogue->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
 	// el texto se encuentra en una entidad hija
-	auto margin = Vector2D(10, 10);
+	Vector2D margin = Vector2D(10, 10);
 	ecs::entity_t text = Instantiate();
 	auto textTR = text->addComponent<Transform>();
 	textTR->addParent(dialogue->getComponent<Transform>());
@@ -53,12 +53,10 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 
 	text->getComponent<NextText>()->setCollider(dialogue->getComponent<BoxCollider>());
 
-	if (auto_)
-	{
+	if (auto_) {
 		text->addComponent<AutoDialogue>(cooldown);
 	}
-	else
-	{
+	else {
 		// quitar el collider¿¿?¿?¿
 	}
 
@@ -70,11 +68,12 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 }
 
 void DialogueFactory_V0::setTextValues(std::string fid, SDL_Color c, Uint32 wl, Text::BoxPivotPoint bpp,
-                                       Text::TextAlignment ta)
+	Text::TextAlignment ta)
 {
 	fontID = fid;
 	color = c;
 	wrapLenght = wl;
 	boxPivotPoint = bpp;
 	textAlignment = ta;
+
 }

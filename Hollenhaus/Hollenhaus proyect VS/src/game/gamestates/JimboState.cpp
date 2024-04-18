@@ -5,35 +5,30 @@
 #include "../components/managers/KeyManager.h"
 #include "../components/basics/SpriteRenderer.h"
 
-JimboState::JimboState() : GameState()
-{
+JimboState::JimboState() : GameState() {
+	
 }
 
-JimboState::~JimboState()
-{
+JimboState::~JimboState() {
 }
 
-void
-JimboState::refresh()
-{
+void 
+JimboState::refresh() {
 	GameState::refresh();
 }
 
-void
-JimboState::update()
-{
+void 
+JimboState::update() {
 	GameState::update();
 }
 
-void
-JimboState::render() const
-{
+void 
+JimboState::render() const {
 	GameState::render();
 }
 
-void
-JimboState::onEnter()
-{
+void 
+JimboState::onEnter() {
 	legend_ = Instantiate(Vector2D(0, 0));
 	e_ = Instantiate();
 	aa_ = Instantiate();
@@ -51,7 +46,7 @@ JimboState::onEnter()
 	legend_->getComponent<KeyManager>()->addKey("picto1");*/
 }
 
-void
-JimboState::onExit()
-{
+void 
+JimboState::onExit() {
+
 }

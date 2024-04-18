@@ -5,62 +5,63 @@ class Factory;
 class TutorialManager;
 
 class TutorialBoardState :
-	public GameState
+    public GameState
 {
 public:
-	TutorialBoardState();
-	~TutorialBoardState() override;
+    TutorialBoardState();
+    virtual ~TutorialBoardState();
 
 
-	void refresh() override;
-	void update() override;
-	void render() const override;
+    void refresh() override;
+    void update() override;
+    void render() const override;
 
-	void onEnter() override;
-	void onExit() override;
+    void onEnter() override;
+    void onExit() override;
 
 private:
-	//
-	void nextTutorialState();
-	void updateTutorialState();
-	bool actionEnded();
-	void resetEnded();
-	void setState();
 
-	//
-	void setBoard();
-	void setBaseEntity();
-	void createPopUp(float x, float y, std::string popup, int convo);
-	void initTutorial();
+    //
+    void nextTutorialState();
+    void updateTutorialState();
+    bool actionEnded();
+    void resetEnded();
+    void setState();
 
-	//
-	enum Tutorial
-	{
-		NONE,
-		INIT,
-		CARD,
-		DECK,
-		CELL,
-		ACTION,
-		ACTION_PTS
-	};
+    //
+    void setBoard();
+    void setBaseEntity();
+    void createPopUp(float x, float y, std::string popup, int convo);
+    void initTutorial();
 
-	//
-	int currentState; //
-	int nextState; //
-	bool ended; //
+    //
+    enum Tutorial {
+        NONE,
+        INIT,
+        CARD,
+        DECK,
+        CELL,
+        ACTION,
+        ACTION_PTS
+    };
 
-	Factory* factory; //
-	ecs::entity_t base; // entidad para colocar los popups, se va moviendo segun donde los queramos
-	ecs::entity_t tutorial;
+    //
+    int currentState;       //
+    int nextState;          //
+    bool ended;             //
 
-	int cooldown = 10;
-	int count = 0;
+    Factory* factory;           //
+    ecs::entity_t base;         // entidad para colocar los popups, se va moviendo segun donde los queramos
+    ecs::entity_t tutorial;
 
-	// gestion de estados individuales
-	void setINIT();
+    int cooldown = 10;
+    int count = 0;
 
-	void setCARD();
+    // gestion de estados individuales
+    void setINIT();
 
-	void setDECK();
+    void setCARD();
+
+    void setDECK();
+
 };

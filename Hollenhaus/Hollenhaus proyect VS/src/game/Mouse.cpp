@@ -5,19 +5,19 @@
 #include "../sdlutils/InputHandler.h"
 
 constexpr uint8_t MOUSE_SIZE = 40,
-                  PADDING = 10;
+					PADDING = 10;
 
 Mouse::Mouse(const std::string& image, int frames) : image_(&sdlutils().images().at(image))
 {
-	frameWidth_ = image_->width() / frames;
+	frameWidth_ = image_->width()/frames;
 
 	srcRect_ = {
-		0, 0,
+		0,0,
 		frameWidth_,
 		image_->height()
 	};
 	destRect_ = {
-		0, 0,
+		0,0,
 		MOUSE_SIZE,
 		MOUSE_SIZE
 	};
@@ -30,6 +30,7 @@ Mouse::Mouse(const std::string& image, int frames) : image_(&sdlutils().images()
 
 Mouse::~Mouse()
 {
+	
 }
 
 void Mouse::render() const

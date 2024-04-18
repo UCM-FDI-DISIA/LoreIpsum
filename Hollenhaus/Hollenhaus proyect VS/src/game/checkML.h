@@ -23,19 +23,14 @@
 // En tal caso se ha de comentar la línea que empieza por inline y llamar a
 // la función _CrtSetDbgFlag manualmente en el main.
 
-class crt_leak_setflag_dummy
-{
-	struct constructor
-	{
-		constructor()
-		{
+class crt_leak_setflag_dummy {
+	struct constructor {
+		constructor() {
 			_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 		}
 	};
-
 	static constructor ctor;
 };
-
 inline crt_leak_setflag_dummy::constructor crt_leak_setflag_dummy::ctor;
 
 #endif

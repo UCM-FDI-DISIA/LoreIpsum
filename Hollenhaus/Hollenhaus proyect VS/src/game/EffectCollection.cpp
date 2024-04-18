@@ -83,3 +83,5 @@ void EffectCollection::unblockable(Cell* cell, bool isUnblockable)
 		cell->getCard()->setUnblockable(isUnblockable);
 	}
 }
+
+

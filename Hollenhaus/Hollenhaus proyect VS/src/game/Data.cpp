@@ -4,20 +4,15 @@
 const std::string SAVE_FILE = "./resources/saves/save.txt";
 
 //------Constructora y destructora:
-Data::Data() : currentMoney(1000), currentCase(0), currentSouls(0), shopCards(new int[CARDS_IN_SHOP]{-1, -1, -1, -1})
+Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
 {
 	EmptyDrawer();
 	//Read();
 }
-
-Data::Data(int mon, int cas, int sou, std::list<int> maz, std::array<int, CARDS_IN_GAME> dra, std::list<int> def)
-	: drawer(dra), maze(maz), currentMoney(mon), currentCase(cas), currentSouls(sou), defeatedNPCS(def),
-	  shopCards(new int[CARDS_IN_SHOP])
-{
-};
-
-Data::~Data()
-{
+Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def)
+	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[CARDS_IN_SHOP])
+{};
+Data::~Data() {
 	delete shopCards;
 };
 //------Setters:
@@ -25,8 +20,8 @@ Data::~Data()
 // ------ DECKBUILDING ------
 #pragma region DECKBUILDING SETTERS
 //----Mazo:
-void Data::SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos)
-{
+void Data::SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos) {
+
 	// vacia el anterior
 	EmptyMaze();
 	EmptyMaze_With_pos();
@@ -46,30 +41,26 @@ void Data::SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos)
 		if (it == maze_with_pos.end())
 		{
 			// se inserta id
-			it = maze_with_pos.insert({e, Vector2D()}).first;
+			it = maze_with_pos.insert({ e,Vector2D() }).first;
 		}
 
 		// se guarda la pos en su respectivo id
-		it->second = (*itPos);
+		(*it).second = (*itPos);
 
 		// se sigue recorriendo (aumenta indice)
-		++itPos;
+		itPos++;
 	}
 }
-
-void Data::SubtractCardFromMaze(int id)
-{
+void Data::SubtractCardFromMaze(int id) {
 	maze.remove(id);
 }
-
 //----Cajon:
-void Data::AddCardToDrawer(int id)
-{
+void Data::AddCardToDrawer(int id) {
 	drawer[id] = id;
 }
 
-void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer)
-{
+void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {
+
 	// hacemos array auxiliar 
 	std::array<int, CARDS_IN_GAME> drawerAux;
 
@@ -83,8 +74,8 @@ void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer)
 	for (int i = 0; i < newDrawer.size(); i++)
 	{
 		// si la carta ya estaba en el drawer
-		if (newDrawer[i] == drawer[i])
-		{
+		if (newDrawer[i] == drawer[i]) {
+
 			// se guarda en el aux en la pos correspondiente a su id
 			drawerAux[i] = newDrawer[i];
 		}
@@ -102,15 +93,13 @@ void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer)
 	// se guardan las cartas nuevas
 	for (int i = 0; i < newDrawer.size(); i++)
 	{
-		if (newDrawer[i] != drawer[i])
-		{
+		if (newDrawer[i] != drawer[i]) {
 			drawer[i] = newDrawer[i];
 		}
 	}
 }
 
-void Data::SubtractCardFromDrawer(int id)
-{
+void Data::SubtractCardFromDrawer(int id) {
 	drawer[id] = -1;
 }
 #pragma endregion
@@ -124,43 +113,30 @@ void Data::SetCityPos(Vector2D paulPos)
 // ------ FLUJO ------
 #pragma region FLUJO SETTERS
 //----NPCs:
-void Data::AddDefeatedNPC(int id)
-{
+void Data::AddDefeatedNPC(int id) {
 	defeatedNPCS.push_back(id);
 }
-
 //----Dinero:
-void Data::AddMoney(int m)
-{
+void Data::AddMoney(int m) {
 	currentMoney += m;
 }
-
-void Data::SubtractMoney(int m)
-{
+void Data::SubtractMoney(int m) {
 	currentMoney -= m;
 }
-
 //----Almas:
-void Data::AddSouls(int s)
-{
+void Data::AddSouls(int s) {
 	currentSouls += s;
 }
-
 //----Caso:
-void Data::AddCaseIndex()
-{
+void Data::AddCaseIndex() {
 	currentCase++;
 }
-
 //----Ganador:
-void Data::setWinner(int i)
-{
-	winner = static_cast<WINNER>(i);
+void Data::setWinner(int i) {
+	winner = WINNER(i);
 }
-
 //----Carta de la tienda:
-bool Data::setShopCard(int id)
-{
+bool Data::setShopCard(int id) {
 	int i = 0;
 	bool find = false;
 	while (!find && i < CARDS_IN_SHOP)
@@ -174,7 +150,7 @@ bool Data::setShopCard(int id)
 	}
 
 	if (find) { return true; }
-	return false;
+	else { return false; }
 }
 
 void Data::setLastState(int ls)
@@ -186,35 +162,30 @@ void Data::setLastState(int ls)
 
 // ------ DECKBUILDING ------
 //----Mazo:
-bool Data::IdIsInMaze(int id)
-{
+bool Data::IdIsInMaze(int id) {
 	auto it = std::find(maze.begin(), maze.end(), id);
 
 	return (it != maze.end()) ? true : false;
 }
 ;
 //----Cajon:
-bool Data::IdIsInDrawer(int id)
-{
+bool Data::IdIsInDrawer(int id) {
 	return drawer[id] == id;
 };
 
 // ------ FLUJO ------
 //----NPCs:
-bool Data::IdIsInDefeatedNPC(int id)
-{
+bool Data::IdIsInDefeatedNPC(int id) {
 	auto it = std::find(defeatedNPCS.begin(), defeatedNPCS.end(), id);
 
 	return (it != defeatedNPCS.end()) ? true : false;
 };
 //----Cartas de la tienda:
-bool Data::IdIsInShopCards(int id)
-{
+bool Data::IdIsInShopCards(int id) {
 	int i = 0;
 	bool find = false;
 
-	while (!find && i < CARDS_IN_SHOP)
-	{
+	while (!find && i < CARDS_IN_SHOP) {
 		if (shopCards[i] == id)
 		{
 			find = true;
@@ -226,8 +197,7 @@ bool Data::IdIsInShopCards(int id)
 };
 //------Getters:
 //----Cartas de la tienda:
-bool Data::shopCardsIsEmpty()
-{
+bool Data::shopCardsIsEmpty() {
 	int i = 0;
 	bool empty = false; // Suponemos que no esta vacio.
 
@@ -242,15 +212,12 @@ bool Data::shopCardsIsEmpty()
 
 	return empty;
 }
-
-int Data::getShopCardById(int id)
-{
+int Data::getShopCardById(int id) {
 	return shopCards[id];
 }
 
 //------Escribir en el archivo:
-void Data::Write()
-{
+void Data::Write() {
 	std::ofstream file;
 	file.open(SAVE_FILE);
 
@@ -269,8 +236,7 @@ void Data::Write()
 	file << "Mazo_y_posiciones" << "\n";
 	//Guarda el mazo y posiciones en la pizarra
 	file << maze.size() << "\n";
-	for (const auto it : maze_with_pos)
-	{
+	for (const auto it : maze_with_pos) {
 		file << it.first << "\n";
 		if (it.first != -1)
 		{
@@ -280,27 +246,23 @@ void Data::Write()
 	file << "Drawer" << "\n";
 	//Guarda las cartas desbloqueadas
 	file << CARDS_IN_GAME << "\n";
-	for (int i = 0; i < CARDS_IN_GAME; i++)
-	{
+	for (int i = 0; i < CARDS_IN_GAME; i++) {
 		file << drawer[i] << "\n";
 	}
 	//Guarda los npcs derrotados
 	file << defeatedNPCS.size() << "\n";
-	for (const auto it : defeatedNPCS)
-	{
+	for (const auto it : defeatedNPCS) {
 		file << it << "\n";
 	}
 	file << CARDS_IN_SHOP << "\n";
-	for (int i = 0; i < CARDS_IN_SHOP; i++)
-	{
+	for (int i = 0;i < CARDS_IN_SHOP; i++) {
 		file << shopCards[i] << "\n";
 	}
 	file.close();
 }
 
 //------Lectura del archivo:
-void Data::Read()
-{
+void Data::Read() {
 	EmptyLists();
 
 	std::ifstream file;
@@ -336,7 +298,7 @@ void Data::Read()
 			// si no esta en el map insertamos la key
 			if (it == maze_with_pos.end())
 			{
-				it = maze_with_pos.insert({number, Vector2D()}).first;
+				it = maze_with_pos.insert({ number,Vector2D() }).first;
 			}
 
 			// valores x e y de la carta en la pizarra
@@ -346,7 +308,7 @@ void Data::Read()
 			file >> x >> y;
 
 			// guardamos el valor en la clave
-			it->second = Vector2D(x, y);
+			(*it).second = Vector2D(x, y);
 		}
 	}
 
@@ -379,34 +341,29 @@ void Data::Read()
 }
 
 //------Vaciar:
-void Data::EmptyLists()
-{
+void Data::EmptyLists() {
 	EmptyMaze();
 	EmptyDrawer();
 	EmptyNPCS();
 	EmptyShopCards();
 }
 
-void Data::EmptyMaze()
-{
+void Data::EmptyMaze() {
 	maze.clear();
 }
 
-void Data::EmptyDrawer()
-{
+void Data::EmptyDrawer() {
 	for (int i = 0; i < CARDS_IN_GAME; i++)
 	{
 		drawer[i] = -1;
 	}
 }
 
-void Data::EmptyNPCS()
-{
+void Data::EmptyNPCS() {
 	defeatedNPCS.clear();
 }
 
-void Data::EmptyShopCards()
-{
+void Data::EmptyShopCards() {
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
 		shopCards[i] = -1;

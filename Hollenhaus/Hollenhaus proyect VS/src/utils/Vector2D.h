@@ -13,86 +13,72 @@
  * modify the state are the different setters (and operator=).
  *
  */
-class Vector2D
-{
+class Vector2D {
 public:
+
 	// various constructors
 	Vector2D() noexcept :
-		x_(), y_()
-	{
+			x_(), y_() {
 	}
 
-	Vector2D(const Vector2D& v) noexcept :
-		x_(v.getX()), y_(v.getY())
-	{
+	Vector2D(const Vector2D &v) noexcept :
+			x_(v.getX()), y_(v.getY()) {
 	}
 
-	Vector2D(Vector2D&& v) noexcept :
-		x_(v.getX()), y_(v.getY())
-	{
+	Vector2D(Vector2D &&v) noexcept :
+			x_(v.getX()), y_(v.getY()) {
 	}
 
 	Vector2D(float x, float y) noexcept :
-		x_(x), y_(y)
-	{
+			x_(x), y_(y) {
 	}
 
-	~Vector2D()
-	{
+	~Vector2D() {
 	}
 
 	// various getters
-	float getX() const
-	{
+	inline float getX() const {
 		return x_;
 	}
 
-	float getY() const
-	{
+	inline float getY() const {
 		return y_;
 	}
 
 	// various setters
-	void setX(float x)
-	{
+	inline void setX(float x) {
 		x_ = x;
 	}
 
-	void setY(float y)
-	{
+	inline void setY(float y) {
 		y_ = y;
 	}
 
-	void set(float x, float y)
-	{
+	inline void set(float x, float y) {
 		x_ = x;
 		y_ = y;
 	}
 
-	void set(const Vector2D& v)
-	{
+	inline void set(const Vector2D &v) {
 		x_ = v.x_;
 		y_ = v.y_;
 	}
 
 	// copy assignment
-	Vector2D& operator=(const Vector2D& v) noexcept
-	{
+	inline Vector2D& operator=(const Vector2D &v) noexcept {
 		x_ = v.x_;
 		y_ = v.y_;
 		return *this;
 	}
 
 	// v[0] is the first coordinate and v[1] is the second
-	float& operator[](int i) noexcept
-	{
+	inline float& operator[](int i) noexcept {
 		assert(i == 0 || i == 1);
 		return i == 0 ? x_ : y_;
 	}
 
 	// v[0] is the first coordinate and v[1] is the second
-	const float& operator[](int i) const noexcept
-	{
+	inline const float& operator[](int i) const noexcept {
 		assert(i == 0 || i == 1);
 		return i == 0 ? x_ : y_;
 	}
@@ -101,14 +87,12 @@ public:
 	// ** various operations
 
 	// length of the vector
-	float magnitude() const
-	{
+	inline float magnitude() const {
 		return sqrtf(powf(x_, 2) + powf(y_, 2));
 	}
 
 	// vector in the same direction of length 1
-	Vector2D normalize() const
-	{
+	inline Vector2D normalize() const {
 		return *this / magnitude();
 	}
 
@@ -124,45 +108,40 @@ public:
 	//
 	//   this->rotate(angle).normalize() == v.normalize()
 	//
-	float angle(const Vector2D& v) const;
+	float angle(const Vector2D &v) const;
 
 	// vector subtraction
-	Vector2D operator-(const Vector2D& v) const
-	{
+	inline Vector2D operator-(const Vector2D &v) const {
 		return Vector2D(x_ - v.x_, y_ - v.y_);
 	}
 
 	// vector addition
-	Vector2D operator+(const Vector2D& v) const
-	{
+	inline Vector2D operator+(const Vector2D &v) const {
 		return Vector2D(x_ + v.x_, y_ + v.y_);
 	}
 
 	// multiplication by constant (scaling)
-	Vector2D operator*(float d) const
-	{
+	inline Vector2D operator*(float d) const {
 		return Vector2D(x_ * d, y_ * d);
 	}
 
 	// division by constant (scaling)
-	Vector2D operator/(float d) const
-	{
+	inline Vector2D operator/(float d) const {
 		return Vector2D(x_ / d, y_ / d);
 	}
 
 	// scalar multiplication
-	float operator *(const Vector2D& d) const
-	{
+	inline float operator *(const Vector2D &d) const {
 		return d.x_ * x_ + d.y_ * y_;
 	}
 
 	bool operator!=(const Vector2D& vector_2d) const;
 
 private:
-	float x_; // first coordinate
-	float y_; // second coordinate
+	float x_;  // first coordinate
+	float y_;  // second coordinate
 };
 
 // needed for printing a value of type Vector2D with std::cout.
 // The definition is in .cpp
-std::ostream& operator<<(std::ostream& os, const Vector2D& v);
+std::ostream& operator<<(std::ostream &os, const Vector2D &v);

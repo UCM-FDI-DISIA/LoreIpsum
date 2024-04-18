@@ -2,21 +2,23 @@
 #include "GameState.h"
 
 class SamuState :
-	public GameState
+    public GameState
 {
 public:
-	SamuState();
-	~SamuState() override;
+    SamuState();
+    virtual ~SamuState();
 
 
-	void refresh() override;
-	void update() override;
-	void render() const override;
+    void refresh() override;
+    void update() override;
+    void render() const override;
 
-	void onEnter() override;
-	void onExit() override;
+    void onEnter() override;
+    void onExit() override;
 
 private:
-	ecs::entity_t card;
-	ecs::entity_t board;
+    ecs::entity_t card;
+    ecs::entity_t board;
+
 };
+

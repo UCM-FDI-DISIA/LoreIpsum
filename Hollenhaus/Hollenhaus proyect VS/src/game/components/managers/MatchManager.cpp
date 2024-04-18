@@ -7,17 +7,16 @@
 #include "../../gamestates/GameState.h"
 #include "../../components/basics/TextComponent.h"
 
-MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart,
-                           BoardManager* bm) :
-	actualState(turnStart),
+MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm) :
 	board_(bm),
 	defaultActionPointsJ1(defaultActionPointsJ1),
 	defaultActionPointsJ2(defaultActionPointsJ2),
 	actualActionPointsJ1(defaultActionPointsJ1),
 	actualActionPointsJ2(defaultActionPointsJ2),
-	actualTurnVisual(nullptr),
+	actualState(turnStart),
 	actionPointsVisualJ1(nullptr),
-	actionPointsVisualJ2(nullptr)
+	actionPointsVisualJ2(nullptr),
+	actualTurnVisual(nullptr)
 {
 }
 
@@ -49,26 +48,26 @@ void MatchManager::setActualState(Turns::State newState)
 	switch (actualState)
 	{
 	case Turns::J1:
-#if _DEBUG
-		std::cout << "Nuevo turno: Jugador 1" << std::endl;
+#if _DEBUG 
+		std::cout << "Nuevo turno: Jugador 1" << std::endl; 
 #endif
-		resetActualActionPoints();
+		resetActualActionPoints();	
 		break;
 	case Turns::J2:
-#if _DEBUG
+#if _DEBUG 
 		std::cout << "Nuevo turno: Jugador 2" << std::endl;
 #endif
-		resetActualActionPoints();
+		resetActualActionPoints();	
 		break;
 	case Turns::Finish:
-#if _DEBUG
+#if _DEBUG 
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
 #endif
 		setWinnerOnData();
 		GameStateMachine::instance()->setState(GameStates::MATCHOVER);
 		break;
 	case Turns::IA:
-#if _DEBUG
+#if _DEBUG 
 		std::cout << "Turno: IA" << std::endl;
 #endif
 		startTurnIA();
@@ -82,7 +81,8 @@ void MatchManager::setActualState(Turns::State newState)
 
 int MatchManager::getActualPlayerActualActionPoints()
 {
-	return getActualState() == Turns::J1 ? getActualActionPointsJ1() : getActualActionPointsJ2();
+	return getActualState() == Turns::J1 ? 
+		getActualActionPointsJ1() : getActualActionPointsJ2();
 }
 
 Players::Owner MatchManager::getPlayerTurn() const
@@ -99,7 +99,7 @@ Players::Owner MatchManager::getPlayerTurn() const
 		return Players::NONE;
 		break;
 	case Turns::IA:
-		return Players::IA;
+		return  Players::IA;
 		break;
 	default:
 		return Players::NONE;
@@ -109,7 +109,8 @@ Players::Owner MatchManager::getPlayerTurn() const
 
 void MatchManager::substractActualPlayerActionPoints(int points)
 {
-	getActualState() == Turns::J1 ? substractActionPointsJ1(points) : substractActionPointsJ2(points);
+	getActualState() == Turns::J1 ? 
+		substractActionPointsJ1(points) : substractActionPointsJ2(points);
 	updateVisuals();
 }
 
@@ -127,7 +128,7 @@ void MatchManager::updateVisuals()
 	// Actualiza el indicador del propietario del turno actual
 	//Habría que Hacer uan diferenciación también cuando recién cambia de turno para la animación
 	std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
-	SDL_Color color = actualState == Turns::J1 ? SDL_Color({102, 255, 102, 255}) : SDL_Color({255, 102, 255, 255});
+	SDL_Color color = actualState == Turns::J1 ? SDL_Color({ 102, 255, 102, 255 }) : SDL_Color({ 255, 102, 255, 255 });
 	actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
 	actualTurnVisual->getComponent<TextComponent>()->setColor(color);
 }
@@ -140,6 +141,7 @@ void MatchManager::setIA_Manager(IA_manager* ia)
 void MatchManager::endTurnIA()
 {
 	setActualState(Turns::J1);
+
 }
 
 void MatchManager::resetActualActionPoints()

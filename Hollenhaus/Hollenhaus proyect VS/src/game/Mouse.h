@@ -11,7 +11,6 @@ class Mouse
 	SDL_Rect srcRect_;
 
 	int frameWidth_;
-
 public:
 	Mouse(const std::string&, int);
 	~Mouse();

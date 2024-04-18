@@ -2,19 +2,21 @@
 #include "GameState.h"
 
 class LuisState :
-	public GameState
+    public GameState
 {
 public:
-	LuisState();
-	~LuisState() override;
+    LuisState();
+    virtual ~LuisState();
 
 
-	void refresh() override;
-	void update() override;
-	void render() const override;
+    void refresh() override;
+    void update() override;
+    void render() const override;
 
-	void onEnter() override;
-	void onExit() override;
+    void onEnter() override;
+    void onExit() override;
 
 private:
+
 };
+

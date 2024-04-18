@@ -18,7 +18,7 @@
 constexpr Uint32 FEEDBACK_PADDING = 60,
                  ACC_DURATION = 10;
 constexpr int MOVE_OFFSET = 10;
-
+                 
 
 MoveOnClick::MoveOnClick(float vel) :
 	myBoxCollider_(),
@@ -241,7 +241,7 @@ void MoveOnClick::enableLerp()
 	tweenMovement =
 		tweeny::from(0.0f)
 		.to(scrollFactor_ * dir_)
-		.during(ACC_DURATION * 2)
+		.during(ACC_DURATION*2)
 		.via(tweeny::easing::sinusoidalInOut);
 	if (movementSpeed_ <= 0)
 	{
@@ -253,7 +253,7 @@ void MoveOnClick::enableLerp()
 	/// DEL FANTASMIKO
 	tweenFantasmiko =
 		tweeny::from(halfScreen_ - 50.0f)
-		.to(halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_)
+		.to(halfScreen_ - 50.0f + MOVE_OFFSET*2 * dir_)
 		.during(ACC_DURATION * 2)
 		.via(tweeny::easing::sinusoidalInOut);
 

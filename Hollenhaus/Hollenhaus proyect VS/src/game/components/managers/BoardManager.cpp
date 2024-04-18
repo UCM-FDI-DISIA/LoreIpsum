@@ -28,10 +28,12 @@ BoardManager::~BoardManager()
 
 void BoardManager::initComponent()
 {
+
 }
 
 void BoardManager::update()
 {
+	
 }
 
 bool BoardManager::isFull() const
@@ -106,7 +108,7 @@ void BoardManager::updateScore()
 			//si es del jugador 1
 			if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::PLAYER1)
 				pPlayer1 += _board[i][j]->getComponent<Cell>()->getTotalValue();
-				//si es el jugador 2 (normalmente npc)
+			//si es el jugador 2 (normalmente npc)
 			else if (_board[i][j]->getComponent<Cell>()->getOwner() == Players::IA)
 				pPlayer2 += _board[i][j]->getComponent<Cell>()->getTotalValue();
 		}
@@ -123,17 +125,15 @@ void BoardManager::applyAllEffects() const
 				_board[i][j]->getComponent<Cell>()->setTotalValue(0);
 
 	for (int j = 0; j < size; j++)
-		for (int i = 0; i < size; i++)
-		{
+		for (int i = 0; i < size; i++) {
 			auto cell = _board[i][j]->getComponent<Cell>();
 			auto card = cell->getCard();
-			if (card != nullptr)
-			{
+			if (card != nullptr) {
 				cell->applyValue(card);
 			}
 		}
-	//if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
-	//	_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
+			//if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
+			//	_board[i][j]->getComponent<Cell>()->applyValue(_board[i][j]->getComponent<Cell>()->getCard());
 }
 
 void BoardManager::updateVisuals()
@@ -148,10 +148,9 @@ void BoardManager::updateVisuals()
 int BoardManager::heuristicIA(IA_manager::State* s)
 {
 	//limpieza del tablero(card a null y reset de los efectos)
-	for (int i = 0; i < size; i++)
-	{
-		for (int j = 0; j < size; j++)
-		{
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+
 			_boardIA[i][j]->cleanEffectList();
 			_boardIA[i][j]->setCard(nullptr, Players::NONE);
 			_boardIA[i][j]->setTotalValue(0);
@@ -163,17 +162,14 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 	Cell* cell = nullptr;
 
 	//colocar todas las cartas en el tablero
-	for (int i = 0; i < size; i++)
-	{
-		for (int j = 0; j < size; j++)
-		{
-			if (s->_boardBools[i][j])
-			{
-				//si hay una carta
-				cell = _boardIA[i][j];
-				card = s->_boardCards[i][j];
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
 
-				cell->setCard(card, s->_boardOwners[i][j]);
+			if (s->_boardBools[i][j]) {//si hay una carta
+				cell = _boardIA[i][j];
+				card =  s->_boardCards[i][j];
+
+				cell->setCard(card,s->_boardOwners[i][j]);
 				card->setCell(cell);
 
 				/// anade callback a la celda
@@ -185,21 +181,22 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 
 
 	//APPLY EFFECTS
-
+	
 	for (int j = 0; j < size; j++)
 		for (int i = 0; i < size; i++)
-			if (_boardIA[i][j]->getCard() != nullptr)
+			if (_boardIA[i][j]->getCard() != nullptr) 
 				_boardIA[i][j]->setTotalValue(0);
-
-
+			
+	
 	for (int j = 0; j < size; j++)
 		for (int i = 0; i < size; i++)
 			if (_boardIA[i][j]->getCard() != nullptr)
 				_boardIA[i][j]->applyValue(_boardIA[i][j]->getCard());
+	
 
 
 	//UPDATE SCORE
-
+	
 	// Reinicia los valores
 	int puntosPlayer1 = 0;
 	int puntosPlayer2 = 0;
@@ -213,13 +210,13 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 			//si es del jugador 1
 			if (_boardIA[i][j]->getOwner() == Players::PLAYER1)
 				puntosPlayer1 += _boardIA[i][j]->getTotalValue();
-				//si es el jugador 2 (normalmente npc)
+			//si es el jugador 2 (normalmente npc)
 			else if (_boardIA[i][j]->getOwner() == Players::PLAYER2)
 				puntosPlayer2 += _boardIA[i][j]->getTotalValue();
 		}
 	}
 
-	return puntosPlayer1 - puntosPlayer2;
+	return puntosPlayer1-puntosPlayer2;
 }
 
 //inicializa el tablero de la IA
@@ -228,12 +225,10 @@ void BoardManager::initBoardIA()
 	//creacion del tablero
 	_boardIA.resize(size);
 
-	for (int i = 0; i < size; i++)
-	{
+	for (int i = 0; i < size; i++) {
 		_boardIA[i].resize(size);
 
-		for (int j = 0; j < size; j++)
-		{
+		for (int j = 0; j < size; j++) {
 			_boardIA[i][j] = new Cell();
 		}
 	}
@@ -265,7 +260,7 @@ void BoardManager::initBoardIA()
 
 			/// ESQUINA:
 			int n = size - 1;
-			if ((j == 0 && i == 0) // 0,0
+			if (   (j == 0 && i == 0) // 0,0
 				|| (j == 0 && i == n) // 0,n
 				|| (j == n && i == n) // n,n
 				|| (j == n && i == 0)) // n,0
@@ -288,20 +283,17 @@ void BoardManager::initBoardIA()
 }
 
 std::vector<std::vector<bool>> BoardManager::getBoardBoolsIA()
-{
+{ 
 	std::vector<std::vector<bool>> board;
 
 	//creacion del board
 	board.resize(size);
-	for (int i = 0; i < size; i++)
-	{
+	for (int i = 0; i < size; i++) {
 		board[i].resize(size);
 	}
 
-	for (int i = 0; i < size; i++)
-	{
-		for (int j = 0; j < size; j++)
-		{
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
 			board[i][j] = _board[i][j]->getComponent<Cell>()->getCard() != nullptr;
 		}
 	}
@@ -315,20 +307,18 @@ std::vector<std::vector<Card*>> BoardManager::getBoardCardsIA()
 
 	//creacion del board
 	board.resize(size);
-	for (int i = 0; i < size; i++)
-	{
+	for (int i = 0; i < size; i++) {
 		board[i].resize(size);
 	}
 
-	for (int i = 0; i < size; i++)
-	{
-		for (int j = 0; j < size; j++)
-		{
-			board[i][j] = _board[i][j]->getComponent<Cell>()->getCard() == nullptr
-				              ? _board[i][j]->getComponent<Cell>()->getCard()
-				              : new Card(*_board[i][j]->getComponent<Cell>()->getCard());
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			board[i][j] = _board[i][j]->getComponent<Cell>()->getCard() == nullptr ?
+						_board[i][j]->getComponent<Cell>()->getCard() :
+				new Card(*_board[i][j]->getComponent<Cell>()->getCard());
 			//board[i][j] = _board[i][j]->getComponent<Cell>()->getCard();
 		}
+
 	}
 
 	return board;
@@ -340,15 +330,12 @@ std::vector<std::vector<Players::Owner>> BoardManager::getBoardOwnerIA()
 
 	//creacion del board
 	board.resize(size);
-	for (int i = 0; i < size; i++)
-	{
+	for (int i = 0; i < size; i++) {
 		board[i].resize(size);
 	}
 
-	for (int i = 0; i < size; i++)
-	{
-		for (int j = 0; j < size; j++)
-		{
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
 			board[i][j] = _board[i][j]->getComponent<Cell>()->getOwner();
 		}
 	}

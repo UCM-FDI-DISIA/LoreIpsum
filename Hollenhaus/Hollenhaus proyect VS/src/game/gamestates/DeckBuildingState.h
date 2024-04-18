@@ -10,7 +10,8 @@ class TextComponent;
 class DeckBuildingState : public GameState
 {
 public:
-	DeckBuildingState(); //Constructora
+
+	DeckBuildingState();		//Constructora
 
 	void update() override;
 	void render() const override;
@@ -35,3 +36,4 @@ private:
 	//Gestionar mazo
 	//Volver a CIU
 };
+

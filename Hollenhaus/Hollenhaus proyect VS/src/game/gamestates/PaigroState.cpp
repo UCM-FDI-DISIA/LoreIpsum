@@ -2,11 +2,9 @@
 #include "PaigroState.h"
 #include "../components/managers/Manager.h"
 
-PaigroState::PaigroState()
-{
+PaigroState::PaigroState() {
 	TuVieja("Loading unos buenos BUENOS DIAS");
 }
-
 void PaigroState::update()
 {
 	GameState::update();
@@ -37,7 +35,7 @@ void PaigroState::onEnter()
 	boton1->setLayer(1);*/
 }
 
-void PaigroState::onExit()
+void PaigroState::onExit() 
 {
 	std::cout << "\nBUENAS NOCHES";
 }

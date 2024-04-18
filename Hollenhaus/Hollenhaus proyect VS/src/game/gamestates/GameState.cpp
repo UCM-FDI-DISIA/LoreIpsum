@@ -136,7 +136,7 @@ bool GameState::checkCardIsInDrawer(int id)
 
 int GameState::getShopCardById(int id)
 {
-	return data->getShopCardById(id);
+	return  data->getShopCardById(id);
 }
 
 void GameState::addCardToDrawer(int id)
@@ -159,7 +159,6 @@ int GameState::getMoney()
 	return data->GetMoney();
 }
 
-bool GameState::checkCardIsInMaze(int id)
-{
+bool GameState::checkCardIsInMaze(int id) {
 	return data->IdIsInMaze(id);
 }

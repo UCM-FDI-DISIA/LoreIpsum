@@ -3,16 +3,16 @@
 #include <vector>
 #include "basics/Transform.h"
 
-constexpr constexpr int
-	CARD_SEPARATION = 50,
-	ARCH_AMPLITUDE = 750;
+const int	
+					CARD_SEPARATION = 50,
+					ARCH_AMPLITUDE	= 750;
 
 class HandComponent :
 	public ComponentUpdate
 {
 public:
 	HandComponent();
-	~HandComponent() override;
+	~HandComponent();
 
 	void initComponent() override;
 
@@ -33,9 +33,9 @@ public:
 	int handSize() { return cardsInHand_.size(); }
 
 	/// movidas para J2
-	void setUpwards() { downwards_ = false; }
+	void setUpwards()	{ downwards_ = false; }
 	void setDownwards() { downwards_ = true; }
-	void setOwner(Players::Owner value) { owner_ = value; }
+	void setOwner(Players::Owner value) { owner_ = value;}
 	Players::Owner getOwner() const { return owner_; }
 
 	//para la IA
@@ -44,7 +44,7 @@ public:
 private:
 	float cardScale_ = 0.65f;
 	float cardScaleBoard_ = 0.53f;
-
+	
 	void refreshPositions();
 
 	// Transform de la mano

@@ -6,28 +6,23 @@
 #include "Manager.h"
 #include "../Card.h"
 
-PizarraManager::PizarraManager()
-{
-}
+PizarraManager::PizarraManager() {}
 
-PizarraManager::~PizarraManager()
-{
-}
+PizarraManager::~PizarraManager() {}
 
 // ---- Metodos heredados ----
-void PizarraManager::update()
-{
-}
+void PizarraManager::update() {}
 
 void PizarraManager::initComponent()
 {
+
 	// guarda en un array aux las cartas que ya estuvieran en la pizarra
 	// recorre cada pair del map mazo de data
-	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze())
-	{
+	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
+
 		// si la primera componente de la pareja (id) ya estaba en la pizarra
-		if (isOnPizarra(e.first))
-		{
+		if (isOnPizarra(e.first)) {
+
 			// guardas el id
 			mazeaux.push_back(e.first);
 
@@ -41,23 +36,21 @@ void PizarraManager::initComponent()
 	mazePos.clear();
 
 	// aniade las que ya tenias en la pizarra (id)
-	for (auto e : mazeaux)
-	{
+	for (auto e : mazeaux) {
 		mazePrev.push_back(e);
 	}
 
 	// aniade las que ya tenias en la pizarra (pos)
-	for (auto e : mazePosaux)
-	{
+	for (auto e : mazePosaux) {
 		mazePosaux.push_back(e);
 	}
 
 	// aniade las nuevas
-	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze())
-	{
+	for (auto e : GameStateMachine::instance()->getCurrentState()->getMaze()) {
+
 		// si la primera componente de la pareja (id) NO estaba en la pizarra
-		if (!isOnPizarra(e.first))
-		{
+		if (!isOnPizarra(e.first)) {
+
 			// guardas el id
 			mazePrev.push_back(e.first);
 
@@ -78,7 +71,7 @@ void PizarraManager::initComponent()
 		cards.push_back(card);
 
 		// recorres la lista de pos
-		++itPos;
+		itPos++;
 	}
 
 	cantCards = mazePrev.size();
@@ -110,21 +103,20 @@ void PizarraManager::saveMaze()
 		// DEBUG
 		TuVieja("saveMaze");
 	}
-	else
-	{
+	else {
+
 		// No hay las suficientes cartas
 		TuVieja("noGuardado");
 	}
+
 }
 
 // Devuelve true si la carta (id) esta en la pizarra.
 bool PizarraManager::isOnPizarra(int id)
 {
 	bool encontrado = false;
-	for (auto e : mazePrev)
-	{
-		if (id == e)
-		{
+	for (auto e : mazePrev) {
+		if (id == e) {
 			encontrado = true;
 		}
 	}
@@ -143,8 +135,8 @@ bool PizarraManager::isPizarraLlena()
 void PizarraManager::addCard(int id, Transform* card)
 {
 	// si la carta no estaba ya en la pizarra
-	if (!isOnPizarra(id))
-	{
+	if (!isOnPizarra(id)) {
+
 		// se aniade id
 		mazePrev.push_back(id);
 
@@ -160,7 +152,7 @@ void PizarraManager::addCard(int id, Transform* card)
 void PizarraManager::removeCard(int id)
 {
 	// guarda en un iterador la posicion de la carta que se busca
-	auto find = std::find(mazePrev.begin(), mazePrev.end(), id);
+	std::list<int>::iterator find = std::find(mazePrev.begin(), mazePrev.end(), id);
 
 	// borra lo que haya en la pos que hayas guardado
 	mazePrev.erase(find);
@@ -183,7 +175,7 @@ void PizarraManager::removeCard(int id)
 		// si no, seguimos buscando
 		else
 		{
-			++it;
+			it++;
 		}
 	}
 

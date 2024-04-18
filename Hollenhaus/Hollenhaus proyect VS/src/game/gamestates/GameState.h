@@ -10,18 +10,17 @@ class Manager;
 class Game;
 class Data;
 
-class GameState
-{
+class GameState {
+
 protected:
+
 	static Data* data; // puntero a la data
 
 	//LAS ENTIDADES ¡NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT 
-	GameState()
-	{
-	}; // constructoras de clases abstractas no deberian ser publicas
+	GameState() {}; // constructoras de clases abstractas no deberian ser publicas
 
 public:
-	virtual ~GameState(); //Destructora
+	virtual ~GameState();		//Destructora
 
 	virtual void refresh(); //borra entidades no vivas
 	virtual void update(); //update de las entidades
@@ -50,14 +49,9 @@ public:
 	//----Comprueba si una carta con id id esta en el mazo.
 	virtual bool checkCardIsInMaze(int id);
 	//----
-	virtual void cardSelected(int prize)
-	{
-	}
-
+	virtual void cardSelected(int prize) {}
 	//----
-	virtual void deSelected()
-	{
-	}
+	virtual void deSelected() {}
 
 	virtual void saveData();
 	virtual void loadData();

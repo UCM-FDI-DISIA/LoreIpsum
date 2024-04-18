@@ -4,11 +4,10 @@
 #include "../components/ClickDecision.h"
 
 
-void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene,
-                                     int greenDecision, int redDecision)
+void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene, int greenDecision, int redDecision)
 {
 	//tamanyo de los cuadros de texto
-	auto scaleBox = Vector2D(0.95, 0.7); //no tocar cerdos que se me descoloca
+	Vector2D scaleBox = Vector2D(0.95, 0.7); //no tocar cerdos que se me descoloca
 
 	// ----------ENTIDAD ACEPTAR COMBATE-----------
 	ecs::entity_t accept = Instantiate();
@@ -39,7 +38,7 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 
 	//LUGAR
 	Vector2D boxOffset = pos + Vector2D(130, 0);
-
+	
 	deny->getComponent<Transform>()->setGlobalPos(boxOffset);
 	deny->getComponent<Transform>()->getGlobalPos().setX(100);
 	deny->getComponent<BoxCollider>()->setAnchoredToSprite(true);
@@ -47,8 +46,7 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	deny->addComponent<TextComponent>("Byebye", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	deny->setLayer(layer);
 
-	deny->addComponent<ClickDecision>(redDecision, parent, scene);
-	//si decision es 1, no se ira a scene, pero se destruira dialogue
+	deny->addComponent<ClickDecision>(redDecision, parent, scene); //si decision es 1, no se ira a scene, pero se destruira dialogue
 
 	//cuando aparezca el decision, el collider del parent (caja de dialogo) deberia anularse
 	if (parent->hasComponent<BoxCollider>())
@@ -57,8 +55,7 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	}
 }
 
-void DecisionFactory_V0::setTextValues(std::string fid, SDL_Color c, Uint32 wl, Text::BoxPivotPoint bpp,
-                                       Text::TextAlignment ta)
+void DecisionFactory_V0::setTextValues(std::string fid, SDL_Color c, Uint32 wl, Text::BoxPivotPoint bpp, Text::TextAlignment ta)
 {
 	fontID = fid;
 	color = c;

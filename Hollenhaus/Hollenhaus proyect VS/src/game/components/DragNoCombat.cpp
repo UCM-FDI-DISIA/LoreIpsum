@@ -6,9 +6,7 @@
 #include "basics/Transform.h"
 #include "DropZone.h"
 
-DragNoCombat::DragNoCombat()
-{
-}
+DragNoCombat::DragNoCombat() {}
 
 DragNoCombat::~DragNoCombat()
 {
@@ -60,8 +58,7 @@ void DragNoCombat::OnLeftClickDown()
 		initialMousePos.set(Vector2D(ih().getMousePos().first, ih().getMousePos().second));
 
 		// estableces el initial transform real
-		initialTransformPosWithOffSet.set(initialMousePos - Vector2D(
-			card->getComponent<BoxCollider>()->getRect()->w / 2,
+		initialTransformPosWithOffSet.set(initialMousePos - Vector2D(card->getComponent<BoxCollider>()->getRect()->w / 2,
 			card->getComponent<BoxCollider>()->getRect()->h / 2));
 	}
 }
@@ -90,8 +87,7 @@ void DragNoCombat::OnLeftClickUp()
 				{
 					// si la pizarra no esta llena O si la entidad ya estaba en la pizarra
 					if (!ent->getComponent<PizarraManager>()->isPizarraLlena() ||
-						ent->getComponent<PizarraManager>()->isOnPizarra(
-							dragTransform->getEntity()->getComponent<Card>()->getID()))
+						ent->getComponent<PizarraManager>()->isOnPizarra(dragTransform->getEntity()->getComponent<Card>()->getID()))
 					{
 						// se hace lo propio segun la dropzone (se hace el callback que le toque)
 						// en este caso se aniade a la pizarra
@@ -107,8 +103,7 @@ void DragNoCombat::OnLeftClickUp()
 				// ---- SI ES CAJON
 				// y la entidad no estaba antes en el cajon
 				else if ((ent->getComponent<DrawerManager>() != nullptr) &&
-					!ent->getComponent<DrawerManager>()->isOnDrawer(
-						dragTransform->getEntity()->getComponent<Card>()->getID()))
+					!ent->getComponent<DrawerManager>()->isOnDrawer(dragTransform->getEntity()->getComponent<Card>()->getID()))
 				{
 					// se hace lo propio segun la dropzone (se hace el callback que le toque)
 					// en este caso se guarda en el cajon

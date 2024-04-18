@@ -12,20 +12,20 @@
 HandComponent::HandComponent() :
 	transform_(), lastCardAdded_(nullptr)
 {
+
+}
+HandComponent::~HandComponent() {
+
 }
 
-HandComponent::~HandComponent()
-{
-}
+void HandComponent::initComponent() {
 
-void HandComponent::initComponent()
-{
 	transform_ = ent_->getComponent<Transform>();
 	transform_->getGlobalPos().set(400, 400);
 }
 
-void HandComponent::addCard(ecs::entity_t card)
-{
+void HandComponent::addCard(ecs::entity_t card) {
+
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(Cards::ON_HAND);
 
@@ -56,8 +56,7 @@ void HandComponent::addCard(ecs::entity_t card)
 
 	//Aquí se calcula la posición a la que tiene que llegar, no se bien como implementarlo en el tween
 	refreshPositions();
-	if (owner_ == Players::PLAYER1)
-	{
+	if (owner_ == Players::PLAYER1) {
 		///Tween
 		carta = card;
 		tweenDrawCard =
@@ -67,14 +66,14 @@ void HandComponent::addCard(ecs::entity_t card)
 			.via(tweeny::easing::sinusoidalInOut);
 		tween = true;
 	}
+	
 }
 
 void HandComponent::update()
 {
 	//Habría que hacer cuando esté el tween definitivo que cuando 
 	// llegue al sitio en el que se tiene que quedar ponga el bool a falso
-	if (tween && owner_ == Players::PLAYER1)
-	{
+	if (tween && owner_ == Players::PLAYER1) {
 		/// TWEENS???
 		//Habría que hacer que comience en el mazo y se mueva hasta su posición
 		auto drag = mngr_->getHandler(ecs::hdlr::DRAG_MANAGER)->getComponent<DragManager>();
@@ -95,10 +94,10 @@ void HandComponent::update()
 			if (drag != nullptr) drag->setDraggable(true);
 		}
 	}
+	
 }
 
-void HandComponent::removeCard(ecs::entity_t card)
-{
+void HandComponent::removeCard(ecs::entity_t card) {
 	bool found = false;
 
 	std::vector<ecs::entity_t> auxVec;
@@ -107,8 +106,7 @@ void HandComponent::removeCard(ecs::entity_t card)
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
 		if (cardsInHand_[i] != card)
-		{
-			// la carta esta en la manita del fantasmiko
+		{ // la carta esta en la manita del fantasmiko
 			auxVec.push_back(cardsInHand_[i]);
 			//numCards_++;
 			transform_->getGlobalPos().getX() + 10;
@@ -126,8 +124,8 @@ void HandComponent::removeCard(ecs::entity_t card)
 				{
 					texto->setFont("8bit_size_16");
 					child->getRelativePos().set(
-						child->getRelativePos().getX(),
-						child->getRelativePos().getY() - child->getRelativePos().getY() / 6.25
+						child->getRelativePos().getX(), 
+						child->getRelativePos().getY()-child->getRelativePos().getY()/6.25
 					);
 				}
 			}
@@ -147,17 +145,15 @@ std::vector<Card*> HandComponent::getHand()
 {
 	std::vector<Card*> v;
 
-	for (auto e : cardsInHand_)
-	{
-		v.push_back(new Card((*e->getComponent<Card>()))); //copia para no usar la misma memoria?
+	for (auto e : cardsInHand_) {
+		v.push_back(new Card((*e->getComponent<Card>())));//copia para no usar la misma memoria?
 	}
 
 	return v;
 }
 
-void HandComponent::refreshPositions()
-{
-	std::vector<Vector2D> positions;
+void HandComponent::refreshPositions() {
+	std::vector<Vector2D>positions;
 
 	const int sign = downwards_ ? 1 : -1;
 
@@ -172,6 +168,7 @@ void HandComponent::refreshPositions()
 
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
+
 		// Ecuacion de la parabola que forma las cartas
 		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(positions[i]);
 	}

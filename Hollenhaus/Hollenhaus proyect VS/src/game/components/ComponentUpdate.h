@@ -2,19 +2,14 @@
 
 #include "Component.h"
 
-class ComponentUpdate : public ecs::Component
-{
-public:
-	ComponentUpdate() : Component()
-	{
-	}
+class ComponentUpdate : public ecs::Component {
 
-	~ComponentUpdate() override
-	{
-	};
+public:
+	ComponentUpdate() : Component() {}
+
+	virtual ~ComponentUpdate() {};
 
 	// Para actualizar el estado
-	virtual void update()
-	{
-	};
+	virtual void update() {};
 };
+

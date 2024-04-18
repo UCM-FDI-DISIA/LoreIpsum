@@ -30,11 +30,10 @@ void OfficeState::refresh()
 void OfficeState::onEnter()
 {
 	std::cout << "\nENTER OFFICE.\n";
-
+	
 	//------Texto de la oficina.
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 30));
-	officeText->addComponent<TextComponent>("OFICINA", "8bit_size_20", SDL_Color({255, 255, 255, 255}), 350,
-	                                        Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	officeText->addComponent<TextComponent>("OFICINA", "8bit_size_20", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	officeText->setLayer(1);
 
 	//-----Imagen de fondo:
@@ -73,6 +72,8 @@ void OfficeState::onEnter()
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").play(-1);
 	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
+
+
 }
 
 void OfficeState::onExit()
@@ -84,3 +85,4 @@ void OfficeState::onExit()
 
 	GameStateMachine::instance()->getMngr()->Free();
 }
+

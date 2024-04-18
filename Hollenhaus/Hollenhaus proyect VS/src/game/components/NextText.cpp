@@ -20,10 +20,12 @@ NextText::NextText()
 
 NextText::~NextText()
 {
+
 }
 
 void NextText::initComponent()
 {
+
 	//boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
 	//assert(boxCollider_ != nullptr);
 
@@ -51,7 +53,7 @@ void NextText::OnLeftClickUp()
 
 void NextText::reactToClick()
 {
-	if (!dead)
+	if (!dead) 
 	{
 		if (boxCollider_->isCursorOver())
 		{
@@ -66,19 +68,20 @@ void NextText::reactToClick()
 
 void NextText::callNextNode()
 {
-	if (typeWriter_->ended())
-	{
+	if (typeWriter_->ended()) {
 		TuVieja("Cambio de nodo.");
 		dialogueReader_->NextNode();
 	}
-	else
-	{
+	else {
+
 		typeWriter_->finishTypewrite();
 	}
 }
 
 void NextText::callFullText()
 {
+
+
 }
 
 void NextText::setDead(bool a)
@@ -90,3 +93,6 @@ void NextText::setCollider(BoxCollider* coll)
 {
 	boxCollider_ = coll;
 }
+
+
+

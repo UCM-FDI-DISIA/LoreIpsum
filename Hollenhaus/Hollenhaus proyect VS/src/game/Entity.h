@@ -24,96 +24,95 @@ class ComponentRender;
 /// </summary>
 
 
-namespace ecs
-{
-	class Manager;
+namespace ecs {
 
-	class Entity
-	{
-	public:
-		//Constructora, inicializamos todas las variables
-		Entity(grpId_t gId);
+class Manager;
 
-		//eliminamos los componentes de las 2 listas
-		virtual ~Entity()
-		{
-			for (auto c : currCmpsU_)
-			{
-				delete c;
-			}
-			for (auto c : currCmpsR_)
-			{
-				delete c;
-			}
+class Entity {
+
+
+public:
+
+	//Constructora, inicializamos todas las variables
+	Entity(grpId_t gId);
+
+	//eliminamos los componentes de las 2 listas
+	virtual ~Entity() {
+		for (auto c : currCmpsU_) {
+			delete c;
 		}
+		for (auto c : currCmpsR_) {
+			delete c;
+		}
+	}
 
-		//TEMPLATES PARA COMPONENTES
-		//Se declaran en el manager.h
+	//TEMPLATES PARA COMPONENTES
+	//Se declaran en el manager.h
 
-		template <typename T, typename... Ts>
-		T* addComponent(Ts&&... args);
+	template<typename T,typename ...Ts>
+	T* addComponent(Ts &&... args);
 
-		template <typename T>
-		void removeComponent();
+	template<typename T>
+	inline void removeComponent();
 
-		template <typename T>
-		T* getComponent();
+	template<typename T>
+	inline T* getComponent();
 
-		template <typename T>
-		bool hasComponent();
+	template<typename T>
+	inline bool hasComponent();
 
-		inline grpId_t groupId();
+	inline ecs::grpId_t groupId();
 
-		inline void setAlive(bool alive);
+	inline void setAlive(bool alive);
 
-		inline bool isAlive();
+	inline bool isAlive();
 
-		inline void setHandler(hdlrId_t hId);
+	inline void setHandler(hdlrId_t hId);
 
-		void setLayer(int nextLayer);
+	void setLayer(int nextLayer);
 
-		int getLayer()
+	int getLayer() {
+		return layer;
+	};
+
+	int getLastLayer() {
+		int layer = getLayer();
+		if (getComponent<Transform>() != nullptr)
 		{
-			return layer;
-		};
-
-		int getLastLayer()
-		{
-			int layer = getLayer();
-			if (getComponent<Transform>() != nullptr)
+			for (const auto child : getComponent<Transform>()->getChildren())
 			{
-				for (const auto child : getComponent<Transform>()->getChildren())
+				if (!child->getChildren().empty())
+				{ // si el hijo tiene hijos
+					return child->getEntity()->getLastLayer();
+				} // si el hijo no es padre
+				if (child->getEntity()->getLayer() > layer)
 				{
-					if (!child->getChildren().empty())
-					{
-						// si el hijo tiene hijos
-						return child->getEntity()->getLastLayer();
-					} // si el hijo no es padre
-					if (child->getEntity()->getLayer() > layer)
-					{
-						layer = child->getEntity()->getLayer();
-					}
+					layer = child->getEntity()->getLayer();
 				}
 			}
-			return layer;
 		}
+		return layer;
+	}
 
-	private:
-		bool alive_;
-		grpId_t gId_;
+private:
 
-		//lista de componentes que tienen update
-		std::vector<ComponentUpdate*> currCmpsU_;
-		std::array<ComponentUpdate*, maxComponentUpdateId> cmpsU_;
+	bool alive_;
+	grpId_t gId_;
 
-		//lista de componentes que tienen render
-		std::vector<ComponentRender*> currCmpsR_;
-		std::array<ComponentRender*, maxComponentRenderId> cmpsR_;
+	//lista de componentes que tienen update
+	std::vector<ComponentUpdate*> currCmpsU_;
+	std::array<ComponentUpdate*, ecs::maxComponentUpdateId> cmpsU_;
 
-		//layer para el orden de renderizado
-		int layer = 0;
+	//lista de componentes que tienen render
+	std::vector<ComponentRender*> currCmpsR_;
+	std::array<ComponentRender*, ecs::maxComponentRenderId> cmpsR_;
 
-	public:
-		friend Manager;
-	};
+	//layer para el orden de renderizado
+	int layer = 0;
+
+public:
+
+	friend Manager;
+};
+
 }

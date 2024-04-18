@@ -15,13 +15,14 @@
 ecs::entity_t BoardFactory_v0::createBoard()
 {
 	// odio estos putisimos numeros
-	int initialX = 260; //284
-	int initialY = 90 - 9; //135
-	int offSetX = 67; //62
-	int offSetY = 96; //84
+	int initialX = 260;//284
+	int initialY = 90-9;//135
+	int offSetX = 67;//62
+	int offSetY = 96;//84
 
 
-	float scale = 0.53; //0.45
+
+	float scale = 0.53;//0.45
 
 	std::vector<std::vector<ecs::entity_t>> _board;
 
@@ -48,7 +49,7 @@ ecs::entity_t BoardFactory_v0::createBoard()
 				Vector2D(i, j));
 			_board[i][j]->getComponent<BoxCollider>()->setSize(
 				Vector2D(sdlutils().images().at("card").width() * scale,
-				         (sdlutils().images().at("card").height()) * scale));
+					(sdlutils().images().at("card").height()) * scale));
 			_board[i][j]->addComponent<Cell>();
 			_board[i][j]->setLayer(2);
 
@@ -56,6 +57,7 @@ ecs::entity_t BoardFactory_v0::createBoard()
 			cellImage->addComponent<SpriteRenderer>("cell");
 			cellImage->setLayer(1);
 			cellImage->getComponent<Transform>()->setGlobalScale(Vector2D(scale, scale));
+
 		}
 	}
 

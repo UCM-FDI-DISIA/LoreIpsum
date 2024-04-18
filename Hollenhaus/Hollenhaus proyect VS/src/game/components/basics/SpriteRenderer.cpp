@@ -12,22 +12,19 @@ SpriteRenderer::SpriteRenderer(const std::string _textID) :
 }
 
 // Para inicializar el componenete si es necesario.
-void SpriteRenderer::initComponent()
-{
+void SpriteRenderer::initComponent() {
 	texture_ = &sdl_.images().at(textID_);
 	setMultiplyColor(255, 255, 255, 0);
 
 	//requiere component? // si no tiene transform, crea uno 
 
 	transform_ = mngr_->getComponent<Transform>(ent_);
-	if (transform_ == nullptr)
-	{
+	if (transform_ == nullptr) {
 		transform_ = mngr_->addComponent<Transform>(ent_);
 	}
 };
 
-void SpriteRenderer::setTexture(const std::string _textID)
-{
+void SpriteRenderer::setTexture(const std::string _textID) {
 	textID_ = _textID;
 	texture_ = &sdl_.images().at(textID_);
 }
@@ -59,13 +56,12 @@ void SpriteRenderer::render() const
 		transform_->getGlobalScale().getY(),
 		transform_->getGlobalAngle(),
 		flip,
-		color,
+		color, 
 		opacity);
 }
-
 Vector2D SpriteRenderer::getImageSize()
 {
-	return Vector2D(texture_->width() * transform_->getRelativeScale().getX(),
-	                texture_->height() * transform_->getRelativeScale().getY());
+	return Vector2D(texture_->width() * transform_->getRelativeScale().getX(), 
+		texture_->height() * transform_->getRelativeScale().getY());
 }
 ;

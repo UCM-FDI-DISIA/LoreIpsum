@@ -4,7 +4,8 @@
 class MatchOverState : public GameState
 {
 public:
-	MatchOverState(); //Constructora
+
+	MatchOverState();	//Constructora
 
 	void update() override;
 	void render() const override;

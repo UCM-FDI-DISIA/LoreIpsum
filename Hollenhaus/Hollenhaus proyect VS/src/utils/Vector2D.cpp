@@ -14,23 +14,18 @@ bool Vector2D::operator!=(const Vector2D& vector_2d) const
 }
 
 // for printing an object of type Vector2D
-std::ostream& operator<<(std::ostream& os, const Vector2D& v)
-{
+std::ostream& operator<<(std::ostream &os, const Vector2D &v) {
 	os << "(" << v.getX() << "," << v.getY() << ")";
 	return os;
 }
 
-Vector2D Vector2D::rotate(float degrees) const
-{
+Vector2D Vector2D::rotate(float degrees) const {
 	Vector2D r;
 
 	degrees = fmod(degrees, 360.0f);
-	if (degrees > 180.0f)
-	{
+	if (degrees > 180.0f) {
 		degrees = degrees - 360.0f;
-	}
-	else if (degrees <= -180.0f)
-	{
+	} else if (degrees <= -180.0f) {
 		degrees = 360.0f + degrees;
 	}
 
@@ -41,7 +36,7 @@ Vector2D Vector2D::rotate(float degrees) const
 	float cosine = cos(angle);
 
 	//rotation matrix
-	float matrix[2][2] = {{cosine, -sine}, {sine, cosine}};
+	float matrix[2][2] = { { cosine, -sine }, { sine, cosine } };
 
 	float x = x_;
 	float y = y_;
@@ -52,8 +47,7 @@ Vector2D Vector2D::rotate(float degrees) const
 	return r;
 }
 
-float Vector2D::angle(const Vector2D& v) const
-{
+float Vector2D::angle(const Vector2D &v) const {
 	float a2 = atan2(v.getX(), v.getY());
 	float a1 = atan2(x_, y_);
 	float angle = a1 - a2;
