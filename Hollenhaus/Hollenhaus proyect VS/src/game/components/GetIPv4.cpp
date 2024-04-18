@@ -33,12 +33,22 @@ std::string GetIPv4::ReadIPv4()
 
 	int i = 0;
 
-	while ((buffer[i] != 'I' || buffer[i + 1] != 'P' || buffer[i + 2] != 'v' || buffer[i + 3] != '4') && i<9980) {
+	while ((result[i] != 'I' || result[i + 1] != 'P' || result[i + 2] != 'v' || result[i + 3] != '4') && i<9980)
+		i++;
+
+	if (result[i] == 'I') i += 4;
+	while (!isdigit(result[i]))
+		i++;
+
+	std::string IPv4;
+
+	while (isdigit(result[i]) || result[i] == '.') {
+		IPv4.push_back(result[i]);
 		i++;
 	}
-	
-	for(auto e : buffer)
-	std::cout << e << std::endl;
+		
 
-	return result;
+	std::cout << IPv4;
+
+	return IPv4;
 }
