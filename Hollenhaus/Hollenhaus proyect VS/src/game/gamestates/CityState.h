@@ -28,9 +28,10 @@ private:
 	//Dialogo NPC -> Cambio estado combate
 	ecs::entity_t fondo;
 	ecs::entity_t fantasmiko;
+	ecs::entity_t fade;
 	Factory* factory;
 
 	// tween fantasmiko
 	tweeny::tween<float> fantastween;
-
+	tweeny::tween<int> fadetween;
 };

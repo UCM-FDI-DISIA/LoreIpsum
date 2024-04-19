@@ -18,7 +18,7 @@
 constexpr Uint32 FEEDBACK_PADDING = 60,
                  ACC_DURATION = 10;
 constexpr int MOVE_OFFSET = 10;
-                 
+
 
 MoveOnClick::MoveOnClick(float vel) :
 	myBoxCollider_(),
@@ -120,7 +120,6 @@ void MoveOnClick::update()
 	movementSpeed_ = tweenMovement.peek();
 	auto aux = Vector2D(posX + movementSpeed_, myTransform_->getGlobalPos().getY());
 	myTransform_->setGlobalPos(aux);
-
 	/// TWEEN DEL FANTASMA
 	fanTrans->setGlobalPos(
 		tweenFantasmiko.peek(),
@@ -243,22 +242,11 @@ void MoveOnClick::disableFeedback()
 void MoveOnClick::enableLerp()
 {
 	/// DEL PROPIO FONDO
-	if (tweenMovement.progress() == 0.0)
-	{
-		tweenMovement =
-			tweeny::from(0.0f)
-			.to(scrollFactor_ * dir_)
-			.during(ACC_DURATION*2)
-			.via(tweeny::easing::sinusoidalInOut);
-	}
-	else
-	{
-		tweenMovement =
-			tweeny::from(tweenMovement.peek())
-			.to(scrollFactor_ * dir_)
-			.during(ACC_DURATION*2)
-			.via(tweeny::easing::sinusoidalInOut);
-	}
+	tweenMovement =
+		tweeny::from(0.0f)
+		.to(scrollFactor_ * dir_)
+		.during(ACC_DURATION * 2)
+		.via(tweeny::easing::sinusoidalInOut);
 
 	//if (movementSpeed_ <= 0)
 	//{
@@ -268,22 +256,12 @@ void MoveOnClick::enableLerp()
 	//tweenMovement.forward();
 
 	/// DEL FANTASMIKO
-	if (tweenFantasmiko.progress() == 0.0)
-	{
-		tweenFantasmiko =
-			tweeny::from(halfScreen_ - 50.0f)
-			.to(halfScreen_ - 50.0f + MOVE_OFFSET*2 * dir_)
-			.during(ACC_DURATION * 2)
-			.via(tweeny::easing::sinusoidalInOut);
-	}
-	else
-	{
-		tweenFantasmiko =
-			tweeny::from(tweenFantasmiko.peek())
-			.to(halfScreen_ - 50.0f + MOVE_OFFSET*2 * dir_)
-			.during(ACC_DURATION * 2)
-			.via(tweeny::easing::sinusoidalInOut);
-	}
+
+	tweenFantasmiko =
+		tweeny::from(halfScreen_ - 50.0f)
+		.to(halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_)
+		.during(ACC_DURATION * 2)
+		.via(tweeny::easing::sinusoidalInOut);
 
 
 	//if (movementSpeed_ <= 0)
