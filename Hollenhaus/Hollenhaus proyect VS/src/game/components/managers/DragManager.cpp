@@ -60,8 +60,9 @@ void DragManager::update()
 
 			/// PAULA!!! SOY CYNTHIA!!! te he comentado todo esto porque la he liado gorda ! :^P
 
-			//Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
-			//auto id = c->getID();
+			// Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
+			auto id = c->getID();
+			std::cout << id << std::endl;
 			//auto l = sdlutils().cards().at(std::to_string(id));
 			//
 			//for (auto e : l.effects()) {

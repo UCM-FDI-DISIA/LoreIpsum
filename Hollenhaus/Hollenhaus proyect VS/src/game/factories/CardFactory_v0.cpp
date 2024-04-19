@@ -13,7 +13,7 @@
 #include "../components/basics/TextComponent.h"
 
 
-ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
+ecs::entity_t CardFactory_v0::createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
                                          std::vector<JsonData::CardEffect>& effects,bool bocaAbajo)
 {
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);

@@ -9,7 +9,7 @@ public:
 	CardFactory_v1() : CardFactory() {};
 	~CardFactory_v1() {};
 
-	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, 
+	ecs::entity_t createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, 
 		bool unblockable, std::vector<JsonData::CardEffect>& effects, bool bocarriba = true) override;
 	
 	ecs::entity_t createHand() override;
