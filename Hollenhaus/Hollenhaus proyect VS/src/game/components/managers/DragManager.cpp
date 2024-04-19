@@ -58,8 +58,7 @@ void DragManager::update()
 
 
 
-			/// PAULA!!! SOY CYNTHIA!!! te he comentado todo esto porque tenemos que hablar,
-			///	la he liado gorda ! :^P
+			/// PAULA!!! SOY CYNTHIA!!! te he comentado todo esto porque la he liado gorda ! :^P
 
 			//Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
 			//auto id = c->getID();

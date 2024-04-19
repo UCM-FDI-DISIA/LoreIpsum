@@ -19,7 +19,7 @@ public:
 	void OnLeftClickDown();
 
 	bool getDir() const { return faceRight_; };
-
+	void setDir(bool value) { faceRight_ = value; }
 	// registra el collider que creas en la escena de la ciudad
 	void RegisterCollider(BoxCollider* collider)
 	{

@@ -67,6 +67,11 @@ void GameState::setLastPaulPos(Vector2D paulPos)
 	data->SetCityPos(paulPos);
 }
 
+void GameState::setLastPaulDir(bool dir)
+{
+	data->setPaulDir(dir);
+}
+
 void GameState::SetLastState(int ls)
 {
 	data->setLastState(ls);
@@ -86,6 +91,11 @@ std::unordered_map<int, Vector2D> GameState::getMaze()
 Vector2D GameState::getLastPaulPos()
 {
 	return data->getLastPaulPos();
+}
+
+bool GameState::getLastPaulDir() const
+{
+	return data->getLastPaulDir();
 }
 
 int GameState::GetLastState()

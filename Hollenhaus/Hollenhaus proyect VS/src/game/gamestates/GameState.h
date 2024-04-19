@@ -63,6 +63,7 @@ public:
 	virtual std::array<int, 50> getDrawer();
 	virtual std::unordered_map<int, Vector2D> getMaze();
 	virtual Vector2D getLastPaulPos();
+	virtual bool getLastPaulDir() const;
 	virtual int GetLastState();
 	static Data* getData() { return data; }
 
@@ -72,6 +73,7 @@ public:
 	virtual void setDrawer(std::array<int, 50> drawerToSave);
 	virtual void setWinnerOnData(int w);
 	virtual void setLastPaulPos(Vector2D paulPos);
+	virtual void setLastPaulDir(bool);
 	virtual void SetLastState(int ls);
 };
 

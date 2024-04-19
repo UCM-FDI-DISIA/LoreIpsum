@@ -25,6 +25,7 @@ void CityState::update()
 	GameState::update();
 
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(fondo->getComponent<MoveOnClick>()->getDir());
+	std::cout << fondo->getComponent<MoveOnClick>()->getDir();
 
 	/// TWEENSI DEL FANTASMIKO
 	fantastween.loop();
@@ -115,9 +116,16 @@ void CityState::onEnter()
 	fantasmiko->addComponent<SpriteRenderer>("fantasma");
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
-	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(2);
-	fondo->getComponent<MoveOnClick>()->registerFantasmaTrans(fantasmiko);
+
+
+	auto moc = fondo->getComponent<MoveOnClick>();
+	moc->registerFantasmaTrans(fantasmiko);
+
+	//std::cout << moc->getDir() << getLastPaulDir() << std::endl;
+	moc->setDir(getLastPaulDir());
+	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(moc->getDir());
+
 	// twinsiiiis
 	auto fanY = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
 	fantastween =
@@ -183,8 +191,12 @@ void CityState::onExit()
 
 	std::cout << "\nEXIT CITY.\n";
 
-	auto& sdl = *SDLUtils::instance();
+	//std::cout << fondo->getComponent<MoveOnClick>()->getDir() << std::endl;
+
 	setLastPaulPos(fondo->getComponent<Transform>()->getGlobalPos());
+	setLastPaulDir(fondo->getComponent<MoveOnClick>()->getDir());
+
+	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("citytheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
 }

@@ -21,6 +21,7 @@ private:
 	// ---- MOVIMIENTO ----
 	// ultima pos de paul en la ciudad
 	Vector2D lastPaulPos;
+	bool lastPaulDir = false;
 
 	// ---- FLUJO ----
 	int currentMoney = 0,
@@ -62,6 +63,7 @@ public:
 
 	// -- MOVIMIENTO --
 	void SetCityPos(Vector2D paulPos);
+	void setPaulDir(bool dir) { lastPaulDir = dir;}
 
 	// -- FLUJO --
 	// NPCs:
@@ -90,6 +92,7 @@ public:
 
 	// -- MOVIMIENTO --
 	Vector2D getLastPaulPos() { return lastPaulPos; }
+	bool getLastPaulDir() const { return lastPaulDir; }
 
 	// ------ FLUJO ------
 	//----NPCs:
