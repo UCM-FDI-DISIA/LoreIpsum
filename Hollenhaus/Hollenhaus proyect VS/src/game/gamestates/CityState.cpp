@@ -25,7 +25,6 @@ void CityState::update()
 	GameState::update();
 
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(fondo->getComponent<MoveOnClick>()->getDir());
-	std::cout << fondo->getComponent<MoveOnClick>()->getDir();
 
 	/// TWEENSI DEL FANTASMIKO
 	fantastween.loop();
@@ -190,8 +189,6 @@ void CityState::onExit()
 
 
 	std::cout << "\nEXIT CITY.\n";
-
-	//std::cout << fondo->getComponent<MoveOnClick>()->getDir() << std::endl;
 
 	setLastPaulPos(fondo->getComponent<Transform>()->getGlobalPos());
 	setLastPaulDir(fondo->getComponent<MoveOnClick>()->getDir());

@@ -64,7 +64,7 @@ void DragManager::update()
 			auto id = c->getID();
 			std::cout << id << std::endl;
 			//auto l = sdlutils().cards().at(std::to_string(id));
-			//
+			
 			//for (auto e : l.effects()) {
 			//	//Diferenciamos los tipos de efectos (Solo nos interesa el 2, 3, 4; luego de eso vemos las direcciones)
 			//	std::cout << e.type() << std::endl;

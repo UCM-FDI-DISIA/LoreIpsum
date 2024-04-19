@@ -31,7 +31,7 @@ ecs::entity_t CardFactory_v1::createCard(int id, Vector2D pos, int cost, int val
 	cardCardStateManager->setState(Cards::ON_DECK);
 
 	card->addComponent<Card>(
-		cost, value, sprite, unblockable
+		id, cost, value, sprite, unblockable
 	);
 
 	addInfo(card, cost, value, effects, !bocarriba);
