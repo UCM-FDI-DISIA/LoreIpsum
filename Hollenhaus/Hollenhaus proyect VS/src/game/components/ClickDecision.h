@@ -8,7 +8,11 @@ class ClickDecision :
     public ComponentUpdate
 {
 public:
-    ClickDecision(int decision, ecs::entity_t parent, int scene);
+    ClickDecision(int decision, ecs::entity_t parent, int scene);   // PAIGRO AQUI --> en vez de pasarle la escena, le pasas
+                                                                    // el tipo de decision:
+                                                                    // 0 -> no; 1 -> si; 2 -> comprar; 3 -> cambiar escena etc
+                                                                    // crear metodos auxiliares si necesario para settear los valores de los
+                                                                    // tipos de decisiones (ej: setScene())
     ~ClickDecision(){}
 
 	void initComponent() override;
@@ -18,6 +22,8 @@ public:
     void OnLeftClickUp();
 
     void TakeDecision();
+
+    void setScene(int s); // PAIGRO AQUI
 
 private:
     ecs::entity_t parent_;

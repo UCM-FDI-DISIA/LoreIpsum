@@ -65,7 +65,8 @@
                     "nodes": [
                         {
                             "nodeID": "0",
-                            "text": "Otra conversacion por aqui",
+                            "text": "Otra conversacion por 
+                                ",
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [

@@ -182,6 +182,8 @@ bool ShopComponent::confirmPurchase(int prize)
 		220, // Wrap length.
 		Text::BoxPivotPoint::LeftTop,
 		Text::TextAlignment::Center);
+
+
 	/*factory->createDecision(Vector2D(0, 0),
 		Vector2D(0.3, 0.3), 
 		this->getEntity(),

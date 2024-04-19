@@ -24,7 +24,7 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	accept->addComponent<TextComponent>("Si", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	accept->setLayer(layer);
 
-	accept->addComponent<ClickDecision>(greenDecision, parent, scene); //si decision es 0, se ira a scene
+	accept->addComponent<ClickDecision>(greenDecision, parent, scene); //si decision es 0, se ira a scene PAIGRO AQUI
 
 	// ----------ENTIDAD RECHAZAR COMBATE-----------
 	ecs::entity_t deny = Instantiate();
