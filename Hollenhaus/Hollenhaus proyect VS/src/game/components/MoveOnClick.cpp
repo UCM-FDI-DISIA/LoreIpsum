@@ -243,11 +243,23 @@ void MoveOnClick::disableFeedback()
 void MoveOnClick::enableLerp()
 {
 	/// DEL PROPIO FONDO
-	tweenMovement =
-		tweeny::from(0.0f)
-		.to(scrollFactor_ * dir_)
-		.during(ACC_DURATION*2)
-		.via(tweeny::easing::sinusoidalInOut);
+	if (tweenMovement.progress() == 0.0)
+	{
+		tweenMovement =
+			tweeny::from(0.0f)
+			.to(scrollFactor_ * dir_)
+			.during(ACC_DURATION*2)
+			.via(tweeny::easing::sinusoidalInOut);
+	}
+	else
+	{
+		tweenMovement =
+			tweeny::from(tweenMovement.peek())
+			.to(scrollFactor_ * dir_)
+			.during(ACC_DURATION*2)
+			.via(tweeny::easing::sinusoidalInOut);
+	}
+
 	//if (movementSpeed_ <= 0)
 	//{
 	//	tweenMovement.seek(0);
@@ -256,11 +268,23 @@ void MoveOnClick::enableLerp()
 	//tweenMovement.forward();
 
 	/// DEL FANTASMIKO
-	tweenFantasmiko =
-		tweeny::from(halfScreen_ - 50.0f)
-		.to(halfScreen_ - 50.0f + MOVE_OFFSET*2 * dir_)
-		.during(ACC_DURATION * 2)
-		.via(tweeny::easing::sinusoidalInOut);
+	if (tweenFantasmiko.progress() == 0.0)
+	{
+		tweenFantasmiko =
+			tweeny::from(halfScreen_ - 50.0f)
+			.to(halfScreen_ - 50.0f + MOVE_OFFSET*2 * dir_)
+			.during(ACC_DURATION * 2)
+			.via(tweeny::easing::sinusoidalInOut);
+	}
+	else
+	{
+		tweenFantasmiko =
+			tweeny::from(tweenFantasmiko.peek())
+			.to(halfScreen_ - 50.0f + MOVE_OFFSET*2 * dir_)
+			.during(ACC_DURATION * 2)
+			.via(tweeny::easing::sinusoidalInOut);
+	}
+
 
 	//if (movementSpeed_ <= 0)
 	//	tweenFantasmiko.seek(0);
