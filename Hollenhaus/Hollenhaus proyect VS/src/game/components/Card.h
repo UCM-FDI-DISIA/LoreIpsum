@@ -10,8 +10,7 @@ class Cell;
 
 class Card : public ComponentUpdate
 {
-	int id;
-	int cost, value;	// coste y valor de la carta
+	int id, cost, value;	// coste y valor de la carta
 	std::string sprite; // esto sera posteriormente un puntero a Texture
 	bool unblockable;	// indica si esta carta se puede bloquear o no
 	Cell* cell = nullptr;

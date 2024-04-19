@@ -13,7 +13,7 @@ public:
 	CardFactory_v0() : CardFactory() {};
 	~CardFactory_v0() {};
 
-	ecs::entity_t createCard(Vector2D pos, int cost, int value, int id, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects, bool bocabajo)override;
+	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects, bool bocabajo)override;
 
 	ecs::entity_t createHand() override;
 	ecs::entity_t createDeck() override { return nullptr; };

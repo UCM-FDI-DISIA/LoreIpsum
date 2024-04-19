@@ -15,7 +15,7 @@
 #include "../gamestates/GameState.h"
 
 
-ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, int id, std::string& sprite, bool unblockable,
+ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
 	std::vector<JsonData::CardEffect>& effects, bool bocarriba)
 {
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
@@ -30,10 +30,8 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, int 
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(Cards::ON_DECK);
 
-	TuVieja(std::to_string(id));
-
 	card->addComponent<Card>(
-		id, cost, value, sprite, unblockable
+		cost, value, sprite, unblockable
 	);
 
 	addInfo(card, cost, value, effects, !bocarriba);
@@ -102,7 +100,6 @@ ecs::entity_t CardFactory_v1::createDeck()
 				Vector2D(initX, initY),
 				card.cost(),
 				card.value(),
-				card.id(),
 				card.sprite(),
 				card.unblockable(),
 				card.effects()
@@ -146,7 +143,6 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 			Vector2D(initX, initY),
 			card.cost(),
 			card.value(),
-			card.id(),
 			card.sprite(),
 			card.unblockable(),
 			card.effects(),
@@ -166,7 +162,6 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 			Vector2D(initX, initY),
 			card.cost(),
 			card.value(),
-			card.id(),
 			card.sprite(),
 			card.unblockable(),
 			card.effects(),
