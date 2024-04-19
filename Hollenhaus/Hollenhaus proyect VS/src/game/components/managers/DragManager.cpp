@@ -57,25 +57,21 @@ void DragManager::update()
 			auto c = dragTransform->getEntity()->getComponent<Card>();
 
 
-
-			/// PAULA!!! SOY CYNTHIA!!! te he comentado todo esto porque la he liado gorda ! :^P
-
 			// Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
 			auto id = c->getID();
-			std::cout << id << std::endl;
-			//auto l = sdlutils().cards().at(std::to_string(id));
+			auto l = sdlutils().cards().at(std::to_string(id));
 			
-			//for (auto e : l.effects()) {
-			//	//Diferenciamos los tipos de efectos (Solo nos interesa el 2, 3, 4; luego de eso vemos las direcciones)
-			//	std::cout << e.type() << std::endl;
+			for (auto e : l.effects()) {
+				//Diferenciamos los tipos de efectos (Solo nos interesa el 2, 3, 4; luego de eso vemos las direcciones)
+				std::cout << e.type() << std::endl;
 
-			//	if (e.type() == Effects::Superflecha || e.type() == Effects::Flecha || e.type() == Effects::Centro) {
-			//		std::cout << e.type() << std::endl;
+				if (e.type() == Effects::Superflecha || e.type() == Effects::Flecha || e.type() == Effects::Centro) {
+					std::cout << e.type() << std::endl;
 
-			//	}
-			//}
+				}
+			}
 
-			//drop->getComponent<Cell>()->getEffects();
+			drop->getComponent<Cell>()->getEffects();
 		}
 	}
 
