@@ -100,12 +100,17 @@ void MultiplayerLobbyState::onEnter()
 
 
 	// El NetLobby.
-	// Ahora mismo necesita pasarle el puerto, para no crear dos instancias en el mismo puerto.
+	// En DEBUG necesita pasarle el puerto, para no crear dos instancias en el mismo puerto.
+	// En release se le asigna el puerto 2000 automáticamente
 	ecs::entity_t netLobby = Instantiate();
+#if _DEBUG
 	int a;
 	std::cin >> a;
 	netLobby->addComponent<NetLobby>(static_cast<Uint16>(a), lobbyStatus->getComponent<LobbyStatusIndicator>());
-
+#else
+	netLobby->addComponent<NetLobby>(static_cast<Uint16>(2000), lobbyStatus->getComponent<LobbyStatusIndicator>());
+#endif // 
+	
 
 	// Botón para enviar una invitación a aquella IP que esté guardada en el cuadro de texto
 	ecs::entity_t sendInvButton = Instantiate(Vector2D(600, 530));
