@@ -20,6 +20,10 @@ public:
     void resetEnded();
     void setState();
 
+    void setDeck(ecs::entity_t d) { deck = d; };
+    void setNextTurn(ecs::entity_t n) { nextTurn = n; };
+    void setCard(ecs::entity_t c) { card = c; };
+
     //
     ecs::entity_t createPopUp(float x, float y, std::string popup, int convo);
     void setBase(ecs::entity_t b);
@@ -40,6 +44,10 @@ private:
     //ecs::entity_t* tutorial;
 
     std::vector<ecs::entity_t> objs;
+
+    ecs::entity_t deck;
+    ecs::entity_t nextTurn;
+    ecs::entity_t card;
 
     int cooldown = 10;
     int count = 0;

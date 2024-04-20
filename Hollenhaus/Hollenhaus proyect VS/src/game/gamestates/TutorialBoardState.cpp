@@ -62,9 +62,10 @@ void TutorialBoardState::onEnter()
 	TuVieja("ENTRANDO AL TUTORIAL...");
 
 	
-	setBoard();
+
 	setBaseEntity();
 	initTutorial();
+	setBoard();
 
 	tutorial->getComponent<TutorialManager>()->startTutorial();
 	tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::BOARD);
@@ -108,6 +109,7 @@ void TutorialBoardState::setBoard()
 	BoardManager* boardManagerComponent = boardEntity->getComponent<BoardManager>();
 
 	objs.push_back(boardEntity);
+	tutorial->getComponent<TutorialBoardManager>()->setCard(boardEntity);
 
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
@@ -128,6 +130,8 @@ void TutorialBoardState::setBoard()
 	objs.push_back(deckPlayer1);
 	objs.push_back(deckPlayer2);
 
+	tutorial->getComponent<TutorialBoardManager>()->setDeck(deckPlayer1);
+
 
 	// UI 
 	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(100, 500);
@@ -137,6 +141,7 @@ void TutorialBoardState::setBoard()
 	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 265);
 
 	objs.push_back(visual_EndTurnButton);
+	tutorial->getComponent<TutorialBoardManager>()->setNextTurn(visual_EndTurnButton);
 
 	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 

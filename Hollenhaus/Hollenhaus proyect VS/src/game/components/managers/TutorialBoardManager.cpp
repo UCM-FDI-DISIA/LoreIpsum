@@ -193,7 +193,6 @@ void TutorialBoardManager::setCARD()
 
 	createPopUp(250, 200, "Board Tutorial", 1);
 
-	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 }
 
 void TutorialBoardManager::setDECK()
@@ -202,13 +201,12 @@ void TutorialBoardManager::setDECK()
 
 	ecs::entity_t pop = createPopUp(550, 300, "Board Tutorial", 2);
 
-	std::vector<ecs::entity_t>vec;
+	std::vector<ecs::entity_t> v;
 
-	vec.push_back(pop);
+	v.push_back(deck);
 
-	objs;
-
-	
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+	tutorial->getComponent<TutorialManager>()->activateColliders(v);
 
 }
 
