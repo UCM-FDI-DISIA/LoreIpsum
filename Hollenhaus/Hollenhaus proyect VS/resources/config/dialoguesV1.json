@@ -4,11 +4,11 @@
       "NPCName": "El Xungo del Barrio",
       "convo": [
         {
-          "convoID": "0",
+          "convoID": 0,
           "autoConvo": false,
           "nodes": [
             {
-              "nodeID": "0",
+              "nodeID": 0,
               "text": "Mi campeon favorito",
               "eventStart": 0,
               "eventFinish": 0,
@@ -21,7 +21,7 @@
               ]
             },
             {
-              "nodeID": "1",
+              "nodeID": 1,
               "text": "Sin duda alguna, Anivia, la Criofenix",
               "eventStart": 0,
               "eventFinish": 0,
@@ -29,7 +29,7 @@
               ]
             },
             {
-              "nodeID": "2",
+              "nodeID": 2,
               "text": "No tendra mucho ataque",
               "eventStart": 0,
               "eventFinish": 0,
@@ -37,7 +37,7 @@
               ]
             },
             {
-              "nodeID": "3",
+              "nodeID": 3,
               "text": "No tendra mucha defensa",
               "eventStart": 0,
               "eventFinish": 0,
@@ -50,7 +50,7 @@
               ]
             },
             {
-              "nodeID": "4",
+              "nodeID": 4,
               "text": "Pero me encanta",
               "eventStart": 0,
               "eventFinish": 0,
@@ -60,11 +60,11 @@
           ]
         },
         {
-          "convoID": "1",
+          "convoID": 1,
           "autoConvo": false,
           "nodes": [
             {
-              "nodeID": "0",
+              "nodeID": 0,
               "text": "Otra conversacion por aqui",
               "eventStart": 0,
               "eventFinish": 0,
@@ -72,7 +72,7 @@
               ]
             },
             {
-              "nodeID": "1",
+              "nodeID": 1,
               "text": "Ha quedado buena tarde",
               "eventStart": 0,
               "eventFinish": 0,
@@ -87,11 +87,11 @@
       "NPCName": "Javivu24",
       "convo": [
         {
-          "convoID": "0",
+          "convoID": 0,
           "autoConvo": false,
           "nodes": [
             {
-              "nodeID": "0",
+              "nodeID": 0,
               "text": "que",
               "eventStart": 0,
               "eventFinish": 0,
@@ -99,7 +99,7 @@
               ]
             },
             {
-              "nodeID": "1",
+              "nodeID": 1,
               "text": "jajaja....",
               "eventStart": 0,
               "eventFinish": 0,
@@ -107,7 +107,7 @@
               ]
             },
             {
-              "nodeID": "2",
+              "nodeID": 2,
               "text": "es completamente IMPOSIBLE que funciones",
               "eventStart": 0,
               "eventFinish": 0,
@@ -115,7 +115,7 @@
               ]
             },
             {
-              "nodeID": "3",
+              "nodeID": 3,
               "text": "a la pared ya, estas tardando",
               "eventStart": 0,
               "eventFinish": 0,
@@ -123,7 +123,7 @@
               ]
             },
             {
-              "nodeID": "4",
+              "nodeID": 4,
               "text": "vamos, el coach rcibiendo un balon",
               "eventStart": 0,
               "eventFinish": 0,
@@ -138,11 +138,11 @@
       "NPCName": "Board Tutorial",
       "convo": [
         {
-          "convoID": "0",
+          "convoID": 0,
           "autoConvo": false,
           "nodes": [
             {
-              "nodeID": "0",
+              "nodeID": 0,
               "text": "Hola",
               "eventStart": 0,
               "eventFinish": 0,
@@ -150,7 +150,7 @@
               ]
             },
             {
-              "nodeID": "1",
+              "nodeID": 1,
               "text": "Soy un dialogo de tutorial",
               "eventStart": 0,
               "eventFinish": 0,
@@ -158,7 +158,7 @@
               ]
             },
             {
-              "nodeID": "2",
+              "nodeID": 2,
               "text": "Te voy a explicar el juego",
               "eventStart": 0,
               "eventFinish": 0,
@@ -166,7 +166,7 @@
               ]
             },
             {
-              "nodeID": "3",
+              "nodeID": 3,
               "text": "Disfruta",
               "eventStart": 0,
               "eventFinish": 0,
@@ -181,11 +181,11 @@
           ]
         },
         {
-          "convoID": "1",
+          "convoID": 1,
           "autoConvo": false,
           "nodes": [
             {
-              "nodeID": "0",
+              "nodeID": 0,
               "text": "Esto es una carta",
               "eventStart": 0,
               "eventFinish": 0,
@@ -193,7 +193,7 @@
               ]
             },
             {
-              "nodeID": "1",
+              "nodeID": 1,
               "text": "La cartas guardan informacion",
               "eventStart": 0,
               "eventFinish": 0,
@@ -208,11 +208,11 @@
           ]
         },
         {
-          "convoID": "2",
+          "convoID": 2,
           "autoConvo": false,
           "nodes": [
             {
-              "nodeID": "0",
+              "nodeID": 0,
               "text": "Este es tu mazo",
               "eventStart": 0,
               "eventFinish": 0,
@@ -220,7 +220,7 @@
               ]
             },
             {
-              "nodeID": "1",
+              "nodeID": 1,
               "text": "El mazo se compone de las cartas que tu quieras!",
               "eventStart": 0,
               "eventFinish": 0,
@@ -228,7 +228,7 @@
               ]
             },
             {
-              "nodeID": "2",
+              "nodeID": 2,
               "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso",
               "eventStart": 0,
               "eventFinish": 0,
@@ -243,11 +243,11 @@
           ]
         },
         {
-          "convoID": "3",
+          "convoID": 3,
           "autoConvo": false,
           "nodes": [
             {
-              "nodeID": "0",
+              "nodeID": 0,
               "text": "Bien hecho!",
               "eventStart": 0,
               "eventFinish": 0,
@@ -255,7 +255,7 @@
               ]
             },
             {
-              "nodeID": "1",
+              "nodeID": 1,
               "text": "Acabas de robar una carta de tu mazo",
               "eventStart": 0,
               "eventFinish": 0,
@@ -263,7 +263,7 @@
               ]
             },
             {
-              "nodeID": "2",
+              "nodeID": 2,
               "text": "Solo podras usar cartas que tienes en manos",
               "eventStart": 0,
               "eventFinish": 0,
@@ -271,7 +271,7 @@
               ]
             },
             {
-              "nodeID": "3",
+              "nodeID": 3,
               "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero",
               "eventStart": 0,
               "eventFinish": 0,
@@ -279,21 +279,22 @@
               ]
             },
             {
-              "nodeID": "4",
+              "nodeID": 4,
               "text": "Prueba a arrastrar la carta a una celda!",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
+
               ]
             }
           ]
         },
         {
-          "convoID": "4",
+          "convoID": 4,
           "autoConvo": false,
           "nodes": [
             {
-              "nodeID": "0",
+              "nodeID": 0,
               "text": "Bien hecho!",
               "eventStart": 0,
               "eventFinish": 0,
@@ -301,7 +302,7 @@
               ]
             },
             {
-              "nodeID": "1",
+              "nodeID": 1,
               "text": "Completar distintas acciones supondra un coste",
               "eventStart": 0,
               "eventFinish": 0,
@@ -309,7 +310,7 @@
               ]
             },
             {
-              "nodeID": "2",
+              "nodeID": 2,
               "text": "Robar una carta cuesta 1 punto de accion",
               "eventStart": 0,
               "eventFinish": 0,
@@ -317,8 +318,35 @@
               ]
             },
             {
-              "nodeID": "3",
+              "nodeID": 3,
               "text": "Colocar una carta en el tablero dependera de cada carta",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 5,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Cuando no puedas hacer mas acciones pulsa el boton de Siguiente Turno",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Esto le dara la oportunidad a tu enemigo de jugar sus cartas",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [

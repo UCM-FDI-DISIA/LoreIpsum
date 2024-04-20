@@ -68,6 +68,8 @@ private:
     void setACTION();
 
     void setACTIONPTS();
+
+    void setNEXTTURN();
     
 
 };

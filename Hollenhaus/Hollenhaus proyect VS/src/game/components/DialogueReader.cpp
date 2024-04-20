@@ -24,8 +24,11 @@ void DialogueReader::initComponent() {
 	dialogueDestroyer_ = ent_->getComponent<DialogueDestroyer>();
 	assert(dialogueDestroyer_ != nullptr);
 
+	std::cout << convo_->ConvoID() << std::endl;
+
 	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
 	exeEvents(convo_->Node(actualNode_).NodeEventsStart());
+
 }
 void DialogueReader::NextNode()
 {
