@@ -235,6 +235,11 @@ void TutorialBoardManager::setCELL()
 
 void TutorialBoardManager::setPLACECARD()
 {
+	TuVieja("Setting PLACE CARD");
+
+	createPopUp(250, 200, "Board Tutorial", 4);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 }
 
 void TutorialBoardManager::setACTION()
