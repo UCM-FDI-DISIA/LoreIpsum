@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "DialogueDestroyer.h"
 #include "../Game.h"
 #include "../components/NPC.h"

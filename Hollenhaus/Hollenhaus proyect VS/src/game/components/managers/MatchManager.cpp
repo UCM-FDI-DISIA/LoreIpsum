@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include <iostream>
 #include "MatchManager.h"
 #include "BoardManager.h"

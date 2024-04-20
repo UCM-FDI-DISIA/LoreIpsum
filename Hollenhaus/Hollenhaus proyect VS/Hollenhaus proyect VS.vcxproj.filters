@@ -165,9 +165,6 @@
     <ClCompile Include="pchs\pch_SDL.cpp">
       <Filter>Archivos de origen\Auxiliares</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\pch.cpp">
-      <Filter>Archivos de origen\Auxiliares</Filter>
-    </ClCompile>
     <ClCompile Include="pchs\pch_c++_basic.cpp">
       <Filter>Archivos de origen\Auxiliares</Filter>
     </ClCompile>
@@ -351,6 +348,9 @@
     <ClCompile Include="src\game\gamestates\pauseMenuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="pchs\pch.cpp">
+      <Filter>Archivos de origen\Auxiliares</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -521,9 +521,6 @@
     <ClInclude Include="pchs\pch_SDL.h">
       <Filter>Archivos de encabezado\Auxiliares</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\pch.h">
-      <Filter>Archivos de encabezado\Auxiliares</Filter>
-    </ClInclude>
     <ClInclude Include="pchs\pch_c++_basic.h">
       <Filter>Archivos de encabezado\Auxiliares</Filter>
     </ClInclude>
@@ -685,6 +682,9 @@
     </ClInclude>
     <ClInclude Include="src\game\gamestates\tutorialState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="pchs\pch.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,8 @@
 #include "../../Entity.h"
 
 //CUIDADO CON DEPENDENCIAS
-#include "GameStateMachine.h"
+#include "game/GameStateMachine.h"
+//#include "GameStateMachine.h"
 #include "../../../utils/Vector2D.h"
 #include "../basics/Transform.h"
 #include "../basics/BoxCollider.h"
@@ -541,4 +542,23 @@ inline void TuVieja(std::string message) {
 	std::cout << message << std::endl;
 #endif // 
 }
+
+/*
+#define _TU_Vieja(...) \
+	template< typename ...Ts> \
+	void TuVieja2(Ts &&...args) { \
+	std::cout << __VA_ARGS__ << std::endl;\
+}\
+*/
+
+
+
+#ifdef _DEBUG
+#define _Tu_Vieja(...) \
+std::cout << __VA_ARGS__ << std::endl;\
+
+#else
+#define _Tu_Vieja(...) \
+
+#endif
 

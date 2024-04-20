@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "PaigroState.h"
 #include "../components/managers/Manager.h"
 

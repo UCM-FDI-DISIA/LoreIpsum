@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "DecisionFactory_V0.h"
 #include "../components/basics/TextComponent.h"
 #include "../components/ClickDecision.h"

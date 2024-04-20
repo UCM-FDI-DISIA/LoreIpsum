@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "AutoDialogue.h"
 #include "NextText.h"
 #include "../components/TypeWriter.h"

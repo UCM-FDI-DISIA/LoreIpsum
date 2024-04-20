@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "Transform.h"
 #include "../managers/Manager.h"
 

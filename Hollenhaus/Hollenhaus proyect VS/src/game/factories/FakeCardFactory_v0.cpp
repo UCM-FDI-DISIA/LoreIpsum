@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "FakeCardFactory_v0.h"
 #include "../components/basics/TextComponent.h"
 #include "../EffectCollection.h"
