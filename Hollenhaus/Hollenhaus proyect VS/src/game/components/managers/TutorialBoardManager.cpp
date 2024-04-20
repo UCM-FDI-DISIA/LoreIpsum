@@ -124,7 +124,7 @@ void TutorialBoardManager::setState()
 		setACTION();
 		break;
 	case Tutorials::Board::NEXT_TURN:
-		setACTIONPTS();
+		setNEXTTURN();
 		break;
 	default:
 		break;
@@ -246,27 +246,26 @@ void TutorialBoardManager::setACTION()
 {
 	TuVieja("Setting PLACE CARD");
 
-	createPopUp(250, 200, "Board Tutorial", 4);
+	createPopUp(250, 200, "Board Tutorial", 5);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 }
 
-void TutorialBoardManager::setACTIONPTS()
-{
-	TuVieja("Setting PLACE CARD");
 
-	createPopUp(250, 200, "Board Tutorial", 4);
-
-	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
-}
 
 void TutorialBoardManager::setNEXTTURN()
 {
 	TuVieja("Setting PLACE CARD");
 
-	createPopUp(250, 200, "Board Tutorial", 5);
+	//createPopUp(250, 200, "Board Tutorial", 5);
+
+	std::vector<ecs::entity_t> v;
+
+	v.push_back(nextTurn);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	tutorial->getComponent<TutorialManager>()->activateColliders(v);
 
 }
 
