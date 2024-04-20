@@ -3,6 +3,7 @@
 #include "../factories/Factory.h"
 #include "../factories/DecisionFactory_V0.h"
 #include "../TutorialManager.h"
+#include "../components/managers/TutorialBoardManager.h"
 
 DialogueEventCollection::DialogueEventCollection()
 {
@@ -51,6 +52,6 @@ void DialogueEventCollection::ActionEnded()
 	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
 	ent->getComponent<TutorialManager>()->actionEnded();
 
-	// AQUI
+	// TUTORIAL BOARD MANAGER REF
 
 }

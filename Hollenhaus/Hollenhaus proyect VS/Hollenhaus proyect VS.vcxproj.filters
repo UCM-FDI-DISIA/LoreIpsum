@@ -354,6 +354,7 @@
     <ClCompile Include="src\game\components\DialogueBoxDestroyer.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialBoardManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -690,6 +691,9 @@
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\DialogueBoxDestroyer.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialBoardManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>

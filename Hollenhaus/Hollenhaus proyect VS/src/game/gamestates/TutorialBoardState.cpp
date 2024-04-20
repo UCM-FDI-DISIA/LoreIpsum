@@ -1,3 +1,4 @@
+#include "../pch.h"
 #include "pch.h"
 #include "TutorialBoardState.h"
 #include <SDL.h>
@@ -25,22 +26,19 @@
 #include "../GameStateMachine.h"
 #include "../components/managers/PlayerCardsManager.h"
 #include "../TutorialManager.h"
+#include "../components/managers/TutorialBoardManager.h"
 
 TutorialBoardState::TutorialBoardState()
 {
 	TuVieja("Loading Tutorial Board");
 
-	factory = new Factory();
-	factory->SetFactories(
-		static_cast<DialogueFactory*>(new DialogueFactory_V0())
-	);
+	
 }
 
 TutorialBoardState::~TutorialBoardState()
 {
 
-	delete factory;
-	factory = nullptr;
+	
 }
 
 void TutorialBoardState::refresh()
@@ -50,15 +48,6 @@ void TutorialBoardState::refresh()
 
 void TutorialBoardState::update()
 {
-	if (actionEnded()) {
-
-		nextTutorialState();
-
-		resetEnded();
-	}
-
-	updateTutorialState();
-
 	GameState::update();
 }
 
@@ -72,10 +61,7 @@ void TutorialBoardState::onEnter()
 
 	TuVieja("ENTRANDO AL TUTORIAL...");
 
-	currentState = Tutorials::Board::BOARD_NONE;
-	nextState = Tutorials::Board::INIT;
-	ended = false;
-
+	
 	setBoard();
 	setBaseEntity();
 	initTutorial();
@@ -84,7 +70,6 @@ void TutorialBoardState::onEnter()
 	tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::BOARD);
 	tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Board::BOARD_NONE);
 	tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Board::INIT);
-
 
 
 	int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
@@ -101,77 +86,7 @@ void TutorialBoardState::onExit()
 
 }
 
-void TutorialBoardState::updateTutorialState()
-{
 
-	currentState;
-	nextState;
-
-	if (currentState != nextState) {
-		tutorial->getComponent<TutorialManager>()->wait( [this] { setState(); } );
-	}
-}
-
-bool TutorialBoardState::actionEnded()
-{
-	return tutorial->getComponent<TutorialManager>()->hasEnded();
-}
-
-void TutorialBoardState::resetEnded()
-{
-	tutorial->getComponent<TutorialManager>()->resetAction();
-}
-
-
-
-void TutorialBoardState::setState()
-{
-	int t = tutorial->getComponent<TutorialManager>()->getNextState();
-
-	switch (t)
-	{
-	case Tutorials::Board::INIT:
-		setINIT();
-		break;
-	case Tutorials::Board::CARD:
-		setCARD();
-		break;
-	case Tutorials::Board::DECK:
-		setDECK();
-		break;
-	case Tutorials::Board::DRAW_CARD:
-		setDRAWCARD();
-		break;
-	case Tutorials::Board::CELL:
-		setCELL();
-		break;
-	case Tutorials::Board::PLACE_CARD:
-		setPLACECARD();
-		break;
-	case Tutorials::Board::ACTION:
-		setACTION();
-		break;
-	case Tutorials::Board::ACTION_PTS:
-		setACTIONPTS();
-		break;
-	default:
-		break;
-	}
-
-
-
-	currentState = nextState;
-
-	tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(t);
-
-	//tutorial->getComponent<TutorialManager>()->nextState();
-}
-
-void TutorialBoardState::nextTutorialState()
-{
-	nextState = tutorial->getComponent<TutorialManager>()->nextState();
-
-}
 
 void TutorialBoardState::setBoard()
 {
@@ -289,29 +204,7 @@ void TutorialBoardState::setBaseEntity()
 	
 }
 
-ecs::entity_t TutorialBoardState::createPopUp(float x, float y, std::string popup, int convo)
-{
-	TuVieja("Creando PopUp...");
 
-	JsonData::DialogueData dialogue = sdlutils().dialogues().at(popup);
-	//int conv = 0;
-	int node = 0;
-
-	// crear dialogo del FACTORY de dialogos
-	//// Mirar comentario en el interior de la función
-	ecs::entity_t pop = factory->createDialogue(dialogue.NPCName(), convo, node,
-		{ x, y },//POS
-		{ 0.25, 0.25 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-		5, 10, base,
-		3, dialogue.Convo(convo).isAuto(),  //LAYER
-		"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
-		SDL_Color({ 0, 0, 0, 255 }),
-		220, //wrap length
-		Text::BoxPivotPoint::LeftTop,
-		Text::TextAlignment::Left);
-
-	return pop;
-}
 
 void TutorialBoardState::initTutorial()
 {
@@ -319,62 +212,10 @@ void TutorialBoardState::initTutorial()
 	tutorial = Instantiate();
 
 	tutorial->addComponent<TutorialManager>();
+	auto manager = tutorial->addComponent<TutorialBoardManager>();
+	manager->setBase(base);
+	manager->setTutorial(tutorial);
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
-}
-
-void TutorialBoardState::setINIT()
-{
-
-	TuVieja("Setting INIT");
-
-	createPopUp(250 , 200, "Board Tutorial", 0);
 
 }
 
-void TutorialBoardState::setCARD()
-{
-	TuVieja("Setting CARD");
-
-	createPopUp(250, 200, "Board Tutorial", 1);
-}
-
-void TutorialBoardState::setDECK()
-{
-	TuVieja("Setting DECK");
-
-	ecs::entity_t pop = createPopUp(550, 300, "Board Tutorial", 2);
-
-	std::vector<ecs::entity_t>vec;
-
-	vec.push_back(pop);
-
-	tutorial->getComponent<TutorialManager>()->setColliderWall(vec, colliderWallBase);
-
-}
-
-void TutorialBoardState::setDRAWCARD()
-{
-
-}
-
-void TutorialBoardState::setCELL()
-{
-	TuVieja("Setting CELL");
-
-	createPopUp(250, 200, "Board Tutorial", 3);
-}
-
-void TutorialBoardState::setPLACECARD()
-{
-	TuVieja("Setting PLACE CARD");
-
-	createPopUp(250, 200, "Board Tutorial", 4);
-}
-
-void TutorialBoardState::setACTION()
-{
-}
-
-void TutorialBoardState::setACTIONPTS()
-{
-}

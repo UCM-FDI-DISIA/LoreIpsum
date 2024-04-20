@@ -21,8 +21,6 @@ void TutorialManager::initComponent()
 	resetAction();
 
 	isTutorial = false;
-
-	//data =
 }
 
 void TutorialManager::update()
@@ -62,6 +60,7 @@ void TutorialManager::tutorialActionEnded(Tutorials::Tutorials t, int i)
 	if (isTutorial && t == currtut && i == currstate) {
 
 		actionEnded();
+		// HERE
 	}
 }
 
