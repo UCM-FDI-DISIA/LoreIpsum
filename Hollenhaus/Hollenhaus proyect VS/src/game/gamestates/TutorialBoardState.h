@@ -33,6 +33,8 @@ private:
 
     //TutorialBoardManager* tutorialManager_;
 
+    std::vector<ecs::entity_t> objs;
+
     int cooldown = 10;
     int count = 0;
 

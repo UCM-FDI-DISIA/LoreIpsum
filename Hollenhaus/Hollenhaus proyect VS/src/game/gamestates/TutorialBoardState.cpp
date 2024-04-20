@@ -74,6 +74,8 @@ void TutorialBoardState::onEnter()
 
 	int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
+	tutorial->getComponent<TutorialBoardManager>()->setObjs(objs);
+
 }
 
 void TutorialBoardState::onExit()
@@ -105,6 +107,8 @@ void TutorialBoardState::setBoard()
 	ecs::entity_t boardEntity = factory->createBoard();
 	BoardManager* boardManagerComponent = boardEntity->getComponent<BoardManager>();
 
+	objs.push_back(boardEntity);
+
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
@@ -121,7 +125,8 @@ void TutorialBoardState::setBoard()
 	ecs::entity_t deckPlayer1 = factory->createDeck();
 	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
 
-
+	objs.push_back(deckPlayer1);
+	objs.push_back(deckPlayer2);
 
 
 	// UI 
@@ -130,6 +135,8 @@ void TutorialBoardState::setBoard()
 
 	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(600, 200, 200, 180);
 	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 265);
+
+	objs.push_back(visual_EndTurnButton);
 
 	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 
@@ -148,6 +155,8 @@ void TutorialBoardState::setBoard()
 	boardManagerComponent->setScoreVisualJ1(visual_ScoreCounterJ1);
 	boardManagerComponent->setScoreVisualJ2(visual_ScoreCounterJ2);
 	boardManagerComponent->updateVisuals();
+
+
 
 
 	// incicia la cancion en bucle
@@ -212,9 +221,7 @@ void TutorialBoardState::initTutorial()
 	tutorial = Instantiate();
 
 	tutorial->addComponent<TutorialManager>();
-	auto manager = tutorial->addComponent<TutorialBoardManager>();
-	manager->setBase(base);
-	manager->setTutorial(tutorial);
+	auto manager = tutorial->addComponent<TutorialBoardManager>(base, tutorial);
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
 
 }

@@ -8,7 +8,7 @@ class Factory;
 class TutorialBoardManager : public ComponentUpdate
 {
 public:
-    TutorialBoardManager();
+    TutorialBoardManager(ecs::entity_t b, ecs::entity_t t);
     ~TutorialBoardManager() override;
 
     void initComponent() override;
@@ -21,12 +21,11 @@ public:
     void setState();
 
     //
-    void setBoard();
-    void setBaseEntity();
     ecs::entity_t createPopUp(float x, float y, std::string popup, int convo);
-    void initTutorial();
-    void setBase(ecs::entity_t b) { base = b; };
-    void setTutorial(ecs::entity_t t) { tutorial = t; };
+    void setBase(ecs::entity_t b);
+    void setTutorial(ecs::entity_t t);
+    void setObjs(std::vector<ecs::entity_t> v);
+
 
 private:
 
@@ -39,6 +38,8 @@ private:
     ecs::entity_t tutorial;
     ecs::entity_t colliderWallBase;
     //ecs::entity_t* tutorial;
+
+    std::vector<ecs::entity_t> objs;
 
     int cooldown = 10;
     int count = 0;

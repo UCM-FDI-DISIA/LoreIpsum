@@ -27,9 +27,14 @@
 #include "../../components/managers/PlayerCardsManager.h"
 #include "../../TutorialManager.h"
 
-TutorialBoardManager::TutorialBoardManager()
+TutorialBoardManager::TutorialBoardManager(ecs::entity_t b, ecs::entity_t t)
 {
+	base = b;
+	tutorial = t;
 
+	// ---
+	//objs.push_back(base);
+	//objs.push_back(tutorial);
 
 }
 
@@ -93,6 +98,7 @@ void TutorialBoardManager::resetEnded()
 void TutorialBoardManager::setState()
 {
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
+	ent_->getComponent<TutorialManager>()->activateColliders(objs);
 
 	switch (t)
 	{
@@ -156,6 +162,23 @@ ecs::entity_t TutorialBoardManager::createPopUp(float x, float y, std::string po
 	return pop;
 }
 
+void TutorialBoardManager::setBase(ecs::entity_t b)
+{
+	base = b;
+}
+
+void TutorialBoardManager::setTutorial(ecs::entity_t t)
+{
+	tutorial = t;
+}
+
+void TutorialBoardManager::setObjs(std::vector<ecs::entity_t> v)
+{
+	objs = v;
+}
+
+
+
 
 void TutorialBoardManager::setINIT()
 {
@@ -169,6 +192,8 @@ void TutorialBoardManager::setCARD()
 	TuVieja("Setting CARD");
 
 	createPopUp(250, 200, "Board Tutorial", 1);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 }
 
 void TutorialBoardManager::setDECK()
@@ -181,7 +206,10 @@ void TutorialBoardManager::setDECK()
 
 	vec.push_back(pop);
 
-	//tutorial->getComponent<TutorialManager>()->setColliderWall(vec, colliderWallBase);
+	objs;
+
+	
+
 }
 
 void TutorialBoardManager::setDRAWCARD()

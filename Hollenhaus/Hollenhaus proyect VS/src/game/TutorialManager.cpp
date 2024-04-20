@@ -89,7 +89,46 @@ void TutorialManager::setColliderWall(std::vector<ecs::entity_t> e, ecs::entity_
 
 	// ajusta las capas de los objetos que quieres que se puedan clickar
 	for (auto obj : e) {
-		layers.push_back(obj->getLayer());
+		//layers.push_back(obj->getLayer());
 		obj->setLayer(200);
 	}
+}
+
+void TutorialManager::deactivateColliders(std::vector<ecs::entity_t> n)
+{
+	for (auto obj : n) {
+		if (obj->hasComponent<BoxCollider>()) {
+			loseCollider(obj->getComponent<BoxCollider>());
+		}
+	}
+}
+
+void TutorialManager::activateColliders(std::vector<ecs::entity_t> n)
+{
+	for (auto obj : n) {
+		if (obj->hasComponent<BoxCollider>()) {
+			returnCollider(obj->getComponent<BoxCollider>());
+		}
+		
+	}
+}
+
+void TutorialManager::activateAllColliders()
+{
+	for (auto obj : objs) {
+		if (obj->hasComponent<BoxCollider>()) {
+			returnCollider(obj->getComponent<BoxCollider>());
+		}
+		
+	}
+}
+
+void TutorialManager::loseCollider(BoxCollider* coll)
+{
+	coll->setPosOffset({ 10000, 1000});
+}
+
+void TutorialManager::returnCollider(BoxCollider* coll)
+{
+	coll->setPosOffset({0,0});
 }
