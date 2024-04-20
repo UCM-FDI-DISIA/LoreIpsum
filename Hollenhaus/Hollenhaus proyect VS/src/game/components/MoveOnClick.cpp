@@ -121,10 +121,12 @@ void MoveOnClick::update()
 	auto aux = Vector2D(posX + movementSpeed_, myTransform_->getGlobalPos().getY());
 	myTransform_->setGlobalPos(aux);
 	/// TWEEN DEL FANTASMA
-	fanTrans->setGlobalPos(
-		tweenFantasmiko.peek(),
-		fanTrans->getGlobalPos().getY()
-	);
+	std::cout << tweenFantasmiko.peek() << std::endl;
+	if (tweenFantasmiko.peek() > 1.0)
+		fanTrans->setGlobalPos(
+			tweenFantasmiko.peek(),
+			fanTrans->getGlobalPos().getY()
+		);
 
 	/// TWEEN DE LA OPACIDAD DEL FEEDBACK
 	tweenFade.step(1);
@@ -170,6 +172,8 @@ void MoveOnClick::OnLeftClickDown()
 		//movementSpeed_ = scrollFactor_ * dir_;
 
 		onStart();
+
+		lastDir_ = dir_;
 	}
 	else onStop();
 }
@@ -242,35 +246,44 @@ void MoveOnClick::disableFeedback()
 void MoveOnClick::enableLerp()
 {
 	/// DEL PROPIO FONDO
-	tweenMovement =
-		tweeny::from(0.0f)
-		.to(scrollFactor_ * dir_)
-		.during(ACC_DURATION * 2)
-		.via(tweeny::easing::sinusoidalInOut);
+	if (movementSpeed_ == 0 || lastDir_ == 0)
+	{
+		// si esta quieto
+		// inicializacion inicial
+		tweenMovement = resetTween(0.0f, scrollFactor_ * dir_);
+		tweenFantasmiko = resetTween(halfScreen_ - 50.0f, halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_);
+	}
+	else if (lastDir_ == dir_)
+	{ // si quiere moverse mas en la misma direccion
+		if (tweenMovement.progress() != 1.0)
+		{
+			tweenMovement = resetTween(0.0f, scrollFactor_ * dir_);
+			tweenFantasmiko = resetTween(halfScreen_ - 50.0f, halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_);
+		}
+	}
+	else
+	{ // si quiere moverse mas en la direccion contraria
+		tweenMovement = resetTween(tweenMovement.peek(), scrollFactor_ * dir_);
+		tweenFantasmiko = resetTween(tweenFantasmiko.peek(), halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_);
+	}
 
-	//if (movementSpeed_ <= 0)
-	//{
-	//	tweenMovement.seek(0);
-	//	movementSpeed_ = 0;
-	//}
-	//tweenMovement.forward();
 
-	/// DEL FANTASMIKO
-
-	tweenFantasmiko =
-		tweeny::from(halfScreen_ - 50.0f)
-		.to(halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_)
-		.during(ACC_DURATION * 2)
-		.via(tweeny::easing::sinusoidalInOut);
-
-
-	//if (movementSpeed_ <= 0)
-	//	tweenFantasmiko.seek(0);
-	//tweenFantasmiko.forward();
+	///// DEL FANTASMIKO
+	//tweenFantasmiko =
+	//	tweeny::from(halfScreen_ - 50.0f)
+	//	.to(halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_)
+	//	.during(ACC_DURATION * 2)
+	//	.via(tweeny::easing::sinusoidalInOut);
 }
 
 void MoveOnClick::disableLerp()
 {
-	tweenMovement.backward(); // del fondo
-	tweenFantasmiko.backward();
+	tweenMovement = resetTween(tweenMovement.peek(), 0.0f);
+	tweenFantasmiko = resetTween(tweenFantasmiko.peek(), halfScreen_ - 50.0f);
+}
+
+template <typename T>
+tweeny::tween<T> MoveOnClick::resetTween(T ini, T fin)
+{
+	return tweeny::from(ini).to(fin).during(ACC_DURATION * 2).via(tweeny::easing::sinusoidalInOut);
 }

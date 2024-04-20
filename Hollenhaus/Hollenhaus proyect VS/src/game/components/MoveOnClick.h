@@ -59,6 +59,7 @@ private:
 
 	// -1 izquierda, 1 derecha
 	int dir_;
+	int lastDir_ = 0; // el click anterior al actual
 
 	float halfScreen_;
 
@@ -83,4 +84,9 @@ private:
 
 	Transform* fanTrans;
 	tweeny::tween<float> tweenFantasmiko;
+
+	template<typename T>
+	tweeny::tween<T> resetTween(T, T);
 };
+
+
