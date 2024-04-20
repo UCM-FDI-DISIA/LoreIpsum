@@ -185,6 +185,8 @@ void TutorialBoardManager::setINIT()
 	TuVieja("Setting INIT");
 
 	createPopUp(250, 200, "Board Tutorial", 0);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 }
 
 void TutorialBoardManager::setCARD()
@@ -192,6 +194,8 @@ void TutorialBoardManager::setCARD()
 	TuVieja("Setting CARD");
 
 	createPopUp(250, 200, "Board Tutorial", 1);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 }
 
@@ -201,21 +205,32 @@ void TutorialBoardManager::setDECK()
 
 	ecs::entity_t pop = createPopUp(550, 300, "Board Tutorial", 2);
 
-	std::vector<ecs::entity_t> v;
 
-	v.push_back(deck);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
-	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
 
 }
 
 void TutorialBoardManager::setDRAWCARD()
 {
+
+	std::vector<ecs::entity_t> v;
+
+	v.push_back(deck);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	tutorial->getComponent<TutorialManager>()->activateColliders(v);
 }
 
 void TutorialBoardManager::setCELL()
 {
+	TuVieja("Setting CELL");
+
+	createPopUp(250, 200, "Board Tutorial", 3);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 }
 
 void TutorialBoardManager::setPLACECARD()
