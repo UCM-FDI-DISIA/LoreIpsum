@@ -96,10 +96,6 @@ void MoveOnClick::update()
 	const float posX = myTransform_->getGlobalPos().getX();
 	const float diff = abs(posX - initialPos_.getX());
 
-	/// PROGRESO DE LOS TWEENS DE MOVIMIENTO
-	tweenMovement.step(1);
-	tweenFantasmiko.step(1);
-
 	// ---- MOVE FALSE ----
 	// -> si la diferencia entre la pos actual y la inicial es la distancia a recorrer (se ha completado el mov.)
 	// -> o cuando llegue a los limites de la ciudad por la derecha Y se pulse en la derecha
@@ -116,17 +112,21 @@ void MoveOnClick::update()
 	else if (shouldMove_)
 		moveFeedback(); // TWEEN DEL FEEDBACK
 
+	/// PROGRESO DE LOS TWEENS DE MOVIMIENTO
+	tweenMovement.step(1);
+	tweenFantasmiko.step(1);
+
 	/// MOVIMIENTO DEL FONDO
 	movementSpeed_ = tweenMovement.peek();
 	auto aux = Vector2D(posX + movementSpeed_, myTransform_->getGlobalPos().getY());
 	myTransform_->setGlobalPos(aux);
+
 	/// TWEEN DEL FANTASMA
 	std::cout << tweenFantasmiko.peek() << std::endl;
-	if (tweenFantasmiko.peek() > 1.0)
-		fanTrans->setGlobalPos(
-			tweenFantasmiko.peek(),
-			fanTrans->getGlobalPos().getY()
-		);
+	fanTrans->setGlobalPos(
+		tweenFantasmiko.peek(),
+		fanTrans->getGlobalPos().getY()
+	);
 
 	/// TWEEN DE LA OPACIDAD DEL FEEDBACK
 	tweenFade.step(1);
@@ -254,26 +254,25 @@ void MoveOnClick::enableLerp()
 		tweenFantasmiko = resetTween(halfScreen_ - 50.0f, halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_);
 	}
 	else if (lastDir_ == dir_)
-	{ // si quiere moverse mas en la misma direccion
-		if (tweenMovement.progress() != 1.0)
+	{
+		// si quiere moverse mas en la misma direccion
+		if (tweenMovement.progress() == 0.0)
 		{
 			tweenMovement = resetTween(0.0f, scrollFactor_ * dir_);
 			tweenFantasmiko = resetTween(halfScreen_ - 50.0f, halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_);
 		}
+		else if (tweenMovement.progress() != 1.0)
+		{
+			tweenMovement = resetTween(tweenMovement.peek(), scrollFactor_ * dir_);
+			tweenFantasmiko = resetTween(tweenFantasmiko.peek(), halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_);
+		}
 	}
 	else
-	{ // si quiere moverse mas en la direccion contraria
+	{
+		// si quiere moverse mas en la direccion contraria
 		tweenMovement = resetTween(tweenMovement.peek(), scrollFactor_ * dir_);
 		tweenFantasmiko = resetTween(tweenFantasmiko.peek(), halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_);
 	}
-
-
-	///// DEL FANTASMIKO
-	//tweenFantasmiko =
-	//	tweeny::from(halfScreen_ - 50.0f)
-	//	.to(halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_)
-	//	.during(ACC_DURATION * 2)
-	//	.via(tweeny::easing::sinusoidalInOut);
 }
 
 void MoveOnClick::disableLerp()

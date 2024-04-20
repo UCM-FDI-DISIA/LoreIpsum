@@ -170,6 +170,7 @@ ecs::entity_t CardFactory_v0::createHand()
 	{ 
 		auto card = sdlutils().cards().at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		createCard(
+			0,
 			Vector2D(initX + offSetX * i, initY),
 			card.cost(),
 			card.value(),

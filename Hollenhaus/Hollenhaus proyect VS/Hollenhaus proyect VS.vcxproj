@@ -80,6 +80,7 @@
     <ClCompile Include="src\game\factories\CardFactory.cpp" />
     <ClCompile Include="src\game\factories\CardFactory_v0.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\game\factories\CardFactory_v1.cpp" />
     <ClCompile Include="src\game\factories\DecisionFactory.cpp" />
@@ -266,6 +267,7 @@
     <ClInclude Include="src\game\factories\CardFactory.h" />
     <ClInclude Include="src\game\factories\CardFactory_v0.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\game\factories\CardFactory_v1.h" />
     <ClInclude Include="src\game\factories\Factory.h" />
