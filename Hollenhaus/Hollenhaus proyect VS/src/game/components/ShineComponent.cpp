@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "../checkML.h"
 #include "ShineComponent.h"
 

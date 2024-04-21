@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "DialogueEventCollection.h"
 #include "../factories/Factory.h"
 #include "../factories/DecisionFactory_V0.h"

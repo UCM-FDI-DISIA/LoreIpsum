@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "PlayerCardsManager.h"
 #include "Manager.h"
 #include "../../Entity.h"

@@ -6,7 +6,8 @@
 // el contador de scroll (unidades a moverse por update): aumenta (izq) o disminuye (der)
 // despues de esta evaluacion se ejecuta el movimiento del fondo con su respectiva velocidad
 
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "MoveOnClick.h"
 #include "../Entity.h"
 #include "managers/Manager.h"

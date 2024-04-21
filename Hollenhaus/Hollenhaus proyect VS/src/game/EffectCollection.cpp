@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "EffectCollection.h"
 #include "components/Cell.h"
 

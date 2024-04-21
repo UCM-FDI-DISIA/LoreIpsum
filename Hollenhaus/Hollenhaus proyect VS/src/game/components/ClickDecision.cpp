@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "ClickDecision.h"
 
 #include "../components/NextText.h"

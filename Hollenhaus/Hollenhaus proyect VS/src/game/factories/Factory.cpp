@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "Factory.h"
 #include "CardFactory.h"
 #include "BoardFactory.h"
