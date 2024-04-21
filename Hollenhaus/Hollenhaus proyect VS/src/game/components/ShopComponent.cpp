@@ -149,7 +149,7 @@ void ShopComponent::purchaseCard()
 	int index = searchIndexById(id);
 
 	GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al cajon.
-	
+
 	money -= shopCardsPrize[index]; // Restamos el dinero.
 
 	GameStateMachine::instance()->getCurrentState()->substractMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
@@ -192,21 +192,6 @@ bool ShopComponent::confirmPurchase(int prize, int id)
 		220, // Wrap length.
 		Text::BoxPivotPoint::LeftTop,
 		Text::TextAlignment::Center);
-
-
-	/*factory->createDecision(Vector2D(0, 0),
-		Vector2D(0.3, 0.3),
-		this->getEntity(),
-		3, //layer
-		3,
-		2,
-		3,
-		"8bit_size_20",
-		SDL_Color({ 0, 0, 0, 255 }),
-		220,
-		Text::BoxPivotPoint::LeftTop,
-		Text::TextAlignment::Center);*/
-		//GameStateMachine::instance()->getCurrentState()->deSelected();
 	return true;
 }
 
