@@ -45,9 +45,6 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent) //poli
 
 void DialogueEventCollection::ActionEnded()
 {
-
-	TuVieja("SE ACABOOOOOOOOO");
-
 	// handler del tutorial para tocar el action done
 	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
 	ent->getComponent<TutorialManager>()->actionEnded();

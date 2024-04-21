@@ -138,13 +138,15 @@ void TutorialBoardManager::setState()
 
 ecs::entity_t TutorialBoardManager::createPopUp(float x, float y, std::string popup, int convo)
 {
-	TuVieja("Creando PopUp...");
+	//TuVieja("Creando PopUp...");
 
 	JsonData::DialogueData dialogue = sdlutils().dialogues().at(popup);
 	//int conv = 0;
 	int node = 0;
 
 	// AQUIIIIIIIIII
+
+	std::cout << "convo no " << dialogue.Convo(convo).ConvoID() << std::endl;
 
 	// crear dialogo del FACTORY de dialogos
 	//// Mirar comentario en el interior de la función
@@ -182,7 +184,7 @@ void TutorialBoardManager::setObjs(std::vector<ecs::entity_t> v)
 
 void TutorialBoardManager::setINIT()
 {
-	TuVieja("Setting INIT");
+	//TuVieja("Setting INIT");
 
 	createPopUp(250, 200, "Board Tutorial", 0);
 
@@ -191,7 +193,7 @@ void TutorialBoardManager::setINIT()
 
 void TutorialBoardManager::setCARD()
 {
-	TuVieja("Setting CARD");
+	//TuVieja("Setting CARD");
 
 	createPopUp(250, 200, "Board Tutorial", 1);
 
@@ -201,7 +203,7 @@ void TutorialBoardManager::setCARD()
 
 void TutorialBoardManager::setDECK()
 {
-	TuVieja("Setting DECK");
+	//TuVieja("Setting DECK");
 
 	ecs::entity_t pop = createPopUp(550, 300, "Board Tutorial", 2);
 
@@ -226,7 +228,7 @@ void TutorialBoardManager::setDRAWCARD()
 
 void TutorialBoardManager::setCELL()
 {
-	TuVieja("Setting CELL");
+	//TuVieja("Setting CELL");
 
 	createPopUp(250, 200, "Board Tutorial", 3);
 
@@ -235,7 +237,7 @@ void TutorialBoardManager::setCELL()
 
 void TutorialBoardManager::setPLACECARD()
 {
-	TuVieja("Setting PLACE CARD");
+	//TuVieja("Setting PLACE CARD");
 
 	createPopUp(250, 200, "Board Tutorial", 4);
 
@@ -244,7 +246,7 @@ void TutorialBoardManager::setPLACECARD()
 
 void TutorialBoardManager::setACTION()
 {
-	TuVieja("Setting PLACE CARD");
+	//TuVieja("Setting PLACE CARD");
 
 	createPopUp(250, 200, "Board Tutorial", 5);
 
@@ -255,7 +257,7 @@ void TutorialBoardManager::setACTION()
 
 void TutorialBoardManager::setNEXTTURN()
 {
-	TuVieja("Setting PLACE CARD");
+	//TuVieja("Setting PLACE CARD");
 
 	//createPopUp(250, 200, "Board Tutorial", 5);
 

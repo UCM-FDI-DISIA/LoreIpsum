@@ -53,7 +53,7 @@ void NextText::OnLeftClickUp()
 
 void NextText::reactToClick()
 {
-	if (!dead) 
+	if (!dead && boxCollider_ != nullptr) 
 	{
 		if (boxCollider_->isCursorOver())
 		{

@@ -34,8 +34,8 @@ void DialogueReader::NextNode()
 {
 	if (!ent_->getComponent<NextText>()->isDead()) {
 
-		std::cout << convo_->Node(actualNode_).NodeID() << std::endl;
-		std::cout << convo_->ConvoID() << std::endl << std::endl;
+		//std::cout << convo_->Node(actualNode_).NodeID() << std::endl;
+		//std::cout << convo_->ConvoID() << std::endl << std::endl;
 
 		exeEvents(convo_->Node(actualNode_).NodeEventsFinish());
 		actualNode_++;
