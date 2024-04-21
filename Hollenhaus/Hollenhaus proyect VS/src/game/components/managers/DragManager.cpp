@@ -48,30 +48,38 @@ void DragManager::update()
 		///PARA EL FEEDBACK -> Comprobamos si está encima de una celda
 		auto drop = mouseRaycast(ecs::grp::DROPS);
 
-		auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
+		//auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
 		if (drop != nullptr) {
 			
 			//Debug para que escriba en que celda está
-			std::cout << drop->getComponent<DropDetector>()->getBoardPos() << std::endl;
+			std::cout << "Celda: " << drop->getComponent<DropDetector>()->getBoardPos() << std::endl;
 
 			auto c = dragTransform->getEntity()->getComponent<Card>();
 
 
 			// Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
 			auto id = c->getID();
+			std::cout << "ID: " << id << std::endl;
 			auto l = sdlutils().cards().at(std::to_string(id));
 			
+			//Miramos todos los efectos que tenga la carta
 			for (auto e : l.effects()) {
-				//Diferenciamos los tipos de efectos (Solo nos interesa el 2, 3, 4; luego de eso vemos las direcciones)
-				std::cout << e.type() << std::endl;
 
+				//Diferenciamos los diferentes tipos de efectos que nos interesa, en cada uno hará una cosa disntinta)
 				if (e.type() == Effects::Superflecha || e.type() == Effects::Flecha || e.type() == Effects::Centro) {
-					std::cout << e.type() << std::endl;
+					std::cout << "Tipo: " << e.type() << std::endl;
+					for (auto d : e.directions()) {
+
+						//Queremos seleccionar la casilla que haya en esa dirección y cambiarle el color
+						std::cout << "Dirección: " << d << std::endl;
+					}
+						
+							
 
 				}
 			}
 
-			drop->getComponent<Cell>()->getEffects();
+			//drop->getComponent<Cell>()->getEffects();
 		}
 	}
 

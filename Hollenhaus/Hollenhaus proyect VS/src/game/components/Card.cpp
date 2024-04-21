@@ -57,8 +57,8 @@ Card::Card(int cost, int value, std::string& sprite, bool unblockable)
 
 }
 
-Card::Card(int cost, int value, int id, std::string& sprite, bool unblockable)
-	: cost(cost), value(value), id(id), sprite(sprite), unblockable(unblockable)
+Card::Card(int id, int cost, int value, std::string& sprite, bool unblockable)
+	: id(id), cost(cost), value(value), sprite(sprite), unblockable(unblockable)
 {
 
 }
