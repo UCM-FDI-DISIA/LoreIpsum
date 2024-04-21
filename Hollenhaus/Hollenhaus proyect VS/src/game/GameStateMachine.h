@@ -5,6 +5,7 @@
 #include <stack>
 #include <functional>
 #include "../utils/Singleton.h"
+#include "../utils/tweeny-3.2.0.h"
 
 class GameState;
 class Data;
@@ -90,6 +91,33 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	// Estados auxiliares
 	GameState* movementState;
 
+	/// FADE IN-OUT
+	ecs::entity_t fade;
+	tweeny::tween<int> fadetween;
+	bool toFadeIn;
+	bool toFadeOut;
+	/*
+		/// FADE TWEEN
+	fade = Instantiate(Vector2D());
+	fade->addComponent<SpriteRenderer>("black_box");
+	fade->setLayer(999);
+	fade->getComponent<Transform>()->setGlobalScale(100.0, 100.0);
+	fadetween =
+		tweeny::from(255)
+		.to(0)
+		.during(30)
+		.via(tweeny::easing::linear);
+	 *
+	 *
+	 *
+		//if (fadetween.progress() < 1.0)
+	{
+		fadetween.step(1);
+		fade->getComponent<SpriteRenderer>()->setOpacity(fadetween.peek());
+	}
+	*/
+
+
 public:
 	ecs::Manager* getMngr()
 	{
@@ -112,7 +140,7 @@ public:
 	void Update();
 	void Refresh();
 
-	inline void setState(int state) {
+	inline void setState(int state, bool fadeIn = false, bool fadeOut = false) {
 
 		switch (state)
 		{

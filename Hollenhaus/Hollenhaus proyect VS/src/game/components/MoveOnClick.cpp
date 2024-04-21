@@ -122,7 +122,6 @@ void MoveOnClick::update()
 	myTransform_->setGlobalPos(aux);
 
 	/// TWEEN DEL FANTASMA
-	std::cout << tweenFantasmiko.peek() << std::endl;
 	fanTrans->setGlobalPos(
 		tweenFantasmiko.peek(),
 		fanTrans->getGlobalPos().getY()
