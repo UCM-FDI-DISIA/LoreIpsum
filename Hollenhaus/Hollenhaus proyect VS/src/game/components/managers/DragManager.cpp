@@ -55,23 +55,52 @@ void DragManager::update()
 			std::cout << "Celda: " << drop->getComponent<DropDetector>()->getBoardPos() << std::endl;
 
 			auto c = dragTransform->getEntity()->getComponent<Card>();
+			auto cell = drop->getComponent<Cell>();
 
 
 			// Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
 			auto id = c->getID();
-			std::cout << "ID: " << id << std::endl;
 			auto l = sdlutils().cards().at(std::to_string(id));
 			
 			//Miramos todos los efectos que tenga la carta
 			for (auto e : l.effects()) {
 
+				/*switch (e.type()) {
+				case Effects::Superflecha:
+					break;
+				case Effects::Flecha:
+					break;
+				case Effects::Centro:
+					break;
+				}*/
 				//Diferenciamos los diferentes tipos de efectos que nos interesa, en cada uno hará una cosa disntinta)
 				if (e.type() == Effects::Superflecha || e.type() == Effects::Flecha || e.type() == Effects::Centro) {
-					std::cout << "Tipo: " << e.type() << std::endl;
 					for (auto d : e.directions()) {
 
-						//Queremos seleccionar la casilla que haya en esa dirección y cambiarle el color
-						std::cout << "Dirección: " << d << std::endl;
+						//cell->getAdjacents()[d]->
+						while (cell->getAdjacents()[d] != nullptr)
+						{
+							//Hay que ponerle un sprite renderer a las celdas
+							if (cell->getEntity()->getComponent<SpriteRenderer>() != nullptr) {
+								TuVieja("tiene sprite");
+								cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(1, 1, 1, 200);
+								
+							}
+							cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
+						}
+
+						if (d == Effects::Up) {
+							TuVieja("Arriba");
+						}
+						else if (d == Effects::Right) {
+							TuVieja("Derecha");
+						}
+						else if (d == Effects::Down) {
+							TuVieja("Abajo");
+						}
+						else if (d == Effects::Left) {
+							TuVieja("Izquierda");
+						}
 					}
 						
 							

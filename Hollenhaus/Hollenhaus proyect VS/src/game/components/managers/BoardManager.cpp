@@ -119,6 +119,7 @@ void BoardManager::updateScore()
 
 void BoardManager::applyAllEffects() const
 {
+	//pone el valor de todas las cartas del tablero a 0
 	for (int j = 0; j < size; j++)
 		for (int i = 0; i < size; i++)
 			if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
