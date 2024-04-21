@@ -90,7 +90,7 @@ void ShopState::onEnter()
 	posX.push_back(570); posY.push_back(530);
 	posX.push_back(570); posY.push_back(500);
 	posX.push_back(590); posY.push_back(550);
-	posX.push_back(650); posY.push_back(555);
+	//posX.push_back(650); posY.push_back(555);
 
 	int a = getMoney();
 	int money = a / 100;
@@ -162,7 +162,7 @@ void ShopState::onEnter()
 	exitButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(1);});
 
 
-	
+
 
 	//------Sonido de la tienda:
 	auto& sdl = *SDLUtils::instance();
@@ -191,6 +191,7 @@ void ShopState::deSelected()
 	{
 		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda");
 	}
+	hideCoins();
 	updateCoinsOnTable();
 }
 
@@ -228,27 +229,23 @@ void ShopState::showCoin(ecs::entity_t coinToShow)
 	coinToShow->addComponent<SpriteRenderer>("moneda");
 }
 
-/*void ShopState::makeCoinShine(int cardIndex, ecs::entity_t card, ecs::entity_t shopMngr)
-{
-	int k = shopMngr->getComponent<ShopComponent>()->getCardPrice(cardIndex);
-
-	int nCoins = k / 100, i = 0;
-
-	while (i < nCoins) {
-		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
-			card->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
-			i++;
-		}
-	}
-}*/
-
 void ShopState::updateCoinsOnTable()
 {
-	int a = getMoney();
-	int money = a / 100;
-	for (int i = 0; i < money; i++) {
+	int playerMoney = getMoney();
+	int coins = playerMoney / 100;
+	for (int i = 0; i < coins; i++)
+	{
 		showCoin(mngr().getEntities(ecs::grp::COINS)[i]);
 	}
+}
+
+void ShopState::hideCoins()
+{
+	/*int playerMoney = getMoney();
+	for (int i = 0; i < playerMoney; i++)
+	{
+		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<Transform>()->setGlobalPos(Vector2D())
+	}*/
 }
 
 void ShopState::setDecisionManager()

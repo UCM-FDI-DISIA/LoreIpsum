@@ -157,6 +157,7 @@ void ShopComponent::purchaseCard()
 	std::cout << "hola";
 
 	updateTexts();
+	GameStateMachine::instance()->getCurrentState()->deSelected();
 	handler->getComponent<DecisionComponent>()->setBuying(false);
 	handler->getComponent<DecisionComponent>()->resetCardToPurchase();
 }
