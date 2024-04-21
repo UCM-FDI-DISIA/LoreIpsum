@@ -15,7 +15,7 @@ void DialogueEventCollection::ChangeScene(int scene)
 	GameStateMachine::instance()->setState(scene);
 }
 
-void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent) //poli
+void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent, int greenDecision, int redDecision, int scene) //poli
 {
 	Factory * factory = new Factory();
 	factory->SetFactories(
@@ -29,9 +29,9 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent) //poli
 							{ 0,0 }, //size
 							parent, //parent
 							4, //layer
-							3, //scene a la que se iria si pulsamos Si
-							0, //greenDecision
-							1, //redDecision
+							scene, // Escena
+							greenDecision, //greenDecision
+							redDecision, //redDecision
 							"8bit_size_24", //fontId
 							SDL_Color({ 0, 0, 0, 255 }), //color del txt
 							100, //wraplength

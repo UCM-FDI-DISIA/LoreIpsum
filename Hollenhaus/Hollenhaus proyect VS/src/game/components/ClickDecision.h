@@ -25,6 +25,9 @@ public:
 
     void setScene(int s); // PAIGRO AQUI
 
+    void purchaseCard();
+    void cancelPurchase();
+
 private:
     ecs::entity_t parent_;
     int scene_;

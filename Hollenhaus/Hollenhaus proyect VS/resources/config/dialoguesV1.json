@@ -16,7 +16,9 @@
                                 {
                                     "timing": 1,
                                     "type": 3,
-                                    "scene": 3
+                                    "scene": 3,
+                                    "gdecision": 1,
+                                    "rdecision": 0
                                 }
                             ]
                         },
@@ -65,8 +67,7 @@
                     "nodes": [
                         {
                             "nodeID": "0",
-                            "text": "Otra conversacion por 
-                                ",
+                            "text": "Otra conversacion por ",
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [
@@ -232,7 +233,9 @@
                                 {
                                     "timing": 1,
                                     "type": 3,
-                                    "scene": 3
+                                    "scene": 3,
+                                    "gdecision": 2,
+                                    "rdecision": 0
                                 }
                             ]
                         },

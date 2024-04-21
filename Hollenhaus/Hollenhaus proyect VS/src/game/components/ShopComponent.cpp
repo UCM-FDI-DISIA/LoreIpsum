@@ -7,6 +7,7 @@
 #include "Button.h"
 #include "../../game/components/managers/Manager.h"
 #include "../components/basics/TextComponent.h"
+#include "DecisionComponent.h"
 //------CheckML.
 #include"../checkML.h"
 //------Factorias.
@@ -29,10 +30,10 @@ ShopComponent::~ShopComponent()
 
 void ShopComponent::initComponent()
 {
-	//factory = new Factory();
-	//factory->SetFactories(static_cast<DialogueFactory*>(new DialogueFactory_V0()));
 	factory = new Factory();
-	factory->SetFactories(static_cast<DecisionFactory_V0*>(new DecisionFactory_V0()));
+	factory->SetFactories(static_cast<DialogueFactory*>(new DialogueFactory_V0()));
+	//factory = new Factory();
+	//factory->SetFactories(static_cast<DecisionFactory_V0*>(new DecisionFactory_V0()));
 
 	if (GameStateMachine::instance()->getCurrentState()->checkDataShopCardsIsEmpty()) // Si no hay cartas de la tienda en Data entonces se tienen que generar.
 	{
@@ -53,6 +54,8 @@ void ShopComponent::initComponent()
 
 	showCards();
 	setTexts();
+
+	handler = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
 }
 
 void ShopComponent::generateCards()
@@ -129,26 +132,33 @@ void ShopComponent::buyCard()
 		int id = card->getComponent<Card>()->getID(); // Id de la carta.
 		int index = searchIndexById(id); // Indice de la carta en shopCards, shopCardspositions y shopCardsPrize.
 		//------Esto para confirmar la compra.---------------------------------------------alomejor separar en dos if por si se quiere poner dialogo de no tener dinero suficiente.
-		if (money >= shopCardsPrize[index] && confirmPurchase(shopCardsPrize[index]))
+		if (money >= shopCardsPrize[index] && confirmPurchase(shopCardsPrize[index], id))
 		{
 			std::cout << "Compra." << std::endl;
 			if (card != nullptr)
 			{
-				GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al cajon.
 				card->getComponent<SpriteRenderer>()->setMultiplyColor(100, 100, 100, 255); // Cambiamos el color.
-				money -= shopCardsPrize[index]; // Restamos el dinero.
-
-				GameStateMachine::instance()->getCurrentState()->substractMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
-
-				updateTexts();
 			}
 		}
 	}
 }
 
-int ShopComponent::getPlayerMoney()
+void ShopComponent::purchaseCard()
 {
-	return money;
+	int id = handler->getComponent<DecisionComponent>()->getCardToPurchase();
+	int index = searchIndexById(id);
+
+	GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al cajon.
+	
+	money -= shopCardsPrize[index]; // Restamos el dinero.
+
+	GameStateMachine::instance()->getCurrentState()->substractMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
+
+	std::cout << "hola";
+
+	updateTexts();
+	handler->getComponent<DecisionComponent>()->setBuying(false);
+	handler->getComponent<DecisionComponent>()->resetCardToPurchase();
 }
 
 int ShopComponent::calculatePrize(ecs::entity_t card)
@@ -159,15 +169,15 @@ int ShopComponent::calculatePrize(ecs::entity_t card)
 	return prize;
 }
 
-bool ShopComponent::confirmPurchase(int prize)
+bool ShopComponent::confirmPurchase(int prize, int id)
 {
-	//---------------------------------------------------------------------preguntar a ines/poli sobre el dialogo para confirmar.
-
 	GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
 
-	JsonData::DialogueData dialogue = sdlutils().dialogues().at("Tienda");
+	handler->getComponent<DecisionComponent>()->setCardToPurchase(id);
 
-	auto a = getEntity();
+	JsonData::DialogueData dialogue = sdlutils().dialogues().at("Tienda");
+	factory;
+	//auto a = getEntity();
 
 	shopDialogue = factory->createDialogue("Tienda", 0, 0,
 		{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f }, // Posicion.
@@ -185,19 +195,24 @@ bool ShopComponent::confirmPurchase(int prize)
 
 
 	/*factory->createDecision(Vector2D(0, 0),
-		Vector2D(0.3, 0.3), 
+		Vector2D(0.3, 0.3),
 		this->getEntity(),
 		3, //layer
-		3, 
-		2, 
-		3, 
-		"8bit_size_20", 
-		SDL_Color({ 0, 0, 0, 255 }), 
-		220, 
+		3,
+		2,
+		3,
+		"8bit_size_20",
+		SDL_Color({ 0, 0, 0, 255 }),
+		220,
 		Text::BoxPivotPoint::LeftTop,
 		Text::TextAlignment::Center);*/
-	//GameStateMachine::instance()->getCurrentState()->deSelected();
+		//GameStateMachine::instance()->getCurrentState()->deSelected();
 	return true;
+}
+
+int ShopComponent::getPlayerMoney()
+{
+	return money;
 }
 
 int ShopComponent::searchIndexById(int id)
@@ -218,6 +233,10 @@ int ShopComponent::searchIndexById(int id)
 void ShopComponent::update()
 {
 	//std::cout << "Money: " << money << std::endl;
+	if (handler->getComponent<DecisionComponent>()->getBuying())
+	{
+		purchaseCard();
+	}
 }
 
 void ShopComponent::setTexts()
@@ -294,3 +313,5 @@ void ShopComponent::updateTexts()
 		cardPrizeText3->getComponent<TextComponent>()->setTxt("vendida");
 	}
 }
+
+

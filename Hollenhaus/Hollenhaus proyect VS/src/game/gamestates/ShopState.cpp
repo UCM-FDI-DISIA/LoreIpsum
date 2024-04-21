@@ -8,6 +8,7 @@
 #include "../components/shopComponent.h"
 #include "../GameStateMachine.h"
 #include "../components/Button.h"
+#include "../components/DecisionComponent.h"
 // Factorias:
 #include "../factories/Factory.h"
 #include "../factories/FakeCardFactory_v0.h"
@@ -40,6 +41,7 @@ void ShopState::onEnter()
 	factory = new Factory();
 	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
 
+	setDecisionManager();
 
 	//COSAS QUE HAY EN CADA CAPA:
 	//---layer 0
@@ -160,7 +162,7 @@ void ShopState::onEnter()
 	exitButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(1);});
 
 
-	setDecisionManager();
+	
 
 	//------Sonido de la tienda:
 	auto& sdl = *SDLUtils::instance();
@@ -251,11 +253,8 @@ void ShopState::updateCoinsOnTable()
 
 void ShopState::setDecisionManager()
 {
-
 	manager = Instantiate();
 
-	//manager->addComponent<TutorialManager>();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::DECISION_MANAGER, manager);
-
-
+	manager->addComponent<DecisionComponent>();
 }

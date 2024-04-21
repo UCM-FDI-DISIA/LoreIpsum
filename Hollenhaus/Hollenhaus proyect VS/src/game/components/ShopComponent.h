@@ -39,7 +39,7 @@ public:
 	//------devuelve el dinero del jugador
 	int getPlayerMoney();
 	//------Para abrir el diálogo de confirmacion de compra.
-	bool confirmPurchase(int prize);
+	bool confirmPurchase(int prize,int id);
 	//------Dada una carta calcula su precio según su coste y modificadores.
 	int calculatePrize(ecs::entity_t card);
 	//------Dado un id de una carta, devuelve su poscion en shopCards, shopCardsPrize y shopCardsPositions porque comparten indexacion.
@@ -48,6 +48,8 @@ public:
 	void setTexts();
 	//------Actualiza los textos de dinero y precio de las cartas.
 	void updateTexts();
+	//----
+	void purchaseCard();
 private:
 	//----Guarda las CARDS_IN_SHOP cartas de la tienda.
 	int* shopCards;
@@ -76,5 +78,7 @@ private:
 	ecs::entity_t cardPrizeText2;
 	//----Texto que muestra el precio de la carta 3.
 	ecs::entity_t cardPrizeText3;
+	//----
+	ecs::entity_t handler;
 };
 
