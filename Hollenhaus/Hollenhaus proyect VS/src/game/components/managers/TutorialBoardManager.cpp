@@ -99,6 +99,7 @@ void TutorialBoardManager::setState()
 {
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
 	ent_->getComponent<TutorialManager>()->activateColliders(objs);
+	ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
 
 	switch (t)
 	{
@@ -141,6 +142,8 @@ ecs::entity_t TutorialBoardManager::createPopUp(float x, float y, std::string po
 	//TuVieja("Creando PopUp...");
 
 	JsonData::DialogueData dialogue = sdlutils().dialogues().at(popup);
+
+
 	//int conv = 0;
 	int node = 0;
 
@@ -177,6 +180,8 @@ void TutorialBoardManager::setTutorial(ecs::entity_t t)
 void TutorialBoardManager::setObjs(std::vector<ecs::entity_t> v)
 {
 	objs = v;
+
+	tutorial->getComponent<TutorialManager>()->setLayers(objs);
 }
 
 
@@ -187,8 +192,10 @@ void TutorialBoardManager::setINIT()
 	//TuVieja("Setting INIT");
 
 	createPopUp(250, 200, "Board Tutorial", 0);
+	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
 
 void TutorialBoardManager::setCARD()
@@ -211,6 +218,9 @@ void TutorialBoardManager::setDECK()
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
+	std::vector<ecs::entity_t> v;
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
 
 }
 
@@ -224,6 +234,8 @@ void TutorialBoardManager::setDRAWCARD()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
 
 void TutorialBoardManager::setCELL()
@@ -233,6 +245,10 @@ void TutorialBoardManager::setCELL()
 	createPopUp(250, 200, "Board Tutorial", 3);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
 
 void TutorialBoardManager::setPLACECARD()
@@ -242,6 +258,7 @@ void TutorialBoardManager::setPLACECARD()
 	createPopUp(250, 200, "Board Tutorial", 4);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
 }
 
 void TutorialBoardManager::setACTION()
@@ -251,6 +268,10 @@ void TutorialBoardManager::setACTION()
 	createPopUp(250, 200, "Board Tutorial", 5);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
 
 

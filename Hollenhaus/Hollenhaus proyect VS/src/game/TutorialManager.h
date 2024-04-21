@@ -17,9 +17,11 @@ public:
     void wait(std::function<void()> callback);
     void tutorialActionEnded(Tutorials::Tutorials t, int i);
     void setColliderWall(std::vector<ecs::entity_t> e, ecs::entity_t parent);
+    void resetColliderWall(std::vector<ecs::entity_t> e);
     void deactivateColliders(std::vector<ecs::entity_t> n);
     void activateColliders(std::vector<ecs::entity_t> n);
     void activateAllColliders();
+    void setLayers(std::vector<ecs::entity_t> n);
 
     bool hasEnded() { return ended; }
     bool Next() { return next; }
@@ -53,6 +55,7 @@ private:
 
     ecs::entity_t colliderWall;
     std::vector<ecs::entity_t> objs;
+    std::vector<int> layers;
 
 
     void loseCollider(BoxCollider* coll);
