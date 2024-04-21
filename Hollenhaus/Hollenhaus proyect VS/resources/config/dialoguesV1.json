@@ -125,7 +125,7 @@
             {
               "nodeID": 4,
               "text": "vamos, el coach rcibiendo un balon",
-              "eventStart": 0,
+              "eventStart": 0, 
               "eventFinish": 0,
               "events": [
               ]
@@ -143,7 +143,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Hola",
+              "text": "Bienvenido a las partidas de cartas.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -151,32 +151,24 @@
             },
             {
               "nodeID": 1,
-              "text": "Soy un dialogo de tutorial",
+              "text": "Con las partidas de cartas podras conseguir dinero con el que podras comprar nuevas cartas en la tienda.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
               ]
             },
             {
-              "nodeID": 2,
-              "text": "Te voy a explicar el juego",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 3,
-              "text": "Disfruta",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-                {
-                  "timing": 1,
-                  "type": 4,
-                  "scene": 0
-                }
-              ]
+                "nodeID": 3,
+                "text": "Pero empecemos desde el principio.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                    {
+                        "timing": 1,
+                        "type": 4,
+                        "scene": 0
+                    }
+                ]
             }
           ]
         },
@@ -186,7 +178,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Esto es una carta",
+              "text": "Esto es una carta.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -194,7 +186,7 @@
             },
             {
               "nodeID": 1,
-              "text": "La cartas guardan informacion",
+              "text": "Las cartas guardan informacion.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -220,16 +212,24 @@
               ]
             },
             {
-              "nodeID": 1,
-              "text": "El mazo se compone de las cartas que tu quieras!",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
+                "nodeID": 1,
+                "text": "El mazo se compone de las cartas que tu quieras. Desde tu oficina lo puedes modificar.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                ]
+            },
+            {
+                "nodeID": 1,
+                "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                ]
             },
             {
               "nodeID": 2,
-              "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso",
+              "text": "Roba una carta de tu mazo para tenerla en tu mano.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -255,16 +255,8 @@
               ]
             },
             {
-              "nodeID": 1,
-              "text": "Acabas de robar una carta de tu mazo",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
               "nodeID": 2,
-              "text": "Solo podras usar cartas que tienes en manos",
+              "text": "Solo podras usar cartas que tienes en tu mano",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -272,7 +264,7 @@
             },
             {
               "nodeID": 3,
-              "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero",
+              "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -303,7 +295,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Completar distintas acciones supondra un coste",
+              "text": "Completar distintas acciones supondra un coste.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -318,8 +310,16 @@
               ]
             },
             {
+                "nodeID": 2,
+                "text": "Colocar una carta en el tablero dependera de cada carta.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                ]
+            },
+            {
               "nodeID": 3,
-              "text": "Colocar una carta en el tablero dependera de cada carta",
+              "text": "Este coste se puede ver en la esquina superior derecha de cada carta.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -338,7 +338,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Cuando no puedas hacer mas acciones pulsa el boton de Siguiente Turno",
+              "text": "Cuando no puedas hacer mas acciones pulsa el boton de Siguiente Turno.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -346,7 +346,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Esto le dara la oportunidad a tu enemigo de jugar sus cartas",
+              "text": "Esto le dara la oportunidad a tu enemigo de jugar sus cartas.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
