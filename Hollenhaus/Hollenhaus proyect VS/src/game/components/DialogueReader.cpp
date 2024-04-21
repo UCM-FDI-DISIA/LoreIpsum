@@ -9,6 +9,9 @@
 
 DialogueReader::DialogueReader(std::string owner, int convo, int firstNode)
 {
+
+	own = owner;
+	conv = convo;
 	convo_ = &sdlutils().dialogues().at(owner).Convo(convo);
 	actualNode_ = firstNode;
 }
@@ -36,6 +39,8 @@ void DialogueReader::NextNode()
 
 		//std::cout << convo_->Node(actualNode_).NodeID() << std::endl;
 		//std::cout << convo_->ConvoID() << std::endl << std::endl;
+
+		convo_->Node(actualNode_).NodeEventsFinish();
 
 		exeEvents(convo_->Node(actualNode_).NodeEventsFinish());
 		actualNode_++;

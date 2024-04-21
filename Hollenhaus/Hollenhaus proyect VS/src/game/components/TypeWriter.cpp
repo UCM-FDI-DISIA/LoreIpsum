@@ -39,6 +39,7 @@ void TypeWriter::update()
 			// suma el char siguiente a finaltext
 			finaltext.insert(finaltext.end(), text[i]);
 
+
 			// cuenta para el siguiente char
 			i++;
 
@@ -54,8 +55,12 @@ void TypeWriter::update()
 
 void TypeWriter::typeWrite(std::string newtext)
 {
-	finaltext = "";
+
+	finaltext.clear();
+	//finaltext = "";
 	text = newtext;
+	std::cout << newtext << std::endl;
+
 	i = 0;
 }
 
