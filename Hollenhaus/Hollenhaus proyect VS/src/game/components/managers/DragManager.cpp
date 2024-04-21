@@ -65,14 +65,6 @@ void DragManager::update()
 			//Miramos todos los efectos que tenga la carta
 			for (auto e : l.effects()) {
 
-				/*switch (e.type()) {
-				case Effects::Superflecha:
-					break;
-				case Effects::Flecha:
-					break;
-				case Effects::Centro:
-					break;
-				}*/
 				//Diferenciamos los diferentes tipos de efectos que nos interesa, en cada uno hará una cosa disntinta)
 				if (e.type() == Effects::Superflecha || e.type() == Effects::Flecha || e.type() == Effects::Centro) {
 					for (auto d : e.directions()) {
