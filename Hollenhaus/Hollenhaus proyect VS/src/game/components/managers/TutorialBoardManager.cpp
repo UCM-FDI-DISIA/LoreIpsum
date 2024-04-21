@@ -54,6 +54,7 @@ void TutorialBoardManager::initComponent()
 	currentState = Tutorials::Board::BOARD_NONE;
 	nextState = Tutorials::Board::INIT;
 	ended = false;
+	checked = false;
 }
 
 
@@ -74,7 +75,11 @@ void TutorialBoardManager::update()
 
 void TutorialBoardManager::nextTutorialState()
 {
-	nextState = tutorial->getComponent<TutorialManager>()->nextState();
+	if (!checked) {
+		nextState = tutorial->getComponent<TutorialManager>()->nextState();
+
+		checked = true;
+	}
 }
 
 void TutorialBoardManager::updateTutorialState()
@@ -140,6 +145,8 @@ void TutorialBoardManager::setState()
 	currentState = nextState;
 
 	ent_->getComponent<TutorialManager>()->setCurrentTutorialState(t);
+
+	checked = false;
 }
 
 

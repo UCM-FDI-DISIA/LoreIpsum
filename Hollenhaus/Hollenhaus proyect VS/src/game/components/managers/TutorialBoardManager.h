@@ -36,6 +36,7 @@ private:
     int currentState;       //
     int nextState;          //
     bool ended;             //
+    bool checked;
 
     Factory* factory;               //
     ecs::entity_t base;             // entidad para colocar los popups, se va moviendo segun donde los queramos
