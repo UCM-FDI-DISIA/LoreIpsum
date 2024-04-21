@@ -19,6 +19,7 @@ public:
     void update() override;
 
     void setBoardManager(BoardManager* _boardManager) { boardManager = _boardManager; }
+    void updateFeedback();
     
     bool isDraggable() const { return draggable; }
     void setDraggable(bool value) { draggable = value; }

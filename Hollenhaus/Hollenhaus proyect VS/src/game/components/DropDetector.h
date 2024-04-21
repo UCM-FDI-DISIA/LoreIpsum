@@ -31,5 +31,8 @@ public:
     Vector2D& getCardPos() { return cardPos; };
 
     Vector2D& getBoardPos() { return boardPos; };
+
+    int getBoardPosX() { return boardPos.getX(); }
+    int getBoardPosY() { return boardPos.getY(); }
 };
 
