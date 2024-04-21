@@ -20,6 +20,9 @@ void TutorialManager::initComponent()
 
 	resetAction();
 
+	//actionEnded();
+	//ended = true;
+
 	isTutorial = false;
 
 
@@ -32,12 +35,15 @@ void TutorialManager::update()
 
 void TutorialManager::actionEnded()
 {
-	ended = true;
+
+	std::cout << "ended true" << std::endl;
+	ended = true; // BROOOOOOOOOOOOO
 
 }
 
 void TutorialManager::resetAction()
 {
+	std::cout << "ended false" << std::endl;
 	ended = false;
 }
 
@@ -60,7 +66,9 @@ void TutorialManager::wait(std::function<void()> callback)
 
 void TutorialManager::tutorialActionEnded(Tutorials::Tutorials t, int i)
 {
-	if (isTutorial && t == currtut && i == currstate) {
+	if (isTutorial && t == currtut && i == currstate && !ended) {
+
+		std::cout << "me hago popo bro" << std::endl;
 
 		actionEnded();
 		// HERE

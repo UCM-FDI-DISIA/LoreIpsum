@@ -37,7 +37,12 @@ void TypeWriter::update()
 		else {
 
 			// suma el char siguiente a finaltext
-			finaltext.insert(finaltext.end(), text[i]);
+			//finaltext.insert(finaltext.end(), text[i]);
+			finaltext += text[i];
+
+			// peta aqui porque llega un momento en el que deja de insertarle chars al finaltext
+			// y cuando pasa eso nunca se cumple que se acabe el typewrite, entonces cuando i > que text.size
+			// salta extepcion
 
 
 			// cuenta para el siguiente char

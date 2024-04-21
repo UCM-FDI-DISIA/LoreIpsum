@@ -66,7 +66,10 @@ void TutorialBoardManager::update()
 		resetEnded();
 	}
 
+	std::cout << currentState << std::endl;
+
 	updateTutorialState();
+	
 }
 
 void TutorialBoardManager::nextTutorialState()
@@ -80,7 +83,9 @@ void TutorialBoardManager::updateTutorialState()
 	nextState;
 
 	if (currentState != nextState) {
-		ent_->getComponent<TutorialManager>()->wait([this] { setState(); });
+		ent_->getComponent<TutorialManager>()->wait([this] 
+			{
+				setState(); });
 	}
 }
 
@@ -100,6 +105,7 @@ void TutorialBoardManager::setState()
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
 	ent_->getComponent<TutorialManager>()->activateColliders(objs);
 	ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
+	
 
 	switch (t)
 	{
