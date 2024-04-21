@@ -52,7 +52,7 @@ void MainMenuState::onEnter()
 	//ecs::entity_t titleText = Instantiate(Vector2D(400, 50));
 	//titleText->addComponent<TextComponent>("HÖLLENHAUS", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 450, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para un nuevo juego.
-	newGameButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 120));
+	newGameButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 220));
 	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300,40));
@@ -66,7 +66,7 @@ void MainMenuState::onEnter()
 	//ecs::entity_t optionsText = Instantiate(Vector2D(400, 300));
 	//optionsText->addComponent<TextComponent>("OPTIONS", "8bit_24pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para salir.
-	exitButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 70));
+	exitButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 125));
 	exitButton->addComponent<TextComponent>("SALIR", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	exitButton->addComponent<BoxCollider>();
 	exitButton->getComponent<BoxCollider>()->setSize(Vector2D(100,32));
@@ -79,6 +79,13 @@ void MainMenuState::onEnter()
 	multiplayerButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	multiplayerButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	multiplayerButton->addComponent<NPC>(13, 0);
+	
+	optionsButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 80));
+	optionsButton->addComponent<TextComponent>("OPCIONES", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	optionsButton->addComponent<BoxCollider>();
+	optionsButton->getComponent<BoxCollider>()->setSize(Vector2D(190, 40));
+	optionsButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-40, -20));
+	optionsButton->addComponent<NPC>(14, 0);
 
 
 
