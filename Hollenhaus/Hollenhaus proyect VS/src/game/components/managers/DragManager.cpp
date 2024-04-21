@@ -184,8 +184,13 @@ void DragManager::putCardOnBoard(ecs::entity_t card, DropDetector* cell)
 
 	// AQUI
 
-	// handler del tutorial para tocar el action done
 	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
-	ent->getComponent<TutorialManager>()->actionEnded();
+	if (ent->hasComponent<TutorialManager>()) {
+		// handler del tutorial para tocar el action done
+		
+		ent->getComponent<TutorialManager>()->actionEnded();
+
+	}
+	
 }
 

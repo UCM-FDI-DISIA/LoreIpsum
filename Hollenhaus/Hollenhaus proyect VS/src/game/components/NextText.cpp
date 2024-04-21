@@ -57,7 +57,6 @@ void NextText::reactToClick()
 	{
 		if (boxCollider_->isCursorOver())
 		{
-			TuVieja("ended: ");
 			//TuVieja(typeWriter_->ended());
 			//dialogueReader_->NextNode();
 
@@ -69,7 +68,7 @@ void NextText::reactToClick()
 void NextText::callNextNode()
 {
 	if (typeWriter_->ended()) {
-		TuVieja("Cambio de nodo.");
+		//TuVieja("Cambio de nodo.");
 		dialogueReader_->NextNode();
 	}
 	else {

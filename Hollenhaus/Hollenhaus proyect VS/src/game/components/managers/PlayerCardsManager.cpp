@@ -52,10 +52,14 @@ void PlayerCardsManager::drawCard()
 			hand_->addCard(deck_->drawCard()->getEntity());
 
 
-			// AQUI INES -> esto se tiene que ir tbh
 			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
-			ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::DRAW_CARD);
-			//TuVieja("AAAAAAAAAAAA");
+			if (ent->hasComponent<TutorialManager>()) {
+				// AQUI INES -> esto se tiene que ir tbh
+				
+				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::DRAW_CARD);
+				//TuVieja("AAAAAAAAAAAA");
+			}
+			
 
 		}
 	}
