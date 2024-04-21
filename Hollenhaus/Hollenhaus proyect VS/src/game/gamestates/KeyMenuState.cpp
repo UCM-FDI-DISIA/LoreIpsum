@@ -1,7 +1,8 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "KeyMenuState.h"
 
-#include "../components/managers/KeyManager.h"
+#include "game/components/Button.h"
+#include "game/components/KeyComponent.h"
 
 KeyMenuState::KeyMenuState()
 {
@@ -31,9 +32,13 @@ void KeyMenuState::render() const
 void KeyMenuState::onEnter() 
 {
 	// Manager de la leyenda
-	ecs::entity_t keyManager = Instantiate(Vector2D(200, 100));
-	keyManager->addComponent<KeyManager>();
-	keyManager->addComponent<SpriteRenderer>("key");
+	ecs::entity_t key = Instantiate(Vector2D(200, 100));
+	key->addComponent<KeyComponent>(getKeys());
+	key->addComponent<SpriteRenderer>("key");
+
+	ecs::entity_t button = Instantiate(Vector2D(0, 100));
+	button->addComponent<SpriteRenderer>("rice");
+	button->addComponent<Button>()->connectToButton([this]() { GameStateMachine::instance()->setState(7); });
 }
 
 void KeyMenuState::onExit() 

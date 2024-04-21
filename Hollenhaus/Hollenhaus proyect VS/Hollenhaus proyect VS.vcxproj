@@ -62,12 +62,12 @@
     <ClCompile Include="src\game\components\DropZone.cpp" />
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
     <ClCompile Include="src\game\components\HandComponent.cpp" />
+    <ClCompile Include="src\game\components\KeyComponent.cpp" />
     <ClCompile Include="src\game\components\managers\BoardManager.cpp" />
     <ClCompile Include="src\game\components\managers\CardStateManager.cpp" />
     <ClCompile Include="src\game\components\managers\DragManager.cpp" />
     <ClCompile Include="src\game\components\managers\DrawerManager.cpp" />
     <ClCompile Include="src\game\components\managers\IA_manager.cpp" />
-    <ClCompile Include="src\game\components\managers\KeyManager.cpp" />
     <ClCompile Include="src\game\components\managers\Manager.cpp" />
     <ClCompile Include="src\game\components\managers\MatchManager.cpp" />
     <ClCompile Include="src\game\components\managers\PizarraManager.cpp" />
@@ -220,12 +220,12 @@
     <ClInclude Include="src\game\components\DropZone.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
     <ClInclude Include="src\game\components\HandComponent.h" />
+    <ClInclude Include="src\game\components\KeyComponent.h" />
     <ClInclude Include="src\game\components\managers\BoardManager.h" />
     <ClInclude Include="src\game\components\managers\CardStateManager.h" />
     <ClInclude Include="src\game\components\managers\DragManager.h" />
     <ClInclude Include="src\game\components\managers\DrawerManager.h" />
     <ClInclude Include="src\game\components\managers\IA_manager.h" />
-    <ClInclude Include="src\game\components\managers\KeyManager.h" />
     <ClInclude Include="src\game\components\managers\Manager.h" />
     <ClInclude Include="src\game\components\managers\MatchManager.h" />
     <ClInclude Include="src\game\components\managers\PizarraManager.h" />

@@ -222,9 +222,6 @@
     <ClCompile Include="src\game\components\managers\DragManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\managers\KeyManager.cpp">
-      <Filter>Archivos de origen\Managers</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\components\managers\Manager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
@@ -350,9 +347,12 @@
     </ClCompile>
     <ClCompile Include="src\game\gamestates\KeyMenuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="pchs\pch.cpp">
       <Filter>Archivos de origen\Auxiliares</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\KeyComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -560,9 +560,6 @@
     <ClInclude Include="src\game\components\managers\DragManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\managers\KeyManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\components\managers\Manager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
@@ -688,9 +685,15 @@
     </ClInclude>
     <ClInclude Include="src\game\gamestates\KeyMenuState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="pchs\pch.h">
       <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\ShineComponent.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h" />
+    <ClInclude Include="src\game\components\KeyComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

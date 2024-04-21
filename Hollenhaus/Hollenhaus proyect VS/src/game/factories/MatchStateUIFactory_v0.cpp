@@ -13,7 +13,10 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
     keyButton->getComponent<Transform>()->setGlobalScale(0.15, 0.15);
     keyButton->addComponent<SpriteRenderer>("rice");
     keyButton->addComponent<BoxCollider>();
-    keyButton->addComponent<Button>()->connectToButton([] { GameStateMachine::instance()->setState(20); });
+    keyButton->addComponent<Button>()->connectToButton([]
+    {
+	    GameStateMachine::instance()->setState(20);
+    });
     keyButton->setLayer(4);
 
     return keyButton;

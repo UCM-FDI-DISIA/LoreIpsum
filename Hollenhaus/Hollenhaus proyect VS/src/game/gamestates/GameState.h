@@ -44,10 +44,14 @@ public:
 	virtual void addCardToDrawer(int id);
 	//----Mete dinero al jugador:
 	virtual void addMoney(int money);
+	//----Mete una llave de la leyenda
+	virtual void addKey();
 	//----Quita dinero al jugador.
 	virtual void substractMoney(int money);
 	//----Devuelve el dinero del jugador:
 	virtual int getMoney();
+	//----Devuelve el numero de llaves disponibles
+	virtual int getKeys();
 	//----Comprueba si una carta con id id esta en el mazo.
 	virtual bool checkCardIsInMaze(int id);
 	//----

@@ -3,28 +3,27 @@
 #include <vector>
 #include <string>
 
-#include "../ComponentUpdate.h"
+#include "ComponentRender.h"
 
 class Transform;
 class Vector2D;
 
-constexpr int NUMBER_OF_KEYS = 6;
+constexpr int TOTAL_KEYS = 6;
 
-class KeyManager :
-    public ComponentUpdate
+class KeyComponent :
+    public ComponentRender
 {
 public:
-    KeyManager();
-    
+    KeyComponent(const int keys);
+
     void initComponent() override;
 
-    // Anyade una descripcion a la leyenda
-    void addKey();
-
 private:
+    void set();
+
     int addToY_;
 
-    int lastKey_;
+    int NKeys_;
 
     // Vector de nombres de iconos
     std::vector<std::string> keyNames_;

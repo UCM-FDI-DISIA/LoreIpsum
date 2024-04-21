@@ -150,6 +150,11 @@ void GameState::addMoney(int money)
 	data->AddMoney(money);
 }
 
+void GameState::addKey()
+{
+	data->AddKey();
+}
+
 void GameState::substractMoney(int money)
 {
 	data->SubtractMoney(money);
@@ -158,6 +163,11 @@ void GameState::substractMoney(int money)
 int GameState::getMoney()
 {
 	return data->GetMoney();
+}
+
+int GameState::getKeys()
+{
+	return data->GetKeys();
 }
 
 bool GameState::checkCardIsInMaze(int id) {
