@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "Entity.h"
 #include "components/managers/Manager.h"
 

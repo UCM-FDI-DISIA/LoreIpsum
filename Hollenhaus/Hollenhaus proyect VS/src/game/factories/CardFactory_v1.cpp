@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "../Namespaces.h"
 #include "CardFactory_v1.h"
 

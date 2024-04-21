@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "NPCFactory_V0.h"
 #include "../components/NPC.h"
 #include "../components/ShineComponent.h"

@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "DialogueFactory_V0.h"
 #include "../components/basics/TextComponent.h"
 #include "../components/DialogueReader.h"

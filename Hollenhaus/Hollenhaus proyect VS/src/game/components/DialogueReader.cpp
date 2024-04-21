@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "DialogueReader.h"
 #include "../../sdlutils/SDLUtils.h"
 #include "TypeWriter.h"

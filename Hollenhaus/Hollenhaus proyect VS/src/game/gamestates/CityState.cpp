@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "CityState.h"
 #include "../components/basics/TextComponent.h"
 #include "../components/MoveOnClick.h"
@@ -23,13 +24,6 @@ CityState::~CityState()
 void CityState::update()
 {
 	GameState::update();
-
-	/// FADE IN
-	//if (fadetween.progress() < 1.0)
-	{
-		fadetween.step(1);
-		fade->getComponent<SpriteRenderer>()->setOpacity(fadetween.peek());
-	}
 
 	/// XD
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(fondo->getComponent<MoveOnClick>()->getDir());
@@ -70,17 +64,6 @@ void CityState::onEnter()
 		static_cast<NPCFactory*>(new NPCFactory_V0())
 	);
 
-
-	/// FADE TWEEN
-	fade = Instantiate(Vector2D());
-	fade->addComponent<SpriteRenderer>("black_box");
-	fade->setLayer(999);
-	fade->getComponent<Transform>()->setGlobalScale(100.0, 100.0);
-	fadetween =
-		tweeny::from(255)
-		.to(0)
-		.during(30)
-		.via(tweeny::easing::linear);
 
 
 

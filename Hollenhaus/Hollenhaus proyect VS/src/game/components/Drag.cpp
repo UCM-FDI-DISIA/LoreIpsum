@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "Drag.h"
 #include "managers/Manager.h"
 #include "../../sdlutils/InputHandler.h"

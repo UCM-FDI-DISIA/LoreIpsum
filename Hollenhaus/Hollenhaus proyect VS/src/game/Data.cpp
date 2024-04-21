@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "Data.h"
 
 const std::string SAVE_FILE = "./resources/saves/save.txt";

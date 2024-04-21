@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "CardStateManager.h"
 #include "../HandComponent.h"
 #include "Manager.h"
