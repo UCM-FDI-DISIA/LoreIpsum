@@ -99,6 +99,7 @@
     <ClCompile Include="src\game\factories\MatchStateUIFactory_v0.cpp" />
     <ClCompile Include="src\game\factories\NPCFactory.cpp" />
     <ClCompile Include="src\game\factories\NPCFactory_V0.cpp" />
+    <ClCompile Include="src\game\Fade.cpp" />
     <ClCompile Include="src\game\gamestates\AndresState.cpp" />
     <ClCompile Include="src\game\gamestates\checkCluesMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\checkMazeMenuState.cpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="src\game\Fade.h" />
     <ClInclude Include="src\game\gamestates\checkCluesMenuState.h" />
     <ClInclude Include="src\game\gamestates\checkMazeMenuState.h" />
     <ClInclude Include="src\game\gamestates\cinematicIntroState.h" />

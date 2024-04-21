@@ -61,7 +61,7 @@ void MainMenuState::onEnter()
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300,40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	newGameButton->addComponent<NPC>(1, 0); // Esto es graciosisimo
+	newGameButton->addComponent<NPC>(GameStates::CITY, NPC::Type::BUTTON, "", true, true); // Esto es graciosisimo
 
 	//----Texto para continuar partida.
 	//ecs::entity_t continueText = Instantiate(Vector2D(400, 250));
@@ -82,7 +82,7 @@ void MainMenuState::onEnter()
 	multiplayerButton->addComponent<BoxCollider>();
 	multiplayerButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	multiplayerButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	multiplayerButton->addComponent<NPC>(13, 0);
+	multiplayerButton->addComponent<NPC>(GameStates::MULTIPLAYERMODEMENU, NPC::Type::BUTTON);
 
 
 

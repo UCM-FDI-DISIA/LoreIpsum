@@ -10,80 +10,16 @@
 #include "../components/NextText.h"
 #include "../components/DialogueDestroyer.h"
 
-
-NPC::NPC(int scene)
+NPC::NPC(int scene, int t, std::string name_, bool toFadeIn, bool toFadeOut)
+: _scene(scene), click(false), type(t), talking(false), name(name_), myBoxCollider(nullptr)
 {
-	_scene = scene;
-	click = false;
-	myBoxCollider = nullptr;
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this, toFadeIn, toFadeOut] { OnLeftClickDown(_scene, toFadeIn, toFadeOut); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
-	type = 0;
-	talking = false;
-	_id = 0;
-
-	closeToPaul = true;
 
 	factory = new Factory();
 	factory->SetFactories(
 		static_cast<DialogueFactory*>(new DialogueFactory_V0())
 	);
-
-}
-
-NPC::NPC(int scene, std::string name_)
-{
-	_scene = scene;
-	click = false;
-	myBoxCollider = nullptr;
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
-	type = 0;
-	talking = false;
-	name = name;
-
-
-	factory = new Factory();
-	factory->SetFactories(
-		static_cast<DialogueFactory*>(new DialogueFactory_V0())
-	);
-
-}
-
-NPC::NPC(int scene, int t)
-{
-	_scene = scene;
-	click = false;
-	myBoxCollider = nullptr;
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
-	type = t;
-	talking = false;
-
-	factory = new Factory();
-	factory->SetFactories(
-		static_cast<DialogueFactory*>(new DialogueFactory_V0())
-	);
-
-}
-
-NPC::NPC(int scene, int t, std::string name_)
-{
-	_scene = scene;
-	click = false;
-	myBoxCollider = nullptr;
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(_scene); });
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
-	type = t;
-	talking = false;
-	name = name_;
-
-	factory = new Factory();
-	factory->SetFactories(
-		static_cast<DialogueFactory*>(new DialogueFactory_V0())
-	);
-
-
 }
 
 NPC::~NPC() 
@@ -101,10 +37,10 @@ void NPC::initComponent()
 	myTransform = mngr_->getComponent<Transform>(ent_);
 }
 
-void NPC::OnLeftClickDown(int scene) 
+void NPC::OnLeftClickDown(int scene, bool toFadeIn, bool toFadeOut) 
 {
 	myBoxCollider;
-	reactToClick(scene);
+	reactToClick(scene, toFadeIn, toFadeOut);
 	click = true;
 }
 
@@ -113,7 +49,7 @@ void NPC::OnLeftClickUp()
 	click = false; // Resetea el click al soltar para que se pueda volver a pulsar.
 }
 
-void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
+void NPC::reactToClick(int scene, bool toFadeIn, bool toFadeOut) // Te lleva al estado que le mandes.
 {
 	// Recoge la posicion X del NPC y determina si esta cerca de Paul (se usa luego en talkTo).
 	pos = myTransform->getGlobalPos().getX();
@@ -121,11 +57,11 @@ void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 
 	if (!click && myBoxCollider->isCursorOver()) // Recoge click para el cambio de escena.
 	{
-		if (type == 0) {
+		if (type == BUTTON) {
 			TuVieja("Cambio de escena.");
-			GameStateMachine::instance()->setState(scene);
+			GameStateMachine::instance()->setState(scene, toFadeIn, toFadeOut);
 		}
-		else if (type == 1) 
+		else if (type == TALKING) 
 		{
 			talkTo();   
 		}

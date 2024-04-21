@@ -10,6 +10,7 @@
 class GameState;
 class Data;
 class Mouse;
+class Fade;
 
 namespace ecs
 {
@@ -19,7 +20,8 @@ namespace ecs
 namespace GameStates
 {
 	//Enum de estados del juego
-	enum game_states {
+	enum game_states
+	{
 		MAINMENU,
 		CITY,
 		OFFICE,
@@ -87,35 +89,17 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* pauseMenuState;
 	GameState* checkMazeMenuState;
 	GameState* checkCluesMenuState;
-	 
+
 	// Estados auxiliares
 	GameState* movementState;
 
 	/// FADE IN-OUT
-	ecs::entity_t fade;
+	//ecs::entity_t fade;
+	Fade* fade_;
+
 	tweeny::tween<int> fadetween;
 	bool toFadeIn;
 	bool toFadeOut;
-	/*
-		/// FADE TWEEN
-	fade = Instantiate(Vector2D());
-	fade->addComponent<SpriteRenderer>("black_box");
-	fade->setLayer(999);
-	fade->getComponent<Transform>()->setGlobalScale(100.0, 100.0);
-	fadetween =
-		tweeny::from(255)
-		.to(0)
-		.during(30)
-		.via(tweeny::easing::linear);
-	 *
-	 *
-	 *
-		//if (fadetween.progress() < 1.0)
-	{
-		fadetween.step(1);
-		fade->getComponent<SpriteRenderer>()->setOpacity(fadetween.peek());
-	}
-	*/
 
 
 public:
@@ -140,74 +124,83 @@ public:
 	void Update();
 	void Refresh();
 
-	inline void setState(int state, bool fadeIn = false, bool fadeOut = false) {
-
+	void setState(int state, bool fadeIn = false, bool fadeOut = false)
+	{
+		GameState* newState = nullptr;
 		switch (state)
 		{
 		case GameStates::MAINMENU:
-			currentState = mainMenuState;
+			newState = mainMenuState;
 			break;
 		case GameStates::CITY:
-			currentState = cityState;
+			newState = cityState;
 			break;
 		case GameStates::OFFICE:
-			currentState = officeState;
+			newState = officeState;
 			break;
 		case GameStates::SHOP:
-			currentState = shopState;
+			newState = shopState;
 			break;
 		case GameStates::BOARD:
-			currentState = boardState;
+			newState = boardState;
 			break;
 		case GameStates::PAIGRO:
-			currentState = paigroState;
+			newState = paigroState;
 			break;
 		case GameStates::LUIS:
-			currentState = luisState;
+			newState = luisState;
 			break;
 		case GameStates::NIEVES:
-			currentState = nievesState;
+			newState = nievesState;
 			break;
 		case GameStates::MATCHOVER:
-			currentState = matchOverState;
+			newState = matchOverState;
 			break;
 		case GameStates::DECKBUILDING:
-			currentState = deckBuildingState;
+			newState = deckBuildingState;
 			break;
 		case GameStates::TUTORIALBOARD:
-			currentState = tutorialBoardState;
+			newState = tutorialBoardState;
 			break;
 		case GameStates::TUTORIAL:
-			currentState = tutorialState;
-			break; 
+			newState = tutorialState;
+			break;
 		case GameStates::STORYMODEMENU:
-			currentState = storyModeState;
-			break; 
+			newState = storyModeState;
+			break;
 		case GameStates::MULTIPLAYERMODEMENU:
-			currentState = multiplayerModeState;
+			newState = multiplayerModeState;
 			break;
 		case GameStates::OPTIONSMENU:
-			currentState = optionsMainMenuState;
-			break; 
+			newState = optionsMainMenuState;
+			break;
 		case GameStates::TRANSITIONTEXT:
-			currentState = transitionTextMenuState;
-			break; 
+			newState = transitionTextMenuState;
+			break;
 		case GameStates::CINEMATICINTRO:
-			currentState = cinematicIntroState;
-			break; 
+			newState = cinematicIntroState;
+			break;
 		case GameStates::PAUSEMENU:
-			currentState = pauseMenuState;
-			break; 
+			newState = pauseMenuState;
+			break;
 		case GameStates::MAZEMENU:
-			currentState = checkMazeMenuState;
-			break; 
+			newState = checkMazeMenuState;
+			break;
 		case GameStates::CLUESMENU:
-			currentState = checkCluesMenuState;
+			newState = checkCluesMenuState;
 			break;
 		default:
 			break;
 		}
-	};
+		currentState = newState;
+		toFadeIn = fadeIn;
+		toFadeOut = fadeOut;
+
+		if (toFadeIn) fadetween.forward();
+		if (!toFadeIn && toFadeOut) fadetween.backward();
+	}
+
+	void initFade();
 
 	bool Empty() const { return gameStack.empty(); }
 
