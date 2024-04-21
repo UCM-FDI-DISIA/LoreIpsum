@@ -1,5 +1,6 @@
 // pch
-#include "pch.h"
+#include <../pchs/pch.h>
+
 
 // estado
 #include "DeckBuildingState.h"

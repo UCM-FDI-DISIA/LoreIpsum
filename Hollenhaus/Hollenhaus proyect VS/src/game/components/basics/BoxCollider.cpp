@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #pragma once
 #include "BoxCollider.h"
 #include "SpriteRenderer.h"

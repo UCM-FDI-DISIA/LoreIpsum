@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "JimboState.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/Transform.h"

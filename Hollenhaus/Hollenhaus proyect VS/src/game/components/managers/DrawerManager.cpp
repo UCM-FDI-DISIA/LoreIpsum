@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "DrawerManager.h"
 #include "../../GameStateMachine.h"
 #include "../../gamestates/GameState.h"

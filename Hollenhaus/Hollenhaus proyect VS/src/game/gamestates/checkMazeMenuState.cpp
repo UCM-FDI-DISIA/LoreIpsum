@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "../components/managers/Manager.h"
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/basics/Transform.h"

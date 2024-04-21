@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "storyModeState.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/SpriteRenderer.h"

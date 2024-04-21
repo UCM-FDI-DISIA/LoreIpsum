@@ -1,4 +1,5 @@
-﻿#include "pch.h"
+﻿#include <../pchs/pch.h>
+
 #include "HandComponent.h"
 #include "managers/Manager.h"
 #include "../Entity.h"

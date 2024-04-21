@@ -1,5 +1,6 @@
 #include "checkML.h"
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "multiplayerModeState.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/TextComponent.h"

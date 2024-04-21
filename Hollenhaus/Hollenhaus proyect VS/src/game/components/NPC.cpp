@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "NPC.h"
 #include "managers/Manager.h"
 #include "basics/BoxCollider.h"
