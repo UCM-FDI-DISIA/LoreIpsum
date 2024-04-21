@@ -71,7 +71,7 @@ private:
 
     IA_manager* ia_manager;
 
-    NetGame* netGame;
+    NetGame* netGame = nullptr;
 
     void resetActualActionPoints();
 
