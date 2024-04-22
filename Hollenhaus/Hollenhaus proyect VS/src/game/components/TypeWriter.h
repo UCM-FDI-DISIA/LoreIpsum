@@ -22,6 +22,8 @@ private:
 	int writingSpeed;
 	int i;
 
+	bool writing;
+
 	std::string text, finaltext;
 
 	void setText();

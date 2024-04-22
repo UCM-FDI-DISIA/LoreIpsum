@@ -67,8 +67,6 @@ void TutorialBoardManager::update()
 		resetEnded();
 	}
 
-	std::cout << currentState << std::endl;
-
 	updateTutorialState();
 	
 }
@@ -156,13 +154,7 @@ ecs::entity_t TutorialBoardManager::createPopUp(float x, float y, std::string po
 
 	JsonData::DialogueData dialogue = sdlutils().dialogues().at(popup);
 
-
-	//int conv = 0;
 	int node = 0;
-
-	// AQUIIIIIIIIII
-
-	std::cout << "convo no " << dialogue.Convo(convo).ConvoID() << std::endl;
 
 	// crear dialogo del FACTORY de dialogos
 	//// Mirar comentario en el interior de la función
@@ -195,6 +187,11 @@ void TutorialBoardManager::setObjs(std::vector<ecs::entity_t> v)
 	objs = v;
 
 	tutorial->getComponent<TutorialManager>()->setLayers(objs);
+}
+
+void TutorialBoardManager::addToHand(ecs::entity_t c)
+{
+	hand.push_back(c);
 }
 
 
@@ -301,10 +298,6 @@ void TutorialBoardManager::setACTION()
 
 void TutorialBoardManager::setNEXTTURN()
 {
-	//TuVieja("Setting PLACE CARD");
-
-	//createPopUp(250, 200, "Board Tutorial", 5);
-
 	std::vector<ecs::entity_t> v;
 
 	v.push_back(nextTurn);
