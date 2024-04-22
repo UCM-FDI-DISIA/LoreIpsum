@@ -354,6 +354,9 @@
     <ClCompile Include="src\game\components\KeyComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\DecisionComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -689,10 +692,12 @@
     <ClInclude Include="pchs\pch.h">
       <Filter>Archivos de encabezado\Auxiliares</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\ShineComponent.h" />
+    <ClInclude Include="src\game\components\KeyComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
     <ClInclude Include="src\game\factories\DeckBuildingFactory.h" />
     <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h" />
-    <ClInclude Include="src\game\components\KeyComponent.h">
+    <ClInclude Include="src\game\components\DecisionComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>

@@ -54,9 +54,9 @@ public:
 	virtual int getKeys();
 	//----Comprueba si una carta con id id esta en el mazo.
 	virtual bool checkCardIsInMaze(int id);
-	//----
+	//----Para ser llamado cuando una carta es seleccionada para que se iluminen las monedas que sean.
 	virtual void cardSelected(int prize) {}
-	//----
+	//----Para resetear el brillo de las monedas.
 	virtual void deSelected() {}
 
 	virtual void saveData();

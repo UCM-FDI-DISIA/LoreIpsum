@@ -16,7 +16,9 @@
                                 {
                                     "timing": 1,
                                     "type": 3,
-                                    "scene": 3
+                                    "scene": 3,
+                                    "gdecision": 1,
+                                    "rdecision": 0
                                 }
                             ]
                         },
@@ -65,7 +67,7 @@
                     "nodes": [
                         {
                             "nodeID": "0",
-                            "text": "Otra conversacion por aqui",
+                            "text": "Otra conversacion por ",
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [
@@ -224,20 +226,22 @@
                     "nodes": [
                         {
                             "nodeID": "0",
-                            "text": "Seguro que quieres comprar esta carta?",
+                            "text": "Has terminado de mirar?",
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [
                                 {
                                     "timing": 1,
                                     "type": 3,
-                                    "scene": 3
+                                    "scene": 3,
+                                    "gdecision": 2,
+                                    "rdecision": 0
                                 }
                             ]
                         },
                         {
                             "nodeID": "1",
-                            "text": " ",
+                            "text": "Seguro que quieres comprar esta carta?",
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [
