@@ -1,5 +1,5 @@
 #pragma once
-#include "../pch.h"
+#include <../pchs/pch.h>
 #include "ComponentUpdate.h"
 
 class DialogueBoxDestroyer : public ComponentUpdate
