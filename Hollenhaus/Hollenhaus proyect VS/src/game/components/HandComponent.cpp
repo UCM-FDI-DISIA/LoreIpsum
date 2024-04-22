@@ -59,7 +59,7 @@ void HandComponent::addCard(ecs::entity_t card) {
 	refreshPositions();
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
-		if (owner_ == Players::PLAYER1) {
+		//if (owner_ == Players::PLAYER1) {
 			///Tween
 			carta = card;
 			tweenDrawCardX[i] =
@@ -75,7 +75,7 @@ void HandComponent::addCard(ecs::entity_t card) {
 				.via(tweeny::easing::sinusoidalInOut);
 
 			tween = true;
-		}
+		//}
 	}
 
 }
@@ -84,7 +84,7 @@ void HandComponent::update()
 {
 	//Habría que hacer cuando esté el tween definitivo que cuando 
 	// llegue al sitio en el que se tiene que quedar ponga el bool a falso
-	if (tween && owner_ == Players::PLAYER1) {
+	if (tween /* && owner_ == Players::PLAYER1*/) {
 		/// TWEENS???
 		//Habría que hacer que comience en el mazo y se mueva hasta su posición
 		uint16_t cardsInPos = 0;
@@ -178,7 +178,7 @@ void HandComponent::removeCard(ecs::entity_t card) {
 	refreshPositions();
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
-		if (owner_ == Players::PLAYER1) {
+		//if (owner_ == Players::PLAYER1) {
 			///Tween
 			carta = card;
 			tweenDrawCardX[i] =
@@ -194,7 +194,7 @@ void HandComponent::removeCard(ecs::entity_t card) {
 				.via(tweeny::easing::sinusoidalInOut);
 
 			tween = true;
-		}
+		//}
 	}
 }
 
