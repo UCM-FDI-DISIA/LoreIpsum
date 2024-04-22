@@ -200,7 +200,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "INFO DE LAS CARTAS",
+              "text": "Arriba a la izquierda informan de su coste",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -208,7 +208,47 @@
             },
             {
               "nodeID": 1,
-              "text": "ULTIMO NODO DE INFO",
+              "text": "cada vez que uses una carta tendras que pagar su precio",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Abajo a la izquierda guardan su valor",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Cuando coloques una carta en el tablero se te sumara ese valor a tu puntuacion",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "En el centro de la carta se encuentra un pictograma que indica el efecto que posee",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 0,
+              "text": "Ademas de sumar un valor, las cartas aplicaran un efecto al tablero",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 0,
+              "text": "Sigue jugando y descubriras todos los efectos!",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -217,7 +257,6 @@
                   "type": 4,
                   "scene": 0
                 }
-
               ]
             }
           ]
