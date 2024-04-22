@@ -10,8 +10,6 @@
 
 #include "SDLNetUtils.h"
 
-#include <iostream>
-
 SDLUtils::SDLUtils() :
 		SDLUtils("SDL Demo", 600, 400) {
 }
@@ -143,8 +141,8 @@ void SDLUtils::loadResources(std::string filenameResources,
 		std::cout << "No hay ruta de recursos, por lo que no se cargan" << '\n';
 		return;
 	}
-	std::cout << filenameResources << std::endl;
-	std::unique_ptr<JSONValue> jValueRootResources(JSON::ParseFromFile(filenameResources)); std::cout << filenameResources << std::endl;
+
+	std::unique_ptr<JSONValue> jValueRootResources(JSON::ParseFromFile(filenameResources));
 	std::unique_ptr<JSONValue> jValueRootCards(JSON::ParseFromFile(filenameCards));
 	std::unique_ptr<JSONValue> jValueRootDialogues(JSON::ParseFromFile(filenameDialogues));
 	std::unique_ptr<JSONValue> jValueRootNPCs(JSON::ParseFromFile(filenameNPCs));
