@@ -54,41 +54,74 @@ void DragManager::update()
 
 void DragManager::updateFeedback()
 {
-	auto drop = mouseRaycast(ecs::grp::DROPS);
+	ecs:: entity_t drop = mouseRaycast(ecs::grp::DROPS);
 
 	auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
+
+	//Si una carta está pillada empieza el feedback
 	if (drop != nullptr) {
 
-		//Debug para que escriba en que celda está
-		//std::cout << "Celda: " << drop->getComponent<DropDetector>()->getBoardPos() << std::endl;
-
-		auto c = dragTransform->getEntity()->getComponent<Card>();
-		auto cell = drop->getComponent<Cell>();
+		auto c = dragTransform->getEntity()->getComponent<Card>();	//Carta draggeada
 
 		//Buscamos la carta por su ID
 		auto id = c->getID();
 		auto l = sdlutils().cards().at(std::to_string(id));
 
-		//Miramos todos los efectos que tenga la carta
-		for (auto e : l.effects()) {
+		auto cell = drop->getComponent<Cell>();	//Celda sobre la que está la carta
 
-			//Diferenciamos los diferentes tipos de efectos que nos interesa)
-			if (e.type() == Effects::Superflecha || e.type() == Effects::Flecha || e.type() == Effects::Centro) {
+		//Si cambiamos la celda sobre la que está puesta la carta
+		if (lastCell != nullptr && lastCell != drop) {
+
+			//Cogemos los datos de la celda en la que estabamos antes
+			auto cell = lastCell->getComponent<Cell>();
+
+			//Devolvemos los colores a la normalidad
+			for (auto e : l.effects()) {
 				for (auto d : e.directions()) {
-
-					//cell->getAdjacents()[d]->
+					//Habrá que diferenciar por tipo de efecto pero voy 
 					while (cell->getAdjacents()[d] != nullptr)
 					{
-						cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+						cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 0);
 						cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
 					}
-
 				}
+			}
 
+			lastCell = drop;
+		}
+		else {
 
+			lastCell = drop;
+			//Miramos todos los efectos que tenga la carta
+			for (auto e : l.effects()) {
 
+				//Diferenciamos los diferentes tipos de efectos que nos interesa)
+				if (e.type() == Effects::Superflecha || e.type() == Effects::Flecha || e.type() == Effects::Centro) {
+					for (auto d : e.directions()) {
+
+						//cell->getAdjacents()[d]->
+						while (cell->getAdjacents()[d] != nullptr)
+						{
+							cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+							cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
+						}
+					}
+				}
 			}
 		}
+		
+	}
+	else if (lastCell != drop) {
+
+		
+
+		
+
+		//Recorremos todas las celdas seteando el color
+		/*for (int j = 0; j < size; j++)
+			for (int i = 0; i < size; i++)
+				if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
+					_board[i][j]->getComponent<Cell>()->setTotalValue(0);*/
 	}
 }
 

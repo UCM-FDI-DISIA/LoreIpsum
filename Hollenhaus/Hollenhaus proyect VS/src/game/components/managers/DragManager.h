@@ -30,6 +30,7 @@ private:
     Vector2D initialMousePos;
     Vector2D initialTransformPos;
     Vector2D initialTransformPosWithOffSet;
+    ecs::entity_t   lastCell = nullptr;
 
     void OnLeftClickDown();
     void OnLeftClickUp();

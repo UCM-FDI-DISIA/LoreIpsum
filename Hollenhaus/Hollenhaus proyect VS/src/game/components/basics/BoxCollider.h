@@ -41,10 +41,7 @@ public:
 	/// Settea si el tamano del collider depende del sprite, si tiene spriterenderer, por defecto est� en true
 	/// </summary>
 	/// <param name="_anchored"></param>
-	void setAnchoredToSprite(bool _anchored) {
-		anchoredToSprite_ = _anchored;
-		spriteRenderer_ = ent_->getComponent<SpriteRenderer>();
-	}
+	void setAnchoredToSprite(bool _anchored);
 
 	// Devuelve true si el cursor esta sobre el collider
 	bool isCursorOver();
