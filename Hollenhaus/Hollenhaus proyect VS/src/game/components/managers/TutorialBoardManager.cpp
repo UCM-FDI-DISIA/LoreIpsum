@@ -1,5 +1,4 @@
-#include "../../pch.h"
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "TutorialBoardManager.h"
 #include <SDL.h>
 #include "../../components/Drag.h"

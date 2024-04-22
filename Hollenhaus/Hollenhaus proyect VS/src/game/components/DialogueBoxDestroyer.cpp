@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "DialogueBoxDestroyer.h"
 #include "../components/DialogueDestroyer.h"
 
