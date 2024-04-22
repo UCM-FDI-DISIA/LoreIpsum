@@ -89,7 +89,7 @@ void ClickDecision::purchaseCard()
 	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
 	if (ent->hasComponent<DecisionComponent>())
 	{
-		ent->getComponent<DecisionComponent>()->setBuying(true);
+		ent->getComponent<DecisionComponent>()->setBuying(1);
 	}
 }
 
@@ -99,7 +99,7 @@ void ClickDecision::cancelPurchase()
 	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
 	if (ent->hasComponent<DecisionComponent>())
 	{
-		ent->getComponent<DecisionComponent>()->setBuying(false);
+		ent->getComponent<DecisionComponent>()->setBuying(0);
 		ent->getComponent<DecisionComponent>()->resetCardToPurchase();
 	}
 }

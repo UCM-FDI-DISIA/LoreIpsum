@@ -50,7 +50,7 @@ void DecisionComponent::resetCardToPurchase()
 	cardToPurchase = -1;
 }
 
-void DecisionComponent::setBuying(bool buy)
+void DecisionComponent::setBuying(int state)
 {
-	buying = buy;
+	buying = state;
 }

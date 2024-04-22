@@ -115,32 +115,38 @@ int ShopComponent::getCardPrice(int i)
 
 void ShopComponent::buyCard()
 {
-	//------Esto para buscar el boton que ha sido pulsado para acceder a la carta de ese boton.
-	Button* buttonClicked = nullptr;
-	for (auto b : buttons) // Recorremos la lista de botones.
+	if (!clicked)
 	{
-		if (b->getCurrentButtonState() == 2) // 2 = boton pulsado.
+		//------Esto para buscar el boton que ha sido pulsado para acceder a la carta de ese boton.
+		Button* buttonClicked = nullptr;
+		for (auto b : buttons) // Recorremos la lista de botones.
 		{
-			buttonClicked = b; // Guardamos el boton.
-		}
-	}
-
-	//------Esto para guardar la carta al drawer.
-	if (buttonClicked != nullptr)
-	{
-		auto card = buttonClicked->getEntity(); // Carta pulsada.
-		int id = card->getComponent<Card>()->getID(); // Id de la carta.
-		int index = searchIndexById(id); // Indice de la carta en shopCards, shopCardspositions y shopCardsPrize.
-		//------Esto para confirmar la compra.
-		if (money >= shopCardsPrize[index] && confirmPurchase(shopCardsPrize[index], id))
-		{
-			if (card != nullptr)
+			if (b->getCurrentButtonState() == 2) // 2 = boton pulsado.
 			{
-				// Esto no tiene que ir aqui pero no se donde ponerlo porque no se como volver a acceder a card fuera de aqui...
-				card->getComponent<SpriteRenderer>()->setMultiplyColor(100, 100, 100, 255); // Cambiamos el color.
+				buttonClicked = b; // Guardamos el boton.
+			}
+		}
+
+		//------Esto para guardar la carta al drawer.
+		if (buttonClicked != nullptr)
+		{
+			auto card = buttonClicked->getEntity(); // Carta pulsada.
+			int id = card->getComponent<Card>()->getID(); // Id de la carta.
+			int index = searchIndexById(id); // Indice de la carta en shopCards, shopCardspositions y shopCardsPrize.
+			//------Esto para confirmar la compra.
+			if (money >= shopCardsPrize[index] && !cardIsBought(id))
+			{
+				clicked = true;
+				confirmPurchase(shopCardsPrize[index], id);
+				if (card != nullptr)
+				{
+					// Esto no tiene que ir aqui pero no se donde ponerlo porque no se como volver a acceder a card fuera de aqui...
+					card->getComponent<SpriteRenderer>()->setMultiplyColor(100, 100, 100, 255); // Cambiamos el color.
+				}
 			}
 		}
 	}
+
 }
 
 void ShopComponent::purchaseCard()
@@ -154,11 +160,22 @@ void ShopComponent::purchaseCard()
 
 	GameStateMachine::instance()->getCurrentState()->substractMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
 
-	std::cout << "Compra." << std::endl;
+	//std::cout << "Compra." << std::endl;
 
+	clicked = false;
 	updateTexts();
 	GameStateMachine::instance()->getCurrentState()->deSelected();
-	handler->getComponent<DecisionComponent>()->setBuying(false);
+	handler->getComponent<DecisionComponent>()->setBuying(-1);
+	handler->getComponent<DecisionComponent>()->resetCardToPurchase();
+}
+
+void ShopComponent::cancelPurchase()
+{
+	//std::cout << "No compra." << std::endl;
+	clicked = false;
+	updateTexts();
+	GameStateMachine::instance()->getCurrentState()->deSelected();
+	handler->getComponent<DecisionComponent>()->setBuying(-1);
 	handler->getComponent<DecisionComponent>()->resetCardToPurchase();
 }
 
@@ -170,26 +187,27 @@ int ShopComponent::calculatePrize(ecs::entity_t card)
 	return prize;
 }
 
-bool ShopComponent::confirmPurchase(int prize, int id)
+void ShopComponent::confirmPurchase(int prize, int id)
 {
 	GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
 
 	handler->getComponent<DecisionComponent>()->setCardToPurchase(id);
-
-	shopDialogue = factory->createDialogue("Tienda", 0, 0,
-		{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f }, // Posicion.
-		{ 0.3,0.1 }, // Tamanyo.
-		5, // Velocidad.
-		10, // Cooldown.
-		this->getEntity(), // Padre.
-		3,			// Capa.
-		false,		// Auto.
-		"8bit_size_20",	// Font.
-		SDL_Color({ 0, 0, 0, 255 }), // Color.
-		220, // Wrap length.
-		Text::BoxPivotPoint::LeftTop,
-		Text::TextAlignment::Center);
-	return true;
+	if (shopDialogue != nullptr)
+	{
+		shopDialogue = factory->createDialogue("Tienda", 0, 0,
+			{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f }, // Posicion.
+			{ 0.3,0.1 }, // Tamanyo.
+			5, // Velocidad.
+			10, // Cooldown.
+			this->getEntity(), // Padre.
+			3,			// Capa.
+			false,		// Auto.
+			"8bit_size_20",	// Font.
+			SDL_Color({ 0, 0, 0, 255 }), // Color.
+			220, // Wrap length.
+			Text::BoxPivotPoint::LeftTop,
+			Text::TextAlignment::Center);
+	}
 }
 
 int ShopComponent::getPlayerMoney()
@@ -214,10 +232,16 @@ int ShopComponent::searchIndexById(int id)
 
 void ShopComponent::update()
 {
-	//std::cout << "Money: " << money << std::endl;
-	if (handler->getComponent<DecisionComponent>()->getBuying())
+	switch (handler->getComponent<DecisionComponent>()->getBuying())
 	{
+	case 0:
+		cancelPurchase();
+		break;
+	case 1:
 		purchaseCard();
+		break;
+	default:
+		break;
 	}
 }
 

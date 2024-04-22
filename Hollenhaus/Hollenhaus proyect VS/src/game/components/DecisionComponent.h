@@ -19,14 +19,15 @@ public:
 	void resetCardToPurchase();
 	int getCardToPurchase() { return cardToPurchase; }
 
-	void setBuying(bool buy);
-	bool getBuying() { return buying; }
+	//----0: cancelar compra, 1: confimar compra, -1: no decidido.
+	void setBuying(int state);
+	int getBuying() { return buying; }
 
 private:
 
 	int index;
 	int cardToPurchase;
-	bool buying = false;
+	int buying = -1;
 
 };
 
