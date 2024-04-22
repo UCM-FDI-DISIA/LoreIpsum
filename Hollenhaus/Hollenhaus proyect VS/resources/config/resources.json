@@ -56,6 +56,7 @@
         {"id": "BrilliNPC",       "file": "resources/images/brilliNPC.png"  },
         {"id": "mpfondo",       "file": "resources/images/multiplayer.png"  },
         {"id": "optfondo",       "file": "resources/images/optionsMenu.png"  },
+        {"id": "transitionbg",       "file": "resources/images/transitionBG.png"  },
         {"id": "feedback_flecha",       "file": "resources/images/feedback_flecha.png"  },
         {"id": "feedback_circulo",       "file": "resources/images/feedback_circulo.png"  }
     ],

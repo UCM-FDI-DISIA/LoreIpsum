@@ -5,13 +5,13 @@
 #include "basics/TextComponent.h"
 
 KeyComponent::KeyComponent(const int keys) :
-	addToY_(100),
+	addToY_(200),
 	NKeys_(keys),
 	tr_(),
 	sr_(),
 	pos_(),
 	offset_(10, 0),
-	bookSize_(),
+	bookWidth_(),
 	font_("8bit_size_20")
 {
 	// Inicializacion del vector con los nombres
@@ -39,7 +39,7 @@ KeyComponent::initComponent() {
 	sr_ = ent_->getComponent<SpriteRenderer>();
 	assert(sr_ != nullptr);
 
-	bookSize_ = sr_->getImageSize();
+	bookWidth_ = sr_->getImageSize().getX();
 
 	set();
 }
@@ -50,7 +50,7 @@ KeyComponent::set() {
 		ecs::entity_t e = Instantiate(pos_); // Creamos la imagen
 
 		e->getComponent<Transform>()->addParent(getEntity()->getComponent<Transform>());
-		e->getComponent<Transform>()->setGlobalScale(0.2, 0.2);
+		e->getComponent<Transform>()->setGlobalScale(0.1, 0.1);
 		e->addComponent<SpriteRenderer>(keyNames_[i]);
 
 		// Creamos el texto
@@ -68,7 +68,7 @@ KeyComponent::set() {
 		keys_.emplace_back(e, txt);
 		pos_ = pos_ + Vector2D(0, addToY_); // Actualizamos la pos para la siguiente
 
-		if (i == TOTAL_KEYS * 0.5)
-			pos_ = tr_->getGlobalPos() + bookSize_ * 0.5 + offset_;
+		if (i + 1 == TOTAL_KEYS * 0.5)
+			pos_ = Vector2D(tr_->getGlobalPos().getX() + bookWidth_ * 0.5, tr_->getGlobalPos().getY()) + offset_;
 	}
 }

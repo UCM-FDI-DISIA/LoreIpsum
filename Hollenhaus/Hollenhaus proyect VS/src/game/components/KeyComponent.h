@@ -35,9 +35,11 @@ private:
 
     Transform* tr_;
     SpriteRenderer* sr_;
+
     Vector2D pos_,
-        offset_,
-        bookSize_;
+        offset_;
+
+    float bookWidth_;
 
     std::string font_;
 };
