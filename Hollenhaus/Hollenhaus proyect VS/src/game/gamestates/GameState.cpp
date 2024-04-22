@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "GameState.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/Transform.h"
@@ -41,7 +42,7 @@ GameState::~GameState()
 
 
 //Su objetivo es borrar todas las entidades muertas, es
-//decir las que han salido del juego en la última iteración
+//decir las que han salido del juego en la ï¿½ltima iteraciï¿½n
 void GameState::refresh()
 {
 	GameStateMachine::instance()->getMngr()->refresh();
@@ -106,11 +107,15 @@ std::vector<int> GameState::getMazeRival()
 	return data->GetMazeRival();
 }
 
+void GameState::SetLastState(int ls)
+{
+	data->setLastState(ls);
+}
+
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
 	return data->GetDrawer();
 }
-
 
 // para acceder al mazo del data desde el estado
 std::unordered_map<int, Vector2D> GameState::getMazeWithPos()
@@ -127,6 +132,11 @@ std::list<int> GameState::getMaze()
 Vector2D GameState::getLastPaulPos()
 {
 	return data->getLastPaulPos();
+}
+
+int GameState::GetLastState()
+{
+	return data->getLastState();
 }
 
 // para settear el mazo del data desde el estado
@@ -180,9 +190,14 @@ void GameState::addCardToDrawer(int id)
 	data->AddCardToDrawer(id);
 }
 
-void GameState::changeMoney(int money)
+void GameState::addMoney(int money)
 {
 	data->AddMoney(money);
+}
+
+void GameState::substractMoney(int money)
+{
+	data->SubtractMoney(money);
 }
 
 int GameState::getMoney()

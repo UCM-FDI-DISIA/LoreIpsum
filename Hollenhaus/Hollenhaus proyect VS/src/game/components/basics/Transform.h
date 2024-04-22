@@ -54,11 +54,19 @@ public:
     //
     float& getRelativeAngle();
 
+    /// GLOBAL
     void setGlobalPos(Vector2D& v);
+    void setGlobalPos(int, int);
     void setGlobalAngle(float);
     void setGlobalScale(Vector2D);
     void setGlobalScale(float x, float y);
+
+    /// RELATIVE
+    void setRelativePos(Vector2D&);
     void setRelativePos(float x, float y);
+    void setRelativeAngle(float angle) { relativeAngle_ = angle; }
+    void setRelativeScale(Vector2D scale) { relativeScale_ = scale; };
+    void setRelativeScale(int x, int y) { relativeScale_ = Vector2D(x, y); }
 
     Transform* getParent();
     

@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "DialogueDestroyer.h"
 #include "../Game.h"
 #include "../components/NPC.h"
@@ -23,7 +24,14 @@ void DialogueDestroyer::update()
 
 void DialogueDestroyer::destroyDialogue()
 {
-	npc->getComponent<NPC>()->stoppedTalking();
+
+	this;
+
+	if (npc->hasComponent<NPC>()) {
+		npc->getComponent<NPC>()->stoppedTalking();
+	}	
+	object->getComponent<Transform>()->getParent()->getParent()->killChildren();
 	object->getComponent<Transform>()->killChildren();
+	
 	object->setAlive(false);
 }

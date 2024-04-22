@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "NextText.h"
 #include "managers/Manager.h"
 #include "DialogueDestroyer.h"
@@ -25,8 +26,9 @@ NextText::~NextText()
 
 void NextText::initComponent()
 {
-	boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
-	assert(boxCollider_ != nullptr);
+
+	//boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
+	//assert(boxCollider_ != nullptr);
 
 	dialogueReader_ = ent_->getComponent<DialogueReader>();
 	assert(dialogueReader_ != nullptr);
@@ -54,11 +56,13 @@ void NextText::reactToClick()
 {
 	if (!dead) 
 	{
-		if (typeWriter_->ended() && mouseRaycast() == ent_)
+		if (boxCollider_->isCursorOver())
 		{
 			TuVieja("ended: ");
 			//TuVieja(typeWriter_->ended());
-			dialogueReader_->NextNode();
+			//dialogueReader_->NextNode();
+
+			callNextNode();
 		}
 	}
 }
@@ -69,12 +73,27 @@ void NextText::callNextNode()
 		TuVieja("Cambio de nodo.");
 		dialogueReader_->NextNode();
 	}
+	else {
+
+		typeWriter_->finishTypewrite();
+	}
+}
+
+void NextText::callFullText()
+{
+
+
 }
 
 void NextText::setDead(bool a)
 {
-	this;
 	dead = a;
 }
+
+void NextText::setCollider(BoxCollider* coll)
+{
+	boxCollider_ = coll;
+}
+
 
 

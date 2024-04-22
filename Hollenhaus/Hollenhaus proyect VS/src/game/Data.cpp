@@ -1,7 +1,9 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "Data.h"
 
 #include <SDL_net.h>
+
+const std::string SAVE_FILE = "./resources/saves/save.txt";
 
 
 //------Constructora y destructora:
@@ -27,7 +29,6 @@ void Data::SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos) {
 	// vacia el anterior
 	EmptyMaze();
 	EmptyMaze_With_pos();
-
 	// guarda iterador al inicio (indice)
 	auto itPos = mazePos.begin();
 
@@ -137,7 +138,7 @@ void Data::AddSouls(int s) {
 	currentSouls += s;
 }
 //----Caso:
-void Data::AddCurrentCase() {
+void Data::AddCaseIndex() {
 	currentCase++;
 }
 //----Ganador:
@@ -160,6 +161,11 @@ bool Data::setShopCard(int id) {
 
 	if (find) { return true; }
 	else { return false; }
+}
+
+void Data::setLastState(int ls)
+{
+	lastState = ls;
 }
 
 //------Busqueda:
@@ -203,12 +209,13 @@ bool Data::IdIsInShopCards(int id) {
 //----Cartas de la tienda:
 bool Data::shopCardsIsEmpty() {
 	int i = 0;
-	bool empty = true; // Suponemos que esta vacio.
-	while (empty && i < CARDS_IN_SHOP)
+	bool empty = false; // Suponemos que no esta vacio.
+
+	while (!empty && i < CARDS_IN_SHOP)
 	{
-		if (shopCards[i] != -1)
+		if (shopCards[i] == -1)
 		{
-			empty = false; // Si hay alguna cartra (no es -1) entonces no esta vacio.
+			empty = true; // Si alguna carta esta en -1 entonces esta vacia.
 		}
 		i++;
 	}
@@ -222,7 +229,15 @@ int Data::getShopCardById(int id) {
 //------Escribir en el archivo:
 void Data::Write() {
 	std::ofstream file;
-	file.open("save.txt");
+	file.open(SAVE_FILE);
+
+	if (!file.is_open())
+	{
+#ifdef _DEBUG
+		TuVieja("ERROR DE LECTURA: No se ha podido leer el archivo de guardado.");
+#endif
+		return;
+	}
 
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
@@ -261,7 +276,15 @@ void Data::Read() {
 	EmptyLists();
 
 	std::ifstream file;
-	file.open("save.txt");
+	file.open(SAVE_FILE);
+
+	if (!file.is_open())
+	{
+#ifdef _DEBUG
+		TuVieja("ERROR DE ESCRITURA: No se ha podido abrir el archivo de guardado.");
+#endif
+		return;
+	}
 
 	int number, iterations;
 
@@ -300,6 +323,7 @@ void Data::Read() {
 	}
 
 	file >> falsedades;
+
 	// Lee cartas desbloqueadas
 	file >> iterations;
 	for (int i = 0; i < iterations; i++)
@@ -333,15 +357,18 @@ void Data::EmptyLists() {
 	EmptyNPCS();
 	EmptyShopCards();
 }
+
 void Data::EmptyMaze() {
 	maze.clear();
 }
+
 void Data::EmptyDrawer() {
 	for (int i = 0; i < CARDS_IN_GAME; i++)
 	{
 		drawer[i] = -1;
 	}
 }
+
 void Data::EmptyNPCS() {
 	defeatedNPCS.clear();
 }

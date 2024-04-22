@@ -25,7 +25,9 @@ public:
 	void OnLeftClickUp();
 	void reactToClick();
 	void callNextNode();
+	void callFullText();
 	void setDead(bool a);
+	void setCollider(BoxCollider* coll);
 	bool isDead() { return dead; }
 
 private:

@@ -1,7 +1,9 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "DialogueEventCollection.h"
 #include "../factories/Factory.h"
 #include "../factories/DecisionFactory_V0.h"
+#include "../TutorialManager.h"
 
 DialogueEventCollection::DialogueEventCollection()
 {
@@ -29,6 +31,8 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent) //poli
 							parent, //parent
 							4, //layer
 							3, //scene a la que se iria si pulsamos Si
+							0, //greenDecision
+							1, //redDecision
 							"8bit_size_24", //fontId
 							SDL_Color({ 0, 0, 0, 255 }), //color del txt
 							100, //wraplength
@@ -37,4 +41,17 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent) //poli
 
 	delete factory;
 	factory = nullptr;
+}
+
+void DialogueEventCollection::ActionEnded()
+{
+
+	TuVieja("SE ACABOOOOOOOOO");
+
+	// handler del tutorial para tocar el action done
+	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
+	ent->getComponent<TutorialManager>()->actionEnded();
+
+	// AQUI
+
 }

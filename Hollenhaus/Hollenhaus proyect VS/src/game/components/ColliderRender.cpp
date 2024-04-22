@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "ColliderRender.h"
 #include "../../sdlutils/SDLUtils.h"
 #include "managers/Manager.h"

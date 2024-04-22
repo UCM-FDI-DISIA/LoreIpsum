@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "CardFactory_v0.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/Transform.h"

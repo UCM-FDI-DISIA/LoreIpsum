@@ -3,7 +3,6 @@
         {"id": "rice",            "file": "./resources/images/rice.png"},
         {"id": "card",            "file": "resources/images/card.png"},
         {"id": "hand",            "file": "resources/images/hand.png"},
-        {"id": "picto1",          "file": "resources/images/picto1.png"},
         {"id": "key",             "file": "resources/images/libreta.png"},
         {"id": "board",           "file": "resources/images/board4.png"},
         {"id": "board5",          "file": "resources/images/board5.png"},
@@ -53,7 +52,10 @@
         {"id": "TiendaNPC",       "file": "resources/images/tienda_dibujo.png"  },
         {"id": "CompbateNPC",       "file": "resources/images/juego_dibujo.png"  },
         {"id": "OficinaNPC",       "file": "resources/images/ofi_dibujo.png"  },
-        {"id": "NPCNPC",       "file": "resources/images/npc_dibujo.png"  }
+        {"id": "NPCNPC",       "file": "resources/images/npc_dibujo.png"  },
+        {"id": "BrilliNPC",       "file": "resources/images/brilliNPC.png"  },
+        {"id": "feedback_flecha",       "file": "resources/images/feedback_flecha.png"  },
+        {"id": "feedback_circulo",       "file": "resources/images/feedback_circulo.png"  }
     ],
     "fonts": [
       {

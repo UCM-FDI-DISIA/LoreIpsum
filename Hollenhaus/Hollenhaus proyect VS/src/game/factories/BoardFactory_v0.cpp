@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "BoardFactory_v0.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/Transform.h"
@@ -66,6 +67,7 @@ ecs::entity_t BoardFactory_v0::createBoard()
 
 	//añadimos a la entidad el componente boardManager y le seteamos el board que hemos creado
 	boardEntity->addComponent<BoardManager>()->setBoard(_board);
+
 
 	return boardEntity;
 }

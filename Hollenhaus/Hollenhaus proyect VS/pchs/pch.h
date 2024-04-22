@@ -170,21 +170,23 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
+#include <SDL_net.h>
 
 
 //sdlUtils
 //este incluye la mayoria de los include de sdl_Utils(expcepto algunos como sdl_net)
-#include "../sdlutils/SDLUtils.h"
-#include "../sdlutils/InputHandler.h"
+#include "sdlutils/SDLUtils.h"
+#include "sdlutils/SDLNetUtils.h"
+#include "sdlutils/InputHandler.h"
 
-#include "../utils/Vector2D.h"
-#include "../utils/Collisions.h"
+#include "utils/Vector2D.h"
+#include "utils/Collisions.h"
 
 //entity component sistem
-#include "ecs.h"
-#include "Namespaces.h"
-#include "components/managers/Manager.h"
-#include "../utils/tweeny-3.2.0.h"
+#include "game/ecs.h"
+#include "game/Namespaces.h"
+#include "game/components/managers/Manager.h"
+#include "utils/tweeny-3.2.0.h"
 
 
 #pragma endregion

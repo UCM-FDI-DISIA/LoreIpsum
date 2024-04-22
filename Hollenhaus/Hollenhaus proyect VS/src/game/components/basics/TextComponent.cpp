@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "TextComponent.h"
 #include "Transform.h"
 #include "../../../sdlutils/SDLUtils.h"

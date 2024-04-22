@@ -171,9 +171,6 @@
     <ClCompile Include="pchs\pch_SDL.cpp">
       <Filter>Archivos de origen\Auxiliares</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\pch.cpp">
-      <Filter>Archivos de origen\Auxiliares</Filter>
-    </ClCompile>
     <ClCompile Include="pchs\pch_c++_basic.cpp">
       <Filter>Archivos de origen\Auxiliares</Filter>
     </ClCompile>
@@ -372,6 +369,42 @@
     <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\gamestates\TutorialBoardState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\TutorialManager.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\tutorialState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\transitionTextMenuState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\storyModeState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\optionsMainMenuState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\multiplayerModeState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\cinematicIntroState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\checkMazeMenuState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\checkCluesMenuState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\pauseMenuState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="pchs\pch.cpp">
+      <Filter>Archivos de origen\Auxiliares</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -540,9 +573,6 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="pchs\pch_SDL.h">
-      <Filter>Archivos de encabezado\Auxiliares</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\pch.h">
       <Filter>Archivos de encabezado\Auxiliares</Filter>
     </ClInclude>
     <ClInclude Include="pchs\pch_c++_basic.h">
@@ -725,6 +755,42 @@
     <ClInclude Include="src\game\components\LobbyStatusIndicator.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\gamestates\TutorialBoardState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\TutorialManager.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\checkCluesMenuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\checkMazeMenuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\cinematicIntroState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\multiplayerModeState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\optionsMainMenuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\pauseMenuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\storyModeState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\transitionTextMenuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\tutorialState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="pchs\pch.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
@@ -740,6 +806,9 @@
       <Filter>Resources</Filter>
     </None>
     <None Include="resources\config\npcs.json">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="resources\config\keytexts.json">
       <Filter>Resources</Filter>
     </None>
   </ItemGroup>

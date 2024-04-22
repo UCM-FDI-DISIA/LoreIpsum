@@ -25,16 +25,17 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 		musicsAccessWrapper_(musics_, "Musics Table"), //
 		cardAccessWrapper_(cards_, "Cards Table"), //
 		dialogueAccessWrapper_(dialogues_, "Dialogues Table"), //
-		npcsAccessWrapper_(npcs_, "NPCs Table") //
+		npcsAccessWrapper_(npcs_, "NPCs Table"), //
+		keysAccessWrapper_(keys_, "Keys Table")
 {
 	initWindow();
 	initSDLExtensions();
 }
 
 SDLUtils::SDLUtils(std::string windowTitle, int width, int height,
-		std::string filename, std::string filenameCards, std::string filemaneDialogues, std::string filenameNPCs) :
+		std::string filename, std::string filenameCards, std::string filemaneDialogues, std::string filenameNPCs, std::string filanameKeys) :
 		SDLUtils(windowTitle, width, height) {
-	loadResources(filename,filenameCards,filemaneDialogues, filenameNPCs);
+	loadResources(filename,filenameCards,filemaneDialogues, filenameNPCs, filanameKeys);
 }
 
 SDLUtils::~SDLUtils() {
@@ -127,7 +128,7 @@ void SDLUtils::initSDLExtensions() {
 
 void SDLUtils::loadResources(std::string filenameResources,
 	std::string filenameCards, std::string filenameDialogues, 
-	std::string filenameNPCs) {
+	std::string filenameNPCs, std::string filenameKeys) {
 	// TODO check the correctness of values and issue a corresponding
 	// exception. Now we just do some simple checks, and assume input
 	// is correct.
@@ -145,6 +146,7 @@ void SDLUtils::loadResources(std::string filenameResources,
 	std::unique_ptr<JSONValue> jValueRootCards(JSON::ParseFromFile(filenameCards));
 	std::unique_ptr<JSONValue> jValueRootDialogues(JSON::ParseFromFile(filenameDialogues));
 	std::unique_ptr<JSONValue> jValueRootNPCs(JSON::ParseFromFile(filenameNPCs));
+	std::unique_ptr<JSONValue> jValueRootKeys(JSON::ParseFromFile(filenameKeys));
 
 	// check it was loaded correctly
 	// the root must be a JSON object
@@ -166,12 +168,18 @@ void SDLUtils::loadResources(std::string filenameResources,
 	if (jValueRootNPCs == nullptr || !jValueRootNPCs->IsObject()) {
 		throw "Something went wrong while load/parsing '" + filenameNPCs + "'";
 	}
+	// check it was loaded correctly
+	// the root must be a JSON object
+	if (jValueRootKeys == nullptr || !jValueRootKeys->IsObject()) {
+		throw "Something went wrong while load/parsing '" + filenameKeys + "'";
+	}
 
 	// we know the root is JSONObject
 	JSONObject rootResources = jValueRootResources->AsObject();
 	JSONObject rootCards = jValueRootCards->AsObject();
 	JSONObject rootDialogues = jValueRootDialogues->AsObject();
 	JSONObject rootNPCs = jValueRootNPCs->AsObject();
+	JSONObject rootKeys = jValueRootKeys->AsObject();
 
 
 
@@ -186,6 +194,7 @@ void SDLUtils::loadResources(std::string filenameResources,
 	loadCards(rootCards, filenameResources);
 	loadDialogues(rootDialogues, filenameDialogues);
 	loadNPCs(rootNPCs, filenameNPCs);
+	loadKeyText(rootKeys, filenameKeys);
 }
 
 void SDLUtils::loadFonts(JSONObject rootResources, std::string filenameResources)
@@ -539,6 +548,36 @@ void SDLUtils::loadNPCs(JSONObject rootNPCSs, std::string filenameNPCs)
 		}
 	}
 
+}
+
+void SDLUtils::loadKeyText(JSONObject rootKeys, std::string filenameKeys)
+{
+	/// Samir (feat. Jimbo)
+	const auto jValue = rootKeys["keys"]; // key con todas las descripciones
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			msgs_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString(); // id de la descripcion
+					std::string txt = vObj["text"]->AsString(); // descripcion
+#ifdef _DEBUG
+					std::cout << "Loading key with id: " << key
+						<< std::endl;
+#endif
+					keys_.emplace(key, JsonData::KeyData(txt));
+				}
+				else {
+					throw "'keys' array in '" + filenameKeys
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'keys' is not an array in '" + filenameKeys + "'";
+		}
+	}
 }
 
 std::vector<Effects::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::vector<Effects::Direction>& directions)

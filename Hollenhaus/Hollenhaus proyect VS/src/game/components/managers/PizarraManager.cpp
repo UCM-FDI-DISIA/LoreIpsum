@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "PizarraManager.h"
 #include "../../Data.h"
 #include "../../GameStateMachine.h"

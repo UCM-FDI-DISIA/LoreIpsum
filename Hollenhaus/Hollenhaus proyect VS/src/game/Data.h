@@ -13,7 +13,6 @@ MAX_CARDS_MAZE = 20, // Maximo de cartas en el mazo
 // Cantidad de cartas de la tienda. Cambiar en shopComponent tambien.
 CARDS_IN_SHOP = 4;
 
-
 class Data
 {
 private:
@@ -33,12 +32,14 @@ private:
 	int currentMoney = 0,
 		currentCase = 0,
 		currentSouls = 0,
-		winner = 0;
+		winner = 0,
+		lastState = 0;
 
-	// ------ NS ------
 	std::list<int> defeatedNPCS;
 	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
+
+	std::list<int> thisCaseClues; // Id de las cartas conseguidas durante el caso (deben ser aniadidas al drawer y aqui al ser conseguidass)
 
 	enum WINNER {
 		NONE,
@@ -83,12 +84,13 @@ public:
 	//----Almas:
 	void AddSouls(int s);
 	//----Caso:
-	void AddCurrentCase();
+	void AddCaseIndex();
 	//----Ganardor de la ultima partida:
 	void setWinner(int i);
 	//----Mete una carta al array de cartas de la tienda. Booleano pues por si acaso.
 	bool setShopCard(int id);
-
+	// 
+	void setLastState(int ls);
 
 	// ---- Getters ----
 	#pragma region GETTERS
@@ -119,6 +121,8 @@ public:
 	bool shopCardsIsEmpty();
 	//----Devuelve una shopCard dado un id:
 	int getShopCardById(int id);
+	//----Devuelve ultimo estado antes de entrar a pausa
+	int getLastState() { return lastState; }
 
 	//------Busqueda:
 

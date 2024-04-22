@@ -44,18 +44,23 @@
 ### Descripción
 **HÖLLENHAUS** es un videojuego de cartas creado por *LoreIpsum* en el que tú —un fantasma en el limbo que busca un nuevo hogar en el infierno— luchas contra tu adversario por sumar la mayor cantidad de puntos en las casillas de un tablero. Te enfrentarás a diversos personajes a lo largo de la historia, ganando las almas necesarias para costearte un hogar en el infierno.
 ### Capturas
-...
+![Menú de inicio](/docs/GDD/images/captura00.png)
+![Overworld](/docs/GDD/images/captura01.png)
+![Tienda](/docs/GDD/images/captura02.png)
+![Batalla](/docs/GDD/images/captura03.png)
+![Oficina](/docs/GDD/images/captura04.png)
+![Deckbuilding](/docs/GDD/images/captura05.png)
 ### Vídeo
 ...
 ### Página
-[Enlace a página web](https://ucm-fdi-disia.github.io/LoreIpsum/)
+Enlace a la [página web](https://ucm-fdi-disia.github.io/LoreIpsum/)
 ## Presentaciones
-- [Hito 0](https://docs.google.com/presentation/d/14X1H2WW96c6soYmThStQAicIRp_3ZJsN-hTsZ-rOBvw/edit?usp=drive_link)
-- [Hito 1](https://docs.google.com/presentation/d/1n5Ko22xPMVLtqO-oFY6cvgndLT4iQ3dGm4_wTjoHPe4/edit?usp=sharing)
-- Hito 2
+- **Hito 0**: [transparencias](https://docs.google.com/presentation/d/14X1H2WW96c6soYmThStQAicIRp_3ZJsN-hTsZ-rOBvw/edit?usp=drive_link) y [protocolo](https://docs.google.com/document/d/1nzUwn2zeJeuQBZWjjvqF6Tlv1n-C4KZrPEBRIF91SRE/edit?usp=sharing)
+- **Hito 1**: [transparencias](https://docs.google.com/presentation/d/1n5Ko22xPMVLtqO-oFY6cvgndLT4iQ3dGm4_wTjoHPe4/edit?usp=sharing), [protocolo](https://docs.google.com/document/d/1zDPQPwhtZNLIt8iL_xZ378V7yQT1QKjliIeKrCuGFmk/edit?usp=sharing) y [guión](https://docs.google.com/document/d/1oxUlDSbENCnBTgExxYuLocpCrcsxeR2cbJSiAwpyqUE/edit?usp=sharing)
+- **Hito 2**: [transparencias](https://docs.google.com/presentation/d/1RRbo9XOWkO9gCZej6tLlH4qD4hG9qMLc2hf5ba_PbnE/edit?usp=sharing), [gráficas](https://docs.google.com/spreadsheets/d/1teqh66NJ_fqeRnTNbOUWAlwWpkwhWEhiVeuGfHJ3qas/edit?usp=sharing) y [guión](https://docs.google.com/document/d/1GnP6rd4fdsNH70kAZ0Tve3oDKUXk1_WaQ3tPDaFFwzs/edit?usp=sharing)
 - Hito final
 ## Arquitectura 
-(TO-DO: insertar aquí UMLS)
+Enlace al [UML general](https://www.figma.com/file/QBQ7K1ngk58sNtPMxOUhRx/Hollenhaus-UML?type=whiteboard&node-id=0-1&t=s07Dx0HenMNke7FV-0 ).
 ## GDD
 <p align="center">
   Paula Alemany, Nieves Alonso, Samuel García, Andrés García, Pablo Iglesias, Luis Parres, Inés Primo, Ariadna Ruiz, Paula Sierra, Cynthia Tristán, Jaime Vicente

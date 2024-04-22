@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "DialogueReader.h"
 #include "../../sdlutils/SDLUtils.h"
 #include "TypeWriter.h"
@@ -29,21 +30,24 @@ void DialogueReader::initComponent() {
 }
 void DialogueReader::NextNode()
 {
-	exeEvents(convo_->Node(actualNode_).NodeEventsFinish());
-	actualNode_++;
-	if (actualNode_ >= convo_->NodesVector().size()) {
-		ent_->getComponent<NextText>()->setDead(true);
-		dialogueDestroyer_->destroyDialogue();
-		return;
+	if (!ent_->getComponent<NextText>()->isDead()) {
+
+		exeEvents(convo_->Node(actualNode_).NodeEventsFinish());
+		actualNode_++;
+		if (actualNode_ >= convo_->NodesVector().size()) {
+			ent_->getComponent<NextText>()->setDead(true);
+			dialogueDestroyer_->destroyDialogue();
+			return;
+		}
+		typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
+		exeEvents(convo_->Node(actualNode_).NodeEventsStart());
 	}
-	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
-	exeEvents(convo_->Node(actualNode_).NodeEventsStart());
 }
 
 void DialogueReader::exeEvents(std::vector<JsonData::DialogueEventS> events)
 {
 	for (auto e : events) {
-		eventCollection_->callEvent(e.getType(), e.getScene(), getEntity());
+		eventCollection_->callEvent(e.getType(), e.getScene(), getEntity())();
 	}
 }
 

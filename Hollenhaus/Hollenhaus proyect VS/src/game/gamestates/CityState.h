@@ -1,4 +1,5 @@
 #include "GameState.h"
+#include "../../utils/tweeny-3.2.0.h"
 
 class Factory;
 
@@ -7,6 +8,7 @@ class CityState : public GameState
 public:
 
 	CityState(); //Constructora
+	~CityState();
 
 	void update() override;
 	void render() const override;
@@ -14,6 +16,9 @@ public:
 
 	void onEnter() override;
 	void onExit() override;
+
+	void onPause();
+
 private:
 
 	//Velocidad del fondo (mov)
@@ -26,5 +31,6 @@ private:
 	Factory* factory;
 
 	// tween fantasmiko
-	tweeny::tween<float> tweensy;
+	tweeny::tween<float> fantastween;
+
 };

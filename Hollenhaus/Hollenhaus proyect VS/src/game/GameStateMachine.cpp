@@ -1,13 +1,20 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "checkML.h"
 
 #include <iostream>
 #include <SDL.h>
 #include "GameStateMachine.h"
+
 #include "gamestates/MainMenuState.h"
 #include "gamestates/CityState.h"
 #include "gamestates/OfficeState.h"
 #include "gamestates/ShopState.h"
+#include "gamestates/MatchOverState.h"
+#include "gamestates/DeckBuildingState.h"
+#include "gamestates/tutorialState.h"
+#include "gamestates/cinematicIntroState.h"
+
 #include "gamestates/SamuState.h"
 #include "gamestates/JimboState.h"
 #include "gamestates/AndresState.h"
@@ -21,6 +28,15 @@
 #include "gamestates/MultiplayerPreGameState.h"
 #include "gamestates/MultiplayerGameState.h"
 #include "gamestates/MultiplayerEndGameState.h"
+#include "gamestates/TutorialBoardState.h"
+
+#include "gamestates/checkCluesMenuState.h"
+#include "gamestates/checkMazeMenuState.h"
+#include "gamestates/multiplayerModeState.h"
+#include "gamestates/optionsMainMenuState.h"
+#include "gamestates/pauseMenuState.h"
+#include "gamestates/storyModeState.h"
+#include "gamestates/transitionTextMenuState.h"
 
 #include "components/managers/Manager.h"
 #include "Mouse.h"
@@ -29,10 +45,8 @@
 
 void GameStateMachine::init()
 {
-
 	//Estado incial
 	pushState(currentState);
-
 }
 
 //constructor
@@ -41,18 +55,34 @@ GameStateMachine::GameStateMachine() {
 	mngr_ = new ecs::Manager();
 	mouse_ = new Mouse("mouse", 2);
 
-	//Creaci�n de los estados
-	mainMenuState = new MainMenuState();
+	// Creacion de los estados
+	// Estados del juego
 	cityState = new CityState();
 	officeState = new OfficeState();
 	shopState = new ShopState();
+	deckBuildingState = new DeckBuildingState();
+	tutorialState = new TutorialState();
 	//boardState = new BoardState();
+
+	// Estados de menuses
+	mainMenuState = new MainMenuState();
+	storyModeState = new StoryModeState();
+	multiplayerModeState = new MultiplayerModeState();
+	optionsMainMenuState = new OptionsMainMenuState();
+	transitionTextMenuState = new TransitionTextMenuState();
+	cinematicIntroState = new CinematicIntroState();
+	pauseMenuState = new PauseMenuState();
+	checkMazeMenuState = new CheckMazeMenuState();
+	checkCluesMenuState = new CheckCluesMenuState();
+	matchOverState = new MatchOverState();
+
+	// Estados de gente
 	samuState = new SamuState();
 	jimboState = new JimboState();
 	nievesState = new NievesState();
-	matchOverState = new MatchOverState();
 	luisState = new LuisState();
 	deckBuildingState = new DeckBuildingState();
+	tutorialBoardState = new TutorialBoardState();
 
 	multiplayerLobbyState = new MultiplayerLobbyState();
 	multiplayerPreGameState = new MultiplayerPreGameState();
@@ -65,7 +95,7 @@ GameStateMachine::GameStateMachine() {
 
 	currentState = mainMenuState;
 
-	// crea la data en el current state
+	// settea la data en el current state para acceder a ella desde cualquier estado
 	currentState->setData(new Data());
 }
 

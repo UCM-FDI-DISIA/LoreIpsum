@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "DropZone.h"
 #include "managers/Manager.h"
 #include "../Entity.h"

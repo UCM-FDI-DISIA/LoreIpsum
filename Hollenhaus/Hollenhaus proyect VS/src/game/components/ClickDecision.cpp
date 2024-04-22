@@ -1,11 +1,12 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "ClickDecision.h"
 
 #include "../components/NextText.h"
 #include "../components/DialogueDestroyer.h"
 #include "../components/DialogueEventCollection.h"
 
-ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
+ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) //igual aqui meter int
 {
 	decision_ = decision;
 	parent_ = parent;

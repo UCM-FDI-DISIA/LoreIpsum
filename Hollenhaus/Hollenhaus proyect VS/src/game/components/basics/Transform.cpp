@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "Transform.h"
 #include "../managers/Manager.h"
 
@@ -105,6 +106,14 @@ Transform::setGlobalPos(Vector2D& pos) {
 		relativePos_ = globalPos_ - parent_->getGlobalPos();
 }
 
+void
+Transform::setGlobalPos(int x, int y) {
+	globalPos_.setX(x);
+	globalPos_.setY(y);
+	if (isChild_)
+		relativePos_ = globalPos_ - parent_->getGlobalPos();
+}
+
 void 
 Transform::setGlobalAngle(float angle) {
 	globalAngle_ = angle;
@@ -128,6 +137,17 @@ void Transform::setGlobalScale(float x, float y)
 		relativeScale_.set(globalScale_.getX() / parent_->globalScale_.getX(), globalScale_.getY() / parent_->globalScale_.getY());
 	else
 		relativeScale_.set(globalScale_);
+}
+
+void Transform::setRelativePos(Vector2D& newValue)
+{
+	relativePos_ = newValue;
+}
+
+void Transform::setRelativePos(float x, float y)
+{
+	relativePos_.setX(x);
+	relativePos_.setY(y);
 }
 
 Transform* 

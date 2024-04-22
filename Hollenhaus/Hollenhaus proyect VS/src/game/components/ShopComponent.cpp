@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "ShopComponent.h"
 #include "../GameStateMachine.h"
 #include "../gamestates/GameState.h"
@@ -7,6 +8,11 @@
 #include "Button.h"
 #include "../../game/components/managers/Manager.h"
 #include "../components/basics/TextComponent.h"
+//------CheckML.
+#include"../checkML.h"
+//------Factorias.
+#include "../factories/Factory.h"
+#include "../factories/DialogueFactory_V0.h"
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
 shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(525, 80),Vector2D(660, 80) ,Vector2D(525, 200) ,Vector2D(660, 200) }),
@@ -23,6 +29,9 @@ ShopComponent::~ShopComponent()
 
 void ShopComponent::initComponent()
 {
+	factory2 = new Factory();
+	factory2->SetFactories(static_cast<DialogueFactory*>(new DialogueFactory_V0()));
+
 	if (GameStateMachine::instance()->getCurrentState()->checkDataShopCardsIsEmpty()) // Si no hay cartas de la tienda en Data entonces se tienen que generar.
 	{
 		std::cout << "\nTienda genera cartas:" << std::endl;
@@ -41,7 +50,6 @@ void ShopComponent::initComponent()
 	money = GameStateMachine::instance()->getCurrentState()->getMoney();
 
 	showCards();
-	//showPrizes();
 	setTexts();
 }
 
@@ -77,6 +85,7 @@ void ShopComponent::showCards() {
 			GameStateMachine::instance()->getCurrentState()->addCardToDrawer(shopCards[i]);
 		}*/
 		auto card = GameStateMachine::instance()->getCurrentState()->createCard(shopCards[i], shopCardsPositions[i]);
+		card->setLayer(3);
 		int id = card->getComponent<Card>()->getID();
 		if (!cardIsBought(id)) // Si la carta ya esta comprada entonces no debe de ser un boton pero igualmente tiene que aparecer pero oscurecida.
 		{
@@ -99,6 +108,11 @@ void ShopComponent::showCards() {
 	}
 }
 
+int ShopComponent::getCardPrice(int i)
+{
+	return shopCardsPrize[i];
+}
+
 void ShopComponent::buyCard()
 {
 	//------Esto para buscar el boton que ha sido pulsado para acceder a la carta de ese boton.
@@ -118,7 +132,7 @@ void ShopComponent::buyCard()
 		int id = card->getComponent<Card>()->getID(); // Id de la carta.
 		int index = searchIndexById(id); // Indice de la carta en shopCards, shopCardspositions y shopCardsPrize.
 		//------Esto para confirmar la compra.---------------------------------------------alomejor separar en dos if por si se quiere poner dialogo de no tener dinero suficiente.
-		if (money >= shopCardsPrize[index] && confirmPurchase())
+		if (money >= shopCardsPrize[index] && confirmPurchase(shopCardsPrize[index]))
 		{
 			std::cout << "Compra." << std::endl;
 			if (card != nullptr)
@@ -126,7 +140,9 @@ void ShopComponent::buyCard()
 				GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al cajon.
 				card->getComponent<SpriteRenderer>()->setMultiplyColor(100, 100, 100, 255); // Cambiamos el color.
 				money -= shopCardsPrize[index]; // Restamos el dinero.
-				GameStateMachine::instance()->getCurrentState()->changeMoney(-shopCardsPrize[index]); // Restamos el dinero en Data.
+
+				GameStateMachine::instance()->getCurrentState()->substractMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
+
 				//showPrizes(); // Para que se actualicen los precios.
 				updateTexts();
 			}
@@ -134,24 +150,10 @@ void ShopComponent::buyCard()
 	}
 }
 
-/*void ShopComponent::showPrizes()
+int ShopComponent::getPlayerMoney()
 {
-	std::string txt = "";
-	for (int i = 0; i < CARDS_IN_SHOP; i++)
-	{
-		ecs::entity_t shopText = Instantiate(Vector2D(shopCardsPositions[i].getX() + 30, shopCardsPositions[i].getY() + 40));
-		if (!cardIsBought(shopCards[i])) // Sino esta vendida aparece el precio.
-		{
-			txt = std::to_string(shopCardsPrize[i]);
-		}
-		else // Sino, pone que esta vendida.
-		{
-			txt = "vendida";
-		}
-		shopText->addComponent<TextComponent>(txt, "8bit_size_40", SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
-		shopText->setLayer(6);
-	}
-}*/
+	return money;
+}
 
 int ShopComponent::calculatePrize(ecs::entity_t card)
 {
@@ -161,9 +163,40 @@ int ShopComponent::calculatePrize(ecs::entity_t card)
 	return prize;
 }
 
-bool ShopComponent::confirmPurchase()
+bool ShopComponent::confirmPurchase(int prize)
 {
-	//----------------------------------------------------------preguntar a ines sobre el dialogo para confirmar.
+	//GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
+	//---------------------------------------------------------------------preguntar a ines/poli sobre el dialogo para confirmar.
+
+	GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
+
+	JsonData::DialogueData dialogue = sdlutils().dialogues().at("Tienda");
+
+	auto a = getEntity();
+
+	shopDialogue = factory2->createDialogue("Tienda", 0, 0,
+		{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f },// POS
+		{ 0.3,0.1 }, // SIZE
+		5, 10, this->getEntity(),
+		3,			// capa
+		false,		// auto
+		"8bit_size_20",	// mirar el JSON para cambiar el tamanio de texto
+		SDL_Color({ 0, 0, 0, 255 }),
+		220, // wrap length
+		Text::BoxPivotPoint::LeftTop,
+		Text::TextAlignment::Center);
+
+	//npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
+	//	{ x, y },//POS
+	//	{ 2,2 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
+	//	5, 10, getEntity(),
+	//	3, dialogue.Convo(conv).isAuto(),  //LAYER
+	//	"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
+	//	SDL_Color({ 0, 0, 0, 255 }),
+	//	220, //wrap length
+	//	Text::BoxPivotPoint::LeftTop,
+	//	Text::TextAlignment::Left);
+	//GameStateMachine::instance()->getCurrentState()->deSelected();
 	return true;
 }
 
@@ -192,6 +225,7 @@ void ShopComponent::setTexts()
 	//----Dinero-----
 	moneyText = Instantiate(Vector2D(40, 100));
 	moneyText->addComponent<TextComponent>(std::to_string(money), "8bit_size_40", SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	moneyText->setLayer(10);
 	//--------Esta muy feo ya lo siento a quien mire esto :).
 	//----Carta 0----
 	cardPrizeText0 = Instantiate(Vector2D(shopCardsPositions[0].getX() + 30, shopCardsPositions[0].getY() + 40));

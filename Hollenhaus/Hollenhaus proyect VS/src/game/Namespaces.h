@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 
 
 
@@ -87,8 +87,9 @@ namespace DialogueEvents
 	enum Events {
 		None,				// No ocurre nada
 		ChangeScene,		// Evento para cambiar de escena
-		StartAnimation,		// Evento para lanzar una animación
-		ConfirmMatchPopUp	// Evento para mostrar una ventana donde el jugador acepta o rechaza una partida inminente
+		StartAnimation,		// Evento para lanzar una animaciï¿½n
+		ConfirmMatchPopUp,	// Evento para mostrar una ventana donde el jugador acepta o rechaza una partida inminente
+		ActionEnded
 	};
 }
 
@@ -244,6 +245,14 @@ namespace JsonData
 
 	};
 
-}
+	struct KeyData {
+		KeyData() {};
+		KeyData(std::string text) : text_(text) {};
 
+		std::string text() { return text_; }
+	private:
+		std::string text_;
+	};
+
+}
 
