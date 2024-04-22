@@ -168,16 +168,16 @@ public:
 			newState = deckBuildingState;
 			break;
 		case GameStates::MULTIPLAYER_LOBBY:
-			currentState = multiplayerLobbyState;
+			newState = multiplayerLobbyState;
 			break;
 		case GameStates::MULTIPLAYER_PREGAME:
-			currentState = multiplayerPreGameState;
+			newState = multiplayerPreGameState;
 			break;
 		case GameStates::MULTIPLAYER_GAME:
-			currentState = multiplayerGameState;
+			newState = multiplayerGameState;
 			break;
 		case GameStates::MULTIPLAYER_END_GAME:
-			currentState = multiplayerEndGameState;
+			newState = multiplayerEndGameState;
 			break;
 		case GameStates::TUTORIALBOARD:
 			newState = tutorialBoardState;
