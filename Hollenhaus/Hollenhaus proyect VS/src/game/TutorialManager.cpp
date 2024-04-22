@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "TutorialManager.h"
 #include "../game/gamestates/TutorialBoardState.h"
 

@@ -1,5 +1,6 @@
 #pragma once
-#include "pch.h"
+#include <../pchs/pch.h>
+
 
 
 class TutorialManager : public ComponentUpdate

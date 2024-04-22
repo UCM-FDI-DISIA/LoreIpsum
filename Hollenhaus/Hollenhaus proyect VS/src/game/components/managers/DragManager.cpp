@@ -1,5 +1,7 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "DragManager.h"
+#include "../../../sdlutils/SDLUtils.h"
 #include "../../../sdlutils/InputHandler.h"
 #include "../basics/Transform.h"
 #include "Manager.h"
@@ -14,6 +16,8 @@
 #include "BoardManager.h"
 #include "../HandComponent.h"
 #include "MatchManager.h"
+
+#include "../multiplayer/NetGame.h"
 
 DragManager::DragManager()
 {
@@ -45,25 +49,54 @@ void DragManager::update()
 
 		dragTransform->setGlobalPos(posAct);
 
-		///PARA EL FEEDBACK -> Comprobamos si está encima de una celda
-		auto drop = mouseRaycast(ecs::grp::DROPS);
+		updateFeedback();
 
-		auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
-		if (drop != nullptr) {
-			
-			//Debug para que escriba en que celda está
-			std::cout << drop->getComponent<DropDetector>()->getBoardPos() << std::endl;
-
-			auto c = dragTransform->getEntity()->getComponent<Card>();
-
-			////Queremos reconocer sobre que casillas va a actuar la carta estándo en esa posición
-			//dragTransform->getEntity()->getComponent<Card>()->getEffects();
-
-			//drop->getComponent<Cell>()->getEffects();
-		}
 	}
 
 }
+
+void DragManager::updateFeedback()
+{
+	ecs:: entity_t drop = mouseRaycast(ecs::grp::DROPS);
+
+	auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
+
+	//Si una carta está pillada empieza el feedback
+	if (drop != nullptr) {
+
+		colorEffects(drop);
+
+		//Si cambiamos la celda sobre la que está puesta la carta
+		if (lastCell != nullptr && lastCell != drop) {
+
+			//Quitamos los colores del drag anterior
+			boardManager->returnColors();
+			lastCell = drop;
+		}
+		else {
+
+			lastCell = drop;
+			colorEffects(drop);
+		}
+		
+	}
+	else {
+		boardManager->returnColors();
+		}
+}
+void DragManager::setNetGame(NetGame* _netGame)
+{
+	netGame = _netGame;
+}
+
+void DragManager::playCardMultiplayer(ecs::entity_t e ,Vector2D pos)
+{
+	if (netGame != nullptr) {
+		TuVieja("Se envia el mesaje de jugar una carta");
+		netGame->playCard(e, pos);
+	}
+}
+
 
 void DragManager::OnLeftClickDown()
 {
@@ -104,6 +137,9 @@ void DragManager::OnLeftClickUp()
 			!dropDetector->isOcuped() && enoughPoints(dragTransform->getEntity()))
 		{
 			
+			playCardMultiplayer(dragTransform->getEntity(), dropDetector->getBoardPos());
+
+
 			putCardAnimation(dropDetector);
 			
 			//coloca la carta en la celda y la quita de la manos
@@ -114,6 +150,8 @@ void DragManager::OnLeftClickUp()
 
 			//mandar la info al tablero
 			putCardOnBoard(dragTransform->getEntity(), dropDetector);
+
+			
 		}
 		else {//sino, devolvemos la carta a su posicion inicial
 			dragTransform->setGlobalPos(initialTransformPos);
@@ -194,5 +232,57 @@ void DragManager::putCardOnBoard(ecs::entity_t card, DropDetector* cell)
 		//ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
 	}
 	
+}
+
+void DragManager::colorEffects(ecs::entity_t drop)
+{
+	auto c = dragTransform->getEntity()->getComponent<Card>();	//Carta draggeada
+
+	//Buscamos la carta por su ID
+	auto id = c->getID();
+	auto l = sdlutils().cards().at(std::to_string(id));
+
+	auto cell = drop->getComponent<Cell>();	//Celda sobre la que está la carta
+
+	//Miramos todos los efectos que tenga la carta
+	for (auto e : l.effects()) {
+
+		//Diferenciamos los diferentes tipos de efectos que nos interesa
+		switch (e.type()) {
+		case Effects::Superflecha:
+			for (auto d : e.directions()) {
+
+				while (cell != nullptr)	//Pintamos toda la fila
+				{
+					cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+					cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
+				}
+			}
+			break;
+
+		case Effects::Flecha:
+			for (auto d : e.directions()) {
+
+				if (cell->getAdjacents()[d] != nullptr)	//Solo pintamos la correspondiente
+				{
+					cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
+					cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+				}
+			}
+			break;
+
+		case Effects::Esquina:
+			if (cell->getCorner()) {
+				cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+			}
+			break;
+
+		case Effects::Centro:
+			if (cell->getCenter()) {
+				cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+			}
+			break;
+		}
+	}
 }
 

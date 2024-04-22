@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "NextText.h"
 #include "managers/Manager.h"
 #include "DialogueDestroyer.h"

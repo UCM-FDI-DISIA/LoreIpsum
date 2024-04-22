@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "GameState.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/Transform.h"
@@ -41,12 +42,16 @@ GameState::~GameState()
 
 
 //Su objetivo es borrar todas las entidades muertas, es
-//decir las que han salido del juego en la última iteración
+//decir las que han salido del juego en la ï¿½ltima iteraciï¿½n
 void GameState::refresh()
 {
 	GameStateMachine::instance()->getMngr()->refresh();
 }
 
+
+/**
+* llama a tu padre
+*/
 void GameState::update()
 {
 	GameStateMachine::instance()->getMngr()->update();
@@ -67,14 +72,63 @@ void GameState::setLastPaulPos(Vector2D paulPos)
 	data->SetCityPos(paulPos);
 }
 
+void GameState::setLastPaulDir(bool dir)
+{
+	data->setPaulDir(dir);
+}
+void GameState::setSocketRival(TCPsocket _rival)
+{
+	data->setSocketRival(_rival);
+}
+
+TCPsocket GameState::getSocketRival()
+{
+	return data->getSocketRival();
+}
+
+void GameState::resetSocketRival()
+{
+	data->resetSocketRival();
+}
+
+void GameState::setIsHost(bool b)
+{
+	data->setIsHost(b);
+}
+
+bool GameState::getIsHost()
+{
+	return data->getIsHost();
+}
+
+void GameState::setMazeRival(std::vector<int> mazeRival)
+{
+	data->SetNewMazeRival(mazeRival);
+}
+
+std::vector<int> GameState::getMazeRival()
+{
+	return data->GetMazeRival();
+}
+
+void GameState::SetLastState(int ls)
+{
+	data->setLastState(ls);
+}
+
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
 	return data->GetDrawer();
 }
 
+// para acceder al mazo del data desde el estado
+std::unordered_map<int, Vector2D> GameState::getMazeWithPos()
+{
+	return data->GetMazeWithPos();
+}
 
 // para acceder al mazo del data desde el estado
-std::unordered_map<int, Vector2D> GameState::getMaze()
+std::list<int> GameState::getMaze()
 {
 	return data->GetMaze();
 }
@@ -82,6 +136,16 @@ std::unordered_map<int, Vector2D> GameState::getMaze()
 Vector2D GameState::getLastPaulPos()
 {
 	return data->getLastPaulPos();
+}
+
+bool GameState::getLastPaulDir() const
+{
+	return data->getLastPaulDir();
+}
+
+int GameState::GetLastState()
+{
+	return data->getLastState();
 }
 
 // para settear el mazo del data desde el estado
@@ -135,9 +199,14 @@ void GameState::addCardToDrawer(int id)
 	data->AddCardToDrawer(id);
 }
 
-void GameState::changeMoney(int money)
+void GameState::addMoney(int money)
 {
 	data->AddMoney(money);
+}
+
+void GameState::substractMoney(int money)
+{
+	data->SubtractMoney(money);
 }
 
 int GameState::getMoney()

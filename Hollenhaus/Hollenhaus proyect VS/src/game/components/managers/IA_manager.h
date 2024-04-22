@@ -3,12 +3,15 @@
 #include "../ComponentUpdate.h"
 
 #include "../../../utils/Vector2D.h"
+//#include "../../../utils/tweeny-3.2.0.h"
+#include <array>
 
 class Card;
 class BoardManager;
 class HandComponent;
 class DeckComponent;
 class MatchManager;
+
 
 class IA_manager : public ComponentUpdate
 {
@@ -71,6 +74,7 @@ public:
 		//mazo del jugador y enemigo
 		std::vector<Card*> playerDeck;
 		std::vector<Card*> enemyDeck;
+
 
 		int actionPoints;
 
@@ -155,6 +159,8 @@ public:
 
 
 	void StartTurn();
+	void RobarCarta();
+	void ColocarCarta();
 
 
 private:
@@ -179,7 +185,7 @@ private:
 
 	int minimax(int depth, int h, bool isPlayer, State& current_state, State*& best);
 
-	void makePlay(const InfoJugada &play) const;
+	void makePlay(const InfoJugada &play);
 
 #pragma endregion
 
@@ -196,6 +202,12 @@ private:
 
 	#pragma endregion
 
+
+	// ------ TWEENS ------
+	InfoJugada play_;
+	bool makePlay_;
+	bool colocadas_;
+	uint16_t cartasColocadas_;
 };
 
 

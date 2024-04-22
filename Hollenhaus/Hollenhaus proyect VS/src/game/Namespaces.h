@@ -1,4 +1,7 @@
-#pragma once
+ #pragma once
+
+
+
 
 namespace Cards
 {
@@ -17,7 +20,8 @@ namespace Turns
         J1,
         J2,
         Finish,
-		IA
+		IA,
+		J2_MULTIPLAYER
     };
 }
 
@@ -51,6 +55,7 @@ namespace Players
 		NONE,
 		PLAYER1,//jugador?
 		PLAYER2,//IA?
+		PLAYER2_MULTIPLAYER,
 		NULO,
 		IA
 	};
@@ -82,7 +87,7 @@ namespace DialogueEvents
 	enum Events {
 		None,				// No ocurre nada
 		ChangeScene,		// Evento para cambiar de escena
-		StartAnimation,		// Evento para lanzar una animación
+		StartAnimation,		// Evento para lanzar una animaciï¿½n
 		ConfirmMatchPopUp,	// Evento para mostrar una ventana donde el jugador acepta o rechaza una partida inminente
 		ActionEnded
 	};
@@ -110,10 +115,11 @@ namespace JsonData
 
 	struct CardData {
 		CardData();
-		CardData(int c, int v, std::string& s, bool u, std::vector<CardEffect>& e)
-			: cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e) {}
+		CardData(int id, int c, int v, std::string& s, bool u, std::vector<CardEffect>& e)
+			: id_(id), cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e) {}
 
 		// getters con nombres simplificados para mas facil acceso desde sdlutils
+		int id() const				{ return id_; }
 		int cost() const			{ return cost_; }
 		int value() const			{ return value_; }
 		std::string& sprite()		{ return sprite_; }
@@ -121,6 +127,7 @@ namespace JsonData
 		std::vector<CardEffect>& effects() { return effects_; }
 
 	private:
+		int id_;
 		int cost_;
 		int value_;
 		std::string sprite_;
@@ -241,7 +248,7 @@ namespace JsonData
 	};
 
 	struct KeyData {
-		KeyData();
+		KeyData() {};
 		KeyData(std::string text) : text_(text) {};
 
 		std::string text() { return text_; }

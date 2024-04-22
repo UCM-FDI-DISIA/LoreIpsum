@@ -5,6 +5,7 @@
 
 const int MAX_IN_HAND = 6;
 
+
 class PlayerCardsManager :
     public ComponentUpdate
 {

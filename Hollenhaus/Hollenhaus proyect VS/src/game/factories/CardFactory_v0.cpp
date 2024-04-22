@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "CardFactory_v0.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/Transform.h"
@@ -13,7 +14,7 @@
 #include "../components/basics/TextComponent.h"
 
 
-ecs::entity_t CardFactory_v0::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
+ecs::entity_t CardFactory_v0::createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
                                          std::vector<JsonData::CardEffect>& effects,bool bocaAbajo)
 {
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
@@ -170,6 +171,7 @@ ecs::entity_t CardFactory_v0::createHand()
 	{ 
 		auto card = sdlutils().cards().at(std::to_string(i)); // importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		createCard(
+			0,
 			Vector2D(initX + offSetX * i, initY),
 			card.cost(),
 			card.value(),

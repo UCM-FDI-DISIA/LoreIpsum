@@ -6,14 +6,20 @@
 // el contador de scroll (unidades a moverse por update): aumenta (izq) o disminuye (der)
 // despues de esta evaluacion se ejecuta el movimiento del fondo con su respectiva velocidad
 
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "MoveOnClick.h"
+#include "../Entity.h"
+#include "managers/Manager.h"
+#include "../../sdlutils/InputHandler.h"
+#include "../../sdlutils/SDLUtils.h"
+
 #include <cmath>
 
 constexpr Uint32 FEEDBACK_PADDING = 60,
                  ACC_DURATION = 10;
 constexpr int MOVE_OFFSET = 10;
-                 
+
 
 MoveOnClick::MoveOnClick(float vel) :
 	myBoxCollider_(),
@@ -91,10 +97,6 @@ void MoveOnClick::update()
 	const float posX = myTransform_->getGlobalPos().getX();
 	const float diff = abs(posX - initialPos_.getX());
 
-	/// PROGRESO DE LOS TWEENS DE MOVIMIENTO
-	tweenMovement.step(1);
-	tweenFantasmiko.step(1);
-
 	// ---- MOVE FALSE ----
 	// -> si la diferencia entre la pos actual y la inicial es la distancia a recorrer (se ha completado el mov.)
 	// -> o cuando llegue a los limites de la ciudad por la derecha Y se pulse en la derecha
@@ -110,6 +112,10 @@ void MoveOnClick::update()
 	}
 	else if (shouldMove_)
 		moveFeedback(); // TWEEN DEL FEEDBACK
+
+	/// PROGRESO DE LOS TWEENS DE MOVIMIENTO
+	tweenMovement.step(1);
+	tweenFantasmiko.step(1);
 
 	/// MOVIMIENTO DEL FONDO
 	movementSpeed_ = tweenMovement.peek();
@@ -165,10 +171,17 @@ void MoveOnClick::OnLeftClickDown()
 
 		//movementSpeed_ = scrollFactor_ * dir_;
 
-		enableLerp();
-		enableFeedback();
+		onStart();
+
+		lastDir_ = dir_;
 	}
 	else onStop();
+}
+
+void MoveOnClick::onStart()
+{
+	enableLerp();
+	enableFeedback();
 }
 
 void MoveOnClick::onStop()
@@ -233,32 +246,43 @@ void MoveOnClick::disableFeedback()
 void MoveOnClick::enableLerp()
 {
 	/// DEL PROPIO FONDO
-	tweenMovement =
-		tweeny::from(0.0f)
-		.to(scrollFactor_ * dir_)
-		.during(ACC_DURATION*2)
-		.via(tweeny::easing::sinusoidalInOut);
-	if (movementSpeed_ <= 0)
+	if (movementSpeed_ == 0 || lastDir_ == 0)
 	{
-		tweenMovement.seek(0);
-		movementSpeed_ = 0;
+		// si esta quieto
+		// inicializacion inicial
+		tweenMovement = resetTween(0.0f, scrollFactor_ * dir_);
+		tweenFantasmiko = resetTween(halfScreen_ - 50.0f, halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_);
 	}
-	tweenMovement.forward();
-
-	/// DEL FANTASMIKO
-	tweenFantasmiko =
-		tweeny::from(halfScreen_ - 50.0f)
-		.to(halfScreen_ - 50.0f + MOVE_OFFSET*2 * dir_)
-		.during(ACC_DURATION * 2)
-		.via(tweeny::easing::sinusoidalInOut);
-
-	if (movementSpeed_ <= 0)
-		tweenFantasmiko.seek(0);
-	tweenFantasmiko.forward();
+	else if (lastDir_ == dir_)
+	{
+		// si quiere moverse mas en la misma direccion
+		if (tweenMovement.progress() == 0.0)
+		{
+			tweenMovement = resetTween(0.0f, scrollFactor_ * dir_);
+			tweenFantasmiko = resetTween(halfScreen_ - 50.0f, halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_);
+		}
+		else if (tweenMovement.progress() != 1.0)
+		{
+			tweenMovement = resetTween(tweenMovement.peek(), scrollFactor_ * dir_);
+			tweenFantasmiko = resetTween(tweenFantasmiko.peek(), halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_);
+		}
+	}
+	else
+	{
+		// si quiere moverse mas en la direccion contraria
+		tweenMovement = resetTween(tweenMovement.peek(), scrollFactor_ * dir_);
+		tweenFantasmiko = resetTween(tweenFantasmiko.peek(), halfScreen_ - 50.0f + MOVE_OFFSET * 2 * dir_);
+	}
 }
 
 void MoveOnClick::disableLerp()
 {
-	tweenMovement.backward(); // del fondo
-	tweenFantasmiko.backward();
+	tweenMovement = resetTween(tweenMovement.peek(), 0.0f);
+	tweenFantasmiko = resetTween(tweenFantasmiko.peek(), halfScreen_ - 50.0f);
+}
+
+template <typename T>
+tweeny::tween<T> MoveOnClick::resetTween(T ini, T fin)
+{
+	return tweeny::from(ini).to(fin).during(ACC_DURATION * 2).via(tweeny::easing::sinusoidalInOut);
 }

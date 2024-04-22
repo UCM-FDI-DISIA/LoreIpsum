@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "Factory.h"
 #include "CardFactory.h"
 #include "BoardFactory.h"
@@ -9,13 +10,13 @@
 #include "DecisionFactory.h"
 
 
-ecs::entity_t Factory::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
+ecs::entity_t Factory::createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
 {
 	if (cardFactory == nullptr) {
 		throw "no existe cardFactory";
 	}
 
-	return cardFactory->createCard(pos,cost,value,sprite,unblockable,effects);
+	return cardFactory->createCard(id, pos,cost,value,sprite,unblockable,effects);
 
 }
 ecs::entity_t Factory::createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
@@ -57,6 +58,11 @@ ecs::entity_t Factory::createDeckJ2()
 	}
 
 	return cardFactory->createDeckJ2();
+}
+
+ecs::entity_t Factory::createDeckJ2Multiplayer()
+{
+	return cardFactory->createDeckJ2Multiplayer();
 }
 
 ecs::entity_t Factory::createBoard()

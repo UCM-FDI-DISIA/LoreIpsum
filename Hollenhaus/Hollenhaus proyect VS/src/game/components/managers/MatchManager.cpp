@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include <iostream>
 #include "MatchManager.h"
 #include "BoardManager.h"
@@ -6,6 +7,7 @@
 #include "../../GameStateMachine.h"
 #include "../../gamestates/GameState.h"
 #include "../../components/basics/TextComponent.h"
+#include "../../components/multiplayer/NetGame.h"
 
 MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm) :
 	board_(bm),
@@ -64,13 +66,24 @@ void MatchManager::setActualState(Turns::State newState)
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
 #endif
 		setWinnerOnData();
-		GameStateMachine::instance()->setState(GameStates::MATCHOVER);
+		if (netGame == nullptr) {
+
+			GameStateMachine::instance()->setState(GameStates::MATCHOVER);
+		}
+		else {
+			GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_END_GAME);
+		}
 		break;
 	case Turns::IA:
 #if _DEBUG 
 		std::cout << "Turno: IA" << std::endl;
 #endif
 		startTurnIA();
+		break;
+	case Turns::J2_MULTIPLAYER:
+#if _DEBUG 
+		std::cout << "Turno: J2_MULTIPLAYER" << std::endl;
+#endif
 		break;
 	default:
 		break;
@@ -100,6 +113,9 @@ Players::Owner MatchManager::getPlayerTurn() const
 		break;
 	case Turns::IA:
 		return  Players::IA;
+		break;
+	case Turns::J2_MULTIPLAYER:
+		return  Players::PLAYER2_MULTIPLAYER;
 		break;
 	default:
 		return Players::NONE;
@@ -138,9 +154,15 @@ void MatchManager::setIA_Manager(IA_manager* ia)
 	ia_manager = ia;
 }
 
+void MatchManager::setNetGame(NetGame* ng)
+{
+	netGame = ng;
+}
+
 void MatchManager::endTurnIA()
 {
 	setActualState(Turns::J1);
+	// Animacion gira la estatua
 
 }
 
@@ -175,4 +197,9 @@ void MatchManager::setWinnerOnData()
 void MatchManager::startTurnIA()
 {
 	ia_manager->StartTurn();
+}
+
+void MatchManager::changeTurnMultiplayer()
+{
+	netGame->nextTurn();
 }

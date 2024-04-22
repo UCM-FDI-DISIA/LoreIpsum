@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #pragma once
 #include "BoxCollider.h"
 #include "SpriteRenderer.h"
@@ -27,8 +28,8 @@ BoxCollider::BoxCollider(Vector2D posOffset, Vector2D size) :
 
 void BoxCollider::initComponent() {
 
-	transform_ = mngr_->getComponent<Transform>(ent_);
-	spriteRenderer_ = mngr_->getComponent<SpriteRenderer>(ent_);
+	transform_ = ent_->getComponent<Transform>();
+	spriteRenderer_ = ent_->getComponent<SpriteRenderer>();
 
 	anchoredToSprite_ = spriteRenderer_ != nullptr;
 
@@ -88,6 +89,12 @@ void BoxCollider::setPosOffset(Vector2D newPosOffset) {
 
 void BoxCollider::setSize(Vector2D newSizOffset) {
 	size_ = newSizOffset;
+}
+
+void BoxCollider::setAnchoredToSprite(bool _anchored)
+{
+	anchoredToSprite_ = _anchored;
+	spriteRenderer_ = ent_->getComponent<SpriteRenderer>();
 }
 
 bool BoxCollider::isCursorOver() {

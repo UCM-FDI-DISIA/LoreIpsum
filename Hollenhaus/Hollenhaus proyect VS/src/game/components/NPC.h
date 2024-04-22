@@ -9,18 +9,21 @@ class Transform;
 class NPC : public ComponentUpdate
 {
 public:
-	NPC(int scene);
-	NPC(int scene, std::string name_);
-	NPC(int scene, int t);
-	NPC(int scene, int t, std::string name_);
-	~NPC();
+	enum Type
+	{
+		BUTTON,
+		TALKING
+	};
+
+	NPC(int scene, int t = BUTTON, std::string name_ = "", bool = false, bool = false);
+	~NPC() override;
 
 	void initComponent() override;
 	void update() override;
 
-	void OnLeftClickDown(int scene);
+	void OnLeftClickDown(int scene, bool = false, bool = false);
 	void OnLeftClickUp();
-	void reactToClick(int scene);
+	void reactToClick(int scene, bool = false, bool = false);
 	void talkTo();
 	void stoppedTalking();
 

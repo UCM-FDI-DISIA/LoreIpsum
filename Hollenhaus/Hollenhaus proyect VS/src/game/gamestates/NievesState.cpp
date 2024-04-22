@@ -1,4 +1,4 @@
-﻿#include "pch.h"
+﻿#include <../pchs/pch.h>
 #include "NievesState.h"
 #include "../components/Drag.h"
 #include "../components/managers/CardStateManager.h"

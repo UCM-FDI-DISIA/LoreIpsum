@@ -95,7 +95,7 @@ public:
 	{};
 
 
-	ecs::entity_t createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);
+	ecs::entity_t createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);
 	ecs::entity_t createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);
 
 	ecs::entity_t createDropDetector(Vector2D pos);
@@ -103,6 +103,7 @@ public:
 	ecs::entity_t createHand();
 	ecs::entity_t createDeck();
 	ecs::entity_t createDeckJ2();
+	ecs::entity_t createDeckJ2Multiplayer();
 	ecs::entity_t createBoard();
 
 	// M�todos para crear la UI en el MatchState

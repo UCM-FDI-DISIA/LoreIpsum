@@ -2,6 +2,10 @@
 #include <list>
 #include <array>
 
+#include <SDL_net.h>
+
+
+
 // ---- DECKBUILDING ----
 const int CARDS_IN_GAME = 50, // Cantidad de cartas en el juego
 MIN_CARDS_MAZE = 10, // Minimo de cartas en el mazo
@@ -15,18 +19,23 @@ private:
 	// ---- DECKBUILDING ----
 	std::array<int, CARDS_IN_GAME> drawer; // Id de las cartas desbloqueadas
 	std::list<int> maze; // Id de las cartas del mazo
+
+	std::vector<int> mazeRival; // Id de las cartas del mazo del rival
 	
 	std::unordered_map<int, Vector2D> maze_with_pos;
 
 	// ---- MOVIMIENTO ----
 	// ultima pos de paul en la ciudad
 	Vector2D lastPaulPos;
+	bool lastPaulDir = false;
 
 	// ---- FLUJO ----
 	int currentMoney = 0,
 		currentCase = 0,
 		currentSouls = 0,
-		winner = 0;
+		winner = 0,
+		lastState = 0;
+
 	std::list<int> defeatedNPCS;
 	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
@@ -40,6 +49,11 @@ private:
 		PLAYER2
 	};
 
+	//MULTIPLAYER
+	TCPsocket rival;
+
+	bool isHost = false;
+
 public:
 
 	//------Constructora y destructora:
@@ -52,6 +66,7 @@ public:
 	// -- DECKBUILDING --
 	// Mazo:
 	void SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos);
+	void SetNewMazeRival(std::vector<int> newMaze);
 	void SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer);
 	void SubtractCardFromMaze(int id);
 	//----Cajon:
@@ -60,6 +75,7 @@ public:
 
 	// -- MOVIMIENTO --
 	void SetCityPos(Vector2D paulPos);
+	void setPaulDir(bool dir) { lastPaulDir = dir;}
 
 	// -- FLUJO --
 	// NPCs:
@@ -75,23 +91,29 @@ public:
 	void setWinner(int i);
 	//----Mete una carta al array de cartas de la tienda. Booleano pues por si acaso.
 	bool setShopCard(int id);
+	// 
+	void setLastState(int ls);
 
 	// ---- Getters ----
 	#pragma region GETTERS
 	// -- DECKBUILDING --
 	// Mazo:
-	const std::unordered_map<int, Vector2D> GetMaze() { return maze_with_pos; }
+	const std::unordered_map<int, Vector2D> GetMazeWithPos() { return maze_with_pos; }
+	const std::list<int> GetMaze() { return maze; }
+
+	const std::vector<int> GetMazeRival() { return mazeRival; }
 	// Cajon:
 	std::array<int, CARDS_IN_GAME> GetDrawer() { return drawer; }
 
 	// -- MOVIMIENTO --
 	Vector2D getLastPaulPos() { return lastPaulPos; }
+	bool getLastPaulDir() const { return lastPaulDir; }
 
 	// ------ FLUJO ------
 	//----NPCs:
 	const std::list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
 	//----Dinero:
-	const int GetMoney() { return currentMoney; }
+	const int GetMoney() const  { return currentMoney; }
 	//----Almas:
 	const int GetSouls() { return currentSouls; };
 	//----Caso:
@@ -102,6 +124,8 @@ public:
 	bool shopCardsIsEmpty();
 	//----Devuelve una shopCard dado un id:
 	int getShopCardById(int id);
+	//----Devuelve ultimo estado antes de entrar a pausa
+	int getLastState() { return lastState; }
 
 	//------Busqueda:
 
@@ -134,4 +158,17 @@ public:
 	//----Vaciado del array de cartas de la tienda. Lo pone todo a (-1 ,-1, -1, -1).
 	void EmptyShopCards();
 	void EmptyMaze_With_pos();
+
+
+	//MULTIPLAYER
+
+	void setSocketRival(TCPsocket _rival);
+	TCPsocket getSocketRival();
+
+	void resetSocketRival();
+
+	void setIsHost(bool b);
+	bool getIsHost();
+
+
 };

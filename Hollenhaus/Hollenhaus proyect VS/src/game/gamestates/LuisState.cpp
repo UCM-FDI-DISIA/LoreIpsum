@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "LuisState.h"
 #include <SDL.h>
 #include "../components/Drag.h"

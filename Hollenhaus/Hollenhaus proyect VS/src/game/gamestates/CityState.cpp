@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "CityState.h"
 #include "../components/basics/TextComponent.h"
 #include "../components/MoveOnClick.h"
@@ -9,20 +10,25 @@
 #include "../components/NextText.h"
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
+#include "pauseMenuState.h"
 
 CityState::CityState()
 {
 	TuVieja("Loading CityState");
 }
 
+CityState::~CityState()
+{
+}
+
 void CityState::update()
 {
 	GameState::update();
 
+	/// XD
 	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(fondo->getComponent<MoveOnClick>()->getDir());
 
 	/// TWEENSI DEL FANTASMIKO
-	//fantastween.progress() == 1.0 ? fantastween.backward() : fantastween.forward();
 	fantastween.loop();
 	fantastween.step(1);
 	auto fanTrans = fantasmiko->getComponent<Transform>();
@@ -48,12 +54,17 @@ void CityState::refresh()
 
 void CityState::onEnter()
 {
+	// llamada al input
+	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPause(); });
+
 	std::cout << "\nENTER CITY.\n";
 
 	factory = new Factory();
 	factory->SetFactories(
 		static_cast<NPCFactory*>(new NPCFactory_V0())
 	);
+
+
 
 
 	//------Texto de la ciudad:
@@ -70,13 +81,10 @@ void CityState::onEnter()
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
 	fondo->addComponent<MoveOnClick>(3.0f);
 
-	//fondo->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 255);
 	fondo->addComponent<BoxCollider>();
 	//tamanyo de ciudadcompleta.png: 5754 x 1212
 	fondo->getComponent<Transform>()->setGlobalScale(0.495f, 0.495f);
-	//fondo->getComponent<Transform>()->getGlobalScale().set(0.495f, 0.495f); //escalado para ciudadcompleta.png (porfi no toquetear)!!! 
 
-	//Vector2D globalPos(-1200.0f, 0); //Posici�n inicial de la ciudad para que se vea por el centro.
 	Vector2D globalPos = getLastPaulPos();
 	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
 
@@ -94,13 +102,13 @@ void CityState::onEnter()
 	// tamanio del collider del suelo
 	// x: el ancho de la imagen de fondo, y: alto del suelo
 	colliderSuelo->getComponent<BoxCollider>()->setSize(
-		Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), sdlutils().height()*2));
+		Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), sdlutils().height() * 2));
 
 	// lo emparenta con el fondo
 	colliderSuelo->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
 
 	// posicion del collider del suelo
-	Vector2D vectorSueloPos(0, sdlutils().height()/2);
+	Vector2D vectorSueloPos(0, sdlutils().height() / 2);
 	colliderSuelo->getComponent<Transform>()->setRelativePos(vectorSueloPos.getX(), vectorSueloPos.getY());
 
 	// registra el collider del suelo
@@ -111,9 +119,16 @@ void CityState::onEnter()
 	fantasmiko->addComponent<SpriteRenderer>("fantasma");
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
-	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(true);
 	fantasmiko->setLayer(2);
-	fondo->getComponent<MoveOnClick>()->registerFantasmaTrans(fantasmiko);
+
+
+	auto moc = fondo->getComponent<MoveOnClick>();
+	moc->registerFantasmaTrans(fantasmiko);
+
+	//std::cout << moc->getDir() << getLastPaulDir() << std::endl;
+	moc->setDir(getLastPaulDir());
+	fantasmiko->getComponent<SpriteRenderer>()->setFlipX(moc->getDir());
+
 	// twinsiiiis
 	auto fanY = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
 	fantastween =
@@ -162,7 +177,7 @@ void CityState::onEnter()
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(0); // Lleva al menu (0).
+	exit->addComponent<NPC>(GameStates::MAINMENU); // Lleva al menu (0).
 	exit->setLayer(2);
 
 	// SDLUTILS
@@ -174,10 +189,26 @@ void CityState::onEnter()
 
 void CityState::onExit()
 {
+	// se desuscribe al evento
+	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPause(); });
+
+
 	std::cout << "\nEXIT CITY.\n";
 
-	auto& sdl = *SDLUtils::instance();
 	setLastPaulPos(fondo->getComponent<Transform>()->getGlobalPos());
+	setLastPaulDir(fondo->getComponent<MoveOnClick>()->getDir());
+
+	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("citytheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
+}
+
+void CityState::onPause()
+{
+	SetLastState(1);
+	GameStateMachine::instance()->setState(16);
+	std::cout << "last state in city: " << GetLastState() << "\n";
+
+	// wtf
+	//GameStateMachine::instance()->pushState(new PauseMenuState());
 }

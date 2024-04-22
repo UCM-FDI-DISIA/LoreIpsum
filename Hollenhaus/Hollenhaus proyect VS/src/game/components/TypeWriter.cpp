@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "TypeWriter.h"
 #include "basics/TextComponent.h"
 #include "../Game.h"

@@ -1,4 +1,5 @@
-﻿#include "pch.h"
+﻿#include <../pchs/pch.h>
+
 #include "HandComponent.h"
 #include "managers/Manager.h"
 #include "../Entity.h"
@@ -56,45 +57,79 @@ void HandComponent::addCard(ecs::entity_t card) {
 
 	//Aquí se calcula la posición a la que tiene que llegar, no se bien como implementarlo en el tween
 	refreshPositions();
-	if (owner_ == Players::PLAYER1) {
-		///Tween
-		carta = card;
-		tweenDrawCard =
-			tweeny::from(card->getComponent<Transform>()->getGlobalPos().getX() + 250)
-			.to(card->getComponent<Transform>()->getGlobalPos().getX())
-			.during(60)
-			.via(tweeny::easing::sinusoidalInOut);
-		tween = true;
+	for (int i = 0; i < cardsInHand_.size(); i++)
+	{
+		//if (owner_ == Players::PLAYER1) {
+			///Tween
+			carta = card;
+			tweenDrawCardX[i] =
+				tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getX())
+				.to(cardPositions_[i].getX())
+				.during(60)
+				.via(tweeny::easing::sinusoidalInOut);
+
+			tweenDrawCardY[i] =
+				tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getY())
+				.to(cardPositions_[i].getY())
+				.during(60)
+				.via(tweeny::easing::sinusoidalInOut);
+
+			tween = true;
+		//}
 	}
-	
+
 }
 
 void HandComponent::update()
 {
 	//Habría que hacer cuando esté el tween definitivo que cuando 
 	// llegue al sitio en el que se tiene que quedar ponga el bool a falso
-	if (tween && owner_ == Players::PLAYER1) {
+	if (tween /* && owner_ == Players::PLAYER1*/) {
 		/// TWEENS???
 		//Habría que hacer que comience en el mazo y se mueva hasta su posición
+		uint16_t cardsInPos = 0;
 		auto drag = mngr_->getHandler(ecs::hdlr::DRAG_MANAGER)->getComponent<DragManager>();
-		tweenDrawCard.step(1);
-		if (tweenDrawCard.progress() == 1.0) tween = false;
-		if (tweenDrawCard.peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+
+		for (int i = 0; i < cardsInHand_.size(); i++)
 		{
-			if (drag != nullptr) drag->setDraggable(false);
-			Vector2D step(
-				tweenDrawCard.peek(),
-				carta->getComponent<Transform>()->getGlobalPos().getY()
-			);
-			carta->getComponent<Transform>()->setGlobalPos(step);
+			Vector2D step;
+
+			// ------ TWEENS POS X ------
+			tweenDrawCardX[i].step(1);
+			if (tweenDrawCardX[i].peek() != cardPositions_[i].getX()) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+			{
+				if (drag != nullptr) drag->setDraggable(false);
+				step.setX(tweenDrawCardX[i].peek());
+			}
+
+			// ------ TWEENS POS Y ------
+			tweenDrawCardY[i].step(1);
+			if (tweenDrawCardY[i].peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+			{
+				if (drag != nullptr) drag->setDraggable(false);
+				step.setY(tweenDrawCardY[i].peek());
+			}
+
+			// Si esta en posicion suma uno a cartas en posicion
+			if (tweenDrawCardX[i].progress() == 1.0 && tweenDrawCardY[i].progress() == 1.0)
+			{
+				cardsInPos++;
+			}
+			else
+			{
+				// Mueve la carta
+				cardsInHand_[i]->getComponent<Transform>()->setRelativePos(step);
+			}
+
 		}
-		if (tweenDrawCard.progress() == 1.0)
+		if (cardsInPos >= cardsInHand_.size())
 		{
 			tween = false;
 			if (drag != nullptr) drag->setDraggable(true);
 		}
+
 	}
-	
+
 }
 
 void HandComponent::removeCard(ecs::entity_t card) {
@@ -124,14 +159,16 @@ void HandComponent::removeCard(ecs::entity_t card) {
 				{
 					texto->setFont("8bit_size_16");
 					child->getRelativePos().set(
-						child->getRelativePos().getX(), 
-						child->getRelativePos().getY()-child->getRelativePos().getY()/6.25
+						child->getRelativePos().getX(),
+						child->getRelativePos().getY() - child->getRelativePos().getY() / 6.25
 					);
 				}
 			}
 
 			// su parent ya no es la mano izq
 			cardsInHand_[i]->getComponent<Transform>()->removeParent();
+			//tweenDrawCardX[i] = nullptr;
+			tween = false;
 		}
 	}
 
@@ -139,6 +176,26 @@ void HandComponent::removeCard(ecs::entity_t card) {
 	cardsInHand_ = auxVec;
 
 	refreshPositions();
+	for (int i = 0; i < cardsInHand_.size(); i++)
+	{
+		//if (owner_ == Players::PLAYER1) {
+			///Tween
+			carta = card;
+			tweenDrawCardX[i] =
+				tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getX())
+				.to(cardPositions_[i].getX())
+				.during(60)
+				.via(tweeny::easing::sinusoidalInOut);
+
+			tweenDrawCardY[i] =
+				tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getY())
+				.to(cardPositions_[i].getY())
+				.during(60)
+				.via(tweeny::easing::sinusoidalInOut);
+
+			tween = true;
+		//}
+	}
 }
 
 std::vector<Card*> HandComponent::getHand()
@@ -152,24 +209,35 @@ std::vector<Card*> HandComponent::getHand()
 	return v;
 }
 
+int HandComponent::indexOf(ecs::entity_t c)
+{
+	auto it = std::find(cardsInHand_.begin(), cardsInHand_.end(), c);
+
+	return it == cardsInHand_.end() ? -1 : it - cardsInHand_.begin();
+}
+
 void HandComponent::refreshPositions() {
-	std::vector<Vector2D>positions;
+	//std::vector<Vector2D>positions;
+	cardPositions_.clear();
 
 	const int sign = downwards_ ? 1 : -1;
 
-	for (int i = 0; i < cardsInHand_.size(); i++)
+	for (int i = 0; i <= cardsInHand_.size(); i++)
 	{
 		// y = (x^2)/CARD_SEPARATION
 		int x = ((i - cardsInHand_.size() / 2) * CARD_SEPARATION);
 
 		//Posición de la carta (El vector 2D)
-		positions.push_back(Vector2D(x, pow(x, 2) / (ARCH_AMPLITUDE * sign)));
-	}
+		cardPositions_.push_back(Vector2D(x, pow(x, 2) / (ARCH_AMPLITUDE * sign)));
 
-	for (int i = 0; i < cardsInHand_.size(); i++)
+	}
+	//cardPositions_ = positions;
+	/*for (int i = 0; i < cardsInHand_.size(); i++)
 	{
 
 		// Ecuacion de la parabola que forma las cartas
-		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(positions[i]);
-	}
+		cardsInHand_[i]->getComponent<Transform>()->getRelativePos().set(cardPositions_[i]);
+	}*/
+
+
 }

@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "../Namespaces.h"
 #include "CardFactory_v1.h"
 
@@ -15,7 +16,7 @@
 #include "../gamestates/GameState.h"
 
 
-ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
+ecs::entity_t CardFactory_v1::createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
 	std::vector<JsonData::CardEffect>& effects, bool bocarriba)
 {
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
@@ -31,7 +32,7 @@ ecs::entity_t CardFactory_v1::createCard(Vector2D pos, int cost, int value, std:
 	cardCardStateManager->setState(Cards::ON_DECK);
 
 	card->addComponent<Card>(
-		cost, value, sprite, unblockable
+		id, cost, value, sprite, unblockable
 	);
 
 	addInfo(card, cost, value, effects, !bocarriba);
@@ -88,7 +89,7 @@ ecs::entity_t CardFactory_v1::createDeck()
 	deck->setLayer(2);
 	deck->getComponent<DeckComponent>()->setOwner(Players::PLAYER1);
 
-	auto maze = GameStateMachine::instance()->getCurrentState()->getMaze();
+	auto maze = GameStateMachine::instance()->getCurrentState()->getMazeWithPos();
 
 	for (auto c : maze)
 	{
@@ -97,6 +98,7 @@ ecs::entity_t CardFactory_v1::createDeck()
 			auto card = sdlutils().cards().at(std::to_string(c.first));
 			// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 			ecs::entity_t ent = createCard(
+				card.id(),
 				Vector2D(initX, initY),
 				card.cost(),
 				card.value(),
@@ -140,6 +142,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 		auto card = sdlutils().cards().at(std::to_string(i));
 		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		ecs::entity_t ent = createCard(
+			card.id(),
 			Vector2D(initX, initY),
 			card.cost(),
 			card.value(),
@@ -159,6 +162,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 		auto card = sdlutils().cards().at(std::to_string(i));
 		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		ecs::entity_t ent = createCard(
+			card.id(),
 			Vector2D(initX, initY),
 			card.cost(),
 			card.value(),
@@ -171,6 +175,54 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 	}
 
+
+
+	addDeckImage(initX, initY, true);
+	TuVieja("Deck2");
+
+	return deck;
+}
+
+ecs::entity_t CardFactory_v1::createDeckJ2Multiplayer()
+{
+	int initX = 600;
+	int initY = -12;
+
+	ecs::entity_t hand = createHandJ2();
+
+	Vector2D deckPos(initX, initY);
+
+	ecs::entity_t deck = Instantiate(deckPos);
+	deck->addComponent<BoxCollider>()->setPosOffset(Vector2D(-15, 0));
+	deck->addComponent<DeckComponent>()->setOwner(Players::PLAYER2);
+	deck->addComponent<PlayerCardsManager>(
+		hand->getComponent<HandComponent>(),
+		deck->getComponent<DeckComponent>()
+	);
+	deck->setLayer(2);
+
+	//instantie
+
+	auto maze = GameStateMachine::instance()->getCurrentState()->getMazeRival();
+
+	for (auto c : maze)
+	{	
+		auto card = sdlutils().cards().at(std::to_string(c));
+		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
+		ecs::entity_t ent = createCard(
+			card.id(),
+			Vector2D(initX, initY),
+			card.cost(),
+			card.value(),
+			card.sprite(),
+			card.unblockable(),
+			card.effects(),
+			false
+		);
+		ent->setLayer(1);
+		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
+		
+	}
 
 
 	addDeckImage(initX, initY, true);

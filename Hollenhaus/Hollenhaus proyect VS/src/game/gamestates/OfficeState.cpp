@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "OfficeState.h"
 #include "../components/managers/Manager.h"
 #include "../../sdlutils/InputHandler.h"

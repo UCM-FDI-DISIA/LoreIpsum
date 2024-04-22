@@ -3,6 +3,7 @@
 #include "BoardManager.h"
 
 class IA_manager;
+class NetGame;
 
 class MatchManager : public ComponentUpdate
 {
@@ -42,8 +43,14 @@ public:
     void updateVisuals();
 
     void setIA_Manager(IA_manager* ia);
+
+    void setNetGame(NetGame* ng);
     //solo la IA deberia llamar a este metodo
     void endTurnIA();
+
+    //envia el mensaje correspondiente
+    void changeTurnMultiplayer();
+
 private:
 
     Turns::State actualState;
@@ -64,13 +71,15 @@ private:
 
     IA_manager* ia_manager;
 
+    NetGame* netGame = nullptr;
+
     void resetActualActionPoints();
 
     // Método para pasarle el ganador al GameState y guardarlo en data.
     void setWinnerOnData();
 
-
     void startTurnIA();
+
 };
 
 

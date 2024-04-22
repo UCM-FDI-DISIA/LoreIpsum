@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "Card.h"
 #include <string>
 
@@ -47,18 +48,8 @@ Card::Card(const Card& other) {
 	effectsJSON = other.effectsJSON;
 }
 
-Card::Card(int cost, int value) : cost(cost), value(value)
-{
-}
-
-Card::Card(int cost, int value, std::string& sprite, bool unblockable)
-	: cost(cost), value(value), sprite(sprite), unblockable(unblockable)
-{
-
-}
-
-Card::Card(int cost, int value, int id, std::string& sprite, bool unblockable)
-	: cost(cost), value(value), id(id), sprite(sprite), unblockable(unblockable)
+Card::Card(int id, int cost, int value, std::string& sprite, bool unblockable)
+	: id(id), cost(cost), value(value), sprite(sprite), unblockable(unblockable)
 {
 
 }

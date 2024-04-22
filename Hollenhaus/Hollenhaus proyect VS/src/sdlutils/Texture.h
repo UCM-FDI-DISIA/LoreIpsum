@@ -80,8 +80,11 @@ public:
 	}
 
 	// renders the complete texture at a destination rectangle (dest)
-	inline void render(const SDL_Rect& dest) {
+	inline void render(const SDL_Rect& dest, int alpha = 255) {
 		SDL_Rect src = { 0, 0, width_, height_ };
+
+		if (alpha != 255)
+			applyOpacity(alpha);
 		render(src, dest);
 	}
 

@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "TextComponent.h"
 #include "Transform.h"
 #include "../../../sdlutils/SDLUtils.h"
@@ -10,10 +11,9 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 	font_(&sdl_.fonts().at(fontID)),
 	wrapLenght_(wrapLenght),
 	boxPivotPoint_(boxPivotPoint),
-	textAlignment_(textAlignment)
+	textAlignment_(textAlignment),
+	txt_(txt)
 {
-	if (txt.empty()) txt_ = "";
-	else txt_ = txt;
 
 	createTexture();
 }
@@ -82,8 +82,12 @@ void TextComponent::createTexture() {
 	if(text_!= nullptr)
 		delete text_;
 	
+	std::string texto = txt_;
+	if (txt_.empty())
+		texto = " ";
+
 	// Se utiliza una nueva constructora específica para crear una textura a partir de un texto embebido en una caja
-	text_ = new Texture(sdl_.renderer(), txt_, *font_, color_, wrapLenght_, textAlignment_);
+	text_ = new Texture(sdl_.renderer(), texto, *font_, color_, wrapLenght_, textAlignment_);
 }
 
 Vector2D TextComponent::GetRenderPosAcordingPivotPoint() const

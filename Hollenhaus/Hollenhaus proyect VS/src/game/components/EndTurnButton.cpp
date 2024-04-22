@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "EndTurnButton.h"
 #include "managers/Manager.h"
 #include "../../sdlutils/InputHandler.h"
@@ -33,6 +34,15 @@ void EndTurnButton::update()
 void EndTurnButton::setIA(bool b)
 {
 	activeIA = true;
+	activeMultiplayer = false;
+
+}
+
+void EndTurnButton::setMultiplayer(bool b)
+{
+	activeMultiplayer = true;
+	activeIA = false;
+
 }
 
 void EndTurnButton::ClickButton()
@@ -63,6 +73,16 @@ void EndTurnButton::ClickButton()
 				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
 
 			}
+		}
+	}
+	else if (activeMultiplayer) {
+
+		//hacer cosas con el netGame
+
+		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1) {
+			// Se pasa el turno al otro jugador
+			matchManager_->setActualState(Turns::J2_MULTIPLAYER);
+			matchManager_->changeTurnMultiplayer();
 		}
 	}
 }

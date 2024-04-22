@@ -61,6 +61,12 @@
     <Filter Include="Archivos de encabezado\ECS">
       <UniqueIdentifier>{55e656e6-65c5-463a-a718-c4e89217ee26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Componentes\Multiplayer">
+      <UniqueIdentifier>{b4419bd1-14e6-44f1-983c-3d7598acfab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Componentes\Multiplayer">
+      <UniqueIdentifier>{209522f0-3fa3-410d-aa25-4ebc0a4f7acd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\Game.cpp">
@@ -163,9 +169,6 @@
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
     <ClCompile Include="pchs\pch_SDL.cpp">
-      <Filter>Archivos de origen\Auxiliares</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\pch.cpp">
       <Filter>Archivos de origen\Auxiliares</Filter>
     </ClCompile>
     <ClCompile Include="pchs\pch_c++_basic.cpp">
@@ -318,6 +321,54 @@
     <ClCompile Include="src\game\components\Animation.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\gamestates\MultiplayerLobbyState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\MultiplayerPreGameState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\MultiplayerGameState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\MultiplayerEndGameState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\multiplayer\NetGame.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\multiplayer\NetLobby.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\CopyTextComponentOnClipboardButton.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\InputForTextWritter.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\PasteOnTextComponentButton.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\SendInvitationButton.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\SendIPFromTextComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\TextWritter.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\multiplayer\NetEndGame.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\multiplayer\NetPregame.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\GetIPv4.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
     <ClCompile Include="src\game\gamestates\TutorialBoardState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
@@ -356,6 +407,12 @@
     </ClCompile>
     <ClCompile Include="src\game\components\managers\TutorialBoardManager.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\AnimatorManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="pchs\pch.cpp">
+      <Filter>Archivos de origen\Auxiliares</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -527,9 +584,6 @@
     <ClInclude Include="pchs\pch_SDL.h">
       <Filter>Archivos de encabezado\Auxiliares</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\pch.h">
-      <Filter>Archivos de encabezado\Auxiliares</Filter>
-    </ClInclude>
     <ClInclude Include="pchs\pch_c++_basic.h">
       <Filter>Archivos de encabezado\Auxiliares</Filter>
     </ClInclude>
@@ -659,6 +713,57 @@
     <ClInclude Include="src\game\components\Animation.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\MultiplayerGameState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\MultiplayerEndGameState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\multiplayer\NetGame.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\multiplayer\NetLobby.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\CopyTextComponentOnClipboardButton.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\InputForTextWritter.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\PasteOnTextComponentButton.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\SendInvitationButton.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\SendIPFromTextComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\TextWritter.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\MultiplayerNamespaces.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\multiplayer\NetEndGame.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\multiplayer\NetPregame.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\GetIPv4.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\LobbyStatusIndicator.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
     <ClInclude Include="src\game\gamestates\TutorialBoardState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
@@ -698,6 +803,15 @@
     <ClInclude Include="src\game\components\managers\TutorialBoardManager.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\components\managers\AnimatorManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="pchs\pch.h">
+      <Filter>Archivos de encabezado\Auxiliares</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\ShineComponent.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
@@ -713,6 +827,9 @@
       <Filter>Resources</Filter>
     </None>
     <None Include="resources\config\npcs.json">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="resources\config\keytexts.json">
       <Filter>Resources</Filter>
     </None>
   </ItemGroup>

@@ -19,7 +19,7 @@ public:
 	void OnLeftClickDown();
 
 	bool getDir() const { return faceRight_; };
-
+	void setDir(bool value) { faceRight_ = value; }
 	// registra el collider que creas en la escena de la ciudad
 	void RegisterCollider(BoxCollider* collider)
 	{
@@ -59,6 +59,7 @@ private:
 
 	// -1 izquierda, 1 derecha
 	int dir_;
+	int lastDir_ = 0; // el click anterior al actual
 
 	float halfScreen_;
 
@@ -73,6 +74,7 @@ private:
 	tweeny::tween<int> tweenFade; // fade in/out del feedback
 	tweeny::tween<float> tweenMovement;
 
+	void onStart();
 	void onStop();
 	void moveFeedback();
 	void enableFeedback();
@@ -82,4 +84,9 @@ private:
 
 	Transform* fanTrans;
 	tweeny::tween<float> tweenFantasmiko;
+
+	template<typename T>
+	tweeny::tween<T> resetTween(T, T);
 };
+
+

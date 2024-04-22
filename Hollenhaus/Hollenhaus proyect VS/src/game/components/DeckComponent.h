@@ -7,6 +7,7 @@
 #include "..\Namespaces.h"
 
 class Card;
+class NetGame;
 
 class DeckComponent : public ComponentUpdate
 {
@@ -29,6 +30,13 @@ public:
 	//solo para la IA
 	std::list<Card*> getDeck();
 
+
+	//MULTIPLAYER
+	void setNetGame(NetGame* _ng);
+
+	//envia el mensaje correspondiente
+	void drawCardMultiplayer();
+
 private:
 	std::list<Card*> deck;
 	int drawCardCost;
@@ -36,5 +44,8 @@ private:
 
 	void removeCard(Card* c);
 	void addCardsOnBottom(std::list<Card*> h);
+
+	NetGame* netGame = nullptr;
+
 };
 

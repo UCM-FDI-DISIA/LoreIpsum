@@ -44,7 +44,7 @@ public:
 		color.a = a;
 	}
 
-	void setOpacity(Uint8 alpha) { opacity = alpha; }
+	void setOpacity(int alpha) { opacity = alpha; }
 	int getOpacity() const { return opacity; }
 
 	// Para inicializar el componenete si es necesario.

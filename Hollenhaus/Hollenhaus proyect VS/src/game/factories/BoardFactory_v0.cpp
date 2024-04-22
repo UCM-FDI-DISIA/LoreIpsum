@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <../pchs/pch.h>
+
 #include "BoardFactory_v0.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/Transform.h"
@@ -42,21 +43,22 @@ ecs::entity_t BoardFactory_v0::createBoard()
 			//PARTE VISUAL
 			_board[i][j] = Instantiate(Vector2D(initialX + i * offSetX, initialY + j * offSetY), ecs::grp::DROPS);
 
-			_board[i][j]->addComponent<BoxCollider>();
 			_board[i][j]->addComponent<DropDetector>()->getCardPos().set(
 				Vector2D(initialX + i * offSetX, initialY + j * offSetY));
 			_board[i][j]->getComponent<DropDetector>()->getBoardPos().set(
 				Vector2D(i, j));
-			_board[i][j]->getComponent<BoxCollider>()->setSize(
+			_board[i][j] ->addComponent<SpriteRenderer>("cell");
+			_board[i][j]->getComponent<Transform>()->setGlobalScale(Vector2D(scale, scale));
+			_board[i][j]->addComponent<BoxCollider>();
+			_board[i][j]->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+			/*_board[i][j]->getComponent<BoxCollider>()->setSize(
 				Vector2D(sdlutils().images().at("card").width() * scale,
-					(sdlutils().images().at("card").height()) * scale));
+					(sdlutils().images().at("card").height()) * scale));*/
 			_board[i][j]->addComponent<Cell>();
 			_board[i][j]->setLayer(2);
-
+			/*
 			cellImage = Instantiate(Vector2D(initialX + i * offSetX, initialY + j * offSetY));
-			cellImage->addComponent<SpriteRenderer>("cell");
-			cellImage->setLayer(1);
-			cellImage->getComponent<Transform>()->setGlobalScale(Vector2D(scale, scale));
+			cellImage->setLayer(1);*/
 
 		}
 	}
