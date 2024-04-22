@@ -40,6 +40,9 @@ public:
 	void setOwner(Players::Owner value) { owner_ = value;}
 	Players::Owner getOwner() const { return owner_; }
 
+	// devuelve si las animaciones estan hechas
+	bool doneAnimations() { return !tween; }
+
 	//para la IA
 	std::vector<Card*> getHand();
 

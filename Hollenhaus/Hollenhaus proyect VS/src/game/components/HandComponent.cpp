@@ -84,7 +84,7 @@ void HandComponent::update()
 {
 	//Habría que hacer cuando esté el tween definitivo que cuando 
 	// llegue al sitio en el que se tiene que quedar ponga el bool a falso
-	if (tween /* && owner_ == Players::PLAYER1*/) {
+	if (tween && owner_ == Players::PLAYER1) {
 		/// TWEENS???
 		//Habría que hacer que comience en el mazo y se mueva hasta su posición
 		uint16_t cardsInPos = 0;
@@ -93,14 +93,10 @@ void HandComponent::update()
 		for (int i = 0; i < cardsInHand_.size(); i++)
 		{
 			Vector2D step;
-			if (tweenDrawCardX[i].progress() == 1.0 && tweenDrawCardY[i].progress() == 1.0)
-			{
-				cardsInPos++;
-			}
 
 			// ------ TWEENS POS X ------
 			tweenDrawCardX[i].step(1);
-			if (tweenDrawCardX[i].peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+			if (tweenDrawCardX[i].peek() != cardPositions_[i].getX()) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
 			{
 				if (drag != nullptr) drag->setDraggable(false);
 				step.setX(tweenDrawCardX[i].peek());
@@ -114,14 +110,24 @@ void HandComponent::update()
 				step.setY(tweenDrawCardY[i].peek());
 			}
 
-			cardsInHand_[i]->getComponent<Transform>()->setRelativePos(step);
-		}
+			// Si esta en posicion suma uno a cartas en posicion
+			if (tweenDrawCardX[i].progress() == 1.0 && tweenDrawCardY[i].progress() == 1.0)
+			{
+				cardsInPos++;
+			}
+			else
+			{
+				// Mueve la carta
+				cardsInHand_[i]->getComponent<Transform>()->setRelativePos(step);
+			}
 
+		}
 		if (cardsInPos >= cardsInHand_.size())
 		{
 			tween = false;
 			if (drag != nullptr) drag->setDraggable(true);
 		}
+
 	}
 
 }
@@ -161,6 +167,8 @@ void HandComponent::removeCard(ecs::entity_t card) {
 
 			// su parent ya no es la mano izq
 			cardsInHand_[i]->getComponent<Transform>()->removeParent();
+			//tweenDrawCardX[i] = nullptr;
+			tween = false;
 		}
 	}
 
@@ -207,7 +215,7 @@ void HandComponent::refreshPositions() {
 
 	const int sign = downwards_ ? 1 : -1;
 
-	for (int i = 0; i < cardsInHand_.size(); i++)
+	for (int i = 0; i <= cardsInHand_.size(); i++)
 	{
 		// y = (x^2)/CARD_SEPARATION
 		int x = ((i - cardsInHand_.size() / 2) * CARD_SEPARATION);
