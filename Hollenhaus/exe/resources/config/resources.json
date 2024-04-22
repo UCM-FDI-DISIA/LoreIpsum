@@ -1,0 +1,150 @@
+{
+    "images": [
+        {"id": "rice",            "file": "./resources/images/rice.png"},
+        {"id": "card",            "file": "resources/images/card.png"},
+        {"id": "hand",            "file": "resources/images/hand.png"},
+        {"id": "key",             "file": "resources/images/libreta.png"},
+        {"id": "board",           "file": "resources/images/board4.png"},
+        {"id": "board5",          "file": "resources/images/board5.png"},
+        {"id": "mouse",           "file": "resources/images/mouse.png"},
+        {"id": "ciudad",          "file": "resources/images/ciudad.png"},
+        {"id": "npc",             "file": "resources/images/npc.png"},
+        {"id": "hombre",             "file": "resources/images/hombre.png"},
+        {"id": "hombreIlu",             "file": "resources/images/hombreIluminado.png"},
+        {"id": "cityExample",     "file": "resources/images/cityExample.png" },
+        {"id": "farolascerca",    "file": "resources/images/farolascerca.png" },
+        {"id": "farolaslejos",    "file": "resources/images/farolaslejos.png"},
+        {"id": "ambasfarolas",    "file": "resources/images/ambasfarolas.png"},
+        {"id": "edificios",       "file": "resources/images/edificios.png"},
+        {"id": "ciudadcompleta",  "file": "resources/images/ciudadcompleta.png"},
+        {"id": "EndTurnButton",   "file": "resources/images/end_turn_button.png"},
+        {"id": "esquina",         "file": "resources/images/ef_esquina.png"},
+        {"id": "centro",          "file": "resources/images/ef_centro.png" },
+        {"id": "flecha",          "file": "resources/images/ef_flecha.png" },
+        {"id": "superflecha",     "file": "resources/images/ef_superflecha.png" },
+        {"id": "block",           "file": "resources/images/ef_block.png"  },
+        {"id": "unblockable",     "file": "resources/images/ef_unblockable.png" },
+        {"id": "tiendafondo",     "file": "resources/images/provtienda.png" },
+        {"id": "oficinafondo",    "file": "resources/images/OficinaBG.png"  },
+        {"id": "fantasma",        "file": "resources/images/fantasma.png"  },
+        {"id": "main_menu_bg",    "file": "resources/images/main_menu.png"  },
+        {"id": "boton_nueva_partida", "file": "resources/images/boton_nueva_partida.png"  },
+        {"id": "boton_salir",     "file": "resources/images/boton_salir.png"  },
+        {"id": "boton_flecha",    "file": "resources/images/boton_flecha.png"},
+        {"id": "black_box",       "file": "resources/images/black_background.png"  },
+        {"id": "whiteRect",       "file": "resources/images/rectBlanco.png"},
+        {"id": "redRect",       "file": "resources/images/redRect.png"},
+        {"id": "greenRect",       "file": "resources/images/greenRect.png"},
+        {"id": "reverseCard",       "file": "resources/images/card_reverse.png"  },
+        {"id": "moneda",       "file": "resources/images/moneda.png"  },
+        {"id": "monedaIlu",       "file": "resources/images/monedaIluminada.png"  },
+        {"id": "fondoTienda",       "file": "resources/images/tienda_ph.png"  },
+        {"id": "mostrador",       "file": "resources/images/mostradorTienda.png"  },
+        {"id": "estanteria",       "file": "resources/images/estanteriaTienda.png"  },
+        {"id": "cell",       "file": "resources/images/cardCell.png"  },  
+        {"id": "DeckbuildingBG",       "file": "resources/images/DeckbuildingBG.png"  },      
+        {"id": "boton_ph",       "file": "resources/images/botonph.png"  },  
+        {"id": "DeckbuildingMesaBG",       "file": "resources/images/DeckBuildingMesaBG.png"  },  
+        {"id": "DeckbuildingCajonBG",       "file": "resources/images/DeckBuildingCajonBG.png"  },
+        {"id": "SaveMazeBut",       "file": "resources/images/boton_guardar_mazo.png"  },
+        {"id": "DownDrawer",       "file": "resources/images/down_drawer.png"  },
+        {"id": "UpDrawer",       "file": "resources/images/up_drawer.png"  },
+        {"id": "TiendaNPC",       "file": "resources/images/tienda_dibujo.png"  },
+        {"id": "CompbateNPC",       "file": "resources/images/juego_dibujo.png"  },
+        {"id": "OficinaNPC",       "file": "resources/images/ofi_dibujo.png"  },
+        {"id": "NPCNPC",       "file": "resources/images/npc_dibujo.png"  },
+        {"id": "multiplayer_lobby_bg",       "file": "resources/images/multiplayer_lobby_bg.png"  },
+        {"id": "multiplayer_pregame_bg",       "file": "resources/images/multiplayer_pregame_bg.png"  },
+        {"id": "BrilliNPC",       "file": "resources/images/brilliNPC.png"  },
+        {"id": "feedback_flecha",       "file": "resources/images/feedback_flecha.png"  },
+        {"id": "feedback_circulo",       "file": "resources/images/feedback_circulo.png"  }
+    ],
+    "fonts": [
+      {
+        "id": "8bit_size_8",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 8
+      },
+      {
+        "id": "8bit_size_12",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 12
+      },
+      {
+        "id": "8bit_size_16",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 16
+      },
+      {
+        "id": "8bit_size_20",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 20
+      },
+      {
+        "id": "8bit_size_24",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 24
+      },
+      {
+        "id": "8bit_size_32",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 32
+      },
+      {
+        "id": "8bit_size_40",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 40
+      },
+      {
+        "id": "8bit_size_48",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 48
+      },
+      {
+        "id": "8bit_size_64",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 64
+      },
+      {
+        "id": "8bit_size_72",
+        "file": "resources/fonts/NotJamOldStyle14.ttf",
+        "size": 72
+      }
+    ],
+    "sounds": [
+      {
+        "id": "citytheme",
+        "file": "resources/sound/music/layer_cake.wav"
+      },
+      {
+        "id": "battletheme",
+        "file": "resources/sound/music/hollenhaus_battletheme_v1_2.wav"
+      },
+	{
+        "id": "deckbuilder_theme",
+        "file": "resources/sound/music/confession.wav"
+      },
+	{
+        "id": "shoptheme",
+        "file": "resources/sound/music/tanaka_comodities.wav"
+      },
+	{
+        "id": "menutheme",
+        "file": "resources/sound/music/bangarang.wav"
+      }
+    ],
+    "musics": [
+      {
+        "id": "layercake",
+        "file": "resources/sound/music/layer_cake.wav"
+      },
+      {
+        "id": "tryTheme",
+        "file": "resources/sound/music/suspicious_person.wav"
+      }
+    ]
+}
+
+  
+
+
