@@ -22,12 +22,18 @@ void TypeWriter::initComponent()
 	finaltext = " ";
 	text = " ";
 	i = 0;
+	writing = false;
 }
 
 void TypeWriter::update()
 {
+
+	if (finaltext == text) {
+		writing = false;
+	}
+
 	// si no ha acabado de escribir
-	if (finaltext != text) {
+	if (writing && finaltext != text) {
 
 		// tiempo de espera
 		if (speedCounter < writingSpeed) {
@@ -37,8 +43,8 @@ void TypeWriter::update()
 		else {
 
 			// suma el char siguiente a finaltext
-			//finaltext.insert(finaltext.end(), text[i]);
-			finaltext += text[i];
+			finaltext.insert(finaltext.end(), text[i]);
+			//finaltext += text[i];
 
 			// peta aqui porque llega un momento en el que deja de insertarle chars al finaltext
 			// y cuando pasa eso nunca se cumple que se acabe el typewrite, entonces cuando i > que text.size
@@ -60,20 +66,25 @@ void TypeWriter::update()
 
 void TypeWriter::typeWrite(std::string newtext)
 {
-
 	finaltext.clear();
 	//finaltext = "";
 	text = newtext;
 	std::cout << newtext << std::endl;
 
 	i = 0;
+	writing = true;
 }
 
 void TypeWriter::finishTypewrite()
 {
-	finaltext = text;
-	// actualiza el texto
-	setText();
+	if (writing) {
+
+		writing = false;
+		finaltext = text;
+		// actualiza el texto
+		setText();
+	}
+	
 }
 
 bool TypeWriter::ended()

@@ -29,6 +29,7 @@ public:
     void setBase(ecs::entity_t b);
     void setTutorial(ecs::entity_t t);
     void setObjs(std::vector<ecs::entity_t> v);
+    void addToHand(ecs::entity_t c);
 
 
 private:
@@ -47,6 +48,7 @@ private:
     ecs::entity_t deck;
     ecs::entity_t nextTurn;
     ecs::entity_t card;
+    std::vector<ecs::entity_t> hand;
 
     int cooldown = 10;
     int count = 0;

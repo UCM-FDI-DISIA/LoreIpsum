@@ -6,6 +6,7 @@
 #include "../../../sdlutils/InputHandler.h"
 #include "../../components/Cell.h"
 #include "../../TutorialManager.h"
+#include "../../components/managers/TutorialBoardManager.h"
 
 class BoxCollider;
 
@@ -49,7 +50,8 @@ void PlayerCardsManager::drawCard()
 			&& deck_->getOwner() == turnOwner
 		)
 		{
-			hand_->addCard(deck_->drawCard()->getEntity());
+			ecs::entity_t c = deck_->drawCard()->getEntity();
+			hand_->addCard(c);
 
 
 			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
@@ -57,7 +59,8 @@ void PlayerCardsManager::drawCard()
 				// AQUI INES -> esto se tiene que ir tbh
 				
 				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::DRAW_CARD);
-				//TuVieja("AAAAAAAAAAAA");
+				//if(ent->hasComponent<TutorialBoardManager>())
+				//ent->getComponent<TutorialBoardManager>()->addToHand(c);
 			}
 			
 

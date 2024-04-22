@@ -121,8 +121,6 @@ void TutorialManager::resetColliderWall(std::vector<ecs::entity_t> e)
 		}
 
 	}
-	
-
 }
 
 void TutorialManager::deactivateColliders(std::vector<ecs::entity_t> n)
