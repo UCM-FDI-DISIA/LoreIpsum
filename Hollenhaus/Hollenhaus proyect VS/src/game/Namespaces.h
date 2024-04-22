@@ -14,11 +14,11 @@ namespace Cards
 namespace Turns
 {
 	enum State {
-        J1,
-        J2,
-        Finish,
+		J1,
+		J2,
+		Finish,
 		IA
-    };
+	};
 }
 
 namespace Effects {
@@ -77,7 +77,7 @@ namespace Text
 	};
 }
 
-namespace DialogueEvents 
+namespace DialogueEvents
 {
 	enum Events {
 		None,				// No ocurre nada
@@ -98,8 +98,8 @@ namespace JsonData
 		CardEffect(Effects::Type t, int v, Directions& d)
 			: type_(t), value_(v), directions_(d) {}
 
-		Effects::Type type() const	{ return type_; }
-		int value() const	{ return value_; }
+		Effects::Type type() const { return type_; }
+		int value() const { return value_; }
 		Directions directions() const { return directions_; }
 
 	private:
@@ -114,10 +114,10 @@ namespace JsonData
 			: cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e) {}
 
 		// getters con nombres simplificados para mas facil acceso desde sdlutils
-		int cost() const			{ return cost_; }
-		int value() const			{ return value_; }
-		std::string& sprite()		{ return sprite_; }
-		bool unblockable() const	{ return unblockable_; }
+		int cost() const { return cost_; }
+		int value() const { return value_; }
+		std::string& sprite() { return sprite_; }
+		bool unblockable() const { return unblockable_; }
 		std::vector<CardEffect>& effects() { return effects_; }
 
 	private:
@@ -130,25 +130,30 @@ namespace JsonData
 
 	struct DialogueEventS {
 		DialogueEventS();
-		DialogueEventS(int tg, int t, int s) :
+		DialogueEventS(int tg, int t, int s, int gd, int rd) :
 			timing(tg),
 			type(t),
-			scene(s) 
+			scene(s),
+			greenDecision(gd),
+			redDecision(rd)
 		{};
 
 		int getType() { return type; }
 		int getScene() { return scene; }
+		int getGreenDecision() { return greenDecision; }
+		int getredDecision() { return redDecision; }
 
 	private:
 		int timing, type;
 		int scene;
+		int greenDecision, redDecision;
 
 	};
 
 
 	struct NodeData {
 		NodeData();
-		NodeData(const int nodeID, const std::string& text, const DialogueEvents::Events nodeEventsStart, 
+		NodeData(const int nodeID, const std::string& text, const DialogueEvents::Events nodeEventsStart,
 			const DialogueEvents::Events nodeEventsFinish, std::vector<DialogueEventS>& es, std::vector<DialogueEventS>& ef) :
 			nodeID_(nodeID),
 			text_(text),
@@ -215,7 +220,7 @@ namespace JsonData
 	struct NPCData {
 		NPCData();
 		NPCData(int id, std::string name, std::string s, float sx, float sy, int px, float py, float t, int scen, int lay) :
-			NPCID_(id), name(name), sprite(s), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t), scene(scen), layer(lay) 
+			NPCID_(id), name(name), sprite(s), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t), scene(scen), layer(lay)
 		{};
 
 		int getID() { return NPCID_; }

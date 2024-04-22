@@ -86,7 +86,7 @@ NPC::NPC(int scene, int t, std::string name_)
 
 }
 
-NPC::~NPC() 
+NPC::~NPC()
 {
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] {OnLeftClickUp(); });
@@ -101,7 +101,7 @@ void NPC::initComponent()
 	myTransform = mngr_->getComponent<Transform>(ent_);
 }
 
-void NPC::OnLeftClickDown(int scene) 
+void NPC::OnLeftClickDown(int scene)
 {
 	myBoxCollider;
 	reactToClick(scene);
@@ -125,9 +125,9 @@ void NPC::reactToClick(int scene) // Te lleva al estado que le mandes.
 			TuVieja("Cambio de escena.");
 			GameStateMachine::instance()->setState(scene);
 		}
-		else if (type == 1) 
+		else if (type == 1)
 		{
-			talkTo();   
+			talkTo();
 		}
 	}
 }
@@ -137,7 +137,7 @@ void NPC::talkTo()
 	if (!click && myBoxCollider->isCursorOver() && !talking && closeToPaul) // Recoge click para hablar con un NPC.
 	{
 		TuVieja("Que charlatan el tio...");
-		
+
 		float x = ent_->getComponent<Transform>()->getGlobalPos().getX() - 150;
 		float y = ent_->getComponent<Transform>()->getGlobalPos().getY() - 250;
 
@@ -162,7 +162,6 @@ void NPC::talkTo()
 								220, //wrap length
 								Text::BoxPivotPoint::LeftTop,
 								Text::TextAlignment::Left);
-
 		talking = true;
 	}
 }
@@ -172,7 +171,7 @@ void NPC::stoppedTalking()
 	talking = false;
 }
 
-void NPC::update() 
+void NPC::update()
 {
 	// Si el dialogo ha sido creado y no estamos cerca de Paul -> destruir dialog, y dejamos de hablar.
 	if (talking && !closeToPaul)

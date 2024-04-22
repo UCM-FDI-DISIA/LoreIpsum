@@ -52,6 +52,17 @@ void PauseMenuState::onEnter()
 	exit->addComponent<NPC>(GetLastState()); // Lleva a la oficina (2).
 	exit->setLayer(5);
 
+	//// ---- CheckMaze:
+	ecs::entity_t maze = Instantiate();
+	maze->addComponent<Transform>();
+	maze->addComponent<SpriteRenderer>("rice");
+	maze->addComponent<BoxCollider>();
+	Vector2D mazePos(120, 200);
+	maze->getComponent<Transform>()->setGlobalPos(mazePos);
+	maze->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	maze->addComponent<NPC>(18); // Lleva a la oficina (2).
+	maze->setLayer(5);
+
 	sdlutils().virtualTimer().pause();
 }
 
@@ -59,6 +70,8 @@ void PauseMenuState::onExit()
 {
 	// se desuscribe al evento de click izq
 	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onDespause(); });
+
+	GameStateMachine::instance()->getMngr()->Free();
 
 	std::cout << "\nEXIT PAUSE.\n";
 
