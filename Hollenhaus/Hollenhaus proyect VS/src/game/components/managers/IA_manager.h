@@ -159,6 +159,8 @@ public:
 
 
 	void StartTurn();
+	void RobarCarta();
+	void ColocarCarta();
 
 
 private:
@@ -183,7 +185,7 @@ private:
 
 	int minimax(int depth, int h, bool isPlayer, State& current_state, State*& best);
 
-	void makePlay(const InfoJugada &play) const;
+	void makePlay(const InfoJugada &play);
 
 #pragma endregion
 
@@ -201,10 +203,11 @@ private:
 	#pragma endregion
 
 
-	//tweens cartas 
-	//std::array<tweeny::tween<float>, 7> _tweensCardsPositionsX; 
-	//std::array<tweeny::tween<float>, 7> _tweensCardsPositionsY;
-
+	// ------ TWEENS ------
+	InfoJugada play_;
+	bool makePlay_;
+	bool colocadas_;
+	uint16_t cartasColocadas_;
 };
 
 
