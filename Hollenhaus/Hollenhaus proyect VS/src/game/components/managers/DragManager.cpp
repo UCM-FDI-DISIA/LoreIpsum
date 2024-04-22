@@ -9,6 +9,7 @@
 #include "../basics/BoxCollider.h"
 #include "../DropDetector.h"
 #include "CardStateManager.h"
+#include "../../TutorialManager.h"
 
 #include "../Cell.h"
 #include "../Card.h"
@@ -166,6 +167,7 @@ void DragManager::putCardAnimation(DropDetector* cell)
 {
 	//colocar la carta en su sitio(posicion en la pantalla)
 	dragTransform->setGlobalPos(cell->getCardPos());
+
 }
 
 bool DragManager::CardOnHand(ecs::entity_t card)
@@ -217,6 +219,19 @@ void DragManager::putCardOnBoard(ecs::entity_t card, DropDetector* cell)
 	Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
 
 	boardManager->setCard(x, y, cardComp, playerTurn);
+
+	// AQUI
+
+
+
+	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
+	if (ent->hasComponent<TutorialManager>()) {
+
+		// handler del tutorial para tocar el action done
+		ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PLACE_CARD);
+		//ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
+	}
+	
 }
 
 void DragManager::colorEffects(ecs::entity_t drop)

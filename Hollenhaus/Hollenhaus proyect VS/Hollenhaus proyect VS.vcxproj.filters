@@ -402,6 +402,12 @@
     <ClCompile Include="src\game\gamestates\pauseMenuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\DialogueBoxDestroyer.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialBoardManager.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
     <ClCompile Include="src\game\components\managers\AnimatorManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
@@ -790,6 +796,12 @@
     </ClInclude>
     <ClInclude Include="src\game\gamestates\tutorialState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DialogueBoxDestroyer.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialBoardManager.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\managers\AnimatorManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>

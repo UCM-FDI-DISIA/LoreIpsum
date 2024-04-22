@@ -2,6 +2,8 @@
 
 #include "GameState.h"
 
+class Factory;
+
 class OfficeState : public GameState
 {
 public:
@@ -15,6 +17,7 @@ public:
 	void onEnter() override;
 	void onExit() override;
 private:
+	Factory* factory;
 
 	//Cambiar a combate (Tarotista) -> Teléfono
 	//Gestionar mazo

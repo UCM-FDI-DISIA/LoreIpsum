@@ -8,7 +8,7 @@
 #include "../factories/DialogueFactory_V0.h"
 #include "../factories/CardFactory_v1.h"
 #include "../components/NextText.h"
-#include "../components/DialogueDestroyer.h"
+#include "../components/DialogueBoxDestroyer.h"
 
 NPC::NPC(int scene, int t, std::string name_, bool toFadeIn, bool toFadeOut)
 : _scene(scene), click(false), type(t), talking(false), name(name_), myBoxCollider(nullptr)
@@ -84,7 +84,7 @@ void NPC::talkTo()
 		int node = 0;
 
 		// crear dialogo del FACTORY de dialogos
-		//// Mirar comentario en el interior de la función
+		//// Mirar comentario en el interior de la funciï¿½n
 		npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
 								{x, y},//POS
 								{2,2}, //SIZE
@@ -113,11 +113,7 @@ void NPC::update()
 	// Si el dialogo ha sido creado y no estamos cerca de Paul -> destruir dialog, y dejamos de hablar.
 	if (talking && !closeToPaul)
 	{
-		TuVieja("Destruye dialog");
-		//npcDialogue->getComponent<NextText>()->setDead(true); //me da error AYUDA INES
-		//npcDialogue->getComponent<DialogueDestroyer>()->destroyDialogue();
-
+		npcDialogue->getComponent<DialogueBoxDestroyer>()->destroy();
 		talking = false;
-		
 	}
 }

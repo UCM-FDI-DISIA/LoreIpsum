@@ -6,6 +6,8 @@
 #include "MatchManager.h"
 #include "../../../sdlutils/InputHandler.h"
 #include "../../components/Cell.h"
+#include "../../TutorialManager.h"
+#include "../../components/managers/TutorialBoardManager.h"
 
 class BoxCollider;
 
@@ -28,10 +30,10 @@ PlayerCardsManager::~PlayerCardsManager()
 void PlayerCardsManager::drawCard()
 {
 	//deck_->shuffle();
-	// esto es porque me da un error rarísimo en el matchover
-	// LUIS: Creo que lo que está pasando es que al salir de MatchState, la función drawCard se queda en la lista de callbacks
+	// esto es porque me da un error rarï¿½simo en el matchover
+	// LUIS: Creo que lo que estï¿½ pasando es que al salir de MatchState, la funciï¿½n drawCard se queda en la lista de callbacks
 	// asi que cuando el inputHandler recorre la lista de callbacks (el error salta al hacer click derecho) se encuentra con una
-	// función drawCard que ya ha perdido su contexto. 
+	// funciï¿½n drawCard que ya ha perdido su contexto. 
 	// Supongo que hay que eliminar todas las funciones de la lista de callbacks siempre que salgamos de su contexto.
 	if (mngr_ != nullptr && mngr_->getHandler(ecs::hdlr::MATCH_MANAGER) != nullptr)
 	{
@@ -49,9 +51,22 @@ void PlayerCardsManager::drawCard()
 			&& deck_->getOwner() == turnOwner
 		)
 		{
-			hand_->addCard(deck_->drawCard()->getEntity());
+			ecs::entity_t c = deck_->drawCard()->getEntity();
+			hand_->addCard(c);
 			deck_->drawCardMultiplayer();
 			TuVieja("Se envia el mensaje de draw cards");
+
+
+			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
+			if (ent->hasComponent<TutorialManager>()) {
+				// AQUI INES -> esto se tiene que ir tbh
+				
+				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::DRAW_CARD);
+				if(ent->hasComponent<TutorialBoardManager>())
+					ent->getComponent<TutorialBoardManager>()->addToHand(c);
+			}
+			
+
 		}
 	}
 }

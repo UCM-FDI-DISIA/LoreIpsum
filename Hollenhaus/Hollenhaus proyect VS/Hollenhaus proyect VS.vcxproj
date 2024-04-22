@@ -54,6 +54,7 @@
     <ClCompile Include="src\game\components\ClickDecision.cpp" />
     <ClCompile Include="src\game\components\ColliderRender.cpp" />
     <ClCompile Include="src\game\components\DeckComponent.cpp" />
+    <ClCompile Include="src\game\components\DialogueBoxDestroyer.cpp" />
     <ClCompile Include="src\game\components\DialogueDestroyer.cpp" />
     <ClCompile Include="src\game\components\DialogueEventCollection.cpp" />
     <ClCompile Include="src\game\components\DialogueReader.cpp" />
@@ -81,6 +82,7 @@
     <ClCompile Include="src\game\components\managers\MatchManager.cpp" />
     <ClCompile Include="src\game\components\managers\PizarraManager.cpp" />
     <ClCompile Include="src\game\components\managers\PlayerCardsManager.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialBoardManager.cpp" />
     <ClCompile Include="src\game\components\MoveOnClick.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetGame.cpp" />
     <ClCompile Include="src\game\components\NextText.cpp" />
@@ -230,6 +232,7 @@
     <ClInclude Include="src\game\components\ComponentRender.h" />
     <ClInclude Include="src\game\components\ComponentUpdate.h" />
     <ClInclude Include="src\game\components\DeckComponent.h" />
+    <ClInclude Include="src\game\components\DialogueBoxDestroyer.h" />
     <ClInclude Include="src\game\components\DialogueDestroyer.h" />
     <ClInclude Include="src\game\components\DialogueEventCollection.h" />
     <ClInclude Include="src\game\components\DialogueReader.h" />
@@ -257,6 +260,7 @@
     <ClInclude Include="src\game\components\managers\MatchManager.h" />
     <ClInclude Include="src\game\components\managers\PizarraManager.h" />
     <ClInclude Include="src\game\components\managers\PlayerCardsManager.h" />
+    <ClInclude Include="src\game\components\managers\TutorialBoardManager.h" />
     <ClInclude Include="src\game\components\MoveOnClick.h" />
     <ClInclude Include="src\game\components\multiplayer\NetGame.h" />
     <ClInclude Include="src\game\components\NextText.h" />

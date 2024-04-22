@@ -258,3 +258,37 @@ namespace JsonData
 
 }
 
+namespace Tutorials {
+
+	enum Tutorials {
+		BOARD,
+		DECKBUILDER,
+
+	};
+
+	enum Board {
+		BOARD_NONE,
+		INIT,
+		CARD,
+		CARD_INFO,
+		DECK,
+		DRAW_CARD,
+		CELL,
+		PLACE_CARD,
+		POINTS,
+		ACTION,
+		ACTION_PTS,
+		NEXT_TURN,
+		PRESS_NEXT_TURN,
+		AI_TURN,
+		NEXT_CARD_1,
+		EFFECTS_PT1,
+		END_TUTORIAL,
+		FREEDOM
+	};
+
+	enum Deckbuilder {
+		DECKBUILDER_NONE
+
+	};
+}

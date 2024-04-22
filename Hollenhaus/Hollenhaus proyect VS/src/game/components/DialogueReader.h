@@ -18,6 +18,8 @@ public:
 private:
 	JsonData::ConvoData* convo_;
 	int actualNode_;
+	int conv;
+	std::string own;
 
 	TypeWriter* typeWriter_;
 	DialogueEventCollection* eventCollection_;

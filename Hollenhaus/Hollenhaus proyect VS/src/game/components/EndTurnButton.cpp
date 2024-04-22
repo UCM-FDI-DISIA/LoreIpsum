@@ -6,6 +6,7 @@
 
 #include "basics/BoxCollider.h"
 #include "basics/Transform.h"
+#include "../TutorialManager.h"
 
 EndTurnButton::EndTurnButton(Turns::State buttonPropietary) :
 	buttonPropietary_(buttonPropietary)
@@ -64,6 +65,14 @@ void EndTurnButton::ClickButton()
 		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1) {
 			// Se pasa el turno al otro jugador
 			matchManager_->setActualState(Turns::IA);
+
+			// TUTORIAL COSAS
+			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
+			if (ent->hasComponent<TutorialManager>()) {
+				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PRESS_NEXT_TURN);
+				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
+
+			}
 		}
 	}
 	else if (activeMultiplayer) {

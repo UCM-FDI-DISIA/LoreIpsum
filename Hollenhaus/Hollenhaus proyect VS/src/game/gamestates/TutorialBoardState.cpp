@@ -26,22 +26,19 @@
 #include "../GameStateMachine.h"
 #include "../components/managers/PlayerCardsManager.h"
 #include "../TutorialManager.h"
+#include "../components/managers/TutorialBoardManager.h"
 
 TutorialBoardState::TutorialBoardState()
 {
 	TuVieja("Loading Tutorial Board");
 
-	factory = new Factory();
-	factory->SetFactories(
-		static_cast<DialogueFactory*>(new DialogueFactory_V0())
-	);
+	
 }
 
 TutorialBoardState::~TutorialBoardState()
 {
 
-	delete factory;
-	factory = nullptr;
+	
 }
 
 void TutorialBoardState::refresh()
@@ -52,15 +49,6 @@ void TutorialBoardState::refresh()
 void TutorialBoardState::update()
 {
 	GameState::update();
-
-	if (actionEnded()) {
-
-		nextTutorialState();
-
-		resetEnded();
-	}
-
-	updateTutorialState();
 }
 
 void TutorialBoardState::render() const
@@ -73,71 +61,41 @@ void TutorialBoardState::onEnter()
 
 	TuVieja("ENTRANDO AL TUTORIAL...");
 
-	currentState = NONE;
-	nextState = INIT;
-	ended = false;
+	
 
-	setBoard();
 	setBaseEntity();
 	initTutorial();
+	setBoard();
+
+	tutorial->getComponent<TutorialManager>()->startTutorial();
+	tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::BOARD);
+	tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Board::BOARD_NONE);
+	tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Board::INIT);
+
+
+	int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
+
+	tutorial->getComponent<TutorialBoardManager>()->setObjs(objs);
 
 }
 
 void TutorialBoardState::onExit()
 {
+	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
+	GameStateMachine::instance()->getMngr()->Free();
+
+	tutorial->getComponent<TutorialManager>()->endTutorial();
 
 }
 
-void TutorialBoardState::updateTutorialState()
-{
-	if (currentState != nextState) {
-		tutorial->getComponent<TutorialManager>()->wait( [this] { setState(); } );
-	}
-}
 
-bool TutorialBoardState::actionEnded()
-{
-	return tutorial->getComponent<TutorialManager>()->hasEnded();
-}
-
-void TutorialBoardState::resetEnded()
-{
-	tutorial->getComponent<TutorialManager>()->resetAction();
-}
-
-
-
-void TutorialBoardState::setState()
-{
-	switch (nextState)
-	{
-	case INIT:
-		setINIT();
-		break;
-	case CARD:
-		setCARD();
-		break;
-	case DECK:
-		setDECK();
-		break;
-	default:
-		break;
-	}
-
-	currentState = nextState;
-}
-
-void TutorialBoardState::nextTutorialState()
-{
-	nextState++;
-}
 
 void TutorialBoardState::setBoard()
 {
-	TuVieja("\nEntering in LuisState");
+	TuVieja("\n SETTING TUTORIAL BOARD");
 
-	TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
+	//TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
 
 	Factory* factory = new Factory();
 	factory->SetFactories(
@@ -146,9 +104,12 @@ void TutorialBoardState::setBoard()
 		static_cast<MatchStateUIFactory*>(new MatchStateUIFactory_v0())
 	);
 
-	// Factoría del tablero. Generamos el tablero de juego.
+	// Factorï¿½a del tablero. Generamos el tablero de juego.
 	ecs::entity_t boardEntity = factory->createBoard();
 	BoardManager* boardManagerComponent = boardEntity->getComponent<BoardManager>();
+
+	objs.push_back(boardEntity);
+	tutorial->getComponent<TutorialBoardManager>()->setCard(boardEntity);
 
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
@@ -157,13 +118,19 @@ void TutorialBoardState::setBoard()
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
-	ecs::entity_t ent = Instantiate();
-	ent->addComponent<DragManager>();
-	ent->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
+	ecs::entity_t dragManager = Instantiate();
+	dragManager->addComponent<DragManager>();
+	dragManager->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
+	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::DRAG_MANAGER, dragManager);
 
-	// Factoría de cartas. Con ella generamos la mano inicial
+	// Factorï¿½a de cartas. Con ella generamos la mano inicial
 	ecs::entity_t deckPlayer1 = factory->createDeck();
 	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
+
+	objs.push_back(deckPlayer1);
+	objs.push_back(deckPlayer2);
+
+	tutorial->getComponent<TutorialBoardManager>()->setDeck(deckPlayer1);
 
 
 	// UI 
@@ -172,6 +139,9 @@ void TutorialBoardState::setBoard()
 
 	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(600, 200, 200, 180);
 	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 265);
+
+	objs.push_back(visual_EndTurnButton);
+	tutorial->getComponent<TutorialBoardManager>()->setNextTurn(visual_EndTurnButton);
 
 	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 
@@ -192,15 +162,17 @@ void TutorialBoardState::setBoard()
 	boardManagerComponent->updateVisuals();
 
 
+
+
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
 	sdlutils().soundEffects().at("battletheme").play(-1);
 	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 
 
-	#pragma region Seccion IA
+#pragma region Seccion IA
 
-	//crear la entidad y añadirle el componente
+	//crear la entidad y aï¿½adirle el componente
 	ecs::entity_t IA_controler = Instantiate();
 	IA_manager* ia_managerComponent = IA_controler->addComponent<IA_manager>();
 
@@ -224,7 +196,8 @@ void TutorialBoardState::setBoard()
 	matchManagerComponent->setIA_Manager(ia_managerComponent);
 
 
-	#pragma endregion
+#pragma endregion
+
 }
 
 void TutorialBoardState::setBaseEntity()
@@ -236,29 +209,16 @@ void TutorialBoardState::setBaseEntity()
 	Vector2D pos{ 200, 200 };
 	base->getComponent<Transform>()->setGlobalPos(pos);
 	base->setLayer(2);
+
+	colliderWallBase = Instantiate();
+	colliderWallBase->addComponent<Transform>();
+	Vector2D pos2{ 0, 0 };
+	colliderWallBase->getComponent<Transform>()->setGlobalPos(pos2);
+	colliderWallBase->setLayer(2);
+	
 }
 
-void TutorialBoardState::createPopUp(float x, float y, std::string popup, int convo)
-{
-	TuVieja("Creando PopUp...");
 
-	JsonData::DialogueData dialogue = sdlutils().dialogues().at(popup);
-	//int conv = 0;
-	int node = 0;
-
-	// crear dialogo del FACTORY de dialogos
-	//// Mirar comentario en el interior de la función
-	factory->createDialogue(dialogue.NPCName(), convo, node,
-		{ x, y },//POS
-		{ 0.25, 0.25 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-		5, 10, base,
-		3, dialogue.Convo(convo).isAuto(),  //LAYER
-		"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
-		SDL_Color({ 0, 0, 0, 255 }),
-		220, //wrap length
-		Text::BoxPivotPoint::LeftTop,
-		Text::TextAlignment::Left);
-}
 
 void TutorialBoardState::initTutorial()
 {
@@ -266,29 +226,8 @@ void TutorialBoardState::initTutorial()
 	tutorial = Instantiate();
 
 	tutorial->addComponent<TutorialManager>();
+	auto manager = tutorial->addComponent<TutorialBoardManager>(base, tutorial);
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
-}
-
-void TutorialBoardState::setINIT()
-{
-
-	TuVieja("Setting INIT");
-
-	createPopUp(250 , 200, "Board Tutorial", 0);
 
 }
 
-void TutorialBoardState::setCARD()
-{
-	TuVieja("Setting CARD");
-
-	createPopUp(250, 200, "Board Tutorial", 1);
-}
-
-void TutorialBoardState::setDECK()
-{
-	TuVieja("Setting DECK");
-
-	createPopUp(550, 300, "Board Tutorial", 2);
-
-}

@@ -10,6 +10,9 @@
 
 DialogueReader::DialogueReader(std::string owner, int convo, int firstNode)
 {
+
+	own = owner;
+	conv = convo;
 	convo_ = &sdlutils().dialogues().at(owner).Convo(convo);
 	actualNode_ = firstNode;
 }
@@ -25,12 +28,20 @@ void DialogueReader::initComponent() {
 	dialogueDestroyer_ = ent_->getComponent<DialogueDestroyer>();
 	assert(dialogueDestroyer_ != nullptr);
 
+	//convo_->Node(actualNode_).NodeID();
+
 	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
 	exeEvents(convo_->Node(actualNode_).NodeEventsStart());
+
 }
 void DialogueReader::NextNode()
 {
 	if (!ent_->getComponent<NextText>()->isDead()) {
+
+		//std::cout << convo_->Node(actualNode_).NodeID() << std::endl;
+		//std::cout << convo_->ConvoID() << std::endl << std::endl;
+
+		convo_->Node(actualNode_).NodeEventsFinish();
 
 		exeEvents(convo_->Node(actualNode_).NodeEventsFinish());
 		actualNode_++;
