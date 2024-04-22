@@ -33,8 +33,6 @@ void MainMenuState::refresh()
 void MainMenuState::onEnter() 
 {
 
-	_Tu_Vieja(1 << 1 << "aaaaaaaa");
-
 	std::cout << "\nENTER MENU.\n";
 
 	// Carga la data
