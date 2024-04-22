@@ -423,13 +423,29 @@ void TutorialBoardManager::setAI_TURN()
 
 void TutorialBoardManager::setNEXTCARD1()
 {
+	std::vector<ecs::entity_t> v;
+
+	createPopUp(250, 200, "Board Tutorial", 10);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
 
 void TutorialBoardManager::setEFFECTS1()
 {
+	std::vector<ecs::entity_t> v;
+
+	createPopUp(250, 200, "Board Tutorial", 11);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
 
 void TutorialBoardManager::setFREEDOM()
 {
+
+	std::cout << "LIBERTAS OMFG" << std::endl;
 }
 

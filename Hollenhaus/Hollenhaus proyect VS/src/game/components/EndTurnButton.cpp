@@ -62,8 +62,5 @@ void EndTurnButton::ClickButton()
 				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PRESS_NEXT_TURN);
 			}
 		}
-
-
-		
 	}
 }
