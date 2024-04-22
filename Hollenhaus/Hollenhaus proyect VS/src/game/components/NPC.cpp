@@ -81,8 +81,6 @@ NPC::NPC(int scene, int t, std::string name_)
 	factory->SetFactories(
 		static_cast<DialogueFactory*>(new DialogueFactory_V0())
 	);
-
-
 }
 
 NPC::~NPC() 
