@@ -179,7 +179,7 @@ void CityState::onEnter()
 void CityState::onExit()
 {
 	// se desuscribe al evento
-	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPause(); });
+	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPause(); });
 
 	std::cout << "\nEXIT CITY.\n";
 

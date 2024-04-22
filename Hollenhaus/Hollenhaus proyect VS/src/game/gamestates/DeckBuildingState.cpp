@@ -57,6 +57,7 @@ void DeckBuildingState::onEnter()
 
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPauseDB(); });
+	paused = false;
 
 	// carga el data
 	loadData();
@@ -220,7 +221,8 @@ void DeckBuildingState::onEnter()
 void DeckBuildingState::onExit()
 {
 	// se desuscribe al evento
-	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPauseDB(); });
+	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPauseDB(); });
+	paused = false;
 
 	// al salir del estado guardas la info
 	saveData();
@@ -236,14 +238,30 @@ void DeckBuildingState::onExit()
 
 void DeckBuildingState::onPauseDB()
 {
-	//ecs::entity_t officeText = Instantiate(Vector2D(210, 10));
-	//officeText->addComponent<TextComponent>("PAUSA", "8bit_size_24", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
-	//officeText->setLayer(1);
+	if (!paused) 
+	{
+		paused = true;
 
-	SetLastState(9);
-	pizarra_->saveMaze();
-	drawer_->saveDrawer();
-	GameStateMachine::instance()->setState(17);
+		rice = Instantiate();
+		rice->addComponent<Transform>();
+		rice->addComponent<SpriteRenderer>("rice");
+		rice->addComponent<BoxCollider>();
+		Vector2D posRice(300, 300);
+		rice->getComponent<Transform>()->setGlobalPos(posRice);
+		rice->getComponent<Transform>()->setGlobalScale(0.5f, 0.4f);
+		rice->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+		rice->setLayer(4);
+	}
+	else if (paused && rice != nullptr)
+	{
+		paused = false;
+		rice->setAlive(false);
+	}
+
+	//SetLastState(9);
+	//pizarra_->saveMaze();
+	//drawer_->saveDrawer();
+	//GameStateMachine::instance()->setState(17);
 }
 
 #pragma region DECKBUILDING
