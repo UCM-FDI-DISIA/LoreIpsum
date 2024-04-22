@@ -353,7 +353,15 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "PUNTOS",
+              "text": "A la derecha del tablero tienes la puntuacion de cada jugador",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "El jugador que tenga mas puntos al llenarse el tablero gana!",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -361,7 +369,7 @@
             },
             {
               "nodeID": 3,
-              "text": "FINAL PUNTOS",
+              "text": "Suerte!",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
