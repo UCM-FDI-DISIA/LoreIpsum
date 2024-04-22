@@ -65,6 +65,9 @@ public:
     std::vector<std::vector<Card*>> getBoardCardsIA();
     std::vector<std::vector<Players::Owner>> getBoardOwnerIA();
 
+    //Feedback
+    void returnColors();
+
 private:
     void initBoard();
     //cleon: si en la entrega es una constante, os mataré. bueno, yo os mataré

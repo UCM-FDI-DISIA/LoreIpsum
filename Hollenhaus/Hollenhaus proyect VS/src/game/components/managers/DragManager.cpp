@@ -61,67 +61,24 @@ void DragManager::updateFeedback()
 	//Si una carta está pillada empieza el feedback
 	if (drop != nullptr) {
 
-		auto c = dragTransform->getEntity()->getComponent<Card>();	//Carta draggeada
-
-		//Buscamos la carta por su ID
-		auto id = c->getID();
-		auto l = sdlutils().cards().at(std::to_string(id));
-
-		auto cell = drop->getComponent<Cell>();	//Celda sobre la que está la carta
+		colorEffects(drop);
 
 		//Si cambiamos la celda sobre la que está puesta la carta
 		if (lastCell != nullptr && lastCell != drop) {
 
-			//Cogemos los datos de la celda en la que estabamos antes
-			auto cell = lastCell->getComponent<Cell>();
-
-			//Devolvemos los colores a la normalidad
-			for (auto e : l.effects()) {
-				for (auto d : e.directions()) {
-					//Habrá que diferenciar por tipo de efecto pero voy 
-					while (cell->getAdjacents()[d] != nullptr)
-					{
-						cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 0);
-						cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
-					}
-				}
-			}
-
+			//Quitamos los colores del drag anterior
+			boardManager->returnColors();
 			lastCell = drop;
 		}
 		else {
 
 			lastCell = drop;
-			//Miramos todos los efectos que tenga la carta
-			for (auto e : l.effects()) {
-
-				//Diferenciamos los diferentes tipos de efectos que nos interesa)
-				if (e.type() == Effects::Superflecha || e.type() == Effects::Flecha || e.type() == Effects::Centro) {
-					for (auto d : e.directions()) {
-
-						//cell->getAdjacents()[d]->
-						while (cell->getAdjacents()[d] != nullptr)
-						{
-							cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
-							cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
-						}
-					}
-				}
-			}
+			colorEffects(drop);
 		}
 		
 	}
-	else if (lastCell != drop) {
-
-		
-
-		
-
-		//Recorremos todas las celdas seteando el color
-		/*for (int j = 0; j < size; j++)
-			for (int i = 0; i < size; i++)
-				if (_board[i][j]->getComponent<Cell>()->getCard() != nullptr)
-					_board[i][j]->getComponent<Cell>()->setTotalValue(0);*/
+	else {
+		boardManager->returnColors();
 	}
 }
 
@@ -240,5 +197,57 @@ void DragManager::putCardOnBoard(ecs::entity_t card, DropDetector* cell)
 	Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
 
 	boardManager->setCard(x, y, cardComp, playerTurn);
+}
+
+void DragManager::colorEffects(ecs::entity_t drop)
+{
+	auto c = dragTransform->getEntity()->getComponent<Card>();	//Carta draggeada
+
+	//Buscamos la carta por su ID
+	auto id = c->getID();
+	auto l = sdlutils().cards().at(std::to_string(id));
+
+	auto cell = drop->getComponent<Cell>();	//Celda sobre la que está la carta
+
+	//Miramos todos los efectos que tenga la carta
+	for (auto e : l.effects()) {
+
+		//Diferenciamos los diferentes tipos de efectos que nos interesa
+		switch (e.type()) {
+		case Effects::Superflecha:
+			for (auto d : e.directions()) {
+
+				while (cell != nullptr)	//Pintamos toda la fila
+				{
+					cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+					cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
+				}
+			}
+			break;
+
+		case Effects::Flecha:
+			for (auto d : e.directions()) {
+
+				if (cell->getAdjacents()[d] != nullptr)	//Solo pintamos la correspondiente
+				{
+					cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
+					cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+				}
+			}
+			break;
+
+		case Effects::Esquina:
+			if (cell->getCorner()) {
+				cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+			}
+			break;
+
+		case Effects::Centro:
+			if (cell->getCenter()) {
+				cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+			}
+			break;
+		}
+	}
 }
 

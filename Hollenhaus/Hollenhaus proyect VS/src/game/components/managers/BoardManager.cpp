@@ -345,6 +345,14 @@ std::vector<std::vector<Players::Owner>> BoardManager::getBoardOwnerIA()
 	return board;
 }
 
+void BoardManager::returnColors()
+{
+	for (int j = 0; j < size; j++)
+		for (int i = 0; i < size; i++)
+			_board[i][j]->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 0);
+				
+}
+
 void BoardManager::initBoard()
 {
 	/// Inicializacion de referencias de cada celda

@@ -30,6 +30,8 @@ private:
     Vector2D initialMousePos;
     Vector2D initialTransformPos;
     Vector2D initialTransformPosWithOffSet;
+
+    //Cosas de feedback
     ecs::entity_t   lastCell = nullptr;
 
     void OnLeftClickDown();
@@ -39,6 +41,7 @@ private:
     bool CardIsOfCurrentPlayer(ecs::entity_t card);
     bool enoughPoints(ecs::entity_t card);
     void putCardOnBoard(ecs::entity_t card,DropDetector* cell);
+    void colorEffects(ecs::entity_t drop);
 
     BoardManager* boardManager;
 	bool draggable = true;
