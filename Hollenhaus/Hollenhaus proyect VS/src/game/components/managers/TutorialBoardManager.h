@@ -59,6 +59,8 @@ private:
 
     void setCARD();
 
+    void setCARDINFO();
+
     void setDECK();
 
     void setDRAWCARD();
@@ -66,6 +68,8 @@ private:
     void setCELL();
 
     void setPLACECARD();
+
+    void setPOINTS();
 
     void setACTION();
 
@@ -76,6 +80,12 @@ private:
     void setPRESSNEXTTURN();
 
     void setAI_TURN();
+
+    void setNEXTCARD1();
+
+    void setEFFECTS1();
+
+    void setFREEDOM();
     
 
 };

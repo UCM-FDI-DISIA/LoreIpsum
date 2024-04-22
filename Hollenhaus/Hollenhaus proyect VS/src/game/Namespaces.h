@@ -263,14 +263,19 @@ namespace Tutorials {
 		BOARD_NONE,
 		INIT,
 		CARD,
+		CARD_INFO,
 		DECK,
 		DRAW_CARD,
 		CELL,
 		PLACE_CARD,
+		POINTS,
 		ACTION,
 		NEXT_TURN,
 		PRESS_NEXT_TURN,
-		AI_TURN
+		AI_TURN,
+		NEXT_CARD_1,
+		EFFECTS_PT1,
+		FREEDOM
 	};
 
 	enum Deckbuilder {

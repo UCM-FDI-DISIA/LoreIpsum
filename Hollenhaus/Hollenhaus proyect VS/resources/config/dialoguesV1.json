@@ -200,6 +200,34 @@
           "nodes": [
             {
               "nodeID": 0,
+              "text": "INFO DE LAS CARTAS",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "ULTIMO NODO DE INFO",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 3,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
               "text": "Este es tu mazo",
               "eventStart": 0,
               "eventFinish": 0,
@@ -238,7 +266,7 @@
           ]
         },
         {
-          "convoID": 3,
+          "convoID": 4,
           "autoConvo": false,
           "nodes": [
             {
@@ -281,7 +309,34 @@
           ]
         },
         {
-          "convoID": 4,
+          "convoID": 5,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "PUNTOS",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "FINAL PUNTOS",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 6,
           "autoConvo": false,
           "nodes": [
             {
@@ -332,7 +387,7 @@
           ]
         },
         {
-          "convoID": 5,
+          "convoID": 7,
           "autoConvo": false,
           "nodes": [
             {
@@ -359,7 +414,7 @@
           ]
         },
         {
-          "convoID": 6,
+          "convoID": 8,
           "autoConvo": false,
           "nodes": [
             {
