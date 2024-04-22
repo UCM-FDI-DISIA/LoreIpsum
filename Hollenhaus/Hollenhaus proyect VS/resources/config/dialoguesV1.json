@@ -357,6 +357,29 @@
               ]
             }
           ]
+        },
+        {
+          "convoID": 6,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Turno de ia",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "me duele la vida",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+               
+              ]
+            }
+          ]
         }
       ]
     }

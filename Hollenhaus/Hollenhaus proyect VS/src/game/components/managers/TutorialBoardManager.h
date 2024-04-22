@@ -74,6 +74,8 @@ private:
     void setNEXTTURN();
 
     void setPRESSNEXTTURN();
+
+    void setAI_TURN();
     
 
 };

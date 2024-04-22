@@ -29,6 +29,12 @@ void NextText::initComponent()
 	//boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
 	//assert(boxCollider_ != nullptr);
 
+	if (boxCollider_ != nullptr) {
+		boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
+		assert(boxCollider_ != nullptr);
+
+	}
+
 	dialogueReader_ = ent_->getComponent<DialogueReader>();
 	assert(dialogueReader_ != nullptr);
 
@@ -53,7 +59,7 @@ void NextText::OnLeftClickUp()
 
 void NextText::reactToClick()
 {
-	if (!dead && boxCollider_ != nullptr) 
+	if (!dead && boxCollider_) 
 	{
 		if (boxCollider_->isCursorOver())
 		{

@@ -139,6 +139,9 @@ void TutorialBoardManager::setState()
 	case Tutorials::Board::PRESS_NEXT_TURN:
 		setPRESSNEXTTURN();
 		break;
+	case Tutorials::Board::AI_TURN	:
+		setAI_TURN();
+		break;
 	default:
 		break;
 	}
@@ -348,6 +351,19 @@ void TutorialBoardManager::setPRESSNEXTTURN()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+
+}
+
+void TutorialBoardManager::setAI_TURN()
+{
+	std::vector<ecs::entity_t> v;
+
+	createPopUp(250, 200, "Board Tutorial", 6);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 
 }

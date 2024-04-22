@@ -269,7 +269,8 @@ namespace Tutorials {
 		PLACE_CARD,
 		ACTION,
 		NEXT_TURN,
-		PRESS_NEXT_TURN
+		PRESS_NEXT_TURN,
+		AI_TURN
 	};
 
 	enum Deckbuilder {
