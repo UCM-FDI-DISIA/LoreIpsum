@@ -5,10 +5,13 @@
 #include "basics/TextComponent.h"
 
 KeyComponent::KeyComponent(const int keys) :
-	addToY_(100),
+	addToY_(200),
 	NKeys_(keys),
 	tr_(),
+	sr_(),
 	pos_(),
+	offset_(10, 0),
+	bookWidth_(),
 	font_("8bit_size_20")
 {
 	// Inicializacion del vector con los nombres
@@ -31,7 +34,12 @@ KeyComponent::initComponent() {
 	tr_ = ent_->getComponent<Transform>();
 	assert(tr_ != nullptr);
 
-	pos_ = tr_->getGlobalPos() + Vector2D(10, 0); // El numero inicial vector posicion de la key hay que cambiarlo segun el tamaño de la imagen del libro
+	pos_ = tr_->getGlobalPos() + offset_; // El numero inicial vector posicion de la key hay que cambiarlo segun el tamaño de la imagen del libro
+
+	sr_ = ent_->getComponent<SpriteRenderer>();
+	assert(sr_ != nullptr);
+
+	bookWidth_ = sr_->getImageSize().getX();
 
 	set();
 }
@@ -42,12 +50,13 @@ KeyComponent::set() {
 		ecs::entity_t e = Instantiate(pos_); // Creamos la imagen
 
 		e->getComponent<Transform>()->addParent(getEntity()->getComponent<Transform>());
+		e->getComponent<Transform>()->setGlobalScale(0.1, 0.1);
 		e->addComponent<SpriteRenderer>(keyNames_[i]);
 
 		// Creamos el texto
 		ecs::entity_t txt = Instantiate(pos_ + Vector2D(e->getComponent<SpriteRenderer>()->getImageSize().getX(), 0));
 
-		txt->addComponent<Transform>()->addParent(e->getComponent<Transform>());
+		txt->getComponent<Transform>()->addParent(e->getComponent<Transform>());
 		txt->addComponent<TextComponent>(descs_[i],
 			font_,
 			SDL_Color({ 0, 0, 0, 255 }),
@@ -59,7 +68,7 @@ KeyComponent::set() {
 		keys_.emplace_back(e, txt);
 		pos_ = pos_ + Vector2D(0, addToY_); // Actualizamos la pos para la siguiente
 
-		if (i == 3)
-			pos_ = tr_->getGlobalPos() + Vector2D(110, 0);
+		if (i + 1 == TOTAL_KEYS * 0.5)
+			pos_ = Vector2D(tr_->getGlobalPos().getX() + bookWidth_ * 0.5, tr_->getGlobalPos().getY()) + offset_;
 	}
 }

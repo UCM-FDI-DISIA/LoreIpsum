@@ -6,6 +6,7 @@
 #include "ComponentRender.h"
 
 class Transform;
+class SpriteRenderer;
 class Vector2D;
 
 constexpr int TOTAL_KEYS = 6;
@@ -33,7 +34,12 @@ private:
     std::vector<std::pair<ecs::entity_t, ecs::entity_t>> keys_;
 
     Transform* tr_;
-    Vector2D pos_;
+    SpriteRenderer* sr_;
+
+    Vector2D pos_,
+        offset_;
+
+    float bookWidth_;
 
     std::string font_;
 };
