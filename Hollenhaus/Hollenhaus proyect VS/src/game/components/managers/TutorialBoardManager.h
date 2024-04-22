@@ -85,6 +85,8 @@ private:
 
     void setEFFECTS1();
 
+    void setENDTUTORIAL();
+
     void setFREEDOM();
     
 

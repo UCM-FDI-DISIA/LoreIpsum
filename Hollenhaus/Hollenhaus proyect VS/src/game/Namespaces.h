@@ -276,6 +276,7 @@ namespace Tutorials {
 		AI_TURN,
 		NEXT_CARD_1,
 		EFFECTS_PT1,
+		END_TUTORIAL,
 		FREEDOM
 	};
 

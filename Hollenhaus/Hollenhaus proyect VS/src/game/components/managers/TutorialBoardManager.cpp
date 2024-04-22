@@ -157,6 +157,9 @@ void TutorialBoardManager::setState()
 	case Tutorials::Board::EFFECTS_PT1:
 		setEFFECTS1();
 		break;
+	case Tutorials::Board::END_TUTORIAL:
+		setENDTUTORIAL();
+		break;
 	case Tutorials::Board::FREEDOM:
 		setFREEDOM();
 		break;
@@ -186,7 +189,7 @@ ecs::entity_t TutorialBoardManager::createPopUp(float x, float y, std::string po
 		{ x, y },//POS
 		{ 0.25, 0.25 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
 		5, 10, base,
-		3, dialogue.Convo(convo).isAuto(),  //LAYER
+		200, dialogue.Convo(convo).isAuto(),  //LAYER
 		"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
 		SDL_Color({ 0, 0, 0, 255 }),
 		220, //wrap length
@@ -440,6 +443,17 @@ void TutorialBoardManager::setEFFECTS1()
 	std::vector<ecs::entity_t> v;
 
 	createPopUp(250, 200, "Board Tutorial", 11);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+}
+
+void TutorialBoardManager::setENDTUTORIAL()
+{
+	std::vector<ecs::entity_t> v;
+
+	createPopUp(250, 200, "Board Tutorial", 12);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
