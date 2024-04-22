@@ -62,14 +62,14 @@
     },
     {
       "npcID": "5",
-      "name": "Caso0",
-      "sprite": "CompbateNPC",
+      "name": "Javivu24",
+      "sprite": "whiteRect",
       "scaleX": 0.25,
       "scaleY": 0.25,
       "posX": 1200,
       "posY": 425,
-      "type": 0,
-      "scene": 10,
+      "type": 1,
+      "scene": 0,
       "layer": 1
     }
   ]

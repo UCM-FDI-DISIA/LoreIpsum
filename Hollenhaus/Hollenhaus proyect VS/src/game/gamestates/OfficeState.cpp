@@ -76,26 +76,21 @@ void OfficeState::onEnter()
 	db->addComponent<NPC>(9); // Lleva al deckbuilding (9).
 	db->setLayer(1);
 
-	//------Boton para telefono: (WIP de Poli)
-	// La idea es poner como un NPC invisible (sobre el telefono), que al clicarlo haga que aparezca el dialogo.
-	ecs::entity_t telf = Instantiate();
-	telf->addComponent<Transform>();
-	telf->addComponent<BoxCollider>();
-	Vector2D telfSize(100, 100);
-	telf->getComponent<BoxCollider>()->setSize(telfSize);
-	Vector2D telfPos(300, 400);
-	telf->getComponent<Transform>()->setGlobalPos(telfPos);
+	//------Boton para telefono: (WIP de Poli:  La idea es poner como un NPC invisible (sobre el telefono),
+	//  que al clicarlo haga que aparezca el dialogo.)
 
-	// Lleva al dialogo de caso. 
-	// Investigar como hacer para que no muestre imagen del npc, crear uno nuevo en el json??¿? ire mirando
 	factory->createNPC(5, fondo); 
-	telf->setLayer(1);
+
+	//Idea para los casos:
+	// - En dialoguesV1.json meter el texto de los casos que queremos que se diga. Como Caso0, Caso1, etc.
+	// - En npcs.json crear nuevos npcs para cada caso, los cuales no tendrian sprite, o seria transparente.
+	// - Se instanciaria aqui, usando factory->createNPC(getCurrentCase() + offset, fondo), donde el offset
+	//   seria el numero de npcs que hay antes en npcs.json
+
 
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").play(-1);
 	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
-
-
 }
 
 void OfficeState::onExit()
