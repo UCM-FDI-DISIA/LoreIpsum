@@ -64,7 +64,7 @@ void NetEndGame::update()
 					SDLNetUtils::serializedSend(changeState, rival);
 
 					//ir al menu de MultiplayerPreGame(sin cerrar el socket del rival)
-					GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_LOBBY);//cambiar por preGame cuando se mergee la rama
+					GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_PREGAME);//cambiar por preGame cuando se mergee la rama
 					
 					//se cierra el socket set
 					SDLNet_FreeSocketSet(socketSet);
@@ -90,7 +90,7 @@ void NetEndGame::update()
 				break;
 			case NetMsgs::_CHANGE_STATE_PREGAME_END_GAME_:
 				TuVieja("Mensaje : _CHANGE_STATE_PREGAME_END_GAME_, RECIBIDO");
-				GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_LOBBY);//cambiar por preGame cuando se mergee la rama
+				GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_PREGAME);//cambiar por preGame cuando se mergee la rama
 				break;
 			case NetMsgs::_CHANGE_STATE_GAME_END_GAME_:
 				TuVieja("Mensaje : _CHANGE_STATE_GAME_END_GAME_, RECIBIDO");
