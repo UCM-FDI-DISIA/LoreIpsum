@@ -83,12 +83,12 @@ void MainMenuState::onEnter()
 	exitButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(50, -16));
 	ih().insertFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
 
-	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
-	multiplayerButton->addComponent<TextComponent>("MULTIJUGADOR", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
-	multiplayerButton->addComponent<BoxCollider>();
-	multiplayerButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
-	multiplayerButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	multiplayerButton->addComponent<NPC>(GameStates::MULTIPLAYERMODEMENU, NPC::Type::BUTTON);
+	//multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
+	//multiplayerButton->addComponent<TextComponent>("MULTIJUGADOR", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	//multiplayerButton->addComponent<BoxCollider>();
+	//multiplayerButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
+	//multiplayerButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
+	//multiplayerButton->addComponent<NPC>(GameStates::MULTIPLAYERMODEMENU, NPC::Type::BUTTON);
 
 	// Music
 	sdlutils().soundEffects().at("menutheme").play(-1);

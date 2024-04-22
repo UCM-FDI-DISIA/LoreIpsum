@@ -210,6 +210,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2Multiplayer()
 		auto card = sdlutils().cards().at(std::to_string(c));
 		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		ecs::entity_t ent = createCard(
+			card.id(),
 			Vector2D(initX, initY),
 			card.cost(),
 			card.value(),
