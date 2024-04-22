@@ -48,16 +48,6 @@ Card::Card(const Card& other) {
 	effectsJSON = other.effectsJSON;
 }
 
-Card::Card(int cost, int value) : cost(cost), value(value)
-{
-}
-
-Card::Card(int cost, int value, std::string& sprite, bool unblockable)
-	: cost(cost), value(value), sprite(sprite), unblockable(unblockable)
-{
-
-}
-
 Card::Card(int id, int cost, int value, std::string& sprite, bool unblockable)
 	: id(id), cost(cost), value(value), sprite(sprite), unblockable(unblockable)
 {
