@@ -103,11 +103,6 @@ void TutorialManager::setColliderWall(std::vector<ecs::entity_t> e, ecs::entity_
 void TutorialManager::resetColliderWall(std::vector<ecs::entity_t> e)
 {
 
-
-	//colliderWall;
-	//colliderWall->getComponent<SpriteRenderer>()->setOpacity(0);
-
-
 	if (layers.size() > 0) {
 
 		int i = 0;

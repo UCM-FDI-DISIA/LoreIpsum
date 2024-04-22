@@ -266,7 +266,6 @@ void TutorialBoardManager::setDRAWCARD()
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
 
-	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 	
 }
@@ -275,15 +274,17 @@ void TutorialBoardManager::setCELL()
 {
 	//TuVieja("Setting CELL");
 
+
+	std::vector<ecs::entity_t> v;
+
 	createPopUp(250, 200, "Board Tutorial", 3);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(hand);
 
-	std::vector<ecs::entity_t> v;
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
-	
 
 	
 }
@@ -295,8 +296,6 @@ void TutorialBoardManager::setPLACECARD()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	std::vector<ecs::entity_t> v;
-
-	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 	for (auto h : hand) {
 		v.push_back(h);
@@ -333,6 +332,8 @@ void TutorialBoardManager::setNEXTTURN()
 	//v.push_back(nextTurn);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 	//tutorial->getComponent<TutorialManager>()->activateColliders(v);
 
