@@ -76,9 +76,17 @@ void OfficeState::onEnter()
 	db->addComponent<NPC>(9); // Lleva al deckbuilding (9).
 	db->setLayer(1);
 
-	//------Boton para telefono: (WIP de Poli)
-	// La idea es poner como un NPC invisible (sobre el telefono), que al clicarlo haga que aparezca el dialogo.
+	//------Boton para telefono: (WIP de Poli:  La idea es poner como un NPC invisible (sobre el telefono),
+	//  que al clicarlo haga que aparezca el dialogo.)
+
 	factory->createNPC(5, fondo); 
+
+	//Idea para los casos:
+	// - En dialoguesV1.json meter el texto de los casos que queremos que se diga. Como Caso0, Caso1, etc.
+	// - En npcs.json crear nuevos npcs para cada caso, los cuales no tendrian sprite, o seria transparente.
+	// - Se instanciaria aqui, usando factory->createNPC(getCurrentCase() + offset, fondo), donde el offset
+	//   seria el numero de npcs que hay antes en npcs.json
+
 
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").play(-1);
