@@ -26,12 +26,14 @@ NextText::~NextText()
 void NextText::initComponent()
 {
 
+	hasBC = false;
 	//boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
 	//assert(boxCollider_ != nullptr);
 
 	if (boxCollider_ != nullptr) {
 		boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
 		assert(boxCollider_ != nullptr);
+		hasBC = true;
 
 	}
 
@@ -59,7 +61,7 @@ void NextText::OnLeftClickUp()
 
 void NextText::reactToClick()
 {
-	if (!dead && boxCollider_) 
+	if (!dead && hasBC) 
 	{
 		if (boxCollider_->isCursorOver())
 		{
@@ -97,6 +99,7 @@ void NextText::setDead(bool a)
 void NextText::setCollider(BoxCollider* coll)
 {
 	boxCollider_ = coll;
+	hasBC = true;
 }
 
 

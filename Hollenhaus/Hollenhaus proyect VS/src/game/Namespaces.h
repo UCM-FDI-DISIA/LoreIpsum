@@ -270,6 +270,7 @@ namespace Tutorials {
 		PLACE_CARD,
 		POINTS,
 		ACTION,
+		ACTION_PTS,
 		NEXT_TURN,
 		PRESS_NEXT_TURN,
 		AI_TURN,

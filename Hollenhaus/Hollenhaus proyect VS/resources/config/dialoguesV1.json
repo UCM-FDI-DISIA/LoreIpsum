@@ -419,7 +419,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Turno de ia",
+              "text": "Ahora es el turno de tu oponente",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -427,11 +427,44 @@
             },
             {
               "nodeID": 1,
-              "text": "me duele la vida",
+              "text": "Veamos que hace",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
-               
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 9,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Si hombre que cojones",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "aaaaaaaaaaaaaaaaaaa",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+
               ]
             }
           ]

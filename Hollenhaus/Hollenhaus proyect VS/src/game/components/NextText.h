@@ -33,6 +33,7 @@ public:
 private:
 	bool click;
 	bool dead;
+	bool hasBC;
 
 	TypeWriter* typeWriter_; //para reiniciarlo cuando se cambie de nodo
 	DialogueReader* dialogueReader_;

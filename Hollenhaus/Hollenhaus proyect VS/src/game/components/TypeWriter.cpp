@@ -89,7 +89,7 @@ void TypeWriter::finishTypewrite()
 
 bool TypeWriter::ended()
 {
-	return finaltext == text;
+	return finaltext == text || !writing;
 }
 
 void TypeWriter::setText()

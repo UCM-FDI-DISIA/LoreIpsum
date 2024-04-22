@@ -139,6 +139,9 @@ void TutorialBoardManager::setState()
 	case Tutorials::Board::ACTION:
 		setACTION();
 		break;
+	case Tutorials::Board::ACTION_PTS:
+		setACTIONPTS();
+		break;
 	case Tutorials::Board::NEXT_TURN:
 		setNEXTTURN();
 		break;
