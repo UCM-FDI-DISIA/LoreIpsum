@@ -69,8 +69,6 @@ void TypeWriter::typeWrite(std::string newtext)
 	finaltext.clear();
 	//finaltext = "";
 	text = newtext;
-	std::cout << newtext << std::endl;
-
 	i = 0;
 	writing = true;
 }

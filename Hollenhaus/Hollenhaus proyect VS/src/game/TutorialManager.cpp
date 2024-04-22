@@ -35,15 +35,12 @@ void TutorialManager::update()
 
 void TutorialManager::actionEnded()
 {
-
-	std::cout << "ended true" << std::endl;
-	ended = true; // BROOOOOOOOOOOOO
+	ended = true;
 
 }
 
 void TutorialManager::resetAction()
 {
-	std::cout << "ended false" << std::endl;
 	ended = false;
 }
 
