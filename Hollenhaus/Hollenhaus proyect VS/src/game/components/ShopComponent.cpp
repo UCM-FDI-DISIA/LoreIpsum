@@ -138,15 +138,9 @@ void ShopComponent::buyCard()
 			{
 				clicked = true;
 				confirmPurchase(shopCardsPrize[index], id);
-				if (card != nullptr)
-				{
-					// Esto no tiene que ir aqui pero no se donde ponerlo porque no se como volver a acceder a card fuera de aqui...
-					card->getComponent<SpriteRenderer>()->setMultiplyColor(100, 100, 100, 255); // Cambiamos el color.
-				}
 			}
 		}
 	}
-
 }
 
 void ShopComponent::purchaseCard()
@@ -164,6 +158,7 @@ void ShopComponent::purchaseCard()
 
 	clicked = false;
 	updateTexts();
+	updateColors();
 	GameStateMachine::instance()->getCurrentState()->deSelected();
 	handler->getComponent<DecisionComponent>()->setBuying(-1);
 	handler->getComponent<DecisionComponent>()->resetCardToPurchase();
@@ -177,6 +172,17 @@ void ShopComponent::cancelPurchase()
 	GameStateMachine::instance()->getCurrentState()->deSelected();
 	handler->getComponent<DecisionComponent>()->setBuying(-1);
 	handler->getComponent<DecisionComponent>()->resetCardToPurchase();
+}
+
+void ShopComponent::updateColors()
+{
+	for (auto c : buyableCards)
+	{
+		if (cardIsBought(c->getID()))
+		{
+			c->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(100, 100, 100, 255);
+		}
+	}
 }
 
 int ShopComponent::calculatePrize(ecs::entity_t card)

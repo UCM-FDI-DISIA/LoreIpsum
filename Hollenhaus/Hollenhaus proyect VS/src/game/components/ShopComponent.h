@@ -52,6 +52,8 @@ public:
 	void purchaseCard();
 	//----Cancelar compra.
 	void cancelPurchase();
+	//----Actualizar los colores de las cartas.
+	void updateColors();
 private:
 	//----Dinero del jugador:
 	int money;
