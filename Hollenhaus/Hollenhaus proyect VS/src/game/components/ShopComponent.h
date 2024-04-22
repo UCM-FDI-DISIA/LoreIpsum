@@ -48,25 +48,36 @@ public:
 	void setTexts();
 	//------Actualiza los textos de dinero y precio de las cartas.
 	void updateTexts();
-	//----
+	//----Ahora si cuando se confirma por el dialogo la compra se compra la carta.
 	void purchaseCard();
 private:
-	//----Guarda las CARDS_IN_SHOP cartas de la tienda.
-	int* shopCards;
-	//----Precio de las cartas.
-	int* shopCardsPrize;
-	//----Guarda las posiciones de las cartas.
-	Vector2D* shopCardsPositions;
-	//----Guarda las cartas creadas para luego interactuar con ellas.
-	std::list<Card*> buyableCards;
-	//----Guarda los botones para luego poder acceder a la entidad del boton clickado.
-	std::list<Button*> buttons;
 	//----Dinero del jugador:
 	int money;
+
+	//----Guarda las CARDS_IN_SHOP cartas de la tienda.
+	int* shopCards;
+
+	//----Precio de las cartas.
+	int* shopCardsPrize;
+
+	//----Guarda las posiciones de las cartas.
+	Vector2D* shopCardsPositions;
+
+	//----Guarda las cartas creadas para luego interactuar con ellas.
+	std::list<Card*> buyableCards;
+
+	//----Guarda los botones para luego poder acceder a la entidad del boton clickado.
+	std::list<Button*> buttons;
+	
+
 	//----Factoria para el dialogo de confimacion.
 	Factory* factory;
 	//----Dialogo de confirmacion de compra.
 	ecs::entity_t shopDialogue;
+
+	//----Manager de la decision de comprar.
+	ecs::entity_t handler;
+
 	//------Esta feo esto por favor no mirar mucho :)
 	//----Texto que muestra el dinero.
 	ecs::entity_t moneyText;
@@ -78,7 +89,6 @@ private:
 	ecs::entity_t cardPrizeText2;
 	//----Texto que muestra el precio de la carta 3.
 	ecs::entity_t cardPrizeText3;
-	//----
-	ecs::entity_t handler;
+	
 };
 

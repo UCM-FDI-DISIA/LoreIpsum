@@ -131,12 +131,12 @@ void ShopComponent::buyCard()
 		auto card = buttonClicked->getEntity(); // Carta pulsada.
 		int id = card->getComponent<Card>()->getID(); // Id de la carta.
 		int index = searchIndexById(id); // Indice de la carta en shopCards, shopCardspositions y shopCardsPrize.
-		//------Esto para confirmar la compra.---------------------------------------------alomejor separar en dos if por si se quiere poner dialogo de no tener dinero suficiente.
+		//------Esto para confirmar la compra.
 		if (money >= shopCardsPrize[index] && confirmPurchase(shopCardsPrize[index], id))
 		{
-			std::cout << "Compra." << std::endl;
 			if (card != nullptr)
 			{
+				// Esto no tiene que ir aqui pero no se donde ponerlo porque no se como volver a acceder a card fuera de aqui...
 				card->getComponent<SpriteRenderer>()->setMultiplyColor(100, 100, 100, 255); // Cambiamos el color.
 			}
 		}
@@ -154,7 +154,7 @@ void ShopComponent::purchaseCard()
 
 	GameStateMachine::instance()->getCurrentState()->substractMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
 
-	std::cout << "hola";
+	std::cout << "Compra." << std::endl;
 
 	updateTexts();
 	GameStateMachine::instance()->getCurrentState()->deSelected();
@@ -175,10 +175,6 @@ bool ShopComponent::confirmPurchase(int prize, int id)
 	GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
 
 	handler->getComponent<DecisionComponent>()->setCardToPurchase(id);
-
-	JsonData::DialogueData dialogue = sdlutils().dialogues().at("Tienda");
-	factory;
-	//auto a = getEntity();
 
 	shopDialogue = factory->createDialogue("Tienda", 0, 0,
 		{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f }, // Posicion.
