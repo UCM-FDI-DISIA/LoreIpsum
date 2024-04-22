@@ -7,6 +7,8 @@
 #include "managers/Manager.h"
 #include "managers/MatchManager.h"
 
+#include "multiplayer/NetGame.h"
+
 void
 DeckComponent::shuffle() {
 	std::random_device rd;
@@ -24,6 +26,18 @@ DeckComponent::shuffle() {
 std::list<Card*> DeckComponent::getDeck()
 {
 	return deck;
+}
+
+void DeckComponent::setNetGame(NetGame* _ng)
+{
+	netGame = _ng;
+}
+
+void DeckComponent::drawCardMultiplayer()
+{
+	if (netGame != nullptr) {
+		netGame->drawCard();
+	}
 }
 
 void
@@ -49,6 +63,8 @@ DeckComponent::drawCard() {
 	removeCard(c);
 	mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->substractActualPlayerActionPoints(drawCardCost);
 	//if (deckSize() == 0) this->getEntity()->setAlive(false);
+
+
 	return c;
 }
 

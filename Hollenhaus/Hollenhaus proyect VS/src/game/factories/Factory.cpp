@@ -60,6 +60,11 @@ ecs::entity_t Factory::createDeckJ2()
 	return cardFactory->createDeckJ2();
 }
 
+ecs::entity_t Factory::createDeckJ2Multiplayer()
+{
+	return cardFactory->createDeckJ2Multiplayer();
+}
+
 ecs::entity_t Factory::createBoard()
 {
 	return boardFactory->createBoard();

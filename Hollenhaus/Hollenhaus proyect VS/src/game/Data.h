@@ -2,6 +2,10 @@
 #include <list>
 #include <array>
 
+#include <SDL_net.h>
+
+
+
 // ---- DECKBUILDING ----
 const int CARDS_IN_GAME = 50, // Cantidad de cartas en el juego
 MIN_CARDS_MAZE = 10, // Minimo de cartas en el mazo
@@ -15,6 +19,8 @@ private:
 	// ---- DECKBUILDING ----
 	std::array<int, CARDS_IN_GAME> drawer; // Id de las cartas desbloqueadas
 	std::list<int> maze; // Id de las cartas del mazo
+
+	std::vector<int> mazeRival; // Id de las cartas del mazo del rival
 	
 	std::unordered_map<int, Vector2D> maze_with_pos;
 
@@ -43,6 +49,11 @@ private:
 		PLAYER2
 	};
 
+	//MULTIPLAYER
+	TCPsocket rival;
+
+	bool isHost = false;
+
 public:
 
 	//------Constructora y destructora:
@@ -55,6 +66,7 @@ public:
 	// -- DECKBUILDING --
 	// Mazo:
 	void SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos);
+	void SetNewMazeRival(std::vector<int> newMaze);
 	void SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer);
 	void SubtractCardFromMaze(int id);
 	//----Cajon:
@@ -86,7 +98,10 @@ public:
 	#pragma region GETTERS
 	// -- DECKBUILDING --
 	// Mazo:
-	const std::unordered_map<int, Vector2D> GetMaze() { return maze_with_pos; }
+	const std::unordered_map<int, Vector2D> GetMazeWithPos() { return maze_with_pos; }
+	const std::list<int> GetMaze() { return maze; }
+
+	const std::vector<int> GetMazeRival() { return mazeRival; }
 	// Cajon:
 	std::array<int, CARDS_IN_GAME> GetDrawer() { return drawer; }
 
@@ -98,7 +113,7 @@ public:
 	//----NPCs:
 	const std::list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
 	//----Dinero:
-	const int GetMoney() { return currentMoney; }
+	const int GetMoney() const  { return currentMoney; }
 	//----Almas:
 	const int GetSouls() { return currentSouls; };
 	//----Caso:
@@ -143,4 +158,17 @@ public:
 	//----Vaciado del array de cartas de la tienda. Lo pone todo a (-1 ,-1, -1, -1).
 	void EmptyShopCards();
 	void EmptyMaze_With_pos();
+
+
+	//MULTIPLAYER
+
+	void setSocketRival(TCPsocket _rival);
+	TCPsocket getSocketRival();
+
+	void resetSocketRival();
+
+	void setIsHost(bool b);
+	bool getIsHost();
+
+
 };

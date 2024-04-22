@@ -10,18 +10,22 @@
 //
 // some macros to define serialization automatically.
 //
-// _IMPL_SERIALIAZION_(a,b,c,...)
+// _IMPL_SERIALIAZION_(a,b,c,x,10u,...)
 //
 //   define method serialize and deserialize for attributes,
 //   a,b and c.
 //
-// _IMPL_SERIALIAZION_WITH_BASE_(T,a,b,c,...)
+// _IMPL_SERIALIAZION_B(T,a,b,c,x,10u,...)
 //
 //   define method serialize and deserialize for attributes,
 //   a,b and c. But they will be preceded by a call to
 //   T::serialize(buf) and T::deserialize(buf) respectively. This
 //   should be used in derived structs to serialize base structs
 //   first
+//
+// *** In the above example x is an array to length 10, note that we pass
+//     10 as 10u (u is for unsigned), somehow the compiler does not accept
+//     it when omitting u (cannot figure out why!!)
 //
 //
 #define _IMPL_SERIALIAZION_(...) \
@@ -50,11 +54,23 @@
 
 class SDLNetUtils {
 
-	using msgSize_t = Uint16;
-	static constexpr std::size_t bufferSize_ = 1024;
-	static Uint8 buffer[bufferSize_];
-
 public:
+
+	using msgSize_t = Uint16;
+	struct buff_t {
+		Uint8 *buffer;
+		msgSize_t size;
+		buff_t() :
+				buffer(nullptr), size(0u) {
+		}
+
+		buff_t(Uint8 *buffer, msgSize_t size) :
+				buffer(buffer), size(size) {
+		}
+
+	};
+	static constexpr std::size_t bufferSize_ = 1024;
+	inline static Uint8 buffer[bufferSize_];
 
 	/*
 	 * Initialize SDL
@@ -68,6 +84,7 @@ public:
 	/*
 	 * Close SDLNet
 	 */
+
 	inline static void closeSDLNet() {
 		SDLNet_Quit();
 	}
@@ -99,9 +116,6 @@ public:
 			std::cout << std::endl;
 	}
 
-	/*
-	 *  print an IPaddress
-	 */
 	inline static void print_ip(IPaddress ip, bool newline = false) {
 		print_ip(ip.host, false);
 		std::cout << ":" << sdlnet_ntoh(ip.port);
@@ -110,14 +124,17 @@ public:
 	}
 
 	/*
-	 * Return the local port associated to a socket
+	 * Return the local port associated to the socket
 	 */
 	inline static Uint16 getSocketPort(UDPsocket sock) {
 		return sdlnet_ntoh(SDLNet_UDP_GetPeerAddress(sock, -1)->port);
 	}
 
-	inline static Uint16 getSocketPort(TCPsocket sock) {
-		return sdlnet_ntoh(SDLNet_TCP_GetPeerAddress(sock)->port);
+	/*
+	 * Return the IP address from a TCP socket (usually a client address)
+	 */
+	inline static IPaddress* getSocketIP(TCPsocket sock) {
+		return SDLNet_TCP_GetPeerAddress(sock);
 	}
 
 	/*
@@ -162,26 +179,56 @@ public:
 
 	/**
 	 *  SERIALIZATION and DESERIALIZATION of FIXED LENGTH TYPES
-	 *
 	 */
 
-	// serializing a list of arguments (automatically calls
+	// serializing a list of arguments (instead of calling
 	// serialize for each one)
-	template<typename ...Ts>
-	static inline Uint8* serialize_all(Uint8 *buf, Ts &...args) {
-		((buf = serialize(args, buf)),...);
+	// the case of no argument
+	static inline Uint8* serialize_all(Uint8 *buf) {
 		return buf;
 	}
 
-	// deserializing a list of arguments (automatically calls
+	// the case of an array of fixed size
+	template<typename T, typename ...Ts>
+	static inline Uint8* serialize_all(Uint8 *buf, T *a, Uint32 &&N,
+			Ts &&...args) {
+		buf = serialize_array(a, N, buf);
+		return serialize_all(buf, std::forward<Ts>(args)...);
+	}
+
+	// the case of other non-array types
+	template<typename T, typename ...Ts>
+	static inline Uint8* serialize_all(Uint8 *buf, T &&a, Ts &&...args) {
+		buf = serialize(a, buf);
+		return serialize_all(buf, std::forward<Ts>(args)...);
+	}
+
+	// deserializing a list of arguments (instead of calling
 	// deserialize for each one)
-	template<typename ...Ts>
-	static inline Uint8* deserialize_all(Uint8 *buf, Ts &...args) {
-		((buf = deserialize(args, buf)),...);
+
+	// the case of no argument
+	static inline Uint8* deserialize_all(Uint8 *buf) {
 		return buf;
 	}
 
-	// when v is a struct we use its own serialize/deserialize
+	// the case of a fixed-length arrat
+	template<typename T, typename ...Ts>
+	static inline Uint8* deserialize_all(Uint8 *buf, T *a, Uint32 &&N,
+			Ts &&...args) {
+		buf = deserialize_array(a, N, buf);
+		return deserialize_all(buf, std::forward<Ts>(args)...);
+	}
+
+	// the case of other non-array types
+	template<typename T, typename ...Ts>
+	static inline Uint8* deserialize_all(Uint8 *buf, T &&a, Ts &&...args) {
+		buf = deserialize(a, buf);
+		return deserialize_all(buf, std::forward<Ts>(args)...);
+	}
+
+	// serialization/deserialization of a single value
+
+	// the case when the value to serialize/deserialize is a record
 	template<typename T>
 	inline static Uint8* serialize(T &v, Uint8 *buf) {
 		return v.serialize(buf);
@@ -192,124 +239,91 @@ public:
 		return v.deserialize(buf);
 	}
 
-	// when v is of type T[N] we use serialize_array/deserialize_array
-	template<typename T, std::size_t N>
-	inline static Uint8* serialize(T (&v)[N], Uint8 *buf) {
-		return serialize_array(v, N, buf);
-	}
-
-	template<typename T, std::size_t N>
-	inline static Uint8* deserialize(T (&v)[N], Uint8 *buf) {
-		return deserialize_array(v, N, buf);
-	}
-
 	// case for char, it is treated as if it where Uint8. Use
-	// it only to send/receive chars with non-negative values, i.e.,
+	// it only to send/receive chars with non-negativ values, i.e.,
 	// ASCII codes
-	template<>
-	inline static Uint8* serialize<char>(char &v, Uint8 *buf) {
+	inline static Uint8* serialize(char &v, Uint8 *buf) {
 		Uint8 &aux_v = reinterpret_cast<Uint8&>(v);
 		return serialize_uint(aux_v, buf);
 	}
 
-	// cases for unsigned integer, we delegate to serialize_uint and
-	// deserialize_uint
-
-	template<>
-	inline static Uint8* deserialize<char>(char &v, Uint8 *buf) {
+	inline static Uint8* deserialize(char &v, Uint8 *buf) {
 		Uint8 &aux_v = reinterpret_cast<Uint8&>(v);
 		return deserialize_uint(aux_v, buf);
 	}
 
 	// case for Uint8
-	template<>
-	inline static Uint8* serialize<Uint8>(Uint8 &v, Uint8 *buf) {
+	inline static Uint8* serialize(Uint8 &v, Uint8 *buf) {
 		return serialize_uint(v, buf);
 	}
 
-	template<>
-	inline static Uint8* deserialize<Uint8>(Uint8 &v, Uint8 *buf) {
+	inline static Uint8* deserialize(Uint8 &v, Uint8 *buf) {
 		return deserialize_uint(v, buf);
 	}
 
 	// case for Uint16
-	template<>
-	inline static Uint8* serialize<Uint16>(Uint16 &v, Uint8 *buf) {
+	inline static Uint8* serialize(Uint16 &v, Uint8 *buf) {
 		return serialize_uint(v, buf);
 	}
 
-	template<>
-	inline static Uint8* deserialize<Uint16>(Uint16 &v, Uint8 *buf) {
+	inline static Uint8* deserialize(Uint16 &v, Uint8 *buf) {
 		return deserialize_uint(v, buf);
 	}
 
 	// case for Uint32
-	template<>
-	inline static Uint8* serialize<Uint32>(Uint32 &v, Uint8 *buf) {
+	inline static Uint8* serialize(Uint32 &v, Uint8 *buf) {
 		return serialize_uint(v, buf);
 	}
 
-	template<>
-	inline static Uint8* deserialize<Uint32>(Uint32 &v, Uint8 *buf) {
+	inline static Uint8* deserialize(Uint32 &v, Uint8 *buf) {
 		return deserialize_uint(v, buf);
 	}
 
-	// cases for signed integer, we delegate to serialize_sint and
-	// deserialize_sint
-
 	// case for Sint8
-	template<>
-	inline static Uint8* serialize<Sint8>(Sint8 &v, Uint8 *buf) {
+	inline static Uint8* serialize(Sint8 &v, Uint8 *buf) {
 		return serialize_sint<Uint8>(v, buf);
 	}
 
-	template<>
-	inline static Uint8* deserialize<Sint8>(Sint8 &v, Uint8 *buf) {
+	inline static Uint8* deserialize(Sint8 &v, Uint8 *buf) {
 		return deserialize_sint<Uint8>(v, buf);
 	}
 
 	// case for Sint16
-	template<>
-	inline static Uint8* serialize<Sint16>(Sint16 &v, Uint8 *buf) {
+	inline static Uint8* serialize(Sint16 &v, Uint8 *buf) {
 		return serialize_sint<Uint16>(v, buf);
 	}
 
-	template<>
-	inline static Uint8* deserialize<Sint16>(Sint16 &v, Uint8 *buf) {
+	inline static Uint8* deserialize(Sint16 &v, Uint8 *buf) {
 		return deserialize_sint<Uint16>(v, buf);
 	}
 
 	// case for Sint32
-	template<>
-	inline static Uint8* serialize<Sint32>(Sint32 &v, Uint8 *buf) {
+	inline static Uint8* serialize(Sint32 &v, Uint8 *buf) {
 		return serialize_sint<Uint32>(v, buf);
 	}
 
-	template<>
-	inline static Uint8* deserialize<Sint32>(Sint32 &v, Uint8 *buf) {
+	inline static Uint8* deserialize(Sint32 &v, Uint8 *buf) {
 		return deserialize_sint<Uint32>(v, buf);
 	}
 
-	// float
+	// FLOAT
 	//
-	// Treating the 4 bytes as Uint32 and serialize it, should work
-	// fine for our needs. We could transmit the sign, mantissa, and
-	// exponent
-	//
-	template<>
-	inline static Uint8* serialize<float>(float &v, Uint8 *buf) {
+	// Treating the 4 bytes as Uint32 and serialize it should
+	// work.
+
+	inline static Uint8* serialize(float &v, Uint8 *buf) {
 		static_assert( sizeof(float) == 4, "float is not 32 bits");
 		return serialize(reinterpret_cast<Uint32&>(v), buf);
 	}
-	template<>
-	inline static Uint8* deserialize<float>(float &v, Uint8 *buf) {
+
+	inline static Uint8* deserialize(float &v, Uint8 *buf) {
 		static_assert( sizeof(float) == 4, "float is not 32 bits");
 		return deserialize(reinterpret_cast<Uint32&>(v), buf);
 	}
 
 	// (de)serialization of arrays is done, by default, by calling the serialize/deserialize on
 	// each element. There are special cases for 1-byte types to use memcpy (they
-	// call serialize_arraybyte that is defined in the private section below)
+	// call serialize_arraybyte) that is defined in the private section below
 	//
 	template<typename T>
 	inline static Uint8* serialize_array(T *v, std::size_t N, Uint8 *buf) {
@@ -329,27 +343,20 @@ public:
 
 	// case for char, we copy as if it were bytes, ignoring the sign. This
 	// should be used only for char* that are C-string
-	template<>
-	inline static Uint8* serialize_array<char>(char *v, std::size_t N,
-			Uint8 *buf) {
+	inline static Uint8* serialize_array(char *v, std::size_t N, Uint8 *buf) {
 		return serialize_arraybyte(reinterpret_cast<Uint8*>(v), N, buf);
 	}
 
-	template<>
-	inline static Uint8* deserialize_array<char>(char *v, std::size_t N,
-			Uint8 *buf) {
+	inline static Uint8* deserialize_array(char *v, std::size_t N, Uint8 *buf) {
 		return deserialize_arraybyte(reinterpret_cast<Uint8*>(v), N, buf);
 	}
 
 	// case for array of Uint8
-	template<>
-	inline static Uint8* serialize_array<Uint8>(Uint8 *v, std::size_t N,
-			Uint8 *buf) {
+	inline static Uint8* serialize_array(Uint8 *v, std::size_t N, Uint8 *buf) {
 		return serialize_arraybyte(reinterpret_cast<Uint8*>(v), N, buf);
 	}
 
-	template<>
-	inline static Uint8* deserialize_array<Uint8>(Uint8 *v, std::size_t N,
+	inline static Uint8* deserialize_array(Uint8 *v, std::size_t N,
 			Uint8 *buf) {
 		return deserialize_arraybyte(reinterpret_cast<Uint8*>(v), N, buf);
 	}
@@ -400,14 +407,14 @@ public:
 	//
 	// We don't return the size, the user should identify the message by other means
 	//
-	inline static Uint8* receiveMsg(TCPsocket sock) {
+	inline static buff_t receiveMsg(TCPsocket sock) {
 
 		int result = 0;
 
 		// read the size of the message, the first sizeof(msgSize_t) bytes, into buffer
 		result = SDLNet_TCP_Recv(sock, buffer, sizeof(msgSize_t));
 		if (result != sizeof(msgSize_t))
-			return nullptr;
+			return buff_t();
 
 		// convert size from network endianness to host endianness
 		Uint16 size = sdlnet_ntoh(*reinterpret_cast<msgSize_t*>(buffer));
@@ -420,11 +427,11 @@ public:
 			result = SDLNet_TCP_Recv(sock, buffer + bytesRead,
 					size - bytesRead);
 			if (result < 1)
-				return nullptr;
+				return buff_t();
 			bytesRead += result;
 		}
 
-		return buffer;
+		return buff_t(buffer, size);
 	}
 
 	// Send a message using serialization, assuming the struct T has a method
@@ -440,10 +447,10 @@ public:
 		// the caller knows that the buffer size if bufferSize_
 		Uint8 *end = v.serialize(buffer);
 		msgSize_t msgSize = end - buffer;
+		assert(msgSize <= bufferSize_);
 
 		// convert to network endianness
 		Uint16 size = sdlnet_hton(msgSize);
-		assert(size <= bufferSize_);
 
 		// send the message size as the header
 		auto result = SDLNet_TCP_Send(sock, reinterpret_cast<Uint8*>(&size),
@@ -464,7 +471,7 @@ public:
 	//
 	template<typename T>
 	inline static bool deserializedReceive(T &v, TCPsocket sock) {
-		Uint8 *msg = receiveMsg(sock);
+		Uint8 *msg = receiveMsg(sock).buffer;
 		if (msg == nullptr)
 			return false;
 		else {
@@ -518,8 +525,8 @@ private:
 
 	/** signed integer **/
 
-	// if both use the same representation, e.g., two's complement, just treat
-	// it as the corresponding unsigned type
+	// if both use two's complement, just treat it as the corresponding unsigned
+	// type
 	template<typename UnsignedT, typename SignedT>
 	inline static Uint8* serialize_sint(SignedT &v, Uint8 *buf) {
 		return serialize_uint<UnsignedT>(reinterpret_cast<UnsignedT&>(v), buf);
@@ -531,7 +538,7 @@ private:
 	}
 
 	// if there is a risk that the different sides use different representations,
-	// then better transmit the sign separately
+	// then better transmit the sign separate
 	//
 //	template<typename UnsignedT, typename SignedT>
 //	inline static Uint8* serialize_sint(SignedT &v, Uint8 *buf) {
@@ -584,3 +591,4 @@ private:
 	}
 
 };
+

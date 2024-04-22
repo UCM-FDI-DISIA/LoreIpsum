@@ -1,11 +1,15 @@
 #include <../pchs/pch.h>
 #include "Data.h"
 
+#include <SDL_net.h>
+
 const std::string SAVE_FILE = "./resources/saves/save.txt";
+
 
 //------Constructora y destructora:
 Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
 {
+	//TCPsocket;
 	EmptyDrawer();
 	//Read();
 }
@@ -50,6 +54,12 @@ void Data::SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos) {
 		// se sigue recorriendo (aumenta indice)
 		itPos++;
 	}
+}
+void Data::SetNewMazeRival(std::vector<int> newMaze)
+{
+	mazeRival.clear();
+	for (auto i : newMaze)mazeRival.emplace_back(i);
+
 }
 void Data::SubtractCardFromMaze(int id) {
 	maze.remove(id);
@@ -373,5 +383,25 @@ void Data::EmptyShopCards() {
 void Data::EmptyMaze_With_pos()
 {
 	maze_with_pos.clear();
+}
+void Data::setSocketRival(TCPsocket _rival)
+{
+	rival = _rival;
+}
+TCPsocket Data::getSocketRival()
+{
+	return rival;
+}
+void Data::resetSocketRival()
+{
+	rival = nullptr;
+}
+void Data::setIsHost(bool b)
+{
+	isHost = b;
+}
+bool Data::getIsHost()
+{
+	return isHost;
 }
 #pragma endregion

@@ -41,7 +41,11 @@ namespace GameStates
 		CINEMATICINTRO,
 		PAUSEMENU,
 		MAZEMENU,
-		CLUESMENU
+		CLUESMENU,
+		MULTIPLAYER_LOBBY,
+		MULTIPLAYER_PREGAME,
+		MULTIPLAYER_GAME,
+		MULTIPLAYER_END_GAME
 	};
 }
 
@@ -93,6 +97,11 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	// Estados auxiliares
 	GameState* movementState;
 
+	GameState* multiplayerLobbyState;
+	GameState* multiplayerPreGameState;
+	GameState* multiplayerGameState;
+	GameState* multiplayerEndGameState;
+
 	/// FADE IN-OUT
 	//ecs::entity_t fade;
 	Fade* fade_;
@@ -100,7 +109,6 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	tweeny::tween<int> fadetween;
 	bool toFadeIn;
 	bool toFadeOut;
-
 
 public:
 	ecs::Manager* getMngr()
@@ -158,6 +166,18 @@ public:
 			break;
 		case GameStates::DECKBUILDING:
 			newState = deckBuildingState;
+			break;
+		case GameStates::MULTIPLAYER_LOBBY:
+			currentState = multiplayerLobbyState;
+			break;
+		case GameStates::MULTIPLAYER_PREGAME:
+			currentState = multiplayerPreGameState;
+			break;
+		case GameStates::MULTIPLAYER_GAME:
+			currentState = multiplayerGameState;
+			break;
+		case GameStates::MULTIPLAYER_END_GAME:
+			currentState = multiplayerEndGameState;
 			break;
 		case GameStates::TUTORIALBOARD:
 			newState = tutorialBoardState;

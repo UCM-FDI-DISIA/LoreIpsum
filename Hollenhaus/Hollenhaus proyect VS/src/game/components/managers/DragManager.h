@@ -7,6 +7,7 @@ class Transform;
 class BoardManager;
 class Vector2D;
 class DropDetector;
+class NetGame;
 
 class DragManager :
     public ComponentUpdate
@@ -23,6 +24,11 @@ public:
     
     bool isDraggable() const { return draggable; }
     void setDraggable(bool value) { draggable = value; }
+
+
+    void setNetGame(NetGame* _netGame);
+
+    void playCardMultiplayer(ecs::entity_t e, Vector2D pos);
 private:
     
     Transform* dragTransform;
@@ -44,6 +50,9 @@ private:
     void colorEffects(ecs::entity_t drop);
 
     BoardManager* boardManager;
+
+    NetGame* netGame = nullptr;
+
 	bool draggable = true;
 
 };

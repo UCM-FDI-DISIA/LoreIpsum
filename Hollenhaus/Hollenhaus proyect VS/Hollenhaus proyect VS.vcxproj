@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\components\CopyTextComponentOnClipboardButton.cpp" />
     <ClCompile Include="pchs\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch.h</PrecompiledHeaderFile>
@@ -61,8 +62,15 @@
     <ClCompile Include="src\game\components\DropDetector.cpp" />
     <ClCompile Include="src\game\components\DropZone.cpp" />
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
+    <ClCompile Include="src\game\components\GetIPv4.cpp" />
+    <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp" />
+    <ClCompile Include="src\game\components\multiplayer\NetEndGame.cpp" />
+    <ClCompile Include="src\game\components\multiplayer\NetLobby.cpp" />
+    <ClCompile Include="src\game\components\multiplayer\NetPregame.cpp" />
+    <ClCompile Include="src\game\components\SendIPFromTextComponent.cpp" />
     <ClCompile Include="src\game\components\HandComponent.cpp" />
     <ClCompile Include="src\game\components\managers\AnimatorManager.cpp" />
+    <ClCompile Include="src\game\components\InputForTextWritter.cpp" />
     <ClCompile Include="src\game\components\managers\BoardManager.cpp" />
     <ClCompile Include="src\game\components\managers\CardStateManager.cpp" />
     <ClCompile Include="src\game\components\managers\DragManager.cpp" />
@@ -74,8 +82,12 @@
     <ClCompile Include="src\game\components\managers\PizarraManager.cpp" />
     <ClCompile Include="src\game\components\managers\PlayerCardsManager.cpp" />
     <ClCompile Include="src\game\components\MoveOnClick.cpp" />
+    <ClCompile Include="src\game\components\multiplayer\NetGame.cpp" />
     <ClCompile Include="src\game\components\NextText.cpp" />
     <ClCompile Include="src\game\components\NPC.cpp" />
+    <ClCompile Include="src\game\components\PasteOnTextComponentButton.cpp" />
+    <ClCompile Include="src\game\components\SendInvitationButton.cpp" />
+    <ClCompile Include="src\game\components\TextWritter.cpp" />
     <ClCompile Include="src\game\components\TypeWriter.cpp" />
     <ClCompile Include="src\game\Dialogue.cpp" />
     <ClCompile Include="src\game\components\ShineComponent.cpp" />
@@ -111,6 +123,10 @@
     <ClCompile Include="src\game\gamestates\LuisState.cpp" />
     <ClCompile Include="src\game\gamestates\MainMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\MatchOverState.cpp" />
+    <ClCompile Include="src\game\gamestates\MultiplayerEndGameState.cpp" />
+    <ClCompile Include="src\game\gamestates\MultiplayerGameState.cpp" />
+    <ClCompile Include="src\game\gamestates\MultiplayerLobbyState.cpp" />
+    <ClCompile Include="src\game\gamestates\MultiplayerPreGameState.cpp" />
     <ClCompile Include="src\game\gamestates\multiplayerModeState.cpp" />
     <ClCompile Include="src\game\gamestates\NievesState.cpp" />
     <ClCompile Include="src\game\gamestates\OfficeState.cpp" />
@@ -195,6 +211,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\components\CopyTextComponentOnClipboardButton.h" />
     <ClInclude Include="pchs\pch.h" />
     <ClInclude Include="pchs\pch_c++_basic.h" />
     <ClInclude Include="pchs\pch_SDL.h" />
@@ -221,8 +238,15 @@
     <ClInclude Include="src\game\components\DropDetector.h" />
     <ClInclude Include="src\game\components\DropZone.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
+    <ClInclude Include="src\game\components\GetIPv4.h" />
+    <ClInclude Include="src\game\components\LobbyStatusIndicator.h" />
+    <ClInclude Include="src\game\components\multiplayer\NetEndGame.h" />
+    <ClInclude Include="src\game\components\multiplayer\NetLobby.h" />
+    <ClInclude Include="src\game\components\multiplayer\NetPregame.h" />
+    <ClInclude Include="src\game\components\SendIPFromTextComponent.h" />
     <ClInclude Include="src\game\components\HandComponent.h" />
     <ClInclude Include="src\game\components\managers\AnimatorManager.h" />
+    <ClInclude Include="src\game\components\InputForTextWritter.h" />
     <ClInclude Include="src\game\components\managers\BoardManager.h" />
     <ClInclude Include="src\game\components\managers\CardStateManager.h" />
     <ClInclude Include="src\game\components\managers\DragManager.h" />
@@ -234,10 +258,14 @@
     <ClInclude Include="src\game\components\managers\PizarraManager.h" />
     <ClInclude Include="src\game\components\managers\PlayerCardsManager.h" />
     <ClInclude Include="src\game\components\MoveOnClick.h" />
+    <ClInclude Include="src\game\components\multiplayer\NetGame.h" />
     <ClInclude Include="src\game\components\NextText.h" />
     <ClInclude Include="src\game\components\NPC.h" />
+    <ClInclude Include="src\game\components\PasteOnTextComponentButton.h" />
+    <ClInclude Include="src\game\components\SendInvitationButton.h" />
     <ClInclude Include="src\game\components\ShineComponent.h" />
     <ClInclude Include="src\game\components\ShopComponent.h" />
+    <ClInclude Include="src\game\components\TextWritter.h" />
     <ClInclude Include="src\game\components\TypeWriter.h" />
     <ClInclude Include="src\game\Dialogue.h" />
     <ClInclude Include="src\game\EffectCollection.h" />
@@ -258,6 +286,11 @@
     <ClInclude Include="src\game\gamestates\checkMazeMenuState.h" />
     <ClInclude Include="src\game\gamestates\cinematicIntroState.h" />
     <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
+    <ClInclude Include="src\game\gamestates\MultiplayerEndGameState.h" />
+    <ClInclude Include="src\game\gamestates\MultiplayerGameState.h" />
+    <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
+    <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h" />
+    <ClInclude Include="src\game\MultiplayerNamespaces.h" />
     <ClInclude Include="src\game\gamestates\TutorialBoardState.h" />
     <ClInclude Include="src\game\gamestates\multiplayerModeState.h" />
     <ClInclude Include="src\game\gamestates\optionsMainMenuState.h" />

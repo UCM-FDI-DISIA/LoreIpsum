@@ -50,7 +50,8 @@ void PlayerCardsManager::drawCard()
 		)
 		{
 			hand_->addCard(deck_->drawCard()->getEntity());
-			//TuVieja("AAAAAAAAAAAA");
+			deck_->drawCardMultiplayer();
+			TuVieja("Se envia el mensaje de draw cards");
 		}
 	}
 }

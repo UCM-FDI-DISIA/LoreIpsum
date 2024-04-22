@@ -42,12 +42,16 @@ GameState::~GameState()
 
 
 //Su objetivo es borrar todas las entidades muertas, es
-//decir las que han salido del juego en la última iteración
+//decir las que han salido del juego en la ï¿½ltima iteraciï¿½n
 void GameState::refresh()
 {
 	GameStateMachine::instance()->getMngr()->refresh();
 }
 
+
+/**
+* llama a tu padre
+*/
 void GameState::update()
 {
 	GameStateMachine::instance()->getMngr()->update();
@@ -72,6 +76,40 @@ void GameState::setLastPaulDir(bool dir)
 {
 	data->setPaulDir(dir);
 }
+void GameState::setSocketRival(TCPsocket _rival)
+{
+	data->setSocketRival(_rival);
+}
+
+TCPsocket GameState::getSocketRival()
+{
+	return data->getSocketRival();
+}
+
+void GameState::resetSocketRival()
+{
+	data->resetSocketRival();
+}
+
+void GameState::setIsHost(bool b)
+{
+	data->setIsHost(b);
+}
+
+bool GameState::getIsHost()
+{
+	return data->getIsHost();
+}
+
+void GameState::setMazeRival(std::vector<int> mazeRival)
+{
+	data->SetNewMazeRival(mazeRival);
+}
+
+std::vector<int> GameState::getMazeRival()
+{
+	return data->GetMazeRival();
+}
 
 void GameState::SetLastState(int ls)
 {
@@ -84,7 +122,13 @@ std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 }
 
 // para acceder al mazo del data desde el estado
-std::unordered_map<int, Vector2D> GameState::getMaze()
+std::unordered_map<int, Vector2D> GameState::getMazeWithPos()
+{
+	return data->GetMazeWithPos();
+}
+
+// para acceder al mazo del data desde el estado
+std::list<int> GameState::getMaze()
 {
 	return data->GetMaze();
 }

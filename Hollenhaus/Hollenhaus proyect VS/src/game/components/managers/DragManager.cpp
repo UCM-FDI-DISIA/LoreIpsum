@@ -16,6 +16,8 @@
 #include "../HandComponent.h"
 #include "MatchManager.h"
 
+#include "../multiplayer/NetGame.h"
+
 DragManager::DragManager()
 {
 }
@@ -79,8 +81,21 @@ void DragManager::updateFeedback()
 	}
 	else {
 		boardManager->returnColors();
+		}
+}
+void DragManager::setNetGame(NetGame* _netGame)
+{
+	netGame = _netGame;
+}
+
+void DragManager::playCardMultiplayer(ecs::entity_t e ,Vector2D pos)
+{
+	if (netGame != nullptr) {
+		TuVieja("Se envia el mesaje de jugar una carta");
+		netGame->playCard(e, pos);
 	}
 }
+
 
 void DragManager::OnLeftClickDown()
 {
@@ -121,6 +136,9 @@ void DragManager::OnLeftClickUp()
 			!dropDetector->isOcuped() && enoughPoints(dragTransform->getEntity()))
 		{
 			
+			playCardMultiplayer(dragTransform->getEntity(), dropDetector->getBoardPos());
+
+
 			putCardAnimation(dropDetector);
 			
 			//coloca la carta en la celda y la quita de la manos
@@ -131,6 +149,8 @@ void DragManager::OnLeftClickUp()
 
 			//mandar la info al tablero
 			putCardOnBoard(dragTransform->getEntity(), dropDetector);
+
+			
 		}
 		else {//sino, devolvemos la carta a su posicion inicial
 			dragTransform->setGlobalPos(initialTransformPos);

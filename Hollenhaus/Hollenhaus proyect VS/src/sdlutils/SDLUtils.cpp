@@ -8,6 +8,8 @@
 
 #include "../json/JSON.h"
 
+#include "SDLNetUtils.h"
+
 SDLUtils::SDLUtils() :
 		SDLUtils("SDL Demo", 600, 400) {
 }
@@ -49,7 +51,14 @@ void SDLUtils::initWindow() {
 
 	// Initialize SDL
 	int sdlInit_ret = SDL_Init(SDL_INIT_EVERYTHING);
+	
 	assert(sdlInit_ret == 0);
+
+	// Initialize SDL_Net
+	SDLNetUtils::initSDLNet();
+	
+	
+
 
 #ifdef _DEBUG
 	std::cout << "Creating SDL window" << std::endl;
@@ -127,7 +136,7 @@ void SDLUtils::loadResources(std::string filenameResources,
 	// Load JSON configuration file. We use a unique pointer since we
 	// can exit the method in different ways, this way we guarantee that
 	// it is always deleted
-
+	;
 	if (filenameResources == "") {
 		std::cout << "No hay ruta de recursos, por lo que no se cargan" << '\n';
 		return;
@@ -138,7 +147,7 @@ void SDLUtils::loadResources(std::string filenameResources,
 	std::unique_ptr<JSONValue> jValueRootDialogues(JSON::ParseFromFile(filenameDialogues));
 	std::unique_ptr<JSONValue> jValueRootNPCs(JSON::ParseFromFile(filenameNPCs));
 	std::unique_ptr<JSONValue> jValueRootKeys(JSON::ParseFromFile(filenameKeys));
-
+	
 	// check it was loaded correctly
 	// the root must be a JSON object
 	if (jValueRootResources == nullptr || !jValueRootResources->IsObject()) {
@@ -172,7 +181,7 @@ void SDLUtils::loadResources(std::string filenameResources,
 	JSONObject rootNPCs = jValueRootNPCs->AsObject();
 	JSONObject rootKeys = jValueRootKeys->AsObject();
 
-
+	
 
 	// TODO improve syntax error checks below, now we do not check
 	//      validity of keys with values as sting or integer
@@ -611,5 +620,7 @@ void SDLUtils::closeSDLExtensions() {
 	Mix_Quit(); // quit SDL_mixer
 	IMG_Quit(); // quit SDL_image
 	TTF_Quit(); // quit SDL_ttf
+
+	SDLNetUtils::closeSDLNet();
 }
 

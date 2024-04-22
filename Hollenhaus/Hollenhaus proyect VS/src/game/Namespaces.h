@@ -1,4 +1,7 @@
-#pragma once
+ #pragma once
+
+
+
 
 namespace Cards
 {
@@ -17,7 +20,8 @@ namespace Turns
         J1,
         J2,
         Finish,
-		IA
+		IA,
+		J2_MULTIPLAYER
     };
 }
 
@@ -51,6 +55,7 @@ namespace Players
 		NONE,
 		PLAYER1,//jugador?
 		PLAYER2,//IA?
+		PLAYER2_MULTIPLAYER,
 		NULO,
 		IA
 	};
@@ -82,7 +87,7 @@ namespace DialogueEvents
 	enum Events {
 		None,				// No ocurre nada
 		ChangeScene,		// Evento para cambiar de escena
-		StartAnimation,		// Evento para lanzar una animación
+		StartAnimation,		// Evento para lanzar una animaciï¿½n
 		ConfirmMatchPopUp,	// Evento para mostrar una ventana donde el jugador acepta o rechaza una partida inminente
 		ActionEnded
 	};
@@ -252,3 +257,4 @@ namespace JsonData
 	};
 
 }
+
