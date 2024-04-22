@@ -29,6 +29,7 @@ public:
     void setBase(ecs::entity_t b);
     void setTutorial(ecs::entity_t t);
     void setObjs(std::vector<ecs::entity_t> v);
+    void setLayers(std::vector<ecs::entity_t> v);
     void addToHand(ecs::entity_t c);
 
 
@@ -71,6 +72,8 @@ private:
     void setACTIONPTS();
 
     void setNEXTTURN();
+
+    void setPRESSNEXTTURN();
     
 
 };

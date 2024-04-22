@@ -68,8 +68,6 @@ void TutorialManager::tutorialActionEnded(Tutorials::Tutorials t, int i)
 {
 	if (isTutorial && t == currtut && i == currstate && !ended) {
 
-		std::cout << "me hago popo bro" << std::endl;
-
 		actionEnded();
 		// HERE
 	}

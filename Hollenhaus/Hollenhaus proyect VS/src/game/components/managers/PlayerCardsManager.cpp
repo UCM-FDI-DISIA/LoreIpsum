@@ -59,8 +59,8 @@ void PlayerCardsManager::drawCard()
 				// AQUI INES -> esto se tiene que ir tbh
 				
 				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::DRAW_CARD);
-				//if(ent->hasComponent<TutorialBoardManager>())
-				//ent->getComponent<TutorialBoardManager>()->addToHand(c);
+				if(ent->hasComponent<TutorialBoardManager>())
+					ent->getComponent<TutorialBoardManager>()->addToHand(c);
 			}
 			
 

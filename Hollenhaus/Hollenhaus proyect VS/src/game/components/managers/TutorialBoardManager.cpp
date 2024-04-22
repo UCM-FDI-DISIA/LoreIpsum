@@ -136,6 +136,9 @@ void TutorialBoardManager::setState()
 	case Tutorials::Board::NEXT_TURN:
 		setNEXTTURN();
 		break;
+	case Tutorials::Board::PRESS_NEXT_TURN:
+		setPRESSNEXTTURN();
+		break;
 	default:
 		break;
 	}
@@ -186,12 +189,24 @@ void TutorialBoardManager::setObjs(std::vector<ecs::entity_t> v)
 {
 	objs = v;
 
+	setLayers(v);
+
+}
+
+void TutorialBoardManager::setLayers(std::vector<ecs::entity_t> v)
+{
 	tutorial->getComponent<TutorialManager>()->setLayers(objs);
 }
 
 void TutorialBoardManager::addToHand(ecs::entity_t c)
 {
+	std::vector<ecs::entity_t> v;
+
 	hand.push_back(c);
+
+	v.push_back(c);
+
+	setLayers(v);
 }
 
 
@@ -251,7 +266,9 @@ void TutorialBoardManager::setDRAWCARD()
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
 
-	//tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+	
 }
 
 void TutorialBoardManager::setCELL()
@@ -262,16 +279,18 @@ void TutorialBoardManager::setCELL()
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(hand);
+
 	std::vector<ecs::entity_t> v;
 
-	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+	
+
+	
 }
 
 void TutorialBoardManager::setPLACECARD()
 {
 	//TuVieja("Setting PLACE CARD");
-
-	createPopUp(250, 200, "Board Tutorial", 4);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -279,13 +298,22 @@ void TutorialBoardManager::setPLACECARD()
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
+	for (auto h : hand) {
+		v.push_back(h);
+	}
+
+	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+
+	
+
 }
 
 void TutorialBoardManager::setACTION()
 {
 	//TuVieja("Setting PLACE CARD");
 
-	createPopUp(250, 200, "Board Tutorial", 5);
+	createPopUp(250, 200, "Board Tutorial", 4);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -300,11 +328,26 @@ void TutorialBoardManager::setNEXTTURN()
 {
 	std::vector<ecs::entity_t> v;
 
+	createPopUp(250, 200, "Board Tutorial", 5);
+
+	//v.push_back(nextTurn);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	//tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+}
+
+void TutorialBoardManager::setPRESSNEXTTURN()
+{
+	std::vector<ecs::entity_t> v;
+
 	v.push_back(nextTurn);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
 
 }
 

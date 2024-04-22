@@ -268,7 +268,8 @@ namespace Tutorials {
 		CELL,
 		PLACE_CARD,
 		ACTION,
-		NEXT_TURN
+		NEXT_TURN,
+		PRESS_NEXT_TURN
 	};
 
 	enum Deckbuilder {
