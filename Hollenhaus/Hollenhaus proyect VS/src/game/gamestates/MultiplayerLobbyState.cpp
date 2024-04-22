@@ -72,12 +72,12 @@ void MultiplayerLobbyState::onEnter()
 	pasteButton->addComponent<PasteOnTextComponentButton>(cuadroTexto->getComponent<TextComponent>());
 
 	// Texto que guarda y muestra tu IP
-	ecs::entity_t idHint = Instantiate(Vector2D(700, 50));
+	ecs::entity_t idHint = Instantiate(Vector2D(780, 50));
 	auto getipv4 = idHint->addComponent<GetIPv4>();
 #if _DEBUG
-	idHint->addComponent<TextComponent>("localhost", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	idHint->addComponent<TextComponent>("localhost", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 200, Text::BoxPivotPoint::RightCenter, Text::TextAlignment::Right);
 #else
-	idHint->addComponent<TextComponent>(getipv4->GetIP(), "8bit_size_32", SDL_Color({0, 0,0 ,0}), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	idHint->addComponent<TextComponent>(getipv4->GetIP(), "8bit_size_32", SDL_Color({0, 0,0 ,0}), 200, Text::BoxPivotPoint::RightCenter, Text::TextAlignment::Right);
 #endif // 
 
 	// Botón para copiar tu IP al clipboard
