@@ -37,7 +37,8 @@ private:
     SpriteRenderer* sr_;
 
     Vector2D pos_,
-        offset_;
+        firstOffset_,
+        secondOffset_;
 
     float bookWidth_;
 

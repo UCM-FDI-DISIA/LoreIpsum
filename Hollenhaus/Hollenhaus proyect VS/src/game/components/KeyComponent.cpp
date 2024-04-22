@@ -5,14 +5,15 @@
 #include "basics/TextComponent.h"
 
 KeyComponent::KeyComponent(const int keys) :
-	addToY_(200),
+	addToY_(100),
 	NKeys_(keys),
 	tr_(),
 	sr_(),
 	pos_(),
-	offset_(10, 0),
+	firstOffset_(60, 60),
+	secondOffset_(10, 60),
 	bookWidth_(),
-	font_("8bit_size_20")
+	font_("8bit_size_16")
 {
 	// Inicializacion del vector con los nombres
 	keyNames_.reserve(TOTAL_KEYS);
@@ -34,7 +35,7 @@ KeyComponent::initComponent() {
 	tr_ = ent_->getComponent<Transform>();
 	assert(tr_ != nullptr);
 
-	pos_ = tr_->getGlobalPos() + offset_; // El numero inicial vector posicion de la key hay que cambiarlo segun el tamaño de la imagen del libro
+	pos_ = tr_->getGlobalPos() + firstOffset_; // El numero inicial vector posicion de la key hay que cambiarlo segun el tamaño de la imagen del libro
 
 	sr_ = ent_->getComponent<SpriteRenderer>();
 	assert(sr_ != nullptr);
@@ -50,17 +51,17 @@ KeyComponent::set() {
 		ecs::entity_t e = Instantiate(pos_); // Creamos la imagen
 
 		e->getComponent<Transform>()->addParent(getEntity()->getComponent<Transform>());
-		e->getComponent<Transform>()->setGlobalScale(0.1, 0.1);
+		e->getComponent<Transform>()->setGlobalScale(0.15, 0.15);
 		e->addComponent<SpriteRenderer>(keyNames_[i]);
 
 		// Creamos el texto
-		ecs::entity_t txt = Instantiate(pos_ + Vector2D(e->getComponent<SpriteRenderer>()->getImageSize().getX(), 0));
+		ecs::entity_t txt = Instantiate(pos_ + Vector2D(e->getComponent<SpriteRenderer>()->getImageSize().getX() * 0.5, 0));
 
 		txt->getComponent<Transform>()->addParent(e->getComponent<Transform>());
 		txt->addComponent<TextComponent>(descs_[i],
 			font_,
 			SDL_Color({ 0, 0, 0, 255 }),
-			150,
+			170,
 			Text::BoxPivotPoint::LeftTop,
 			Text::TextAlignment::Center);
 
@@ -69,6 +70,6 @@ KeyComponent::set() {
 		pos_ = pos_ + Vector2D(0, addToY_); // Actualizamos la pos para la siguiente
 
 		if (i + 1 == TOTAL_KEYS * 0.5)
-			pos_ = Vector2D(tr_->getGlobalPos().getX() + bookWidth_ * 0.5, tr_->getGlobalPos().getY()) + offset_;
+			pos_ = Vector2D(tr_->getGlobalPos().getX() + bookWidth_ * 0.5, tr_->getGlobalPos().getY()) + secondOffset_;
 	}
 }

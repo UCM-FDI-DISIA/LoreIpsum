@@ -35,8 +35,8 @@ void KeyMenuState::onEnter()
 		addKey();
 	}
 	// Leyenda
-	ecs::entity_t key = Instantiate(Vector2D(200, 0));
-	key->getComponent<Transform>()->setGlobalScale(0.75, 0.75);
+	ecs::entity_t key = Instantiate(Vector2D(150, 50));
+	key->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
 	key->addComponent<SpriteRenderer>("key");
 	key->addComponent<KeyComponent>(getKeys());
 
