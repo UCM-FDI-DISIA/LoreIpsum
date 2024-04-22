@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "MultiplayerPreGameState.h"
 #include "../components/basics/TextComponent.h"
 #include "../components/basics/SpriteRenderer.h"

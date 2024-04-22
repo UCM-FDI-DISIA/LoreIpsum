@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "PasteOnTextComponentButton.h"
 #include "basics/TextComponent.h"
 #include "basics/BoxCollider.h"

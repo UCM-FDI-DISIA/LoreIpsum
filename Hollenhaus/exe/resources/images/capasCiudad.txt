@@ -1,5 +1,0 @@
-farolascerca: // Primera capa de las farolas, las mas cercanas a la camara. Por delante del fantasma para dar sensacion 3D.
-farolaslejos: // Decoracion de la acera de los edificios, igualmente tienen que estar por delante del fantasma.
-ambasfarolas: // Ambas capas de farolas por si es demasiado el separarlo en dos capas. Por delante del fantasma siempre.
-edificios: // Los edifios de la ciudad que van por detras del fantasma.
-ciudadcompleta // Imagen de la ciudad completa con farolas no separadas en capas.

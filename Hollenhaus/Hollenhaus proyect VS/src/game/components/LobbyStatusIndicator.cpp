@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "LobbyStatusIndicator.h"
 #include "basics/TextComponent.h"
 

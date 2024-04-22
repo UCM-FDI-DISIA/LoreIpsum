@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "MultiplayerLobbyState.h"
 #include "../components/NPC.h"
 #include "../components/InputForTextWritter.h"

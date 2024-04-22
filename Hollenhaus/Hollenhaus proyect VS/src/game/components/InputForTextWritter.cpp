@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "InputForTextWritter.h"
 #include "../components/TextWritter.h"
 #include "../../sdlutils/InputHandler.h"

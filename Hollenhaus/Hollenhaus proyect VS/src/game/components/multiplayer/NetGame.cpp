@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "NetGame.h"
 
 #include "../../gamestates/GameState.h"

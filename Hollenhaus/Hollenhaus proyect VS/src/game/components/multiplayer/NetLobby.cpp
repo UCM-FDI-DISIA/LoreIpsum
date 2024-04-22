@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "NetLobby.h"
 #include "../../gamestates/GameState.h"
 #include "../../MultiplayerNamespaces.h"

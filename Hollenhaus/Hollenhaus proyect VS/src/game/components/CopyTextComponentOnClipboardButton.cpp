@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "CopyTextComponentOnClipboardButton.h"
 #include "../../sdlutils/InputHandler.h"
 #include "basics/TextComponent.h"

@@ -791,6 +791,9 @@
     <ClInclude Include="pchs\pch.h">
       <Filter>Archivos de encabezado\Auxiliares</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\components\ShineComponent.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory.h" />
+    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">

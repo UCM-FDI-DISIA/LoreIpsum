@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <../pchs/pch.h>
 #include "MultiplayerEndGameState.h"
 
 #include "../components/NPC.h"
