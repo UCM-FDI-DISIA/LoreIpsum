@@ -419,7 +419,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Ahora es el turno de tu oponente",
+              "text": "Ya no tenemos nada mas que hacer",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -427,7 +427,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Veamos que hace",
+              "text": "Pulsa el boton a la izquierda del tablero para pasar de turno",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -447,15 +447,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Si hombre que cojones",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 1,
-              "text": "aaaaaaaaaaaaaaaaaaa",
+              "text": "Es el turno de nuestro oponente, veamos",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -464,7 +456,6 @@
                   "type": 4,
                   "scene": 0
                 }
-
               ]
             }
           ]
@@ -487,12 +478,6 @@
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
-                {
-                  "timing": 1,
-                  "type": 4,
-                  "scene": 0
-                }
-
               ]
             }
           ]

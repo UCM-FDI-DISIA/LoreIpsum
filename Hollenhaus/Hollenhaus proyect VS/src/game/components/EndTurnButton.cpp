@@ -60,6 +60,8 @@ void EndTurnButton::ClickButton()
 			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
 			if (ent->hasComponent<TutorialManager>()) {
 				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PRESS_NEXT_TURN);
+				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
+
 			}
 		}
 	}

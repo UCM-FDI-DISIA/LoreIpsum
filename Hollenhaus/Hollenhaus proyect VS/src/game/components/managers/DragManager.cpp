@@ -191,6 +191,7 @@ void DragManager::putCardOnBoard(ecs::entity_t card, DropDetector* cell)
 
 		// handler del tutorial para tocar el action done
 		ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PLACE_CARD);
+		//ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
 	}
 	
 }

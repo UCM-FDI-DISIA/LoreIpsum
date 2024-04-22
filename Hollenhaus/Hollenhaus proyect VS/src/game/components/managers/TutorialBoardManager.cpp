@@ -157,6 +157,9 @@ void TutorialBoardManager::setState()
 	case Tutorials::Board::EFFECTS_PT1:
 		setEFFECTS1();
 		break;
+	case Tutorials::Board::FREEDOM:
+		setFREEDOM();
+		break;
 	default:
 		break;
 	}
@@ -427,7 +430,7 @@ void TutorialBoardManager::setNEXTCARD1()
 
 	createPopUp(250, 200, "Board Tutorial", 10);
 
-	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+	//tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
@@ -445,7 +448,6 @@ void TutorialBoardManager::setEFFECTS1()
 
 void TutorialBoardManager::setFREEDOM()
 {
-
-	std::cout << "LIBERTAS OMFG" << std::endl;
+	std::cout << "LIBERTAD OMFG" << std::endl;
 }
 
