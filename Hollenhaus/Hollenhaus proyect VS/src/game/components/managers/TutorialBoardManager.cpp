@@ -406,7 +406,6 @@ void TutorialBoardManager::setPRESSNEXTTURN()
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
 
-
 }
 
 void TutorialBoardManager::setAI_TURN()
