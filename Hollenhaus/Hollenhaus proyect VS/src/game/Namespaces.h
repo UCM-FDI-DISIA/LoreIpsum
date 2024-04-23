@@ -219,13 +219,14 @@ namespace JsonData
 
 	struct NPCData {
 		NPCData();
-		NPCData(int id, std::string name, std::string s, float sx, float sy, int px, float py, float t, int scen, int lay) :
-			NPCID_(id), name(name), sprite(s), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t), scene(scen), layer(lay)
+		NPCData(int id, std::string name, std::string s, std::string shine, float sx, float sy, int px, float py, float t, int scen, int lay) :
+			NPCID_(id), name(name), sprite(s), shineSprite(shine), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t), scene(scen), layer(lay)
 		{};
 
 		int getID() { return NPCID_; }
 		std::string getName() { return name; }
 		std::string getSprite() { return sprite; }
+		std::string shine() { return shineSprite; }
 		Vector2D getScale() { return { scaleX, scaleY }; }
 		Vector2D getPos() { return { posX, posY }; }
 		int getType() { return type; }
@@ -237,6 +238,7 @@ namespace JsonData
 		int NPCID_;
 		std::string name;
 		std::string sprite;
+		std::string shineSprite;
 		float scaleX, scaleY;
 		float posX, posY;
 		int type;

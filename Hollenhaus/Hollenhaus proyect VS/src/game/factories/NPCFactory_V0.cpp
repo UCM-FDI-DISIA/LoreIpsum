@@ -19,6 +19,6 @@ ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t par
 	npc->addComponent<NPC>(info.getScene(), info.getType(), info.getName());
 	npc->setLayer(info.getLayer());
 	npc->addComponent<ShineComponent>();
-	npc->getComponent<ShineComponent>()->addEnt(npc->getComponent<SpriteRenderer>(), "BrilliNPC");
+	npc->getComponent<ShineComponent>()->addEnt(npc->getComponent<SpriteRenderer>(), info.shine());
     return npc;
 }
