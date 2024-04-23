@@ -78,21 +78,47 @@ public:
 		decisionFactory = decisionF;
 		SetFactories(std::forward<Ts>(args)...);
 	}
-		
+
 
 #pragma endregion
 
-	Factory() : 
-	boardFactory(nullptr),
-	cardFactory(nullptr),
-	handFactory(nullptr),
-	matchStateUIFactory(nullptr),
-	dialogueFactory(nullptr),
-	npcFactory(nullptr),
-	fakeCardFactory(nullptr),
-	decisionFactory(nullptr)
+	Factory() :
+		boardFactory(nullptr),
+		cardFactory(nullptr),
+		handFactory(nullptr),
+		matchStateUIFactory(nullptr),
+		dialogueFactory(nullptr),
+		npcFactory(nullptr),
+		fakeCardFactory(nullptr),
+		decisionFactory(nullptr)
 
 	{};
+
+	~Factory() {
+		delete boardFactory;
+		boardFactory = nullptr;
+
+		delete cardFactory;
+		cardFactory = nullptr;
+
+		delete handFactory;
+		handFactory = nullptr;
+
+		delete matchStateUIFactory;
+		matchStateUIFactory = nullptr;
+
+		delete dialogueFactory;
+		dialogueFactory = nullptr;
+
+		delete npcFactory;
+		npcFactory = nullptr;
+
+		delete fakeCardFactory;
+		fakeCardFactory = nullptr;
+
+		delete decisionFactory;
+		decisionFactory = nullptr;
+	}
 
 
 	ecs::entity_t createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);

@@ -129,7 +129,7 @@ void DragManager::OnLeftClickUp()
 
 		auto drop = mouseRaycast(ecs::grp::DROPS);
 
-		auto dropDetector = drop != nullptr ? drop->getComponent<DropDetector>() : nullptr;
+		auto dropDetector = ((drop != nullptr) ? drop->getComponent<DropDetector>() : nullptr);
 
 		//si tenemos una colision con el drop detector, cambiamos la posicion de la carta por la que guarde el drop
 		//también confirmamos que tenemos suficientes puntos de acción para lanzar la carta

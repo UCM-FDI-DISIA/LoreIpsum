@@ -58,7 +58,7 @@ void PlayerCardsManager::drawCard()
 
 
 			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
-			if (ent->hasComponent<TutorialManager>()) {
+			if (ent != nullptr && ent->hasComponent<TutorialManager>()) {
 				// AQUI INES -> esto se tiene que ir tbh
 				
 				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::DRAW_CARD);

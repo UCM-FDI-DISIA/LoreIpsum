@@ -114,8 +114,27 @@ GameStateMachine::~GameStateMachine()
 		delete gameStack.top();
 		gameStack.pop();
 	}
+	while (!toBeDeleted.empty()) {
+		auto it = toBeDeleted.begin();
+		delete (*it) ;
+		toBeDeleted.erase(it);
+	}
+	toBeDeleted.clear();
 	delete mouse_;
 	delete mngr_;
+
+	mainMenuState = nullptr;
+	cityState = nullptr;
+	officeState = nullptr;
+	shopState = nullptr;
+	//boardState = nullptr;
+	samuState = nullptr;
+	jimboState = nullptr;
+	nievesState = nullptr;
+	matchOverState = nullptr;
+	luisState = nullptr;
+	deckBuildingState = nullptr;
+
 }
 
 void GameStateMachine::Render() const

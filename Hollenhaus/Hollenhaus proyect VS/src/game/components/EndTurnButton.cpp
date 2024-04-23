@@ -68,7 +68,7 @@ void EndTurnButton::ClickButton()
 
 			// TUTORIAL COSAS
 			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
-			if (ent->hasComponent<TutorialManager>()) {
+			if (ent != nullptr && ent->hasComponent<TutorialManager>()) {
 				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PRESS_NEXT_TURN);
 				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
 
