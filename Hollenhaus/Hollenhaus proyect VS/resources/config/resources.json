@@ -53,9 +53,12 @@
         {"id": "CompbateNPC",       "file": "resources/images/juego_dibujo.png"  },
         {"id": "OficinaNPC",       "file": "resources/images/ofi_dibujo.png"  },
         {"id": "NPCNPC",       "file": "resources/images/npc_dibujo.png"  },
+        {"id": "TiendaNPC_brilli", "file": "resources/images/tienda_dibujo_brilli.png"},
+        {"id": "CompbateNPC_brilli",       "file": "resources/images/juego_dibujo_brilli.png"  },
+        {"id": "OficinaNPC_brilli",       "file": "resources/images/ofi_dibujo_brilli.png"  },
+        {"id": "NPCNPC_brilli",       "file": "resources/images/npc_dibujo_brilli.png"  },
         {"id": "multiplayer_lobby_bg",       "file": "resources/images/multiplayer_lobby_bg.png"  },
         {"id": "multiplayer_pregame_bg",       "file": "resources/images/multiplayer_pregame_bg.png"  },
-        { "id": "BrilliNPC", "file": "resources/images/brilliNPC.png"},
         { "id": "feedback_flecha", "file": "resources/images/feedback_flecha.png" },
         { "id": "feedback_circulo", "file": "resources/images/feedback_circulo.png" },
         { "id": "card_ejemplo", "file": "resources/images/card_ejemplo.png"}
