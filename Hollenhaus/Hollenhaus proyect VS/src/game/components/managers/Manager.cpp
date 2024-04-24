@@ -13,6 +13,12 @@ Manager::Manager() : entsByGroup_()
     for (auto& ents : entsByGroup_) {
         ents.reserve(100);
     }
+
+    
+    for (auto& hd : hdlrs_) {
+        hd = nullptr;
+    }
+    
 }
 
 //borra todas las entidades
