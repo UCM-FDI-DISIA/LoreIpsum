@@ -18,7 +18,7 @@ void DialogueEventCollection::ChangeScene(int scene)
 	GameStateMachine::instance()->setState(scene);
 }
 
-void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent, int greenDecision, int redDecision, int scene) //poli
+void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent, int greenDecision, int redDecision, int scene)
 {
 	Factory * factory = new Factory();
 	factory->SetFactories(
