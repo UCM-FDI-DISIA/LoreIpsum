@@ -80,8 +80,8 @@ void OfficeState::onEnter()
 	db->addComponent<NPC>(9); // Lleva al deckbuilding (9).
 	db->setLayer(1);
 
-	//------Boton para telefono: (WIP de Poli:  La idea es poner como un NPC invisible (sobre el telefono),
-	//  que al clicarlo haga que aparezca el dialogo.)
+	//------Boton para telefono: (WIP de Poli: El telf en realidad es un NPC invisible,
+	//  que al clicarlo hace que aparezca el dialogo.)
 
 	factory->createNPC(5, fondo); 
 
@@ -92,6 +92,7 @@ void OfficeState::onEnter()
 	//   seria el numero de npcs que hay antes en npcs.json
 
 
+	/// MUSICA
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").play(-1);
 	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);

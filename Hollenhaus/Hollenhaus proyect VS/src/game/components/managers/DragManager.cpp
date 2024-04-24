@@ -224,13 +224,17 @@ void DragManager::putCardOnBoard(ecs::entity_t card, DropDetector* cell)
 
 
 
-	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
-	if (ent != nullptr && ent->hasComponent<TutorialManager>()) {
+	int state = GameStateMachine::instance()->getCurrentStateEnum();
+	if (state == GameStates::TUTORIALBOARD) {
+		ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
+		if (ent != nullptr && ent->hasComponent<TutorialManager>()) {
 
-		// handler del tutorial para tocar el action done
-		ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PLACE_CARD);
-		//ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
+			// handler del tutorial para tocar el action done
+			ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PLACE_CARD);
+			//ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
+		}
 	}
+	
 	
 }
 

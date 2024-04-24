@@ -57,16 +57,18 @@ void PlayerCardsManager::drawCard()
 			TuVieja("Se envia el mensaje de draw cards");
 
 
-			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
-			if (ent != nullptr && ent->hasComponent<TutorialManager>()) {
-				// AQUI INES -> esto se tiene que ir tbh
-				
-				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::DRAW_CARD);
-				if(ent->hasComponent<TutorialBoardManager>())
-					ent->getComponent<TutorialBoardManager>()->addToHand(c);
-			}
-			
+			int state = GameStateMachine::instance()->getCurrentStateEnum();
+			if (state == GameStates::TUTORIALBOARD) {
+				ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
 
+				if (ent != nullptr && ent->hasComponent<TutorialManager>()) {
+					// AQUI INES -> esto se tiene que ir tbh
+
+					ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::DRAW_CARD);
+					if (ent->hasComponent<TutorialBoardManager>())
+						ent->getComponent<TutorialBoardManager>()->addToHand(c);
+				}
+			}
 		}
 	}
 }

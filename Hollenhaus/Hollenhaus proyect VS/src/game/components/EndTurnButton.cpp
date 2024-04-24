@@ -67,12 +67,16 @@ void EndTurnButton::ClickButton()
 			matchManager_->setActualState(Turns::IA);
 
 			// TUTORIAL COSAS
-			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
-			if (ent != nullptr && ent->hasComponent<TutorialManager>()) {
-				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PRESS_NEXT_TURN);
-				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
 
+			int state = GameStateMachine::instance()->getCurrentStateEnum();
+			if (state == GameStates::TUTORIALBOARD) {
+				ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
+				if (ent != nullptr && ent->hasComponent<TutorialManager>()) {
+					ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PRESS_NEXT_TURN);
+					ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
+				}
 			}
+			
 		}
 	}
 	else if (activeMultiplayer) {

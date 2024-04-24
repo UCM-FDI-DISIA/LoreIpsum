@@ -112,6 +112,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	tweeny::tween<int> fadetween;
 	bool toFadeIn;
 	bool toFadeOut;
+	int gameStateEnumValue;
 
 public:
 	ecs::Manager* getMngr()
@@ -138,6 +139,7 @@ public:
 	void setState(int state, bool fadeIn = false, bool fadeOut = false)
 	{
 		GameState* newState = nullptr;
+
 		switch (state)
 		{
 		case GameStates::MAINMENU:
@@ -222,6 +224,8 @@ public:
 		toFadeIn = fadeIn;
 		toFadeOut = fadeOut;
 
+		gameStateEnumValue = state;
+
 		if (toFadeIn) fadetween.forward();
 		if (!toFadeIn && toFadeOut) fadetween.backward();
 	}
@@ -231,6 +235,8 @@ public:
 	bool Empty() const { return gameStack.empty(); }
 
 	GameState* getCurrentState() { return currentState; }
+
+	int getCurrentStateEnum() { return gameStateEnumValue;  }
 };
 
 // --------
