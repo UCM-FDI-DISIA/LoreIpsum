@@ -22,7 +22,7 @@ NPC::NPC(int scene, int t, std::string name_, bool toFadeIn, bool toFadeOut)
 	);
 }
 
-NPC::~NPC() 
+NPC::~NPC()
 {
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] {OnLeftClickUp(); });
@@ -63,7 +63,7 @@ void NPC::reactToClick(int scene, bool toFadeIn, bool toFadeOut) // Te lleva al 
 		}
 		else if (type == TALKING) 
 		{
-			talkTo();   
+			talkTo();
 		}
 	}
 }
@@ -73,7 +73,7 @@ void NPC::talkTo()
 	if (!click && myBoxCollider->isCursorOver() && !talking && closeToPaul) // Recoge click para hablar con un NPC.
 	{
 		TuVieja("Que charlatan el tio...");
-		
+
 		float x = ent_->getComponent<Transform>()->getGlobalPos().getX() - 150;
 		float y = ent_->getComponent<Transform>()->getGlobalPos().getY() - 250;
 
@@ -84,7 +84,7 @@ void NPC::talkTo()
 		int node = 0;
 
 		// crear dialogo del FACTORY de dialogos
-		//// Mirar comentario en el interior de la funci�n
+		//// Mirar comentario en el interior de la funcion
 		npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
 								{x, y},//POS
 								{2,2}, //SIZE
@@ -98,7 +98,6 @@ void NPC::talkTo()
 								220, //wrap length
 								Text::BoxPivotPoint::LeftTop,
 								Text::TextAlignment::Left);
-
 		talking = true;
 	}
 }
@@ -108,7 +107,7 @@ void NPC::stoppedTalking()
 	talking = false;
 }
 
-void NPC::update() 
+void NPC::update()
 {
 	// Si el dialogo ha sido creado y no estamos cerca de Paul -> destruir dialog, y dejamos de hablar.
 	if (talking && !closeToPaul)

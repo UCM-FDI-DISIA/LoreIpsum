@@ -33,6 +33,9 @@ void OfficeState::refresh()
 void OfficeState::onEnter()
 {
 	std::cout << "\nENTER OFFICE.\n";
+
+	// llamada al input
+	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPauseOF(); });
 	
 	factory = new Factory();
 	factory->SetFactories(
@@ -98,9 +101,18 @@ void OfficeState::onExit()
 {
 	std::cout << "\nEXIT OFFICE.\n";
 
+	// se desuscribe al evento
+	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPauseOF(); });
+
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
 
 	GameStateMachine::instance()->getMngr()->Free();
+}
+
+void OfficeState::onPauseOF()
+{
+	SetLastState(2);
+	GameStateMachine::instance()->setState(17);
 }
 

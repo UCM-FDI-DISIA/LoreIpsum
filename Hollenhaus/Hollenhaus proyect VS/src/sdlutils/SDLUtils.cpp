@@ -11,31 +11,31 @@
 #include "SDLNetUtils.h"
 
 SDLUtils::SDLUtils() :
-		SDLUtils("SDL Demo", 600, 400) {
+	SDLUtils("SDL Demo", 600, 400) {
 }
 
 SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
-		windowTitle_(windowTitle), //
-		width_(width), //
-		height_(height), //
-		fontsAccessWrapper_(fonts_, "Fonts Table"), //
-		imagesAccessWrapper_(images_, "Images Table"), //
-		msgsAccessWrapper_(msgs_, "Messages Table"), //
-		soundsAccessWrapper_(sounds_, "Sounds Table"), //
-		musicsAccessWrapper_(musics_, "Musics Table"), //
-		cardAccessWrapper_(cards_, "Cards Table"), //
-		dialogueAccessWrapper_(dialogues_, "Dialogues Table"), //
-		npcsAccessWrapper_(npcs_, "NPCs Table"), //
-		keysAccessWrapper_(keys_, "Keys Table")
+	windowTitle_(windowTitle), //
+	width_(width), //
+	height_(height), //
+	fontsAccessWrapper_(fonts_, "Fonts Table"), //
+	imagesAccessWrapper_(images_, "Images Table"), //
+	msgsAccessWrapper_(msgs_, "Messages Table"), //
+	soundsAccessWrapper_(sounds_, "Sounds Table"), //
+	musicsAccessWrapper_(musics_, "Musics Table"), //
+	cardAccessWrapper_(cards_, "Cards Table"), //
+	dialogueAccessWrapper_(dialogues_, "Dialogues Table"), //
+	npcsAccessWrapper_(npcs_, "NPCs Table"), //
+	keysAccessWrapper_(keys_, "Keys Table")
 {
 	initWindow();
 	initSDLExtensions();
 }
 
 SDLUtils::SDLUtils(std::string windowTitle, int width, int height,
-		std::string filename, std::string filenameCards, std::string filemaneDialogues, std::string filenameNPCs, std::string filanameKeys) :
-		SDLUtils(windowTitle, width, height) {
-	loadResources(filename,filenameCards,filemaneDialogues, filenameNPCs, filanameKeys);
+	std::string filename, std::string filenameCards, std::string filemaneDialogues, std::string filenameNPCs, std::string filanameKeys) :
+	SDLUtils(windowTitle, width, height) {
+	loadResources(filename, filenameCards, filemaneDialogues, filenameNPCs, filanameKeys);
 }
 
 SDLUtils::~SDLUtils() {
@@ -66,8 +66,8 @@ void SDLUtils::initWindow() {
 
 	// Create window
 	window_ = SDL_CreateWindow(windowTitle_.c_str(),
-	SDL_WINDOWPOS_UNDEFINED,
-	SDL_WINDOWPOS_UNDEFINED, width_, height_, SDL_WINDOW_SHOWN);
+		SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED, width_, height_, SDL_WINDOW_SHOWN);
 	assert(window_ != nullptr);
 
 #ifdef _DEBUG
@@ -75,7 +75,7 @@ void SDLUtils::initWindow() {
 #endif
 	// Create the renderer
 	renderer_ = SDL_CreateRenderer(window_, -1,
-			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	assert(renderer_ != nullptr);
 
 #if !(_DEBUG)
@@ -110,7 +110,7 @@ void SDLUtils::initSDLExtensions() {
 #endif
 	// initialize SDL_image
 	int imgInit_ret = IMG_Init(
-			IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF | IMG_INIT_WEBP);
+		IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF | IMG_INIT_WEBP);
 	assert(imgInit_ret != 0);
 
 #ifdef _DEBUG
@@ -120,14 +120,14 @@ void SDLUtils::initSDLExtensions() {
 	int mixOpenAudio = Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 	assert(mixOpenAudio == 0);
 	int mixInit_ret = Mix_Init(
-			MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG);
+		MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG);
 	assert(mixInit_ret != 0);
 	SoundEffect::setNumberofChannels(8); // we start with 8 channels
 
 }
 
 void SDLUtils::loadResources(std::string filenameResources,
-	std::string filenameCards, std::string filenameDialogues, 
+	std::string filenameCards, std::string filenameDialogues,
 	std::string filenameNPCs, std::string filenameKeys) {
 	// TODO check the correctness of values and issue a corresponding
 	// exception. Now we just do some simple checks, and assume input
@@ -200,27 +200,29 @@ void SDLUtils::loadResources(std::string filenameResources,
 void SDLUtils::loadFonts(JSONObject rootResources, std::string filenameResources)
 {
 	// load fonts
-	const JSONValue *jValue = jValue = rootResources["fonts"];
+	const JSONValue* jValue = jValue = rootResources["fonts"];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			fonts_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto &v : jValue->AsArray()) {
+			for (auto& v : jValue->AsArray()) {
 				if (v->IsObject()) {
 					JSONObject vObj = v->AsObject();
 					std::string key = vObj["id"]->AsString();
 					std::string file = vObj["file"]->AsString();
 					uint8_t size =
-							static_cast<uint8_t>(vObj["size"]->AsNumber());
+						static_cast<uint8_t>(vObj["size"]->AsNumber());
 #ifdef _DEBUG
 					std::cout << "Loading font with id: " << key << std::endl;
 #endif
 					fonts_.emplace(key, Font(file, size));
-				} else {
+				}
+				else {
 					throw "'fonts' array in '" + filenameResources
-							+ "' includes and invalid value";
+						+ "' includes and invalid value";
 				}
 			}
-		} else {
+		}
+		else {
 			throw "'fonts' is not an array in '" + filenameResources + "'";
 		}
 	}
@@ -233,7 +235,7 @@ void SDLUtils::loadImages(JSONObject rootResources, std::string filenameResource
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			images_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto &v : jValue->AsArray()) {
+			for (auto& v : jValue->AsArray()) {
 				if (v->IsObject()) {
 					JSONObject vObj = v->AsObject();
 					std::string key = vObj["id"]->AsString();
@@ -242,12 +244,14 @@ void SDLUtils::loadImages(JSONObject rootResources, std::string filenameResource
 					std::cout << "Loading image with id: " << key << std::endl;
 #endif
 					images_.emplace(key, Texture(renderer(), file));
-				} else {
+				}
+				else {
 					throw "'images' array in '" + filenameResources
-							+ "' includes and invalid value";
+						+ "' includes and invalid value";
 				}
 			}
-		} else {
+		}
+		else {
 			throw "'images' is not an array in '" + filenameResources + "'";
 		}
 	}
@@ -260,7 +264,7 @@ void SDLUtils::loadMusics(JSONObject rootResources, std::string filenameResource
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			musics_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto &v : jValue->AsArray()) {
+			for (auto& v : jValue->AsArray()) {
 				if (v->IsObject()) {
 					JSONObject vObj = v->AsObject();
 					std::string key = vObj["id"]->AsString();
@@ -269,12 +273,14 @@ void SDLUtils::loadMusics(JSONObject rootResources, std::string filenameResource
 					std::cout << "Loading music with id: " << key << std::endl;
 #endif
 					musics_.emplace(key, Music(file));
-				} else {
+				}
+				else {
 					throw "'musics' array in '" + filenameResources
-							+ "' includes and invalid value";
+						+ "' includes and invalid value";
 				}
 			}
-		} else {
+		}
+		else {
 			throw "'musics' is not an array";
 		}
 	}
@@ -287,22 +293,24 @@ void SDLUtils::loadSounds(JSONObject rootResources, std::string filenameResource
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			sounds_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto &v : jValue->AsArray()) {
+			for (auto& v : jValue->AsArray()) {
 				if (v->IsObject()) {
 					JSONObject vObj = v->AsObject();
 					std::string key = vObj["id"]->AsString();
 					std::string file = vObj["file"]->AsString();
 #ifdef _DEBUG
 					std::cout << "Loading sound effect with id: " << key
-							<< std::endl;
+						<< std::endl;
 #endif
 					sounds_.emplace(key, SoundEffect(file));
-				} else {
+				}
+				else {
 					throw "'sounds' array in '" + filenameResources
-							+ "' includes and invalid value";
+						+ "' includes and invalid value";
 				}
 			}
-		} else {
+		}
+		else {
 			throw "'sounds' is not an array";
 		}
 	}
@@ -360,31 +368,31 @@ void SDLUtils::loadCards(JSONObject rootCards, std::string filenameCards)
 	if (jValue != nullptr) { // si existe tal key
 		if (jValue->IsArray()) { // si tiene cartas dentro
 			cards_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto &v : jValue->AsArray()) { // por cada carta
+			for (auto& v : jValue->AsArray()) { // por cada carta
 				if (v->IsObject()) { // si la carta actual es objeto
 					// card as JSON object
 					JSONObject cardObj = v->AsObject();
 
 					/// >>> Lectura inicial de parametros basicos <<<
-					std::string key		= cardObj["id"]->AsString(); // id
-					int cost			= cardObj["cost"]->AsNumber(); // coste
-					int value			= cardObj["value"]->AsNumber(); // valor 
-					std::string sprite	= cardObj["sprite"]->AsString(); // sprite
-					bool unblockable	= cardObj["unblockable"]->AsBool(); // unblockable
+					std::string key = cardObj["id"]->AsString(); // id
+					int cost = cardObj["cost"]->AsNumber(); // coste
+					int value = cardObj["value"]->AsNumber(); // valor 
+					std::string sprite = cardObj["sprite"]->AsString(); // sprite
+					bool unblockable = cardObj["unblockable"]->AsBool(); // unblockable
 
 
 					/// >>> Lectura de efectos <<<
 					/// Por cada carta, hay un array de efectos
 					std::vector<JsonData::CardEffect> effects; // declaracion inicial de vector vacio de efectos
 					auto effArr = cardObj["effects"]->AsArray(); // effects as JSON array derivate of card object
-					for (auto& e : effArr ) // por cada efecto
+					for (auto& e : effArr) // por cada efecto
 					{ // each effect as JSON object
 						auto effObj = e->AsObject();
 
 						/// El UNICO requerimiento que tiene un efecto es su tipo de efecto
 						///	Si ese tipo de efecto necesita otros valores que no tiene, se usan unos
 						///	por defecto
-						
+
 						// casting de int a enum de efecto
 						Effects::Type type = static_cast<Effects::Type>(effObj["type"]->AsNumber());
 
@@ -405,12 +413,14 @@ void SDLUtils::loadCards(JSONObject rootCards, std::string filenameCards)
 #endif
 					cards_.emplace(key, JsonData::CardData(std::stoi(key), cost, value, sprite, unblockable, effects)); // finalmente se anyaden al mapa
 
-				} else {
+				}
+				else {
 					throw "'cards' array in '" + filenameCards
-							+ "' includes and invalid value";
+						+ "' includes and invalid value";
 				}
 			}
-		} else {
+		}
+		else {
 			throw "'cards' is not an array";
 		}
 	}
@@ -432,8 +442,8 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 
 
 					std::vector<JsonData::ConvoData> convos;		// Declaramos el vector para guardar las convos del owner
-																	// Las convos aun no se pueden guardar porque dentro hay varios datos que quedan por parsear
-					
+					// Las convos aun no se pueden guardar porque dentro hay varios datos que quedan por parsear
+
 					JSONArray convosArray = ownerObj["convo"]->AsArray();	// Array de convos
 					for (auto& c : convosArray) {	// Por cada convo
 						if (c->IsObject()) {
@@ -442,8 +452,8 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 							bool auto_ = convoObj["autoConvo"]->AsBool();
 
 							std::vector<JsonData::NodeData> nodes;	// Declaramos el vector para guardar los nodos de la convo
-																	// Los nodos aun no se pueden guardar porque dentro hay varios datos que quedan por parsear
-					
+							// Los nodos aun no se pueden guardar porque dentro hay varios datos que quedan por parsear
+
 							JSONArray nodesArray = convoObj["nodes"]->AsArray();	// Array de nodes
 							for (auto& n : nodesArray) {		// Por cada node
 								if (n->IsObject()) {
@@ -467,13 +477,20 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 											int timing = eventObj["timing"]->AsNumber();
 											int type = eventObj["type"]->AsNumber();
 											int scene = eventObj["scene"]->AsNumber();
+											int greenDecision = 0;
+											int redDecision = 0;
+											if (type == 3) // Para el evento decision.
+											{
+												greenDecision = eventObj["gdecision"]->AsNumber();
+												redDecision = eventObj["rdecision"]->AsNumber();
+											}
 
 											switch (timing) {
 											case 0:
-												eventsS.emplace_back(timing, type, scene);
+												eventsS.emplace_back(timing, type, scene, greenDecision, redDecision);
 												break;
 											case 1:
-												eventsF.emplace_back(timing, type, scene);
+												eventsF.emplace_back(timing, type, scene, greenDecision, redDecision);
 												break;
 											default:
 												break;
@@ -516,11 +533,12 @@ void SDLUtils::loadNPCs(JSONObject rootNPCSs, std::string filenameNPCs)
 				if (v->IsObject()) { // si el npc actual es objeto
 					// npc as JSON object
 					JSONObject npcObj = v->AsObject();
-					
+
 					/// >>> Lectura inicial de parametros basicos <<<
 					std::string id = npcObj["npcID"]->AsString();
 					std::string name = npcObj["name"]->AsString(); // id
 					std::string sprite = npcObj["sprite"]->AsString(); // sprite
+					std::string shine = npcObj["shine"]->AsString();
 					float sX = npcObj["scaleX"]->AsNumber(); // scale X
 					float sY = npcObj["scaleY"]->AsNumber(); // scale Y
 					float pX = npcObj["posX"]->AsNumber(); // position X
@@ -529,7 +547,7 @@ void SDLUtils::loadNPCs(JSONObject rootNPCSs, std::string filenameNPCs)
 					int scene = npcObj["scene"]->AsNumber(); // scene
 					int layer = npcObj["layer"]->AsNumber(); // layer
 
-					JsonData::NPCData info(std::stoi(id), name, sprite, sX, sY, pX, pY, type, scene, layer);
+					JsonData::NPCData info(std::stoi(id), name, sprite, shine, sX, sY, pX, pY, type, scene, layer);
 					JsonData::NPCData rinfo = static_cast<JsonData::NPCData>(info);
 
 #ifdef _DEBUG
@@ -590,18 +608,18 @@ std::vector<Effects::Direction>& SDLUtils::loadDirections(JSONObject& jo, std::v
 	{
 		auto dir = d->AsString();
 
-		for (char &c : dir) 
+		for (char& c : dir)
 			c = std::tolower(c);
 
 		// soy tonti y no se pueden usar switchs con strings </3
 		// esto deberia ir en otro lado siiiii no me mires estoy probando
-		if		(dir == "up"	|| dir == "arriba")
+		if (dir == "up" || dir == "arriba")
 			directions.push_back(Effects::Up);
 		else if (dir == "right" || dir == "derecha")
 			directions.push_back(Effects::Right);
-		else if (dir == "down"	|| dir == "abajo")
+		else if (dir == "down" || dir == "abajo")
 			directions.push_back(Effects::Down);
-		else if (dir == "left"	|| dir == "izquierda")
+		else if (dir == "left" || dir == "izquierda")
 			directions.push_back(Effects::Left);
 	}
 

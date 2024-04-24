@@ -18,7 +18,7 @@ protected:
 
 	static Data* data; // puntero a la data
 
-	//LAS ENTIDADES �NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT 
+	//LAS ENTIDADES NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT 
 	GameState() {}; // constructoras de clases abstractas no deberian ser publicas
 
 public:
@@ -32,6 +32,8 @@ public:
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
 
+	//virtual void onPause();
+
 	//----Mete una c carta al array de cartas de la tienda de Data.
 	virtual void setShopCard(int c);
 	//----Comprueba si el array de cartas de la tienda de Data esta vacia.
@@ -44,18 +46,21 @@ public:
 	virtual void addCardToDrawer(int id);
 	//----Mete dinero al jugador:
 	virtual void addMoney(int money);
+	//----Mete una llave de la leyenda
+	virtual void addKey();
 	//----Quita dinero al jugador.
 	virtual void substractMoney(int money);
 	//----Devuelve el dinero del jugador:
 	virtual int getMoney();
+	//----Devuelve el numero de llaves disponibles
+	virtual int getKeys();
 	//----Comprueba si una carta con id id esta en el mazo.
 	virtual bool checkCardIsInMaze(int id);
 	//----Devuelve el caso actual.
 	virtual int getCurrentCase();
-
-	//----
+	//----Para ser llamado cuando una carta es seleccionada para que se iluminen las monedas que sean.
 	virtual void cardSelected(int prize) {}
-	//----
+	//----Para resetear el brillo de las monedas.
 	virtual void deSelected() {}
 
 	virtual void saveData();
