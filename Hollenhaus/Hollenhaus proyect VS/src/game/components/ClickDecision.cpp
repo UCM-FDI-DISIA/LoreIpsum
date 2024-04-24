@@ -8,7 +8,7 @@
 #include "../components/DecisionComponent.h"
 #include "../components/ShopComponent.h"
 
-ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) //igual aqui meter int
+ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 {
 	decision_ = decision;
 	parent_ = parent;
