@@ -54,6 +54,13 @@ void TutorialBoardManager::initComponent()
 	nextState = Tutorials::Board::INIT;
 	ended = false;
 	checked = false;
+
+
+	image = Instantiate();
+	image->addComponent<Transform>();
+	image->addComponent<SpriteRenderer>("card_ejemplo");
+	image->getComponent<SpriteRenderer>()->enable(false);
+
 }
 
 
@@ -107,7 +114,8 @@ void TutorialBoardManager::setState()
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
 	ent_->getComponent<TutorialManager>()->activateColliders(objs);
 	ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
-	
+	image->getComponent<SpriteRenderer>()->enable(false);
+
 
 	switch (t)
 	{
@@ -251,7 +259,11 @@ void TutorialBoardManager::setCARD()
 {
 	//TuVieja("Setting CARD");
 
-	createPopUp(250, 200, "Board Tutorial", 1);
+	createPopUp(400, 200, "Board Tutorial", 1);
+
+	image->getComponent<SpriteRenderer>()->enable(true);
+	image->getComponent<Transform>()->setGlobalPos(200, 200);
+	image->setLayer(200);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -265,7 +277,13 @@ void TutorialBoardManager::setCARDINFO()
 {
 	//TuVieja("Setting DECK");
 
-	ecs::entity_t pop = createPopUp(550, 300, "Board Tutorial", 2);
+	ecs::entity_t pop = createPopUp(400, 250, "Board Tutorial", 2);
+
+	image->addComponent<SpriteRenderer>("card_ejemplo");
+	image->getComponent<Transform>()->setGlobalPos(200, 200);
+	image->getComponent<Transform>()->setGlobalScale(1.25, 1.25);
+
+	image->setLayer(200);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
