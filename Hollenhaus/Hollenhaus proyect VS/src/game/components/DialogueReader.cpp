@@ -28,7 +28,7 @@ void DialogueReader::initComponent() {
 	dialogueDestroyer_ = ent_->getComponent<DialogueDestroyer>();
 	assert(dialogueDestroyer_ != nullptr);
 
-	convo_->Node(2);
+	//convo_->Node(2);
 
 	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
 	exeEvents(convo_->Node(actualNode_).NodeEventsStart());
