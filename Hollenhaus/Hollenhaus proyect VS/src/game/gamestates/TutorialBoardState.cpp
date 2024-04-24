@@ -31,14 +31,10 @@
 TutorialBoardState::TutorialBoardState()
 {
 	TuVieja("Loading Tutorial Board");
-
-	
 }
 
 TutorialBoardState::~TutorialBoardState()
 {
-
-	
 }
 
 void TutorialBoardState::refresh()
@@ -58,10 +54,8 @@ void TutorialBoardState::render() const
 
 void TutorialBoardState::onEnter()
 {
-
 	TuVieja("ENTRANDO AL TUTORIAL...");
 
-	
 
 	setBaseEntity();
 	initTutorial();
@@ -76,7 +70,6 @@ void TutorialBoardState::onEnter()
 	int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
 	tutorial->getComponent<TutorialBoardManager>()->setObjs(objs);
-
 }
 
 void TutorialBoardState::onExit()
@@ -86,9 +79,7 @@ void TutorialBoardState::onExit()
 	GameStateMachine::instance()->getMngr()->Free();
 
 	tutorial->getComponent<TutorialManager>()->endTutorial();
-
 }
-
 
 
 void TutorialBoardState::setBoard()
@@ -97,7 +88,7 @@ void TutorialBoardState::setBoard()
 
 	//TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
 
-	Factory* factory = new Factory();
+	auto factory = new Factory();
 	factory->SetFactories(
 		static_cast<BoardFactory*>(new BoardFactory_v0(4)),
 		static_cast<CardFactory*>(new CardFactory_v1()),
@@ -114,7 +105,8 @@ void TutorialBoardState::setBoard()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, Turns::J1, boardManagerComponent);
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(
+		4, 4, Turns::J1, boardManagerComponent);
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
@@ -145,8 +137,8 @@ void TutorialBoardState::setBoard()
 
 	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 
-	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, { 102, 255, 255, 255 });
-	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, { 255, 102, 255, 255 });
+	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, {102, 255, 255, 255});
+	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, {255, 102, 255, 255});
 
 	ecs::entity_t visual_BackgroundBoard = factory->createVisual_BackgroundFullImage();
 
@@ -160,8 +152,6 @@ void TutorialBoardState::setBoard()
 	boardManagerComponent->setScoreVisualJ1(visual_ScoreCounterJ1);
 	boardManagerComponent->setScoreVisualJ2(visual_ScoreCounterJ2);
 	boardManagerComponent->updateVisuals();
-
-
 
 
 	// incicia la cancion en bucle
@@ -180,7 +170,6 @@ void TutorialBoardState::setBoard()
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
 
 
-
 	//seters de referencias de la ia
 
 	ia_managerComponent->setMatchManager(matchManagerComponent);
@@ -197,7 +186,6 @@ void TutorialBoardState::setBoard()
 
 
 #pragma endregion
-
 }
 
 void TutorialBoardState::setBaseEntity()
@@ -206,18 +194,16 @@ void TutorialBoardState::setBaseEntity()
 	base->addComponent<Transform>();
 	//base->getComponent<Transform>()->addParent(nullptr);
 	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
-	Vector2D pos{ 200, 200 };
+	Vector2D pos{200, 200};
 	base->getComponent<Transform>()->setGlobalPos(pos);
 	base->setLayer(2);
 
 	colliderWallBase = Instantiate();
 	colliderWallBase->addComponent<Transform>();
-	Vector2D pos2{ 0, 0 };
+	Vector2D pos2{0, 0};
 	colliderWallBase->getComponent<Transform>()->setGlobalPos(pos2);
 	colliderWallBase->setLayer(2);
-	
 }
-
 
 
 void TutorialBoardState::initTutorial()
@@ -228,6 +214,4 @@ void TutorialBoardState::initTutorial()
 	tutorial->addComponent<TutorialManager>();
 	auto manager = tutorial->addComponent<TutorialBoardManager>(base, tutorial);
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
-
 }
-

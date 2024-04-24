@@ -2,20 +2,19 @@
 #include "GameState.h"
 
 class MultiplayerGameState
-    :public GameState
+	: public GameState
 {
 public:
+	MultiplayerGameState();
+	~MultiplayerGameState() override;
 
-    MultiplayerGameState();
-    virtual ~MultiplayerGameState();
-
-    void refresh() override;
-    void update() override;
-    void render() const override;
+	void refresh() override;
+	void update() override;
+	void render() const override;
 
 
-    void onEnter() override;
-    void onExit() override;
+	void onEnter() override;
+	void onExit() override;
 
 private:
 };

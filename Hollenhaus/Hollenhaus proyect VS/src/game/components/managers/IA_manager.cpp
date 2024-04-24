@@ -24,23 +24,27 @@ IA_manager* IA_manager::State::ia_manager = nullptr;
 
 #pragma region Metodos Basicos
 
-IA_manager::IA_manager() :makePlay_(false), colocadas_(false), cartasColocadas_(0) {
-
+IA_manager::IA_manager() : makePlay_(false), colocadas_(false), cartasColocadas_(0)
+{
 	boardManager = nullptr;
 
 	State s;
 
 	s.ia_manager = this;
-
 }
 
-IA_manager::~IA_manager() {}
+IA_manager::~IA_manager()
+{
+}
 
-void IA_manager::initComponent() {}
+void IA_manager::initComponent()
+{
+}
 
-void IA_manager::update() {
-	if (matchManager->getActualState() == Turns::State::IA) {
-
+void IA_manager::update()
+{
+	if (matchManager->getActualState() == Turns::State::IA)
+	{
 		// Espera a que haya robado las cartas y se hayan puesto en la mano para colocarlas
 		if (enemyHandCmp->doneAnimations() && !colocadas_)
 		{
@@ -57,32 +61,39 @@ void IA_manager::update() {
 			colocadas_ = false;
 		}
 	}
-
 }
 
 #pragma endregion
 
 #pragma region Setters de referencias
 
-void IA_manager::setMatchManager(MatchManager* matchM) {
+void IA_manager::setMatchManager(MatchManager* matchM)
+{
 	matchManager = matchM;
 }
 
-void IA_manager::setBoardManager(BoardManager* boardM) {
+void IA_manager::setBoardManager(BoardManager* boardM)
+{
 	boardManager = boardM;
 }
 
-void IA_manager::setPlayerHand(HandComponent* playerH) {
+void IA_manager::setPlayerHand(HandComponent* playerH)
+{
 	playerHandCmp = playerH;
 }
-void IA_manager::setEnemyHand(HandComponent* enemyH) {
+
+void IA_manager::setEnemyHand(HandComponent* enemyH)
+{
 	enemyHandCmp = enemyH;
 }
 
-void IA_manager::setPlayerDeck(DeckComponent* playerD) {
+void IA_manager::setPlayerDeck(DeckComponent* playerD)
+{
 	playerDeckCmp = playerD;
 }
-void IA_manager::setEnemyDeck(DeckComponent* enemyD) {
+
+void IA_manager::setEnemyDeck(DeckComponent* enemyD)
+{
 	enemyDeckCmp = enemyD;
 }
 
@@ -91,32 +102,35 @@ void IA_manager::setEnemyDeck(DeckComponent* enemyD) {
 
 void IA_manager::StartTurn()
 {
-
 	State s;
 	s.actionPoints = 4;
 
 	//seteo de los decks
 	std::vector<Card*> deckCopyPlayer;
-	for (auto c : playerDeckCmp->getDeck()) {
+	for (auto c : playerDeckCmp->getDeck())
+	{
 		deckCopyPlayer.push_back(new Card(*c));
 	}
 	s.playerDeck = deckCopyPlayer;
 
 	std::vector<Card*> deckCopyEnemy;
-	for (auto c : enemyDeckCmp->getDeck()) {
+	for (auto c : enemyDeckCmp->getDeck())
+	{
 		deckCopyEnemy.push_back(new Card(*c));
 	}
 	s.enemyDeck = deckCopyEnemy;
 
 	//seteo de los hands
 	std::vector<Card*> handCopyPlayer;
-	for (auto c : playerHandCmp->getHand()) {
+	for (auto c : playerHandCmp->getHand())
+	{
 		handCopyPlayer.push_back(c);
 	}
 	s.playerHand = handCopyPlayer;
 
 	std::vector<Card*> handCopyEnemy;
-	for (auto c : enemyHandCmp->getHand()) {
+	for (auto c : enemyHandCmp->getHand())
+	{
 		handCopyEnemy.push_back(c);
 	}
 	s.enemyHand = handCopyEnemy;
@@ -160,8 +174,8 @@ void IA_manager::StartTurn()
 #endif // _DEBUG
 
 
-	if (best == nullptr) {
-
+	if (best == nullptr)
+	{
 		//seguramente sea pq se queda sin cartas en el mazo
 		throw "jugada no encontrada";
 	}
@@ -169,8 +183,7 @@ void IA_manager::StartTurn()
 }
 
 
-
-#pragma region Internal methods 
+#pragma region Internal methods
 
 int IA_manager::heuristic(State* s)
 {
@@ -182,13 +195,16 @@ void IA_manager::posiblesTurnos(
 	std::vector<std::vector<CartaColocada>>& soluciones,
 	std::vector<CartaColocada>& solAct,
 	int puntosRestantes,
-	const std::vector<Card*>& playerHand,//mano del jugador, ref const
+	const std::vector<Card*>& playerHand, //mano del jugador, ref const
 	std::vector<std::vector<bool>>& _board // true si ocupada, false si libre
 )
 {
 	//si estoy en la ultima carta, añado la solucion a la lista
-	if (cartaActual == nCartas) {
-		if (puntosRestantes < 4) {//si hemos consumido algun punto, cambiar magic number
+	if (cartaActual == nCartas)
+	{
+		if (puntosRestantes < 4)
+		{
+			//si hemos consumido algun punto, cambiar magic number
 			soluciones.push_back(solAct);
 		}
 		return;
@@ -201,20 +217,22 @@ void IA_manager::posiblesTurnos(
 	bool esValida = true;
 
 	//si la carta cuesta mas puntos de los que me quedan
-	if (playerHand[cartaActual]->getCost() > puntosRestantes) {
+	if (playerHand[cartaActual]->getCost() > puntosRestantes)
+	{
 		esValida = false;
 	}
 
 	//si puedo colocar la carta, miro todas las casillas
-	if (esValida) {
-
+	if (esValida)
+	{
 		//recorrido para cada casilla
-		for (int i = 0; i < sizeX; i++) {
-			for (int j = 0; j < sizeY; j++) {
-
+		for (int i = 0; i < sizeX; i++)
+		{
+			for (int j = 0; j < sizeY; j++)
+			{
 				//si casilla no ocupada
-				if (!_board[i][j]) {
-
+				if (!_board[i][j])
+				{
 					//actualizar solAct
 					_board[i][j] = true;
 					solAct.push_back(CartaColocada(cartaActual, Vector2D(i, j)));
@@ -222,13 +240,12 @@ void IA_manager::posiblesTurnos(
 
 					//siguiente nivel
 					posiblesTurnos(cartaActual + 1, nCartas, soluciones, solAct, puntosRestantes,
-						playerHand, _board);
+					               playerHand, _board);
 
 					//desactualizar solAct
 					solAct.pop_back();
 					_board[i][j] = false;
 					puntosRestantes += playerHand[cartaActual]->getCost();
-
 				}
 			}
 		}
@@ -240,22 +257,22 @@ void IA_manager::posiblesTurnos(
 
 	//siguiente nivel
 	posiblesTurnos(cartaActual + 1, nCartas, soluciones, solAct, puntosRestantes,
-		playerHand, _board);
+	               playerHand, _board);
 
 	//desactualizar solucion Actual	
 	solAct.pop_back();
 }
 
 
-std::vector<IA_manager::InfoJugada> IA_manager::calcularTurno(State s, bool isPlayer) {
-
+std::vector<IA_manager::InfoJugada> IA_manager::calcularTurno(State s, bool isPlayer)
+{
 	std::vector<InfoJugada> allPosiblePlays;
 
 	//NOTA: si cambia el coste del robo hay que cambiar esto
 
 	//la cantidad de veces que se puede robar es el minimo entre los puntos de accion y el tamaño del mazo
 	int nRobosPosibles = fmin(s.actionPoints,
-		isPlayer ? s.playerDeck.size() : s.enemyDeck.size());
+	                          isPlayer ? s.playerDeck.size() : s.enemyDeck.size());
 
 	auto& currentDeck = isPlayer ? s.playerDeck : s.enemyDeck;
 	auto& currentHand = isPlayer ? s.playerHand : s.enemyHand;
@@ -263,14 +280,15 @@ std::vector<IA_manager::InfoJugada> IA_manager::calcularTurno(State s, bool isPl
 	for (int i = 0; i <= nRobosPosibles; i++)
 	{
 		//si toca robar
-		if (i > 0) {
+		if (i > 0)
+		{
 			//robar carta
 			Card* c = currentDeck.back();
 
 			currentDeck.pop_back();
 			currentHand.push_back(c);
 
-			s.actionPoints--;//- N coste de robar carta
+			s.actionPoints--; //- N coste de robar carta
 		}
 
 		//actualizar solucionActual
@@ -280,26 +298,28 @@ std::vector<IA_manager::InfoJugada> IA_manager::calcularTurno(State s, bool isPl
 
 		//obtener las jugadasParciales
 		posiblesTurnos(0, currentHand.size(), partialPlays, solAct, s.actionPoints,
-			currentHand, s._boardBools);//hand + cartas robadas	
+		               currentHand, s._boardBools); //hand + cartas robadas	
 
 		//actualizar la lista de jugadasTotales(TuplaSolucion)
-		for (auto& s : partialPlays) {
-			allPosiblePlays.push_back(InfoJugada{ i,s });
+		for (auto& s : partialPlays)
+		{
+			allPosiblePlays.push_back(InfoJugada{i, s});
 		}
 	}
 
 	return allPosiblePlays;
 }
 
-std::vector<IA_manager::State> IA_manager::all_posible_next_states(const State& s, bool isPlayer) {
-
+std::vector<IA_manager::State> IA_manager::all_posible_next_states(const State& s, bool isPlayer)
+{
 	std::vector<State> allStates;
 
 	//dado un estado, aplicamos todas las posible jugadas y generamos todos los posibles futuros estados
-	for (auto& jugada : calcularTurno(s, isPlayer)) {
-		State nuevo = s;//copia del estado
-		nuevo.apply(jugada, isPlayer);//aplicar jugada
-		allStates.push_back(nuevo);//añadir a la lista
+	for (auto& jugada : calcularTurno(s, isPlayer))
+	{
+		State nuevo = s; //copia del estado
+		nuevo.apply(jugada, isPlayer); //aplicar jugada
+		allStates.push_back(nuevo); //añadir a la lista
 	}
 
 	return allStates;
@@ -307,22 +327,26 @@ std::vector<IA_manager::State> IA_manager::all_posible_next_states(const State& 
 
 //current state debería ser const, se ha quitado para evitar crear una copia en la heuristica
 //importante no modificar dicha variable
-int IA_manager::minimax(int depth, int h, bool isPlayer, State& current_state, State*& best) {
-
+int IA_manager::minimax(int depth, int h, bool isPlayer, State& current_state, State*& best)
+{
 	//si alcanza la profundidad indicada, devuelve el valor de la heurisitca
 	if (depth == h) { return current_state.heuristic(); }
 
-	int bestValue = isPlayer ? -99999 : 99999;//cambiar por math min y math max
+	int bestValue = isPlayer ? -99999 : 99999; //cambiar por math min y math max
 
-	for (State& s : all_posible_next_states(current_state, isPlayer)) {
-
+	for (State& s : all_posible_next_states(current_state, isPlayer))
+	{
 		int current = minimax(depth + 1, h, !isPlayer, s, best);
 
-		if (isPlayer && current > bestValue) { //si es jugador, maximiza el valor			
+		if (isPlayer && current > bestValue)
+		{
+			//si es jugador, maximiza el valor			
 			bestValue = current;
 			best = new State(s);
 		}
-		else if (!isPlayer && current < bestValue) {//si es la IA, lo minimiza
+		else if (!isPlayer && current < bestValue)
+		{
+			//si es la IA, lo minimiza
 			bestValue = current;
 			best = new State(s);
 		}
@@ -338,14 +362,14 @@ void IA_manager::makePlay(const InfoJugada& play)
 	cartasColocadas_ = 0;
 
 	RobarCarta();
-
 }
 
 void IA_manager::RobarCarta()
 {
 	const int draws = play_.cartasRobadas;
 
-	for (int i = 0; i < draws; ++i) {
+	for (int i = 0; i < draws; ++i)
+	{
 		// Animacion robar cartas
 
 		enemyHandCmp->addCard(enemyDeckCmp->drawCard()->getEntity());
@@ -357,19 +381,22 @@ void IA_manager::ColocarCarta()
 	const std::vector<CartaColocada> cards = play_.cartas;
 	cartasColocadas_ = 0;
 	//para cada carta
-	for (int i = 0; i < cards.size(); i++) {
-
+	for (int i = 0; i < cards.size(); i++)
+	{
 		Vector2D pos = cards[i].pos;
 		//si ponemos la carta
-		if (pos != Vector2D(-1, -1)) {
+		if (pos != Vector2D(-1, -1))
+		{
 			std::vector<Card*> hand = enemyHandCmp->getHand();
 			Card* card = nullptr;
-			if (hand.size() > 0) {
+			if (hand.size() > 0)
+			{
 				card = hand[i - cartasColocadas_];
 			}
 
 			//dropDetector ocupado
-			const auto dropDet = boardManager->getCell(pos.getX(), pos.getY())->getEntity()->getComponent<DropDetector>();
+			const auto dropDet = boardManager->getCell(pos.getX(), pos.getY())->getEntity()->getComponent<
+				DropDetector>();
 			dropDet->setOcuped(true);
 
 			//colocar la carta en el tablero
@@ -380,7 +407,8 @@ void IA_manager::ColocarCarta()
 				card->getEntity()->getComponent<CardStateManager>()->putOnBoard();
 
 				//comunicacion con el boardManager
-				const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
+				const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<
+					MatchManager>()->getPlayerTurn();
 				boardManager->setCard(pos.getX(), pos.getY(), card, playerTurn);
 
 				cartasColocadas_++;
@@ -389,4 +417,3 @@ void IA_manager::ColocarCarta()
 	}
 }
 #pragma endregion
-

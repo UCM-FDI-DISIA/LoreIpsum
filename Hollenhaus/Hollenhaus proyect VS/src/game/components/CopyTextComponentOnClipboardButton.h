@@ -10,7 +10,7 @@ class CopyTextComponentOnClipboardButton : public ComponentUpdate
 {
 public:
 	CopyTextComponentOnClipboardButton(TextComponent* textComponent);
-	~CopyTextComponentOnClipboardButton();
+	~CopyTextComponentOnClipboardButton() override;
 
 	void initComponent() override;
 	void update() override;
@@ -21,4 +21,3 @@ private:
 	TextComponent* tc;
 	BoxCollider* bc;
 };
-

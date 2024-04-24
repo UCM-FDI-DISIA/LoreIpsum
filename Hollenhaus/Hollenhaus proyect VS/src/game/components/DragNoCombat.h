@@ -20,7 +20,7 @@ private:
 
 public:
 	DragNoCombat();
-	~DragNoCombat();
+	~DragNoCombat() override;
 
 	void initComponent() override;
 	void update() override;

@@ -25,7 +25,7 @@ private:
 public:
 	// ---- Constructora/Destructora ----
 	PizarraManager();
-	~PizarraManager();
+	~PizarraManager() override;
 
 	// ---- Metodos heredados ----
 	void update() override;

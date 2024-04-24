@@ -20,12 +20,12 @@ Tiene referencias a varios componentes importantes del flujo del juego que se de
 */
 
 class NetGame
-	:public ComponentUpdate
+	: public ComponentUpdate
 {
 public:
 	//constructora y destructora
 	NetGame();
-	~NetGame();
+	~NetGame() override;
 
 	void update() override;
 
@@ -51,11 +51,10 @@ public:
 	void nextTurn();
 
 private:
-
 	//el jugador contra el que estamos jugando
 	TCPsocket rival;
 	SDLNet_SocketSet socketSet; //para recibir los mensajes con comunicacion NO-Bloqueante
-	
+
 	//referencias a componentes del juego para realizar acciones
 	MatchManager* matchManager;
 	BoardManager* boardManager;
@@ -81,4 +80,3 @@ private:
 	//procesa que el otro jugador ha pulsado el boton de cambiar turno, cambia de turno
 	void processNextTurn();
 };
-

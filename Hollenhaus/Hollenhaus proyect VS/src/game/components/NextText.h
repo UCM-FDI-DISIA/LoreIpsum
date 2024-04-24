@@ -16,7 +16,7 @@ class NextText : public ComponentUpdate
 {
 public:
 	NextText();
-	~NextText();
+	~NextText() override;
 
 	void initComponent() override;
 	void update() override;
@@ -40,4 +40,3 @@ private:
 	DialogueEventCollection* eventCollection_;
 	BoxCollider* boxCollider_;
 };
-

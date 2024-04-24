@@ -9,17 +9,18 @@ class AutoDialogue : public ComponentUpdate
 {
 public:
 	AutoDialogue(int cd);
-	~AutoDialogue() {}
+
+	~AutoDialogue() override
+	{
+	}
 
 	void initComponent() override;
 	void update() override;
 
 private:
-	
 	int cooldown;
 	int count;
 
 	NextText* nexttxt;
 	TypeWriter* writer;
-
 };

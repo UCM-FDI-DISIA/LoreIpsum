@@ -6,7 +6,10 @@ class DialogueBoxDestroyer : public ComponentUpdate
 {
 public:
 	DialogueBoxDestroyer(ecs::entity_t child_);
-	~DialogueBoxDestroyer() {}
+
+	~DialogueBoxDestroyer() override
+	{
+	}
 
 	void initComponent() override;
 	void update() override;
@@ -16,4 +19,3 @@ public:
 private:
 	ecs::entity_t text;
 };
-

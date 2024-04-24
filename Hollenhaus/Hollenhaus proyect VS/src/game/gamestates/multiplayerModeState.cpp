@@ -7,7 +7,6 @@
 
 MultiplayerModeState::MultiplayerModeState()
 {
-	
 }
 
 MultiplayerModeState::~MultiplayerModeState()
@@ -33,4 +32,3 @@ void MultiplayerModeState::onEnter()
 void MultiplayerModeState::onExit()
 {
 }
-

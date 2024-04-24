@@ -8,35 +8,35 @@ class BoxCollider;
 
 class EndTurnButton : public ComponentUpdate
 {
-    
 public:
-    EndTurnButton(){}
-    EndTurnButton(Turns::State buttonPropietary);
-    ~EndTurnButton();
+	EndTurnButton()
+	{
+	}
 
-    void initComponent() override;
-    void update() override;
+	EndTurnButton(Turns::State buttonPropietary);
+	~EndTurnButton() override;
 
-    //para decir que vamos a jugar contra la IA
-    void setIA(bool b);
+	void initComponent() override;
+	void update() override;
 
-    void setMultiplayer(bool b);
+	//para decir que vamos a jugar contra la IA
+	void setIA(bool b);
+
+	void setMultiplayer(bool b);
 
 private:
+	void ClickButton();
 
-    void ClickButton();
+	Transform* tr_;
+	BoxCollider* bc_;
 
-    Transform* tr_;
-    BoxCollider* bc_;
+	MatchManager* matchManager_;
 
-    MatchManager* matchManager_;
+	Turns::State buttonPropietary_; // Esto es temporal (o no)
 
-    Turns::State buttonPropietary_;   // Esto es temporal (o no)
+	Turns::State myMultiplayerTurn;
 
-    Turns::State myMultiplayerTurn; 
+	bool activeIA = false;
 
-    bool activeIA = false;
-
-    bool activeMultiplayer = false;
+	bool activeMultiplayer = false;
 };
-

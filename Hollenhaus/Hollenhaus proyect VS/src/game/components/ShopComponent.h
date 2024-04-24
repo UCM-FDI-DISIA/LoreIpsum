@@ -3,9 +3,10 @@
 #include <list>
 
 
-const int CARDS_IN_SHOP = 4; // Cantidad de cartas de la tienda.
-const int COST_PER_COST = 100; // Precio que suma el coste de la carta al precio total.
-const int COST_PER_VALUE = 50; // Precio que suma cada efecto al precio total. Se multiplica este numero por numero de efectos.
+constexpr int CARDS_IN_SHOP = 4; // Cantidad de cartas de la tienda.
+constexpr int COST_PER_COST = 100; // Precio que suma el coste de la carta al precio total.
+constexpr int COST_PER_VALUE = 50;
+// Precio que suma cada efecto al precio total. Se multiplica este numero por numero de efectos.
 
 class Card;
 class Button;
@@ -14,11 +15,10 @@ class Factory;
 class ShopComponent : public ComponentUpdate
 {
 public:
-
 	//------Constructora.
 	ShopComponent();
 	//------Destructora.
-	~ShopComponent();
+	~ShopComponent() override;
 
 	//------Inicializacion del componente.
 	void initComponent() override;
@@ -48,6 +48,7 @@ public:
 	void setTexts();
 	//------Actualiza los textos de dinero y precio de las cartas.
 	void updateTexts();
+
 private:
 	//----Guarda las CARDS_IN_SHOP cartas de la tienda.
 	int* shopCards;
@@ -77,4 +78,3 @@ private:
 	//
 	ecs::entity_t shopDialogue;
 };
-

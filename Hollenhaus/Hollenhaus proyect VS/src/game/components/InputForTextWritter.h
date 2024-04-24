@@ -7,7 +7,7 @@ class InputForTextWritter : public ComponentUpdate
 {
 public:
 	InputForTextWritter();
-	~InputForTextWritter();
+	~InputForTextWritter() override;
 
 	void initComponent() override;
 	void update() override;
@@ -15,4 +15,3 @@ public:
 private:
 	TextWritter* tw;
 };
-

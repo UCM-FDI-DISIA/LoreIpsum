@@ -6,13 +6,12 @@
 #include "../Namespaces.h"
 #include "../EffectCollection.h"
 
-Card::Card() 
+Card::Card()
 {
-
 }
 
-Card::Card(const Card& other) {
-
+Card::Card(const Card& other)
+{
 	cost = other.cost;
 	value = other.value;
 	sprite = other.sprite;
@@ -23,8 +22,8 @@ Card::Card(const Card& other) {
 	ent_ = other.ent_;
 
 	//copiar los efectos bien
-	for (auto& ef : other.effectsJSON) {
-
+	for (auto& ef : other.effectsJSON)
+	{
 		if (ef.directions().empty())
 			effects.push_back(
 				EffectCollection::getEffect(
@@ -51,7 +50,6 @@ Card::Card(const Card& other) {
 Card::Card(int id, int cost, int value, std::string& sprite, bool unblockable)
 	: id(id), cost(cost), value(value), sprite(sprite), unblockable(unblockable)
 {
-
 }
 
 // mete en la lisa de efectos el efecto indicado

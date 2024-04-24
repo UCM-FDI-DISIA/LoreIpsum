@@ -6,21 +6,17 @@ class BoxCollider;
 
 
 class ColliderRender :
-    public ComponentRender
+	public ComponentRender
 {
 public:
-    ColliderRender();
-    ~ColliderRender();
+	ColliderRender();
+	~ColliderRender() override;
 
-    void initComponent() override;
+	void initComponent() override;
 
-    void render() const;
+	void render() const override;
 
 private:
-
-    Transform* myTransform;
-    BoxCollider* myBoxCollider;
-    
-
+	Transform* myTransform;
+	BoxCollider* myBoxCollider;
 };
-

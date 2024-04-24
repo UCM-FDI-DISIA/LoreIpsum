@@ -4,8 +4,7 @@
 class MainMenuState : public GameState
 {
 public:
-
-	MainMenuState();		//Constructora
+	MainMenuState(); //Constructora
 
 	void update() override;
 	void render() const override;
@@ -24,4 +23,3 @@ private:
 	//Transicion -> City
 	//Salir
 };
-

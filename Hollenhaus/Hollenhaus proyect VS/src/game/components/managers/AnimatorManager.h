@@ -10,13 +10,14 @@ struct Animationl
 	tweeny::easing via;
 };
 
-class AnimatorManager: public ComponentUpdate
+class AnimatorManager : public ComponentUpdate
 {
 private:
 	std::list<Animationl> animationlist;
+
 public:
 	AnimatorManager();
-	~AnimatorManager();
+	~AnimatorManager() override;
 	void update() override;
 	void addAnimation(Animationl);
 };

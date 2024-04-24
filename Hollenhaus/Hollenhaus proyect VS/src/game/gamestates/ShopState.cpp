@@ -69,8 +69,8 @@ void ShopState::onEnter()
 
 	//------Texto de la tienda:
 	ecs::entity_t shopText = Instantiate(Vector2D(400, 30));
-	shopText->addComponent<TextComponent>("TIENDA", "8bit_size_40", SDL_Color({ 255, 255, 255, 255 }), 350,
-		Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	shopText->addComponent<TextComponent>("TIENDA", "8bit_size_40", SDL_Color({255, 255, 255, 255}), 350,
+	                                      Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	shopText->setLayer(1);
 
 	//-----Imagen de fondo:
@@ -96,25 +96,35 @@ void ShopState::onEnter()
 
 	//-----MONEDAS
 
-	posX.push_back(400); posY.push_back(500);
-	posX.push_back(420); posY.push_back(540);
-	posX.push_back(380); posY.push_back(525);
-	posX.push_back(480); posY.push_back(500);
-	posX.push_back(500); posY.push_back(540);
-	posX.push_back(570); posY.push_back(530);
-	posX.push_back(570); posY.push_back(500);
-	posX.push_back(590); posY.push_back(550);
-	posX.push_back(650); posY.push_back(555);
+	posX.push_back(400);
+	posY.push_back(500);
+	posX.push_back(420);
+	posY.push_back(540);
+	posX.push_back(380);
+	posY.push_back(525);
+	posX.push_back(480);
+	posY.push_back(500);
+	posX.push_back(500);
+	posY.push_back(540);
+	posX.push_back(570);
+	posY.push_back(530);
+	posX.push_back(570);
+	posY.push_back(500);
+	posX.push_back(590);
+	posY.push_back(550);
+	posX.push_back(650);
+	posY.push_back(555);
 
 	int a = getMoney();
 	int money = a / 100;
 
-	for (int i = 0; i < money; i++) {
+	for (int i = 0; i < money; i++)
+	{
 		createCoin(posX[i], posY[i]);
 	}
 
 	updateCoinsOnTable();
-	
+
 	//-----Cartas sobre la estanteria
 	//carta1
 	ecs::entity_t carta1 = Instantiate();
@@ -211,7 +221,7 @@ void ShopState::onEnter()
 	exitButton->addComponent<SpriteRenderer>("boton_flecha");
 	//exitButton->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exitButton->addComponent<Button>();
-	exitButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(1);});
+	exitButton->getComponent<Button>()->connectToButton([this] { GameStateMachine::instance()->setState(1); });
 
 
 	auto& sdl = *SDLUtils::instance();
@@ -255,9 +265,9 @@ ecs::entity_t ShopState::createCard(int id, Vector2D pos)
 {
 	// Hace LA carta
 	auto card = sdlutils().cards().at(std::to_string(id));
-	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
+	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(),
+	                                            card.effects());
 	return ent;
-
 }
 
 ecs::entity_t ShopState::createCoin(int x, int y)
@@ -284,9 +294,12 @@ void ShopState::makeCoinShine(int cardIndex, ecs::entity_t card, ecs::entity_t s
 
 	int nCoins = k / 100, i = 0;
 
-	while (i < nCoins) {
-		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr) {
-			card->getComponent<ShineComponent>()->addEnt(mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
+	while (i < nCoins)
+	{
+		if (mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>() != nullptr)
+		{
+			card->getComponent<ShineComponent>()->addEnt(
+				mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>(), "monedaIlu");
 			i++;
 		}
 	}
@@ -296,7 +309,8 @@ void ShopState::updateCoinsOnTable()
 {
 	int a = getMoney();
 	int money = a / 100;
-	for (int i = 0; i < money; i++) {
+	for (int i = 0; i < money; i++)
+	{
 		showCoin(mngr().getEntities(ecs::grp::COINS)[i]);
 	}
 }

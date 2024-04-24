@@ -17,21 +17,21 @@ void LobbyStatusIndicator::setStatus(ELobbyStatus lobbyStatus)
 
 	switch (status)
 	{
-	case LobbyStatusIndicator::Offline:
+	case Offline:
 		tc->setTxt("You are offline");
-		tc->setColor(SDL_Color({ 255, 0, 0, 0 }));
+		tc->setColor(SDL_Color({255, 0, 0, 0}));
 		break;
-	case LobbyStatusIndicator::SearchingForInvitations:
+	case SearchingForInvitations:
 		tc->setTxt("Searching for invitations...");
-		tc->setColor(SDL_Color({ 0, 0, 0, 0 }));
+		tc->setColor(SDL_Color({0, 0, 0, 0}));
 		break;
-	case LobbyStatusIndicator::InvitationSent:
+	case InvitationSent:
 		tc->setTxt("Invitation sent correctly");
-		tc->setColor(SDL_Color({ 0, 255, 0, 0 }));
+		tc->setColor(SDL_Color({0, 255, 0, 0}));
 		break;
-	case LobbyStatusIndicator::InvitationReceived:
+	case InvitationReceived:
 		tc->setTxt("InvitationReceived");
-		tc->setColor(SDL_Color({ 0, 0, 255, 0 }));
+		tc->setColor(SDL_Color({0, 0, 255, 0}));
 		break;
 	default:
 		break;

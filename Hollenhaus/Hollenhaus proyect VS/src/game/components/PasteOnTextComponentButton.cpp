@@ -18,7 +18,6 @@ PasteOnTextComponentButton::~PasteOnTextComponentButton()
 
 void PasteOnTextComponentButton::initComponent()
 {
-	
 	bc = ent_->getComponent<BoxCollider>();
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { clickButton(); });
 }
@@ -29,8 +28,8 @@ void PasteOnTextComponentButton::update()
 
 void PasteOnTextComponentButton::clickButton()
 {
-	if (bc->isCursorOver()) {
-
+	if (bc->isCursorOver())
+	{
 		// Open clipboard
 		OpenClipboard(nullptr);
 
@@ -38,7 +37,7 @@ void PasteOnTextComponentButton::clickButton()
 		HANDLE hData = GetClipboardData(CF_TEXT);
 
 		// Lock the handle to get the actual text pointer
-		char* pszText = static_cast<char*>(GlobalLock(hData));
+		auto pszText = static_cast<char*>(GlobalLock(hData));
 
 		// Save text in a string class instance
 		std::string text(pszText);

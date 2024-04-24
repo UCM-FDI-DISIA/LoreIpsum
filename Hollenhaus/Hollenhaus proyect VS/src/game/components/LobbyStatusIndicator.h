@@ -15,8 +15,8 @@ class BoxCollider;
 class LobbyStatusIndicator : public ComponentUpdate
 {
 public:
-
-	enum ELobbyStatus{
+	enum ELobbyStatus
+	{
 		Offline,
 		SearchingForInvitations,
 		InvitationSent,
@@ -24,14 +24,12 @@ public:
 	};
 
 	LobbyStatusIndicator(TextComponent* textComponent);
-	~LobbyStatusIndicator();
+	~LobbyStatusIndicator() override;
 
 	void setStatus(ELobbyStatus lobbyStatus);
 
 private:
-	
 	ELobbyStatus status;
 
 	TextComponent* tc;
-	
 };

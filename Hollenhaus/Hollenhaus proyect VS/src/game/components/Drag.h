@@ -7,37 +7,34 @@ class Transform;
 class BoxCollider;
 
 class Drag :
-    public ComponentUpdate
+	public ComponentUpdate
 {
 public:
-    Drag();
-    ~Drag();
+	Drag();
+	~Drag() override;
 
-    void initComponent() override;
+	void initComponent() override;
 
-    void update() override;
+	void update() override;
 
 private:
+	Transform* myTransform;
 
-    Transform* myTransform;
+	BoxCollider* myBoxCollider;
 
-    BoxCollider* myBoxCollider;
+	Vector2D initialMousePos;
+	Vector2D initialTransformPos;
 
-    Vector2D initialMousePos;
-    Vector2D initialTransformPos;
+	std::vector<std::function<bool(void)>> conditions;
 
-    std::vector<std::function<bool(void)>> conditions;
+	bool isDraged = false;
 
-    bool isDraged = false;
+	void OnLeftClickDown();
 
-    void OnLeftClickDown();
+	void OnLeftClickUp();
 
-    void OnLeftClickUp();
-
-    bool conditionsValid();
+	bool conditionsValid();
 
 public:
-
-    void addCondition(std::function<bool(void)> condition);
+	void addCondition(std::function<bool(void)> condition);
 };
-

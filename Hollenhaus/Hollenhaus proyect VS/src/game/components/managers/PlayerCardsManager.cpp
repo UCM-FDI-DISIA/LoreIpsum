@@ -39,10 +39,12 @@ void PlayerCardsManager::drawCard()
 	{
 		const auto matchManager = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
 
-		const Players::Owner turnOwner = 
-			matchManager->getActualState() == Turns::J1 ? Players::PLAYER1 :
-			matchManager->getActualState() == Turns::J2 ? Players::PLAYER2 :
-			Players::NONE;
+		const Players::Owner turnOwner =
+			matchManager->getActualState() == Turns::J1
+				? Players::PLAYER1
+				: matchManager->getActualState() == Turns::J2
+				? Players::PLAYER2
+				: Players::NONE;
 
 		if (deck_->deckSize() > 0 &&
 			ent_->getComponent<BoxCollider>()->isCursorOver() &&
@@ -58,15 +60,15 @@ void PlayerCardsManager::drawCard()
 
 
 			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
-			if (ent != nullptr && ent->hasComponent<TutorialManager>()) {
+			if (ent != nullptr && ent->hasComponent<TutorialManager>())
+			{
 				// AQUI INES -> esto se tiene que ir tbh
-				
-				ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::DRAW_CARD);
-				if(ent->hasComponent<TutorialBoardManager>())
+
+				ent->getComponent<TutorialManager>()->tutorialActionEnded(
+					Tutorials::Tutorials::BOARD, Tutorials::Board::DRAW_CARD);
+				if (ent->hasComponent<TutorialBoardManager>())
 					ent->getComponent<TutorialBoardManager>()->addToHand(c);
 			}
-			
-
 		}
 	}
 }

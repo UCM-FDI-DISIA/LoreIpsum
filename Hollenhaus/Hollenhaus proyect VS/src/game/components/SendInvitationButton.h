@@ -8,7 +8,7 @@ class SendInvitationButton : public ComponentUpdate
 {
 public:
 	SendInvitationButton();
-	~SendInvitationButton();
+	~SendInvitationButton() override;
 
 	void initComponent() override;
 	void update() override;
@@ -19,4 +19,3 @@ private:
 	BoxCollider* bc;
 	SendIPFromTextComponent* getIP;
 };
-

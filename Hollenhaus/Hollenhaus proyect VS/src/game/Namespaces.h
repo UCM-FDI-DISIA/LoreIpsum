@@ -1,11 +1,10 @@
- #pragma once
-
-
+#pragma once
 
 
 namespace Cards
 {
-	enum State {
+	enum State
+	{
 		ON_HAND,
 		ON_HOVER,
 		ON_DRAG,
@@ -16,16 +15,18 @@ namespace Cards
 
 namespace Turns
 {
-	enum State {
-        J1,
-        J2,
-        Finish,
+	enum State
+	{
+		J1,
+		J2,
+		Finish,
 		IA,
 		J2_MULTIPLAYER
-    };
+	};
 }
 
-namespace Effects {
+namespace Effects
+{
 	enum Direction
 	{
 		Up,
@@ -37,11 +38,16 @@ namespace Effects {
 
 	enum Type
 	{
-		Esquina,		// 0
-		Centro,			// 1
-		Flecha,			// 2
-		Superflecha,	// 3
-		Block,			// 4
+		Esquina,
+		// 0
+		Centro,
+		// 1
+		Flecha,
+		// 2
+		Superflecha,
+		// 3
+		Block,
+		// 4
 		Unblockable,
 
 		_NO_DISCARD_
@@ -53,8 +59,10 @@ namespace Players
 	enum Owner
 	{
 		NONE,
-		PLAYER1,//jugador?
-		PLAYER2,//IA?
+		PLAYER1,
+		//jugador?
+		PLAYER2,
+		//IA?
 		PLAYER2_MULTIPLAYER,
 		NULO,
 		IA
@@ -63,7 +71,8 @@ namespace Players
 
 namespace Text
 {
-	enum BoxPivotPoint {
+	enum BoxPivotPoint
+	{
 		LeftTop,
 		LeftCenter,
 		LeftBot,
@@ -75,20 +84,26 @@ namespace Text
 		CenterBot
 	};
 
-	enum TextAlignment {
+	enum TextAlignment
+	{
 		Left,
 		Center,
 		Right
 	};
 }
 
-namespace DialogueEvents 
+namespace DialogueEvents
 {
-	enum Events {
-		None,				// No ocurre nada
-		ChangeScene,		// Evento para cambiar de escena
-		StartAnimation,		// Evento para lanzar una animaci�n
-		ConfirmMatchPopUp,	// Evento para mostrar una ventana donde el jugador acepta o rechaza una partida inminente
+	enum Events
+	{
+		None,
+		// No ocurre nada
+		ChangeScene,
+		// Evento para cambiar de escena
+		StartAnimation,
+		// Evento para lanzar una animaci�n
+		ConfirmMatchPopUp,
+		// Evento para mostrar una ventana donde el jugador acepta o rechaza una partida inminente
 		ActionEnded
 	};
 }
@@ -101,10 +116,12 @@ namespace JsonData
 		using Directions = std::vector<Effects::Direction>;
 
 		CardEffect(Effects::Type t, int v, Directions& d)
-			: type_(t), value_(v), directions_(d) {}
+			: type_(t), value_(v), directions_(d)
+		{
+		}
 
-		Effects::Type type() const	{ return type_; }
-		int value() const	{ return value_; }
+		Effects::Type type() const { return type_; }
+		int value() const { return value_; }
 		Directions directions() const { return directions_; }
 
 	private:
@@ -113,17 +130,21 @@ namespace JsonData
 		Directions directions_;
 	};
 
-	struct CardData {
+	struct CardData
+	{
 		CardData();
+
 		CardData(int id, int c, int v, std::string& s, bool u, std::vector<CardEffect>& e)
-			: id_(id), cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e) {}
+			: id_(id), cost_(c), value_(v), sprite_(s), unblockable_(u), effects_(e)
+		{
+		}
 
 		// getters con nombres simplificados para mas facil acceso desde sdlutils
-		int id() const				{ return id_; }
-		int cost() const			{ return cost_; }
-		int value() const			{ return value_; }
-		std::string& sprite()		{ return sprite_; }
-		bool unblockable() const	{ return unblockable_; }
+		int id() const { return id_; }
+		int cost() const { return cost_; }
+		int value() const { return value_; }
+		std::string& sprite() { return sprite_; }
+		bool unblockable() const { return unblockable_; }
 		std::vector<CardEffect>& effects() { return effects_; }
 
 	private:
@@ -135,13 +156,16 @@ namespace JsonData
 		std::vector<CardEffect> effects_;
 	};
 
-	struct DialogueEventS {
+	struct DialogueEventS
+	{
 		DialogueEventS();
+
 		DialogueEventS(int tg, int t, int s) :
 			timing(tg),
 			type(t),
-			scene(s) 
-		{};
+			scene(s)
+		{
+		};
 
 		int getType() { return type; }
 		int getScene() { return scene; }
@@ -149,21 +173,24 @@ namespace JsonData
 	private:
 		int timing, type;
 		int scene;
-
 	};
 
 
-	struct NodeData {
+	struct NodeData
+	{
 		NodeData();
-		NodeData(const int nodeID, const std::string& text, const DialogueEvents::Events nodeEventsStart, 
-			const DialogueEvents::Events nodeEventsFinish, std::vector<DialogueEventS>& es, std::vector<DialogueEventS>& ef) :
+
+		NodeData(const int nodeID, const std::string& text, const DialogueEvents::Events nodeEventsStart,
+		         const DialogueEvents::Events nodeEventsFinish, std::vector<DialogueEventS>& es,
+		         std::vector<DialogueEventS>& ef) :
 			nodeID_(nodeID),
 			text_(text),
 			eventStart_(nodeEventsStart),
 			eventFinish_(nodeEventsFinish),
 			eventsStart_(es),
 			eventsFinish_(ef)
-		{};
+		{
+		};
 
 		int NodeID() { return nodeID_; }
 		std::string& Text() { return text_; }
@@ -182,12 +209,15 @@ namespace JsonData
 		std::vector<DialogueEventS> eventsFinish_;
 	};
 
-	struct ConvoData {
+	struct ConvoData
+	{
 		ConvoData();
+
 		ConvoData(const int convoID, const bool autoc, const std::vector<NodeData>& nodes) :
 			convoID_(convoID), auto_(autoc),
 			nodes_(nodes)
-		{};
+		{
+		};
 
 		int ConvoID() { return convoID_; }
 		std::vector<NodeData>& NodesVector() { return nodes_; }
@@ -201,39 +231,46 @@ namespace JsonData
 	};
 
 	// Cada instancia de DialogueData es un owner con todas sus conversaciones y nodos correspondientes a cada conversacion
-	struct DialogueData {
+	struct DialogueData
+	{
 		DialogueData();
+
 		DialogueData(const std::string& NPCName, const std::vector<ConvoData>& convos) :
 			NPCName_(NPCName),
 			convos_(convos)
-		{};
+		{
+		};
 
 		std::string& NPCName() { return NPCName_; }
 		std::vector<ConvoData>& ConvosVector() { return convos_; }
 		ConvoData& Convo(int n) { return convos_[n]; }
 		int ID() { return NPCID_; }
+
 	private:
 		std::string NPCName_;
 		int NPCID_;
 		std::vector<ConvoData> convos_;
-
 	};
 
-	struct NPCData {
+	struct NPCData
+	{
 		NPCData();
-		NPCData(int id, std::string name, std::string s, float sx, float sy, int px, float py, float t, int scen, int lay) :
-			NPCID_(id), name(name), sprite(s), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t), scene(scen), layer(lay) 
-		{};
+
+		NPCData(int id, std::string name, std::string s, float sx, float sy, int px, float py, float t, int scen,
+		        int lay) :
+			NPCID_(id), name(name), sprite(s), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t), scene(scen),
+			layer(lay)
+		{
+		};
 
 		int getID() { return NPCID_; }
 		std::string getName() { return name; }
 		std::string getSprite() { return sprite; }
-		Vector2D getScale() { return { scaleX, scaleY }; }
-		Vector2D getPos() { return { posX, posY }; }
+		Vector2D getScale() { return {scaleX, scaleY}; }
+		Vector2D getPos() { return {posX, posY}; }
 		int getType() { return type; }
 		int getScene() { return scene; }
 		int getLayer() { return layer; }
-
 
 	private:
 		int NPCID_;
@@ -244,29 +281,35 @@ namespace JsonData
 		int type;
 		int scene;
 		int layer;
-
 	};
 
-	struct KeyData {
-		KeyData() {};
-		KeyData(std::string text) : text_(text) {};
+	struct KeyData
+	{
+		KeyData()
+		{
+		};
+
+		KeyData(std::string text) : text_(text)
+		{
+		};
 
 		std::string text() { return text_; }
+
 	private:
 		std::string text_;
 	};
-
 }
 
-namespace Tutorials {
-
-	enum Tutorials {
+namespace Tutorials
+{
+	enum Tutorials
+	{
 		BOARD,
 		DECKBUILDER,
-
 	};
 
-	enum Board {
+	enum Board
+	{
 		BOARD_NONE,
 		INIT,
 		CARD,
@@ -287,8 +330,8 @@ namespace Tutorials {
 		FREEDOM
 	};
 
-	enum Deckbuilder {
+	enum Deckbuilder
+	{
 		DECKBUILDER_NONE
-
 	};
 }

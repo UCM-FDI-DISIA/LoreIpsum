@@ -7,7 +7,7 @@ class TypeWriter : public ComponentUpdate
 {
 public:
 	TypeWriter(int writingSpeed);
-	~TypeWriter();
+	~TypeWriter() override;
 
 	void initComponent() override;
 	void update() override;
@@ -27,5 +27,4 @@ private:
 	std::string text, finaltext;
 
 	void setText();
-
 };

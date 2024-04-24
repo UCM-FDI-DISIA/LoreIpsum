@@ -35,7 +35,8 @@ void DeckBuildingState::update()
 {
 	GameState::update();
 
-	std::string cardsInMaze = std::to_string(pizarra_->getCantCartds()) + " / " + std::to_string(MAX_CARDS_MAZE) + "\n minimo: " + std::to_string(MIN_CARDS_MAZE);
+	std::string cardsInMaze = std::to_string(pizarra_->getCantCartds()) + " / " + std::to_string(MAX_CARDS_MAZE) +
+		"\n minimo: " + std::to_string(MIN_CARDS_MAZE);
 
 	cantCards_->setTxt(cardsInMaze);
 }
@@ -70,12 +71,15 @@ void DeckBuildingState::onEnter()
 	// ---- TEXTO ----
 	// Nombre del estado:
 	ecs::entity_t officeText = Instantiate(Vector2D(210, 10));
-	officeText->addComponent<TextComponent>("DECKBUILDING", "8bit_size_24", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	officeText->addComponent<TextComponent>("DECKBUILDING", "8bit_size_24", SDL_Color({255, 255, 255, 255}), 350,
+	                                        Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	officeText->setLayer(1);
 
 	// Cantidad de cartas:
 	ecs::entity_t cantCards = Instantiate(Vector2D(260, 140));
-	cantCards_ = cantCards->addComponent<TextComponent>("xx / xx\nMinimo: xx", "8bit_size_24", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	cantCards_ = cantCards->addComponent<TextComponent>("xx / xx\nMinimo: xx", "8bit_size_24",
+	                                                    SDL_Color({255, 255, 255, 255}), 350,
+	                                                    Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	cantCards->setLayer(1);
 
 	// ---- FONDO ----
@@ -107,7 +111,7 @@ void DeckBuildingState::onEnter()
 
 	// ---- BOTONES ----
 #pragma region BOTONES
-// ---- Salir:
+	// ---- Salir:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
 	exit->addComponent<SpriteRenderer>("boton_flecha");
@@ -159,7 +163,7 @@ void DeckBuildingState::onEnter()
 	botPatras->addComponent<Button>();
 	botPatras->getComponent<Button>()->connectToButton([this]() { drawer_->drawerPatras(); });
 	botPatras->setLayer(2);
-#pragma endregion 
+#pragma endregion
 
 	// ---- PIZARRA ----
 #pragma region PIZARRA
@@ -257,7 +261,8 @@ ecs::entity_t DeckBuildingState::createCard(int id, Vector2D pos)
 {
 	// Hace LA carta segun su id, en la pos que se pida
 	auto card = sdlutils().cards().at(std::to_string(id));
-	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
+	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(),
+	                                            card.effects());
 	return ent;
 }
 #pragma endregion

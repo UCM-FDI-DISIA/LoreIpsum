@@ -21,21 +21,19 @@ NextText::NextText()
 
 NextText::~NextText()
 {
-
 }
 
 void NextText::initComponent()
 {
-
 	hasBC = false;
 	//boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
 	//assert(boxCollider_ != nullptr);
 
-	if (boxCollider_ != nullptr) {
+	if (boxCollider_ != nullptr)
+	{
 		boxCollider_ = ent_->getComponent<BoxCollider>(); //collider del dialogo
 		assert(boxCollider_ != nullptr);
 		hasBC = true;
-
 	}
 
 	dialogueReader_ = ent_->getComponent<DialogueReader>();
@@ -62,7 +60,7 @@ void NextText::OnLeftClickUp()
 
 void NextText::reactToClick()
 {
-	if (!dead && hasBC) 
+	if (!dead && hasBC)
 	{
 		if (boxCollider_->isCursorOver())
 		{
@@ -76,20 +74,19 @@ void NextText::reactToClick()
 
 void NextText::callNextNode()
 {
-	if (typeWriter_->ended()) {
+	if (typeWriter_->ended())
+	{
 		//TuVieja("Cambio de nodo.");
 		dialogueReader_->NextNode();
 	}
-	else {
-
+	else
+	{
 		typeWriter_->finishTypewrite();
 	}
 }
 
 void NextText::callFullText()
 {
-
-
 }
 
 void NextText::setDead(bool a)
@@ -102,6 +99,3 @@ void NextText::setCollider(BoxCollider* coll)
 	boxCollider_ = coll;
 	hasBC = true;
 }
-
-
-

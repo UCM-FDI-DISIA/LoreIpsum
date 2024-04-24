@@ -6,7 +6,7 @@
 #include <array>
 
 // cuantas cartas hay por cajon
-const int CANT_CARTAS_MOSTRADAS_CAJON = 6;
+constexpr int CANT_CARTAS_MOSTRADAS_CAJON = 6;
 
 class DrawerManager : public ComponentUpdate
 {
@@ -40,7 +40,7 @@ private:
 public:
 	// ---- Constructora/Destructora ----
 	DrawerManager();
-	~DrawerManager();
+	~DrawerManager() override;
 
 	// ---- Metodos heredados ----
 	void update() override;

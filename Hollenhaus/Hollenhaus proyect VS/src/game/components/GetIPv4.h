@@ -6,15 +6,13 @@
 class GetIPv4 : public ComponentUpdate
 {
 public:
-
 	GetIPv4();
-	~GetIPv4();
+	~GetIPv4() override;
 
 	std::string GetIP() { return ipv4; }
-private:
 
+private:
 	std::string ipv4;
 
 	std::string ReadIPv4();
 };
-

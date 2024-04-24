@@ -6,21 +6,19 @@ class TextComponent;
 
 
 class MultiplayerEndGameState
-    :public GameState
+	: public GameState
 {
 public:
-    MultiplayerEndGameState();
-    virtual ~MultiplayerEndGameState();
+	MultiplayerEndGameState();
+	~MultiplayerEndGameState() override;
 
-    void onEnter() override;
-    void onExit() override;
+	void onEnter() override;
+	void onExit() override;
 
 private:
+	void setWindow(int lastWiner);
 
-    void setWindow(int lastWiner);
+	void swapColor(TextComponent* tc, bool b);
 
-    void swapColor(TextComponent* tc, bool b);
-
-    std::string _background, _text;
+	std::string _background, _text;
 };
-

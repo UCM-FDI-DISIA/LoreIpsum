@@ -3,15 +3,21 @@
 class Card;
 
 class CardFactory_v1 :
-    public CardFactory
+	public CardFactory
 {
 public:
-	CardFactory_v1() : CardFactory() {};
-	~CardFactory_v1() {};
+	CardFactory_v1() : CardFactory()
+	{
+	};
 
-	ecs::entity_t createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, 
-		bool unblockable, std::vector<JsonData::CardEffect>& effects, bool bocarriba = true) override;
-	
+	~CardFactory_v1() override
+	{
+	};
+
+	ecs::entity_t createCard(int id, Vector2D pos, int cost, int value, std::string& sprite,
+	                         bool unblockable, std::vector<JsonData::CardEffect>& effects,
+	                         bool bocarriba = true) override;
+
 	ecs::entity_t createHand() override;
 	ecs::entity_t createDeck() override;
 	ecs::entity_t createDeckJ2() override;
@@ -34,4 +40,3 @@ private:
 	void addDeckImage(int initX, int initY, bool opposite = false);
 	void addDeckImageChild(ecs::entity_t card);
 };
-

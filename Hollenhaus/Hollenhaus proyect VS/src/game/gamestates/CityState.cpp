@@ -65,8 +65,6 @@ void CityState::onEnter()
 	);
 
 
-
-
 	//------Texto de la ciudad:
 	ecs::entity_t cityText = Instantiate(Vector2D(500, 30));
 	cityText->addComponent<TextComponent>("CIUDAD", "8bit_size_40", SDL_Color({255, 255, 255, 255}), 350,

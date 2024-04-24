@@ -7,7 +7,6 @@
 
 TutorialState::TutorialState()
 {
-	
 }
 
 TutorialState::~TutorialState()

@@ -5,13 +5,13 @@
 class CheckMazeMenuState : public GameState
 {
 public:
-    CheckMazeMenuState();
-    virtual ~CheckMazeMenuState();
+	CheckMazeMenuState();
+	~CheckMazeMenuState() override;
 
-    void refresh() override;
-    void update() override;
-    void render() const override;
+	void refresh() override;
+	void update() override;
+	void render() const override;
 
-    void onEnter() override;
-    void onExit() override;
+	void onEnter() override;
+	void onExit() override;
 };
