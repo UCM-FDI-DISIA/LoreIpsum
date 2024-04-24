@@ -16,7 +16,7 @@ ecs::entity_t Factory::createCard(int id, Vector2D pos, int cost, int value, std
 		throw "no existe cardFactory";
 	}
 
-	return cardFactory->createCard(pos, cost, value, sprite, unblockable, effects);
+	return cardFactory->createCard(id, pos, cost, value, sprite, unblockable, effects);
 
 }
 ecs::entity_t Factory::createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)

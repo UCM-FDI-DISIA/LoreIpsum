@@ -485,7 +485,7 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 												redDecision = eventObj["rdecision"]->AsNumber();
 											}
 
-											switch (timing) {
+											/*switch (timing) {
 											case 0:
 												eventsS.emplace_back(timing, type, scene, greenDecision, redDecision);
 												break;
@@ -494,7 +494,7 @@ void SDLUtils::loadDialogues(JSONObject rootDialogues, std::string filenameDialo
 												break;
 											default:
 												break;
-											}
+											}*/
 										}
 									}
 									nodes.emplace_back(nodeID, text, eventStart, eventFinish, eventsS, eventsF);
