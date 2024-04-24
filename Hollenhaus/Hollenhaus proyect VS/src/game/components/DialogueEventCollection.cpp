@@ -6,6 +6,7 @@
 #include "../factories/DecisionFactory_V0.h"
 #include "../TutorialManager.h"
 #include "../components/managers/TutorialBoardManager.h"
+#include "../components/Button.h"
 
 DialogueEventCollection::DialogueEventCollection()
 {
@@ -52,5 +53,13 @@ void DialogueEventCollection::ActionEnded()
 	ent->getComponent<TutorialManager>()->actionEnded();
 
 	// TUTORIAL BOARD MANAGER REF
+}
 
+void DialogueEventCollection::SetBossActive()
+{
+	ecs::entity_t ent = Instantiate(Vector2D(0, 0));
+	ent->addComponent<BoxCollider>();
+	ent->addComponent<Button>()->connectToButton([]() {
+		GameStateMachine::instance()->setState(6);
+	});
 }

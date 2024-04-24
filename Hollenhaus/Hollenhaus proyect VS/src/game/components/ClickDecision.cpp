@@ -69,9 +69,10 @@ void ClickDecision::TakeDecision()
 		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
 
 		break;
-	case 3: // Por si las moscas y alguien necestia mas casos.
+	case 3: // Para activar combate con la tarotisa :) (Jimbo)
 		TuVieja("Buenos dias caso 3.");
-
+		parent_->getComponent<DialogueEventCollection>()->SetBossActive();
+		break;
 	default:
 		TuVieja("Esta decision no existe. Añadir en ClickDecision.cpp");
 		break;

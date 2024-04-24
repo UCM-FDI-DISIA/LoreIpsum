@@ -21,6 +21,9 @@ public:
 	//ActionEnded
 	static void ActionEnded();
 
+	//Activar tarotisa
+	static void SetBossActive();
+
 	//para llamar a decisionFactory
 	Factory* factory;
 
