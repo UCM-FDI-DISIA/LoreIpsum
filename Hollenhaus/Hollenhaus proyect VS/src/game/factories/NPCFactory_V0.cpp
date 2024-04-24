@@ -21,7 +21,7 @@ ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t par
 	npc->setLayer(info.getLayer());
 	if (info.getSprite() != "whiteRect"){
 		npc->addComponent<ShineComponent>();
-		npc->getComponent<ShineComponent>()->addEnt(npc->getComponent<SpriteRenderer>(), info.getSprite() + "_brilli");
+		npc->getComponent<ShineComponent>()->addEnt(npc->getComponent<SpriteRenderer>(), info.shine());
 	}
 
     return npc;
