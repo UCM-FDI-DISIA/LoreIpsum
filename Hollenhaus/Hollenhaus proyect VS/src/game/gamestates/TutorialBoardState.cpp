@@ -104,7 +104,7 @@ void TutorialBoardState::setBoard()
 		static_cast<MatchStateUIFactory*>(new MatchStateUIFactory_v0())
 	);
 
-	// Factor�a del tablero. Generamos el tablero de juego.
+	// Factoria del tablero. Generamos el tablero de juego.
 	ecs::entity_t boardEntity = factory->createBoard();
 	BoardManager* boardManagerComponent = boardEntity->getComponent<BoardManager>();
 
@@ -123,7 +123,7 @@ void TutorialBoardState::setBoard()
 	dragManager->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::DRAG_MANAGER, dragManager);
 
-	// Factor�a de cartas. Con ella generamos la mano inicial
+	// Factoria de cartas. Con ella generamos la mano inicial
 	ecs::entity_t deckPlayer1 = factory->createDeck();
 	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
 
@@ -172,7 +172,7 @@ void TutorialBoardState::setBoard()
 
 #pragma region Seccion IA
 
-	//crear la entidad y a�adirle el componente
+	//crear la entidad y anyadirle el componente
 	ecs::entity_t IA_controler = Instantiate();
 	IA_manager* ia_managerComponent = IA_controler->addComponent<IA_manager>();
 
@@ -230,4 +230,3 @@ void TutorialBoardState::initTutorial()
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
 
 }
-

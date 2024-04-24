@@ -1,12 +1,11 @@
 #pragma once
-
 #include "GameState.h"
-
-class OptionsMainMenuState : public GameState
+class KeyMenuState :
+    public GameState
 {
 public:
-    OptionsMainMenuState();
-    virtual ~OptionsMainMenuState();
+    KeyMenuState();
+    ~KeyMenuState();
 
     void refresh() override;
     void update() override;
@@ -14,8 +13,5 @@ public:
 
     void onEnter() override;
     void onExit() override;
-
-private:
-    ecs::entity_t returnButton;
 };
 

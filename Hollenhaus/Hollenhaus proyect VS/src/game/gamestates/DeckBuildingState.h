@@ -20,20 +20,19 @@ public:
 	void onEnter() override;
 	void onExit() override;
 
+	void onPauseDB();
+
 	void moveToPizarra(Card* card);
 	void moveToDrawer(Card* card);
 
 	ecs::entity_t createCard(int id, Vector2D pos) override;
 
 private:
+	ecs::entity_t rice;
 	PizarraManager* pizarra_;
 	DrawerManager* drawer_;
-
 	TextComponent* cantCards_;
-
 	Factory* factory;
-	//Cambiar a combate (Tarotista) -> Teléfono
-	//Gestionar mazo
-	//Volver a CIU
-};
 
+	bool paused;
+};

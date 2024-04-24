@@ -10,6 +10,7 @@ public:
 	MatchStateUIFactory() {};
 	virtual ~MatchStateUIFactory() {};
 
+	virtual ecs::entity_t createVisual_KeyButton(int posX, int posY) = 0;
 	virtual ecs::entity_t createVisual_NextTurnButton(int posX, int posY) = 0;
 	virtual ecs::entity_t createVisual_ActionPointsCounter(int posX, int posY) = 0;
 	virtual ecs::entity_t createVisual_ScoreCounter(int posX, int posY, SDL_Color color) = 0;

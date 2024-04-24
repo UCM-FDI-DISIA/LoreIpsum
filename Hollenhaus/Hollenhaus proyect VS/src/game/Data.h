@@ -31,6 +31,7 @@ private:
 
 	// ---- FLUJO ----
 	int currentMoney = 0,
+		currentKeys = 0,
 		currentCase = 0,
 		currentSouls = 0,
 		winner = 0,
@@ -83,6 +84,8 @@ public:
 	//----Dinero:
 	void AddMoney(int m);
 	void SubtractMoney(int m);
+	//---Leyenda:
+	void AddKey();
 	//----Almas:
 	void AddSouls(int s);
 	//----Caso:
@@ -113,7 +116,9 @@ public:
 	//----NPCs:
 	const std::list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
 	//----Dinero:
-	const int GetMoney() const  { return currentMoney; }
+	const int GetMoney() { return currentMoney; }
+	//----Leyenda:
+	int GetKeys() const { return currentKeys; }
 	//----Almas:
 	const int GetSouls() { return currentSouls; };
 	//----Caso:

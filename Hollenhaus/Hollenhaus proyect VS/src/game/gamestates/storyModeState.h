@@ -12,4 +12,11 @@ public:
 
     void onEnter() override;
     void onExit() override;
+
+private:
+
+    ecs::entity_t newGameButton;
+    ecs::entity_t continueButton;
+    ecs::entity_t returnButton;
+
 };

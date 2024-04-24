@@ -3,14 +3,20 @@
 #include <vector>
 
 const int COIN_VALUE = 100; // Valor de cada moneda.
+const int MIN_Y_POS = 490; // Minima posicion de Y donde  puede aparecer una moneda.
+const int MAX_Y_POS = 550; // Maxima posicion en Y donde puede aparecer una moneda.
+const int MIN_X_POS = 200; // Minima posicion de X donde  puede aparecer una moneda.
+const int MAX_X_POS = 600; // Maxima posicion en X donde puede aparecer una moneda.
+
 
 class Factory;
+class RandomNumberGenerator;
 
 class ShopState : public GameState
 {
 public:
-
-	ShopState();	//Constructora
+	// Constructora.
+	ShopState();	
 
 	void update() override;
 	void render() const override;
@@ -19,28 +25,45 @@ public:
 	void onEnter() override;
 	void onExit() override;
 
-	void cardSelected(int prize) override;
-	void deSelected() override;
 
+	void onPauseSH();
+
+
+	//----Metodo que se llamada desde el ShopComponent cuando una carta se selecciona para que se ilumninen las monedas correspondientes.
+	void cardSelected(int prize) override;
+	//----Metodo que se llamada desde el ShopComponent cuando se compra o no una carta para que se dejen de iluminar monedas y para resetear su cantidad dependiendo del dinero del jugador.
+	void deSelected() override;
+	//----Hace que nCoins se iluminen.
 	void shine(int nCoins);
 
 	ecs::entity_t createCard(int id, Vector2D pos) override;
 
-	ecs::entity_t createCoin(int x, int y);
+	//----Dada una moneda cambia su textura para que se ilumnine.
 	void showCoin(ecs::entity_t coinToShow);
-	void makeCoinShine(int cardIndex, ecs::entity_t card, ecs::entity_t shopMngr);
-	void updateCoinsOnTable();
+	//----Dada una moneda cambia su textura para que se deje de iluminar.
+	void hideCoin(ecs::entity_t coinToHide);
+
+	//----Settea el manager de la decision de comprar.
+	void setDecisionManager();
+
+	//----Crea las monedas al principio al entrar al estado.
+	void createCoins();
+	//----Crea una moneda.
+	ecs::entity_t createCoin(int x, int y);
+	//----Resetea el numero de monedas en la mesa.
+	void updateCoins();
 
 
 private:
 	Factory* factory;
 
-	std::vector<int> posX;
-	std::vector<int> posY;
+	ecs::entity_t manager; // Manager de la decision de comprar.
+	RandomNumberGenerator& rand_; // Para generar numeros aleatorios.
 
-	//std::list<ecs::entity_t> coins;
-	//Volver a la ciudad
-	//Comprar ??
-	//Dinero  ??
+	//examen ig 3 horas.
+	//teoria : esto hace tal eso hace eso, textura hace nsq. relacionado con la infomatica grafica.pipeline, vistas... 30
+	//pratica : la practica como base. 70
+	// simulacro de examen el dia 8.
+	// hace falta aprobar las dos partes para poder aprobar.
 };
 
