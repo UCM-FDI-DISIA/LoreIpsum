@@ -65,4 +65,6 @@ void TransitionTextMenuState::onEnter()
 
 void TransitionTextMenuState::onExit()
 {
+	GameStateMachine::instance()->getMngr()->Free();
+
 }

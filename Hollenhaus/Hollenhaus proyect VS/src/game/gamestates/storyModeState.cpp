@@ -49,7 +49,7 @@ void StoryModeState::onEnter()
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	newGameButton->addComponent<NPC>(11, 0);
+	newGameButton->addComponent<NPC>(15, 0);
 	
 	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 130));
 	continueButton->addComponent<TextComponent>("CONTINUAR", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
@@ -61,4 +61,6 @@ void StoryModeState::onEnter()
 
 void StoryModeState::onExit()
 {
+	GameStateMachine::instance()->getMngr()->Free();
+
 }
