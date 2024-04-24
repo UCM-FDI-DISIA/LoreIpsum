@@ -82,7 +82,7 @@ namespace Text
 	};
 }
 
-namespace DialogueEvents 
+namespace DialogueEvents
 {
 	enum Events {
 		None,				// No ocurre nada
@@ -103,8 +103,8 @@ namespace JsonData
 		CardEffect(Effects::Type t, int v, Directions& d)
 			: type_(t), value_(v), directions_(d) {}
 
-		Effects::Type type() const	{ return type_; }
-		int value() const	{ return value_; }
+		Effects::Type type() const { return type_; }
+		int value() const { return value_; }
 		Directions directions() const { return directions_; }
 
 	private:
@@ -137,25 +137,30 @@ namespace JsonData
 
 	struct DialogueEventS {
 		DialogueEventS();
-		DialogueEventS(int tg, int t, int s) :
+		DialogueEventS(int tg, int t, int s, int gd, int rd) :
 			timing(tg),
 			type(t),
-			scene(s) 
+			scene(s),
+			greenDecision(gd),
+			redDecision(rd)
 		{};
 
 		int getType() { return type; }
 		int getScene() { return scene; }
+		int getGreenDecision() { return greenDecision; }
+		int getredDecision() { return redDecision; }
 
 	private:
 		int timing, type;
 		int scene;
+		int greenDecision, redDecision;
 
 	};
 
 
 	struct NodeData {
 		NodeData();
-		NodeData(const int nodeID, const std::string& text, const DialogueEvents::Events nodeEventsStart, 
+		NodeData(const int nodeID, const std::string& text, const DialogueEvents::Events nodeEventsStart,
 			const DialogueEvents::Events nodeEventsFinish, std::vector<DialogueEventS>& es, std::vector<DialogueEventS>& ef) :
 			nodeID_(nodeID),
 			text_(text),
@@ -221,13 +226,14 @@ namespace JsonData
 
 	struct NPCData {
 		NPCData();
-		NPCData(int id, std::string name, std::string s, float sx, float sy, int px, float py, float t, int scen, int lay) :
-			NPCID_(id), name(name), sprite(s), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t), scene(scen), layer(lay) 
+		NPCData(int id, std::string name, std::string s, std::string shine, float sx, float sy, int px, float py, float t, int scen, int lay) :
+			NPCID_(id), name(name), sprite(s), shineSprite(shine), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t), scene(scen), layer(lay)
 		{};
 
 		int getID() { return NPCID_; }
 		std::string getName() { return name; }
 		std::string getSprite() { return sprite; }
+		std::string shine() { return shineSprite; }
 		Vector2D getScale() { return { scaleX, scaleY }; }
 		Vector2D getPos() { return { posX, posY }; }
 		int getType() { return type; }
@@ -239,6 +245,7 @@ namespace JsonData
 		int NPCID_;
 		std::string name;
 		std::string sprite;
+		std::string shineSprite;
 		float scaleX, scaleY;
 		float posX, posY;
 		int type;

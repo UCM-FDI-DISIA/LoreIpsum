@@ -133,6 +133,12 @@ void Data::AddMoney(int m) {
 void Data::SubtractMoney(int m) {
 	currentMoney -= m;
 }
+
+void Data::AddKey()
+{
+	currentKeys++;
+}
+
 //----Almas:
 void Data::AddSouls(int s) {
 	currentSouls += s;

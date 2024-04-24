@@ -120,7 +120,7 @@
             {
               "nodeID": 4,
               "text": "vamos, el coach rcibiendo un balon",
-              "eventStart": 0, 
+              "eventStart": 0,
               "eventFinish": 0,
               "events": [
               ]
@@ -153,17 +153,17 @@
               ]
             },
             {
-                "nodeID": 3,
-                "text": "Pero empecemos desde el principio.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                    {
-                        "timing": 1,
-                        "type": 4,
-                        "scene": 0
-                    }
-                ]
+              "nodeID": 3,
+              "text": "Pero empecemos desde el principio.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
             }
           ]
         },
@@ -274,20 +274,20 @@
               ]
             },
             {
-                "nodeID": 1,
-                "text": "El mazo se compone de las cartas que tu quieras. Desde tu oficina lo puedes modificar.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
+              "nodeID": 1,
+              "text": "El mazo se compone de las cartas que tu quieras. Desde tu oficina lo puedes modificar.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
             },
             {
-                "nodeID": 1,
-                "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
+              "nodeID": 1,
+              "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
             },
             {
               "nodeID": 2,
@@ -411,12 +411,12 @@
               ]
             },
             {
-                "nodeID": 2,
-                "text": "Colocar una carta en el tablero dependera de cada carta.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
+              "nodeID": 2,
+              "text": "Colocar una carta en el tablero dependera de cada carta.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
             },
             {
               "nodeID": 3,

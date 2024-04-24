@@ -19,9 +19,6 @@ public:
     }
 
     int previousState;
-
-private:
-
     void onDespause();
 };
 

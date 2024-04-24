@@ -8,16 +8,18 @@
 #include "Button.h"
 #include "../../game/components/managers/Manager.h"
 #include "../components/basics/TextComponent.h"
+#include "DecisionComponent.h"
 //------CheckML.
 #include"../checkML.h"
 //------Factorias.
 #include "../factories/Factory.h"
 #include "../factories/DialogueFactory_V0.h"
+#include "../factories/DecisionFactory_V0.h"
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
 shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(525, 80),Vector2D(660, 80) ,Vector2D(525, 200) ,Vector2D(660, 200) }),
 shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
-//,money(500)
+//,money(800)
 {}
 
 ShopComponent::~ShopComponent()
@@ -29,8 +31,10 @@ ShopComponent::~ShopComponent()
 
 void ShopComponent::initComponent()
 {
-	factory2 = new Factory();
-	factory2->SetFactories(static_cast<DialogueFactory*>(new DialogueFactory_V0()));
+	factory = new Factory();
+	factory->SetFactories(static_cast<DialogueFactory*>(new DialogueFactory_V0()));
+	//factory = new Factory();
+	//factory->SetFactories(static_cast<DecisionFactory_V0*>(new DecisionFactory_V0()));
 
 	if (GameStateMachine::instance()->getCurrentState()->checkDataShopCardsIsEmpty()) // Si no hay cartas de la tienda en Data entonces se tienen que generar.
 	{
@@ -51,6 +55,8 @@ void ShopComponent::initComponent()
 
 	showCards();
 	setTexts();
+
+	handler = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
 }
 
 void ShopComponent::generateCards()
@@ -79,11 +85,6 @@ bool ShopComponent::cardIsBought(int id)
 void ShopComponent::showCards() {
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
-		/*if (shopCards[i] == 2)
-		{
-			std::cout << "Pruebita para ver si las que ya estan no las pone en pantalla." << std::endl;
-			GameStateMachine::instance()->getCurrentState()->addCardToDrawer(shopCards[i]);
-		}*/
 		auto card = GameStateMachine::instance()->getCurrentState()->createCard(shopCards[i], shopCardsPositions[i]);
 		card->setLayer(3);
 		int id = card->getComponent<Card>()->getID();
@@ -115,44 +116,74 @@ int ShopComponent::getCardPrice(int i)
 
 void ShopComponent::buyCard()
 {
-	//------Esto para buscar el boton que ha sido pulsado para acceder a la carta de ese boton.
-	Button* buttonClicked = nullptr;
-	for (auto b : buttons) // Recorremos la lista de botones.
+	if (!clicked)
 	{
-		if (b->getCurrentButtonState() == 2) // 2 = boton pulsado.
+		//------Esto para buscar el boton que ha sido pulsado para acceder a la carta de ese boton.
+		Button* buttonClicked = nullptr;
+		for (auto b : buttons) // Recorremos la lista de botones.
 		{
-			buttonClicked = b; // Guardamos el boton.
-		}
-	}
-
-	//------Esto para guardar la carta al drawer.
-	if (buttonClicked != nullptr)
-	{
-		auto card = buttonClicked->getEntity(); // Carta pulsada.
-		int id = card->getComponent<Card>()->getID(); // Id de la carta.
-		int index = searchIndexById(id); // Indice de la carta en shopCards, shopCardspositions y shopCardsPrize.
-		//------Esto para confirmar la compra.---------------------------------------------alomejor separar en dos if por si se quiere poner dialogo de no tener dinero suficiente.
-		if (money >= shopCardsPrize[index] && confirmPurchase(shopCardsPrize[index]))
-		{
-			std::cout << "Compra." << std::endl;
-			if (card != nullptr)
+			if (b->getCurrentButtonState() == 2) // 2 = boton pulsado.
 			{
-				GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al cajon.
-				card->getComponent<SpriteRenderer>()->setMultiplyColor(100, 100, 100, 255); // Cambiamos el color.
-				money -= shopCardsPrize[index]; // Restamos el dinero.
+				buttonClicked = b; // Guardamos el boton.
+			}
+		}
 
-				GameStateMachine::instance()->getCurrentState()->substractMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
-
-				//showPrizes(); // Para que se actualicen los precios.
-				updateTexts();
+		//------Esto para guardar la carta al drawer.
+		if (buttonClicked != nullptr)
+		{
+			auto card = buttonClicked->getEntity(); // Carta pulsada.
+			int id = card->getComponent<Card>()->getID(); // Id de la carta.
+			int index = searchIndexById(id); // Indice de la carta en shopCards, shopCardspositions y shopCardsPrize.
+			//------Esto para confirmar la compra.
+			if (money >= shopCardsPrize[index] && !cardIsBought(id))
+			{
+				clicked = true;
+				confirmPurchase(shopCardsPrize[index], id);
 			}
 		}
 	}
 }
 
-int ShopComponent::getPlayerMoney()
+void ShopComponent::purchaseCard()
 {
-	return money;
+	int id = handler->getComponent<DecisionComponent>()->getCardToPurchase();
+	int index = searchIndexById(id);
+
+	GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al cajon.
+
+	money -= shopCardsPrize[index]; // Restamos el dinero.
+
+	GameStateMachine::instance()->getCurrentState()->substractMoney(shopCardsPrize[index]); // Restamos el dinero en Data.
+
+	//std::cout << "Compra." << std::endl;
+
+	clicked = false;
+	updateTexts();
+	updateColors();
+	GameStateMachine::instance()->getCurrentState()->deSelected();
+	handler->getComponent<DecisionComponent>()->setBuying(-1);
+	handler->getComponent<DecisionComponent>()->resetCardToPurchase();
+}
+
+void ShopComponent::cancelPurchase()
+{
+	//std::cout << "No compra." << std::endl;
+	clicked = false;
+	updateTexts();
+	GameStateMachine::instance()->getCurrentState()->deSelected();
+	handler->getComponent<DecisionComponent>()->setBuying(-1);
+	handler->getComponent<DecisionComponent>()->resetCardToPurchase();
+}
+
+void ShopComponent::updateColors()
+{
+	for (auto c : buyableCards)
+	{
+		if (cardIsBought(c->getID()))
+		{
+			c->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(100, 100, 100, 255);
+		}
+	}
 }
 
 int ShopComponent::calculatePrize(ecs::entity_t card)
@@ -163,41 +194,32 @@ int ShopComponent::calculatePrize(ecs::entity_t card)
 	return prize;
 }
 
-bool ShopComponent::confirmPurchase(int prize)
+void ShopComponent::confirmPurchase(int prize, int id)
 {
-	//GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
-	//---------------------------------------------------------------------preguntar a ines/poli sobre el dialogo para confirmar.
-
 	GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
 
-	JsonData::DialogueData dialogue = sdlutils().dialogues().at("Tienda");
+	handler->getComponent<DecisionComponent>()->setCardToPurchase(id);
+	if (shopDialogue != nullptr)
+	{
+		shopDialogue = factory->createDialogue("Tienda", 0, 0,
+			{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f }, // Posicion.
+			{ 0.3,0.1 }, // Tamanyo.
+			5, // Velocidad.
+			10, // Cooldown.
+			this->getEntity(), // Padre.
+			3,			// Capa.
+			false,		// Auto.
+			"8bit_size_20",	// Font.
+			SDL_Color({ 0, 0, 0, 255 }), // Color.
+			220, // Wrap length.
+			Text::BoxPivotPoint::LeftTop,
+			Text::TextAlignment::Center);
+	}
+}
 
-	auto a = getEntity();
-
-	shopDialogue = factory2->createDialogue("Tienda", 0, 0,
-		{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f },// POS
-		{ 0.3,0.1 }, // SIZE
-		5, 10, this->getEntity(),
-		3,			// capa
-		false,		// auto
-		"8bit_size_20",	// mirar el JSON para cambiar el tamanio de texto
-		SDL_Color({ 0, 0, 0, 255 }),
-		220, // wrap length
-		Text::BoxPivotPoint::LeftTop,
-		Text::TextAlignment::Center);
-
-	//npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
-	//	{ x, y },//POS
-	//	{ 2,2 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-	//	5, 10, getEntity(),
-	//	3, dialogue.Convo(conv).isAuto(),  //LAYER
-	//	"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
-	//	SDL_Color({ 0, 0, 0, 255 }),
-	//	220, //wrap length
-	//	Text::BoxPivotPoint::LeftTop,
-	//	Text::TextAlignment::Left);
-	//GameStateMachine::instance()->getCurrentState()->deSelected();
-	return true;
+int ShopComponent::getPlayerMoney()
+{
+	return money;
 }
 
 int ShopComponent::searchIndexById(int id)
@@ -217,7 +239,17 @@ int ShopComponent::searchIndexById(int id)
 
 void ShopComponent::update()
 {
-	//std::cout << "Money: " << money << std::endl;
+	switch (handler->getComponent<DecisionComponent>()->getBuying())
+	{
+	case 0:
+		cancelPurchase();
+		break;
+	case 1:
+		purchaseCard();
+		break;
+	default:
+		break;
+	}
 }
 
 void ShopComponent::setTexts()
@@ -268,6 +300,7 @@ void ShopComponent::setTexts()
 	}
 	cardPrizeText3->setLayer(10);
 }
+
 void ShopComponent::updateTexts()
 {
 	//----Dinero----
@@ -293,3 +326,5 @@ void ShopComponent::updateTexts()
 		cardPrizeText3->getComponent<TextComponent>()->setTxt("vendida");
 	}
 }
+
+

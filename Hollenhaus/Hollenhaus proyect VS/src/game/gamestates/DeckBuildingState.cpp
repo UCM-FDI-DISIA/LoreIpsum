@@ -55,6 +55,10 @@ void DeckBuildingState::onEnter()
 {
 	std::cout << "\nENTER DECKBUILDING.\n";
 
+	// llamada al input
+	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPauseDB(); });
+	paused = false;
+
 	// carga el data
 	loadData();
 
@@ -106,8 +110,8 @@ void DeckBuildingState::onEnter()
 	caj->setLayer(0);
 
 	// ---- BOTONES ----
-#pragma region BOTONES
-// ---- Salir:
+	#pragma region BOTONES
+	// ---- Salir:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
 	exit->addComponent<SpriteRenderer>("boton_flecha");
@@ -159,10 +163,10 @@ void DeckBuildingState::onEnter()
 	botPatras->addComponent<Button>();
 	botPatras->getComponent<Button>()->connectToButton([this]() { drawer_->drawerPatras(); });
 	botPatras->setLayer(2);
-#pragma endregion 
+	#pragma endregion 
 
 	// ---- PIZARRA ----
-#pragma region PIZARRA
+	#pragma region PIZARRA
 	Vector2D pizarraPos(260, 40);
 	ecs::entity_t pizarra = Instantiate(pizarraPos, ecs::grp::DROPZONE);
 
@@ -183,10 +187,10 @@ void DeckBuildingState::onEnter()
 
 	// lo guarda
 	pizarra_ = pizarra->getComponent<PizarraManager>();
-#pragma endregion
+	#pragma endregion
 
 	// ---- CAJON ----
-#pragma region CAJON
+	#pragma region CAJON
 	Vector2D cajonPos(340, 430);
 	ecs::entity_t cajon = Instantiate(cajonPos, ecs::grp::DROPZONE);
 
@@ -205,7 +209,7 @@ void DeckBuildingState::onEnter()
 
 	// lo guarda
 	drawer_ = cajon->getComponent<DrawerManager>();
-#pragma endregion
+	#pragma endregion
 
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
@@ -216,6 +220,10 @@ void DeckBuildingState::onEnter()
 // ---- EXIT ESTADO ----
 void DeckBuildingState::onExit()
 {
+	// se desuscribe al evento
+	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPauseDB(); });
+	paused = false;
+
 	// al salir del estado guardas la info
 	saveData();
 
@@ -226,6 +234,34 @@ void DeckBuildingState::onExit()
 	GameStateMachine::instance()->getMngr()->Free();
 
 	std::cout << "\nEXIT DECKBUILDING.\n";
+}
+
+void DeckBuildingState::onPauseDB()
+{
+	if (!paused) 
+	{
+		paused = true;
+
+		rice = Instantiate();
+		rice->addComponent<Transform>();
+		rice->addComponent<SpriteRenderer>("rice");
+		rice->addComponent<BoxCollider>();
+		Vector2D posRice(300, 300);
+		rice->getComponent<Transform>()->setGlobalPos(posRice);
+		rice->getComponent<Transform>()->setGlobalScale(0.5f, 0.4f);
+		rice->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+		rice->setLayer(4);
+	}
+	else if (paused && rice != nullptr)
+	{
+		paused = false;
+		rice->setAlive(false);
+	}
+
+	//SetLastState(9);
+	//pizarra_->saveMaze();
+	//drawer_->saveDrawer();
+	//GameStateMachine::instance()->setState(17);
 }
 
 #pragma region DECKBUILDING

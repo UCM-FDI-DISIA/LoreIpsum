@@ -54,16 +54,14 @@ void CityState::refresh()
 
 void CityState::onEnter()
 {
+	std::cout << "\nENTER CITY.\n";
+
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPause(); });
 
-	std::cout << "\nENTER CITY.\n";
-
 	factory = new Factory();
 	factory->SetFactories(
-		static_cast<NPCFactory*>(new NPCFactory_V0())
-	);
-
+		static_cast<NPCFactory*>(new NPCFactory_V0()));
 
 
 
@@ -190,8 +188,7 @@ void CityState::onEnter()
 void CityState::onExit()
 {
 	// se desuscribe al evento
-	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPause(); });
-
+	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPause(); });
 
 	std::cout << "\nEXIT CITY.\n";
 
@@ -206,9 +203,5 @@ void CityState::onExit()
 void CityState::onPause()
 {
 	SetLastState(1);
-	GameStateMachine::instance()->setState(16);
-	std::cout << "last state in city: " << GetLastState() << "\n";
-
-	// wtf
-	//GameStateMachine::instance()->pushState(new PauseMenuState());
+	GameStateMachine::instance()->setState(17);
 }
