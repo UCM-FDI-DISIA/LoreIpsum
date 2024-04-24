@@ -4,14 +4,11 @@
 
 class MatchStateUIFactory
 {
-public:
-	MatchStateUIFactory()
-	{
-	};
 
-	virtual ~MatchStateUIFactory()
-	{
-	};
+public:
+
+	MatchStateUIFactory() {};
+	virtual ~MatchStateUIFactory() {};
 
 	virtual ecs::entity_t createVisual_NextTurnButton(int posX, int posY) = 0;
 	virtual ecs::entity_t createVisual_ActionPointsCounter(int posX, int posY) = 0;
@@ -19,4 +16,5 @@ public:
 	virtual ecs::entity_t createVisual_PlayerTurnIndicator(int posX, int posY) = 0;
 	virtual ecs::entity_t createVisual_BackgroundBlackBox(int posX, int posY, float xPixelsSize, float yPixelsSize) = 0;
 	virtual ecs::entity_t createVisual_BackgroundBoard() = 0;
+
 };

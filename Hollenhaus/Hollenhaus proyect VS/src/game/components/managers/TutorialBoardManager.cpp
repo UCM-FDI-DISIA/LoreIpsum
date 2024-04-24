@@ -34,6 +34,7 @@ TutorialBoardManager::TutorialBoardManager(ecs::entity_t b, ecs::entity_t t)
 	// ---
 	//objs.push_back(base);
 	//objs.push_back(tutorial);
+
 }
 
 TutorialBoardManager::~TutorialBoardManager()
@@ -58,20 +59,20 @@ void TutorialBoardManager::initComponent()
 
 void TutorialBoardManager::update()
 {
-	if (actionEnded())
-	{
+	if (actionEnded()) {
+
 		nextTutorialState();
 
 		resetEnded();
 	}
 
 	updateTutorialState();
+	
 }
 
 void TutorialBoardManager::nextTutorialState()
 {
-	if (!checked)
-	{
+	if (!checked) {
 		nextState = tutorial->getComponent<TutorialManager>()->nextState();
 
 		checked = true;
@@ -83,12 +84,10 @@ void TutorialBoardManager::updateTutorialState()
 	currentState;
 	nextState;
 
-	if (currentState != nextState)
-	{
-		ent_->getComponent<TutorialManager>()->wait([this]
-		{
-			setState();
-		});
+	if (currentState != nextState) {
+		ent_->getComponent<TutorialManager>()->wait([this] 
+			{
+				setState(); });
 	}
 }
 
@@ -108,7 +107,7 @@ void TutorialBoardManager::setState()
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
 	ent_->getComponent<TutorialManager>()->activateColliders(objs);
 	ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
-
+	
 
 	switch (t)
 	{
@@ -186,16 +185,15 @@ ecs::entity_t TutorialBoardManager::createPopUp(float x, float y, std::string po
 	// crear dialogo del FACTORY de dialogos
 	//// Mirar comentario en el interior de la función
 	ecs::entity_t pop = factory->createDialogue(dialogue.NPCName(), convo, node,
-	                                            {x, y}, //POS
-	                                            {0.25, 0.25},
-	                                            //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-	                                            5, 10, base,
-	                                            200, dialogue.Convo(convo).isAuto(), //LAYER
-	                                            "8bit_size_20", //mirar el JSON para cambiar el tamanio de texto
-	                                            SDL_Color({0, 0, 0, 255}),
-	                                            220, //wrap length
-	                                            Text::BoxPivotPoint::LeftTop,
-	                                            Text::TextAlignment::Left);
+		{ x, y },//POS
+		{ 0.25, 0.25 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
+		5, 10, base,
+		200, dialogue.Convo(convo).isAuto(),  //LAYER
+		"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
+		SDL_Color({ 0, 0, 0, 255 }),
+		220, //wrap length
+		Text::BoxPivotPoint::LeftTop,
+		Text::TextAlignment::Left);
 
 	return pop;
 }
@@ -215,6 +213,7 @@ void TutorialBoardManager::setObjs(std::vector<ecs::entity_t> v)
 	objs = v;
 
 	setLayers(v);
+
 }
 
 void TutorialBoardManager::setLayers(std::vector<ecs::entity_t> v)
@@ -232,6 +231,8 @@ void TutorialBoardManager::addToHand(ecs::entity_t c)
 
 	setLayers(v);
 }
+
+
 
 
 void TutorialBoardManager::setINIT()
@@ -257,6 +258,7 @@ void TutorialBoardManager::setCARD()
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
 }
 
 void TutorialBoardManager::setCARDINFO()
@@ -270,6 +272,9 @@ void TutorialBoardManager::setCARDINFO()
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+
+
 }
 
 void TutorialBoardManager::setDECK()
@@ -279,15 +284,19 @@ void TutorialBoardManager::setDECK()
 	ecs::entity_t pop = createPopUp(550, 300, "Board Tutorial", 3);
 
 
+
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+
 }
 
 void TutorialBoardManager::setDRAWCARD()
 {
+
 	std::vector<ecs::entity_t> v;
 
 	v.push_back(deck);
@@ -295,6 +304,9 @@ void TutorialBoardManager::setDRAWCARD()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+
+	
 }
 
 void TutorialBoardManager::setCELL()
@@ -311,6 +323,9 @@ void TutorialBoardManager::setCELL()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(hand);
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+
+	
 }
 
 void TutorialBoardManager::setPLACECARD()
@@ -321,12 +336,12 @@ void TutorialBoardManager::setPLACECARD()
 
 	std::vector<ecs::entity_t> v;
 
-	for (auto h : hand)
-	{
+	for (auto h : hand) {
 		v.push_back(h);
 	}
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
 }
 
 void TutorialBoardManager::setPOINTS()
@@ -369,6 +384,7 @@ void TutorialBoardManager::setACTIONPTS()
 }
 
 
+
 void TutorialBoardManager::setNEXTTURN()
 {
 	std::vector<ecs::entity_t> v;
@@ -382,6 +398,7 @@ void TutorialBoardManager::setNEXTTURN()
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 	//tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
 }
 
 void TutorialBoardManager::setPRESSNEXTTURN()
@@ -393,6 +410,7 @@ void TutorialBoardManager::setPRESSNEXTTURN()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
 }
 
 void TutorialBoardManager::setAI_TURN()
@@ -404,6 +422,8 @@ void TutorialBoardManager::setAI_TURN()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+
 }
 
 void TutorialBoardManager::setNEXTCARD1()
@@ -443,3 +463,4 @@ void TutorialBoardManager::setFREEDOM()
 {
 	std::cout << "LIBERTAD OMFG" << std::endl;
 }
+

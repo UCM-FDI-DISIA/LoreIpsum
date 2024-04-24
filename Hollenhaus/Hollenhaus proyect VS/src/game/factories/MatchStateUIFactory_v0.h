@@ -1,17 +1,13 @@
 #pragma once
 #include "MatchStateUIFactory.h"
-
 class MatchStateUIFactory_v0 :
-	public MatchStateUIFactory
+    public MatchStateUIFactory
 {
-public:
-	MatchStateUIFactory_v0() : MatchStateUIFactory()
-	{
-	};
 
-	~MatchStateUIFactory_v0() override
-	{
-	};
+public:
+
+	MatchStateUIFactory_v0() : MatchStateUIFactory(){};
+	virtual ~MatchStateUIFactory_v0() {};
 
 	ecs::entity_t createVisual_NextTurnButton(int posX, int posY) override;
 	ecs::entity_t createVisual_ActionPointsCounter(int posX, int posY) override;
@@ -20,3 +16,4 @@ public:
 	ecs::entity_t createVisual_BackgroundBlackBox(int posX, int posY, float xPixelsSize, float yPixelsSize) override;
 	ecs::entity_t createVisual_BackgroundBoard() override;
 };
+

@@ -11,7 +11,7 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) //ig
 	decision_ = decision;
 	parent_ = parent;
 	scene_ = scene,
-		click_ = false;
+	click_ = false;
 
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
@@ -41,7 +41,7 @@ void ClickDecision::OnLeftClickUp()
 
 void ClickDecision::TakeDecision()
 {
-	switch (decision_)
+	switch (decision_) 
 	{
 	case 0:
 		TuVieja("SI");
@@ -53,7 +53,7 @@ void ClickDecision::TakeDecision()
 		parent_->getComponent<NextText>()->setDead(true);
 		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
 
-	//habria que hacer actual node ++?¿?¿
+		//habria que hacer actual node ++?¿?¿
 		break;
 
 	default:
@@ -61,3 +61,5 @@ void ClickDecision::TakeDecision()
 		break;
 	}
 }
+
+

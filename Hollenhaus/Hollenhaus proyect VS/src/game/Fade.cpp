@@ -1,7 +1,7 @@
-﻿#include "../pchs/pch.h"
+﻿#include "..\pchs\pch.h"
 #include "Fade.h"
 
-Fade::Fade(int opacity) : image_(&sdlutils().images().at("black_box")), opacity_(opacity)
+Fade::Fade(int opacity) : opacity_(opacity), image_(&sdlutils().images().at("black_box"))
 {
 }
 

@@ -59,7 +59,7 @@ void MultiplayerGameState::onEnter()
 #pragma region Juego base
 
 
-	auto factory = new Factory();
+	Factory* factory = new Factory();
 	factory->SetFactories(
 		static_cast<BoardFactory*>(new BoardFactory_v0(4)),
 		static_cast<CardFactory*>(new CardFactory_v1()),
@@ -73,8 +73,7 @@ void MultiplayerGameState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(
-		4, 4, Turns::J1, boardManagerComponent);
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, Turns::J1, boardManagerComponent);
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
@@ -82,6 +81,7 @@ void MultiplayerGameState::onEnter()
 	dragManager->addComponent<DragManager>();
 	dragManager->getComponent<DragManager>()->setBoardManager(boardManagerComponent);
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::DRAG_MANAGER, dragManager);
+
 
 
 	// UI 
@@ -93,8 +93,8 @@ void MultiplayerGameState::onEnter()
 
 	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 
-	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, {102, 255, 255, 255});
-	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, {255, 102, 255, 255});
+	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, { 102, 255, 255, 255 });
+	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, { 255, 102, 255, 255 });
 
 	ecs::entity_t visual_BackgroundBoard = factory->createVisual_BackgroundFullImage();
 
@@ -116,12 +116,15 @@ void MultiplayerGameState::onEnter()
 	//sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 
 
+
 	// Factoría de cartas. Con ella generamos la mano inicial
 	ecs::entity_t deckPlayer1 = factory->createDeck();
 
 	ecs::entity_t deckPlayer2 = factory->createDeckJ2Multiplayer();
 
 #pragma endregion
+
+
 
 
 #pragma region Seccion Multiplayer
@@ -146,10 +149,11 @@ void MultiplayerGameState::onEnter()
 	matchManagerComponent->setNetGame(netGameCmp);
 
 	deckPlayer1->getComponent<DeckComponent>()->setNetGame(netGameCmp);
-
+	
 	dragManager->getComponent<DragManager>()->setNetGame(netGameCmp);
 
 #pragma endregion
+
 }
 
 void MultiplayerGameState::onExit()
@@ -159,4 +163,5 @@ void MultiplayerGameState::onExit()
 	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
 	mngr().Free();
+
 }

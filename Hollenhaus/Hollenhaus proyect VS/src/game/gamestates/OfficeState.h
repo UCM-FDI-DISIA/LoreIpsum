@@ -7,7 +7,8 @@ class Factory;
 class OfficeState : public GameState
 {
 public:
-	OfficeState(); //Constructora
+
+	OfficeState();		//Constructora
 
 	void update() override;
 	void render() const override;
@@ -15,7 +16,6 @@ public:
 
 	void onEnter() override;
 	void onExit() override;
-
 private:
 	Factory* factory;
 
@@ -23,3 +23,4 @@ private:
 	//Gestionar mazo
 	//Volver a CIU
 };
+

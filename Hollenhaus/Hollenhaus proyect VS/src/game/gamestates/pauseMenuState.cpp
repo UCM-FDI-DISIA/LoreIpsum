@@ -11,10 +11,12 @@
 
 PauseMenuState::PauseMenuState()
 {
+	
 }
 
-PauseMenuState::~PauseMenuState()
+PauseMenuState::~PauseMenuState() 
 {
+
 }
 
 void PauseMenuState::refresh()

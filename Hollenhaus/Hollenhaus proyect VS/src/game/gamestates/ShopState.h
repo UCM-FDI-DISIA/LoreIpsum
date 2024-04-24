@@ -2,14 +2,15 @@
 #include "GameState.h"
 #include <vector>
 
-constexpr int COIN_VALUE = 100; // Valor de cada moneda.
+const int COIN_VALUE = 100; // Valor de cada moneda.
 
 class Factory;
 
 class ShopState : public GameState
 {
 public:
-	ShopState(); //Constructora
+
+	ShopState();	//Constructora
 
 	void update() override;
 	void render() const override;
@@ -30,6 +31,7 @@ public:
 	void makeCoinShine(int cardIndex, ecs::entity_t card, ecs::entity_t shopMngr);
 	void updateCoinsOnTable();
 
+
 private:
 	Factory* factory;
 
@@ -41,3 +43,4 @@ private:
 	//Comprar ??
 	//Dinero  ??
 };
+

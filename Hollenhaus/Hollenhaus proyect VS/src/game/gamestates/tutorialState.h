@@ -8,12 +8,13 @@ class TutorialState : public GameState
 {
 public:
 	TutorialState();
-	~TutorialState() override;
+    virtual ~TutorialState();
 
-	void refresh() override;
-	void update() override;
-	void render() const override;
+    void refresh() override;
+    void update() override;
+    void render() const override;
 
-	void onEnter() override;
-	void onExit() override;
+    void onEnter() override;
+    void onExit() override;
 };
+

@@ -3,27 +3,26 @@
 #include "../HandComponent.h"
 #include "../DeckComponent.h"
 
-constexpr int MAX_IN_HAND = 6;
+const int MAX_IN_HAND = 6;
 
 
 class PlayerCardsManager :
-	public ComponentUpdate
+    public ComponentUpdate
 {
 private:
-	HandComponent* hand_;
-	DeckComponent* deck_;
+    HandComponent* hand_;
+    DeckComponent* deck_;
+
 
 public:
-	PlayerCardsManager(HandComponent* hand, DeckComponent* deck) : hand_(hand), deck_(deck)
-	{
-	}
+    PlayerCardsManager(HandComponent* hand, DeckComponent* deck) :hand_(hand), deck_(deck) {}
+    ~PlayerCardsManager();
 
-	~PlayerCardsManager() override;
+    void drawCard();
 
-	void drawCard();
+    void initComponent() override;
 
-	void initComponent() override;
-
-	//necesario para la IA
-	HandComponent* getHand();
+    //necesario para la IA
+    HandComponent* getHand();
 };
+

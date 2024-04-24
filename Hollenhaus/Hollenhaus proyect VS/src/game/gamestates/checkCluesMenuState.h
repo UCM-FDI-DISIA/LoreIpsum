@@ -5,13 +5,13 @@
 class CheckCluesMenuState : public GameState
 {
 public:
-	CheckCluesMenuState();
-	~CheckCluesMenuState() override;
+    CheckCluesMenuState();
+    virtual ~CheckCluesMenuState();
 
-	void refresh() override;
-	void update() override;
-	void render() const override;
+    void refresh() override;
+    void update() override;
+    void render() const override;
 
-	void onEnter() override;
-	void onExit() override;
+    void onEnter() override;
+    void onExit() override;
 };

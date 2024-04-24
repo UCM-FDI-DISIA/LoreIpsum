@@ -15,13 +15,13 @@ El procesamiento de acciones depende del estado en el que
 se encuentren ambos jugadores(en relacion a los botones que hayan seleccionado)
 */
 
-class NetEndGame
+class NetEndGame 
 	: public ComponentUpdate
 {
 public:
 	//constructora y destructora
 	NetEndGame();
-	~NetEndGame() override;
+	~NetEndGame();
 
 	void update() override;
 
@@ -35,6 +35,7 @@ public:
 	bool getChangeMazeSelected();
 
 private:
+
 	//el jugador contra el que estamos jugando
 	TCPsocket rival = nullptr;
 	SDLNet_SocketSet socketSet; //para recibir los mensajes con comunicacion NO-Bloqueante
@@ -46,3 +47,4 @@ private:
 	bool rivalChangeMazeSelected = false;
 	bool rivalPlayAgainSelected = false;
 };
+

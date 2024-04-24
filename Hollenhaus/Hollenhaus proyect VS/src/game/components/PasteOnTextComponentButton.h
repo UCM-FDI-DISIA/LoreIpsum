@@ -6,15 +6,16 @@ class TextComponent;
 class PasteOnTextComponentButton : public ComponentUpdate
 {
 public:
-	PasteOnTextComponentButton(TextComponent* textComponent);
-	~PasteOnTextComponentButton() override;
+    PasteOnTextComponentButton(TextComponent* textComponent);
+    ~PasteOnTextComponentButton();
 
-	void initComponent() override;
-	void update() override;
+    void initComponent() override;
+    void update() override;
 
 private:
-	void clickButton();
+    void clickButton();
 
-	TextComponent* tc;
-	BoxCollider* bc;
+    TextComponent* tc;
+    BoxCollider* bc;
 };
+

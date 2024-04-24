@@ -1,26 +1,27 @@
 #pragma once
 #include "GameState.h"
-
 class PauseMenuState : public GameState
 {
 public:
-	PauseMenuState();
-	~PauseMenuState() override;
+    PauseMenuState();
+    virtual ~PauseMenuState();
 
-	void refresh() override;
-	void update() override;
-	void render() const override;
+    void refresh() override;
+    void update() override;
+    void render() const override;
 
-	void onEnter() override;
-	void onExit() override;
+    void onEnter() override;
+    void onExit() override;
 
-	void setPreviousState(int ps)
-	{
-		previousState = ps;
-	}
+    void setPreviousState(int ps)
+    {
+        previousState = ps;
+    }
 
-	int previousState;
+    int previousState;
 
 private:
-	void onDespause();
+
+    void onDespause();
 };
+

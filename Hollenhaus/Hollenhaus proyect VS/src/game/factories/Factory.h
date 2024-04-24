@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 class CardFactory;
 class FakeCardFactory;
 class HandFactory;
@@ -11,8 +12,7 @@ class NPCFactory;
 class DecisionFactory;
 
 
-namespace ecs
-{
+namespace ecs {
 	class Entity;
 	using entity_t = Entity*;
 }
@@ -21,6 +21,9 @@ namespace ecs
 class Factory
 {
 public:
+
+
+
 #pragma region Templates setFactories
 	/*
 		Si se a�ade un nuevo tipo de factory para objetos en especifico,
@@ -29,58 +32,49 @@ public:
 	*/
 
 
-	template <typename... Ts>
-	void SetFactories(Ts&&... args)
-	{
-	};
+	template<typename ...Ts>
+	void SetFactories(Ts &&... args) {};
 
 
-	template <typename... Ts>
-	void SetFactories(BoardFactory* bf, Ts&&... args)
-	{
+	template<typename ...Ts>
+	void SetFactories(BoardFactory* bf, Ts &&... args) {
 		boardFactory = bf;
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
 
-	template <typename... Ts>
-	void SetFactories(CardFactory* cf, Ts&&... args)
-	{
+	template<typename ...Ts>
+	void SetFactories(CardFactory* cf, Ts &&... args) {
 		cardFactory = cf;
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
-	template <typename... Ts>
-	void SetFactories(MatchStateUIFactory* msUIf, Ts&&... args)
-	{
+	template<typename ...Ts>
+	void SetFactories(MatchStateUIFactory* msUIf, Ts &&... args) {
 		matchStateUIFactory = msUIf;
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
-	template <typename... Ts>
-	void SetFactories(FakeCardFactory* fcf, Ts&&... args)
-	{
+	template<typename ...Ts>
+	void SetFactories(FakeCardFactory* fcf, Ts &&... args) {
 		fakeCardFactory = fcf;
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
-	template <typename... Ts>
-	void SetFactories(DialogueFactory* df, Ts&&... args)
-	{
+	template<typename ...Ts>
+	void SetFactories(DialogueFactory* df, Ts &&... args) {
 		dialogueFactory = df;
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
-	template <typename... Ts>
-	void SetFactories(NPCFactory* npcf, Ts&&... args)
-	{
+	template<typename ...Ts>
+	void SetFactories(NPCFactory* npcf, Ts &&... args) {
 		npcFactory = npcf;
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
-	template <typename... Ts>
-	void SetFactories(DecisionFactory* decisionF, Ts&&... args)
-	{
+	template<typename ...Ts>
+	void SetFactories(DecisionFactory* decisionF, Ts &&... args) {
 		decisionFactory = decisionF;
 		SetFactories(std::forward<Ts>(args)...);
 	}
@@ -98,11 +92,9 @@ public:
 		fakeCardFactory(nullptr),
 		decisionFactory(nullptr)
 
-	{
-	};
+	{};
 
-	~Factory()
-	{
+	~Factory() {
 		delete boardFactory;
 		boardFactory = nullptr;
 
@@ -129,10 +121,8 @@ public:
 	}
 
 
-	ecs::entity_t createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
-	                         std::vector<JsonData::CardEffect>& effects);
-	ecs::entity_t createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
-	                             std::vector<JsonData::CardEffect>& effects);
+	ecs::entity_t createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);
+	ecs::entity_t createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);
 
 	ecs::entity_t createDropDetector(Vector2D pos);
 
@@ -156,18 +146,16 @@ public:
 
 	// metodos para los dialogos
 	ecs::entity_t createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
-	                             int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_,
-	                             std::string fontID, SDL_Color color, Uint32 wrapLenght,
-	                             Text::BoxPivotPoint boxPivotPoint,
-	                             Text::TextAlignment textAlignment);
+		int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
+		Text::TextAlignment textAlignment);
 
 	// metodos para las decisiones al acabar dialogo
-	void createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene, int greenDecision,
-	                    int redDecision,
-	                    std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
-	                    Text::TextAlignment textAlignment);
+	void createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene, int greenDecision, int redDecision,
+		std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment);
+
 
 public:
+
 	BoardFactory* boardFactory;
 	CardFactory* cardFactory;
 	HandFactory* handFactory;
@@ -177,3 +165,4 @@ public:
 	FakeCardFactory* fakeCardFactory;
 	DecisionFactory* decisionFactory;
 };
+

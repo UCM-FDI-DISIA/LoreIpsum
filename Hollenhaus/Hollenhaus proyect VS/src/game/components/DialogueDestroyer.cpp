@@ -14,22 +14,24 @@ DialogueDestroyer::DialogueDestroyer(ecs::entity_t npc_)
 void DialogueDestroyer::initComponent()
 {
 	object = ent_;
+
 }
 
 void DialogueDestroyer::update()
 {
+
 }
 
 void DialogueDestroyer::destroyDialogue()
 {
+
 	this;
 
-	if (npc->hasComponent<NPC>())
-	{
+	if (npc->hasComponent<NPC>()) {
 		npc->getComponent<NPC>()->stoppedTalking();
-	}
+	}	
 	object->getComponent<Transform>()->getParent()->getParent()->killChildren();
 	object->getComponent<Transform>()->killChildren();
-
+	
 	object->setAlive(false);
 }

@@ -5,12 +5,13 @@
 #include <SDL_net.h>
 
 
+
 // ---- DECKBUILDING ----
-constexpr constexpr constexpr constexpr int CARDS_IN_GAME = 50, // Cantidad de cartas en el juego
-                                            MIN_CARDS_MAZE = 10, // Minimo de cartas en el mazo
-                                            MAX_CARDS_MAZE = 20, // Maximo de cartas en el mazo
-                                            // Cantidad de cartas de la tienda. Cambiar en shopComponent tambien.
-                                            CARDS_IN_SHOP = 4;
+const int CARDS_IN_GAME = 50, // Cantidad de cartas en el juego
+MIN_CARDS_MAZE = 10, // Minimo de cartas en el mazo
+MAX_CARDS_MAZE = 20, // Maximo de cartas en el mazo
+// Cantidad de cartas de la tienda. Cambiar en shopComponent tambien.
+CARDS_IN_SHOP = 4;
 
 class Data
 {
@@ -20,7 +21,7 @@ private:
 	std::list<int> maze; // Id de las cartas del mazo
 
 	std::vector<int> mazeRival; // Id de las cartas del mazo del rival
-
+	
 	std::unordered_map<int, Vector2D> maze_with_pos;
 
 	// ---- MOVIMIENTO ----
@@ -30,21 +31,18 @@ private:
 
 	// ---- FLUJO ----
 	int currentMoney = 0,
-	    currentCase = 0,
-	    currentSouls = 0,
-	    winner = 0,
-	    lastState = 0;
+		currentCase = 0,
+		currentSouls = 0,
+		winner = 0,
+		lastState = 0;
 
 	std::list<int> defeatedNPCS;
-	int* shopCards;
-	// Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
+	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
 
-	std::list<int> thisCaseClues;
-	// Id de las cartas conseguidas durante el caso (deben ser aniadidas al drawer y aqui al ser conseguidass)
+	std::list<int> thisCaseClues; // Id de las cartas conseguidas durante el caso (deben ser aniadidas al drawer y aqui al ser conseguidass)
 
-	enum WINNER
-	{
+	enum WINNER {
 		NONE,
 		TIE,
 		PLAYER1,
@@ -57,13 +55,14 @@ private:
 	bool isHost = false;
 
 public:
+
 	//------Constructora y destructora:
 	Data();
-	Data(int mon, int cas, int sou, std::list<int> maz, std::array<int, CARDS_IN_GAME> dra, std::list<int> def);
+	Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def);
 	~Data();
 
 	// ---- Setters ----
-#pragma region SETTERS
+	#pragma region SETTERS
 	// -- DECKBUILDING --
 	// Mazo:
 	void SetNewMaze(std::list<int> newMaze, std::list<Vector2D> mazePos);
@@ -76,7 +75,7 @@ public:
 
 	// -- MOVIMIENTO --
 	void SetCityPos(Vector2D paulPos);
-	void setPaulDir(bool dir) { lastPaulDir = dir; }
+	void setPaulDir(bool dir) { lastPaulDir = dir;}
 
 	// -- FLUJO --
 	// NPCs:
@@ -96,7 +95,7 @@ public:
 	void setLastState(int ls);
 
 	// ---- Getters ----
-#pragma region GETTERS
+	#pragma region GETTERS
 	// -- DECKBUILDING --
 	// Mazo:
 	const std::unordered_map<int, Vector2D> GetMazeWithPos() { return maze_with_pos; }
@@ -114,7 +113,7 @@ public:
 	//----NPCs:
 	const std::list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
 	//----Dinero:
-	const int GetMoney() const { return currentMoney; }
+	const int GetMoney() const  { return currentMoney; }
 	//----Almas:
 	const int GetSouls() { return currentSouls; };
 	//----Caso:
@@ -170,4 +169,6 @@ public:
 
 	void setIsHost(bool b);
 	bool getIsHost();
+
+
 };

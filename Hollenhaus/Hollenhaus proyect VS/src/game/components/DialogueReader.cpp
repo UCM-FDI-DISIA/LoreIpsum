@@ -10,14 +10,15 @@
 
 DialogueReader::DialogueReader(std::string owner, int convo, int firstNode)
 {
+
 	own = owner;
 	conv = convo;
 	convo_ = &sdlutils().dialogues().at(owner).Convo(convo);
 	actualNode_ = firstNode;
 }
 
-void DialogueReader::initComponent()
-{
+void DialogueReader::initComponent() {
+
 	typeWriter_ = ent_->getComponent<TypeWriter>();
 	assert(typeWriter_ != nullptr);
 
@@ -31,12 +32,12 @@ void DialogueReader::initComponent()
 
 	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
 	exeEvents(convo_->Node(actualNode_).NodeEventsStart());
-}
 
+}
 void DialogueReader::NextNode()
 {
-	if (!ent_->getComponent<NextText>()->isDead())
-	{
+	if (!ent_->getComponent<NextText>()->isDead()) {
+
 		//std::cout << convo_->Node(actualNode_).NodeID() << std::endl;
 		//std::cout << convo_->ConvoID() << std::endl << std::endl;
 
@@ -44,8 +45,7 @@ void DialogueReader::NextNode()
 
 		exeEvents(convo_->Node(actualNode_).NodeEventsFinish());
 		actualNode_++;
-		if (actualNode_ >= convo_->NodesVector().size())
-		{
+		if (actualNode_ >= convo_->NodesVector().size()) {
 			ent_->getComponent<NextText>()->setDead(true);
 			dialogueDestroyer_->destroyDialogue();
 			return;
@@ -57,8 +57,9 @@ void DialogueReader::NextNode()
 
 void DialogueReader::exeEvents(std::vector<JsonData::DialogueEventS> events)
 {
-	for (auto e : events)
-	{
+	for (auto e : events) {
 		eventCollection_->callEvent(e.getType(), e.getScene(), getEntity())();
 	}
 }
+
+

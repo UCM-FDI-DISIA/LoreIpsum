@@ -7,6 +7,7 @@
 
 StoryModeState::StoryModeState()
 {
+	
 }
 
 StoryModeState::~StoryModeState()

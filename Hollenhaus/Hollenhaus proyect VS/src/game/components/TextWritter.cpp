@@ -17,10 +17,12 @@ void TextWritter::initComponent()
 
 void TextWritter::update()
 {
+    
 }
 
 void TextWritter::UpdateText(std::string s)
 {
+	
 	std::string text = tc->getText();
 	text = text + s;
 	tc->setTxt(text);
@@ -29,8 +31,7 @@ void TextWritter::UpdateText(std::string s)
 void TextWritter::DeleteLastChar()
 {
 	std::string text = tc->getText();
-	if (text.size() > 0)
-	{
+	if (text.size() > 0) {
 		text.pop_back();
 		tc->setTxt(text);
 	}

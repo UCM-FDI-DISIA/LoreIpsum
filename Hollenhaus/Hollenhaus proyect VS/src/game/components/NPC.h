@@ -38,10 +38,11 @@ private:
 
 	float pos;
 	bool closeToPaul; //si esta cerca de Paul, podra hablar, si no, no
-
+	
 	BoxCollider* myBoxCollider;
 	Factory* factory;
 	Transform* myTransform; //para saber si estamos cerca de Paul o no
 
 	//para destruir el dialogo si estamos lejos de paul
+
 };

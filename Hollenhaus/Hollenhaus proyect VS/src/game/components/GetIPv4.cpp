@@ -22,22 +22,20 @@ std::string GetIPv4::ReadIPv4()
 
 	std::array<char, 10000> buffer;
 	std::string result;
-
-	if (!pipe)
-	{
+	
+	if (!pipe) {
 		throw std::runtime_error("popen() failed!");
 	}
 
 	// Trasvasamos el contenido de pipe en un string result
-	while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr)
-	{
+	while (fgets(buffer.data(), static_cast<int>(buffer.size()), pipe.get()) != nullptr) {
 		result += buffer.data();
 	}
 
 	// Buscamos la IPv4 dentro de result. i es nuestro iterador
 	int i = 0;
 
-	while ((result[i] != 'I' || result[i + 1] != 'P' || result[i + 2] != 'v' || result[i + 3] != '4') && i < 9980)
+	while ((result[i] != 'I' || result[i + 1] != 'P' || result[i + 2] != 'v' || result[i + 3] != '4') && i<9980)
 		i++;
 
 	if (result[i] == 'I') i += 4;
@@ -47,8 +45,7 @@ std::string GetIPv4::ReadIPv4()
 	// Almacenamos la IPv4 en otro string, que luego devolvemos
 	std::string IPv4;
 
-	while (isdigit(result[i]) || result[i] == '.')
-	{
+	while (isdigit(result[i]) || result[i] == '.') {
 		IPv4.push_back(result[i]);
 		i++;
 	}

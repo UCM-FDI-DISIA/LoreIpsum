@@ -39,13 +39,12 @@ public:
 	/// <param name="wrapLenght"> Longitud horizontal de la caja en la que se envuelve el texto </param>
 	/// <param name="boxPivotPoint"> Punto de pivote de la caja en la que se envuelve el texto </param>
 	/// <param name="textAlignment"> Alineación del texto respecto a la caja en la que se envuelve </param>
-	TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght,
-	              Text::BoxPivotPoint boxPivotPoint = Text::LeftTop, Text::TextAlignment textAlignment = Text::Left);
-
-	~TextComponent() override;
+	TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint = Text::LeftTop, Text::TextAlignment textAlignment = Text::Left);
+	
+	~TextComponent();
 	void initComponent() override;
 	void render() const override;
-
+	
 	// Método público para cambiar el texto
 	void setTxt(std::string txt);
 
@@ -62,11 +61,7 @@ public:
 	void SetTextAlignment(Text::TextAlignment textAlignment);
 
 	// Metodo publico para cambiar la fuente del componente
-	void setFont(const std::string& font)
-	{
-		font_ = &sdl_.fonts().at(font);
-		createTexture();
-	}
+	void setFont(const std::string& font) { font_ = &sdl_.fonts().at(font); createTexture(); }
 
 
 	// GETTERS
@@ -74,6 +69,7 @@ public:
 	SDL_Color getColor() { return color_; }
 
 private:
+
 	Transform* tr_;
 	SDLUtils& sdl_ = *SDLUtils::instance();
 
@@ -85,7 +81,7 @@ private:
 	Uint32 wrapLenght_;
 	Text::BoxPivotPoint boxPivotPoint_;
 	Text::TextAlignment textAlignment_;
-
+	
 	// Atributo y método para calcular la posicion de renderizado según el punto de pivote de la caja de texto
 	Vector2D GetRenderPosAcordingPivotPoint() const;
 	Vector2D renderPos_;
@@ -93,4 +89,6 @@ private:
 	void createTexture();
 
 	void RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const;
+
 };
+

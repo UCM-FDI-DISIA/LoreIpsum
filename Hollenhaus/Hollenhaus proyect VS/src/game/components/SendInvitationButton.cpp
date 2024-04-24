@@ -11,14 +11,14 @@ SendInvitationButton::SendInvitationButton()
 
 SendInvitationButton::~SendInvitationButton()
 {
-	ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { clickButton(); });
+    ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { clickButton(); });
 }
 
 void SendInvitationButton::initComponent()
 {
-	getIP = ent_->getComponent<SendIPFromTextComponent>();
-	bc = ent_->getComponent<BoxCollider>();
-	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { clickButton(); });
+    getIP = ent_->getComponent<SendIPFromTextComponent>();
+    bc = ent_->getComponent<BoxCollider>();
+    ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { clickButton(); });
 }
 
 void SendInvitationButton::update()
@@ -27,6 +27,6 @@ void SendInvitationButton::update()
 
 void SendInvitationButton::clickButton()
 {
-	if (bc->isCursorOver())
-		getIP->sendIP();
+    if(bc->isCursorOver())
+   getIP->sendIP();
 }
