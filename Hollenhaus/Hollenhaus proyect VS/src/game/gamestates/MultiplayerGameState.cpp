@@ -154,6 +154,36 @@ void MultiplayerGameState::onEnter()
 
 #pragma endregion
 
+
+#pragma region Debug de envio de mazos
+
+	auto v = getMaze();
+
+	_Tu_Vieja();
+
+	for (auto& e : v) {
+#ifdef _DEBUG
+		std::cout << e << ", ";
+#endif // _DEBUG
+
+	}
+
+	_Tu_Vieja();
+
+	auto w = getMazeRival();
+
+	_Tu_Vieja();
+
+	for (auto& e : w) {
+#ifdef _DEBUG
+		std::cout << e << ", ";
+#endif // _DEBUG
+	}
+
+	_Tu_Vieja();
+
+#pragma endregion
+
 }
 
 void MultiplayerGameState::onExit()
