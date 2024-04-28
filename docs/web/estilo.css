@@ -13,22 +13,22 @@ html {
 p{
   font-family: 'averia';
   font-size: 1.2rem;
-  color:  rgb(231, 217, 194);
+  color:  rgb(252, 245, 229);
 }
 
 h1 {
   text-align: center;
-  color: rgb(231, 217, 194);
+  color: rgb(252, 245, 229);
 }
 
 .clase {
   text-align: center;
-  color: rgb(231, 217, 194);
+  color: rgb(252, 245, 229);
 }
 
 body {
   text-align: center;
-  background-color: rgb(14, 14, 14);
+  background-color: rgb(16, 23, 32);
 }
 
 #link {
@@ -75,7 +75,7 @@ ul {
 
 ul li::before {
   content: "\269D";
-  color: rgb(231, 217, 194);
+  color: rgb(252, 245, 229);
   display: inline-block;
   width: 1em;
   margin-left: -1em;
@@ -83,7 +83,7 @@ ul li::before {
 
 ul li li::before {
   content: "\2661";
-  color: rgb(231, 217, 194);
+  color: rgb(252, 245, 229);
   display: inline-block;
   width: 1em;
   margin-left: -1em;
@@ -99,7 +99,7 @@ footer p {
 footer {
   margin: 2rem 2rem 2rem 2rem;
   padding: 5px;
-  background-color: rgb(89, 89, 89);
-  color: rgb(231, 217, 194);
+  background-color: rgb(32, 37, 63);
+  color: rgb(252, 245, 229);
   border-radius: 15px;
 }
