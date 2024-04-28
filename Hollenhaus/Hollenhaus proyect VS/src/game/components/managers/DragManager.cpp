@@ -159,6 +159,8 @@ void DragManager::OnLeftClickUp()
 
 		//en cualquier caso, ya no tenemos carta drageada
 		dragTransform = nullptr;
+		//Quitamos todo el feedback del tablero
+		boardManager->returnColors();
 	}
 
 }
