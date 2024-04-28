@@ -20,6 +20,9 @@ public:
 	void addEnt(SpriteRenderer* entitySR, std::string _newPic);
 	void Shine();
 
+	void setShine();
+	void outShine();
+
 private:
 
 	BoxCollider* _myBoxCollider; // box collider de la entidad a la que se le aniade el componente

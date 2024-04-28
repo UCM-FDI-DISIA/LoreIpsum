@@ -4,6 +4,7 @@
 #include "../components/managers/Manager.h"
 #include "../components/basics/Transform.h"
 #include "../components/basics/SpriteRenderer.h"
+#include "../components/ShineComponent.h"
 #include "../components/basics/BoxCollider.h"
 #include "../components/Drag.h"
 #include "../components/managers/BoardManager.h"
@@ -48,6 +49,11 @@ ecs::entity_t BoardFactory_v0::createBoard()
 			_board[i][j]->getComponent<DropDetector>()->getBoardPos().set(
 				Vector2D(i, j));
 			_board[i][j] ->addComponent<SpriteRenderer>("cell");
+			_board[i][j]->addComponent<ShineComponent>();
+			_board[i][j]->getComponent<ShineComponent>()
+				->addEnt(_board[i][j]->getComponent<SpriteRenderer>(), "rice");
+
+			//npc->getComponent<ShineComponent>()->addEnt(npc->getComponent<SpriteRenderer>(), "BrilliNPC");
 			_board[i][j]->getComponent<Transform>()->setGlobalScale(Vector2D(scale, scale));
 			_board[i][j]->addComponent<BoxCollider>();
 			_board[i][j]->getComponent<BoxCollider>()->setAnchoredToSprite(true);

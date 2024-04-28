@@ -13,6 +13,7 @@
 
 #include "../Cell.h"
 #include "../Card.h"
+#include "../ShineComponent.h"
 #include "BoardManager.h"
 #include "../HandComponent.h"
 #include "MatchManager.h"
@@ -64,13 +65,16 @@ void DragManager::updateFeedback()
 	//Si una carta está pillada empieza el feedback
 	if (drop != nullptr) {
 
+		//Feedback que indica sobre qué casilla va a caer la carta
 		colorEffects(drop);
+		drop->getComponent<ShineComponent>()->setShine();
 
 		//Si cambiamos la celda sobre la que está puesta la carta
 		if (lastCell != nullptr && lastCell != drop) {
 
 			//Quitamos los colores del drag anterior
 			boardManager->returnColors();
+			lastCell->getComponent<ShineComponent>()->outShine();
 			lastCell = drop;
 		}
 		else {
@@ -82,6 +86,7 @@ void DragManager::updateFeedback()
 	}
 	else {
 		boardManager->returnColors();
+		if (lastCell != nullptr) lastCell->getComponent<ShineComponent>()->outShine();
 		}
 }
 void DragManager::setNetGame(NetGame* _netGame)
@@ -157,6 +162,8 @@ void DragManager::OnLeftClickUp()
 			dragTransform->setGlobalPos(initialTransformPos);
 		}
 
+		//Quitamos el feedback de colocar la carta
+		if (drop != nullptr) drop->getComponent<ShineComponent>()->outShine();
 		//en cualquier caso, ya no tenemos carta drageada
 		dragTransform = nullptr;
 		//Quitamos todo el feedback del tablero
