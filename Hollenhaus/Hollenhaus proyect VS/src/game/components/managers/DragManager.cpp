@@ -261,10 +261,13 @@ void DragManager::colorEffects(ecs::entity_t drop)
 			break;
 
 		case Effects::Flecha:
+
 			for (auto d : e.directions()) {
 
 				if (cell->getAdjacents()[d] != nullptr)	//Solo pintamos la correspondiente
 				{
+					
+					cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
 					cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
 					cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
 				}
