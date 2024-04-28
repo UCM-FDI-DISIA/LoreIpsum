@@ -51,7 +51,7 @@ ecs::entity_t BoardFactory_v0::createBoard()
 			_board[i][j] ->addComponent<SpriteRenderer>("cell");
 			_board[i][j]->addComponent<ShineComponent>();
 			_board[i][j]->getComponent<ShineComponent>()
-				->addEnt(_board[i][j]->getComponent<SpriteRenderer>(), "rice");
+				->addEnt(_board[i][j]->getComponent<SpriteRenderer>(), "shine_cell");
 
 			//npc->getComponent<ShineComponent>()->addEnt(npc->getComponent<SpriteRenderer>(), "BrilliNPC");
 			_board[i][j]->getComponent<Transform>()->setGlobalScale(Vector2D(scale, scale));
