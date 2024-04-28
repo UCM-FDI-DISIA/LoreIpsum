@@ -68,6 +68,48 @@ body {
   z-index: -1;
 }
 
+/*Cartas*/
+.card {
+  position: sticky;
+  top: calc(var(--top) * 1px);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  background-color: white;
+  border-radius: 0.5em;
+  padding: 3em;
+  margin-bottom: 2em;
+  transform: rotate(calc(var(--tilt-angle) * (2 * (var(--r) - 0.5))));
+  transition: 0.3s ease;
+}
+.card.stuck {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Add a box shadow effect */
+  background-color: red;
+}
+
+.card:nth-child(4n) {
+  --r: 0.7;
+  --top: 0;
+
+}
+
+.card:nth-child(4n + 1) {
+  --r: 0.2;
+  --top: 50;
+  
+}
+
+.card:nth-child(4n + 2) {
+  --r: 0.9;
+  --top: 100;
+  
+}
+
+.card:nth-child(4n + 3) {
+  --r: 0.4;
+  --top: 150;
+  
+}
+
+
 /* estrellitas en la lista */
 ul { 
   list-style: none;
