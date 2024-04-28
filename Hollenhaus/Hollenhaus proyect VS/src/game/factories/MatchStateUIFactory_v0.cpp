@@ -15,7 +15,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
     keyButton->addComponent<BoxCollider>();
     keyButton->addComponent<Button>()->connectToButton([]
     {
-	    GameStateMachine::instance()->setState(20);
+	    GameStateMachine::instance()->setState(GameStates::KEYMENU);
     });
     keyButton->setLayer(4);
 
