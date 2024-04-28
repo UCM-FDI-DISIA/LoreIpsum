@@ -84,6 +84,11 @@ std::unordered_map<int, Vector2D> GameState::getMaze()
 	return data->GetMaze();
 }
 
+std::list<int> GameState::getCurrentMaze()
+{
+	return data->GetCurrentMaze();
+}
+
 Vector2D GameState::getLastPaulPos()
 {
 	return data->getLastPaulPos();

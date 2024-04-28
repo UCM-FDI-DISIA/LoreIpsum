@@ -88,6 +88,7 @@ public:
 	// -- DECKBUILDING --
 	// Mazo:
 	const std::unordered_map<int, Vector2D> GetMaze() { return maze_with_pos; }
+	const std::list<int> GetCurrentMaze() { return maze; }
 	// Cajon:
 	std::array<int, CARDS_IN_GAME> GetDrawer() { return drawer; }
 

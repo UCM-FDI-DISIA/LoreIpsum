@@ -14,4 +14,11 @@ public:
 
     void onEnter() override;
     void onExit() override;
+
+    void ShowMaze();
+    void CleanMazeMenu();
+
+private:
+    // Array auxiliar para guardar las cartas actuales del menu
+    std::array<ecs::entity_t, 20> cardsAux;
 };
