@@ -50,6 +50,7 @@ void MatchOverState::onExit()
 {
 	std::cout << "\nEXIT MATCHOVER.\n";
 	GameStateMachine::instance()->getMngr()->Free();
+	saveData();
 }
 
 void MatchOverState::setWindow(int lastWinner) {
@@ -64,6 +65,11 @@ void MatchOverState::setWindow(int lastWinner) {
 	case 2: // Jugador1:
 		_background = "fantasma";
 		_text = "JUGADOR 1!";
+		data->AddMoney(MONEY_GAIN); // Suma dinero cuando gana el jugador.
+		/*if (pitonisa)
+		{
+			data->AddSouls(SOULS_GAIN); // Suma almas cuando gana el jugador contra la pitonisa. No se como se sabra que es la pitonisa entonces lo dejo comentado.
+		}*/
 		break;
 	case 3: // Jugador2:
 		_background = "npc";
