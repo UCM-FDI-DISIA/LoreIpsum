@@ -4,10 +4,12 @@
 #include "MatchManager.h"
 #include "BoardManager.h"
 #include "Manager.h"
+#include "../Button.h"
 #include "../../GameStateMachine.h"
 #include "../../gamestates/GameState.h"
 #include "../../components/basics/TextComponent.h"
 #include "../../components/multiplayer/NetGame.h"
+#include "game/Data.h"
 
 MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm) :
 	board_(bm),
@@ -66,13 +68,7 @@ void MatchManager::setActualState(Turns::State newState)
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
 #endif
 		setWinnerOnData();
-		if (netGame == nullptr) {
-
-			GameStateMachine::instance()->setState(GameStates::MATCHOVER);
-		}
-		else {
-			GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_END_GAME);
-		}
+		InstantiatePanelFinPartida(GameStateMachine::instance()->getCurrentState()->getData()->getWinner());
 		break;
 	case Turns::IA:
 #if _DEBUG 
@@ -202,4 +198,36 @@ void MatchManager::startTurnIA()
 void MatchManager::changeTurnMultiplayer()
 {
 	netGame->nextTurn();
+}
+
+void MatchManager::InstantiatePanelFinPartida(int winner)
+{
+
+	ecs::entity_t panel = Instantiate(Vector2D(0, 0));
+	panel->setLayer(1000);
+	panel->addComponent<SpriteRenderer>("panelFinPartida");
+
+	ecs::entity_t victoryDefeatText = Instantiate(Vector2D(400, 200));
+	victoryDefeatText->setLayer(1002);
+	auto text = victoryDefeatText->addComponent<TextComponent>("", "8bit_size_32", SDL_Color({ 0, 0, 0 ,0 }), 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+
+	if (winner == 1) text->setTxt("EMPATE");
+	if (winner == 2) text->setTxt("VICTORIA");
+	if (winner == 3) text->setTxt("DERROTA");
+	
+
+	ecs::entity_t continuarButton = Instantiate(Vector2D(400, 300));
+	continuarButton->setLayer(1001);
+	continuarButton->addComponent<TextComponent>("CONTINUAR", "8bit_size_32", SDL_Color({ 0, 0, 0 ,0 }), 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	continuarButton->addComponent<BoxCollider>();
+	continuarButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
+	continuarButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
+	continuarButton->addComponent<Button>();
+	if (netGame == nullptr) {
+		continuarButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(GameStates::MATCHOVER); });
+	}
+	else {
+		continuarButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_END_GAME); });
+	}
+	
 }
