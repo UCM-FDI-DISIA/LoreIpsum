@@ -8,6 +8,10 @@
 #include "../GameStateMachine.h"
 #include "../Data.h"
 
+// factorias
+#include "../factories/Factory.h"
+#include "../factories/FakeCardFactory_v0.h"
+
 // DECLARAR LAS VARIABLES ESTATICAS
 Data* GameState::data = nullptr;
 
@@ -167,6 +171,18 @@ void GameState::saveData()
 void GameState::loadData()
 {
 	data->Read();
+}
+
+ecs::entity_t GameState::createCard(int id, Vector2D pos)
+{
+	// ---- CARDS ----
+	Factory *factory = new Factory();
+	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
+
+	// Hace LA carta segun su id, en la pos que se pida
+	auto card = sdlutils().cards().at(std::to_string(id));
+	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
+	return ent;
 }
 
 void GameState::setData(Data* _data)
