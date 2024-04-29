@@ -212,18 +212,27 @@ void MatchManager::InstantiatePanelFinPartida(int winner)
 	panel->setLayer(1000);
 	panel->addComponent<SpriteRenderer>("panelFinPartida");
 
-	ecs::entity_t victoryDefeatText = Instantiate(Vector2D(400, 200));
+	ecs::entity_t victoryDefeatText = Instantiate(Vector2D(128, 240));
 	victoryDefeatText->setLayer(1002);
 	auto text = victoryDefeatText->addComponent<TextComponent>("", "8bit_size_32", SDL_Color({ 0, 0, 0 ,0 }), 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 
-	if (winner == 1) text->setTxt("EMPATE");
-	if (winner == 2) text->setTxt("VICTORIA");
-	if (winner == 3) text->setTxt("DERROTA");
+	if (winner == 1) {
+		text->setTxt("EMPATE");
+		text->setColor(SDL_Color({ 0, 0, 255 ,0 }));
+	}
+	if (winner == 2) {
+		text->setTxt("VICTORIA");
+		text->setColor(SDL_Color({ 255, 50, 50 ,0 }));
+	}
+	if (winner == 3) {
+		text->setTxt("DERROTA");
+		text->setColor(SDL_Color({ 255, 50, 50 ,0 }));
+	}
 	
 
-	ecs::entity_t continuarButton = Instantiate(Vector2D(400, 300));
+	ecs::entity_t continuarButton = Instantiate(Vector2D(128, 320));
 	continuarButton->setLayer(1001);
-	continuarButton->addComponent<TextComponent>("CONTINUAR", "8bit_size_32", SDL_Color({ 0, 0, 0 ,0 }), 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	continuarButton->addComponent<TextComponent>("CONTINUAR", "8bit_size_16", SDL_Color({ 0, 0, 0 ,0 }), 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	continuarButton->addComponent<BoxCollider>();
 	continuarButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
 	continuarButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
