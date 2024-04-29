@@ -62,6 +62,8 @@ class GameStateMachine : public Singleton<GameStateMachine>
 
 	Mouse* mouse_;
 
+	ecs::entity_t case_;
+
 	//Creacion de los distintos estados del juego
 	// 
 	// Current

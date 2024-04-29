@@ -7,8 +7,8 @@
 #include "../components/DialogueEventCollection.h"
 #include "../components/DecisionComponent.h"
 #include "../components/ShopComponent.h"
+#include "../CaseManager.h"
 
-ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 {
 	decision_ = decision;
@@ -70,9 +70,13 @@ void ClickDecision::TakeDecision()
 		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
 
 		break;
-	case 3: // Para activar combate con la tarotisa :) (Jimbo)
-		TuVieja("Buenos dias caso 3.");
-		parent_->getComponent<DialogueEventCollection>()->SetBossActive();
+	case 3: 
+		TuVieja("Buenos dias caso 3");
+		mngr().setAlive(mngr().getHandler(ecs::hdlr::CASE_MANAGER)->getComponent<CaseManager>()->caseNPC(), false);
+		// NUEVO NPC
+		ecs::entity_t npc;
+		mngr().getHandler(ecs::hdlr::CASE_MANAGER)->getComponent<CaseManager>()->addNPC(npc);
+
 		break;
 	default:
 		TuVieja("Esta decision no existe. Añadir en ClickDecision.cpp");

@@ -6,6 +6,7 @@
 #include "../components/basics/TextComponent.h"
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
+#include "../CaseManager.h"
 
 #include "../components/NPC.h"
 
@@ -36,6 +37,8 @@ void OfficeState::onEnter()
 
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPauseOF(); });
+
+	CaseManager* caseManager = mngr().getHandler(ecs::hdlr::CASE_MANAGER)->getComponent<CaseManager>();
 	
 	factory = new Factory();
 	factory->SetFactories(
@@ -83,7 +86,12 @@ void OfficeState::onEnter()
 	//------Boton para telefono: (WIP de Poli: El telf en realidad es un NPC invisible,
 	//  que al clicarlo hace que aparezca el dialogo.)
 
-	factory->createNPC(5, fondo); 
+	if(caseManager->caseNPC() == nullptr){
+		caseManager->addNPC(factory->createNPC(5, fondo));
+	}
+	else {
+		caseManager->addNPC(caseManager->caseNPC());
+	}
 
 	//Idea para los casos:
 	// - En dialoguesV1.json meter el texto de los casos que queremos que se diga. Como Caso0, Caso1, etc.
