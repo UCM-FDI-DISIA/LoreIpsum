@@ -104,7 +104,7 @@ public:
 	const std::unordered_map<int, Vector2D> GetMazeWithPos() { return maze_with_pos; }
 	const std::list<int> GetMaze() { return maze; }
 	const std::vector<int> GetMazeRival() { return mazeRival; }
-
+	const std::list<int> GetCurrentMaze() { return maze; }
 	// Cajon:
 	std::array<int, CARDS_IN_GAME> GetDrawer() { return drawer; }
 
