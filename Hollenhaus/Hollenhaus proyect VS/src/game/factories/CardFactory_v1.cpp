@@ -287,12 +287,16 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 			std::string valueText = effects[i].value() < 0 ? "" : "+";
 			valueText = valueText + std::to_string(effects[i].value());
 
-			//valueChange = Instantiate(Vector2D(0, 0));
+			auto color = SDL_Color({ 255,255,255, 255 });
 
-			auto color = SDL_Color({ 255,50,50, 255 });
-			if (rival) color = SDL_Color({ 40,200,200, 255 });
-			auto valueChange =
-				effectImage->addComponent<TextComponent>(valueText, "8bit_size_16", color, 100);
+			if(effects[i].value() < 0)
+				color = SDL_Color({ 255,50,50, 255 });
+			else
+				color = SDL_Color({ 50,255,50, 255 });
+			if (rival) 
+				color = SDL_Color({ 40,200,200, 255 });
+
+			auto valueChange = effectImage->addComponent<TextComponent>(valueText, "8bit_size_16", color, 100);
 		}
 	}
 }
@@ -301,6 +305,7 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 {
 	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
 
+	// Texto blanco para el valor
 	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_20", SDL_Color({ 255, 255, 255, 255 }), 100,
 		Text::CenterCenter, Text::Center);
 
@@ -313,7 +318,8 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
 
-	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_20", SDL_Color({ 255, 255, 255, 255 }), 100,
+	// Texto amarillo para el coste
+	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_20", SDL_Color({ 255, 255, 0, 255 }), 100,
 		Text::CenterCenter, Text::Center);
 
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
