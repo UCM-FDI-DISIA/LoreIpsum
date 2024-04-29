@@ -214,7 +214,8 @@ int BoardManager::heuristicIA(IA_manager::State* s)
 			if (_boardIA[i][j]->getOwner() == Players::PLAYER1)
 				puntosPlayer1 += _boardIA[i][j]->getTotalValue();
 			//si es el jugador 2 (normalmente npc)
-			else if (_boardIA[i][j]->getOwner() == Players::PLAYER2)
+			else if (_boardIA[i][j]->getOwner() == Players::PLAYER2 ||
+				_boardIA[i][j]->getOwner() == Players::IA)
 				puntosPlayer2 += _boardIA[i][j]->getTotalValue();
 		}
 	}
