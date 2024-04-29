@@ -557,11 +557,10 @@ inline void TuVieja(std::string message) {
 #define _Tu_Vieja(...) \
 std::cout << __VA_ARGS__ << std::endl;\
 
-#define _Tu_Vieja() \
-std::cout << std::endl;\
+
 
 #else
 #define _Tu_Vieja(...) 
-#define _Tu_Vieja() 
+
 #endif
 

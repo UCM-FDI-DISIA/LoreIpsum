@@ -132,7 +132,7 @@ void IA_manager::StartTurn()
 	int value = minimax(0, 1, false, s, best);
 	time = SDL_GetTicks() - time;
 
-
+	//_Tu_Vieja();
 #ifdef _DEBUG
 
 	std::cout << std::endl;

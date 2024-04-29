@@ -159,7 +159,7 @@ void MultiplayerGameState::onEnter()
 
 	auto v = getMaze();
 
-	_Tu_Vieja();
+	//_Tu_Vieja();
 
 	for (auto& e : v) {
 #ifdef _DEBUG
@@ -167,20 +167,20 @@ void MultiplayerGameState::onEnter()
 #endif // _DEBUG
 
 	}
-
-	_Tu_Vieja();
+	
+	//_Tu_Vieja();
 
 	auto w = getMazeRival();
-
-	_Tu_Vieja();
+	
+	//_Tu_Vieja();
 
 	for (auto& e : w) {
 #ifdef _DEBUG
 		std::cout << e << ", ";
 #endif // _DEBUG
 	}
-
-	_Tu_Vieja();
+	
+	//_Tu_Vieja();
 
 #pragma endregion
 
