@@ -14,4 +14,6 @@ public:
 
     void onEnter() override;
     void onExit() override;
+
+    void ShowMaze();
 };
