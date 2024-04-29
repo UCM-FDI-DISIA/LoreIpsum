@@ -133,6 +133,11 @@ std::list<int> GameState::getMaze()
 	return data->GetMaze();
 }
 
+std::list<int> GameState::getCurrentMaze()
+{
+	return data->GetCurrentMaze();
+}
+
 Vector2D GameState::getLastPaulPos()
 {
 	return data->getLastPaulPos();
