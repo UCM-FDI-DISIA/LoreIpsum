@@ -37,6 +37,10 @@ private:
 		winner = 0,
 		lastState = 0;
 
+	// ---- CONFIGURACION DEL JUEGO ----
+	bool automaticNextTurn = true;
+
+
 	std::list<int> defeatedNPCS;
 	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
@@ -54,6 +58,8 @@ private:
 	TCPsocket rival;
 
 	bool isHost = false;
+
+	
 
 public:
 
@@ -97,6 +103,10 @@ public:
 	// 
 	void setLastState(int ls);
 
+	// ---- CONFIGURACION ----
+	void SetAutomaticNextTurn(bool b);
+
+
 	// ---- Getters ----
 	#pragma region GETTERS
 	// -- DECKBUILDING --
@@ -131,6 +141,9 @@ public:
 	int getShopCardById(int id);
 	//----Devuelve ultimo estado antes de entrar a pausa
 	int getLastState() { return lastState; }
+
+	// ---- CONFIGURACION ----
+	bool GetAutomaticNextTurn() { return automaticNextTurn; }
 
 	//------Busqueda:
 

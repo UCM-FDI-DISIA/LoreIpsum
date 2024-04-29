@@ -124,6 +124,11 @@ void MatchManager::substractActualPlayerActionPoints(int points)
 	getActualState() == Turns::J1 ? 
 		substractActionPointsJ1(points) : substractActionPointsJ2(points);
 	updateVisuals();
+
+	// Si la configuracion admite el paso de turno automático
+	if(GameStateMachine::instance()->getCurrentState()->getData()->GetAutomaticNextTurn())
+		CheckNextTurnAutomatic();
+	
 }
 
 void MatchManager::updateVisuals()
@@ -230,4 +235,11 @@ void MatchManager::InstantiatePanelFinPartida(int winner)
 		continuarButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_END_GAME); });
 	}
 	
+}
+
+void MatchManager::CheckNextTurnAutomatic()
+{
+	if (getActualPlayerActualActionPoints() <= 0) {
+
+	}
 }

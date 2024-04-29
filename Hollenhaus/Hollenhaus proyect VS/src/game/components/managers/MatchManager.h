@@ -53,6 +53,9 @@ public:
 
     void InstantiatePanelFinPartida(int winner);
 
+    // Revisa si no hay más jugadas disponibles y pasa de turno si afirmativo
+    void CheckNextTurnAutomatic();
+
 private:
 
     Turns::State actualState;
