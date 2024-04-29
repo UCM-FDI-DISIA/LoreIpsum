@@ -125,7 +125,7 @@ void IA_manager::StartTurn()
 	s._boardCards = boardManager->getBoardCardsIA();
 	s._boardOwners = boardManager->getBoardOwnerIA();
 
-	State* best = nullptr;
+	State* best = new State();
 
 	uint32_t time = SDL_GetTicks();
 
@@ -340,7 +340,9 @@ int IA_manager::minimax(int depth, int h, bool isPlayer, State& current_state, S
 
 	for (State& s : all_posible_next_states(current_state, isPlayer)) {
 
-		int current = minimax(depth + 1, h, !isPlayer, s, best);
+		State* aux = new State(*best);
+		
+		int current = minimax(depth + 1, h, !isPlayer, s, aux);
 
 		if (isPlayer && current >= bestValue) { //si es jugador, maximiza el valor			
 			bestValue = current;
