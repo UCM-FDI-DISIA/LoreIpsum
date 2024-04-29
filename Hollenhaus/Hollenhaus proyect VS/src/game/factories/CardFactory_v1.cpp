@@ -287,12 +287,16 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 			std::string valueText = effects[i].value() < 0 ? "" : "+";
 			valueText = valueText + std::to_string(effects[i].value());
 
-			//valueChange = Instantiate(Vector2D(0, 0));
+			auto color = SDL_Color({ 255,255,255, 255 });
 
-			auto color = SDL_Color({ 255,50,50, 255 });
-			if (rival) color = SDL_Color({ 40,200,200, 255 });
-			auto valueChange =
-				effectImage->addComponent<TextComponent>(valueText, "8bit_size_16", color, 100);
+			if(effects[i].value() < 0)
+				color = SDL_Color({ 255,50,50, 255 });
+			else
+				color = SDL_Color({ 50,255,50, 255 });
+			if (rival) 
+				color = SDL_Color({ 40,200,200, 255 });
+
+			auto valueChange = effectImage->addComponent<TextComponent>(valueText, "8bit_size_16", color, 100);
 		}
 	}
 }
