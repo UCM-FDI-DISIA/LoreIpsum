@@ -1,640 +1,620 @@
 {
-    "owner": [
+  "owner": [
+    {
+      "NPCName": "El Xungo del Barrio",
+      "convo": [
         {
-            "NPCName": "El Xungo del Barrio",
-            "convo": [
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Hey, que tal",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "He oido por ahi que ha salido un nuevo juego de cartas",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "jolenjaus creo?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "no se, no juego mucho",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
                 {
-                    "convoID": 0,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Hey, que tal",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "He oido por ahi que ha salido un nuevo juego de cartas",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "jolenjaus creo?",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "no se, no juego mucho",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 0,
-                                    "scene": 0
-                                }
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "pero dicen que esta guapo",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 1,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Otra conversacion por aqui",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Ha quedado buena tarde",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
+                  "timing": 1,
+                  "type": 0,
+                  "scene": 0
                 }
-            ]
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "pero dicen que esta guapo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
         },
         {
-            "NPCName": "Tienda",
-            "convo": [
-                {
-                    "convoID": "0",
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": "0",
-                            "text": "Has terminado de mirar?",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 3,
-                                    "scene": 3,
-                                    "gdecision": 2,
-                                    "rdecision": 0
-                                }
-                            ]
-                        },
-                        {
-                            "nodeID": "1",
-                            "text": "Seguro que quieres comprar esta carta?",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "NPCName": "Javivu24",
-            "convo": [
-                {
-                    "convoID": 0,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "que",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "jajaja....",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "es completamente IMPOSIBLE que funciones",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "a la pared ya, estas tardando",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "vamos, el coach rcibiendo un balon",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "NPCName": "Board Tutorial",
-            "convo": [
-                {
-                    "convoID": 0,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Bienvenido a las partidas de cartas.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Con las partidas de cartas podras conseguir dinero con el que podras comprar nuevas cartas en la tienda.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Pero empecemos desde el principio.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 1,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Esto es una carta.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Las cartas guardan informacion.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 2,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Arriba a la izquierda informan de su coste",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "cada vez que uses una carta tendras que pagar su precio",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Abajo a la izquierda guardan su valor",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Cuando coloques una carta en el tablero se te sumara ese valor a tu puntuacion",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "En el centro de la carta se encuentra un pictograma que indica el efecto que posee",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 5,
-                            "text": "Ademas de sumar un valor, las cartas aplicaran un efecto al tablero",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 6,
-                            "text": "Sigue jugando y descubriras todos los efectos!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 3,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Este es tu mazo",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "El mazo se compone de las cartas que tu quieras. Desde tu oficina lo puedes modificar.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Roba una carta de tu mazo para tenerla en tu mano.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 4,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Bien hecho!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Solo podras usar cartas que tienes en tu mano",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Prueba a arrastrar la carta a una celda!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 5,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "A la derecha del tablero tienes la puntuacion de cada jugador",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "El jugador que tenga mas puntos al llenarse el tablero gana!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Suerte!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 6,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Bien hecho!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Completar distintas acciones supondra un coste.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Robar una carta cuesta 1 punto de accion",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Colocar una carta en el tablero dependera de cada carta.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "Este coste se puede ver en la esquina superior derecha de cada carta.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 7,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Cuando no puedas hacer mas acciones pulsa el boton de Siguiente Turno.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Esto le dara la oportunidad a tu enemigo de jugar sus cartas.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 8,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Ya no tenemos nada mas que hacer",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Pulsa el boton a la izquierda del tablero para pasar de turno",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 9,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Es el turno de nuestro oponente, veamos",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 10,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Hmm, nuestro oponentees bueno",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Haz tu mejor jugada!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 11,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Los efectos de las cartas no solo afectan a tus cartas",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Tambien se aplican a las cartas enemigas",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Ten cuidado y no te restes demasiados puntos sin querer",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Nadie se salva del poder de las cartas!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 12,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Veo que lo pillas rapido!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Animo en la partida, y suerte con el piso",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Otra conversacion por aqui",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Ha quedado buena tarde",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
         }
+      ]
+    },
+    {
+      "NPCName": "Javivu24",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "que",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "jajaja....",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "es completamente IMPOSIBLE que funciones",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "a la pared ya, estas tardando",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "vamos, el coach rcibiendo un balon",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Board Tutorial",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Bienvenido a las partidas de cartas.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Con las partidas de cartas podras conseguir dinero con el que podras comprar nuevas cartas en la tienda.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Pero empecemos desde el principio.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Esto es una carta.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Las cartas guardan informacion.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 2,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Arriba a la izquierda informan de su coste",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "cada vez que uses una carta tendras que pagar su precio",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 3,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Abajo a la izquierda guardan su valor",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Cuando coloques una carta en el tablero se te sumara ese valor a tu puntuacion",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 4,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 4,
+              "text": "En el centro de la carta se encuentra un pictograma que indica el efecto que posee",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "Ademas de sumar un valor, las cartas aplicaran un efecto al tablero",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 6,
+              "text": "Sigue jugando y descubriras todos los efectos!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 5,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Este es tu mazo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "El mazo se compone de las cartas que tu quieras. Desde tu oficina lo puedes modificar.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Roba una carta de tu mazo para tenerla en tu mano.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 6,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Bien hecho!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Solo podras usar cartas que tienes en tu mano",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Prueba a arrastrar la carta a una celda!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 7,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "A la derecha del tablero tienes la puntuacion de cada jugador",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "El jugador que tenga mas puntos al llenarse el tablero gana!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Suerte!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 8,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Completar distintas acciones supondra un coste.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Robar una carta cuesta 1 punto de accion",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Colocar una carta en el tablero dependera de cada carta.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Este coste se puede ver en la esquina superior derecha de cada carta.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 8,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Cuando no puedas hacer mas acciones pulsa el boton de Siguiente Turno.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Esto le dara la oportunidad a tu enemigo de jugar sus cartas.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 10,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Ya no tenemos nada mas que hacer",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Pulsa el boton a la izquierda del tablero para pasar de turno",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
 
-    ]
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 11,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Es el turno de nuestro oponente, veamos",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 12,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Hmm, nuestro oponentees bueno",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Haz tu mejor jugada!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 13,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Los efectos de las cartas no solo afectan a tus cartas",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Tambien se aplican a las cartas enemigas",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Ten cuidado y no te restes demasiados puntos sin querer",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Nadie se salva del poder de las cartas!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 14,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Veo que lo pillas rapido!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Animo en la partida, y suerte con el piso",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+
+  ]
 }
