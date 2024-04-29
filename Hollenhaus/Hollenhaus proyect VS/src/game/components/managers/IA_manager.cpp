@@ -257,6 +257,8 @@ std::vector<IA_manager::InfoJugada> IA_manager::calcularTurno(State s, bool isPl
 	int nRobosPosibles = fmin(s.actionPoints,
 		isPlayer ? s.playerDeck.size() : s.enemyDeck.size());
 
+	nRobosPosibles = fmin(nRobosPosibles , (maxCardInHand - (isPlayer ? s.playerHand.size() : s.enemyHand.size())));
+
 	auto& currentDeck = isPlayer ? s.playerDeck : s.enemyDeck;
 	auto& currentHand = isPlayer ? s.playerHand : s.enemyHand;
 
@@ -284,7 +286,29 @@ std::vector<IA_manager::InfoJugada> IA_manager::calcularTurno(State s, bool isPl
 
 		//actualizar la lista de jugadasTotales(TuplaSolucion)
 		for (auto& s : partialPlays) {
-			allPosiblePlays.push_back(InfoJugada{ i,s });
+
+			if (i == 0) {
+
+
+
+				bool nula = true;
+				//buscar una jugada no nula
+
+				int j = 0;
+
+				while (j < s.size() && nula)
+				{
+					if (s[j].pos.getX() != 0 || s[j].pos.getY() != 0) {
+						nula = false;
+						allPosiblePlays.push_back(InfoJugada{ i,s });
+					}
+					j++;
+				}
+			}
+			else {
+				allPosiblePlays.push_back(InfoJugada{ i,s });
+
+			}
 		}
 	}
 
@@ -318,11 +342,11 @@ int IA_manager::minimax(int depth, int h, bool isPlayer, State& current_state, S
 
 		int current = minimax(depth + 1, h, !isPlayer, s, best);
 
-		if (isPlayer && current > bestValue) { //si es jugador, maximiza el valor			
+		if (isPlayer && current >= bestValue) { //si es jugador, maximiza el valor			
 			bestValue = current;
 			best = new State(s);
 		}
-		else if (!isPlayer && current < bestValue) {//si es la IA, lo minimiza
+		else if (!isPlayer && current <= bestValue) {//si es la IA, lo minimiza
 			bestValue = current;
 			best = new State(s);
 		}
