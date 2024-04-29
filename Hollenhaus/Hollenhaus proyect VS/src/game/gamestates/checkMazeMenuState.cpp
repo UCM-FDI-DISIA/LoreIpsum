@@ -61,7 +61,6 @@ void CheckMazeMenuState::ShowMaze()
 	int i = 1;
 	for (auto e : mazeAux) {
 
-		//std::list<int>::iterator findIter = std::find(mazeAux.begin(), mazeAux.end(), e);
 		if (e != -1)
 		{
 			ecs::entity_t ent = GameStateMachine::instance()->getCurrentState()->createCard
@@ -70,16 +69,4 @@ void CheckMazeMenuState::ShowMaze()
 
 		i++;
 	}
-
-	//for (int i = 0; i < GameStateMachine::instance()->getCurrentState()->getMaze().size(); i++)
-	//{
-
-	//	// si la carta esta desbloqueada
-		//if (*findIter != -1)
-		//{
-		//	// la crea
-		//	ecs::entity_t ent = GameStateMachine::instance()->getCurrentState()->createCard
-		//	(*findIter, Vector2D(i, 100));
-		//}
-	//}
 }
