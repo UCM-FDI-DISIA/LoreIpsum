@@ -301,6 +301,7 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 {
 	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
 
+	// Texto blanco para el valor
 	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_20", SDL_Color({ 255, 255, 255, 255 }), 100,
 		Text::CenterCenter, Text::Center);
 
@@ -313,7 +314,8 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
 
-	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_20", SDL_Color({ 255, 255, 255, 255 }), 100,
+	// Texto amarillo para el coste
+	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_20", SDL_Color({ 255, 255, 0, 255 }), 100,
 		Text::CenterCenter, Text::Center);
 
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
