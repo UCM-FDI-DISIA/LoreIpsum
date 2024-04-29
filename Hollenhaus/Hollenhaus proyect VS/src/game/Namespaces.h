@@ -270,7 +270,8 @@ namespace Tutorials {
 	enum Tutorials {
 		BOARD,
 		DECKBUILDER,
-
+		SHOP,
+		GENERAL
 	};
 
 	enum Board {

@@ -23,6 +23,7 @@ private:
 
     //
     void setBoard();
+    void setDeckbuilder();
     void setBaseEntity();
     void initTutorial();
 
