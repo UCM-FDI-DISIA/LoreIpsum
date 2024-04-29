@@ -410,14 +410,6 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Bien hecho!",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 1,
               "text": "Completar distintas acciones supondra un coste.",
               "eventStart": 0,
               "eventFinish": 0,
@@ -425,7 +417,7 @@
               ]
             },
             {
-              "nodeID": 2,
+              "nodeID": 1,
               "text": "Robar una carta cuesta 1 punto de accion",
               "eventStart": 0,
               "eventFinish": 0,
@@ -433,7 +425,7 @@
               ]
             },
             {
-              "nodeID": 3,
+              "nodeID": 2,
               "text": "Colocar una carta en el tablero dependera de cada carta.",
               "eventStart": 0,
               "eventFinish": 0,
@@ -441,7 +433,7 @@
               ]
             },
             {
-              "nodeID": 4,
+              "nodeID": 3,
               "text": "Este coste se puede ver en la esquina superior derecha de cada carta.",
               "eventStart": 0,
               "eventFinish": 0,
