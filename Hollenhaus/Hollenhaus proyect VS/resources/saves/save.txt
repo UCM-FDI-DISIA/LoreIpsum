@@ -1,5 +1,5 @@
 8000
-300
+3
 0
 Mazo_y_posiciones
 0

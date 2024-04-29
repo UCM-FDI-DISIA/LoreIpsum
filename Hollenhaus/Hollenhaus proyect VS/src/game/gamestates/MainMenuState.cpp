@@ -64,9 +64,7 @@ void MainMenuState::onEnter()
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	newGameButton->addComponent<NPC>(15, 0); // Esto es graciosisimo
-
-	//newGameButton->addComponent<NPC>(GameStates::CITY, NPC::Type::BUTTON, "", true, true); // Esto es graciosisimo
+	newGameButton->addComponent<NPC>(12, 0); // Esto es graciosisimo
 
 	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
 	multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
@@ -83,11 +81,11 @@ void MainMenuState::onEnter()
 	//optionsText->addComponent<TextComponent>("OPTIONS", "8bit_24pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para salir.
 
-	optionsButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 120));
-	optionsButton->addComponent<TextComponent>("OPCIONES", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	optionsButton = Instantiate(Vector2D(sdlutils().width() - 148, sdlutils().height() - 120));
+	optionsButton->addComponent<TextComponent>("OPCIONES", "8bit_size_32", ROJO_HOLLENHAUS, 190, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	optionsButton->addComponent<BoxCollider>();
 	optionsButton->getComponent<BoxCollider>()->setSize(Vector2D(190, 40));
-	optionsButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-40, -20));
+	optionsButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-93, -20));
 	optionsButton->addComponent<NPC>(14, 0);
 
 	exitButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 70));

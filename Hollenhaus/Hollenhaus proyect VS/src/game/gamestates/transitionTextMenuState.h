@@ -14,6 +14,9 @@ public:
     void onExit() override;
 
 private:
+    ecs::entity_t casoText;
+    ecs::entity_t casoNum;
+    int caso;
     ecs::entity_t dineroText;
     ecs::entity_t dineroNum;
     int money;

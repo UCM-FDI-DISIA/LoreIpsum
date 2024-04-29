@@ -44,14 +44,24 @@ void TransitionTextMenuState::onEnter()
 	//fondo->getComponent<Transform>()->getRelativeScale().set(5.0f, 5.0f);
 	fondo->setLayer(0);
 
-	dineroText = Instantiate(Vector2D(400, 100));
-	dineroText->addComponent<TextComponent>("DINERO: ", "8bit_size_40", PEARL_HOLLENHAUS, 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	casoText = Instantiate(Vector2D(370, 100));
+	casoText->addComponent<TextComponent>("CASO ", "8bit_size_40", PEARL_HOLLENHAUS, 130, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	casoText->setLayer(1);
+
+	caso = GameStateMachine::instance()->getCurrentState()->getCurrentCase();
+
+	casoNum = Instantiate(Vector2D(440, 95));
+	casoNum->addComponent<TextComponent>(std::to_string(caso), "8bit_size_40", PEARL_HOLLENHAUS, 90, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	casoNum->setLayer(1);
+
+	dineroText = Instantiate(Vector2D(340, 170));
+	dineroText->addComponent<TextComponent>("DINERO: ", "8bit_size_40", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	dineroText->setLayer(1);
 
 	money = GameStateMachine::instance()->getCurrentState()->getMoney();
 
-	dineroNum = Instantiate(Vector2D(400, 200));
-	dineroNum->addComponent<TextComponent>(std::to_string(money), "8bit_size_40", PEARL_HOLLENHAUS, 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	dineroNum = Instantiate(Vector2D(490, 170));
+	dineroNum->addComponent<TextComponent>(std::to_string(money), "8bit_size_40", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	dineroNum->setLayer(1);
 
 	continuar = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 100));
