@@ -67,7 +67,7 @@ public:
 	virtual void loadData();
 
 	// ---- crea carta ----
-	virtual ecs::entity_t createCard(int id, Vector2D pos) { return nullptr; };
+	virtual ecs::entity_t createCard(int id, Vector2D pos);
 
 	// ---- getters ----
 	virtual std::array<int, 50> getDrawer();

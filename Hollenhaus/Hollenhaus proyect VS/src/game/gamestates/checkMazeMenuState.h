@@ -16,4 +16,6 @@ public:
     void onExit() override;
 
     void ShowMaze();
+
+    std::list<int> mazeAux;
 };
