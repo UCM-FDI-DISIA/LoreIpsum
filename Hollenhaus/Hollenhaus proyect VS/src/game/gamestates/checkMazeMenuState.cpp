@@ -53,7 +53,7 @@ void CheckMazeMenuState::onEnter()
 void CheckMazeMenuState::onExit()
 {
 	std::cout << "\nEXIT CHECK MAZE\n";
-	CleanMazeMenu();
+	GameStateMachine::instance()->getMngr()->Free();
 }
 
 void CheckMazeMenuState::ShowMaze()
@@ -66,32 +66,6 @@ void CheckMazeMenuState::ShowMaze()
 			// la crea
 			ecs::entity_t ent = GameStateMachine::instance()->getCurrentState()->createCard
 			(GameStateMachine::instance()->getCurrentState()->getDrawer()[i], Vector2D(25 * i, 100));
-
-			// para borrarlas luego
-			if (ent != nullptr) {
-
-				// la guarda en el aux
-				cardsAux[i] = ent;
-			}
-		}
-	}
-}
-
-void CheckMazeMenuState::CleanMazeMenu()
-{
-	// recorre las cartas mostradas
-	for (int i = 0; i < GameStateMachine::instance()->getCurrentState()->getCurrentMaze().size(); i++)
-	{
-		// si existe esa carta
-		if (cardsAux[i] != nullptr)
-		{
-			// guarda la entidad
-			ecs::entity_t ent = cardsAux[i];
-
-			// la mata
-			ent->getComponent<Transform>()->killChildren();
-			ent->setAlive(false);
-			cardsAux[i] = nullptr;
 		}
 	}
 }
