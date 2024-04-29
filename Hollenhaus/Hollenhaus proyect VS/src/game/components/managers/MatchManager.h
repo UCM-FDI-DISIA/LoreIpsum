@@ -51,6 +51,8 @@ public:
     //envia el mensaje correspondiente
     void changeTurnMultiplayer();
 
+    void InstantiatePanelFinPartida(int winner);
+
 private:
 
     Turns::State actualState;
