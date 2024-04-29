@@ -257,6 +257,8 @@ std::vector<IA_manager::InfoJugada> IA_manager::calcularTurno(State s, bool isPl
 	int nRobosPosibles = fmin(s.actionPoints,
 		isPlayer ? s.playerDeck.size() : s.enemyDeck.size());
 
+	nRobosPosibles = fmin(nRobosPosibles , (maxCardInHand - (s.enemyHand.size())));
+
 	auto& currentDeck = isPlayer ? s.playerDeck : s.enemyDeck;
 	auto& currentHand = isPlayer ? s.playerHand : s.enemyHand;
 

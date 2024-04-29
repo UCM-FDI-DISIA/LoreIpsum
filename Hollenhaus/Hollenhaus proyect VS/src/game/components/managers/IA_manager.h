@@ -202,6 +202,8 @@ private:
 
 	#pragma endregion
 
+	int maxCardInHand = 6;
+
 
 	// ------ TWEENS ------
 	InfoJugada play_;
