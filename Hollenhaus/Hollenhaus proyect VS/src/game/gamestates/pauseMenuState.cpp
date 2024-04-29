@@ -49,7 +49,7 @@ void PauseMenuState::onEnter()
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(GetLastState());
+	exit->addComponent<NPC>(GetLastState()); // Lleva a la oficina (2).
 	exit->setLayer(5);
 
 	//// ---- CheckMaze:
@@ -60,7 +60,7 @@ void PauseMenuState::onEnter()
 	Vector2D mazePos(120, 200);
 	maze->getComponent<Transform>()->setGlobalPos(mazePos);
 	maze->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	maze->addComponent<NPC>(18);
+	maze->addComponent<NPC>(18); // Lleva a la oficina (2).
 	maze->setLayer(5);
 
 	sdlutils().virtualTimer().pause();
@@ -69,7 +69,7 @@ void PauseMenuState::onEnter()
 void PauseMenuState::onExit()
 {
 	// se desuscribe al evento de click izq
-	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onDespause(); });
+	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onDespause(); });
 
 	GameStateMachine::instance()->getMngr()->Free();
 

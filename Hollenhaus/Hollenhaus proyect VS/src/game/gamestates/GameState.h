@@ -72,8 +72,7 @@ public:
 	// ---- getters ----
 	virtual std::array<int, 50> getDrawer();
 	virtual std::unordered_map<int, Vector2D> getMazeWithPos();
-	virtual std::unordered_map<int, Vector2D> getMaze();
-
+	virtual std::list<int> getMaze();
 	virtual Vector2D getLastPaulPos();
 	virtual bool getLastPaulDir() const;
 	virtual int GetLastState();
