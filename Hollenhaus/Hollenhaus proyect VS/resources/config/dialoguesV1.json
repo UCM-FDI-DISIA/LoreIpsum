@@ -212,10 +212,21 @@
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "convoID": 3,
+          "autoConvo": false,
+          "nodes": [
             {
-              "nodeID": 2,
+              "nodeID": 0,
               "text": "Abajo a la izquierda guardan su valor",
               "eventStart": 0,
               "eventFinish": 0,
@@ -223,13 +234,24 @@
               ]
             },
             {
-              "nodeID": 3,
+              "nodeID": 1,
               "text": "Cuando coloques una carta en el tablero se te sumara ese valor a tu puntuacion",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "convoID": 4,
+          "autoConvo": false,
+          "nodes": [
             {
               "nodeID": 4,
               "text": "En el centro de la carta se encuentra un pictograma que indica el efecto que posee",
@@ -262,7 +284,7 @@
           ]
         },
         {
-          "convoID": 3,
+          "convoID": 5,
           "autoConvo": false,
           "nodes": [
             {
@@ -305,7 +327,7 @@
           ]
         },
         {
-          "convoID": 4,
+          "convoID": 6,
           "autoConvo": false,
           "nodes": [
             {
@@ -348,7 +370,7 @@
           ]
         },
         {
-          "convoID": 5,
+          "convoID": 7,
           "autoConvo": false,
           "nodes": [
             {
@@ -383,7 +405,7 @@
           ]
         },
         {
-          "convoID": 6,
+          "convoID": 8,
           "autoConvo": false,
           "nodes": [
             {
@@ -434,7 +456,7 @@
           ]
         },
         {
-          "convoID": 7,
+          "convoID": 8,
           "autoConvo": false,
           "nodes": [
             {
@@ -461,7 +483,7 @@
           ]
         },
         {
-          "convoID": 8,
+          "convoID": 10,
           "autoConvo": false,
           "nodes": [
             {
@@ -489,7 +511,7 @@
           ]
         },
         {
-          "convoID": 9,
+          "convoID": 11,
           "autoConvo": false,
           "nodes": [
             {
@@ -508,7 +530,7 @@
           ]
         },
         {
-          "convoID": 10,
+          "convoID": 12,
           "autoConvo": false,
           "nodes": [
             {
@@ -530,7 +552,7 @@
           ]
         },
         {
-          "convoID": 11,
+          "convoID": 13,
           "autoConvo": false,
           "nodes": [
             {
@@ -573,7 +595,7 @@
           ]
         },
         {
-          "convoID": 12,
+          "convoID": 14,
           "autoConvo": false,
           "nodes": [
             {

@@ -60,7 +60,11 @@ private:
 
     void setCARD();
 
-    void setCARDINFO();
+    void setCARDPOINTS();
+
+    void setCARDCOST();
+
+    void setCARDIMAGE();
 
     void setDECK();
 
