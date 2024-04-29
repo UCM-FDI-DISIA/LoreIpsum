@@ -61,20 +61,20 @@ void HandComponent::addCard(ecs::entity_t card) {
 	{
 		//if (owner_ == Players::PLAYER1) {
 			///Tween
-			carta = card;
-			tweenDrawCardX[i] =
-				tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getX())
-				.to(cardPositions_[i].getX())
-				.during(60)
-				.via(tweeny::easing::sinusoidalInOut);
+		carta = card;
+		tweenDrawCardX[i] =
+			tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getX())
+			.to(cardPositions_[i].getX())
+			.during(60)
+			.via(tweeny::easing::sinusoidalInOut);
 
-			tweenDrawCardY[i] =
-				tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getY())
-				.to(cardPositions_[i].getY())
-				.during(60)
-				.via(tweeny::easing::sinusoidalInOut);
+		tweenDrawCardY[i] =
+			tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getY())
+			.to(cardPositions_[i].getY())
+			.during(60)
+			.via(tweeny::easing::sinusoidalInOut);
 
-			tween = true;
+		tweenCardRob = true;
 		//}
 	}
 
@@ -84,7 +84,7 @@ void HandComponent::update()
 {
 	//Habría que hacer cuando esté el tween definitivo que cuando 
 	// llegue al sitio en el que se tiene que quedar ponga el bool a falso
-	if (tween /* && owner_ == Players::PLAYER1*/) {
+	if (tweenCardRob /* && owner_ == Players::PLAYER1*/) {
 		/// TWEENS???
 		//Habría que hacer que comience en el mazo y se mueva hasta su posición
 		uint16_t cardsInPos = 0;
@@ -124,7 +124,53 @@ void HandComponent::update()
 		}
 		if (cardsInPos >= cardsInHand_.size())
 		{
-			tween = false;
+			tweenCardRob = false;
+			if (drag != nullptr) drag->setDraggable(true);
+		}
+
+	}
+	
+	if (tweenCardRob) {
+		/// TWEENS???
+		//Habría que hacer que comience en el mazo y se mueva hasta su posición
+		uint16_t cardsInPos = 0;
+		auto drag = mngr_->getHandler(ecs::hdlr::DRAG_MANAGER)->getComponent<DragManager>();
+
+		for (int i = 0; i < cardsInHand_.size(); i++)
+		{
+			Vector2D step;
+
+			// ------ TWEENS POS X ------
+			tweenDrawCardX[i].step(1);
+			if (tweenDrawCardX[i].peek() != cardPositions_[i].getX()) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+			{
+				if (drag != nullptr) drag->setDraggable(false);
+				step.setX(tweenDrawCardX[i].peek());
+			}
+
+			// ------ TWEENS POS Y ------
+			tweenDrawCardY[i].step(1);
+			if (tweenDrawCardY[i].peek() > 0) // una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+			{
+				if (drag != nullptr) drag->setDraggable(false);
+				step.setY(tweenDrawCardY[i].peek());
+			}
+
+			// Si esta en posicion suma uno a cartas en posicion
+			if (tweenDrawCardX[i].progress() == 1.0 && tweenDrawCardY[i].progress() == 1.0)
+			{
+				cardsInPos++;
+			}
+			else
+			{
+				// Mueve la carta
+				cardsInHand_[i]->getComponent<Transform>()->setRelativePos(step);
+			}
+
+		}
+		if (cardsInPos >= cardsInHand_.size())
+		{
+			tweenCardRob = false;
 			if (drag != nullptr) drag->setDraggable(true);
 		}
 
@@ -132,9 +178,8 @@ void HandComponent::update()
 
 }
 
-void HandComponent::removeCard(ecs::entity_t card) {
-	bool found = false;
-
+void HandComponent::removeCard(ecs::entity_t card)
+{
 	std::vector<ecs::entity_t> auxVec;
 
 	// Guarda en el vector auxiliar las cartas que siguen en la mano, y quita el parent a la que ya no esta en la mano
@@ -168,7 +213,7 @@ void HandComponent::removeCard(ecs::entity_t card) {
 			// su parent ya no es la mano izq
 			cardsInHand_[i]->getComponent<Transform>()->removeParent();
 			//tweenDrawCardX[i] = nullptr;
-			tween = false;
+			tweenCardRob = false;
 		}
 	}
 
@@ -178,23 +223,21 @@ void HandComponent::removeCard(ecs::entity_t card) {
 	refreshPositions();
 	for (int i = 0; i < cardsInHand_.size(); i++)
 	{
-		//if (owner_ == Players::PLAYER1) {
-			///Tween
-			carta = card;
-			tweenDrawCardX[i] =
-				tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getX())
-				.to(cardPositions_[i].getX())
-				.during(60)
-				.via(tweeny::easing::sinusoidalInOut);
+		///Tween
+		carta = card;
+		tweenDrawCardX[i] =
+			tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getX())
+			.to(cardPositions_[i].getX())
+			.during(60)
+			.via(tweeny::easing::sinusoidalInOut);
 
-			tweenDrawCardY[i] =
-				tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getY())
-				.to(cardPositions_[i].getY())
-				.during(60)
-				.via(tweeny::easing::sinusoidalInOut);
+		tweenDrawCardY[i] =
+			tweeny::from(cardsInHand_[i]->getComponent<Transform>()->getRelativePos().getY())
+			.to(cardPositions_[i].getY())
+			.during(60)
+			.via(tweeny::easing::sinusoidalInOut);
 
-			tween = true;
-		//}
+		tweenCardRob = true;
 	}
 }
 
