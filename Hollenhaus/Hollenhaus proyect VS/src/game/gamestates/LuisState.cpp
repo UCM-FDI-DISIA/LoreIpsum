@@ -115,6 +115,11 @@ void LuisState::onEnter()
 	boardManagerComponent->updateVisuals();
 
 
+	// Seteamos la mano de J1 en el matchManager
+	matchManagerComponent->SetHandComponent(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
+
+
+
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
 	sdlutils().soundEffects().at("battletheme").play(-1);
@@ -130,7 +135,6 @@ void LuisState::onEnter()
 	//le decimos al endTurn que existe la IA
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
 
-	
 
 	//seters de referencias de la ia
 

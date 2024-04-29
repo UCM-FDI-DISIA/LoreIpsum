@@ -162,6 +162,8 @@ void TutorialBoardState::setBoard()
 	boardManagerComponent->updateVisuals();
 
 
+	// Seteamos la mano de J1 en el matchManager
+	matchManagerComponent->SetHandComponent(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
 
 
 	// incicia la cancion en bucle

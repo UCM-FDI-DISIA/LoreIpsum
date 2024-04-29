@@ -10,6 +10,7 @@
 #include "../../components/basics/TextComponent.h"
 #include "../../components/multiplayer/NetGame.h"
 #include "game/Data.h"
+#include "../Card.h"
 
 MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm) :
 	board_(bm),
@@ -124,9 +125,8 @@ void MatchManager::substractActualPlayerActionPoints(int points)
 	getActualState() == Turns::J1 ? 
 		substractActionPointsJ1(points) : substractActionPointsJ2(points);
 	updateVisuals();
-
 	// Si la configuracion admite el paso de turno automático
-	if(GameStateMachine::instance()->getCurrentState()->getData()->GetAutomaticNextTurn())
+	if(GameStateMachine::instance()->getCurrentState()->getData()->GetAutomaticNextTurn() && getPlayerTurn() == Players::PLAYER1)
 		CheckNextTurnAutomatic();
 	
 }
@@ -240,6 +240,11 @@ void MatchManager::InstantiatePanelFinPartida(int winner)
 void MatchManager::CheckNextTurnAutomatic()
 {
 	if (getActualPlayerActualActionPoints() <= 0) {
+		for (auto e : playerJ1Hand->getHand()) {
+			if (e->getCost() == 0) return;
+		}
 
+		// Si no quedan puntos de accion y no quedan jugadas disponibles, pasamos turno automáticamente
+		setActualState(netGame == nullptr ? Turns::IA : Turns::J2_MULTIPLAYER);
 	}
 }
