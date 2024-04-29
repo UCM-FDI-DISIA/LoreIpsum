@@ -215,7 +215,7 @@ public:
 			newState = checkCluesMenuState;
 			break;
 		case GameStates::KEYMENU:
-			currentState = keyMenuState;
+			newState = keyMenuState;
 			break;
 		default:
 			break;

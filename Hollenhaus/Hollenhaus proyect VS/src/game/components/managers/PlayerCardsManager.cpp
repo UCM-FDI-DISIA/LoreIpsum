@@ -44,6 +44,7 @@ void PlayerCardsManager::drawCard()
 			matchManager->getActualState() == Turns::J2 ? Players::PLAYER2 :
 			Players::NONE;
 
+
 		if (deck_->deckSize() > 0 &&
 			ent_->getComponent<BoxCollider>()->isCursorOver() &&
 			hand_->handSize() < MAX_IN_HAND &&
