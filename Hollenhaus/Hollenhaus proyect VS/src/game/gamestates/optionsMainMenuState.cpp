@@ -35,7 +35,7 @@ void OptionsMainMenuState::onEnter()
 
 	ecs::entity_t fondo = Instantiate(Vector2D(0, 0));
 	fondo->addComponent<SpriteRenderer>("optfondo");
-	fondo->getComponent<Transform>()->setGlobalScale(Vector2D(2, 1));
+	fondo->getComponent<Transform>()->setGlobalScale(Vector2D(6, 6));
 	fondo->setLayer(0);
 
 	/*
