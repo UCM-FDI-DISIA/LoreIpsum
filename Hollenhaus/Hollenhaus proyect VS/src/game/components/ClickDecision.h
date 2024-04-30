@@ -29,6 +29,8 @@ public:
     void cancelPurchase();
 
 private:
+    void caseAccpeted();
+
     ecs::entity_t parent_;
     int scene_;
 

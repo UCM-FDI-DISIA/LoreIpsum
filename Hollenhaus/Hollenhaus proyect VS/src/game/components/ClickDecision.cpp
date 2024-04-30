@@ -70,13 +70,9 @@ void ClickDecision::TakeDecision()
 		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
 
 		break;
-	case 3: 
+	case 3: // Caso aceptado
 		TuVieja("Buenos dias caso 3");
-		mngr().setAlive(mngr().getHandler(ecs::hdlr::CASE_MANAGER)->getComponent<CaseManager>()->caseNPC(), false);
-		// NUEVO NPC
-		ecs::entity_t npc;
-		mngr().getHandler(ecs::hdlr::CASE_MANAGER)->getComponent<CaseManager>()->addNPC(npc);
-
+		caseAccpeted();
 		break;
 	default:
 		TuVieja("Esta decision no existe. Añadir en ClickDecision.cpp");
@@ -109,4 +105,15 @@ void ClickDecision::cancelPurchase()
 		ent->getComponent<DecisionComponent>()->setBuying(0);
 		ent->getComponent<DecisionComponent>()->resetCardToPurchase();
 	}
+}
+
+void ClickDecision::caseAccpeted()
+{
+	CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
+	caseMngr->setAccepted(true);
+	mngr().setAlive(caseMngr->caseNPC(), false);
+
+	// NUEVO NPC
+	ecs::entity_t npc = Instantiate();
+	GameStateMachine::instance()->caseMngr()->addNPC(npc);
 }

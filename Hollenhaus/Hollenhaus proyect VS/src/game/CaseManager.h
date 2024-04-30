@@ -2,17 +2,21 @@
 
 #include <../pchs/pch.h>
 
-class CaseManager : ComponentUpdate
+class CaseManager 
 {
 public:
 	CaseManager();
-	~CaseManager() = default;
+	~CaseManager();
 
-	void initComponent() override;
-	void update() override;
+	void update();
 
+	// NPC
 	ecs::entity_t caseNPC();
 	void addNPC(ecs::entity_t npc);
+
+	// Caso
+	bool accepted();
+	void setAccepted(bool b);
 
 private:
 	ecs::entity_t npc_;

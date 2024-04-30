@@ -63,9 +63,7 @@ GameStateMachine::GameStateMachine()
 	mouse_ = new Mouse("mouse", 2);
 	fade_ = new Fade(0);
 
-	case_ = Instantiate();
-	case_->addComponent<CaseManager>();
-	mngr_->setHandler(ecs::hdlr::CASE_MANAGER, case_);
+	case_ = new CaseManager();
 
 	// Creacion de los estados
 	// Estados del juego
@@ -130,6 +128,7 @@ GameStateMachine::~GameStateMachine()
 	delete mouse_;
 	delete mngr_;
 	delete case_;
+	case_ = nullptr;
 
 	mainMenuState = nullptr;
 	cityState = nullptr;
