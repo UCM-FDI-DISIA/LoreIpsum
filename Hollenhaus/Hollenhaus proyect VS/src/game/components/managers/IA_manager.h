@@ -62,6 +62,24 @@ public:
 			}
 		};
 
+
+		~State() {
+
+			for (auto& e : playerHand) {
+				if (e == nullptr) continue;
+				delete e;
+				e = nullptr;
+			}
+		
+			for (auto& e : enemyHand) {		
+				if (e == nullptr) continue;
+				//delete e;
+				//e = nullptr;
+			}
+			
+
+		}
+
 		//varios tableros para representar el estado 
 		std::vector<std::vector<bool>> _boardBools;
 		std::vector<std::vector<Card*>> _boardCards;

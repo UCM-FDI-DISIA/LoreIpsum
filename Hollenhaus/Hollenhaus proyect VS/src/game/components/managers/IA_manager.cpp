@@ -346,12 +346,16 @@ int IA_manager::minimax(int depth, int h, bool isPlayer, State& current_state, S
 
 		if (isPlayer && current >= bestValue) { //si es jugador, maximiza el valor			
 			bestValue = current;
+			delete best;
 			best = new State(s);
 		}
 		else if (!isPlayer && current <= bestValue) {//si es la IA, lo minimiza
 			bestValue = current;
+			delete best;
 			best = new State(s);
 		}
+
+		delete aux;
 	}
 
 	return bestValue;
