@@ -25,6 +25,13 @@ BoardManager::BoardManager(int size) : size(size)
 
 BoardManager::~BoardManager()
 {
+	for (auto& v : _boardIA) {
+		for (auto& e : v) {
+			delete e;
+			e = nullptr;
+		}
+
+	}
 }
 
 void BoardManager::initComponent()
