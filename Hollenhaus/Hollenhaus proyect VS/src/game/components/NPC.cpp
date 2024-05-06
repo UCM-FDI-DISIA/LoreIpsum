@@ -20,6 +20,7 @@ NPC::NPC(int scene, int t, std::string name_, bool toFadeIn, bool toFadeOut)
 	factory->SetFactories(
 		static_cast<DialogueFactory*>(new DialogueFactory_V0())
 	);
+
 }
 
 NPC::~NPC()

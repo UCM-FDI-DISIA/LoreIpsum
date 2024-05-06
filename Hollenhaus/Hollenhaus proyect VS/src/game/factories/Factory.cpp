@@ -10,6 +10,34 @@
 #include "DecisionFactory.h"
 
 
+Factory::~Factory()
+{
+	delete boardFactory;
+	boardFactory = nullptr;
+
+	delete cardFactory;
+	cardFactory = nullptr;
+
+	delete handFactory;
+	handFactory = nullptr;
+
+	delete matchStateUIFactory;
+	matchStateUIFactory = nullptr;
+
+	delete dialogueFactory;
+	dialogueFactory = nullptr;
+
+	delete npcFactory;
+	npcFactory = nullptr;
+
+	delete fakeCardFactory;
+	fakeCardFactory = nullptr;
+
+	delete decisionFactory;
+	decisionFactory = nullptr;
+}
+
+
 ecs::entity_t Factory::createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
 {
 	if (cardFactory == nullptr) {
