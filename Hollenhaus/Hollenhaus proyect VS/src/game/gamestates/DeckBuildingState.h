@@ -15,7 +15,7 @@ class DeckBuildingState : public GameState
 public:
 
 	DeckBuildingState();		//Constructora
-	~DeckBuildingState() { delete factory; }
+	~DeckBuildingState() { }
 	void update() override;
 	void render() const override;
 	void refresh() override;
