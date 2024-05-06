@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "DialogueFactory.h"
 
 class DialogueFactory_V0 : public DialogueFactory {

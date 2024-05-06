@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "../components/ComponentUpdate.h"
 
 class DecisionComponent : public ComponentUpdate
