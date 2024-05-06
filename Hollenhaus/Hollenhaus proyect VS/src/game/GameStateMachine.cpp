@@ -1,7 +1,5 @@
 #include <../pchs/pch.h>
 
-#include "checkML.h"
-
 #include <iostream>
 #include <SDL.h>
 #include "GameStateMachine.h"
@@ -127,6 +125,7 @@ GameStateMachine::~GameStateMachine()
 	delete checkMazeMenuState;
 	delete checkCluesMenuState;
 	delete matchOverState;
+	delete keyMenuState;
 
 	delete samuState;
 	delete jimboState;
