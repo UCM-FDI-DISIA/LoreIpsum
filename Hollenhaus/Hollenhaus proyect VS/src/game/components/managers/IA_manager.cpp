@@ -165,7 +165,43 @@ void IA_manager::StartTurn()
 		//seguramente sea pq se queda sin cartas en el mazo
 		throw "jugada no encontrada";
 	}
+
+
+
+
 	makePlay(best->_jugada);
+
+
+
+	for (auto& e : s.playerHand) {
+		delete e;
+		e = nullptr;
+	}
+
+	for (auto& e : s.enemyHand) {
+		delete e;
+		e = nullptr;
+	}
+
+	for (auto& e : s.playerDeck) {
+		delete e;
+		e = nullptr;
+	}
+
+	for (auto& e : s.enemyDeck) {
+		delete e;
+		e = nullptr;
+	}
+
+	for (auto& e : s._boardCards) {
+		for (auto& i : e) {
+			delete i;
+			i = nullptr;
+		}
+	
+	}
+
+	delete best;
 }
 
 
@@ -346,11 +382,13 @@ int IA_manager::minimax(int depth, int h, bool isPlayer, State& current_state, S
 
 		if (isPlayer && current >= bestValue) { //si es jugador, maximiza el valor			
 			bestValue = current;
+			
 			delete best;
 			best = new State(s);
 		}
 		else if (!isPlayer && current <= bestValue) {//si es la IA, lo minimiza
 			bestValue = current;
+
 			delete best;
 			best = new State(s);
 		}
