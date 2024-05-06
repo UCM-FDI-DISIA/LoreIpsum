@@ -12,7 +12,7 @@ class OfficeState : public GameState
 public:
 
 	OfficeState();		//Constructora
-
+	~OfficeState() { delete factory; }
 	void update() override;
 	void render() const override;
 	void refresh() override;
