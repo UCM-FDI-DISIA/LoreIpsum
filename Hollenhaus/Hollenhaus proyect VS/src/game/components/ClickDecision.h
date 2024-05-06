@@ -4,6 +4,8 @@
 #include "managers/Manager.h"
 #include "basics/BoxCollider.h"
 
+class Factory;
+
 class ClickDecision :
     public ComponentUpdate
 {
@@ -29,7 +31,9 @@ public:
     void cancelPurchase();
 
 private:
-    void caseAccpeted();
+    void caseAccepted();
+
+    Factory* factory;
 
     ecs::entity_t parent_;
     int scene_;

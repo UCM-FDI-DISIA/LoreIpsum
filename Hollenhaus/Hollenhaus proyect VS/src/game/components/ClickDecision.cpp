@@ -8,6 +8,8 @@
 #include "../components/DecisionComponent.h"
 #include "../components/ShopComponent.h"
 #include "../CaseManager.h"
+#include "../factories/Factory.h"
+#include "../factories/NPCFactory_V0.h"
 
 ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 {
@@ -23,6 +25,11 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 void ClickDecision::initComponent()
 {
 	scene_ = 0;
+
+	factory = new Factory();
+	factory->SetFactories(
+		static_cast<NPCFactory*>(new NPCFactory_V0())
+	);
 }
 
 void ClickDecision::update()
@@ -72,7 +79,11 @@ void ClickDecision::TakeDecision()
 		break;
 	case 3: // Caso aceptado
 		TuVieja("Buenos dias caso 3");
-		caseAccpeted();
+		caseAccepted();
+		break;
+	case 4: // CASO DEAFULT PARA NEGAR CUALQUIER COSA
+		parent_->getComponent<NextText>()->setDead(true);
+		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
 		break;
 	default:
 		TuVieja("Esta decision no existe. Añadir en ClickDecision.cpp");
@@ -107,13 +118,20 @@ void ClickDecision::cancelPurchase()
 	}
 }
 
-void ClickDecision::caseAccpeted()
+void ClickDecision::caseAccepted()
 {
+	TuVieja("CASO ACEPTADO");
 	CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
 	caseMngr->setAccepted(true);
-	mngr().setAlive(caseMngr->caseNPC(), false);
+
+	ecs::entity_t npc = caseMngr->caseNPC();
+	Transform* tr = npc->getComponent<Transform>();
+	tr->killChildren();
+
+	ecs::entity_t parent = tr->getParent()->getEntity();
+	mngr().setAlive(npc, false);
 
 	// NUEVO NPC
-	ecs::entity_t npc = Instantiate();
+	npc = factory->createNPC(5, parent);
 	GameStateMachine::instance()->caseMngr()->addNPC(npc);
 }

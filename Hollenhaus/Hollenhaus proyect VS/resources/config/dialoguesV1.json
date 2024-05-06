@@ -149,6 +149,13 @@
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [
+                                {
+                                  "timing": 1,
+                                  "type": 3,
+                                  "scene": 0,
+                                  "gdecision": 3,
+                                  "rdecision": 4
+                                }
                             ]
                         },
                         {
@@ -157,13 +164,6 @@
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [
-                                {
-                                  "timing": 1,
-                                  "type": 3,
-                                  "scene": 0,
-                                  "gdecision": 3,
-                                  "rdecision": 0
-                                }
                             ]
                         }
                     ]
