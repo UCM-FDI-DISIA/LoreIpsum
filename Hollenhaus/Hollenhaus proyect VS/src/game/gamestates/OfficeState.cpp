@@ -109,6 +109,8 @@ void OfficeState::onExit()
 	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
 
 	GameStateMachine::instance()->getMngr()->Free();
+
+	delete factory;
 }
 
 void OfficeState::onPauseOF()

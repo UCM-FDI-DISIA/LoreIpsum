@@ -19,7 +19,6 @@ CityState::CityState()
 
 CityState::~CityState()
 {
-	delete factory;
 }
 
 void CityState::update()
@@ -199,6 +198,8 @@ void CityState::onExit()
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("citytheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
+
+	delete factory;
 }
 
 void CityState::onPause()
