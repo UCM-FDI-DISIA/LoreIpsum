@@ -22,6 +22,15 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
+ClickDecision::~ClickDecision()
+{
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
+
+	delete factory;
+	factory = nullptr;
+}
+
 void ClickDecision::initComponent()
 {
 	scene_ = 0;
@@ -120,18 +129,20 @@ void ClickDecision::cancelPurchase()
 
 void ClickDecision::caseAccepted()
 {
-	TuVieja("CASO ACEPTADO");
-	CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
-	caseMngr->setAccepted(true);
+	if (click_) {
+		TuVieja("CASO ACEPTADO");
+		CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
+		caseMngr->setAccepted(true);
 
-	ecs::entity_t npc = caseMngr->caseNPC();
-	Transform* tr = npc->getComponent<Transform>();
-	tr->killChildren();
+		ecs::entity_t npc = caseMngr->caseNPC();
+		Transform* tr = npc->getComponent<Transform>();
+		tr->killChildren();
 
-	ecs::entity_t parent = tr->getParent()->getEntity();
-	mngr().setAlive(npc, false);
+		ecs::entity_t parent = tr->getParent()->getEntity();
+		mngr().setAlive(npc, false);
 
-	// NUEVO NPC
-	npc = factory->createNPC(5, parent);
-	GameStateMachine::instance()->caseMngr()->addNPC(npc);
+		// NUEVO NPC
+		npc = factory->createNPC(5, parent);
+		GameStateMachine::instance()->caseMngr()->addNPC(npc);
+	}
 }
