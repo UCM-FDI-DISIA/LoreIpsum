@@ -33,17 +33,17 @@ html {
 p{
   font-family: 'averia';
   font-size: 1.2rem;
-  color:  rgb(252, 245, 229);
+  color: #921e27;
 }
 
 h1 {
   text-align: center;
-  color: rgb(252, 245, 229);
+  color: #921e27;
 }
 
 .clase {
   text-align: center;
-  color: rgb(252, 245, 229);
+  color: #921e27;
 }
 
 body {
@@ -52,12 +52,12 @@ body {
 }
 
 #link {
-  color: #a4ba20;
+  color: #725fbd;
 }
 
 /* Letras que saltan */
 .key {
-  color: #B12A35;
+  color: #921e27;
   font-size: 10vw;
   display: inline-block;
   letter-spacing: -1vw;
@@ -267,7 +267,7 @@ ul {
 
 ul li::before {
   content: "\269D";
-  color: rgb(252, 245, 229);
+  color: #921e27;
   display: inline-block;
   width: 1em;
   margin-left: -1em;
@@ -283,7 +283,8 @@ ul li li::before {
 
 /* Footer */
 footer p {
-  font-size: 0.75rem;
+  font-style:bold;
+  font-size: 0.8rem;
   padding: 0.5rem;
   line-height: 0;
 }
