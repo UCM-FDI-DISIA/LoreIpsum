@@ -52,6 +52,8 @@ public:
 	virtual void substractMoney(int money);
 	//----Devuelve el dinero del jugador:
 	virtual int getMoney();
+	//----Devuelve las almas del jugador:
+	virtual int getSouls();
 	//----Devuelve el numero de llaves disponibles
 	virtual int getKeys();
 	//----Comprueba si una carta con id id esta en el mazo.

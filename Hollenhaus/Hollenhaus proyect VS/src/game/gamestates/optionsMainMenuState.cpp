@@ -53,8 +53,13 @@ void OptionsMainMenuState::onEnter()
 	*/
 
 	audioText = Instantiate(Vector2D(sdlutils().width() - 600, sdlutils().height() - 425));
-	audioText->addComponent<TextComponent>("VOLUME", "8bit_size_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	audioText->addComponent<TextComponent>("VOLUMEN", "8bit_size_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	audioText->setLayer(1);
+
+	//SONIDO (MIRAR MAS TARDE CON INES)
+	//auto& sdl = *SDLUtils::instance();
+	//sdl.soundEffects().at("citytheme").play(-1);
+	//sdl.soundEffects().at("citytheme").setChannelVolume(10);
 
 	fullScreenText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 300));
 	fullScreenText->addComponent<TextComponent>("PANTALLA COMPLETA", "8bit_size_32", PEARL_HOLLENHAUS, 400, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
@@ -76,6 +81,7 @@ void OptionsMainMenuState::onEnter()
 	returnButton->addComponent<Button>();
 	returnButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(0); });
 	
+
 }
 
 void OptionsMainMenuState::onExit()

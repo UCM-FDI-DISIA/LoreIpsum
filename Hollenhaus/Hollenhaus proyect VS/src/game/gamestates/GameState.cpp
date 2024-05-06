@@ -235,6 +235,11 @@ int GameState::getMoney()
 	return data->GetMoney();
 }
 
+int GameState::getSouls()
+{
+	return data->GetSouls();
+}
+
 int GameState::getKeys()
 {
 	return data->GetKeys();
