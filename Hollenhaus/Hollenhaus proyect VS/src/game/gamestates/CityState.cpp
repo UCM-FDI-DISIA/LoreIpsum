@@ -19,6 +19,7 @@ CityState::CityState()
 
 CityState::~CityState()
 {
+	delete factory;
 }
 
 void CityState::update()
