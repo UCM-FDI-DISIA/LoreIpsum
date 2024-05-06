@@ -23,9 +23,10 @@ shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
 
 ShopComponent::~ShopComponent()
 {
-	/*delete shopCards;
-	delete shopCardsPositions;
-	delete shopCardsPrize;*/
+	delete factory;
+	delete[] shopCards;
+	delete[] shopCardsPositions;
+	delete[] shopCardsPrize;
 }
 
 void ShopComponent::initComponent()

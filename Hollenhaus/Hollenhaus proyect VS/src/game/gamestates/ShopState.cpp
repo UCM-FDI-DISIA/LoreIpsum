@@ -164,6 +164,8 @@ void ShopState::onExit()
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("shoptheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
+
+	delete factory;
 }
 
 void ShopState::onPauseSH()
