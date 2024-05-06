@@ -44,6 +44,7 @@ ecs::entity_t CardFactory_v1::createCard(int id, Vector2D pos, int cost, int val
 }
 
 
+//crea la mano del jugador
 ecs::entity_t CardFactory_v1::createHand()
 {
 	int initY = 470;
@@ -57,6 +58,7 @@ ecs::entity_t CardFactory_v1::createHand()
 	return hand;
 }
 
+//crea la mano del rival
 ecs::entity_t CardFactory_v1::createHandJ2()
 {
 	int initX = 320;
@@ -155,7 +157,6 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 	}
 
-
 	//las añadimos otra vez para asegurar que el enemigo tenga cartas de sobra
 	for (int i = 0; i < cardsOnDeck; i++)
 	{
@@ -174,8 +175,6 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 		ent->setLayer(1);
 		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 	}
-
-
 
 	addDeckImage(initX, initY, true);
 	TuVieja("Deck2");
