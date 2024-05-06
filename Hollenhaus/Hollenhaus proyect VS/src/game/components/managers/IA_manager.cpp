@@ -453,6 +453,13 @@ void IA_manager::ColocarCarta()
 
 				cartasColocadas_++;
 			}
+
+			for (auto& e :hand) {
+				delete e;
+				e = nullptr;
+			}
+
+
 		}
 	}
 }

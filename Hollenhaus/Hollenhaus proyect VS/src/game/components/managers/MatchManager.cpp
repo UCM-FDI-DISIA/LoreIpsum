@@ -249,8 +249,23 @@ void MatchManager::InstantiatePanelFinPartida(int winner)
 void MatchManager::CheckNextTurnAutomatic()
 {
 	if (getActualPlayerActualActionPoints() <= 0) {
+		
+		auto hand = playerJ1Hand->getHand();
+
 		for (auto e : playerJ1Hand->getHand()) {
-			if (e->getCost() == 0) return;
+
+			if (e->getCost() == 0) {
+				for (auto& e :hand) {
+					delete e;
+					e = nullptr;
+				}
+				return;
+			}
+		}
+
+		for (auto& e : hand) {
+			delete e;
+			e = nullptr;
 		}
 
 		// Si no quedan puntos de accion y no quedan jugadas disponibles, pasamos turno automáticamente
