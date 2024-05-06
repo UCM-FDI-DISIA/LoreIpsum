@@ -9,8 +9,7 @@
 #include "../../game/components/managers/Manager.h"
 #include "../components/basics/TextComponent.h"
 #include "DecisionComponent.h"
-//------CheckML.
-#include"../checkML.h"
+
 //------Factorias.
 #include "../factories/Factory.h"
 #include "../factories/DialogueFactory_V0.h"
