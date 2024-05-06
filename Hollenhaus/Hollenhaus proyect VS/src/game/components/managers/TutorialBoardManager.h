@@ -45,6 +45,7 @@ private:
     ecs::entity_t tutorial;
     ecs::entity_t colliderWallBase;
     std::vector<ecs::entity_t> objs;
+    ecs::entity_t image;
 
     ecs::entity_t deck;
     ecs::entity_t nextTurn;

@@ -79,6 +79,40 @@
             ]
         },
         {
+            "NPCName": "Tienda",
+            "convo": [
+                {
+                    "convoID": "0",
+                    "autoConvo": false,
+                    "nodes": [
+                        {
+                            "nodeID": "0",
+                            "text": "Has terminado de mirar?",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                                {
+                                    "timing": 1,
+                                    "type": 3,
+                                    "scene": 3,
+                                    "gdecision": 2,
+                                    "rdecision": 0
+                                }
+                            ]
+                        },
+                        {
+                            "nodeID": "1",
+                            "text": "Seguro que quieres comprar esta carta?",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "NPCName": "Javivu24",
             "convo": [
                 {
@@ -137,40 +171,6 @@
             ]
         },
         {
-            "NPCName": "Tienda",
-            "convo": [
-                {
-                    "convoID": "0",
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": "0",
-                            "text": "Has terminado de mirar?",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 3,
-                                    "scene": 3,
-                                    "gdecision": 2,
-                                    "rdecision": 0
-                                }
-                            ]
-                        },
-                        {
-                            "nodeID": "1",
-                            "text": "Seguro que quieres comprar esta carta?",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "NPCName": "Board Tutorial",
             "convo": [
                 {
@@ -194,7 +194,7 @@
                             ]
                         },
                         {
-                            "nodeID": 3,
+                            "nodeID": 2,
                             "text": "Pero empecemos desde el principio.",
                             "eventStart": 0,
                             "eventFinish": 0,
@@ -280,7 +280,7 @@
                             ]
                         },
                         {
-                            "nodeID": 0,
+                            "nodeID": 5,
                             "text": "Ademas de sumar un valor, las cartas aplicaran un efecto al tablero",
                             "eventStart": 0,
                             "eventFinish": 0,
@@ -288,7 +288,7 @@
                             ]
                         },
                         {
-                            "nodeID": 0,
+                            "nodeID": 6,
                             "text": "Sigue jugando y descubriras todos los efectos!",
                             "eventStart": 0,
                             "eventFinish": 0,
@@ -323,7 +323,7 @@
                             ]
                         },
                         {
-                            "nodeID": 1,
+                            "nodeID": 2,
                             "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
                             "eventStart": 0,
                             "eventFinish": 0,
@@ -331,7 +331,7 @@
                             ]
                         },
                         {
-                            "nodeID": 2,
+                            "nodeID": 3,
                             "text": "Roba una carta de tu mazo para tenerla en tu mano.",
                             "eventStart": 0,
                             "eventFinish": 0,
@@ -358,7 +358,7 @@
                             ]
                         },
                         {
-                            "nodeID": 2,
+                            "nodeID": 1,
                             "text": "Solo podras usar cartas que tienes en tu mano",
                             "eventStart": 0,
                             "eventFinish": 0,
@@ -366,7 +366,7 @@
                             ]
                         },
                         {
-                            "nodeID": 3,
+                            "nodeID": 2,
                             "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero.",
                             "eventStart": 0,
                             "eventFinish": 0,
@@ -374,7 +374,7 @@
                             ]
                         },
                         {
-                            "nodeID": 4,
+                            "nodeID": 3,
                             "text": "Prueba a arrastrar la carta a una celda!",
                             "eventStart": 0,
                             "eventFinish": 0,
@@ -401,7 +401,7 @@
                             ]
                         },
                         {
-                            "nodeID": 2,
+                            "nodeID": 1,
                             "text": "El jugador que tenga mas puntos al llenarse el tablero gana!",
                             "eventStart": 0,
                             "eventFinish": 0,
@@ -409,7 +409,7 @@
                             ]
                         },
                         {
-                            "nodeID": 3,
+                            "nodeID": 2,
                             "text": "Suerte!",
                             "eventStart": 0,
                             "eventFinish": 0,
@@ -452,7 +452,7 @@
                             ]
                         },
                         {
-                            "nodeID": 2,
+                            "nodeID": 3,
                             "text": "Colocar una carta en el tablero dependera de cada carta.",
                             "eventStart": 0,
                             "eventFinish": 0,
@@ -460,7 +460,7 @@
                             ]
                         },
                         {
-                            "nodeID": 3,
+                            "nodeID": 4,
                             "text": "Este coste se puede ver en la esquina superior derecha de cada carta.",
                             "eventStart": 0,
                             "eventFinish": 0,

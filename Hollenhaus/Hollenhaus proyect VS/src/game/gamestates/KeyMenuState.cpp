@@ -47,7 +47,7 @@ void KeyMenuState::onEnter()
 	button->addComponent<BoxCollider>();
 	button->addComponent<Button>()->connectToButton([]() 
 	{ 
-		GameStateMachine::instance()->setState(6); 
+		GameStateMachine::instance()->setState(GameStates::LUIS); 
 	});
 }
 
