@@ -3,6 +3,26 @@
   src: url('../tipografias/Averia_Serif_Libre/AveriaSerifLibre-Regular.ttf');
 }
 
+/* formato de la página */
+.contenedor {
+  display: flex;
+  justify-content: center;
+}
+
+.columna1 {
+  padding: 5%;
+}
+
+.columna2 {
+    
+  justify-content: center;
+  /*margin: 50px;*/
+}
+
+.columna3 {
+  padding: 5%;
+}
+
 /* imagen de fondo */
 html { 
   
