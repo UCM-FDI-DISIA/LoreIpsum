@@ -5,6 +5,7 @@
 #include "../components/NPC.h"
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/basics/Transform.h"
+#include "game/components/ClickableText.h"
 
 
 constexpr SDL_Color PEARL_HOLLENHAUS = { 226, 223, 210, 255 };
@@ -123,6 +124,7 @@ void TransitionTextMenuState::onEnter()
 	continuar->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
 	continuar->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
 	continuar->addComponent<NPC>(1, 0); // Esto es graciosisimo
+	continuar->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 }
 
 void TransitionTextMenuState::onExit()

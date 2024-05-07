@@ -8,8 +8,11 @@
 #include "../components/NPC.h"
 #include "../components/basics/Transform.h"
 #include "game/components/Clickable.h"
+#include "game/components/ClickableText.h"
 
 constexpr SDL_Color PEARL_HOLLENHAUS = { 226, 223, 210, 255 };
+constexpr SDL_Color PEARL_CLICK = { 250, 248, 240, 255 };
+constexpr SDL_Color ROJO_HOLLENHAUS = { 148, 47, 55, 255 };
 
 
 StoryModeState::StoryModeState()
@@ -69,13 +72,15 @@ void StoryModeState::onEnter()
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	newGameButton->addComponent<NPC>(15, 0);
-	
+	newGameButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
+
 	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 250));
 	continueButton->addComponent<TextComponent>("CONTINUAR", "8bit_size_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	continueButton->addComponent<BoxCollider>();
 	continueButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	continueButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	continueButton->addComponent<NPC>(15, 0);
+	continueButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
 }
 
 void StoryModeState::onExit()
