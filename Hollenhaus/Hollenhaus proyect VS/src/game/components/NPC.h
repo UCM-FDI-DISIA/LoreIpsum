@@ -19,15 +19,15 @@ public:
 		TALKING
 	};
 
-	NPC(int scene, int t = BUTTON, std::string name_ = "", bool = false, bool = false);
+	NPC(int scene, int t = BUTTON, std::string name_ = "", bool = true, bool = true);
 	~NPC() override;
 
 	void initComponent() override;
 	void update() override;
 
-	void OnLeftClickDown(int scene, bool = false, bool = false);
+	void OnLeftClickDown(int scene, bool = true, bool = true);
 	void OnLeftClickUp();
-	void reactToClick(int scene, bool = false, bool = false);
+	void reactToClick(int scene, bool = true, bool = true);
 	void talkTo();
 	void stoppedTalking();
 

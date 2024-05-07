@@ -67,7 +67,7 @@ void MainMenuState::onEnter()
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	newGameButton->addComponent<NPC>(GameStates::CITY, NPC::Type::BUTTON, "", true, true); // Esto es graciosisimo
+	newGameButton->addComponent<NPC>(GameStates::STORYMODEMENU, NPC::Type::BUTTON, "", true, true); // Esto es graciosisimo
 	
 	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170 - VERTICAL_OFFSET));
 	multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "8bit_size_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
@@ -76,7 +76,7 @@ void MainMenuState::onEnter()
 	multiplayerButton->addComponent<BoxCollider>();
 	multiplayerButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	multiplayerButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	multiplayerButton->addComponent<NPC>(GameStates::MULTIPLAYER_LOBBY,0);
+	multiplayerButton->addComponent<NPC>(GameStates::MULTIPLAYER_LOBBY, 0);
 
 	//----Texto para continuar partida.
 	//ecs::entity_t continueText = Instantiate(Vector2D(400, 250));
@@ -93,7 +93,7 @@ void MainMenuState::onEnter()
 	optionsButton->addComponent<BoxCollider>();
 	optionsButton->getComponent<BoxCollider>()->setSize(Vector2D(190, 40));
 	optionsButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-93, -20));
-	optionsButton->addComponent<NPC>(14, 0);
+	optionsButton->addComponent<NPC>(GameStates::OPTIONSMENU, 0);
 
 	exitButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 70 - VERTICAL_OFFSET));
 	exitButton->addComponent<TextComponent>("SALIR", "8bit_size_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
