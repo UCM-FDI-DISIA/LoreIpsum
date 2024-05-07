@@ -648,7 +648,131 @@
           ]
         }
       ]
+    },
+    {
+      "NPCName": "Cleon",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Hola? Llamo por el anuncio de la agencia de sustos. A ver si jodes un poco a mi companyero de trabajo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "El se llama Rome, y claro, Rome me debe dinero porque le pille con una chavala y el esta casado sabes",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "asi que le pregunte y resulta que esta enrollado con su profesora de pilates y yo le dije, no sera verdad?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Porque la profesora es de la edad de nuestras madres y la mujer esta embarazada, asi que dije",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 0,
+                  "scene": 0
+                }
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "Pues le voy a pedir pasta y le voy a extorsionar porque el y yo en realidad nunca nos hemos llevado bien",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "y el rector siempre le quiso mas a el y bueno algo tengo que sacar yo de esto asi que voy y le digo 2000 pavos",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 6,
+              "text": "y no se lo digo a la parienta y ni puto caso y coje el tio y llama a otro companyero de trabajo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 7,
+              "text": "para contarle la verdad sobre aquella fatidica tarde del 2010",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 8,
+              "text": "y pues eso, que quiero que le jodas la vida",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 2,
+                  "gdecision": 3,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Aceptas? Te lo compensare con un aprobado",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Muchas gracias de verdad",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Cuando quieras hablas con la medium",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
     }
-
   ]
 }
