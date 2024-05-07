@@ -614,6 +614,40 @@
           ]
         }
       ]
+    },
+    {
+      "NPCName": "Tienda",
+      "convo": [
+        {
+          "convoID": "0",
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": "0",
+              "text": "Has terminado de mirar?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 3,
+                  "gdecision": 2,
+                  "rdecision": 0
+                }
+              ]
+            },
+            {
+              "nodeID": "1",
+              "text": "Seguro que quieres comprar esta carta?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
     }
 
   ]
