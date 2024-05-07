@@ -72,25 +72,35 @@ void CityState::onEnter()
 	//cityText->setLayer(1);
 
 	/// ---- FONDO CIUDAD ----
+	auto scaleFondo = Vector2D(0.495f, 0.495f);
 	fondo = Instantiate(Vector2D(0, 2));
 	fondo->addComponent<Transform>();
-	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
+	fondo->addComponent<SpriteRenderer>("edificios");
 	fondo->addComponent<MoveOnClick>(3.0f);
 	fondo->addComponent<BoxCollider>();
-	fondo->getComponent<Transform>()->setGlobalScale(0.495f, 0.495f);
+	fondo->getComponent<Transform>()->setGlobalScale(scaleFondo);
 	Vector2D globalPos = getLastPaulPos();
 	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
 	fondo->setLayer(0);
 
 	/// FAROLAS
-	auto farolascerca = Instantiate(Vector2D(0,2));
-	farolascerca->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
+	auto farolascerca = Instantiate(Vector2D(0, 0));
+	auto farCerTrans = farolascerca->getComponent<Transform>();
+	farCerTrans->addParent(fondo->getComponent<Transform>());
 	farolascerca->addComponent<SpriteRenderer>("farolascerca");
 	farolascerca->setLayer(4);
-	auto farolaslejos = Instantiate(Vector2D(0,2));
-	farolaslejos->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
+	farCerTrans->setGlobalScale(scaleFondo);
+	farCerTrans->setGlobalPos(globalPos);
+
+	auto farolaslejos = Instantiate(Vector2D(Vector2D(0, 0)));
+	auto farLejTrans = farolaslejos->getComponent<Transform>();
+	farLejTrans->addParent(fondo->getComponent<Transform>());
 	farolaslejos->addComponent<SpriteRenderer>("farolaslejos");
 	farolaslejos->setLayer(2);
+	farLejTrans->setGlobalScale(scaleFondo);
+	farLejTrans->setGlobalPos(globalPos);
+
+	farLejTrans->setRelativePos(0, -11);
 
 	/// ---- SUELO ----
 	// instancia suelo
