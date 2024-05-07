@@ -92,32 +92,6 @@ void OfficeState::onEnter()
 	db->addComponent<SpriteRenderer>("pizarra");
 	auto dbShine = db->addComponent<ShineComponent>();
 	dbShine->addEnt(db->getComponent<SpriteRenderer>(), "pizarra_brilli");
-	
-
-
-	/// tfno
-	ecs::entity_t tfno = Instantiate();
-	auto tfnoTrans = tfno->addComponent<Transform>();
-	tfnoTrans->addParent(fondo->getComponent<Transform>());
-
-	auto tfnoBox = tfno->addComponent<BoxCollider>();
-	Vector2D tfnoSiz(300, 270);
-	tfnoBox->setSize(tfnoSiz);
-	tfnoBox->setPosOffset(Vector2D(30, 20));
-
-	Vector2D tfnoPos(345, 384);
-	tfnoTrans->setGlobalPos(tfnoPos);
-
-	//tfno->addComponent<NPC>(9); // Lleva al deckbuilding (9).
-	tfno->setLayer(1);
-	tfno->addComponent<SpriteRenderer>("tfno");
-	auto tfnoShine = tfno->addComponent<ShineComponent>();
-	tfnoShine->addEnt(tfno->getComponent<SpriteRenderer>(), "tfno_brilli");
-
-
-
-
-
 
 	//------Boton para telefono: (WIP de Poli: El telf en realidad es un NPC invisible,
 	//  que al clicarlo hace que aparezca el dialogo.)

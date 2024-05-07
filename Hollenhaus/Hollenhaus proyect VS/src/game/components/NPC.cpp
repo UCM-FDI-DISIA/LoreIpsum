@@ -76,8 +76,8 @@ void NPC::talkTo()
 	{
 		TuVieja("Que charlatan el tio...");
 
-		float x = ent_->getComponent<Transform>()->getGlobalPos().getX() - 150;
-		float y = ent_->getComponent<Transform>()->getGlobalPos().getY() - 250;
+		float x = myTransform->getGlobalPos().getX() - 150;
+		float y = myTransform->getGlobalPos().getY() - 250;
 
 		TuVieja(std::to_string(x));
 
