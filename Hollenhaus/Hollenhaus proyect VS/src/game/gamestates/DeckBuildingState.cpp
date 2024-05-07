@@ -22,6 +22,7 @@
 #include "../components/Button.h"
 #include "../components/NPC.h"
 #include "game/components/Clickable.h"
+#include "game/components/ShineComponent.h"
 
 // ------------------------------------------------------- //
 
@@ -36,7 +37,7 @@ void DeckBuildingState::update()
 {
 	GameState::update();
 
-	std::string cardsInMaze = std::to_string(pizarra_->getCantCartds()) + " / " + std::to_string(MAX_CARDS_MAZE) + "\n minimo: " + std::to_string(MIN_CARDS_MAZE);
+	std::string cardsInMaze = std::to_string(pizarra_->getCantCartds()) + " / " + std::to_string(MAX_CARDS_MAZE);
 
 	cantCards_->setTxt(cardsInMaze);
 }
@@ -79,8 +80,11 @@ void DeckBuildingState::onEnter()
 	//officeText->setLayer(1);
 
 	// Cantidad de cartas:
-	ecs::entity_t cantCards = Instantiate(Vector2D(260, 140));
-	cantCards_ = cantCards->addComponent<TextComponent>("xx / xx\nMinimo: xx", "8bit_size_24", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	ecs::entity_t cantCards = Instantiate(Vector2D(80, 90));
+	cantCards_ = cantCards->addComponent<TextComponent>(
+		"xx / xx", "space_grotesk_bold_24", 
+		SDL_Color({ 255, 255, 255, 255 }), 70, 
+		Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	cantCards->setLayer(1);
 
 	// ---- FONDO ----
@@ -88,7 +92,7 @@ void DeckBuildingState::onEnter()
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("DeckbuildingBG");
-	fondo->getComponent<Transform>()->setGlobalScale(0.5f, 0.55f);
+	fondo->getComponent<Transform>()->setGlobalScale(0.51f, 0.515f);
 	fondo->setLayer(0);
 
 	/*
@@ -105,9 +109,9 @@ void DeckBuildingState::onEnter()
 	ecs::entity_t caj = Instantiate();
 	caj->addComponent<Transform>();
 	caj->addComponent<SpriteRenderer>("DeckbuildingCajonBG");
-	Vector2D posCajon(120, 280);
+	Vector2D posCajon(200, 400);
 	caj->getComponent<Transform>()->setGlobalPos(posCajon);
-	caj->getComponent<Transform>()->setGlobalScale(0.5f, 0.4f);
+	caj->getComponent<Transform>()->setGlobalScale(0.35f, 0.25f);
 	caj->setLayer(0);
 
 	// ---- BOTONES ----
@@ -117,7 +121,7 @@ void DeckBuildingState::onEnter()
 	exit->addComponent<Transform>();
 	exit->addComponent<SpriteRenderer>("boton_flecha");
 	exit->addComponent<BoxCollider>();
-	Vector2D exitPos(10, 10);
+	Vector2D exitPos(2, 2);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(2); // Lleva a la oficina (2).
@@ -125,24 +129,27 @@ void DeckBuildingState::onEnter()
 	exit->addComponent<Clickable>("boton_flecha", true);
 
 	// ---- Confirmar Mazo:
-	Vector2D botMazScale(.3f, .3f);
+	Vector2D botMazScale(0.51f,0.51f);
 	ecs::entity_t Confirm = Instantiate();
-	Confirm->addComponent<Transform>();
-	Confirm->addComponent<SpriteRenderer>("SaveMazeBut");
-	Confirm->addComponent<BoxCollider>();
-	Vector2D ConfirmPos(260, 330);
+	auto confirmTrans = Confirm->addComponent<Transform>();
+	confirmTrans->addParent(fondo->getComponent<Transform>());
+	auto boxCol = Confirm->addComponent<BoxCollider>();
+	boxCol->setSize(Vector2D(200, 200));
+	Vector2D ConfirmPos(138, 452);
 	Confirm->getComponent<Transform>()->setGlobalPos(ConfirmPos);
 	Confirm->getComponent<Transform>()->setGlobalScale(botMazScale);
-	Confirm->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	Confirm->addComponent<Button>();
 	Confirm->getComponent<Button>()->connectToButton([this]() { pizarra_->saveMaze(); });
 	Confirm->getComponent<Button>()->connectToButton([this]() { drawer_->saveDrawer(); });
 	Confirm->setLayer(2);
+	Confirm->addComponent<SpriteRenderer>("postit_guardar_mazo");
+	auto shinePostit = Confirm->addComponent<ShineComponent>();
+	shinePostit->addEnt(Confirm->getComponent<SpriteRenderer>(), "postit_guardar_mazo_brilli");
 
 	// ---- Pasar cajon alante:
 	Vector2D botScale(0.75,0.75);
-	int botX = 730;
-	int botY = 430;
+	int botX = 720;
+	int botY = 450;
 	int botSep = 90;
 	ecs::entity_t botPalante = Instantiate();
 	botPalante->addComponent<Transform>();
@@ -174,17 +181,18 @@ void DeckBuildingState::onEnter()
 
 	// ---- PIZARRA ----
 	#pragma region PIZARRA
-	Vector2D pizarraPos(260, 40);
+	Vector2D pizarraPos(120, 35);
 	ecs::entity_t pizarra = Instantiate(pizarraPos, ecs::grp::DROPZONE);
 
 	// componentes basicos
 	pizarra->addComponent<Transform>();
-	pizarra->addComponent<SpriteRenderer>("black_box");
-	pizarra->addComponent<BoxCollider>();
+	//pizarra->addComponent<SpriteRenderer>("black_box");
+	auto pizCol = pizarra->addComponent<BoxCollider>();
+	pizCol->setSize(Vector2D(140, 120));
 	pizarra->addComponent<PizarraManager>();
 	pizarra->getComponent<Transform>()->setGlobalPos(pizarraPos);
 	pizarra->getComponent<Transform>()->setGlobalScale(4.5, 3.5);
-	pizarra->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	//pizarra->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
 	// establece la pizarra como dropzone
 	pizarra->addComponent<DropZone>();
@@ -198,17 +206,18 @@ void DeckBuildingState::onEnter()
 
 	// ---- CAJON ----
 	#pragma region CAJON
-	Vector2D cajonPos(340, 430);
+	Vector2D cajonPos(300, 450);
 	ecs::entity_t cajon = Instantiate(cajonPos, ecs::grp::DROPZONE);
 
 	// componentes basicos
 	cajon->addComponent<Transform>();
-	cajon->addComponent<SpriteRenderer>("black_box");
-	cajon->addComponent<BoxCollider>();
+	//cajon->addComponent<SpriteRenderer>("black_box");
+	auto cajCol = cajon->addComponent<BoxCollider>();
+	cajCol->setSize(Vector2D(110, 100));
 	cajon->addComponent<DrawerManager>();
 	cajon->getComponent<Transform>()->setGlobalPos(cajonPos);
 	cajon->getComponent<Transform>()->setGlobalScale(3.7f, 1.5f);
-	cajon->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	//cajon->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
 	// establece la pizarra como dropzone
 	cajon->addComponent<DropZone>();
