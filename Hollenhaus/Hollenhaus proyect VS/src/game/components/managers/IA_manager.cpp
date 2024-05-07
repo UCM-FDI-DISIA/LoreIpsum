@@ -34,7 +34,14 @@ IA_manager::IA_manager() :makePlay_(false), colocadas_(false), cartasColocadas_(
 
 }
 
-IA_manager::~IA_manager() {}
+IA_manager::~IA_manager() {
+
+	for (auto& e : toBeDeleted) {
+		delete e;
+	}
+
+
+}
 
 void IA_manager::initComponent() {}
 
@@ -455,13 +462,14 @@ void IA_manager::ColocarCarta()
 			}
 
 		
-
+			//borrado de todas las cartas menos la que usamos
 			for (auto& e :hand) {
 				if (e == card) continue;
 				delete e;
 				e = nullptr;
 			}
 
+			toBeDeleted.push_back(card);
 
 		}
 	}

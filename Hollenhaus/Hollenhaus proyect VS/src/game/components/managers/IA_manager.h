@@ -219,6 +219,10 @@ private:
 	bool makePlay_;
 	bool colocadas_;
 	uint16_t cartasColocadas_;
+
+
+	//para el borrado de memoria
+	std::vector<Card*> toBeDeleted;
 };
 
 

@@ -252,7 +252,7 @@ void MatchManager::CheckNextTurnAutomatic()
 		
 		auto hand = playerJ1Hand->getHand();
 
-		for (auto e : playerJ1Hand->getHand()) {
+		for (auto e : hand) {
 
 			if (e->getCost() == 0) {
 				for (auto& e :hand) {
