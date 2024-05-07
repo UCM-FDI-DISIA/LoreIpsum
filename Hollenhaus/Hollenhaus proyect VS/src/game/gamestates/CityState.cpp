@@ -65,32 +65,34 @@ void CityState::onEnter()
 		static_cast<NPCFactory*>(new NPCFactory_V0()));
 
 
-
 	//------Texto de la ciudad:
-	ecs::entity_t cityText = Instantiate(Vector2D(500, 30));
-	cityText->addComponent<TextComponent>("CIUDAD", "8bit_size_40", SDL_Color({255, 255, 255, 255}), 350,
-	                                      Text::CenterCenter, Text::Center);
-	cityText->setLayer(1);
+	//ecs::entity_t cityText = Instantiate(Vector2D(500, 30));
+	//cityText->addComponent<TextComponent>("CIUDAD", "8bit_size_40", SDL_Color({255, 255, 255, 255}), 350,
+	//                                      Text::CenterCenter, Text::Center);
+	//cityText->setLayer(1);
 
-	// ---- FONDO CIUDAD ----
-	fondo = Instantiate(Vector2D(0,2));
-	//fond = fondo;
-	// le aniade los componentes
+	/// ---- FONDO CIUDAD ----
+	fondo = Instantiate(Vector2D(0, 2));
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("ciudadcompleta");
 	fondo->addComponent<MoveOnClick>(3.0f);
-
 	fondo->addComponent<BoxCollider>();
-	//tamanyo de ciudadcompleta.png: 5754 x 1212
 	fondo->getComponent<Transform>()->setGlobalScale(0.495f, 0.495f);
-
 	Vector2D globalPos = getLastPaulPos();
 	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
-
-	// lo pone en la capa correcta
 	fondo->setLayer(0);
 
-	// ---- SUELO ----
+	/// FAROLAS
+	auto farolascerca = Instantiate(Vector2D(0,2));
+	farolascerca->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
+	farolascerca->addComponent<SpriteRenderer>("farolascerca");
+	farolascerca->setLayer(4);
+	auto farolaslejos = Instantiate(Vector2D(0,2));
+	farolaslejos->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
+	farolaslejos->addComponent<SpriteRenderer>("farolaslejos");
+	farolaslejos->setLayer(2);
+
+	/// ---- SUELO ----
 	// instancia suelo
 	ecs::entity_t colliderSuelo = Instantiate();
 
@@ -113,13 +115,13 @@ void CityState::onEnter()
 	// registra el collider del suelo
 	fondo->getComponent<MoveOnClick>()->RegisterCollider(colliderSuelo->getComponent<BoxCollider>());
 
-	// ---- PLAYER ----
+
+	/// FANTASMIKO
 	fantasmiko = Instantiate(Vector2D(sdlutils().width() / 2 - 50, sdlutils().height() - 200));
 	fantasmiko->addComponent<SpriteRenderer>("fantasma");
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
 	fantasmiko->setLayer(2);
-
 
 	auto moc = fondo->getComponent<MoveOnClick>();
 	moc->registerFantasmaTrans(fantasmiko);
@@ -136,9 +138,9 @@ void CityState::onEnter()
 		.to(fanY - 5)
 		.during(60)
 		.via(tweeny::easing::sinusoidalInOut);
+	///
 
-
-	//------NPCs:
+	///------NPCs:
 	//----Para entrar en la oficina.
 	//factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
 	factory->createNPC(0, fondo);
@@ -146,27 +148,7 @@ void CityState::onEnter()
 	factory->createNPC(2, fondo);
 	factory->createNPC(3, fondo);
 	factory->createNPC(4, fondo);
-
-
-	//----Para entrar en la tienda.
-	//factory->createNPC("el que te vende la droga idk", "hombre", { 1.0f, 1.0f }, { 800, 425 }, 1, 3, 2, fondo);
-
-	//----Para empezar la batalla.
-	//factory->createNPC("Cailtyn", "npc", {0.25f, 0.25f}, {400, 425}, 1, 6, 2, fondo);
-
-	////----Para hablar
-	//ecs::entity_t npc4 = Instantiate();
-	//npc4->addComponent<Transform>();
-	//npc4->addComponent<SpriteRenderer>("NPCNPC");
-	//npc4->addComponent<BoxCollider>();
-	//npc4->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
-	//npc4->getComponent<Transform>()->getRelativeScale().set(0.25f, 0.25f);
-	//Vector2D npc4Pos(600, 425);
-	//npc4->getComponent<Transform>()->setGlobalPos(npc4Pos);
-	//npc4->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	//npc4->addComponent<NPC>(3, 1, "El Xungo del Barrio");
-	//npc4->
-	// (2);
+	///
 
 	// --- Boton para volver al menu principal ---
 	ecs::entity_t exit = Instantiate();

@@ -63,14 +63,14 @@ void MainMenuState::onEnter()
 	//titleText->addComponent<TextComponent>("HÖLLENHAUS", "8bit_40pt", SDL_Color({ 255, 255, 255, 255 }), 450, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
 	//----Texto para un nuevo juego.
 	newGameButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 220 - VERTICAL_OFFSET));
-	newGameButton->addComponent<TextComponent>("MODO HISTORIA", "8bit_size_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	newGameButton->addComponent<TextComponent>("MODO HISTORIA", "space_grotesk_bold_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	newGameButton->addComponent<NPC>(GameStates::STORYMODEMENU, NPC::Type::BUTTON, "", true, true); // Esto es graciosisimo
 	
 	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170 - VERTICAL_OFFSET));
-	multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "8bit_size_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "space_grotesk_bold_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	// multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
 	// multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	multiplayerButton->addComponent<BoxCollider>();
@@ -87,7 +87,7 @@ void MainMenuState::onEnter()
 	//----Texto para salir.
 
 	optionsButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 120 - VERTICAL_OFFSET));
-	optionsButton->addComponent<TextComponent>("OPCIONES", "8bit_size_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	optionsButton->addComponent<TextComponent>("OPCIONES", "space_grotesk_bold_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	// optionsButton = Instantiate(Vector2D(sdlutils().width() - 148, sdlutils().height() - 120));
 	// optionsButton->addComponent<TextComponent>("OPCIONES", "8bit_size_32", ROJO_HOLLENHAUS, 190, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	optionsButton->addComponent<BoxCollider>();
@@ -96,7 +96,7 @@ void MainMenuState::onEnter()
 	optionsButton->addComponent<NPC>(GameStates::OPTIONSMENU, 0);
 
 	exitButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 70 - VERTICAL_OFFSET));
-	exitButton->addComponent<TextComponent>("SALIR", "8bit_size_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	exitButton->addComponent<TextComponent>("SALIR", "space_grotesk_bold_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	exitButton->addComponent<BoxCollider>();
 	exitButton->getComponent<BoxCollider>()->setSize(Vector2D(100, 32));
 	exitButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(50, -16));
