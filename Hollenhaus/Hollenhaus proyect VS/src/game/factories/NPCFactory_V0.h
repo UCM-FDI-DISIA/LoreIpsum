@@ -11,5 +11,5 @@ public:
 	NPCFactory_V0() : NPCFactory() {};
 	~NPCFactory_V0() {};
 
-	ecs::entity_t createNPC(JsonData::NPCData info, ecs::entity_t parent) override;
+	ecs::entity_t createNPC(JsonData::NPCData info, ecs::entity_t parent, int convo) override;
 };

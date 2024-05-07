@@ -42,6 +42,7 @@
 #include "gamestates/GameState.h"
 #include "Data.h"
 #include "Fade.h"
+#include "CaseManager.h"
 
 constexpr Uint8 FADE_SPEED = 30;
 
@@ -59,6 +60,8 @@ GameStateMachine::GameStateMachine()
 	mngr_ = new ecs::Manager();
 	mouse_ = new Mouse("mouse", 2);
 	fade_ = new Fade(0);
+
+	case_ = new CaseManager();
 
 	// Creacion de los estados
 	// Estados del juego
@@ -141,6 +144,7 @@ GameStateMachine::~GameStateMachine()
 	currentState->setData(nullptr);
 
 	delete mngr_;
+	delete case_;
 }
 
 void GameStateMachine::Render() const
@@ -170,6 +174,7 @@ void GameStateMachine::Update()
 
 	gameStack.top()->update();
 	mouse_->update();
+	case_->update();
 	//para el manager
 	Refresh();
 }

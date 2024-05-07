@@ -21,7 +21,6 @@ NextText::NextText()
 
 NextText::~NextText()
 {
-
 }
 
 void NextText::initComponent()

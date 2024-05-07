@@ -7,8 +7,13 @@
 #include "../components/DialogueEventCollection.h"
 #include "../components/DecisionComponent.h"
 #include "../components/ShopComponent.h"
+#include "../CaseManager.h"
+#include "../factories/Factory.h"
+#include "../factories/NPCFactory_V0.h"
+#include "../components/NPC.h"
 
-ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) //igual aqui meter int
+ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) :
+	factory()
 {
 	decision_ = decision;
 	parent_ = parent;
@@ -19,9 +24,20 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) //ig
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
+ClickDecision::~ClickDecision()
+{
+	delete factory;
+	factory = nullptr;
+}
+
 void ClickDecision::initComponent()
 {
 	scene_ = 0;
+
+	factory = new Factory();
+	factory->SetFactories(
+		static_cast<NPCFactory*>(new NPCFactory_V0())
+	);
 }
 
 void ClickDecision::update()
@@ -69,9 +85,14 @@ void ClickDecision::TakeDecision()
 		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
 
 		break;
-	case 3: // Por si las moscas y alguien necestia mas casos.
-		TuVieja("Buenos dias caso 3.");
-
+	case 3: // Caso aceptado
+		TuVieja("Buenos dias caso 3");
+		caseAccepted();
+		break;
+	case 4: // CASO DEAFULT PARA NEGAR CUALQUIER COSA
+		parent_->getComponent<NextText>()->setDead(true);
+		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+		break;
 	default:
 		TuVieja("Esta decision no existe. Añadir en ClickDecision.cpp");
 		break;
@@ -102,5 +123,17 @@ void ClickDecision::cancelPurchase()
 	{
 		ent->getComponent<DecisionComponent>()->setBuying(0);
 		ent->getComponent<DecisionComponent>()->resetCardToPurchase();
+	}
+}
+
+void ClickDecision::caseAccepted()
+{
+	if (click_) {
+		TuVieja("CASO ACEPTADO");
+		CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
+		caseMngr->setAccepted(true);
+
+		NPC* npc = caseMngr->caseNPC()->getComponent<NPC>();
+		npc->nextConvo();
 	}
 }

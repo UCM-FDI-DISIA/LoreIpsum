@@ -5,6 +5,7 @@
 #include "../factories/DecisionFactory_V0.h"
 #include "../TutorialManager.h"
 #include "../components/managers/TutorialBoardManager.h"
+#include "../components/Button.h"
 
 DialogueEventCollection::DialogueEventCollection()
 {
@@ -17,7 +18,7 @@ void DialogueEventCollection::ChangeScene(int scene)
 	GameStateMachine::instance()->setState(scene);
 }
 
-void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent, int greenDecision, int redDecision, int scene) //poli
+void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent, int greenDecision, int redDecision, int scene)
 {
 	Factory * factory = new Factory();
 	factory->SetFactories(
@@ -51,5 +52,4 @@ void DialogueEventCollection::ActionEnded()
 	ent->getComponent<TutorialManager>()->actionEnded();
 
 	// TUTORIAL BOARD MANAGER REF
-
 }

@@ -8,6 +8,8 @@
 #include "managers/Manager.h"
 #include "basics/BoxCollider.h"
 
+class Factory;
+
 class ClickDecision :
     public ComponentUpdate
 {
@@ -17,7 +19,7 @@ public:
                                                                     // 0 -> no; 1 -> si; 2 -> comprar; 3 -> cambiar escena etc
                                                                     // crear metodos auxiliares si necesario para settear los valores de los
                                                                     // tipos de decisiones (ej: setScene())
-    ~ClickDecision(){}
+    ~ClickDecision();
 
 	void initComponent() override;
 	void update() override;
@@ -33,6 +35,10 @@ public:
     void cancelPurchase();
 
 private:
+    void caseAccepted();
+
+    Factory* factory;
+
     ecs::entity_t parent_;
     int scene_;
 

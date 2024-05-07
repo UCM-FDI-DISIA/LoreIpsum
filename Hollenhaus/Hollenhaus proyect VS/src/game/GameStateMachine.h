@@ -13,6 +13,7 @@ class GameState;
 class Data;
 class Mouse;
 class Fade;
+class CaseManager;
 
 namespace ecs
 {
@@ -63,6 +64,8 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	ecs::Manager* mngr_;
 
 	Mouse* mouse_;
+
+	CaseManager* case_;
 
 	//Creacion de los distintos estados del juego
 	// 
@@ -120,6 +123,11 @@ public:
 	ecs::Manager* getMngr()
 	{
 		return mngr_;
+	}
+
+	CaseManager* caseMngr() 
+	{
+		return case_;
 	}
 
 	void init();

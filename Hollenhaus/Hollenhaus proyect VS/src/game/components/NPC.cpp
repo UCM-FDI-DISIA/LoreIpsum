@@ -9,9 +9,10 @@
 #include "../factories/CardFactory_v1.h"
 #include "../components/NextText.h"
 #include "../components/DialogueBoxDestroyer.h"
+#include "../components/DialogueDestroyer.h"
 
-NPC::NPC(int scene, int t, std::string name_, bool toFadeIn, bool toFadeOut)
-: _scene(scene), click(false), type(t), talking(false), name(name_), myBoxCollider(nullptr)
+NPC::NPC(int scene, int t, std::string name_, int convo, bool toFadeIn, bool toFadeOut)
+	: _scene(scene), click(false), type(t), talking(false), name(name_), myBoxCollider(nullptr), convo_(convo)
 {
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this, toFadeIn, toFadeOut] { OnLeftClickDown(_scene, toFadeIn, toFadeOut); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
@@ -71,7 +72,7 @@ void NPC::reactToClick(int scene, bool toFadeIn, bool toFadeOut) // Te lleva al 
 
 void NPC::talkTo()
 {
-	if (!click && myBoxCollider->isCursorOver() && !talking && closeToPaul) // Recoge click para hablar con un NPC.
+	if ((!click && myBoxCollider->isCursorOver() && !talking && closeToPaul) || talking) // Recoge click para hablar con un NPC.
 	{
 		TuVieja("Que charlatan el tio...");
 
@@ -81,24 +82,24 @@ void NPC::talkTo()
 		TuVieja(std::to_string(x));
 
 		JsonData::DialogueData dialogue = sdlutils().dialogues().at(name);
-		int conv = 0;
 		int node = 0;
 
 		// crear dialogo del FACTORY de dialogos
 		//// Mirar comentario en el interior de la funcion
-		npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
+		npcDialogue = factory->createDialogue(dialogue.NPCName(), convo_, node,
 								{x, y},//POS
 								{2,2}, //SIZE
 								5, //Speed
 								10, //Cooldown
 								getEntity(), //Parent 
 								3, //LAYER
-								dialogue.Convo(conv).isAuto(), //Si el texto es auto o no
+								dialogue.Convo(convo_).isAuto(), //Si el texto es auto o no
 								"8bit_size_20",	//mirar el JSON resources para cambiar el tamanio de texto
 								SDL_Color({0, 0, 0, 255}), //Color black
 								220, //wrap length
 								Text::BoxPivotPoint::LeftTop,
 								Text::TextAlignment::Left);
+
 		talking = true;
 	}
 }
@@ -106,6 +107,14 @@ void NPC::talkTo()
 void NPC::stoppedTalking()
 {
 	talking = false;
+}
+
+void NPC::nextConvo()
+{
+	npcDialogue->getComponent<DialogueBoxDestroyer>()->destroy();
+	talking = true;
+	++convo_;
+	talkTo();
 }
 
 void NPC::update()

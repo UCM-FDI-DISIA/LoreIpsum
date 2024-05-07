@@ -63,7 +63,7 @@ void StoryModeState::onEnter()
 	//	//GameStateMachine::instance()->setState(0); // usar enums en vez de numeros a palo seco
 	//	GameStateMachine::instance()->setState(GameStates::MAINMENU); // usar enums en vez de numeros a palo seco
 	//});
-	returnButton->addComponent<NPC>(GameStates::MAINMENU, NPC::Type::BUTTON, "", true, true);
+	returnButton->addComponent<NPC>(GameStates::MAINMENU, NPC::Type::BUTTON, "", 0, true, true);
 
 
 	newGameButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 300));

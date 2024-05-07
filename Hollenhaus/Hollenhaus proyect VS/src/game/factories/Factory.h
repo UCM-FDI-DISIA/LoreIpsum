@@ -122,7 +122,7 @@ public:
 
 	// metodos para los NPCs
 	// i de index para especificar el npc que quieres crear del json
-	ecs::entity_t createNPC(int i, ecs::entity_t parent);
+	ecs::entity_t createNPC(int i, ecs::entity_t parent, int convo = 0);
 
 	// metodos para los dialogos
 	ecs::entity_t createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,

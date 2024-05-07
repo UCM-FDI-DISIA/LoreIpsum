@@ -5,7 +5,7 @@
 #include "../components/ShineComponent.h"
 #include "../gamestates/GameState.h"
 
-ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t parent)
+ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t parent, int convo)
 {
 	ecs::entity_t npc = Instantiate();
 		npc->addComponent<Transform>();
@@ -17,15 +17,18 @@ ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t par
 
 	npc->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
 	npc->getComponent<Transform>()->getRelativeScale().set(info.getScale().getX(), info.getScale().getY());
-	Vector2D pos{ GameStateMachine::instance()->getCurrentState()->getLastPaulPos().getX() + info.getPos().getX(), info.getPos().getY()};
+	Vector2D pos;
+	if(info.getSprite() != "whiteRect"){
+		pos = { GameStateMachine::instance()->getCurrentState()->getLastPaulPos().getX() + info.getPos().getX(), info.getPos().getY() };
+	}
+	else {
+		pos = { info.getPos().getX(), info.getPos().getY() };
+	}
 	npc->getComponent<Transform>()->setGlobalPos(pos);
 	npc->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-
-
-	npc->addComponent<NPC>(info.getScene(), info.getType(), info.getName(), true, true);
+	npc->addComponent<NPC>(info.getScene(), info.getType(), info.getName(), convo, true, true);
 	npc->setLayer(info.getLayer());
-
-	if (info.getSprite() != "whiteRect"){
+	if (info.getSprite() != "whiteRect") {
 		npc->addComponent<ShineComponent>();
 		npc->getComponent<ShineComponent>()->addEnt(npc->getComponent<SpriteRenderer>(), info.shine());
 	}

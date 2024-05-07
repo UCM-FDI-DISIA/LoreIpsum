@@ -19,7 +19,7 @@ public:
 		TALKING
 	};
 
-	NPC(int scene, int t = BUTTON, std::string name_ = "", bool = true, bool = true);
+	NPC(int scene, int t = BUTTON, std::string name_ = "", int convo = 0, bool = false, bool = false);
 	~NPC() override;
 
 	void initComponent() override;
@@ -30,12 +30,14 @@ public:
 	void reactToClick(int scene, bool = true, bool = true);
 	void talkTo();
 	void stoppedTalking();
+	void nextConvo();
 
 private:
 	int _id;
 	int _scene;
 	bool click;
 	int type;
+	int convo_;
 	bool talking;
 	std::string name;
 	ecs::entity_t npcDialogue;
@@ -46,7 +48,4 @@ private:
 	BoxCollider* myBoxCollider;
 	Factory* factory;
 	Transform* myTransform; //para saber si estamos cerca de Paul o no
-
-	//para destruir el dialogo si estamos lejos de paul
-
 };

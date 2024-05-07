@@ -70,7 +70,7 @@ void MainMenuState::onEnter()
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	newGameButton->addComponent<NPC>(GameStates::STORYMODEMENU, NPC::Type::BUTTON, "", true, true); // Esto es graciosisimo
+	newGameButton->addComponent<NPC>(GameStates::STORYMODEMENU, NPC::Type::BUTTON, "", 0, true, true); // Esto es graciosisimo
 	newGameButton->addComponent<ClickableText>(MIDNIGHT_HOLLENHAUS, MIDNIGHT_CLICK, MIDNIGHT_HOVER);
 
 	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170 - VERTICAL_OFFSET));
