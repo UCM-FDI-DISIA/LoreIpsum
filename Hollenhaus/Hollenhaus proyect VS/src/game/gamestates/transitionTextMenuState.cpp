@@ -118,12 +118,10 @@ void TransitionTextMenuState::onEnter()
 		case 9:
 			Ctext = "¿Sabías que las únicas humanas de Höllenhaus que pueden ver a Paul son la tendera y la médium?";
 			break;
-
 	}
 
 	chascarrillo->addComponent<TextComponent>(Ctext, font, PEARL_HOLLENHAUS, 600, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	chascarrillo->setLayer(1);
-
 
 	continuar = Instantiate(Vector2D(sdlutils().width() - 420, sdlutils().height() - 100));
 	continuar->addComponent<TextComponent>(
@@ -139,5 +137,4 @@ void TransitionTextMenuState::onEnter()
 void TransitionTextMenuState::onExit()
 {
 	GameStateMachine::instance()->getMngr()->Free();
-
 }
