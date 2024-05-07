@@ -8,6 +8,7 @@
 
 
 constexpr SDL_Color ROJO_HOLLENHAUS = { 148, 47, 55, 255 };
+constexpr SDL_Color NEGRO_HOLLENHAUS = { 148, 47, 55, 255 };
 
 MainMenuState::MainMenuState()
 {
@@ -43,7 +44,7 @@ void MainMenuState::onEnter()
 	//-----Ciudad de fondo:
 	ecs::entity_t fondo = Instantiate(Vector2D(0,0));
 	fondo->addComponent<SpriteRenderer>("main_menu_bg");
-	fondo->getComponent<Transform>()->setGlobalScale(Vector2D(0.56,0.56));
+	fondo->getComponent<Transform>()->setGlobalScale(Vector2D(0.356,0.356));
 	fondo->setLayer(0);
 
 	//multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
