@@ -66,7 +66,7 @@ void MainMenuState::onEnter()
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	newGameButton->addComponent<NPC>(12, 0); // Esto es graciosisimo
 
-	newGameButton->addComponent<NPC>(GameStates::CITY, NPC::Type::BUTTON, "", true, true); // Esto es graciosisimo
+	newGameButton->addComponent<NPC>(GameStates::CITY, NPC::Type::BUTTON, "", 0, true, true); // Esto es graciosisimo
 
 	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
 	multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);

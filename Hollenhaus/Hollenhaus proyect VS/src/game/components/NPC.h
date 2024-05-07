@@ -15,7 +15,7 @@ public:
 		TALKING
 	};
 
-	NPC(int scene, int t = BUTTON, std::string name_ = "", bool = false, bool = false);
+	NPC(int scene, int t = BUTTON, std::string name_ = "", int convo = 0, bool = false, bool = false);
 	~NPC() override;
 
 	void initComponent() override;
@@ -26,12 +26,14 @@ public:
 	void reactToClick(int scene, bool = false, bool = false);
 	void talkTo();
 	void stoppedTalking();
+	void nextConvo();
 
 private:
 	int _id;
 	int _scene;
 	bool click;
 	int type;
+	int convo_;
 	bool talking;
 	std::string name;
 	ecs::entity_t npcDialogue;

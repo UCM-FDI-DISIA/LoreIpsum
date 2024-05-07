@@ -107,7 +107,7 @@ ecs::entity_t Factory::createVisual_BackgroundFullImage()
 	return matchStateUIFactory->createVisual_BackgroundBoard();
 }
 
-ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent)
+ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent, int convo)
 {
 	if (npcFactory == nullptr) {
 		throw "no existe npcFactory";
@@ -117,7 +117,7 @@ ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent)
 	JsonData::NPCData info = sdlutils().npcs().at(std::to_string(i));
 
 	// PLACEHOLDER
-	return npcFactory->createNPC(info, parent);
+	return npcFactory->createNPC(info, parent, convo);
 }
 
 // Mirar comentario de createDialogue(), la funci�n del return

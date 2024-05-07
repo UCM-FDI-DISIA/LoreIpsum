@@ -87,9 +87,9 @@ void OfficeState::onEnter()
 	//  que al clicarlo hace que aparezca el dialogo.)
 
 	if(caseManager->accepted())
-		caseManager->addNPC(caseManager->caseNPC());
+		caseManager->addNPC(factory->createNPC(6, fondo, 1));
 	else
-		caseManager->addNPC(factory->createNPC(5, fondo));
+		caseManager->addNPC(factory->createNPC(6, fondo));
 
 	//Idea para los casos:
 	// - En dialoguesV1.json meter el texto de los casos que queremos que se diga. Como Caso0, Caso1, etc.

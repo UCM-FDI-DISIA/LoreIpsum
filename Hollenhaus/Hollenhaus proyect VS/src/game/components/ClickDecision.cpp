@@ -10,9 +10,10 @@
 #include "../CaseManager.h"
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
-#include "../factories/DecisionFactory_V0.h"
+#include "../components/NPC.h"
 
-ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
+ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) :
+	factory()
 {
 	decision_ = decision;
 	parent_ = parent;
@@ -25,9 +26,6 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 
 ClickDecision::~ClickDecision()
 {
-	//ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
-	//ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
-
 	delete factory;
 	factory = nullptr;
 }
@@ -38,8 +36,7 @@ void ClickDecision::initComponent()
 
 	factory = new Factory();
 	factory->SetFactories(
-		static_cast<NPCFactory*>(new NPCFactory_V0()),
-		static_cast<DecisionFactory*>(new DecisionFactory_V0)
+		static_cast<NPCFactory*>(new NPCFactory_V0())
 	);
 }
 
@@ -91,8 +88,6 @@ void ClickDecision::TakeDecision()
 	case 3: // Caso aceptado
 		TuVieja("Buenos dias caso 3");
 		caseAccepted();
-		parent_->getComponent<NextText>()->setDead(true);
-		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
 		break;
 	case 4: // CASO DEAFULT PARA NEGAR CUALQUIER COSA
 		parent_->getComponent<NextText>()->setDead(true);
@@ -138,15 +133,7 @@ void ClickDecision::caseAccepted()
 		CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
 		caseMngr->setAccepted(true);
 
-		ecs::entity_t npc = caseMngr->caseNPC();
-		Transform* tr = npc->getComponent<Transform>();
-		//tr->killChildren();
-
-		ecs::entity_t parent = tr->getParent()->getEntity();
-		mngr().setAlive(npc, false);
-
-		// NUEVO NPC
-		//npc = factory->createNPC(5, parent);
-		//GameStateMachine::instance()->caseMngr()->addNPC(npc);
+		NPC* npc = caseMngr->caseNPC()->getComponent<NPC>();
+		npc->nextConvo();
 	}
 }
