@@ -79,9 +79,10 @@ void OfficeState::onEnter()
 	auto dbTrans = db->addComponent<Transform>();
 	dbTrans->addParent(fondo->getComponent<Transform>());
 
-	db->addComponent<BoxCollider>();
-	Vector2D dbSiz(400, 300);
-	db->getComponent<BoxCollider>()->setSize(dbSiz);
+	auto dbBox = db->addComponent<BoxCollider>();
+	Vector2D dbSiz(550, 500);
+	dbBox->setSize(dbSiz);
+	dbBox->setPosOffset(Vector2D(30, 0));
 
 	Vector2D dbPos(478, 112);
 	dbTrans->setGlobalPos(dbPos);
@@ -99,9 +100,10 @@ void OfficeState::onEnter()
 	auto tfnoTrans = tfno->addComponent<Transform>();
 	tfnoTrans->addParent(fondo->getComponent<Transform>());
 
-	tfno->addComponent<BoxCollider>();
-	Vector2D tfnoSiz(400, 300);
-	tfno->getComponent<BoxCollider>()->setSize(tfnoSiz);
+	auto tfnoBox = tfno->addComponent<BoxCollider>();
+	Vector2D tfnoSiz(300, 270);
+	tfnoBox->setSize(tfnoSiz);
+	tfnoBox->setPosOffset(Vector2D(30, 20));
 
 	Vector2D tfnoPos(345, 384);
 	tfnoTrans->setGlobalPos(tfnoPos);
