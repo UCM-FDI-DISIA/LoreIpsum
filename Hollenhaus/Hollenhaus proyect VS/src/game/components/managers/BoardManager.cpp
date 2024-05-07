@@ -25,15 +25,24 @@ BoardManager::BoardManager(int size) : size(size)
 
 BoardManager::~BoardManager()
 {
-	for (auto& v : _boardIA) {
-		for (auto& e : v) {
-			delete e;
-			e = nullptr;
-		}
-	}
+	/*
 	for (auto& v : _board) {
 		for (auto& e : v) {
-			delete e->getComponent<Cell>()->getCard();
+		
+			//if()
+
+			//auto card = e->getComponent<Cell>()->getCard();
+			//delete card;			
+			//e->getComponent<Cell>()->setCard(nullptr,Players::NONE);
+		}
+	}
+	*/
+
+	for (auto& v : _boardIA) {
+		for (auto& e : v) {
+			
+			delete e;
+			e = nullptr;
 		}
 	}
 }

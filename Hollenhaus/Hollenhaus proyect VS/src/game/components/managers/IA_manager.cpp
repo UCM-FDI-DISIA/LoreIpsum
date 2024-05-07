@@ -454,6 +454,8 @@ void IA_manager::ColocarCarta()
 				cartasColocadas_++;
 			}
 
+		
+
 			for (auto& e :hand) {
 				if (e == card) continue;
 				delete e;
