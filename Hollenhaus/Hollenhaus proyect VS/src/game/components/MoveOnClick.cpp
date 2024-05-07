@@ -19,6 +19,7 @@
 constexpr Uint32 FEEDBACK_PADDING = 60,
                  ACC_DURATION = 10;
 constexpr int MOVE_OFFSET = 10;
+constexpr int BORDER_PADDING = -50;
 
 
 MoveOnClick::MoveOnClick(float vel) :
@@ -103,9 +104,9 @@ void MoveOnClick::update()
 	// -> o cuando llegue a los limites de la ciudad por la izquierda Y se pulse en la izquierda
 	if (shouldMove_ &&
 		(diff >= absDistance_
-			|| ((posX >= 0
+			|| ((posX >= 0 + BORDER_PADDING
 					&& mousePos_.getX() < halfScreen_)
-				|| (posX <= BACKGROUND_SIZE
+				|| (posX <= BACKGROUND_SIZE - BORDER_PADDING
 					&& mousePos_.getX() >= halfScreen_))))
 	{
 		onStop();

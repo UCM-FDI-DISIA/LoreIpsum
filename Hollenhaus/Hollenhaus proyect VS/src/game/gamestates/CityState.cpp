@@ -72,7 +72,7 @@ void CityState::onEnter()
 	cityText->setLayer(1);
 
 	// ---- FONDO CIUDAD ----
-	fondo = Instantiate();
+	fondo = Instantiate(Vector2D(0,2));
 	//fond = fondo;
 	// le aniade los componentes
 	fondo->addComponent<Transform>();
