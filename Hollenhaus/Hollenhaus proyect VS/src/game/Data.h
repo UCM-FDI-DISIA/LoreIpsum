@@ -17,8 +17,6 @@ MAX_CARDS_MAZE = 20, // Maximo de cartas en el mazo
 // Cantidad de cartas de la tienda. Cambiar en shopComponent tambien.
 CARDS_IN_SHOP = 4;
 
-class RandomNumberGenerator;
-
 class Data
 {
 private:
@@ -53,8 +51,6 @@ private:
 
 	std::list<int> thisCaseClues; // Id de las cartas conseguidas durante el caso (deben ser aniadidas al drawer y aqui al ser conseguidass)
 
-	RandomNumberGenerator& rand_; // Para generar numeros aleatorios.
-
 	enum WINNER {
 		NONE,
 		TIE,
@@ -66,6 +62,7 @@ private:
 	TCPsocket rival;
 
 	bool isHost = false;
+
 public:
 
 	//------Constructora y destructora:
@@ -180,7 +177,6 @@ public:
 	void EmptyNPCS();
 	//----Vaciado del array de cartas de la tienda. Lo pone todo a (-1 ,-1, -1, -1).
 	void EmptyShopCards();
-	//----Vaciado del array del mazo con las posiciones de cada uno.
 	void EmptyMaze_With_pos();
 
 
@@ -194,5 +190,5 @@ public:
 	void setIsHost(bool b);
 	bool getIsHost();
 
-	void reset();
+
 };
