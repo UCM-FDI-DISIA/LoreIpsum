@@ -111,6 +111,7 @@ GameStateMachine::~GameStateMachine()
 {
 	delete mouse_;
 	delete fade_;
+	delete case_;
 
 	delete cityState;
 	delete officeState;
