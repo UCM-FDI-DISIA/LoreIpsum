@@ -18,6 +18,7 @@
         {"id": "edificios",       "file": "resources/images/edificios.png"},
         {"id": "ciudadcompleta",  "file": "resources/images/ciudadcompleta.png"},
         {"id": "EndTurnButton",   "file": "resources/images/end_turn_button.png"},
+        {"id": "EndTurnButtonClick",   "file": "resources/images/end_turn_button_click.png"},
         {"id": "esquina",         "file": "resources/images/ef_esquina.png"},
         {"id": "centro",          "file": "resources/images/ef_centro.png" },
         {"id": "flecha",          "file": "resources/images/ef_flecha.png" },

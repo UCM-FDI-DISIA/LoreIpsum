@@ -141,7 +141,6 @@ GameStateMachine::~GameStateMachine()
 	currentState->setData(nullptr);
 
 	delete mngr_;
-
 }
 
 void GameStateMachine::Render() const
