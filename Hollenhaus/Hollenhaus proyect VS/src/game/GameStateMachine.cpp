@@ -100,7 +100,7 @@ GameStateMachine::GameStateMachine()
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();
 
-	currentState = mainMenuState;
+	currentState = officeState;
 
 	// settea la data en el current state para acceder a ella desde cualquier estado
 	currentState->setData(new Data());
@@ -144,7 +144,6 @@ GameStateMachine::~GameStateMachine()
 	currentState->setData(nullptr);
 
 	delete mngr_;
-	delete case_;
 }
 
 void GameStateMachine::Render() const
