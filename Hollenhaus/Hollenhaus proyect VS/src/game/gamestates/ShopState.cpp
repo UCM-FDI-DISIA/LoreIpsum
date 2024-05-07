@@ -147,7 +147,7 @@ void ShopState::onEnter()
 	exitButton->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exitButton->addComponent<Button>();
 	exitButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(1);});
-		exitButton->addComponent<Clickable>("boton_flecha");
+		exitButton->addComponent<Clickable>("boton_flecha", true);
 
 	//------Sonido de la tienda:
 	auto& sdl = *SDLUtils::instance();

@@ -52,7 +52,7 @@ void PauseMenuState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(GetLastState()); // Lleva a la oficina (2).
 	exit->setLayer(5);
-		exit->addComponent<Clickable>("boton_flecha");
+		exit->addComponent<Clickable>("boton_flecha", true);
 
 	//// ---- CheckMaze:
 	ecs::entity_t maze = Instantiate();

@@ -122,7 +122,7 @@ void DeckBuildingState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(2); // Lleva a la oficina (2).
 	exit->setLayer(2);
-	exit->addComponent<Clickable>("boton_flecha");
+	exit->addComponent<Clickable>("boton_flecha", true);
 
 	// ---- Confirmar Mazo:
 	Vector2D botMazScale(.3f, .3f);
@@ -148,7 +148,7 @@ void DeckBuildingState::onEnter()
 	botPalante->addComponent<Transform>();
 	botPalante->addComponent<SpriteRenderer>("UpDrawer");
 	botPalante->addComponent<BoxCollider>();
-	botPalante->addComponent<Clickable>("UpDrawer");
+	botPalante->addComponent<Clickable>("UpDrawer", true);
 	Vector2D botPalantePos(botX, botY);
 	botPalante->getComponent<Transform>()->setGlobalPos(botPalantePos);
 	botPalante->getComponent<Transform>()->setGlobalScale(botScale);
@@ -162,7 +162,7 @@ void DeckBuildingState::onEnter()
 	botPatras->addComponent<Transform>();
 	botPatras->addComponent<SpriteRenderer>("DownDrawer");
 	botPatras->addComponent<BoxCollider>();
-	botPatras->addComponent<Clickable>("DownDrawer");
+	botPatras->addComponent<Clickable>("DownDrawer", true);
 	Vector2D botPatrasPos(botX, botY + botSep);
 	botPatras->getComponent<Transform>()->setGlobalPos(botPatrasPos);
 	botPatras->getComponent<Transform>()->setGlobalScale(botScale);

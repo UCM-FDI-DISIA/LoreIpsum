@@ -56,7 +56,7 @@ void MultiplayerLobbyState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(GameStates::MAINMENU); // Lleva al menu (0).
 	exit->setLayer(2);
-		exit->addComponent<Clickable>("boton_flecha");
+		exit->addComponent<Clickable>("boton_flecha", true);
 
 	// Entidad cuadro de texto para recoger una ip
 	ecs::entity_t cuadroTexto = Instantiate(Vector2D(400, 300));

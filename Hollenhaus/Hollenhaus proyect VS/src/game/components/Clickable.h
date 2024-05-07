@@ -9,17 +9,29 @@ class Clickable : public ComponentUpdate
 
 	std::string firstFrame;
 	std::string lastFrame;
+	std::string hoverFrame;
 
 	bool isClicked = false;
 
 public:
 	Clickable() = default;
-	Clickable(std::string first) : firstFrame(first)
+	Clickable(std::string first, bool hasHover = false) : firstFrame(first)
 	{
 		lastFrame = first + "_click";
+		if (hasHover)
+			hoverFrame = first + "_hover";
 	}
-	Clickable(std::string first, std::string last)
-		: firstFrame(first), lastFrame(last) {}
+	Clickable(std::string first, std::string last, bool hasHover = false)
+		: firstFrame(first), lastFrame(last)
+	{
+		if (hasHover) 
+			hoverFrame = first + "_hover";
+	}
+	Clickable(std::string first, std::string last, std::string hover)
+		: firstFrame(first), lastFrame(last), hoverFrame(hover)
+	{
+
+	}
 	~Clickable() override;
 
 	void setSpriteRenderer(SpriteRenderer* v) { spriteRend_ = v; }
@@ -30,4 +42,6 @@ public:
 	void onClickDown();
 	void onClickUp();
 	void initComponent() override;
+	void update() override;
+
 };

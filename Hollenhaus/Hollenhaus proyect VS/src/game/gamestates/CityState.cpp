@@ -170,7 +170,7 @@ void CityState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(GameStates::MAINMENU); // Lleva al menu (0).
 	exit->setLayer(2);
-	exit->addComponent<Clickable>("boton_flecha");
+	exit->addComponent<Clickable>("boton_flecha", true);
 
 	// SDLUTILS
 	// referencia a sdlutils

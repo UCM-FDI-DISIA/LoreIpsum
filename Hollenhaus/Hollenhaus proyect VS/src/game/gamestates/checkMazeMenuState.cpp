@@ -45,7 +45,7 @@ void CheckMazeMenuState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(17);
 	exit->setLayer(5);
-	exit->addComponent<Clickable>("boton_flecha");
+	exit->addComponent<Clickable>("boton_flecha", true);
 
 	ShowMaze();
 }

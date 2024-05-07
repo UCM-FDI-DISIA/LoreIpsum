@@ -81,7 +81,7 @@ void OptionsMainMenuState::onEnter()
 	//exitButton->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	returnButton->addComponent<Button>();
 	returnButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(0); });
-		returnButton->addComponent<Clickable>("boton_flecha");
+		returnButton->addComponent<Clickable>("boton_flecha", true);
 
 
 }

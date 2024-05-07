@@ -50,7 +50,7 @@ void StoryModeState::onEnter()
 	returnButton->addComponent<Transform>();
 	returnButton->addComponent<BoxCollider>();
 	returnButton->addComponent<SpriteRenderer>(firstFrame);
-	returnButton->addComponent<Clickable>(firstFrame);
+	returnButton->addComponent<Clickable>(firstFrame, true);
 	/// Si queremos fade in / fade out en la clase Button en vez de NPC hay que gestionar
 	///	las llamadas a la logica de los fades en esa clase, asi que de momento voy a
 	///	hacerlo con npc y punto pero aviso porsiaca

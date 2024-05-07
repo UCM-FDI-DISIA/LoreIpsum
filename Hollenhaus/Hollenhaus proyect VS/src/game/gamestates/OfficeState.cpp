@@ -66,7 +66,7 @@ void OfficeState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
-		exit->addComponent<Clickable>("boton_flecha");
+		exit->addComponent<Clickable>("boton_flecha", true);
 
 	//------Boton para deckBuilding:
 	ecs::entity_t db = Instantiate();
