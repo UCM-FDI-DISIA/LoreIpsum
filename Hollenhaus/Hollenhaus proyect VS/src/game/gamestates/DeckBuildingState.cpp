@@ -1,4 +1,3 @@
-// pch
 #include <../pchs/pch.h>
 
 
@@ -145,9 +144,6 @@ void DeckBuildingState::onEnter()
 	Confirm->addComponent<SpriteRenderer>("postit_guardar_mazo");
 	auto shinePostit = Confirm->addComponent<ShineComponent>();
 	shinePostit->addEnt(Confirm->getComponent<SpriteRenderer>(), "postit_guardar_mazo_brilli");
-
-	/*
-	* 
 
 
 	// ---- Pasar cajon alante:
