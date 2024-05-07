@@ -169,9 +169,19 @@
         "size": 32
       },
       {
+        "id": "space_grotesk_bold_40",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 40
+      },
+      {
         "id": "space_grotesk_bold_8",
         "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
         "size": 8
+      },
+      {
+        "id": "space_grotesk_bold_24",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 24
       }
     ],
     "sounds": [
