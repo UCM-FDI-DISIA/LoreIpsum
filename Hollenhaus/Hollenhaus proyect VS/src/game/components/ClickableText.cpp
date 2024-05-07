@@ -12,6 +12,7 @@ ClickableText::~ClickableText()
 
 void ClickableText::onClickDown()
 {
+	if (clickedColor.a == 0) return;
 	if (boxCol_->isCursorOver())
 	{
 		isClicked = true;
@@ -21,6 +22,7 @@ void ClickableText::onClickDown()
 
 void ClickableText::onClickUp()
 {
+	if (originalColor.a == 0) return;
 	if (isClicked)
 	{
 		isClicked = false;

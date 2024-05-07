@@ -10,8 +10,8 @@
 
 constexpr SDL_Color ROJO_HOLLENHAUS = { 148, 47, 55, 255 };
 constexpr SDL_Color MIDNIGHT_HOLLENHAUS = { 16, 23, 32, 255 }; // texto color normal
-constexpr SDL_Color MIDNIGHT_CLICK = { 16, 23, 32, 255 }; // click texto color
-constexpr SDL_Color MIDNIGHT_HOVER = { 16, 23, 32, 255 }; // hover texto color
+constexpr SDL_Color MIDNIGHT_CLICK = { 49, 50, 78, 255 }; // click texto color
+constexpr SDL_Color MIDNIGHT_HOVER = { 73, 21, 31, 255 }; // hover texto color
 constexpr int VERTICAL_OFFSET = 150;
 
 
@@ -71,7 +71,7 @@ void MainMenuState::onEnter()
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	newGameButton->addComponent<NPC>(GameStates::STORYMODEMENU, NPC::Type::BUTTON, "", true, true); // Esto es graciosisimo
-	newGameButton->addComponent<ClickableText>()
+	newGameButton->addComponent<ClickableText>(MIDNIGHT_HOLLENHAUS, MIDNIGHT_CLICK, MIDNIGHT_HOVER);
 
 	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170 - VERTICAL_OFFSET));
 	multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "space_grotesk_bold_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
@@ -81,6 +81,7 @@ void MainMenuState::onEnter()
 	multiplayerButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	multiplayerButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	multiplayerButton->addComponent<NPC>(GameStates::MULTIPLAYER_LOBBY, 0);
+	multiplayerButton->addComponent<ClickableText>(MIDNIGHT_HOLLENHAUS, MIDNIGHT_CLICK, MIDNIGHT_HOVER);
 
 	//----Texto para continuar partida.
 	//ecs::entity_t continueText = Instantiate(Vector2D(400, 250));
@@ -98,12 +99,14 @@ void MainMenuState::onEnter()
 	optionsButton->getComponent<BoxCollider>()->setSize(Vector2D(190, 40));
 	optionsButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-40, -20));
 	optionsButton->addComponent<NPC>(GameStates::OPTIONSMENU, 0);
+	optionsButton->addComponent<ClickableText>(MIDNIGHT_HOLLENHAUS, MIDNIGHT_CLICK, MIDNIGHT_HOVER);
 
 	exitButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 70 - VERTICAL_OFFSET));
 	exitButton->addComponent<TextComponent>("SALIR", "space_grotesk_bold_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	exitButton->addComponent<BoxCollider>();
 	exitButton->getComponent<BoxCollider>()->setSize(Vector2D(100, 32));
 	exitButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(50, -16));
+	exitButton->addComponent<ClickableText>(MIDNIGHT_HOLLENHAUS, MIDNIGHT_CLICK, MIDNIGHT_HOVER);
 	ih().insertFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
 
 
