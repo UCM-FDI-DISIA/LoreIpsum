@@ -80,7 +80,8 @@ void CityState::onEnter()
 	fondo->addComponent<BoxCollider>();
 	fondo->getComponent<Transform>()->setGlobalScale(scaleFondo);
 	Vector2D globalPos = getLastPaulPos();
-	fondo->getComponent<Transform>()->setGlobalPos(globalPos);
+	Vector2D realFondoPos = Vector2D(globalPos.getX(), globalPos.getY() + 2);
+	fondo->getComponent<Transform>()->setGlobalPos(realFondoPos);
 	fondo->setLayer(0);
 
 	/// FAROLAS
