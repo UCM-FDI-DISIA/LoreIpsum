@@ -46,34 +46,40 @@ void TransitionTextMenuState::onEnter()
 	fondo->setLayer(0);
 
 	auto font = "space_grotesk_bold_40";
-	casoText = Instantiate(Vector2D(350, 100));
-	casoText->addComponent<TextComponent>("CASO ", font, PEARL_HOLLENHAUS, 130, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	auto posXTexts = 300;
+	auto posYTexts = 90;
+	auto sepYTexts = 50;
+	auto posXNums = 420;
+	auto textSize = 200;
+	auto numSize = 300;
+	casoText = Instantiate(Vector2D(posXTexts, posYTexts));
+	casoText->addComponent<TextComponent>("CASO: ", font, PEARL_HOLLENHAUS, textSize, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	casoText->setLayer(1);
 
 	caso = GameStateMachine::instance()->getCurrentState()->getCurrentCase();
 
-	casoNum = Instantiate(Vector2D(440, 95));
-	casoNum->addComponent<TextComponent>(std::to_string(caso), font, PEARL_HOLLENHAUS, 90, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	casoNum = Instantiate(Vector2D(posXNums, posYTexts));
+	casoNum->addComponent<TextComponent>(std::to_string(caso), font, PEARL_HOLLENHAUS, numSize, Text::BoxPivotPoint::LeftCenter, Text::TextAlignment::Left);
 	casoNum->setLayer(1);
 
-	dineroText = Instantiate(Vector2D(340, 150));
-	dineroText->addComponent<TextComponent>("DINERO: ", font, PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	dineroText = Instantiate(Vector2D(posXTexts, posYTexts + sepYTexts));
+	dineroText->addComponent<TextComponent>("DINERO: ", font, PEARL_HOLLENHAUS, textSize, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	dineroText->setLayer(1);
 
 	money = GameStateMachine::instance()->getCurrentState()->getMoney();
 
-	dineroNum = Instantiate(Vector2D(480, 150));
-	dineroNum->addComponent<TextComponent>(std::to_string(money), font, PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	dineroNum = Instantiate(Vector2D(posXNums, posYTexts + sepYTexts));
+	dineroNum->addComponent<TextComponent>(std::to_string(money), font, PEARL_HOLLENHAUS, numSize, Text::BoxPivotPoint::LeftCenter, Text::TextAlignment::Left);
 	dineroNum->setLayer(1);
 	
-	almasText = Instantiate(Vector2D(340, 190));
-	almasText->addComponent<TextComponent>("ALMAS: ", font, PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	almasText = Instantiate(Vector2D(posXTexts, posYTexts + sepYTexts * 2));
+	almasText->addComponent<TextComponent>("ALMAS: ", font, PEARL_HOLLENHAUS, textSize, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	almasText->setLayer(1);
 
 	almas = GameStateMachine::instance()->getCurrentState()->getSouls();
 
-	almasNum = Instantiate(Vector2D(450, 190));
-	almasNum->addComponent<TextComponent>(std::to_string(almas), font, PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	almasNum = Instantiate(Vector2D(posXNums, posYTexts + sepYTexts * 2));
+	almasNum->addComponent<TextComponent>(std::to_string(almas), font, PEARL_HOLLENHAUS, numSize, Text::BoxPivotPoint::LeftCenter, Text::TextAlignment::Left);
 	almasNum->setLayer(1);
 
 	chascarrillo = Instantiate(Vector2D(400, 350));
