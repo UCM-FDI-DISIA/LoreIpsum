@@ -241,10 +241,21 @@
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "convoID": 3,
+          "autoConvo": false,
+          "nodes": [
             {
-              "nodeID": 2,
+              "nodeID": 0,
               "text": "Abajo a la izquierda guardan su valor",
               "eventStart": 0,
               "eventFinish": 0,
@@ -252,13 +263,24 @@
               ]
             },
             {
-              "nodeID": 3,
+              "nodeID": 1,
               "text": "Cuando coloques una carta en el tablero se te sumara ese valor a tu puntuacion",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "convoID": 4,
+          "autoConvo": false,
+          "nodes": [
             {
               "nodeID": 4,
               "text": "En el centro de la carta se encuentra un pictograma que indica el efecto que posee",
@@ -291,7 +313,7 @@
           ]
         },
         {
-          "convoID": 3,
+          "convoID": 5,
           "autoConvo": false,
           "nodes": [
             {
@@ -334,7 +356,7 @@
           ]
         },
         {
-          "convoID": 4,
+          "convoID": 6,
           "autoConvo": false,
           "nodes": [
             {
@@ -377,7 +399,7 @@
           ]
         },
         {
-          "convoID": 5,
+          "convoID": 7,
           "autoConvo": false,
           "nodes": [
             {
@@ -412,19 +434,11 @@
           ]
         },
         {
-          "convoID": 6,
+          "convoID": 8,
           "autoConvo": false,
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Bien hecho!",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 1,
               "text": "Completar distintas acciones supondra un coste.",
               "eventStart": 0,
               "eventFinish": 0,
@@ -432,7 +446,7 @@
               ]
             },
             {
-              "nodeID": 2,
+              "nodeID": 1,
               "text": "Robar una carta cuesta 1 punto de accion",
               "eventStart": 0,
               "eventFinish": 0,
@@ -440,7 +454,7 @@
               ]
             },
             {
-              "nodeID": 3,
+              "nodeID": 2,
               "text": "Colocar una carta en el tablero dependera de cada carta.",
               "eventStart": 0,
               "eventFinish": 0,
@@ -448,7 +462,7 @@
               ]
             },
             {
-              "nodeID": 4,
+              "nodeID": 3,
               "text": "Este coste se puede ver en la esquina superior derecha de cada carta.",
               "eventStart": 0,
               "eventFinish": 0,
@@ -463,7 +477,7 @@
           ]
         },
         {
-          "convoID": 7,
+          "convoID": 8,
           "autoConvo": false,
           "nodes": [
             {
@@ -490,7 +504,7 @@
           ]
         },
         {
-          "convoID": 8,
+          "convoID": 10,
           "autoConvo": false,
           "nodes": [
             {
@@ -518,7 +532,7 @@
           ]
         },
         {
-          "convoID": 9,
+          "convoID": 11,
           "autoConvo": false,
           "nodes": [
             {
@@ -537,7 +551,7 @@
           ]
         },
         {
-          "convoID": 10,
+          "convoID": 12,
           "autoConvo": false,
           "nodes": [
             {
@@ -559,7 +573,7 @@
           ]
         },
         {
-          "convoID": 11,
+          "convoID": 13,
           "autoConvo": false,
           "nodes": [
             {
@@ -602,7 +616,7 @@
           ]
         },
         {
-          "convoID": 12,
+          "convoID": 14,
           "autoConvo": false,
           "nodes": [
             {
