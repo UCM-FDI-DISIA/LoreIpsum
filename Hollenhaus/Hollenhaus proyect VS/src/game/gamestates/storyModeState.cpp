@@ -66,7 +66,7 @@ void StoryModeState::onEnter()
 	returnButton->addComponent<NPC>(GameStates::MAINMENU, NPC::Type::BUTTON, "", 0, true, true);
 
 
-	newGameButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 300));
+	newGameButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 320));
 	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_size_32", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
@@ -74,7 +74,7 @@ void StoryModeState::onEnter()
 	newGameButton->addComponent<NPC>(15, 0);
 	newGameButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
 
-	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 250));
+	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 270));
 	continueButton->addComponent<TextComponent>("CONTINUAR", "8bit_size_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	continueButton->addComponent<BoxCollider>();
 	continueButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
