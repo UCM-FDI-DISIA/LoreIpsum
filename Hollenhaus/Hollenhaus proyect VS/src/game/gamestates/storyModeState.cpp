@@ -7,6 +7,7 @@
 #include "../components/Button.h"
 #include "../components/NPC.h"
 #include "../components/basics/Transform.h"
+#include "game/components/Clickable.h"
 
 constexpr SDL_Color PEARL_HOLLENHAUS = { 226, 223, 210, 255 };
 
@@ -44,12 +45,23 @@ void StoryModeState::onEnter()
 	//fondo->getComponent<Transform>()->getRelativeScale().set(5.0f, 5.0f);
 	fondo->setLayer(0);
 
-	returnButton = Instantiate(Vector2D(10, 10));
+	auto firstFrame = "boton_flecha";
+	returnButton = Instantiate(Vector2D(50, 50));
 	returnButton->addComponent<Transform>();
 	returnButton->addComponent<BoxCollider>();
-	returnButton->addComponent<SpriteRenderer>("boton_flecha");
-	returnButton->addComponent<Button>();
-	returnButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(0); });
+	returnButton->addComponent<SpriteRenderer>(firstFrame);
+	returnButton->addComponent<Clickable>(firstFrame);
+	/// Si queremos fade in / fade out en la clase Button en vez de NPC hay que gestionar
+	///	las llamadas a la logica de los fades en esa clase, asi que de momento voy a
+	///	hacerlo con npc y punto pero aviso porsiaca
+	//returnButton->addComponent<Button>();
+	//returnButton->getComponent<Button>()->connectToButton([this]
+	//{
+	//	//GameStateMachine::instance()->setState(0); // usar enums en vez de numeros a palo seco
+	//	GameStateMachine::instance()->setState(GameStates::MAINMENU); // usar enums en vez de numeros a palo seco
+	//});
+	returnButton->addComponent<NPC>(GameStates::MAINMENU, NPC::Type::BUTTON, "", true, true);
+
 
 	newGameButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 300));
 	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_size_32", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);

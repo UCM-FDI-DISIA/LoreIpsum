@@ -32,7 +32,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int 
     endTurnButton->addComponent<BoxCollider>();
     endTurnButton->addComponent<EndTurnButton>(Turns::J1);
     endTurnButton->setLayer(4);
-    endTurnButton->addComponent<Clickable>("EndTurnButton", "EndTurnButtonClick");
+    endTurnButton->addComponent<Clickable>("EndTurnButton");
     return endTurnButton;
 }
 

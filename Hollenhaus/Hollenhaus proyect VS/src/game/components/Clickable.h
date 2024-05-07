@@ -14,9 +14,13 @@ class Clickable : public ComponentUpdate
 
 public:
 	Clickable() = default;
+	Clickable(std::string first) : firstFrame(first)
+	{
+		lastFrame = first + "_click";
+	}
 	Clickable(std::string first, std::string last)
 		: firstFrame(first), lastFrame(last) {}
-	~Clickable();
+	~Clickable() override;
 
 	void setSpriteRenderer(SpriteRenderer* v) { spriteRend_ = v; }
 	void setBoxCollider(BoxCollider* v) { boxCol_ = v; }
