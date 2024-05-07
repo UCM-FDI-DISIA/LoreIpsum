@@ -179,5 +179,6 @@ public:
 	void setIsHost(bool b);
 	bool getIsHost();
 
-	void reset();
+	//------Reset:
+	void resetSave();
 };
