@@ -73,6 +73,10 @@
         {"id": "mpfondo",       "file": "resources/images/multiplayer.png"  },
         {"id": "optfondo",       "file": "resources/images/midnightBlue.png"  },
         {"id": "transitionbg",       "file": "resources/images/transitionBG.png"  },
+        {"id": "santeria",       "file": "resources/images/santeria.png"  },
+        {"id": "santeria_brilli",       "file": "resources/images/santeria_brilli.png"  },
+        {"id": "oficina",       "file": "resources/images/oficina.png"  },
+        {"id": "oficina_brilli",       "file": "resources/images/oficina_brilli.png"  },
         {"id": "panelFinPartida",       "file": "resources/images/PanelFinPartida.png"  }
     ],
     "fonts": [
