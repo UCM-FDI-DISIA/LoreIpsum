@@ -1,32 +1,40 @@
 ﻿#pragma once
 
+class TextComponent;
+
 class ClickableText : public ComponentUpdate
 {
-	SpriteRenderer* spriteRend_ = nullptr;
+	TextComponent* textComp_ = nullptr;
 	BoxCollider* boxCol_ = nullptr;
 
-	std::string firstFrame;
-	std::string lastFrame;
+	SDL_Color originalColor{0, 0, 0, 0};
+	SDL_Color clickedColor{0, 0, 0, 0};
+	SDL_Color hoverColor{0, 0, 0, 0};
 
 	bool isClicked = false;
 
 public:
 	ClickableText() = default;
-	ClickableText(std::string first) : firstFrame(first)
+
+	ClickableText(SDL_Color first, SDL_Color click) : originalColor(first), clickedColor(click)
 	{
-		lastFrame = first + "_click";
 	}
-	ClickableText(std::string first, std::string last)
-		: firstFrame(first), lastFrame(last) {}
+
+	ClickableText(SDL_Color first, SDL_Color click, SDL_Color hover)
+		: originalColor(first), clickedColor(click), hoverColor(hover)
+	{
+	}
+
 	~ClickableText() override;
 
-	void setSpriteRenderer(SpriteRenderer* v) { spriteRend_ = v; }
+	void setTextComponent(TextComponent* v) { textComp_ = v; }
 	void setBoxCollider(BoxCollider* v) { boxCol_ = v; }
-	SpriteRenderer* getSpriteRenderer() const { return spriteRend_; }
+	TextComponent* getTextComponent() const { return textComp_; }
 	BoxCollider* getBoxCollider() const { return boxCol_; }
 
 	void onClickDown();
 	void onClickUp();
 	void initComponent() override;
-	
+	void update() override;
+	static bool compareColors(SDL_Color, SDL_Color);
 };

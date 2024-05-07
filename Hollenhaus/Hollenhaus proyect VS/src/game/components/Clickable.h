@@ -7,28 +7,28 @@ class Clickable : public ComponentUpdate
 	SpriteRenderer* spriteRend_ = nullptr;
 	BoxCollider* boxCol_ = nullptr;
 
-	std::string firstFrame;
-	std::string lastFrame;
+	std::string originalFrame;
+	std::string clickedFrame;
 	std::string hoverFrame;
 
 	bool isClicked = false;
 
 public:
 	Clickable() = default;
-	Clickable(std::string first, bool hasHover = false) : firstFrame(first)
+	Clickable(std::string first, bool hasHover = false) : originalFrame(first)
 	{
-		lastFrame = first + "_click";
+		clickedFrame = first + "_click";
 		if (hasHover)
 			hoverFrame = first + "_hover";
 	}
 	Clickable(std::string first, std::string last, bool hasHover = false)
-		: firstFrame(first), lastFrame(last)
+		: originalFrame(first), clickedFrame(last)
 	{
 		if (hasHover) 
 			hoverFrame = first + "_hover";
 	}
 	Clickable(std::string first, std::string last, std::string hover)
-		: firstFrame(first), lastFrame(last), hoverFrame(hover)
+		: originalFrame(first), clickedFrame(last), hoverFrame(hover)
 	{
 
 	}

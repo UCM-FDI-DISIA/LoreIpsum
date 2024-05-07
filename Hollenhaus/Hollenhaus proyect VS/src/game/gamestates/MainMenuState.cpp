@@ -5,10 +5,13 @@
 #include "../components/NPC.h"
 #include "../components/basics/TextComponent.h"
 #include "../components/basics/SpriteRenderer.h"
+#include "game/components/ClickableText.h"
 
 
 constexpr SDL_Color ROJO_HOLLENHAUS = { 148, 47, 55, 255 };
-constexpr SDL_Color MIDNIGHT_HOLLENHAUS = { 16, 23, 32, 255 };
+constexpr SDL_Color MIDNIGHT_HOLLENHAUS = { 16, 23, 32, 255 }; // texto color normal
+constexpr SDL_Color MIDNIGHT_CLICK = { 16, 23, 32, 255 }; // click texto color
+constexpr SDL_Color MIDNIGHT_HOVER = { 16, 23, 32, 255 }; // hover texto color
 constexpr int VERTICAL_OFFSET = 150;
 
 
@@ -68,7 +71,8 @@ void MainMenuState::onEnter()
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	newGameButton->addComponent<NPC>(GameStates::STORYMODEMENU, NPC::Type::BUTTON, "", true, true); // Esto es graciosisimo
-	
+	newGameButton->addComponent<ClickableText>()
+
 	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170 - VERTICAL_OFFSET));
 	multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "space_grotesk_bold_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	// multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));

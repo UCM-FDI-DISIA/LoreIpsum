@@ -13,7 +13,7 @@ void Clickable::onClickDown()
 	if (boxCol_->isCursorOver())
 	{
 		isClicked = true;
-		spriteRend_->setTexture(lastFrame);
+		spriteRend_->setTexture(clickedFrame);
 	}
 }
 
@@ -22,7 +22,7 @@ void Clickable::onClickUp()
 	if (isClicked)
 	{
 		isClicked = false;
-		spriteRend_->setTexture(firstFrame);
+		spriteRend_->setTexture(originalFrame);
 	}
 }
 
@@ -48,10 +48,10 @@ void Clickable::update()
 		}
 		else
 		{
-			if (spriteRend_->getTexture() != &sdlutils().images().at(firstFrame))
-				spriteRend_->setTexture(firstFrame);
+			if (spriteRend_->getTexture() != &sdlutils().images().at(originalFrame))
+				spriteRend_->setTexture(originalFrame);
 		}
 	}
-	else if (spriteRend_->getTexture() != &sdlutils().images().at(lastFrame))
-		spriteRend_->setTexture(lastFrame);
+	else if (spriteRend_->getTexture() != &sdlutils().images().at(clickedFrame))
+		spriteRend_->setTexture(clickedFrame);
 }
