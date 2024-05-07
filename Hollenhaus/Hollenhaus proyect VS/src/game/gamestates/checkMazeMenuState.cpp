@@ -5,6 +5,7 @@
 #include "checkMazeMenuState.h"
 #include "../components/NPC.h"
 #include "game/Data.h"
+#include "game/components/Clickable.h"
 
 CheckMazeMenuState::CheckMazeMenuState()
 {
@@ -44,6 +45,7 @@ void CheckMazeMenuState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(17);
 	exit->setLayer(5);
+	exit->addComponent<Clickable>("boton_flecha");
 
 	ShowMaze();
 }

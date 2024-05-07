@@ -11,6 +11,7 @@
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
 #include "pauseMenuState.h"
+#include "game/components/Clickable.h"
 
 CityState::CityState()
 {
@@ -177,6 +178,7 @@ void CityState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(GameStates::MAINMENU); // Lleva al menu (0).
 	exit->setLayer(2);
+	exit->addComponent<Clickable>("boton_flecha");
 
 	// SDLUTILS
 	// referencia a sdlutils

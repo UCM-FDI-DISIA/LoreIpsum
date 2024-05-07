@@ -14,6 +14,7 @@
 // Factorias:
 #include "../factories/Factory.h"
 #include "../factories/FakeCardFactory_v0.h"
+#include "game/components/Clickable.h"
 
 ShopState::ShopState() : rand_(sdlutils().rand())
 {
@@ -146,6 +147,7 @@ void ShopState::onEnter()
 	exitButton->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exitButton->addComponent<Button>();
 	exitButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(1);});
+		exitButton->addComponent<Clickable>("boton_flecha");
 
 	//------Sonido de la tienda:
 	auto& sdl = *SDLUtils::instance();

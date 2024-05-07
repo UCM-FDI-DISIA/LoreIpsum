@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\components\Clickable.cpp" />
+    <ClCompile Include="src\game\components\ClickableText.cpp" />
     <ClCompile Include="src\game\components\CopyTextComponentOnClipboardButton.cpp" />
     <ClCompile Include="pchs\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -217,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\components\Clickable.h" />
+    <ClInclude Include="src\game\components\ClickableText.h" />
     <ClInclude Include="src\game\components\CopyTextComponentOnClipboardButton.h" />
     <ClInclude Include="pchs\pch.h" />
     <ClInclude Include="pchs\pch_c++_basic.h" />

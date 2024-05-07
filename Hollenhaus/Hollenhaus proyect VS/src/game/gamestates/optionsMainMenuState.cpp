@@ -7,6 +7,7 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/Button.h"
 #include "../components/basics/Transform.h"
+#include "game/components/Clickable.h"
 
 constexpr SDL_Color PEARL_HOLLENHAUS = { 226, 223, 210, 255 };
 
@@ -80,7 +81,8 @@ void OptionsMainMenuState::onEnter()
 	//exitButton->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	returnButton->addComponent<Button>();
 	returnButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(0); });
-	
+		returnButton->addComponent<Clickable>("boton_flecha");
+
 
 }
 

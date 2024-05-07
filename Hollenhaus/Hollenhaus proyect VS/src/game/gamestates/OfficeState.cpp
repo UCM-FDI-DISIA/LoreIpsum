@@ -8,6 +8,7 @@
 #include "../factories/NPCFactory_V0.h"
 
 #include "../components/NPC.h"
+#include "game/components/Clickable.h"
 
 
 OfficeState::OfficeState()
@@ -65,6 +66,7 @@ void OfficeState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
+		exit->addComponent<Clickable>("boton_flecha");
 
 	//------Boton para deckBuilding:
 	ecs::entity_t db = Instantiate();
