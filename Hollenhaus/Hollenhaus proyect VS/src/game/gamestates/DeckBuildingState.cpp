@@ -83,7 +83,7 @@ void DeckBuildingState::onEnter()
 	ecs::entity_t cantCards = Instantiate(Vector2D(80, 90));
 	cantCards_ = cantCards->addComponent<TextComponent>(
 		"xx / xx", "space_grotesk_bold_24", 
-		SDL_Color({ 255, 255, 255, 255 }), 70, 
+		Colors::PEARL_HOLLENHAUS, 70, 
 		Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	cantCards->setLayer(1);
 
@@ -145,6 +145,10 @@ void DeckBuildingState::onEnter()
 	Confirm->addComponent<SpriteRenderer>("postit_guardar_mazo");
 	auto shinePostit = Confirm->addComponent<ShineComponent>();
 	shinePostit->addEnt(Confirm->getComponent<SpriteRenderer>(), "postit_guardar_mazo_brilli");
+
+	/*
+	* 
+
 
 	// ---- Pasar cajon alante:
 	Vector2D botScale(0.75,0.75);
