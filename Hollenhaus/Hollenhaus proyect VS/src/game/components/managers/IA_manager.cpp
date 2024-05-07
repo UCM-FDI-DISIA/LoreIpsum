@@ -455,6 +455,7 @@ void IA_manager::ColocarCarta()
 			}
 
 			for (auto& e :hand) {
+				if (e == card) continue;
 				delete e;
 				e = nullptr;
 			}

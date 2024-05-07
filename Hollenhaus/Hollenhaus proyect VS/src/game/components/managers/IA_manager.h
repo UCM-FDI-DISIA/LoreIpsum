@@ -68,26 +68,7 @@ public:
 
 		~State() {
 
-			/*
-			for (auto& e : playerHand) {
-				delete e;
-				e = nullptr;
-			}
-		
-			for (auto& e : enemyHand) {		
-				delete e;
-				e = nullptr;
-			}
 			
-			for (auto& e : playerDeck) {
-				delete e;
-				e = nullptr;
-			}
-			for (auto& e : enemyDeck) {
-				delete e;
-				e = nullptr;
-			}
-			*/
 		}
 
 		//varios tableros para representar el estado 

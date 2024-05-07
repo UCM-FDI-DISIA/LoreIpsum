@@ -30,7 +30,11 @@ BoardManager::~BoardManager()
 			delete e;
 			e = nullptr;
 		}
-
+	}
+	for (auto& v : _board) {
+		for (auto& e : v) {
+			delete e->getComponent<Cell>()->getCard();
+		}
 	}
 }
 
