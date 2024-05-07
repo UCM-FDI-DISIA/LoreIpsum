@@ -77,7 +77,7 @@ void TransitionTextMenuState::onEnter()
 
 	chascarrillo = Instantiate(Vector2D(400, 350));
 
-	int i = rand_.nextInt(0, 10);
+	int i = rand_.nextInt(0, 11);
 
 	switch (i) 
 	{
@@ -97,7 +97,7 @@ void TransitionTextMenuState::onEnter()
 			Ctext = "¿Por qué los fantasmas nunca hacen la colada? Porque corren el peligro de meter en la lavadora a sus parientes";
 			break;
 		case 5:
-			Ctext = "Van dos fantasmas y se cae el del médium";
+			Ctext = "Van dos fantasmas y se cae el del médium"; // poli referencia
 			break;
 		case 6:
 			Ctext = "¿Has probado a poner el nombre completo del fantasma protagonista en el traductor de alemán?";
@@ -110,6 +110,9 @@ void TransitionTextMenuState::onEnter()
 			break;
 		case 9:
 			Ctext = "¿Sabías que las únicas humanas de Höllenhaus que pueden ver a Paul son la tendera y la médium?";
+			break;
+		case 10:
+			Ctext = "Fallasustos3000 was here.";
 			break;
 
 	}
