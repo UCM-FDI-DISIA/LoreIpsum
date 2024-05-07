@@ -1,5 +1,8 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include "GameState.h"
 class Card;
 class PizarraManager;
@@ -12,7 +15,7 @@ class DeckBuildingState : public GameState
 public:
 
 	DeckBuildingState();		//Constructora
-
+	~DeckBuildingState() { }
 	void update() override;
 	void render() const override;
 	void refresh() override;

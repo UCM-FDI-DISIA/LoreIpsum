@@ -1,7 +1,9 @@
 #ifndef GameStateMachine_H_
 #define GameStateMachine_H_
 
-#include "checkML.h"
+//Checkml
+#include <game/checkML.h>
+
 #include <stack>
 #include <functional>
 #include "../utils/Singleton.h"

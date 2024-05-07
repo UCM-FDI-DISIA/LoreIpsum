@@ -18,6 +18,8 @@
         {"id": "edificios",       "file": "resources/images/edificios.png"},
         {"id": "ciudadcompleta",  "file": "resources/images/ciudadcompleta.png"},
         {"id": "EndTurnButton",   "file": "resources/images/end_turn_button.png"},
+        {"id": "EndTurnButton_click",   "file": "resources/images/end_turn_button_click.png"},
+        {"id": "EndTurnButton_hover",   "file": "resources/images/end_turn_button_hover.png"},
         {"id": "esquina",         "file": "resources/images/ef_esquina.png"},
         {"id": "centro",          "file": "resources/images/ef_centro.png" },
         {"id": "flecha",          "file": "resources/images/ef_flecha.png" },
@@ -31,6 +33,8 @@
         {"id": "boton_nueva_partida", "file": "resources/images/boton_nueva_partida.png"  },
         {"id": "boton_salir",     "file": "resources/images/boton_salir.png"  },
         {"id": "boton_flecha",    "file": "resources/images/boton_flecha.png"},
+        {"id": "boton_flecha_click",    "file": "resources/images/boton_flecha_click.png"},
+        {"id": "boton_flecha_hover",    "file": "resources/images/boton_flecha_hover.png"},
         {"id": "black_box",       "file": "resources/images/black_background.png"  },
         {"id": "whiteRect",       "file": "resources/images/rectBlanco.png"},
         {"id": "redRect",       "file": "resources/images/redRect.png"},
@@ -48,7 +52,11 @@
         {"id": "DeckbuildingCajonBG",       "file": "resources/images/DeckBuildingCajonBG.png"  },
         {"id": "SaveMazeBut",       "file": "resources/images/boton_guardar_mazo.png"  },
         {"id": "DownDrawer",       "file": "resources/images/down_drawer.png"  },
+        {"id": "DownDrawer_click",       "file": "resources/images/down_drawer_click.png"  },
+        {"id": "DownDrawer_hover",       "file": "resources/images/down_drawer_hover.png"  },
         {"id": "UpDrawer",       "file": "resources/images/up_drawer.png"  },
+        {"id": "UpDrawer_click",       "file": "resources/images/up_drawer_click.png"  },
+        {"id": "UpDrawer_hover",       "file": "resources/images/up_drawer_hover.png"  },
         {"id": "TiendaNPC",       "file": "resources/images/tienda_dibujo.png"  },
         {"id": "CompbateNPC",       "file": "resources/images/juego_dibujo.png"  },
         {"id": "OficinaNPC",       "file": "resources/images/ofi_dibujo.png"  },
@@ -67,8 +75,13 @@
         {"id": "ofibrillo",       "file": "resources/images/ofi_brillo.png"  },
         {"id": "npcbrillo",       "file": "resources/images/npc_brillo.png"  },
         {"id": "mpfondo",       "file": "resources/images/multiplayer.png"  },
-        {"id": "optfondo",       "file": "resources/images/optionsMenu.png"  },
-        {"id": "transitionbg",       "file": "resources/images/transitionBG.png"  }
+        {"id": "optfondo",       "file": "resources/images/midnightBlue.png"  },
+        {"id": "transitionbg",       "file": "resources/images/transitionBG.png"  },
+        {"id": "santeria",       "file": "resources/images/santeria.png"  },
+        {"id": "santeria_brilli",       "file": "resources/images/santeria_brilli.png"  },
+        {"id": "oficina",       "file": "resources/images/oficina.png"  },
+        {"id": "oficina_brilli",       "file": "resources/images/oficina_brilli.png"  },
+        {"id": "panelFinPartida",       "file": "resources/images/PanelFinPartida.png"  }
     ],
     "fonts": [
       {
@@ -120,6 +133,51 @@
         "id": "8bit_size_72",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
         "size": 72
+      },
+      {
+        "id": "space_grotesk_regular_16",
+        "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
+        "size": 16
+      },
+      {
+        "id": "space_grotesk_regular_32",
+        "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
+        "size": 32
+      },
+      {
+        "id": "space_grotesk_regular_8",
+        "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
+        "size": 8
+      },
+      {
+        "id": "space_grotesk_semibold_16",
+        "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
+        "size": 16
+      },
+      {
+        "id": "space_grotesk_semibold_32",
+        "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
+        "size": 32
+      },
+      {
+        "id": "space_grotesk_semibold_8",
+        "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
+        "size": 8
+      },
+      {
+        "id": "space_grotesk_bold_16",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 16
+      },
+      {
+        "id": "space_grotesk_bold_32",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 32
+      },
+      {
+        "id": "space_grotesk_bold_8",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 8
       }
     ],
     "sounds": [

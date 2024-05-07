@@ -7,6 +7,7 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../Data.h"
 #include "../components/NPC.h"
+#include "game/components/Clickable.h"
 
 MatchOverState::MatchOverState()
 {
@@ -42,6 +43,7 @@ void MatchOverState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
+	exit->addComponent<Clickable>("boton_flecha", true);
 
 	setWindow(data->getWinner());
 }

@@ -3,7 +3,6 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/basics/Transform.h"
 #include "cinematicIntroState.h"
-#include "../Data.h"
 
 CinematicIntroState::CinematicIntroState()
 {
@@ -27,7 +26,6 @@ void CinematicIntroState::render() const
 
 void CinematicIntroState::onEnter()
 {
-	data->resetSave();
 }
 
 void CinematicIntroState::onExit()

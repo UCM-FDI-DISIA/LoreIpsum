@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include <list>
 #include <array>
 
@@ -12,8 +16,6 @@ MIN_CARDS_MAZE = 10, // Minimo de cartas en el mazo
 MAX_CARDS_MAZE = 20, // Maximo de cartas en el mazo
 // Cantidad de cartas de la tienda. Cambiar en shopComponent tambien.
 CARDS_IN_SHOP = 4;
-
-class RandomNumberGenerator;
 
 class Data
 {
@@ -39,13 +41,15 @@ private:
 		winner = 0,
 		lastState = 0;
 
+	// ---- CONFIGURACION DEL JUEGO ----
+	bool automaticNextTurn = true;
+
+
 	std::list<int> defeatedNPCS;
 	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
 
 	std::list<int> thisCaseClues; // Id de las cartas conseguidas durante el caso (deben ser aniadidas al drawer y aqui al ser conseguidass)
-
-	RandomNumberGenerator& rand_; // Para generar numeros aleatorios.
 
 	enum WINNER {
 		NONE,
@@ -58,6 +62,7 @@ private:
 	TCPsocket rival;
 
 	bool isHost = false;
+
 public:
 
 	//------Constructora y destructora:
@@ -100,6 +105,10 @@ public:
 	// 
 	void setLastState(int ls);
 
+	// ---- CONFIGURACION ----
+	void SetAutomaticNextTurn(bool b);
+
+
 	// ---- Getters ----
 	#pragma region GETTERS
 	// -- DECKBUILDING --
@@ -135,6 +144,9 @@ public:
 	//----Devuelve ultimo estado antes de entrar a pausa
 	int getLastState() { return lastState; }
 
+	// ---- CONFIGURACION ----
+	bool GetAutomaticNextTurn() { return automaticNextTurn; }
+
 	//------Busqueda:
 
 	// ------ DECKBUILDING ------
@@ -165,7 +177,6 @@ public:
 	void EmptyNPCS();
 	//----Vaciado del array de cartas de la tienda. Lo pone todo a (-1 ,-1, -1, -1).
 	void EmptyShopCards();
-	//----Vaciado del array del mazo con las posiciones de cada uno.
 	void EmptyMaze_With_pos();
 
 
@@ -179,6 +190,5 @@ public:
 	void setIsHost(bool b);
 	bool getIsHost();
 
-	//------Reset:
-	void resetSave();
+
 };

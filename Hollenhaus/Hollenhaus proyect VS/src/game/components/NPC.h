@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 
 class BoxCollider;
@@ -21,9 +25,9 @@ public:
 	void initComponent() override;
 	void update() override;
 
-	void OnLeftClickDown(int scene, bool = false, bool = false);
+	void OnLeftClickDown(int scene, bool = true, bool = true);
 	void OnLeftClickUp();
-	void reactToClick(int scene, bool = false, bool = false);
+	void reactToClick(int scene, bool = true, bool = true);
 	void talkTo();
 	void stoppedTalking();
 	void nextConvo();

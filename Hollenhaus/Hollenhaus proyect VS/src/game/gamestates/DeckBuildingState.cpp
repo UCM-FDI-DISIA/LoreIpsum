@@ -21,6 +21,7 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/Button.h"
 #include "../components/NPC.h"
+#include "game/components/Clickable.h"
 
 // ------------------------------------------------------- //
 
@@ -121,6 +122,7 @@ void DeckBuildingState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(2); // Lleva a la oficina (2).
 	exit->setLayer(2);
+	exit->addComponent<Clickable>("boton_flecha", true);
 
 	// ---- Confirmar Mazo:
 	Vector2D botMazScale(.3f, .3f);
@@ -138,12 +140,16 @@ void DeckBuildingState::onEnter()
 	Confirm->setLayer(2);
 
 	// ---- Pasar cajon alante:
-	Vector2D botScale(.25f, .25f);
+	Vector2D botScale(0.75,0.75);
+	int botX = 730;
+	int botY = 430;
+	int botSep = 90;
 	ecs::entity_t botPalante = Instantiate();
 	botPalante->addComponent<Transform>();
 	botPalante->addComponent<SpriteRenderer>("UpDrawer");
 	botPalante->addComponent<BoxCollider>();
-	Vector2D botPalantePos(750, 420);
+	botPalante->addComponent<Clickable>("UpDrawer", true);
+	Vector2D botPalantePos(botX, botY);
 	botPalante->getComponent<Transform>()->setGlobalPos(botPalantePos);
 	botPalante->getComponent<Transform>()->setGlobalScale(botScale);
 	botPalante->getComponent<BoxCollider>()->setAnchoredToSprite(true);
@@ -156,7 +162,8 @@ void DeckBuildingState::onEnter()
 	botPatras->addComponent<Transform>();
 	botPatras->addComponent<SpriteRenderer>("DownDrawer");
 	botPatras->addComponent<BoxCollider>();
-	Vector2D botPatrasPos(750, 500);
+	botPatras->addComponent<Clickable>("DownDrawer", true);
+	Vector2D botPatrasPos(botX, botY + botSep);
 	botPatras->getComponent<Transform>()->setGlobalPos(botPatrasPos);
 	botPatras->getComponent<Transform>()->setGlobalScale(botScale);
 	botPatras->getComponent<BoxCollider>()->setAnchoredToSprite(true);
@@ -234,6 +241,8 @@ void DeckBuildingState::onExit()
 	GameStateMachine::instance()->getMngr()->Free();
 
 	std::cout << "\nEXIT DECKBUILDING.\n";
+
+	delete factory;
 }
 
 void DeckBuildingState::onPauseDB()

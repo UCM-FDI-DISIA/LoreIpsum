@@ -79,7 +79,7 @@ void SDLUtils::initWindow() {
 	assert(renderer_ != nullptr);
 
 #if !(_DEBUG)
-	toggleFullScreen();
+	//toggleFullScreen();
 #endif
 
 	// hide cursor by default

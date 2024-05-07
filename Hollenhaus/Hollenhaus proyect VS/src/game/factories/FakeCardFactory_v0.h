@@ -1,4 +1,8 @@
 #pragma once 
+
+//Checkml
+#include <game/checkML.h>
+
 #include "FakeCardFactory.h"
 
 class Card;
@@ -16,7 +20,7 @@ public:
 
 	//---- Constructora/Destructora ----
 	FakeCardFactory_v0() : FakeCardFactory(){}
-	~FakeCardFactory_v0(){}
+	virtual ~FakeCardFactory_v0(){}
 
 	// Crea una carta de pega
 	ecs::entity_t createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects) override;

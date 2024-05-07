@@ -11,7 +11,7 @@
 #include "../components/multiplayer/NetLobby.h"
 #include "../components/LobbyStatusIndicator.h"
 #include "../components/GetIPv4.h"
-
+#include "game/components/Clickable.h"
 
 
 MultiplayerLobbyState::MultiplayerLobbyState()
@@ -56,6 +56,7 @@ void MultiplayerLobbyState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(GameStates::MAINMENU); // Lleva al menu (0).
 	exit->setLayer(2);
+		exit->addComponent<Clickable>("boton_flecha", true);
 
 	// Entidad cuadro de texto para recoger una ip
 	ecs::entity_t cuadroTexto = Instantiate(Vector2D(400, 300));

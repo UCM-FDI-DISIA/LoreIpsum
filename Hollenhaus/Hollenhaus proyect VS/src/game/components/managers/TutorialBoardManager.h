@@ -1,6 +1,7 @@
 #pragma once
 
-#include <../pchs/pch.h>
+//Checkml
+#include <game/checkML.h>
 
 class Factory;
 
@@ -60,7 +61,11 @@ private:
 
     void setCARD();
 
-    void setCARDINFO();
+    void setCARDPOINTS();
+
+    void setCARDCOST();
+
+    void setCARDIMAGE();
 
     void setDECK();
 

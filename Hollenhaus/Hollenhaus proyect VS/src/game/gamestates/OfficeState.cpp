@@ -9,6 +9,7 @@
 #include "../CaseManager.h"
 
 #include "../components/NPC.h"
+#include "game/components/Clickable.h"
 
 
 OfficeState::OfficeState()
@@ -68,6 +69,7 @@ void OfficeState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
+		exit->addComponent<Clickable>("boton_flecha", true);
 
 	//------Boton para deckBuilding:
 	ecs::entity_t db = Instantiate();
@@ -115,6 +117,8 @@ void OfficeState::onExit()
 	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
 
 	GameStateMachine::instance()->getMngr()->Free();
+
+	delete factory;
 }
 
 void OfficeState::onPauseOF()

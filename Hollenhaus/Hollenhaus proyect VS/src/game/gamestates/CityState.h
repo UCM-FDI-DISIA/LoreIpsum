@@ -1,3 +1,8 @@
+#pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "GameState.h"
 #include "../../utils/tweeny-3.2.0.h"
 

@@ -9,8 +9,7 @@
 #include "../../game/components/managers/Manager.h"
 #include "../components/basics/TextComponent.h"
 #include "DecisionComponent.h"
-//------CheckML.
-#include"../checkML.h"
+
 //------Factorias.
 #include "../factories/Factory.h"
 #include "../factories/DialogueFactory_V0.h"
@@ -24,9 +23,10 @@ shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
 
 ShopComponent::~ShopComponent()
 {
-	/*delete shopCards;
-	delete shopCardsPositions;
-	delete shopCardsPrize;*/
+	delete factory;
+	delete[] shopCards;
+	delete[] shopCardsPositions;
+	delete[] shopCardsPrize;
 }
 
 void ShopComponent::initComponent()

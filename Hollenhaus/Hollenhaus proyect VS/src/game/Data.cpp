@@ -1,23 +1,20 @@
 #include <../pchs/pch.h>
 #include "Data.h"
-#include "../sdlutils/RandomNumberGenerator.h"
 
 #include <SDL_net.h>
 
 const std::string SAVE_FILE = "./resources/saves/save.txt";
-const int BASE_MAZE = 10;
-const int BASE_DRAWER = 4;
 
 
 //------Constructora y destructora:
-Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}), rand_(sdlutils().rand())
+Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
 {
 	//TCPsocket;
 	EmptyDrawer();
 	//Read();
 }
 Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def)
-	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[CARDS_IN_SHOP]), rand_(sdlutils().rand())
+	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[CARDS_IN_SHOP])
 {};
 Data::~Data() {
 	delete shopCards;
@@ -177,6 +174,11 @@ void Data::setLastState(int ls)
 	lastState = ls;
 }
 
+void Data::SetAutomaticNextTurn(bool b)
+{
+	automaticNextTurn = b;
+}
+
 //------Busqueda:
 
 // ------ DECKBUILDING ------
@@ -251,7 +253,6 @@ void Data::Write() {
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
 	file << currentSouls << "\n";
-	file << lastState << "\n";
 
 	file << "Mazo_y_posiciones" << "\n";
 	//Guarda el mazo y posiciones en la pizarra
@@ -298,7 +299,7 @@ void Data::Read() {
 
 	int number, iterations;
 
-	file >> currentMoney >> currentCase >> currentSouls >> lastState;
+	file >> currentMoney >> currentCase >> currentSouls;
 	std::string falsedades;
 	file >> falsedades;
 
@@ -414,53 +415,4 @@ bool Data::getIsHost()
 {
 	return isHost;
 }
-
-#pragma endregion
-
-
-#pragma region Resets.
-
-void Data::resetSave()
-{
-	std::ofstream file;
-	file.open(SAVE_FILE);
-
-	if (!file.is_open())
-	{
-#ifdef _DEBUG
-		TuVieja("ERROR DE LECTURA: No se ha podido leer el archivo de guardado para reseteralo.");
-#endif
-		return;
-	}
-
-	file << 0 << "\n"; // Dinero.
-	file << 0 << "\n"; // Caso.
-	file << 0 << "\n"; // Almas.
-	file << 0 << "\n"; // Last state.
-
-	file << "Mazo_y_posiciones" << "\n"; // Separador.
-	// Guarda el mazo y posiciones en la pizarra
-	file << BASE_MAZE << "\n";
-	for (int i = 0; i < BASE_MAZE; i++)
-	{
-		file << i << "\n"; // Id de la carta.
-		file << rand_.nextInt(0, 700) << "\n";; // Posicion X de la carta.
-		file << rand_.nextInt(0, 700) << "\n";; // Posicion Y de la carta.
-	}
-
-	file << "Drawer" << "\n"; // Separador.
-	// Guarda las cartas desbloqueadas del drawer. La 10, 11, 12 y 13.
-	for (int i = BASE_MAZE; i < BASE_MAZE + BASE_DRAWER; i++)
-	{
-		file << i << "\n";
-	}
-
-	// Pone las cartas de la tienda a -1.
-	file << CARDS_IN_SHOP << "\n";
-	for (int i = 0;i < CARDS_IN_SHOP; i++) {
-		file << -1 << "\n";
-	}
-	file.close();
-}
-
 #pragma endregion

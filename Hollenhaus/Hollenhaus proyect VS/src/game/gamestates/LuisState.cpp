@@ -32,6 +32,7 @@ LuisState::LuisState() : GameState()
 
 LuisState::~LuisState()
 {
+	
 }
 
 
@@ -60,7 +61,7 @@ void LuisState::onEnter()
 
 	TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
 
-	Factory* factory = new Factory();
+	factory = new Factory();
 	factory->SetFactories(
 		static_cast<BoardFactory*>(new BoardFactory_v0(4)),
 		static_cast<CardFactory*>(new CardFactory_v1()),
@@ -115,6 +116,11 @@ void LuisState::onEnter()
 	boardManagerComponent->updateVisuals();
 
 
+	// Seteamos la mano de J1 en el matchManager
+	matchManagerComponent->SetHandComponent(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
+
+
+
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
 	sdlutils().soundEffects().at("battletheme").play(-1);
@@ -130,7 +136,6 @@ void LuisState::onEnter()
 	//le decimos al endTurn que existe la IA
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
 
-	
 
 	//seters de referencias de la ia
 
@@ -157,5 +162,10 @@ void LuisState::onExit()
 
 	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
+
+	delete factory;
+
 	GameStateMachine::instance()->getMngr()->Free();
+
+
 }

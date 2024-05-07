@@ -199,7 +199,9 @@ void NetGame::processDrawCard()
 
 void NetGame::processPlayCard(int i, Vector2D pos)
 {
-	Card* card = rivalHandCmp->getHand()[i];
+
+	auto hand = rivalHandCmp->getHand();
+	Card* card = hand[i];
 
 	//dropDetector ocupado
 	const auto dropDet = boardManager->getCell(pos.getX(), pos.getY())->getEntity()->getComponent<DropDetector>();
@@ -212,6 +214,8 @@ void NetGame::processPlayCard(int i, Vector2D pos)
 	//comunicacion con el boardManager
 	const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
 	boardManager->setCard(pos.getX(), pos.getY(), card, playerTurn);
+
+
 	
 }
 

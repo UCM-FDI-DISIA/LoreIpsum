@@ -6,6 +6,7 @@
 #include "../components/managers/MatchManager.h"
 #include "../components/EndTurnButton.h"
 #include "../components/Button.h"
+#include "game/components/Clickable.h"
 
 ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
 {
@@ -25,12 +26,13 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
 ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int posY)
 {
     ecs::entity_t endTurnButton = Instantiate(Vector2D(posX, posY));  // 200, 265
-    endTurnButton->getComponent<Transform>()->setGlobalScale(1.2, 1.2);
+    endTurnButton->getComponent<Transform>()->setGlobalScale(1.0, 1.0);
     //endTurnButton->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
     endTurnButton->addComponent<SpriteRenderer>("EndTurnButton");
     endTurnButton->addComponent<BoxCollider>();
     endTurnButton->addComponent<EndTurnButton>(Turns::J1);
     endTurnButton->setLayer(4);
+    endTurnButton->addComponent<Clickable>("EndTurnButton", true);
     return endTurnButton;
 }
 
