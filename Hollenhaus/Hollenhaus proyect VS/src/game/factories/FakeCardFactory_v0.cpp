@@ -28,29 +28,31 @@ ecs::entity_t FakeCardFactory_v0::createFakeCard(int id, Vector2D pos, int cost,
 void FakeCardFactory_v0::addValueCostTexts(ecs::entity_t card, int value, int cost)
 {
 	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
+	auto posX = 8;
 
-	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_24", SDL_Color({ 255, 255, 255, 255 }), 100,
+
+	// Texto blanco para el valor
+	textoValor->addComponent<TextComponent>(std::to_string(value), 
+		Fonts::GROTESK_16, Colors::PEARL_HOLLENHAUS, 10,
 		Text::CenterCenter, Text::Center);
 
 	textoValor->getComponent<Transform>()->addParent(card->getComponent<Transform>());
-
-	textoValor->getComponent<Transform>()->getRelativePos().set(10, 102);
-
-	textoValor->setLayer(100);
+	textoValor->getComponent<Transform>()->getRelativePos().set(posX, 88);
+	textoValor->setLayer(card->getLastLayer());
 
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
-
-	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_24", SDL_Color({ 255, 255, 255, 255 }), 100,
+	// Texto amarillo para el coste
+	textoCoste->addComponent<TextComponent>(std::to_string(cost), 
+		Fonts::GROTESK_16, Colors::AMARILLO_PIS, 10,
 		Text::CenterCenter, Text::Center);
 
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
-
-	textoCoste->getComponent<Transform>()->getRelativePos().set(10, 10);
-	textoCoste->getComponent<Transform>()->setGlobalScale(10, 10);
+	textoCoste->getComponent<Transform>()->getRelativePos().set(posX, 10);
+	//textoCoste->getComponent<Transform>()->setGlobalScale(10, 10); // esta linea aporta 0 porque es una fuente
 	//textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
 
-	textoCoste->setLayer(100);
+	textoCoste->setLayer(card->getLastLayer());
 }
 
 void FakeCardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonData::CardEffect>& effects)

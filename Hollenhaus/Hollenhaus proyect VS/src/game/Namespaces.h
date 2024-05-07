@@ -6,6 +6,7 @@
 namespace Colors
 {
 	constexpr SDL_Color ROJO_HOLLENHAUS = {148, 47, 55, 255};
+	constexpr SDL_Color AMARILLO_PIS = {191, 180, 138, 255};
 	// blancos
 	constexpr SDL_Color PEARL_HOLLENHAUS = {226, 223, 210, 255};
 	constexpr SDL_Color PEARL_CLICK = {250, 248, 240, 255};
@@ -13,6 +14,20 @@ namespace Colors
 	constexpr SDL_Color MIDNIGHT_HOLLENHAUS = {16, 23, 32, 255}; // texto color normal
 	constexpr SDL_Color MIDNIGHT_CLICK = {49, 50, 78, 255}; // click texto color
 	constexpr SDL_Color MIDNIGHT_HOVER = {73, 21, 31, 255}; // hover texto color
+}
+
+namespace Fonts
+{
+	const std::string GROTESK_8 = "space_grotesk_bold_8";
+	const std::string GROTESK_16 = "space_grotesk_bold_16";
+	const std::string GROTESK_24 = "space_grotesk_bold_24";
+	const std::string GROTESK_32 = "space_grotesk_bold_32";
+	const std::string GROTESK_40 = "space_grotesk_bold_40";
+	const std::string BIT_8 = "8bit_size_8";
+	const std::string BIT_16 = "8bit_size_16";
+	const std::string BIT_24 = "8bit_size_24";
+	const std::string BIT_32 = "8bit_size_32";
+	const std::string BIT_40 = "8bit_size_40";
 }
 
 namespace Cards

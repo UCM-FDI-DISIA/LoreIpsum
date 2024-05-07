@@ -64,6 +64,7 @@ void StoryModeState::onEnter()
 	//	GameStateMachine::instance()->setState(GameStates::MAINMENU); // usar enums en vez de numeros a palo seco
 	//});
 	returnButton->addComponent<NPC>(GameStates::MAINMENU, NPC::Type::BUTTON, "", 0, true, true);
+	returnButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
 
 	newGameButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 320));

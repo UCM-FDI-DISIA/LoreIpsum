@@ -149,8 +149,8 @@ void DeckBuildingState::onEnter()
 	// ---- Pasar cajon alante:
 	Vector2D botScale(0.75,0.75);
 	int botX = 720;
-	int botY = 450;
-	int botSep = 90;
+	int botY = 470;
+	int botSep = 60;
 	ecs::entity_t botPalante = Instantiate();
 	botPalante->addComponent<Transform>();
 	botPalante->addComponent<SpriteRenderer>("UpDrawer");
