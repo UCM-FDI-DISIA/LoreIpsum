@@ -17,7 +17,13 @@ ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t par
 
 	npc->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
 	npc->getComponent<Transform>()->getRelativeScale().set(info.getScale().getX(), info.getScale().getY());
-	Vector2D pos{ GameStateMachine::instance()->getCurrentState()->getLastPaulPos().getX() + info.getPos().getX(), info.getPos().getY()};
+	Vector2D pos;
+	if(info.getSprite() != "whiteRect"){
+		pos = { GameStateMachine::instance()->getCurrentState()->getLastPaulPos().getX() + info.getPos().getX(), info.getPos().getY() };
+	}
+	else {
+		pos = { info.getPos().getX(), info.getPos().getY() };
+	}
 	npc->getComponent<Transform>()->setGlobalPos(pos);
 	npc->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	npc->addComponent<NPC>(info.getScene(), info.getType(), info.getName(), convo, true, true);
