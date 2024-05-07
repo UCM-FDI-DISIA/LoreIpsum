@@ -8,7 +8,8 @@
 #include "../components/NPC.h"
 #include "../components/basics/Transform.h"
 
-constexpr SDL_Color ROJO_HOLLENHAUS = { 148, 47, 55, 255 };
+constexpr SDL_Color PEARL_HOLLENHAUS = { 226, 223, 210, 255 };
+
 
 StoryModeState::StoryModeState()
 {
@@ -36,6 +37,12 @@ void StoryModeState::render() const
 
 void StoryModeState::onEnter()
 {
+	ecs::entity_t fondo = Instantiate();
+	fondo->addComponent<Transform>();
+	fondo->addComponent<SpriteRenderer>("optfondo");
+	fondo->getComponent<Transform>()->setGlobalScale(100, 100);
+	//fondo->getComponent<Transform>()->getRelativeScale().set(5.0f, 5.0f);
+	fondo->setLayer(0);
 
 	returnButton = Instantiate(Vector2D(10, 10));
 	returnButton->addComponent<Transform>();
@@ -44,15 +51,15 @@ void StoryModeState::onEnter()
 	returnButton->addComponent<Button>();
 	returnButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(0); });
 
-	newGameButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 500));
-	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	newGameButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 300));
+	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_size_32", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	newGameButton->addComponent<NPC>(15, 0);
 	
-	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 130));
-	continueButton->addComponent<TextComponent>("CONTINUAR", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 250));
+	continueButton->addComponent<TextComponent>("CONTINUAR", "8bit_size_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	continueButton->addComponent<BoxCollider>();
 	continueButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	continueButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));

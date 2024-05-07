@@ -20,5 +20,8 @@ public:
 
 private:
     ecs::entity_t returnButton;
+    ecs::entity_t audioText;
+    ecs::entity_t windowModeText;
+    ecs::entity_t fullScreenText;
 };
 

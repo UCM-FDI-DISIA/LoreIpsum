@@ -69,7 +69,7 @@ void PauseMenuState::onEnter()
 void PauseMenuState::onExit()
 {
 	// se desuscribe al evento de click izq
-	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onDespause(); });
+	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onDespause(); });
 
 	GameStateMachine::instance()->getMngr()->Free();
 

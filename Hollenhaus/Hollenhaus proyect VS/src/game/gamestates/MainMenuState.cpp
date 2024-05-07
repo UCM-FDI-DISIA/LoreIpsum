@@ -67,11 +67,12 @@ void MainMenuState::onEnter()
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-
 	newGameButton->addComponent<NPC>(GameStates::CITY, NPC::Type::BUTTON, "", true, true); // Esto es graciosisimo
-
+	
 	multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170 - VERTICAL_OFFSET));
 	multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "8bit_size_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	// multiplayerButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
+	// multiplayerButton->addComponent<TextComponent>("MULTIPLAYER", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	multiplayerButton->addComponent<BoxCollider>();
 	multiplayerButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	multiplayerButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
@@ -87,9 +88,11 @@ void MainMenuState::onEnter()
 
 	optionsButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 120 - VERTICAL_OFFSET));
 	optionsButton->addComponent<TextComponent>("OPCIONES", "8bit_size_32", MIDNIGHT_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	// optionsButton = Instantiate(Vector2D(sdlutils().width() - 148, sdlutils().height() - 120));
+	// optionsButton->addComponent<TextComponent>("OPCIONES", "8bit_size_32", ROJO_HOLLENHAUS, 190, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	optionsButton->addComponent<BoxCollider>();
 	optionsButton->getComponent<BoxCollider>()->setSize(Vector2D(190, 40));
-	optionsButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-40, -20));
+	optionsButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-93, -20));
 	optionsButton->addComponent<NPC>(14, 0);
 
 	exitButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 70 - VERTICAL_OFFSET));

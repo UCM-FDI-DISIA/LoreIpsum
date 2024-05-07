@@ -68,7 +68,7 @@
         {"id": "ofibrillo",       "file": "resources/images/ofi_brillo.png"  },
         {"id": "npcbrillo",       "file": "resources/images/npc_brillo.png"  },
         {"id": "mpfondo",       "file": "resources/images/multiplayer.png"  },
-        {"id": "optfondo",       "file": "resources/images/optionsMenu.png"  },
+        {"id": "optfondo",       "file": "resources/images/midnightBlue.png"  },
         {"id": "transitionbg",       "file": "resources/images/transitionBG.png"  },
         {"id": "panelFinPartida",       "file": "resources/images/PanelFinPartida.png"  }
     ],
