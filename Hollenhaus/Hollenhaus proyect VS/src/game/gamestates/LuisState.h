@@ -23,6 +23,6 @@ public:
     void onExit() override;
 
 private:
-    Factory* factory;
+    Factory* factory = nullptr;
 };
 
