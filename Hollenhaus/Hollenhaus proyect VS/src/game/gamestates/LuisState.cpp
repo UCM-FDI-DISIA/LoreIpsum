@@ -32,7 +32,7 @@ LuisState::LuisState() : GameState()
 
 LuisState::~LuisState()
 {
-	delete factory;
+	
 }
 
 
@@ -162,5 +162,10 @@ void LuisState::onExit()
 
 	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
+
+	delete factory;
+
 	GameStateMachine::instance()->getMngr()->Free();
+
+
 }

@@ -83,9 +83,9 @@ void TutorialBoardState::onExit()
 {
 	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
-	GameStateMachine::instance()->getMngr()->Free();
-
 	tutorial->getComponent<TutorialManager>()->endTutorial();
+
+	GameStateMachine::instance()->getMngr()->Free();
 
 }
 

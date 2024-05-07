@@ -30,10 +30,10 @@ private:
     void setBaseEntity();
     void initTutorial();
 
-    Factory* factory;               //
-    ecs::entity_t base;             // entidad para colocar los popups, se va moviendo segun donde los queramos
-    ecs::entity_t tutorial;
-    ecs::entity_t colliderWallBase;
+    Factory* factory = nullptr;               //
+    ecs::entity_t base = nullptr;             // entidad para colocar los popups, se va moviendo segun donde los queramos
+    ecs::entity_t tutorial = nullptr;
+    ecs::entity_t colliderWallBase = nullptr;
 
     //TutorialBoardManager* tutorialManager_;
 
