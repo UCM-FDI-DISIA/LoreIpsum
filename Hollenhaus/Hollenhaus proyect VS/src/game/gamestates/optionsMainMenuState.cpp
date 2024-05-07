@@ -8,6 +8,8 @@
 #include "../components/Button.h"
 #include "../components/basics/Transform.h"
 #include "game/components/Clickable.h"
+#include "game/components/ClickableText.h"
+
 
 constexpr SDL_Color PEARL_HOLLENHAUS = { 226, 223, 210, 255 };
 
@@ -43,18 +45,12 @@ void OptionsMainMenuState::onEnter()
 	fondo->getComponent<Transform>()->setGlobalScale(Vector2D(6, 6));
 	fondo->setLayer(0);
 
-	/*
-	
-	returnButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
-	returnButton->addComponent<TextComponent>("MENU PRINCIPAL", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
-	returnButton->addComponent<BoxCollider>();
-	returnButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
-	returnButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	returnButton->addComponent<NPC>(0, 0);
-	*/
+	audioText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 420));
+	audioText->addComponent<TextComponent>("VOLUMEN", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	audioText->setLayer(1);
 
-	audioText = Instantiate(Vector2D(sdlutils().width() - 600, sdlutils().height() - 425));
-	audioText->addComponent<TextComponent>("VOLUMEN", "8bit_size_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	audioText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 360));
+	audioText->addComponent<TextComponent>("PONER AQUÍ LA BARRA", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 500, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	audioText->setLayer(1);
 
 	//SONIDO (MIRAR MAS TARDE CON INES)
@@ -63,27 +59,26 @@ void OptionsMainMenuState::onEnter()
 	//sdl.soundEffects().at("citytheme").setChannelVolume(10);
 
 	fullScreenText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 300));
-	fullScreenText->addComponent<TextComponent>("PANTALLA COMPLETA", "8bit_size_32", PEARL_HOLLENHAUS, 400, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	fullScreenText->addComponent<TextComponent>("PANTALLA COMPLETA", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 400, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	fullScreenText->addComponent<BoxCollider>();
 	fullScreenText->getComponent<BoxCollider>()->setSize(Vector2D(400, 40));
 	fullScreenText->getComponent<BoxCollider>()->setPosOffset(Vector2D(-200, -20));
+	fullScreenText->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 	
-	windowModeText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 200));
-	windowModeText->addComponent<TextComponent>("MODO VENTANA", "8bit_size_32", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	windowModeText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 240));
+	windowModeText->addComponent<TextComponent>("MODO VENTANA", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	windowModeText->addComponent<BoxCollider>();
 	windowModeText->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	windowModeText->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
+	windowModeText->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 
 	returnButton = Instantiate(Vector2D(10, 10));
 	returnButton->addComponent<Transform>();
 	returnButton->addComponent<BoxCollider>();
 	returnButton->addComponent<SpriteRenderer>("boton_flecha");
-	//exitButton->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	returnButton->addComponent<Button>();
 	returnButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(0); });
-		returnButton->addComponent<Clickable>("boton_flecha", true);
-
-
+	returnButton->addComponent<Clickable>("boton_flecha", true);
 }
 
 void OptionsMainMenuState::onExit()
