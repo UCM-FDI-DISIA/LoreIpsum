@@ -32,6 +32,7 @@ LuisState::LuisState() : GameState()
 
 LuisState::~LuisState()
 {
+	delete factory;
 }
 
 
@@ -60,7 +61,7 @@ void LuisState::onEnter()
 
 	TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
 
-	Factory* factory = new Factory();
+	factory = new Factory();
 	factory->SetFactories(
 		static_cast<BoardFactory*>(new BoardFactory_v0(4)),
 		static_cast<CardFactory*>(new CardFactory_v1()),

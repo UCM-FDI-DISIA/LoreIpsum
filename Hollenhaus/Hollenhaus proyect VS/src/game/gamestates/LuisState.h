@@ -5,6 +5,8 @@
 
 #include "GameState.h"
 
+class Factory;
+
 class LuisState :
     public GameState
 {
@@ -21,6 +23,6 @@ public:
     void onExit() override;
 
 private:
-
+    Factory* factory;
 };
 
