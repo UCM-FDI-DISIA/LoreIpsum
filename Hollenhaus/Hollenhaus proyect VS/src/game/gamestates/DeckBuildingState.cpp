@@ -74,9 +74,9 @@ void DeckBuildingState::onEnter()
 
 	// ---- TEXTO ----
 	// Nombre del estado:
-	ecs::entity_t officeText = Instantiate(Vector2D(210, 10));
-	officeText->addComponent<TextComponent>("DECKBUILDING", "8bit_size_24", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
-	officeText->setLayer(1);
+	//ecs::entity_t officeText = Instantiate(Vector2D(210, 10));
+	//officeText->addComponent<TextComponent>("DECKBUILDING", "8bit_size_24", SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	//officeText->setLayer(1);
 
 	// Cantidad de cartas:
 	ecs::entity_t cantCards = Instantiate(Vector2D(260, 140));
