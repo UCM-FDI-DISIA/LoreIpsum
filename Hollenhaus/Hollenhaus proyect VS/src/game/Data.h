@@ -194,6 +194,5 @@ public:
 	void setIsHost(bool b);
 	bool getIsHost();
 
-	//------Reset:
-	void resetSave();
+	void reset();
 };

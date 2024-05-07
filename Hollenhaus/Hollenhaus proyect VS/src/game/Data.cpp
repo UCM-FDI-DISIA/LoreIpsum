@@ -425,7 +425,7 @@ bool Data::getIsHost()
 
 #pragma region Resets.
 
-void Data::resetSave()
+void Data::reset()
 {
 	std::ofstream file;
 	file.open(SAVE_FILE);
