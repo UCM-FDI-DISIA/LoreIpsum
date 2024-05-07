@@ -45,34 +45,35 @@ void TransitionTextMenuState::onEnter()
 	//fondo->getComponent<Transform>()->getRelativeScale().set(5.0f, 5.0f);
 	fondo->setLayer(0);
 
-	casoText = Instantiate(Vector2D(370, 100));
-	casoText->addComponent<TextComponent>("CASO ", "8bit_size_40", PEARL_HOLLENHAUS, 130, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	auto font = "space_grotesk_bold_40";
+	casoText = Instantiate(Vector2D(350, 100));
+	casoText->addComponent<TextComponent>("CASO ", font, PEARL_HOLLENHAUS, 130, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	casoText->setLayer(1);
 
 	caso = GameStateMachine::instance()->getCurrentState()->getCurrentCase();
 
 	casoNum = Instantiate(Vector2D(440, 95));
-	casoNum->addComponent<TextComponent>(std::to_string(caso), "8bit_size_40", PEARL_HOLLENHAUS, 90, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	casoNum->addComponent<TextComponent>(std::to_string(caso), font, PEARL_HOLLENHAUS, 90, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	casoNum->setLayer(1);
 
 	dineroText = Instantiate(Vector2D(340, 150));
-	dineroText->addComponent<TextComponent>("DINERO: ", "8bit_size_40", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	dineroText->addComponent<TextComponent>("DINERO: ", font, PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	dineroText->setLayer(1);
 
 	money = GameStateMachine::instance()->getCurrentState()->getMoney();
 
 	dineroNum = Instantiate(Vector2D(480, 150));
-	dineroNum->addComponent<TextComponent>(std::to_string(money), "8bit_size_40", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	dineroNum->addComponent<TextComponent>(std::to_string(money), font, PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	dineroNum->setLayer(1);
 	
 	almasText = Instantiate(Vector2D(340, 190));
-	almasText->addComponent<TextComponent>("ALMAS: ", "8bit_size_40", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	almasText->addComponent<TextComponent>("ALMAS: ", font, PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	almasText->setLayer(1);
 
 	almas = GameStateMachine::instance()->getCurrentState()->getSouls();
 
 	almasNum = Instantiate(Vector2D(450, 190));
-	almasNum->addComponent<TextComponent>(std::to_string(almas), "8bit_size_40", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	almasNum->addComponent<TextComponent>(std::to_string(almas), font, PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	almasNum->setLayer(1);
 
 	chascarrillo = Instantiate(Vector2D(400, 350));
@@ -114,14 +115,16 @@ void TransitionTextMenuState::onEnter()
 
 	}
 
-	chascarrillo->addComponent<TextComponent>(Ctext, "8bit_size_40", PEARL_HOLLENHAUS, 600, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	chascarrillo->addComponent<TextComponent>(Ctext, font, PEARL_HOLLENHAUS, 600, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	chascarrillo->setLayer(1);
 
 
-	continuar = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 100));
-	continuar->addComponent<TextComponent>("CONTINUAR", "8bit_size_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	continuar = Instantiate(Vector2D(sdlutils().width() - 420, sdlutils().height() - 100));
+	continuar->addComponent<TextComponent>(
+		"CONTINUAR", font, PEARL_HOLLENHAUS, 
+		220, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	continuar->addComponent<BoxCollider>();
-	continuar->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
+	continuar->getComponent<BoxCollider>()->setSize(Vector2D(220, 40));
 	continuar->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
 	continuar->addComponent<NPC>(1, 0); // Esto es graciosisimo
 	continuar->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);

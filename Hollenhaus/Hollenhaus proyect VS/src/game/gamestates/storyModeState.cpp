@@ -51,7 +51,7 @@ void StoryModeState::onEnter()
 	auto firstFrame = "boton_flecha";
 	returnButton = Instantiate(Vector2D(50, 50));
 	returnButton->addComponent<Transform>();
-	returnButton->addComponent<BoxCollider>();
+	returnButton->addComponent<BoxCollider>()->setSize(Vector2D(100, 60));
 	returnButton->addComponent<SpriteRenderer>(firstFrame);
 	returnButton->addComponent<Clickable>(firstFrame, true);
 	/// Si queremos fade in / fade out en la clase Button en vez de NPC hay que gestionar
@@ -71,7 +71,7 @@ void StoryModeState::onEnter()
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	newGameButton->addComponent<NPC>(15, 0);
+	newGameButton->addComponent<NPC>(GameStates::TRANSITIONTEXT, 0);
 	newGameButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
 
 	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 270));
@@ -79,7 +79,7 @@ void StoryModeState::onEnter()
 	continueButton->addComponent<BoxCollider>();
 	continueButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	continueButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	continueButton->addComponent<NPC>(15, 0);
+	continueButton->addComponent<NPC>(GameStates::TRANSITIONTEXT, 0);
 	continueButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
 }
 
