@@ -103,10 +103,10 @@ void OfficeState::onEnter()
 	Vector2D tfnoSiz(400, 300);
 	tfno->getComponent<BoxCollider>()->setSize(tfnoSiz);
 
-	Vector2D tfnoPos(478, 112);
-	dbTrans->setGlobalPos(tfnoPos);
+	Vector2D tfnoPos(345, 384);
+	tfnoTrans->setGlobalPos(tfnoPos);
 
-	tfno->addComponent<NPC>(9); // Lleva al deckbuilding (9).
+	//tfno->addComponent<NPC>(9); // Lleva al deckbuilding (9).
 	tfno->setLayer(1);
 	tfno->addComponent<SpriteRenderer>("tfno");
 	auto tfnoShine = tfno->addComponent<ShineComponent>();
