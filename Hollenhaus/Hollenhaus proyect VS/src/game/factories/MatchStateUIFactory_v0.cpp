@@ -96,8 +96,8 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_BackgroundBoard()
     background->addComponent<Transform>();
 
     //background->getComponent<Transform>()->getGlobalScale().set(0.5, 0.5);
-    background->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
+    background->getComponent<Transform>()->setGlobalScale(0.50, 0.50);
 
-    background->addComponent<SpriteRenderer>("board5");
+    background->addComponent<SpriteRenderer>("board6");
     return background;
 }

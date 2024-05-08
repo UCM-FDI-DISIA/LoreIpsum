@@ -146,8 +146,8 @@ void DeckBuildingState::onEnter()
 	auto shinePostit = Confirm->addComponent<ShineComponent>();
 	shinePostit->addEnt(Confirm->getComponent<SpriteRenderer>(), "postit_guardar_mazo_brilli");
 
-	/*
-	* 
+	
+	 
 
 
 	// ---- Pasar cajon alante:
