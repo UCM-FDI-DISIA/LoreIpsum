@@ -1,5 +1,5 @@
-33300
-0
+666
+1
 0
 Mazo_y_posiciones
 12
