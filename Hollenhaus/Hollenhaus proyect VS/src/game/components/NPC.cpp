@@ -76,7 +76,7 @@ void NPC::talkTo()
 	{
 		TuVieja("Que charlatan el tio...");
 
-		float x = myTransform->getGlobalPos().getX() - 220;
+		float x = myTransform->getGlobalPos().getX() - 150;
 		float y = myTransform->getGlobalPos().getY() - 250;
 
 		TuVieja(std::to_string(x));
@@ -97,8 +97,8 @@ void NPC::talkTo()
 								Fonts::GROTESK_24,	//mirar el JSON resources para cambiar el tamanio de texto
 								Colors::MIDNIGHT_HOLLENHAUS, //Color black
 								260, //wrap length
-								Text::BoxPivotPoint::LeftCenter,
-								Text::TextAlignment::Center);
+								Text::BoxPivotPoint::LeftTop,
+								Text::TextAlignment::Left);
 
 		talking = true;
 	}
