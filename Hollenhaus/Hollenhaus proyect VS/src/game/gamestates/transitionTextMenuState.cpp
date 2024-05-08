@@ -89,22 +89,22 @@ void TransitionTextMenuState::onEnter()
 	switch (i) 
 	{
 		case 0:
-			Ctext = "Para un economista la vida real es un caso especial";
+			Ctext = "Para un economista la vida real es un caso especial.";
 			break;
 		case 1:
-			Ctext = "Le pedí a un economista su número de teléfono y me dio su estimación";
+			Ctext = "Le pedí a un economista su número de teléfono y me dio su estimación.";
 			break;
 		case 2:
-			Ctext = "¿Cuándo puedes decir que un economista está mintiendo? Cuando se mueven sus labios";
+			Ctext = "¿Cuándo puedes decir que un economista está mintiendo? Cuando se mueven sus labios.";
 			break;
 		case 3:
-			Ctext = "¿Sabes a dónde van las pulgas cuando mueren? Al pulgatorio";
+			Ctext = "¿Sabes a dónde van las pulgas cuando mueren? Al pulgatorio.";
 			break;
 		case 4:
-			Ctext = "¿Por qué los fantasmas nunca hacen la colada? Porque corren el peligro de meter en la lavadora a sus parientes";
+			Ctext = "¿Por qué los fantasmas nunca hacen la colada? Porque corren el peligro de meter en la lavadora a sus parientes.";
 			break;
 		case 5:
-			Ctext = "Van dos fantasmas y se cae el del médium";
+			Ctext = "Van dos fantasmas y se cae el del médium.";
 			break;
 		case 6:
 			Ctext = "¿Has probado a poner el nombre completo del fantasma protagonista en el traductor de alemán?";
@@ -123,7 +123,7 @@ void TransitionTextMenuState::onEnter()
 	chascarrillo->addComponent<TextComponent>(Ctext, font, PEARL_HOLLENHAUS, 600, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	chascarrillo->setLayer(1);
 
-	continuar = Instantiate(Vector2D(sdlutils().width() - 420, sdlutils().height() - 100));
+	continuar = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 100));
 	continuar->addComponent<TextComponent>(
 		"CONTINUAR", font, PEARL_HOLLENHAUS, 
 		220, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);

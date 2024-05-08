@@ -140,14 +140,15 @@ void ShopState::onEnter()
 	carta4->setLayer(2);
 
 	//------Boton para volver:
-	ecs::entity_t exitButton = Instantiate(Vector2D(10, 10));
+	ecs::entity_t exitButton = Instantiate(Vector2D(20, 20));
 	exitButton->addComponent<Transform>();
 	exitButton->addComponent<SpriteRenderer>("boton_flecha");
 	exitButton->addComponent<BoxCollider>();
 	exitButton->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exitButton->addComponent<Button>();
 	exitButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(1);});
-		exitButton->addComponent<Clickable>("boton_flecha", true);
+	exitButton->addComponent<Clickable>("boton_flecha", true);
+	exitButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
 	//------Sonido de la tienda:
 	auto& sdl = *SDLUtils::instance();

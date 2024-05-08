@@ -31,9 +31,11 @@ void KeyMenuState::render() const
 
 void KeyMenuState::onEnter() 
 {
-	for (int i = 0; i < 6; ++i) {
+	for (int i = 0; i < 6; ++i) 
+	{
 		addKey();
 	}
+
 	// Leyenda
 	ecs::entity_t key = Instantiate(Vector2D(150, 50));
 	key->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
