@@ -36,6 +36,7 @@
         {"id": "redRect",       "file": "resources/images/recuadro_rojo.png"},
         {"id": "greenRect",       "file": "resources/images/recuadro_verde.png"},
         {"id": "reverseCard",       "file": "resources/images/card_reverse.png"  },
+        {"id": "reverseCard_brilli",       "file": "resources/images/card_reverse_brilli.png"  },
         {"id": "moneda",       "file": "resources/images/moneda.png"  },
         {"id": "monedaIlu",       "file": "resources/images/monedaIluminada.png"  },
         {"id": "fondoTienda",       "file": "resources/images/tienda_ph.png"  },
