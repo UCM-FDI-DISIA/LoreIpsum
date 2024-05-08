@@ -12,6 +12,7 @@
 #include "../factories/NPCFactory_V0.h"
 #include "pauseMenuState.h"
 #include "game/components/Clickable.h"
+#include "game/components/ImageWithFrames.h"
 
 CityState::CityState()
 {
@@ -123,10 +124,11 @@ void CityState::onEnter()
 
 	/// FANTASMIKO
 	fantasmiko = Instantiate(Vector2D(sdlutils().width() / 2 - 50, sdlutils().height() - 200));
-	fantasmiko->addComponent<SpriteRenderer>("fantasma");
+	fantasmiko->addComponent<SpriteRenderer>("fantasma_caminando");
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
 	fantasmiko->setLayer(2);
+	fantasmiko->addComponent<ImageWithFrames>(fantasmiko->getComponent<SpriteRenderer>(), 1, 4);
 
 	auto moc = fondo->getComponent<MoveOnClick>();
 	moc->registerFantasmaTrans(fantasmiko);
@@ -144,6 +146,9 @@ void CityState::onEnter()
 		.during(60)
 		.via(tweeny::easing::sinusoidalInOut);
 	///
+
+
+
 
 	///------NPCs:
 	//----Para entrar en la oficina.

@@ -108,11 +108,26 @@ public:
 	/// <param name="angle">Angle</param>
 	/// <param name="color">Color a multiplicar</param>
 	inline void render(int x, int y, float mulScaleX, float mulScaleY, float angle, 
-		SDL_RendererFlip flip = SDL_FLIP_NONE, SDL_Color color = { 255,255,255,0 },
+		SDL_RendererFlip flip = SDL_FLIP_NONE, 
+		SDL_Color color = { 255,255,255,0 },
 		int alpha = 255)
 	{
 		SDL_Rect dest = { x, y, width_ * mulScaleX, height_ * mulScaleY };
 		SDL_Rect src = { 0, 0, width_, height_ };
+
+		applyOpacity(alpha);
+
+		multiplyColor(color.r, color.g, color.b, color.a);
+
+		render(src, dest, angle, nullptr, flip);
+	}
+
+	inline void render(int x, int y, SDL_Rect src, int nRows, int nCols, float mulScaleX, float mulScaleY, float angle, 
+		SDL_RendererFlip flip = SDL_FLIP_NONE, 
+		SDL_Color color = { 255,255,255,0 },
+		int alpha = 255)
+	{
+		SDL_Rect dest = { x, y, width_ * mulScaleX / nCols, height_ * mulScaleY / nRows };
 
 		applyOpacity(alpha);
 
