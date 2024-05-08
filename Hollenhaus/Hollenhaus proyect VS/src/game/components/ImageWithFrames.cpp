@@ -35,7 +35,6 @@ void ImageWithFrames::initComponent()
 	spriteRend_->setCols(nCols_);
 
 	syncRenderer();
-	assert(transform_ != nullptr);
 }
 
 void ImageWithFrames::update()

@@ -75,6 +75,8 @@
         {"id": "tfno_brilli",       "file": "resources/images/tfno_brilli.png"  },
         {"id": "postit_guardar_mazo",       "file": "resources/images/postit_guardar_mazo.png"  },
         {"id": "postit_guardar_mazo_brilli",       "file": "resources/images/postit_guardar_mazo_brilli.png"  },
+        {"id": "deck_sombra",       "file": "resources/images/reverseCard_sombra.png"  },
+        {"id": "card_sombra",       "file": "resources/images/card_shadow.png"  },
         {"id": "panelFinPartida",       "file": "resources/images/PanelFinPartida.png"  }
     ],
     "fonts": [

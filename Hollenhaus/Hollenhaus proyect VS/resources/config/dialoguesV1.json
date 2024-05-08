@@ -9,7 +9,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Hey, que tal",
+              "text": "Hola, que tal?",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -17,7 +17,7 @@
             },
             {
               "nodeID": 1,
-              "text": "He oido por ahi que ha salido un nuevo juego de cartas",
+              "text": "He oido por ahi que ha salido un nuevo juego de cartas.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -25,7 +25,7 @@
             },
             {
               "nodeID": 2,
-              "text": "jolenjaus creo?",
+              "text": "Hulenjaus, creo?",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -33,7 +33,7 @@
             },
             {
               "nodeID": 3,
-              "text": "no se, no juego mucho",
+              "text": "No se, no juego mucho.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -46,7 +46,39 @@
             },
             {
               "nodeID": 4,
-              "text": "pero dicen que esta guapo",
+              "text": "Dicen que esta muy guapo,",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "aunque que voy a saber yo, solo soy Paco...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "Por cierto,",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "si te estas preguntando por que hablo sin signos de puntuacion...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "...es porque no se parsear un JSON mejor, je, je.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [

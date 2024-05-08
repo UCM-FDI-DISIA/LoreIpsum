@@ -28,8 +28,8 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
 
 ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int posY)
 {
-    ecs::entity_t endTurnButton = Instantiate(Vector2D(posX, posY));  // 200, 265
-    endTurnButton->getComponent<Transform>()->setGlobalScale(1.0, 1.0);
+    ecs::entity_t endTurnButton = Instantiate(Vector2D(posX, posY - 14));  // 200, 265
+    endTurnButton->getComponent<Transform>()->setGlobalScale(1.5, 1.5);
     //endTurnButton->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
     endTurnButton->addComponent<SpriteRenderer>("EndTurnButton");
     endTurnButton->addComponent<BoxCollider>();
@@ -80,7 +80,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_BackgroundBlackBox(int posX, 
 {
 
     ecs::entity_t blackBox = Instantiate(Vector2D(posX, posY)); // 600, 200
-    blackBox->addComponent<SpriteRenderer>("black_box");
+    blackBox->addComponent<SpriteRenderer>("optfondo");
 
     // Obtenemos la altura y anchura de "black_box" para definir el tama�o del sprite en pixeles
     int textureW = blackBox->getComponent<SpriteRenderer>()->getTexture()->width();

@@ -39,7 +39,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 
 
 	// el texto se encuentra en una entidad hija
-	Vector2D margin = Vector2D(10, 10);
+	Vector2D margin = Vector2D(20, 80);
 	ecs::entity_t text = Instantiate();
 	auto textTR = text->addComponent<Transform>();
 	textTR->addParent(dialogue->getComponent<Transform>());
