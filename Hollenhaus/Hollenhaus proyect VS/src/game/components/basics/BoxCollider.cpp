@@ -14,31 +14,29 @@
 #include "../../../utils/Vector2D.h"
 
 BoxCollider::BoxCollider() : BoxCollider(Vector2D(0, 0), Vector2D(1, 1))
-{
-}
+{}
 
 BoxCollider::BoxCollider(Vector2D posOffset, Vector2D size) :
-	anchoredToSprite_(false),
 	transform_(),
 	spriteRenderer_(),
+	anchoredToSprite_(false),
 	posOffset_(posOffset),
 	size_(size)
 {
+
 }
 
-void BoxCollider::initComponent()
-{
+void BoxCollider::initComponent() {
+
 	transform_ = ent_->getComponent<Transform>();
 	spriteRenderer_ = ent_->getComponent<SpriteRenderer>();
 
 	anchoredToSprite_ = spriteRenderer_ != nullptr;
 
-	if (anchoredToSprite_)
-	{
+	if (anchoredToSprite_) {
 		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
 	}
-	else
-	{
+	else {
 		size_.set(100, 100);
 	}
 
@@ -53,8 +51,8 @@ void BoxCollider::initComponent()
 	vertices[4] = vertices[1] + Vector2D(vertices[1].getX(), size_.getY());*/
 
 
-	if (spriteRenderer_ != nullptr)
-	{
+
+	if (spriteRenderer_ != nullptr) {
 		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
 		anchoredToSprite_ = true;
 	}
@@ -67,31 +65,29 @@ void BoxCollider::initComponent()
 #ifdef _DEBUG
 	mngr_->addComponent<ColliderRender>(ent_);
 #endif // DEBUG
+
 }
 
-void BoxCollider::update()
-{
+void BoxCollider::update() {
 	collider_.x = transform_->getGlobalPos().getX() + posOffset_.getX();
 	collider_.y = transform_->getGlobalPos().getY() + posOffset_.getY();
 
+	
+	if (anchoredToSprite_) {
 
-	if (anchoredToSprite_)
-	{
 		size_.set(spriteRenderer_->getTexture()->width(), spriteRenderer_->getTexture()->height());
 	}
-
+	
 
 	collider_.w = size_.getX() * transform_->getGlobalScale().getX();
 	collider_.h = size_.getY() * transform_->getGlobalScale().getY();
 }
 
-void BoxCollider::setPosOffset(Vector2D newPosOffset)
-{
+void BoxCollider::setPosOffset(Vector2D newPosOffset) {
 	posOffset_ = newPosOffset;
 }
 
-void BoxCollider::setSize(Vector2D newSizOffset)
-{
+void BoxCollider::setSize(Vector2D newSizOffset) {
 	size_ = newSizOffset;
 }
 
@@ -101,10 +97,9 @@ void BoxCollider::setAnchoredToSprite(bool _anchored)
 	spriteRenderer_ = ent_->getComponent<SpriteRenderer>();
 }
 
-bool BoxCollider::isCursorOver()
-{
+bool BoxCollider::isCursorOver() {
 	Vector2D mousePos(ih().getMousePos().first, ih().getMousePos().second);
-
+	
 	SDL_Rect mouseRect = build_sdlrect(mousePos, 1, 1);
 
 	return SDL_HasIntersection(&collider_, &mouseRect);

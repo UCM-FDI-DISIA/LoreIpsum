@@ -1,55 +1,38 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include "../sdlutils/SDLNetUtils.h"
 #include "../utils/Vector2D.h"
 
 
-namespace NetMsgs
-{
-	enum MsgType : Uint8
-	{
+namespace NetMsgs {
+
+	enum MsgType : Uint8 {
 		_NONE_,
-		_INVITATION_RECEIVED_,
-		// 
-		_ACCEPT_CONNECTION_,
-		//
-		_DECLINE_CONNECTION_,
-		//
-		_READY_TO_PLAY,
-		//
-		_NOT_READY_TO_PLAY,
-		//W
-		_PLAY_CARD_,
-		//
-		_DRAW_CARD_,
-		//
-		_CHANGE_TURN_,
-		//
-		_END_GAME_,
-		//
-		_FIRST_TURN_OWNER_,
-		//
-		_EXIT_END_GAME_,
-		//
-		_CHANGE_MAZE_END_GAME_,
-		//
-		_PLAY_AGAIN_END_GAME_,
-		//
-		_CHANGE_STATE_PREGAME_END_GAME_,
-		//
-		_CHANGE_STATE_GAME_END_GAME_,
-		//
+		_INVITATION_RECEIVED_, // 
+		_ACCEPT_CONNECTION_, //
+		_DECLINE_CONNECTION_, //
+		_READY_TO_PLAY, //
+		_NOT_READY_TO_PLAY, //W
+		_PLAY_CARD_ , //
+		_DRAW_CARD_, //
+		_CHANGE_TURN_, //
+		_END_GAME_, //
+		_FIRST_TURN_OWNER_, //
+		_EXIT_END_GAME_, //
+		_CHANGE_MAZE_END_GAME_, //
+		_PLAY_AGAIN_END_GAME_, //
+		_CHANGE_STATE_PREGAME_END_GAME_, //
+		_CHANGE_STATE_GAME_END_GAME_, //
 	};
 
-	struct Msg
-	{
-		Msg(MsgType type) : _type(type)
-		{
-		}
+	struct Msg {
 
-		Msg(): _type(_NONE_)
-		{
-		};
+		Msg(MsgType type) : _type(type){}
+
+		Msg():_type(_NONE_) {};
 
 		Uint8 _type;
 
@@ -57,15 +40,12 @@ namespace NetMsgs
 	};
 
 	// Mensaje para enviar tu mazo al rival cuando estes listo para jugar
-	struct SendMaze : Msg
-	{
-		SendMaze()
-		{
-		};
+	struct SendMaze : Msg {
 
+		SendMaze() {};
 		SendMaze(Uint8 _maze[], Uint8 _size)
-		{
-			for (Uint8 i = 0; i < _size; i++)
+		{	
+			for (Uint8 i = 0; i < _size; i++) 
 				maze[i] = _maze[i];
 			size = _size;
 			_type = _READY_TO_PLAY;
@@ -82,16 +62,14 @@ namespace NetMsgs
 		_IMPL_SERIALIAZION_WITH_BASE_(Msg, maze, 100u, size)
 	};
 
-	struct PlayCard : Msg
-	{
-		PlayCard()
-		{
-		};
+	struct PlayCard : Msg {
 
+		PlayCard() {};
 		PlayCard(int index, Vector2D pos)
-			: index(index), posX(pos.getX()), posY(pos.getY())
+			:index(index), posX(pos.getX()), posY(pos.getY()) 
 		{
 			_type = _PLAY_CARD_;
+
 		}
 
 		Uint8 index;
@@ -104,18 +82,15 @@ namespace NetMsgs
 	};
 
 
-	struct FirstTurn : Msg
-	{
-		FirstTurn()
-		{
-		};
+	struct FirstTurn : Msg {
 
+		FirstTurn() {};
 		FirstTurn(Uint8 myMultiplayerTurn)
-			: myMultiplayerTurn(myMultiplayerTurn)
+		:myMultiplayerTurn(myMultiplayerTurn)
 		{
 			_type = _FIRST_TURN_OWNER_;
 		};
-
+		
 		Uint8 myMultiplayerTurn;
 
 		_IMPL_SERIALIAZION_WITH_BASE_(Msg, myMultiplayerTurn)

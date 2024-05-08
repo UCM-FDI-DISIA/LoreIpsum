@@ -2,44 +2,39 @@
 
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include <SDL.h>
 
-class VirtualTimer
-{
+class VirtualTimer {
 public:
-	VirtualTimer()
-	{
+	VirtualTimer() {
 		reset();
 	}
 
-	virtual ~VirtualTimer()
-	{
+	virtual ~VirtualTimer() {
 	}
 
-	void reset()
-	{
+	inline void reset() {
 		zeroTime_ = SDL_GetTicks();
 		paused_ = false;
 	}
 
-	Uint32 currTime() const
-	{
-		return paused_ ? pauseStartRealTime_ - zeroTime_ : SDL_GetTicks() - zeroTime_;
+	inline Uint32 currTime() const {
+		return paused_ ?
+				pauseStartRealTime_ - zeroTime_ : SDL_GetTicks() - zeroTime_;
 	}
 
-	void pause()
-	{
-		if (!paused_)
-		{
+	inline void pause() {
+		if (!paused_) {
 			paused_ = true;
 			pauseStartRealTime_ = SDL_GetTicks();
 		}
 	}
 
-	void resume()
-	{
-		if (paused_)
-		{
+	inline void resume() {
+		if (paused_) {
 			zeroTime_ += (SDL_GetTicks() - pauseStartRealTime_);
 			paused_ = false;
 		}
@@ -50,3 +45,4 @@ private:
 	Uint32 zeroTime_;
 	Uint32 pauseStartRealTime_;
 };
+

@@ -34,6 +34,7 @@ TutorialBoardManager::TutorialBoardManager(ecs::entity_t b, ecs::entity_t t)
 	// ---
 	//objs.push_back(base);
 	//objs.push_back(tutorial);
+
 }
 
 TutorialBoardManager::~TutorialBoardManager()
@@ -53,25 +54,32 @@ void TutorialBoardManager::initComponent()
 	nextState = Tutorials::Board::INIT;
 	ended = false;
 	checked = false;
+
+
+	image = Instantiate();
+	image->addComponent<Transform>();
+	image->addComponent<SpriteRenderer>("card_ejemplo");
+	image->getComponent<SpriteRenderer>()->enable(false);
+
 }
 
 
 void TutorialBoardManager::update()
 {
-	if (actionEnded())
-	{
+	if (actionEnded()) {
+
 		nextTutorialState();
 
 		resetEnded();
 	}
 
 	updateTutorialState();
+	
 }
 
 void TutorialBoardManager::nextTutorialState()
 {
-	if (!checked)
-	{
+	if (!checked) {
 		nextState = tutorial->getComponent<TutorialManager>()->nextState();
 
 		checked = true;
@@ -83,12 +91,10 @@ void TutorialBoardManager::updateTutorialState()
 	currentState;
 	nextState;
 
-	if (currentState != nextState)
-	{
-		ent_->getComponent<TutorialManager>()->wait([this]
-		{
-			setState();
-		});
+	if (currentState != nextState) {
+		ent_->getComponent<TutorialManager>()->wait([this] 
+			{
+				setState(); });
 	}
 }
 
@@ -108,6 +114,7 @@ void TutorialBoardManager::setState()
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
 	ent_->getComponent<TutorialManager>()->activateColliders(objs);
 	ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
+	image->getComponent<SpriteRenderer>()->enable(false);
 
 
 	switch (t)
@@ -118,8 +125,14 @@ void TutorialBoardManager::setState()
 	case Tutorials::Board::CARD:
 		setCARD();
 		break;
-	case Tutorials::Board::CARD_INFO:
-		setCARDINFO();
+	case Tutorials::Board::CARD_COST:
+		setCARDCOST();
+		break;
+	case Tutorials::Board::CARD_POINTS:
+		setCARDPOINTS();
+		break;
+	case Tutorials::Board::CARD_IMAGE:
+		setCARDIMAGE();
 		break;
 	case Tutorials::Board::DECK:
 		setDECK();
@@ -186,16 +199,15 @@ ecs::entity_t TutorialBoardManager::createPopUp(float x, float y, std::string po
 	// crear dialogo del FACTORY de dialogos
 	//// Mirar comentario en el interior de la función
 	ecs::entity_t pop = factory->createDialogue(dialogue.NPCName(), convo, node,
-	                                            {x, y}, //POS
-	                                            {0.25, 0.25},
-	                                            //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-	                                            5, 10, base,
-	                                            200, dialogue.Convo(convo).isAuto(), //LAYER
-	                                            "8bit_size_20", //mirar el JSON para cambiar el tamanio de texto
-	                                            SDL_Color({0, 0, 0, 255}),
-	                                            220, //wrap length
-	                                            Text::BoxPivotPoint::LeftTop,
-	                                            Text::TextAlignment::Left);
+		{ x, y },//POS
+		{ 0.25, 0.25 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
+		5, 10, base,
+		200, dialogue.Convo(convo).isAuto(),  //LAYER
+		Fonts::GROTESK_20,	//mirar el JSON para cambiar el tamanio de texto
+		SDL_Color({ 0, 0, 0, 255 }),
+		220, //wrap length
+		Text::BoxPivotPoint::LeftTop,
+		Text::TextAlignment::Left);
 
 	return pop;
 }
@@ -215,6 +227,7 @@ void TutorialBoardManager::setObjs(std::vector<ecs::entity_t> v)
 	objs = v;
 
 	setLayers(v);
+
 }
 
 void TutorialBoardManager::setLayers(std::vector<ecs::entity_t> v)
@@ -234,6 +247,8 @@ void TutorialBoardManager::addToHand(ecs::entity_t c)
 }
 
 
+
+
 void TutorialBoardManager::setINIT()
 {
 	//TuVieja("Setting INIT");
@@ -250,20 +265,32 @@ void TutorialBoardManager::setCARD()
 {
 	//TuVieja("Setting CARD");
 
-	createPopUp(250, 200, "Board Tutorial", 1);
+	createPopUp(500, 250, "Board Tutorial", 1);
+
+	image->getComponent<SpriteRenderer>()->enable(true);
+	image->getComponent<Transform>()->setGlobalPos(325, 200);
+	image->getComponent<Transform>()->setGlobalScale(1.25, 1.25);
+	image->setLayer(200);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
 }
 
-void TutorialBoardManager::setCARDINFO()
+void TutorialBoardManager::setCARDCOST()
 {
 	//TuVieja("Setting DECK");
 
-	ecs::entity_t pop = createPopUp(550, 300, "Board Tutorial", 2);
+	ecs::entity_t pop = createPopUp(500, 200, "Board Tutorial", 2);
+
+	image->addComponent<SpriteRenderer>("card_ejemplo");
+	image->getComponent<Transform>()->setGlobalPos(325, 200);
+	image->getComponent<Transform>()->setGlobalScale(1.25, 1.25);
+
+	image->setLayer(200);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -271,12 +298,55 @@ void TutorialBoardManager::setCARDINFO()
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
+
+void TutorialBoardManager::setCARDPOINTS()
+{
+	//TuVieja("Setting DECK");
+
+	ecs::entity_t pop = createPopUp(500, 300, "Board Tutorial", 3);
+
+	image->addComponent<SpriteRenderer>("card_ejemplo");
+	image->getComponent<Transform>()->setGlobalPos(325, 200);
+	image->getComponent<Transform>()->setGlobalScale(1.25, 1.25);
+
+	image->setLayer(200);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+}
+
+void TutorialBoardManager::setCARDIMAGE()
+{
+
+	//TuVieja("Setting DECK");
+
+	ecs::entity_t pop = createPopUp(500, 250, "Board Tutorial", 4);
+
+	image->addComponent<SpriteRenderer>("card_ejemplo");
+	image->getComponent<Transform>()->setGlobalPos(325, 200);
+	image->getComponent<Transform>()->setGlobalScale(1.25, 1.25);
+
+	image->setLayer(200);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+}
+
+
 
 void TutorialBoardManager::setDECK()
 {
 	//TuVieja("Setting DECK");
 
-	ecs::entity_t pop = createPopUp(550, 300, "Board Tutorial", 3);
+	ecs::entity_t pop = createPopUp(525, 300, "Board Tutorial", 5);
+
 
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
@@ -284,10 +354,13 @@ void TutorialBoardManager::setDECK()
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+
 }
 
 void TutorialBoardManager::setDRAWCARD()
 {
+
 	std::vector<ecs::entity_t> v;
 
 	v.push_back(deck);
@@ -295,6 +368,9 @@ void TutorialBoardManager::setDRAWCARD()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+
+	
 }
 
 void TutorialBoardManager::setCELL()
@@ -304,13 +380,16 @@ void TutorialBoardManager::setCELL()
 
 	std::vector<ecs::entity_t> v;
 
-	createPopUp(250, 200, "Board Tutorial", 4);
+	createPopUp(250, 200, "Board Tutorial", 6);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(hand);
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+
+	
 }
 
 void TutorialBoardManager::setPLACECARD()
@@ -321,41 +400,15 @@ void TutorialBoardManager::setPLACECARD()
 
 	std::vector<ecs::entity_t> v;
 
-	for (auto h : hand)
-	{
+	for (auto h : hand) {
 		v.push_back(h);
 	}
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
 }
 
 void TutorialBoardManager::setPOINTS()
-{
-	//TuVieja("Setting PLACE CARD");
-
-	createPopUp(250, 200, "Board Tutorial", 5);
-
-	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
-
-	std::vector<ecs::entity_t> v;
-
-	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
-}
-
-void TutorialBoardManager::setACTION()
-{
-	//TuVieja("Setting PLACE CARD");
-
-	createPopUp(250, 200, "Board Tutorial", 6);
-
-	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
-
-	std::vector<ecs::entity_t> v;
-
-	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
-}
-
-void TutorialBoardManager::setACTIONPTS()
 {
 	//TuVieja("Setting PLACE CARD");
 
@@ -368,12 +421,39 @@ void TutorialBoardManager::setACTIONPTS()
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
 
+void TutorialBoardManager::setACTION()
+{
+	//TuVieja("Setting PLACE CARD");
+
+	createPopUp(250, 200, "Board Tutorial", 8);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+}
+
+void TutorialBoardManager::setACTIONPTS()
+{
+	//TuVieja("Setting PLACE CARD");
+
+	createPopUp(250, 200, "Board Tutorial", 9);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+}
+
+
 
 void TutorialBoardManager::setNEXTTURN()
 {
 	std::vector<ecs::entity_t> v;
 
-	createPopUp(250, 200, "Board Tutorial", 8);
+	createPopUp(250, 200, "Board Tutorial", 10);
 
 	//v.push_back(nextTurn);
 
@@ -382,6 +462,7 @@ void TutorialBoardManager::setNEXTTURN()
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 	//tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
 }
 
 void TutorialBoardManager::setPRESSNEXTTURN()
@@ -393,24 +474,27 @@ void TutorialBoardManager::setPRESSNEXTTURN()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
 }
 
 void TutorialBoardManager::setAI_TURN()
 {
 	std::vector<ecs::entity_t> v;
 
-	createPopUp(250, 200, "Board Tutorial", 9);
+	createPopUp(250, 200, "Board Tutorial", 11);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+
 }
 
 void TutorialBoardManager::setNEXTCARD1()
 {
 	std::vector<ecs::entity_t> v;
 
-	createPopUp(250, 200, "Board Tutorial", 10);
+	createPopUp(250, 200, "Board Tutorial", 12);
 
 	//tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -421,7 +505,7 @@ void TutorialBoardManager::setEFFECTS1()
 {
 	std::vector<ecs::entity_t> v;
 
-	createPopUp(250, 200, "Board Tutorial", 11);
+	createPopUp(250, 200, "Board Tutorial", 13);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -432,7 +516,7 @@ void TutorialBoardManager::setENDTUTORIAL()
 {
 	std::vector<ecs::entity_t> v;
 
-	createPopUp(250, 200, "Board Tutorial", 12);
+	createPopUp(250, 200, "Board Tutorial", 14);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -443,3 +527,4 @@ void TutorialBoardManager::setFREEDOM()
 {
 	std::cout << "LIBERTAD OMFG" << std::endl;
 }
+

@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 
 class TextComponent;
@@ -9,14 +13,14 @@ class SendIPFromTextComponent : public ComponentUpdate
 {
 public:
 	SendIPFromTextComponent(TextComponent* tc, NetLobby* nl);
-	~SendIPFromTextComponent() override;
+	~SendIPFromTextComponent();
 
 	void initComponent() override;
 	void update() override;
 
 	void sendIP();
-
 private:
 	TextComponent* tc;
 	NetLobby* nl;
 };
+

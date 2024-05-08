@@ -32,6 +32,7 @@ LuisState::LuisState() : GameState()
 
 LuisState::~LuisState()
 {
+	
 }
 
 
@@ -60,7 +61,7 @@ void LuisState::onEnter()
 
 	TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
 
-	auto factory = new Factory();
+	factory = new Factory();
 	factory->SetFactories(
 		static_cast<BoardFactory*>(new BoardFactory_v0(4)),
 		static_cast<CardFactory*>(new CardFactory_v1()),
@@ -74,8 +75,7 @@ void LuisState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(
-		4, 4, Turns::J1, boardManagerComponent);
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, Turns::J1, boardManagerComponent);
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
@@ -90,16 +90,17 @@ void LuisState::onEnter()
 
 
 	// UI 
-	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(100, 500);
-	ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
+	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 280);
+	//ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
 
 	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(600, 200, 200, 180);
-	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 265);
+	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 250);
+	ecs::entity_t visual_KeyButton = factory->createVisual_KeyButton(700, 400);
 
 	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 
 	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, {102, 255, 255, 255});
-	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, {255, 102, 255, 255});
+	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, { 255, 102, 255, 255 });
 
 	ecs::entity_t visual_BackgroundBoard = factory->createVisual_BackgroundFullImage();
 
@@ -107,12 +108,17 @@ void LuisState::onEnter()
 	// Enlazado de la UI con los scripts que la controlan
 	matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
 	matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
-	matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
+	//matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
 	matchManagerComponent->updateVisuals();
 
 	boardManagerComponent->setScoreVisualJ1(visual_ScoreCounterJ1);
 	boardManagerComponent->setScoreVisualJ2(visual_ScoreCounterJ2);
 	boardManagerComponent->updateVisuals();
+
+
+	// Seteamos la mano de J1 en el matchManager
+	matchManagerComponent->SetHandComponent(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
+
 
 
 	// incicia la cancion en bucle
@@ -121,12 +127,12 @@ void LuisState::onEnter()
 	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 
 
-#pragma region Seccion IA
+	#pragma region Seccion IA
 
 	//crear la entidad y añadirle el componente
 	ecs::entity_t IA_controler = Instantiate();
 	IA_manager* ia_managerComponent = IA_controler->addComponent<IA_manager>();
-
+	
 	//le decimos al endTurn que existe la IA
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
 
@@ -146,7 +152,8 @@ void LuisState::onEnter()
 	matchManagerComponent->setIA_Manager(ia_managerComponent);
 
 
-#pragma endregion
+	#pragma endregion
+
 }
 
 void LuisState::onExit()
@@ -155,5 +162,10 @@ void LuisState::onExit()
 
 	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
+
+	delete factory;
+
 	GameStateMachine::instance()->getMngr()->Free();
+
+
 }

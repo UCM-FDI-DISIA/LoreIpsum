@@ -1,5 +1,8 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 #include "../components/basics/BoxCollider.h"
 
@@ -85,6 +88,8 @@ private:
 	Transform* fanTrans;
 	tweeny::tween<float> tweenFantasmiko;
 
-	template <typename T>
+	template<typename T>
 	tweeny::tween<T> resetTween(T, T);
 };
+
+

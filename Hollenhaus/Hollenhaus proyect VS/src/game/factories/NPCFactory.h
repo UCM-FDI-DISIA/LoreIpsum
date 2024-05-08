@@ -1,17 +1,18 @@
 #pragma once
-#include <../pchs/pch.h>
+
+//Checkml
+#include <game/checkML.h>
+
+
 
 
 class NPCFactory
 {
 public:
-	NPCFactory()
-	{
-	};
+	NPCFactory() {};
+	virtual ~NPCFactory() {};
 
-	virtual ~NPCFactory()
-	{
-	};
+	virtual ecs::entity_t createNPC(JsonData::NPCData info, ecs::entity_t parent, int convo) = 0;
 
-	virtual ecs::entity_t createNPC(JsonData::NPCData info, ecs::entity_t parent) = 0;
 };
+

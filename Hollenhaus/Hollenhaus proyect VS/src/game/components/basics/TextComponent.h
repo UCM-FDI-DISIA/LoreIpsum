@@ -1,6 +1,7 @@
 #pragma once
-#include <../pchs/pch.h>
-//#include "../../pch.h"
+
+//Checkml
+#include <game/checkML.h>
 
 #include "../ComponentRender.h"
 #include <string>
@@ -39,13 +40,12 @@ public:
 	/// <param name="wrapLenght"> Longitud horizontal de la caja en la que se envuelve el texto </param>
 	/// <param name="boxPivotPoint"> Punto de pivote de la caja en la que se envuelve el texto </param>
 	/// <param name="textAlignment"> Alineación del texto respecto a la caja en la que se envuelve </param>
-	TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght,
-	              Text::BoxPivotPoint boxPivotPoint = Text::LeftTop, Text::TextAlignment textAlignment = Text::Left);
-
-	~TextComponent() override;
+	TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint = Text::LeftTop, Text::TextAlignment textAlignment = Text::Left);
+	
+	~TextComponent();
 	void initComponent() override;
 	void render() const override;
-
+	
 	// Método público para cambiar el texto
 	void setTxt(std::string txt);
 
@@ -62,18 +62,18 @@ public:
 	void SetTextAlignment(Text::TextAlignment textAlignment);
 
 	// Metodo publico para cambiar la fuente del componente
-	void setFont(const std::string& font)
-	{
-		font_ = &sdl_.fonts().at(font);
-		createTexture();
-	}
+	void setFont(const std::string& font) { font_ = &sdl_.fonts().at(font); createTexture(); }
 
 
 	// GETTERS
 	std::string getText() { return txt_; }
 	SDL_Color getColor() { return color_; }
+	void setOffset(int x, int y) { offset = Vector2D(x, y); }
+	Vector2D getOffset() const { return offset; }
+	void setAlpha(int v) { alpha = v; }
 
 private:
+
 	Transform* tr_;
 	SDLUtils& sdl_ = *SDLUtils::instance();
 
@@ -85,12 +85,16 @@ private:
 	Uint32 wrapLenght_;
 	Text::BoxPivotPoint boxPivotPoint_;
 	Text::TextAlignment textAlignment_;
-
+	
 	// Atributo y método para calcular la posicion de renderizado según el punto de pivote de la caja de texto
 	Vector2D GetRenderPosAcordingPivotPoint() const;
 	Vector2D renderPos_;
+	Vector2D offset = { 0, 0 };
+
+	int alpha = 255;
 
 	void createTexture();
-
 	void RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const;
+
 };
+

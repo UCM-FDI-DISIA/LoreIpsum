@@ -1,5 +1,52 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
+namespace Colors
+{
+	/// colores
+	constexpr SDL_Color ROJO_HOLLENHAUS = {148, 47, 55, 255};
+	constexpr SDL_Color AMARILLO_PIS = {191, 180, 138, 255};
+	constexpr SDL_Color AMARILLO_ACCION = {251, 187, 118, 255 };
+		// colores de cartas del jugador
+	constexpr SDL_Color ROJO_PERJUICIO = { 232, 79, 69, 255};
+	constexpr SDL_Color BAHIA_BENEFICIO = { 44, 67, 212, 255};
+	//constexpr SDL_Color BAHIA_BENEFICIO = { 37, 56, 177, 255};
+
+		// colores de cartas del enemigo
+	constexpr SDL_Color VERDE_BENEFICIO = { 79, 218, 88, 255};
+	constexpr SDL_Color NARANJA_PERJUICIO = { 251, 142, 40, 255};
+
+	// offtopic
+	constexpr SDL_Color VERDE_BANKIA = {199,208, 19, 255};
+	constexpr SDL_Color TEAL_MIKU = { 40, 200, 200, 255};
+
+	/// blancos
+	constexpr SDL_Color PEARL_HOLLENHAUS = {226, 223, 210, 255};
+	constexpr SDL_Color PEARL_CLICK = {250, 248, 240, 255};
+	/// negros
+	constexpr SDL_Color MIDNIGHT_HOLLENHAUS = {16, 23, 32, 255}; // texto color normal
+	constexpr SDL_Color MIDNIGHT_CLICK = {49, 50, 78, 255}; // click texto color
+	constexpr SDL_Color MIDNIGHT_HOVER = {73, 21, 31, 255}; // hover texto color
+}
+
+namespace Fonts
+{
+	const std::string GROTESK_8 = "space_grotesk_bold_8";
+	const std::string GROTESK_16 = "space_grotesk_bold_16";
+	const std::string GROTESK_18 = "space_grotesk_bold_18";
+	const std::string GROTESK_20 = "space_grotesk_bold_20";
+	const std::string GROTESK_24 = "space_grotesk_bold_24";
+	const std::string GROTESK_32 = "space_grotesk_bold_32";
+	const std::string GROTESK_40 = "space_grotesk_bold_40";
+	const std::string GROTESK_48 = "space_grotesk_bold_48";
+	const std::string BIT_8 = "8bit_size_8";
+	const std::string BIT_16 = "8bit_size_16";
+	const std::string BIT_24 = "8bit_size_24";
+	const std::string BIT_32 = "8bit_size_32";
+	const std::string BIT_40 = "8bit_size_40";
+}
 
 namespace Cards
 {
@@ -160,19 +207,24 @@ namespace JsonData
 	{
 		DialogueEventS();
 
-		DialogueEventS(int tg, int t, int s) :
+		DialogueEventS(int tg, int t, int s, int gd, int rd) :
 			timing(tg),
 			type(t),
-			scene(s)
+			scene(s),
+			greenDecision(gd),
+			redDecision(rd)
 		{
 		};
 
 		int getType() { return type; }
 		int getScene() { return scene; }
+		int getGreenDecision() { return greenDecision; }
+		int getredDecision() { return redDecision; }
 
 	private:
 		int timing, type;
 		int scene;
+		int greenDecision, redDecision;
 	};
 
 
@@ -256,16 +308,17 @@ namespace JsonData
 	{
 		NPCData();
 
-		NPCData(int id, std::string name, std::string s, float sx, float sy, int px, float py, float t, int scen,
-		        int lay) :
-			NPCID_(id), name(name), sprite(s), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t), scene(scen),
-			layer(lay)
+		NPCData(int id, std::string name, std::string s, std::string shine, float sx, float sy, int px, float py,
+		        float t, int scen, int lay) :
+			NPCID_(id), name(name), sprite(s), shineSprite(shine), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t),
+			scene(scen), layer(lay)
 		{
 		};
 
 		int getID() { return NPCID_; }
 		std::string getName() { return name; }
 		std::string getSprite() { return sprite; }
+		std::string shine() { return shineSprite; }
 		Vector2D getScale() { return {scaleX, scaleY}; }
 		Vector2D getPos() { return {posX, posY}; }
 		int getType() { return type; }
@@ -276,6 +329,7 @@ namespace JsonData
 		int NPCID_;
 		std::string name;
 		std::string sprite;
+		std::string shineSprite;
 		float scaleX, scaleY;
 		float posX, posY;
 		int type;
@@ -313,7 +367,9 @@ namespace Tutorials
 		BOARD_NONE,
 		INIT,
 		CARD,
-		CARD_INFO,
+		CARD_COST,
+		CARD_POINTS,
+		CARD_IMAGE,
 		DECK,
 		DRAW_CARD,
 		CELL,

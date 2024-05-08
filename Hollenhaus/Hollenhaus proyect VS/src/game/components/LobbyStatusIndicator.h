@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 
 class TextComponent;
@@ -15,8 +19,8 @@ class BoxCollider;
 class LobbyStatusIndicator : public ComponentUpdate
 {
 public:
-	enum ELobbyStatus
-	{
+
+	enum ELobbyStatus{
 		Offline,
 		SearchingForInvitations,
 		InvitationSent,
@@ -24,12 +28,14 @@ public:
 	};
 
 	LobbyStatusIndicator(TextComponent* textComponent);
-	~LobbyStatusIndicator() override;
+	~LobbyStatusIndicator();
 
 	void setStatus(ELobbyStatus lobbyStatus);
 
 private:
+	
 	ELobbyStatus status;
 
 	TextComponent* tc;
+	
 };

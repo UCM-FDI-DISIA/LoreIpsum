@@ -1,21 +1,26 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "GameState.h"
 
 class MultiplayerLobbyState
-	: public GameState
+    :public GameState
 {
 public:
-	MultiplayerLobbyState();
-	~MultiplayerLobbyState() override;
+    MultiplayerLobbyState();
+    virtual ~MultiplayerLobbyState();
 
 
-	void refresh() override;
-	void update() override;
-	void render() const override;
+    void refresh() override;
+    void update() override;
+    void render() const override;
 
 
-	void onEnter() override;
-	void onExit() override;
+    void onEnter() override;
+    void onExit() override;
 
 private:
 };
+

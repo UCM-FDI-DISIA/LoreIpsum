@@ -16,15 +16,15 @@
 #include "../components/EndTurnButton.h"
 #include "../Data.h"
 
-NievesState::NievesState() : GameState()
-{
+NievesState::NievesState() : GameState() {
+
 	TuVieja("Loading NievesState");
 }
 
 NievesState::~NievesState()
 {
-}
 
+}
 //cleon: si est� vac�o se llama directamente al padre
 void NievesState::refresh()
 {
@@ -33,12 +33,13 @@ void NievesState::refresh()
 
 void NievesState::update()
 {
+
 	//system("CLS");
 
 
 	GameState::update();
 
-	board->getComponent<BoardManager>()->updateScore(); // Esto puede ser un problema de performance
+	board->getComponent<BoardManager>()->updateScore();	// Esto puede ser un problema de performance
 
 #if _DEBUG
 	//std::cout << board->getComponent<BoardManager>()->getPlayer1Points() << std::endl;
@@ -56,9 +57,8 @@ void NievesState::onEnter()
 	TuVieja("\nEntering in NievesState");
 
 
-	auto factory = new Factory();
-	factory->SetFactories(static_cast<BoardFactory*>(new BoardFactory_v0(4)),
-	                      static_cast<CardFactory*>(new CardFactory_v1()));
+	Factory* factory = new Factory();
+	factory->SetFactories((BoardFactory*)new  BoardFactory_v0(4), (CardFactory*) new CardFactory_v1());
 
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	auto matchManager = Instantiate();
@@ -88,9 +88,7 @@ void NievesState::onEnter()
 
 	// Texto de prueba
 	ecs::entity_t pruebaTxt = Instantiate(Vector2D(400, 50));
-	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", "8bit_size_16",
-	                                       SDL_Color({255, 255, 255, 255}), 350, Text::BoxPivotPoint::CenterCenter,
-	                                       Text::TextAlignment::Center);
+	pruebaTxt->addComponent<TextComponent>("Buenas tardes a los que ya han comido", Fonts::GROTESK_16, SDL_Color({ 255, 255, 255, 255 }), 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 
 	// Creación del botón de J1 para acabar su turno (debug por consola)
 	ecs::entity_t endTurnButtonJ1 = Instantiate(Vector2D(60, 500));
@@ -113,5 +111,9 @@ void NievesState::onExit()
 
 void NievesState::setWinnerOnData(int w)
 {
+	
+
 	data->setWinner(w);
+	
 }
+ 

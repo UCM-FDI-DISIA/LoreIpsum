@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "../ComponentUpdate.h"
 #include <SDL_net.h>
 
@@ -12,15 +16,16 @@ class NetLobby : public ComponentUpdate
 {
 public:
 	NetLobby(Uint16 port, LobbyStatusIndicator* lobbystatus);
-	~NetLobby() override;
+	~NetLobby();
 
 	void initComponent() override;
 	void update() override;
 
 	// Método usado por el botón de enviar invitación
-	void SendInvitation(const char* host, Uint16 port);
+	void SendInvitation(const char* host, const Uint16 port);
 
 private:
+
 	// a variable that represents the address -- in this case only the port
 	IPaddress ip;
 
@@ -40,25 +45,25 @@ private:
 	LobbyStatusIndicator* statusIndicator;
 
 	// MÉTODOS DEL SERVIDOR
+	
+		// cuando recibimos una request del cliente
+		void connectToClient();
 
-	// cuando recibimos una request del cliente
-	void connectToClient();
+		// Called when a request is received. Triggers invitation panel
+		void InstantiateInvitationPanel();
 
-	// Called when a request is received. Triggers invitation panel
-	void InstantiateInvitationPanel();
-
-	// Invitation panel buttons
-	void AcceptConection();
-	void DeclineConection();
+		// Invitation panel buttons
+		void AcceptConection();
+		void DeclineConection();
 
 
 	// MÉTODOS DEL CLIENTE
+	
+		// cuando enviamos una invitación al servidor
+		void connectToServer(const char* host, const int port);
 
-	// cuando enviamos una invitación al servidor
-	void connectToServer(const char* host, int port);
-
-	// cuando recibimos mensajes del servidor
-	void ProcessServerMessages();
+		// cuando recibimos mensajes del servidor
+		void ProcessServerMessages();
 
 
 	// Para el cliente y el server. Lanzamos la siguiente escena
@@ -66,3 +71,4 @@ private:
 
 	void error();
 };
+

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\CaseManager.cpp" />
+    <ClCompile Include="src\game\components\Clickable.cpp" />
+    <ClCompile Include="src\game\components\ClickableText.cpp" />
     <ClCompile Include="src\game\components\CopyTextComponentOnClipboardButton.cpp" />
     <ClCompile Include="pchs\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -53,6 +56,7 @@
     <ClCompile Include="src\game\components\Cell.cpp" />
     <ClCompile Include="src\game\components\ClickDecision.cpp" />
     <ClCompile Include="src\game\components\ColliderRender.cpp" />
+    <ClCompile Include="src\game\components\DecisionComponent.cpp" />
     <ClCompile Include="src\game\components\DeckComponent.cpp" />
     <ClCompile Include="src\game\components\DialogueBoxDestroyer.cpp" />
     <ClCompile Include="src\game\components\DialogueDestroyer.cpp" />
@@ -64,6 +68,7 @@
     <ClCompile Include="src\game\components\DropZone.cpp" />
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
     <ClCompile Include="src\game\components\GetIPv4.cpp" />
+    <ClCompile Include="src\game\components\ImageWithFrames.cpp" />
     <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetEndGame.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetLobby.cpp" />
@@ -72,12 +77,12 @@
     <ClCompile Include="src\game\components\HandComponent.cpp" />
     <ClCompile Include="src\game\components\managers\AnimatorManager.cpp" />
     <ClCompile Include="src\game\components\InputForTextWritter.cpp" />
+    <ClCompile Include="src\game\components\KeyComponent.cpp" />
     <ClCompile Include="src\game\components\managers\BoardManager.cpp" />
     <ClCompile Include="src\game\components\managers\CardStateManager.cpp" />
     <ClCompile Include="src\game\components\managers\DragManager.cpp" />
     <ClCompile Include="src\game\components\managers\DrawerManager.cpp" />
     <ClCompile Include="src\game\components\managers\IA_manager.cpp" />
-    <ClCompile Include="src\game\components\managers\KeyManager.cpp" />
     <ClCompile Include="src\game\components\managers\Manager.cpp" />
     <ClCompile Include="src\game\components\managers\MatchManager.cpp" />
     <ClCompile Include="src\game\components\managers\PizarraManager.cpp" />
@@ -122,6 +127,7 @@
     <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp" />
     <ClCompile Include="src\game\gamestates\GameState.cpp" />
     <ClCompile Include="src\game\gamestates\JimboState.cpp" />
+    <ClCompile Include="src\game\gamestates\KeyMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\LuisState.cpp" />
     <ClCompile Include="src\game\gamestates\MainMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\MatchOverState.cpp" />
@@ -213,6 +219,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\CaseManager.h" />
+    <ClInclude Include="src\game\components\Clickable.h" />
+    <ClInclude Include="src\game\components\ClickableText.h" />
     <ClInclude Include="src\game\components\CopyTextComponentOnClipboardButton.h" />
     <ClInclude Include="pchs\pch.h" />
     <ClInclude Include="pchs\pch_c++_basic.h" />
@@ -231,6 +240,7 @@
     <ClInclude Include="src\game\components\Component.h" />
     <ClInclude Include="src\game\components\ComponentRender.h" />
     <ClInclude Include="src\game\components\ComponentUpdate.h" />
+    <ClInclude Include="src\game\components\DecisionComponent.h" />
     <ClInclude Include="src\game\components\DeckComponent.h" />
     <ClInclude Include="src\game\components\DialogueBoxDestroyer.h" />
     <ClInclude Include="src\game\components\DialogueDestroyer.h" />
@@ -242,6 +252,7 @@
     <ClInclude Include="src\game\components\DropZone.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
     <ClInclude Include="src\game\components\GetIPv4.h" />
+    <ClInclude Include="src\game\components\ImageWithFrames.h" />
     <ClInclude Include="src\game\components\LobbyStatusIndicator.h" />
     <ClInclude Include="src\game\components\multiplayer\NetEndGame.h" />
     <ClInclude Include="src\game\components\multiplayer\NetLobby.h" />
@@ -250,12 +261,12 @@
     <ClInclude Include="src\game\components\HandComponent.h" />
     <ClInclude Include="src\game\components\managers\AnimatorManager.h" />
     <ClInclude Include="src\game\components\InputForTextWritter.h" />
+    <ClInclude Include="src\game\components\KeyComponent.h" />
     <ClInclude Include="src\game\components\managers\BoardManager.h" />
     <ClInclude Include="src\game\components\managers\CardStateManager.h" />
     <ClInclude Include="src\game\components\managers\DragManager.h" />
     <ClInclude Include="src\game\components\managers\DrawerManager.h" />
     <ClInclude Include="src\game\components\managers\IA_manager.h" />
-    <ClInclude Include="src\game\components\managers\KeyManager.h" />
     <ClInclude Include="src\game\components\managers\Manager.h" />
     <ClInclude Include="src\game\components\managers\MatchManager.h" />
     <ClInclude Include="src\game\components\managers\PizarraManager.h" />
@@ -279,8 +290,6 @@
     <ClInclude Include="src\game\factories\DialogueFactory_V0.h" />
     <ClInclude Include="src\game\factories\NPCFactory.h" />
     <ClInclude Include="src\game\factories\NPCFactory_V0.h" />
-    <ClInclude Include="src\game\factories\DeckBuildingFactory.h" />
-    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h" />
     <ClInclude Include="src\game\factories\FakeCardFactory.h" />
     <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -295,6 +304,7 @@
     <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h" />
     <ClInclude Include="src\game\MultiplayerNamespaces.h" />
+    <ClInclude Include="src\game\gamestates\KeyMenuState.h" />
     <ClInclude Include="src\game\gamestates\TutorialBoardState.h" />
     <ClInclude Include="src\game\gamestates\multiplayerModeState.h" />
     <ClInclude Include="src\game\gamestates\optionsMainMenuState.h" />

@@ -8,6 +8,7 @@
 TypeWriter::TypeWriter(int speed) :
 	speedCounter(0), writingSpeed(speed)
 {
+
 	finaltext = " ";
 	text = " ";
 	i = 0;
@@ -27,21 +28,21 @@ void TypeWriter::initComponent()
 
 void TypeWriter::update()
 {
-	if (finaltext == text)
-	{
+
+	if (finaltext == text) {
 		writing = false;
 	}
 
 	// si no ha acabado de escribir
-	if (writing && finaltext != text)
-	{
+	if (writing && finaltext != text) {
+
 		// tiempo de espera
-		if (speedCounter < writingSpeed)
-		{
+		if (speedCounter < writingSpeed) {
+
 			speedCounter++;
 		}
-		else
-		{
+		else {
+
 			// suma el char siguiente a finaltext
 			finaltext.insert(finaltext.end(), text[i]);
 			//finaltext += text[i];
@@ -75,13 +76,14 @@ void TypeWriter::typeWrite(std::string newtext)
 
 void TypeWriter::finishTypewrite()
 {
-	if (writing)
-	{
+	if (writing) {
+
 		writing = false;
 		finaltext = text;
 		// actualiza el texto
 		setText();
 	}
+	
 }
 
 bool TypeWriter::ended()

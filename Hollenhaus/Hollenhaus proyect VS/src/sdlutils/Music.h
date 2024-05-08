@@ -2,69 +2,65 @@
 
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include <string>
 #include <SDL_mixer.h>
 
-class Music
-{
+class Music {
 public:
+
 	// cannot copy objects of this type!
-	Music& operator=(Music& other) = delete;
+	Music& operator=(Music &other) = delete;
 	Music(const Music&) = delete;
 
-	Music(const std::string& fileName)
-	{
+	Music(const std::string &fileName) {
 		music_ = Mix_LoadMUS(fileName.c_str());
 		assert(music_ != nullptr);
 	}
 
-	Music(Music&& other) noexcept
-	{
+	Music(Music &&other) noexcept {
 		music_ = other.music_;
 		other.music_ = nullptr;
 	}
 
-	Music& operator=(Music&& other) noexcept
-	{
+	Music& operator=(Music &&other) noexcept {
 		this->~Music();
 		music_ = other.music_;
 		other.music_ = nullptr;
 		return *this;
 	}
 
-	virtual ~Music()
-	{
+	virtual ~Music() {
 		if (music_ != nullptr)
 			Mix_FreeMusic(music_);
 	}
 
-	void play(int loops = -1) const
-	{
+	inline void play(int loops = -1) const {
 		assert(loops >= -1 && music_ != nullptr);
 		Mix_PlayMusic(music_, loops);
 	}
 
-	static int setMusicVolume(int volume)
-	{
+	inline static int setMusicVolume(int volume) {
 		assert(volume >= 0 && volume <= 128);
 		return Mix_VolumeMusic(volume);
 	}
 
-	static void haltMusic()
-	{
+	inline static void haltMusic() {
 		Mix_HaltMusic();
 	}
 
-	static void pauseMusic()
-	{
+	inline static void pauseMusic() {
 		Mix_PauseMusic();
 	}
 
-	static void resumeMusic()
-	{
+	inline static void resumeMusic() {
 		Mix_ResumeMusic();
 	}
 
+
 private:
-	Mix_Music* music_;
+	Mix_Music *music_;
 };
+

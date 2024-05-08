@@ -1,33 +1,50 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 
 #include "managers/Manager.h"
 #include "basics/BoxCollider.h"
 
+class Factory;
+
 class ClickDecision :
-	public ComponentUpdate
+    public ComponentUpdate
 {
 public:
-	ClickDecision(int decision, ecs::entity_t parent, int scene);
-
-	~ClickDecision() override
-	{
-	}
+    ClickDecision(int decision, ecs::entity_t parent, int scene);   // PAIGRO AQUI --> en vez de pasarle la escena, le pasas
+                                                                    // el tipo de decision:
+                                                                    // 0 -> no; 1 -> si; 2 -> comprar; 3 -> cambiar escena etc
+                                                                    // crear metodos auxiliares si necesario para settear los valores de los
+                                                                    // tipos de decisiones (ej: setScene())
+    ~ClickDecision();
 
 	void initComponent() override;
 	void update() override;
 
-	void OnLeftClickDown();
-	void OnLeftClickUp();
+    void OnLeftClickDown();
+    void OnLeftClickUp();
 
-	void TakeDecision();
+    void TakeDecision();
+
+    void setScene(int s); // PAIGRO AQUI
+
+    void purchaseCard();
+    void cancelPurchase();
 
 private:
-	ecs::entity_t parent_;
-	int scene_;
+    void caseAccepted();
 
-	int decision_;
-	bool click_;
+    Factory* factory;
 
-	BoxCollider* collider_;
+    ecs::entity_t parent_;
+    int scene_;
+
+    int decision_;
+    bool click_;
+
+    BoxCollider* collider_;
 };
+

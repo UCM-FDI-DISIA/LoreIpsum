@@ -35,12 +35,14 @@ void EndTurnButton::setIA(bool b)
 {
 	activeIA = true;
 	activeMultiplayer = false;
+
 }
 
 void EndTurnButton::setMultiplayer(bool b)
 {
 	activeMultiplayer = true;
 	activeIA = false;
+
 }
 
 void EndTurnButton::ClickButton()
@@ -58,30 +60,30 @@ void EndTurnButton::ClickButton()
 	//}
 
 	//version con IA
-	if (activeIA)
-	{
-		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1)
-		{
+	if (activeIA) {
+
+		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1) {
 			// Se pasa el turno al otro jugador
 			matchManager_->setActualState(Turns::IA);
 
 			// TUTORIAL COSAS
-			ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
-			if (ent != nullptr && ent->hasComponent<TutorialManager>())
-			{
-				ent->getComponent<TutorialManager>()->tutorialActionEnded(
-					Tutorials::Tutorials::BOARD, Tutorials::Board::PRESS_NEXT_TURN);
-				ent->getComponent<TutorialManager>()->tutorialActionEnded(
-					Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
+
+			int state = GameStateMachine::instance()->getCurrentStateEnum();
+			if (state == GameStates::TUTORIALBOARD) {
+				ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::TUTORIAL_MANAGER);
+				if (ent != nullptr && ent->hasComponent<TutorialManager>()) {
+					ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PRESS_NEXT_TURN);
+					ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::NEXT_CARD_1);
+				}
 			}
+			
 		}
 	}
-	else if (activeMultiplayer)
-	{
+	else if (activeMultiplayer) {
+
 		//hacer cosas con el netGame
 
-		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1)
-		{
+		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1) {
 			// Se pasa el turno al otro jugador
 			matchManager_->setActualState(Turns::J2_MULTIPLAYER);
 			matchManager_->changeTurnMultiplayer();

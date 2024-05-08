@@ -1,5 +1,9 @@
 #ifndef GameState_H_
 #define GameState_H_
+
+//Checkml
+#include <game/checkML.h>
+
 #include <array>
 
 #include <SDL_net.h>
@@ -12,18 +16,17 @@ class Manager;
 class Game;
 class Data;
 
-class GameState
-{
+class GameState {
+
 protected:
+
 	static Data* data; // puntero a la data
 
-	//LAS ENTIDADES �NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT 
-	GameState()
-	{
-	}; // constructoras de clases abstractas no deberian ser publicas
+	//LAS ENTIDADES NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT 
+	GameState() {}; // constructoras de clases abstractas no deberian ser publicas
 
 public:
-	virtual ~GameState(); //Destructora
+	virtual ~GameState();		//Destructora
 
 	virtual void refresh(); //borra entidades no vivas
 	virtual void update(); //update de las entidades
@@ -32,6 +35,8 @@ public:
 	//Para testeo de estrada y salida de estados
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
+
+	//virtual void onPause();
 
 	//----Mete una c carta al array de cartas de la tienda de Data.
 	virtual void setShopCard(int c);
@@ -45,30 +50,30 @@ public:
 	virtual void addCardToDrawer(int id);
 	//----Mete dinero al jugador:
 	virtual void addMoney(int money);
+	//----Mete una llave de la leyenda
+	virtual void addKey();
 	//----Quita dinero al jugador.
 	virtual void substractMoney(int money);
 	//----Devuelve el dinero del jugador:
 	virtual int getMoney();
+	//----Devuelve las almas del jugador:
+	virtual int getSouls();
+	//----Devuelve el numero de llaves disponibles
+	virtual int getKeys();
 	//----Comprueba si una carta con id id esta en el mazo.
 	virtual bool checkCardIsInMaze(int id);
 	//----Devuelve el caso actual.
 	virtual int getCurrentCase();
-
-	//----
-	virtual void cardSelected(int prize)
-	{
-	}
-
-	//----
-	virtual void deSelected()
-	{
-	}
+	//----Para ser llamado cuando una carta es seleccionada para que se iluminen las monedas que sean.
+	virtual void cardSelected(int prize) {}
+	//----Para resetear el brillo de las monedas.
+	virtual void deSelected() {}
 
 	virtual void saveData();
 	virtual void loadData();
 
 	// ---- crea carta ----
-	virtual ecs::entity_t createCard(int id, Vector2D pos) { return nullptr; };
+	virtual ecs::entity_t createCard(int id, Vector2D pos);
 
 	// ---- getters ----
 	virtual std::array<int, 50> getDrawer();

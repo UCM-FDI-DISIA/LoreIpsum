@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "../ComponentUpdate.h"
 #include "SpriteRenderer.h"
 //#include "Transform.h"
@@ -9,7 +13,7 @@ class SpriteRenderer;
 class Vector2D;
 
 
-class BoxCollider : public ComponentUpdate
+class BoxCollider :public ComponentUpdate
 {
 public:
 	/// <summary>
@@ -52,6 +56,7 @@ public:
 	void update() override;
 
 private:
+
 	// El tamano depende del sprite?
 	bool anchoredToSprite_;
 
@@ -70,3 +75,4 @@ private:
 	// Tamano del collider, depende de la escala del transform
 	Vector2D size_;
 };
+

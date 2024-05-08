@@ -1,20 +1,24 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 #include <vector>
 #include "basics/Transform.h"
 #include "../../utils/tweeny-3.2.0.h"
 #include <array>
 
-constexpr constexpr int
-	CARD_SEPARATION = 50,
-	ARCH_AMPLITUDE = 750;
+const int	
+					CARD_SEPARATION = 50,
+					ARCH_AMPLITUDE	= 750;
 
 class HandComponent :
 	public ComponentUpdate
 {
 public:
 	HandComponent();
-	~HandComponent() override;
+	~HandComponent();
 
 	void initComponent() override;
 
@@ -35,9 +39,9 @@ public:
 	int handSize() { return cardsInHand_.size(); }
 
 	/// movidas para J2
-	void setUpwards() { downwards_ = false; }
+	void setUpwards()	{ downwards_ = false; }
 	void setDownwards() { downwards_ = true; }
-	void setOwner(Players::Owner value) { owner_ = value; }
+	void setOwner(Players::Owner value) { owner_ = value;}
 	Players::Owner getOwner() const { return owner_; }
 
 	// devuelve si las animaciones estan hechas
@@ -53,7 +57,7 @@ public:
 private:
 	float cardScale_ = 0.65f;
 	float cardScaleBoard_ = 0.53f;
-
+	
 	void refreshPositions();
 
 	// Transform de la mano
@@ -72,8 +76,8 @@ private:
 	Players::Owner owner_;
 
 	//Cosas del tween
-	std::array<tweeny::tween<float>, 7> tweenDrawCardX;
-	std::array<tweeny::tween<float>, 7> tweenDrawCardY;
+	std::array<tweeny::tween<float>,7 >tweenDrawCardX;
+	std::array<tweeny::tween<float>,7 >tweenDrawCardY;
 	ecs::entity_t carta;
 	bool tween = false;
 };

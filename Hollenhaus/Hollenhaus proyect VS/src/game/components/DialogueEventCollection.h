@@ -1,4 +1,7 @@
-#include <../pchs/pch.h>
+#pragma once
+
+//Checkml
+#include <game/checkML.h>
 
 #include "../Namespaces.h"
 
@@ -16,7 +19,7 @@ public:
 	static void StartAnimation();
 
 	//ConfirmationPopUp
-	static void ConfirmationPopUp(ecs::entity_t parent);
+	static void ConfirmationPopUp(ecs::entity_t parent, int greenDecision, int redDecision, int scene);
 
 	//ActionEnded
 	static void ActionEnded();
@@ -29,35 +32,37 @@ public:
 	///	y como concepto inicial ***
 
 	static std::function<void()> callEvent(
-		int index, int scene, ecs::entity_t parent)
+		int index, int scene, ecs::entity_t parent, int gd, int rd)
 	{
 		switch (index)
 		{
 		case DialogueEvents::None:
 			return []
-			{
-			};
+				{
+
+				};
 		case DialogueEvents::ChangeScene:
 			return [scene]
-			{
-				ChangeScene(scene);
-			};
+				{
+					ChangeScene(scene);
+				};
 
 			break;
 		case DialogueEvents::StartAnimation:
 			return []
-			{
-			};
+				{
+
+				};
 		case DialogueEvents::ConfirmMatchPopUp:
-			return [parent]
-			{
-				ConfirmationPopUp(parent);
-			};
+			return [parent, gd, rd, scene]
+				{
+					ConfirmationPopUp(parent, gd, rd, scene);
+				};
 		case DialogueEvents::ActionEnded:
 			return []
-			{
-				ActionEnded();
-			};
+				{
+					ActionEnded();
+				};
 		default:
 			return nullptr;
 		}

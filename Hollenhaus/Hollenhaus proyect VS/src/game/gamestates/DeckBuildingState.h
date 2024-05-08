@@ -1,5 +1,8 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include "GameState.h"
 class Card;
 class PizarraManager;
@@ -10,8 +13,9 @@ class TextComponent;
 class DeckBuildingState : public GameState
 {
 public:
-	DeckBuildingState(); //Constructora
 
+	DeckBuildingState();		//Constructora
+	~DeckBuildingState() { }
 	void update() override;
 	void render() const override;
 	void refresh() override;
@@ -19,19 +23,23 @@ public:
 	void onEnter() override;
 	void onExit() override;
 
+	void onPauseDB();
+
 	void moveToPizarra(Card* card);
 	void moveToDrawer(Card* card);
 
 	ecs::entity_t createCard(int id, Vector2D pos) override;
 
 private:
+	ecs::entity_t rice;
 	PizarraManager* pizarra_;
 	DrawerManager* drawer_;
-
 	TextComponent* cantCards_;
-
 	Factory* factory;
-	//Cambiar a combate (Tarotista) -> Teléfono
-	//Gestionar mazo
-	//Volver a CIU
+
+	ecs::entity_t fbSaved;
+	tweeny::tween<int> tweenFade;
+	int fbTimer = 0;
+	bool paused;
+	void resetFade();
 };

@@ -9,7 +9,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Hey, que tal",
+              "text": "Hola, que tal?",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -17,7 +17,7 @@
             },
             {
               "nodeID": 1,
-              "text": "He oido por ahi que ha salido un nuevo juego de cartas",
+              "text": "He oido por ahi que ha salido un nuevo juego de cartas.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -25,7 +25,7 @@
             },
             {
               "nodeID": 2,
-              "text": "jolenjaus creo?",
+              "text": "Hulenjaus, creo?",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -33,7 +33,7 @@
             },
             {
               "nodeID": 3,
-              "text": "no se, no juego mucho",
+              "text": "No se, no juego mucho.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -46,7 +46,39 @@
             },
             {
               "nodeID": 4,
-              "text": "pero dicen que esta guapo",
+              "text": "Dicen que esta muy guapo,",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "aunque que voy a saber yo, solo soy Paco...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "Por cierto,",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "si te estas preguntando por que hablo sin signos de puntuacion...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "...es porque no se parsear un JSON mejor, je, je.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -120,7 +152,7 @@
             {
               "nodeID": 4,
               "text": "vamos, el coach rcibiendo un balon",
-              "eventStart": 0, 
+              "eventStart": 0,
               "eventFinish": 0,
               "events": [
               ]
@@ -153,17 +185,17 @@
               ]
             },
             {
-                "nodeID": 3,
-                "text": "Pero empecemos desde el principio.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                    {
-                        "timing": 1,
-                        "type": 4,
-                        "scene": 0
-                    }
-                ]
+              "nodeID": 2,
+              "text": "Pero empecemos desde el principio.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
             }
           ]
         },
@@ -212,46 +244,6 @@
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
-              ]
-            },
-            {
-              "nodeID": 2,
-              "text": "Abajo a la izquierda guardan su valor",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 3,
-              "text": "Cuando coloques una carta en el tablero se te sumara ese valor a tu puntuacion",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 4,
-              "text": "En el centro de la carta se encuentra un pictograma que indica el efecto que posee",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 0,
-              "text": "Ademas de sumar un valor, las cartas aplicaran un efecto al tablero",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 0,
-              "text": "Sigue jugando y descubriras todos los efectos!",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
                 {
                   "timing": 1,
                   "type": 4,
@@ -267,31 +259,15 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Este es tu mazo",
+              "text": "Abajo a la izquierda guardan su valor",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
               ]
             },
             {
-                "nodeID": 1,
-                "text": "El mazo se compone de las cartas que tu quieras. Desde tu oficina lo puedes modificar.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
-            },
-            {
-                "nodeID": 1,
-                "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
-            },
-            {
-              "nodeID": 2,
-              "text": "Roba una carta de tu mazo para tenerla en tu mano.",
+              "nodeID": 1,
+              "text": "Cuando coloques una carta en el tablero se te sumara ese valor a tu puntuacion",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -309,32 +285,24 @@
           "autoConvo": false,
           "nodes": [
             {
-              "nodeID": 0,
-              "text": "Bien hecho!",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 2,
-              "text": "Solo podras usar cartas que tienes en tu mano",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 3,
-              "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero.",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
               "nodeID": 4,
-              "text": "Prueba a arrastrar la carta a una celda!",
+              "text": "En el centro de la carta se encuentra un pictograma que indica el efecto que posee",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "Ademas de sumar un valor, las cartas aplicaran un efecto al tablero",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 6,
+              "text": "Sigue jugando y descubriras todos los efectos!",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -353,7 +321,15 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "A la derecha del tablero tienes la puntuacion de cada jugador",
+              "text": "Este es tu mazo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "El mazo se compone de las cartas que tu quieras. Desde tu oficina lo puedes modificar.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -361,7 +337,7 @@
             },
             {
               "nodeID": 2,
-              "text": "El jugador que tenga mas puntos al llenarse el tablero gana!",
+              "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -369,7 +345,7 @@
             },
             {
               "nodeID": 3,
-              "text": "Suerte!",
+              "text": "Roba una carta de tu mazo para tenerla en tu mano.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -396,7 +372,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Completar distintas acciones supondra un coste.",
+              "text": "Solo podras usar cartas que tienes en tu mano",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -404,6 +380,76 @@
             },
             {
               "nodeID": 2,
+              "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Prueba a arrastrar la carta a una celda!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 7,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "A la derecha del tablero tienes la puntuacion de cada jugador",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "El jugador que tenga mas puntos al llenarse el tablero gana!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Suerte!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 8,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Completar distintas acciones supondra un coste.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
               "text": "Robar una carta cuesta 1 punto de accion",
               "eventStart": 0,
               "eventFinish": 0,
@@ -411,12 +457,12 @@
               ]
             },
             {
-                "nodeID": 2,
-                "text": "Colocar una carta en el tablero dependera de cada carta.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
+              "nodeID": 2,
+              "text": "Colocar una carta en el tablero dependera de cada carta.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
             },
             {
               "nodeID": 3,
@@ -434,7 +480,7 @@
           ]
         },
         {
-          "convoID": 7,
+          "convoID": 8,
           "autoConvo": false,
           "nodes": [
             {
@@ -461,7 +507,7 @@
           ]
         },
         {
-          "convoID": 8,
+          "convoID": 10,
           "autoConvo": false,
           "nodes": [
             {
@@ -489,7 +535,7 @@
           ]
         },
         {
-          "convoID": 9,
+          "convoID": 11,
           "autoConvo": false,
           "nodes": [
             {
@@ -508,7 +554,7 @@
           ]
         },
         {
-          "convoID": 10,
+          "convoID": 12,
           "autoConvo": false,
           "nodes": [
             {
@@ -530,7 +576,7 @@
           ]
         },
         {
-          "convoID": 11,
+          "convoID": 13,
           "autoConvo": false,
           "nodes": [
             {
@@ -573,7 +619,7 @@
           ]
         },
         {
-          "convoID": 12,
+          "convoID": 14,
           "autoConvo": false,
           "nodes": [
             {
@@ -600,7 +646,165 @@
           ]
         }
       ]
+    },
+    {
+      "NPCName": "Tienda",
+      "convo": [
+        {
+          "convoID": "0",
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": "0",
+              "text": "Has terminado de mirar?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 3,
+                  "gdecision": 2,
+                  "rdecision": 0
+                }
+              ]
+            },
+            {
+              "nodeID": "1",
+              "text": "Seguro que quieres comprar esta carta?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Cleon",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Hola? Llamo por el anuncio de la agencia de sustos. A ver si jodes un poco a mi companyero de trabajo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "El se llama Rome, y claro, Rome me debe dinero porque le pille con una chavala y el esta casado sabes",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "asi que le pregunte y resulta que esta enrollado con su profesora de pilates y yo le dije, no sera verdad?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Porque la profesora es de la edad de nuestras madres y la mujer esta embarazada, asi que dije",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 0,
+                  "scene": 0
+                }
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "Pues le voy a pedir pasta y le voy a extorsionar porque el y yo en realidad nunca nos hemos llevado bien",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "y el rector siempre le quiso mas a el y bueno algo tengo que sacar yo de esto asi que voy y le digo 2000 pavos",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 6,
+              "text": "y no se lo digo a la parienta y ni puto caso y coje el tio y llama a otro companyero de trabajo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 7,
+              "text": "para contarle la verdad sobre aquella fatidica tarde del 2010",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 8,
+              "text": "y pues eso, que quiero que le jodas la vida",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 2,
+                  "gdecision": 3,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Aceptas? Te lo compensare con un aprobado",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Muchas gracias de verdad",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Cuando quieras hablas con la medium",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
     }
-
   ]
 }

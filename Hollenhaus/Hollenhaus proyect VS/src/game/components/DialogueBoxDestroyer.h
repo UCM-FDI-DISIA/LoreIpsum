@@ -1,15 +1,15 @@
 #pragma once
-#include <../pchs/pch.h>
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 
 class DialogueBoxDestroyer : public ComponentUpdate
 {
 public:
 	DialogueBoxDestroyer(ecs::entity_t child_);
-
-	~DialogueBoxDestroyer() override
-	{
-	}
+	~DialogueBoxDestroyer() {}
 
 	void initComponent() override;
 	void update() override;
@@ -19,3 +19,4 @@ public:
 private:
 	ecs::entity_t text;
 };
+

@@ -53,15 +53,33 @@ void SpriteRenderer::render() const
 		flip = SDL_FLIP_NONE;
 
 	// Llama a un render custom con todo lo que nos hace falta.
-	texture_->render(
-		transform_->getGlobalPos().getX(),
-		transform_->getGlobalPos().getY(),
-		transform_->getGlobalScale().getX(),
-		transform_->getGlobalScale().getY(),
-		transform_->getGlobalAngle(),
-		flip,
-		color,
-		opacity);
+	if (!isAnimated)
+	{
+		texture_->render(
+			transform_->getGlobalPos().getX(),
+			transform_->getGlobalPos().getY(),
+			transform_->getGlobalScale().getX(),
+			transform_->getGlobalScale().getY(),
+			transform_->getGlobalAngle(),
+			flip,
+			color,
+			opacity);
+	}
+	else
+	{
+		texture_->render(
+			transform_->getGlobalPos().getX(),
+			transform_->getGlobalPos().getY(),
+			sourceRect,
+			nRows,
+			nCols,
+			transform_->getGlobalScale().getX(),
+			transform_->getGlobalScale().getY(),
+			transform_->getGlobalAngle(),
+			flip,
+			color,
+			opacity);
+	}
 }
 
 Vector2D SpriteRenderer::getImageSize()

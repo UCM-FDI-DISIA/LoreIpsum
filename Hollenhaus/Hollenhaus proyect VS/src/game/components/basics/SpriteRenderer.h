@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "../ComponentRender.h"
 
 class Transform;
@@ -11,13 +15,13 @@ public:
 	/// Constructora usa textura json
 	/// </summary>
 	/// <param name="textID"> ID de la textura en el Json </param>
-	SpriteRenderer(std::string _textID);
+	SpriteRenderer(const std::string _textID);
 
 	/// <summary>
 	/// Cambiar la textura en ejecucion
 	/// </summary>
 	/// <param name="_textID">ID de la textura en el Json</param>
-	void setTexture(std::string _textID);
+	void setTexture(const std::string _textID);
 
 	void setTexture(Texture* _textu);
 
@@ -37,8 +41,7 @@ public:
 	/// <param name="g">Cantidad de verde 0-255</param>
 	/// <param name="b">Cantidad de azul 0-255</param>
 	/// <param name="a">0 - no multiplica, 255 - multiplica todo el color</param>
-	void setMultiplyColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255)
-	{
+	void setMultiplyColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255) { 
 		color.r = r;
 		color.g = g;
 		color.b = b;
@@ -57,12 +60,19 @@ public:
 	Vector2D getImageSize();
 
 	// Getter textura
-	Texture* getTexture()
-	{
+	Texture* getTexture() {
 		return texture_;
 	}
 
+	void setAnimated(bool v) { isAnimated = v; }
+	bool getAnimated() const { return isAnimated; }
+	void setSourceRect(SDL_Rect r) { sourceRect = r;}
+	SDL_Rect getSourceRect() const { return sourceRect; }
+	void setRows(int n) { nRows = n; }
+	void setCols(int n) { nCols = n; }
+
 private:
+
 	// Instancia del singleton
 	SDLUtils& sdl_ = *SDLUtils::instance();
 
@@ -84,4 +94,14 @@ private:
 
 	// Alfa de la textura
 	int opacity = 255;
+
+
+
+	/// animaciones
+	bool isAnimated = false;
+	SDL_Rect sourceRect = { 0, 0, 0, 0 };
+	SDL_Rect destRect = { 0, 0, 0, 0 };
+	int nRows;
+	int nCols;
 };
+

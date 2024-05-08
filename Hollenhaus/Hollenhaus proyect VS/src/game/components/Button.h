@@ -1,11 +1,14 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "../../utils/Vector2D.h"
 #include "ComponentUpdate.h"
 #include <functional>
 
 // utiliza callbacks funcionales de tipo <void(void)>
 using SDLEventCallback = std::function<void(void)>;
-
 class Button : public ComponentUpdate
 {
 private:
@@ -16,7 +19,6 @@ private:
 		MOUSE_OVER,
 		MOUSE_CLICK
 	};
-
 	int currentState;
 
 	// ---- CALLBACKS ----
@@ -27,7 +29,7 @@ private:
 
 public:
 	Button();
-	~Button() override;
+	~Button();
 
 	void update() override;
 	void initComponent() override;
@@ -38,3 +40,4 @@ public:
 	void OnLeftClickDown();
 	void OnLeftClickUp();
 };
+

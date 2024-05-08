@@ -1,6 +1,7 @@
 #pragma once
 
-#include <../pchs/pch.h>
+//Checkml
+#include <game/checkML.h>
 
 class Factory;
 
@@ -8,82 +9,91 @@ class Factory;
 class TutorialBoardManager : public ComponentUpdate
 {
 public:
-	TutorialBoardManager(ecs::entity_t b, ecs::entity_t t);
-	~TutorialBoardManager() override;
+    TutorialBoardManager(ecs::entity_t b, ecs::entity_t t);
+    ~TutorialBoardManager() override;
 
-	void initComponent() override;
-	void update() override;
+    void initComponent() override;
+    void update() override;
 
-	void nextTutorialState();
-	void updateTutorialState();
-	bool actionEnded();
-	void resetEnded();
-	void setState();
+    void nextTutorialState();
+    void updateTutorialState();
+    bool actionEnded();
+    void resetEnded();
+    void setState();
 
-	void setDeck(ecs::entity_t d) { deck = d; };
-	void setNextTurn(ecs::entity_t n) { nextTurn = n; };
-	void setCard(ecs::entity_t c) { card = c; };
+    void setDeck(ecs::entity_t d) { deck = d; };
+    void setNextTurn(ecs::entity_t n) { nextTurn = n; };
+    void setCard(ecs::entity_t c) { card = c; };
 
-	//
-	ecs::entity_t createPopUp(float x, float y, std::string popup, int convo);
-	void setBase(ecs::entity_t b);
-	void setTutorial(ecs::entity_t t);
-	void setObjs(std::vector<ecs::entity_t> v);
-	void setLayers(std::vector<ecs::entity_t> v);
-	void addToHand(ecs::entity_t c);
+    //
+    ecs::entity_t createPopUp(float x, float y, std::string popup, int convo);
+    void setBase(ecs::entity_t b);
+    void setTutorial(ecs::entity_t t);
+    void setObjs(std::vector<ecs::entity_t> v);
+    void setLayers(std::vector<ecs::entity_t> v);
+    void addToHand(ecs::entity_t c);
+
 
 private:
-	int currentState; //
-	int nextState; //
-	bool ended; //
-	bool checked;
 
-	Factory* factory; //
-	ecs::entity_t base; // entidad para colocar los popups, se va moviendo segun donde los queramos
-	ecs::entity_t tutorial;
-	ecs::entity_t colliderWallBase;
-	std::vector<ecs::entity_t> objs;
+    int currentState;       //
+    int nextState;          //
+    bool ended;             //
+    bool checked;
 
-	ecs::entity_t deck;
-	ecs::entity_t nextTurn;
-	ecs::entity_t card;
-	std::vector<ecs::entity_t> hand;
+    Factory* factory;               //
+    ecs::entity_t base;             // entidad para colocar los popups, se va moviendo segun donde los queramos
+    ecs::entity_t tutorial;
+    ecs::entity_t colliderWallBase;
+    std::vector<ecs::entity_t> objs;
+    ecs::entity_t image;
 
-	int cooldown = 10;
-	int count = 0;
+    ecs::entity_t deck;
+    ecs::entity_t nextTurn;
+    ecs::entity_t card;
+    std::vector<ecs::entity_t> hand;
 
-	// gestion de estados individuales
-	void setINIT();
+    int cooldown = 10;
+    int count = 0;
 
-	void setCARD();
+    // gestion de estados individuales
+    void setINIT();
 
-	void setCARDINFO();
+    void setCARD();
 
-	void setDECK();
+    void setCARDPOINTS();
 
-	void setDRAWCARD();
+    void setCARDCOST();
 
-	void setCELL();
+    void setCARDIMAGE();
 
-	void setPLACECARD();
+    void setDECK();
 
-	void setPOINTS();
+    void setDRAWCARD();
 
-	void setACTION();
+    void setCELL();
 
-	void setACTIONPTS();
+    void setPLACECARD();
 
-	void setNEXTTURN();
+    void setPOINTS();
 
-	void setPRESSNEXTTURN();
+    void setACTION();
 
-	void setAI_TURN();
+    void setACTIONPTS();
 
-	void setNEXTCARD1();
+    void setNEXTTURN();
 
-	void setEFFECTS1();
+    void setPRESSNEXTTURN();
 
-	void setENDTUTORIAL();
+    void setAI_TURN();
 
-	void setFREEDOM();
+    void setNEXTCARD1();
+
+    void setEFFECTS1();
+
+    void setENDTUTORIAL();
+
+    void setFREEDOM();
+    
+
 };

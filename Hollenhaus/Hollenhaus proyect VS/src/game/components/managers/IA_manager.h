@@ -1,5 +1,8 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include "../ComponentUpdate.h"
 
 #include "../../../utils/Vector2D.h"
@@ -16,61 +19,57 @@ class MatchManager;
 class IA_manager : public ComponentUpdate
 {
 public:
-#pragma region Structs internos
 
-	struct CartaColocada
-	{
+	#pragma region Structs internos
+
+	struct CartaColocada {
+
 		//constructoras
-		CartaColocada()
-		{
-		};
-
+		CartaColocada() {};
 		CartaColocada(int indice, Vector2D pos)
-			: indice(indice), pos(pos)
-		{
-		};
+			:indice(indice), pos(pos) {};
 
-		int indice; //indice en la mano
-		Vector2D pos; //posicon en el tablero (-1,-1) no se coloca
+		int indice;//indice en la mano
+		Vector2D pos;//posicon en el tablero (-1,-1) no se coloca
 	};
 
-	struct InfoJugada
-	{
-		//constructoras
-		InfoJugada()
-		{
-		};
+	struct InfoJugada {
 
+		//constructoras
+		InfoJugada() {};
 		InfoJugada(int cartasRobadas, std::vector<CartaColocada> cartas)
-			: cartasRobadas(cartasRobadas), cartas(cartas)
-		{
-		};
+			: cartasRobadas(cartasRobadas), cartas(cartas) {};
 
 		int cartasRobadas;
-		std::vector<CartaColocada> cartas; //hand + cartas robadas	
+		std::vector<CartaColocada> cartas;//hand + cartas robadas	
 	};
 
-	struct State
-	{
-		static IA_manager* ia_manager;
+	struct State {
+		
+		static IA_manager* ia_manager ;
 
 		//constructora(inicializa los tableros)
-		State()
-		{
-			int N = 4; //boardSize
+		State() {
+
+			int N = 4;//boardSize
 
 			//inicializacion de los tableros
 			std::vector<Card*> cards(N, nullptr);
-			std::vector<Players::Owner> owners(N, Players::NONE);
-			std::vector<bool> bools(N, false);
+			std::vector<Players::Owner> owners(N,Players::NONE);
+			std::vector<bool> bools(N,false);
 
-			for (int i = 0; i < N; i++)
-			{
+			for (int i = 0; i < N; i++) {
 				_boardCards.push_back(cards);
 				_boardOwners.push_back(owners);
 				_boardBools.push_back(bools);
 			}
 		};
+
+
+		~State() {
+
+			
+		}
 
 		//varios tableros para representar el estado 
 		std::vector<std::vector<bool>> _boardBools;
@@ -93,14 +92,13 @@ public:
 		//devuelve la diferencia de puntos entre el jugador y el enemigo 
 		//PuntosJugador -PuntosEnemigo
 		// el valor es positivo si el jugador tiene mas puntos, y negativo si tiene menos
-		int heuristic()
-		{
+		int heuristic() {
 			return ia_manager->heuristic(this);
 		};
 
 		//aplica una jugada al estado
-		void apply(InfoJugada jugada, bool isPlayer)
-		{
+		void apply(InfoJugada jugada, bool isPlayer) {
+
 			//guardar la jugada que lleva a este estado
 			_jugada = jugada;
 
@@ -112,19 +110,18 @@ public:
 			auto currentPlayersEnum = isPlayer ? Players::PLAYER1 : Players::PLAYER2;
 
 			//robarCartas
-			for (int i = 0; i < jugada.cartasRobadas; i++)
-			{
+			for (int i = 0; i < jugada.cartasRobadas; i++) {
 				Card* c = currentDeck.back();
 				currentDeck.pop_back();
 				currentHand.push_back(c);
 			}
 
 			//poner cartas en el mazo
-			for (int i = 0; i < jugada.cartas.size(); i++)
-			{
+			for (int i = 0; i < jugada.cartas.size(); i++) {
+
 				//si se coloca la carta
-				if (jugada.cartas[i].pos.getX() != -1)
-				{
+				if (jugada.cartas[i].pos.getX() != -1) {
+
 					int posX = jugada.cartas[i].pos.getX();
 					int posY = jugada.cartas[i].pos.getY();
 
@@ -139,24 +136,24 @@ public:
 					//incrementar el numero de cartas colocadas
 					nCartasColocadas++;
 				}
-			}
+			}		
 		}
 	};
 
-#pragma endregion
+	#pragma endregion
 
-#pragma region Metodos Basicos
+	#pragma region Metodos Basicos
 
 	IA_manager();
-	~IA_manager() override;
+	~IA_manager();
 
 	void initComponent() override;
 
 	void update() override;
 
-#pragma endregion
+	#pragma endregion
 
-#pragma region Setters de referencias
+	#pragma region Setters de referencias
 
 	void setMatchManager(MatchManager* matchM);
 	void setBoardManager(BoardManager* boardM);
@@ -167,15 +164,17 @@ public:
 	void setPlayerDeck(DeckComponent* playerD);
 	void setEnemyDeck(DeckComponent* enemyD);
 
-#pragma endregion
+	#pragma endregion
 
 
 	void StartTurn();
 	void RobarCarta();
 	void ColocarCarta();
 
+
 private:
-#pragma region Internal voids
+
+	#pragma region Internal voids
 
 	int heuristic(State* s);
 
@@ -184,7 +183,7 @@ private:
 		std::vector<std::vector<CartaColocada>>& soluciones,
 		std::vector<CartaColocada>& solAct,
 		int puntosRestantes,
-		const std::vector<Card*>& playerHand, //mano del jugador, ref const
+		const std::vector<Card*>& playerHand,//mano del jugador, ref const
 		std::vector<std::vector<bool>>& _board // true si ocupada, false si libre
 	);
 
@@ -195,11 +194,11 @@ private:
 
 	int minimax(int depth, int h, bool isPlayer, State& current_state, State*& best);
 
-	void makePlay(const InfoJugada& play);
+	void makePlay(const InfoJugada &play);
 
 #pragma endregion
 
-#pragma region Referencias externas
+	#pragma region Referencias externas
 
 	MatchManager* matchManager;
 	BoardManager* boardManager;
@@ -210,7 +209,9 @@ private:
 	DeckComponent* playerDeckCmp;
 	DeckComponent* enemyDeckCmp;
 
-#pragma endregion
+	#pragma endregion
+
+	int maxCardInHand = 6;
 
 
 	// ------ TWEENS ------
@@ -218,4 +219,13 @@ private:
 	bool makePlay_;
 	bool colocadas_;
 	uint16_t cartasColocadas_;
+
+
+	//para el borrado de memoria
+	std::vector<Card*> toBeDeleted;
 };
+
+
+
+
+

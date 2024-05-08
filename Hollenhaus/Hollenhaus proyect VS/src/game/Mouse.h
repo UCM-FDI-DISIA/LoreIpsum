@@ -1,5 +1,8 @@
 ﻿#pragma once
-//#include <SDL_rect.h>
+
+//Checkml
+#include <game/checkML.h>
+
 #include <string>
 
 class Texture;
@@ -11,7 +14,6 @@ class Mouse
 	SDL_Rect srcRect_;
 
 	int frameWidth_;
-
 public:
 	Mouse(const std::string&, int);
 	~Mouse();

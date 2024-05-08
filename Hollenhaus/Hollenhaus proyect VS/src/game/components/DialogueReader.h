@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 #include <string>
 
@@ -26,4 +30,6 @@ private:
 	DialogueDestroyer* dialogueDestroyer_;
 
 	void exeEvents(std::vector<JsonData::DialogueEventS> events);
+
 };
+

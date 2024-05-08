@@ -2,6 +2,9 @@
 
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include <cstdint>
 
 #include "GenID.h"
@@ -34,7 +37,8 @@
     MATCH_MANAGER, \
 	PADDLE, \
 	TUTORIAL_MANAGER, \
-    DRAG_MANAGER
+	DECISION_MANAGER, \
+    DRAG_MANAGER			// PAIGRO AQUI
 
 // Systems list - must have at least one element
 //
@@ -45,132 +49,121 @@
 #pragma endregion
 
 
-namespace ecs
-{
-	// forward declaration of some classes, to be used when we
-	// just need to know that they exist
-	struct Component;
-	struct Entity;
-	class Manager;
-	class System;
+namespace ecs {
 
-	using entity_t = Entity*;
+// forward declaration of some classes, to be used when we
+// just need to know that they exist
+struct Component;
+struct Entity;
+class Manager;
+class System;
 
-	// We define type for the identifiers so we can change them easily.
-	// For example, if we have less than 256 components we can use one
-	// byte, i.e. uint8_t, if we have up to 512 we can use uint16_t,
-	// and so on ...
-	//
-	using cmpId_t = uint8_t;
-	using grpId_t = uint8_t;
-	using hdlrId_t = uint8_t;
-	using sysId_t = uint8_t;
+using entity_t = Entity*;
 
-	// we use a name space for the components enum to avoid conflicts
-	namespace cmpU
-	{
-		// list of component identifiers - note that we rely on that the
-		// first number is 0 in C/C++ standard
-		enum cmpUId : cmpId_t
-		{
-			_CMPS_U_LIST_,
-			/* taken from ../game/ecs_defs */
+// We define type for the identifiers so we can change them easily.
+// For example, if we have less than 256 components we can use one
+// byte, i.e. uint8_t, if we have up to 512 we can use uint16_t,
+// and so on ...
+//
+using cmpId_t = uint8_t;
+using grpId_t = uint8_t;
+using hdlrId_t = uint8_t;
+using sysId_t = uint8_t;
 
-			// do not remove this
-			_LAST_CMP_ID
-		};
-	}
+// we use a name space for the components enum to avoid conflicts
+namespace cmpU {
 
-	namespace cmpR
-	{
-		// list of component identifiers - note that we rely on that the
-		// first number is 0 in C/C++ standard
-		enum cmpRId : cmpId_t
-		{
-			_CMPS_R_LIST_,
-			/* taken from ../game/ecs_defs */
+// list of component identifiers - note that we rely on that the
+// first number is 0 in C/C++ standard
+enum cmpUId : cmpId_t {
+	_CMPS_U_LIST_, /* taken from ../game/ecs_defs */
 
-			// do not remove this
-			_LAST_CMP_ID
-		};
-	}
+	// do not remove this
+	_LAST_CMP_ID
+};
+}
+
+namespace cmpR {
+
+// list of component identifiers - note that we rely on that the
+// first number is 0 in C/C++ standard
+enum cmpRId : cmpId_t {
+	_CMPS_R_LIST_, /* taken from ../game/ecs_defs */
+
+	// do not remove this
+	_LAST_CMP_ID
+};
+}
 
 
-	namespace grp
-	{
-		// list of group identifiers - note that we rely on that the
-		// first number is 0 in C/C++ standard
-		enum grpId : cmpId_t
-		{
-			DEFAULT,
-			_GRPS_LIST_,
-			/* taken from ../game/ecs_defs */
+namespace grp {
+// list of group identifiers - note that we rely on that the
+// first number is 0 in C/C++ standard
+enum grpId : cmpId_t {
+	DEFAULT,
+	_GRPS_LIST_, /* taken from ../game/ecs_defs */
 
-			// do not remove this
-			_LAST_GRP_ID
-		};
-	}
+	// do not remove this
+	_LAST_GRP_ID
+};
+}
 
-	namespace hdlr
-	{
-		// list of handler identifiers - note that we rely on that the
-		// first number is 0 in C/C++ standard
-		enum hdlrId : hdlrId_t
-		{
-			_HDLRS_LIST_,
-			/* taken from ../game/ecs_defs */
+namespace hdlr {
+// list of handler identifiers - note that we rely on that the
+// first number is 0 in C/C++ standard
+enum hdlrId : hdlrId_t {
+	_HDLRS_LIST_, /* taken from ../game/ecs_defs */
 
-			// do not remove this
-			_LAST_HDLR_ID
-		};
-	}
+	// do not remove this
+	_LAST_HDLR_ID
+};
+}
 
-	namespace sys
-	{
-		// list of system identifiers - note that we rely on that the
-		// first number is 0 in C/C++ standard
-		enum sysId : hdlrId_t
-		{
-			_SYS_LIST_,
-			/* taken from ../game/ecs_defs */
+namespace sys {
+// list of system identifiers - note that we rely on that the
+// first number is 0 in C/C++ standard
+enum sysId : hdlrId_t {
+	_SYS_LIST_, /* taken from ../game/ecs_defs */
 
-			// do not remove this
-			_LAST_SYS_ID
-		};
-	}
+	// do not remove this
+	_LAST_SYS_ID
+};
+}
 
-	// GetID stuff
+// GetID stuff
 
-	constexpr cmpId_t maxComponentUpdateId = 1000;
-	template <typename T>
-	cmpId_t cmpUpdateId = GenID::getUpdateId<T>();
+constexpr cmpId_t maxComponentUpdateId = 1000;
+template<typename T>
+cmpId_t cmpUpdateId = GenID::getUpdateId<T>();
 
-	constexpr cmpId_t maxComponentRenderId = 100;
-	template <typename T>
-	cmpId_t cmpRenderId = GenID::getRenderId<T>();
+constexpr cmpId_t maxComponentRenderId = 100;
+template<typename T>
+cmpId_t cmpRenderId = GenID::getRenderId<T>();
 
 
-	//IDs max
-	constexpr cmpId_t maxGroupId = grp::grpId::_LAST_GRP_ID;
-	constexpr hdlrId_t maxHandlerId = hdlr::hdlrId::_LAST_HDLR_ID;
-	constexpr sysId_t maxSystemId = sys::sysId::_LAST_SYS_ID;
+//IDs max
+constexpr cmpId_t maxGroupId = grp::grpId::_LAST_GRP_ID;
+constexpr hdlrId_t maxHandlerId = hdlr::hdlrId::_LAST_HDLR_ID;
+constexpr sysId_t maxSystemId = sys::sysId::_LAST_SYS_ID;
 
 
-	// a template variable to obtain the system id.
-	template <typename T>
-	constexpr sysId_t sysId = T::id;
+// a template variable to obtain the system id.
+template<typename T>
+constexpr sysId_t sysId = T::id;
 
-	// a macro for component identifier declaration, e.g., __CMPID_DECL__(ecs::cmp::TRANSFORM)
-	// expands to:
-	//
-	//   constexpr static ecs::cmpId_t id = ecs::cmp::TRANSFORM;
-	//
+// a macro for component identifier declaration, e.g., __CMPID_DECL__(ecs::cmp::TRANSFORM)
+// expands to:
+//
+//   constexpr static ecs::cmpId_t id = ecs::cmp::TRANSFORM;
+//
 #define __CMPID_DECL__(cId) constexpr static ecs::cmpId_t id = cId;
 
-	// a macro for system identifier declaration, e.g., __SYSID_DECL__(ecs::sys::ASTEROIDS)
-	// expands to:
-	//
-	//   constexpr static ecs::sysId_t id = ecs::sys::ASTEROIDS;
-	//
+// a macro for system identifier declaration, e.g., __SYSID_DECL__(ecs::sys::ASTEROIDS)
+// expands to:
+//
+//   constexpr static ecs::sysId_t id = ecs::sys::ASTEROIDS;
+//
 #define __SYSID_DECL__(cId) constexpr static ecs::sysId_t id = cId;
+
 } // end of namespace
+

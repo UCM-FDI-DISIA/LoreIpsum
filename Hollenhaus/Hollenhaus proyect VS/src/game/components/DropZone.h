@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 #include "./basics/BoxCollider.h"
 #include "./managers/DrawerManager.h"
@@ -8,7 +12,6 @@
 
 //typedef void (*Callback)(Card*);
 using SDLCallbackCards = std::function<void(Card*)>;
-
 class DropZone : public ComponentUpdate
 {
 private:
@@ -17,21 +20,20 @@ private:
 	SDLCallbackCards callback;
 
 public:
+
 	DropZone();
-	~DropZone() override;
+	~DropZone();
 
 	void initComponent() override;
 	void update() override;
 
 	bool isOnDropZone(Transform* cardTransform);
 
-	void setCallBack(SDLCallbackCards cb)
-	{
+	void setCallBack(SDLCallbackCards cb) {
 		callback = cb;
 	}
 
-	void useCallback(Card* card)
-	{
+	void useCallback(Card* card) {
 		if (callback)
 			callback(card);
 	}

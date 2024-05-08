@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "../ComponentUpdate.h"
 #include "../../ecs.h"
 #include <list>
@@ -25,7 +29,7 @@ private:
 public:
 	// ---- Constructora/Destructora ----
 	PizarraManager();
-	~PizarraManager() override;
+	~PizarraManager();
 
 	// ---- Metodos heredados ----
 	void update() override;

@@ -1,7 +1,5 @@
 #include <../pchs/pch.h>
 
-#include "checkML.h"
-
 #include <iostream>
 #include <SDL.h>
 #include "GameStateMachine.h"
@@ -37,12 +35,14 @@
 #include "gamestates/pauseMenuState.h"
 #include "gamestates/storyModeState.h"
 #include "gamestates/transitionTextMenuState.h"
+#include "gamestates/KeyMenuState.h"
 
 #include "components/managers/Manager.h"
 #include "Mouse.h"
 #include "gamestates/GameState.h"
 #include "Data.h"
 #include "Fade.h"
+#include "CaseManager.h"
 
 constexpr Uint8 FADE_SPEED = 30;
 
@@ -61,6 +61,8 @@ GameStateMachine::GameStateMachine()
 	mouse_ = new Mouse("mouse", 2);
 	fade_ = new Fade(0);
 
+	case_ = new CaseManager();
+
 	// Creacion de los estados
 	// Estados del juego
 	cityState = new CityState();
@@ -68,7 +70,6 @@ GameStateMachine::GameStateMachine()
 	shopState = new ShopState();
 	deckBuildingState = new DeckBuildingState();
 	tutorialState = new TutorialState();
-	//boardState = new BoardState();
 
 	// Estados de menuses
 	mainMenuState = new MainMenuState();
@@ -81,13 +82,13 @@ GameStateMachine::GameStateMachine()
 	checkMazeMenuState = new CheckMazeMenuState();
 	checkCluesMenuState = new CheckCluesMenuState();
 	matchOverState = new MatchOverState();
+	keyMenuState = new KeyMenuState();
 
 	// Estados de gente
 	samuState = new SamuState();
 	jimboState = new JimboState();
 	nievesState = new NievesState();
 	luisState = new LuisState();
-	deckBuildingState = new DeckBuildingState();
 	tutorialBoardState = new TutorialBoardState();
 
 	multiplayerLobbyState = new MultiplayerLobbyState();
@@ -108,33 +109,42 @@ GameStateMachine::GameStateMachine()
 // destructor
 GameStateMachine::~GameStateMachine()
 {
-	//destruye uno a uno todos los estados apilados que queden
-	while (!gameStack.empty())
-	{
-		delete gameStack.top();
-		gameStack.pop();
-	}
-	while (!toBeDeleted.empty()) {
-		auto it = toBeDeleted.begin();
-		delete (*it) ;
-		toBeDeleted.erase(it);
-	}
-	toBeDeleted.clear();
 	delete mouse_;
+	delete fade_;
+	delete case_;
+
+	delete cityState;
+	delete officeState;
+	delete shopState;
+	delete deckBuildingState;
+	delete tutorialState;
+
+	delete mainMenuState;
+	delete storyModeState;
+	delete multiplayerModeState;
+	delete optionsMainMenuState;
+	delete transitionTextMenuState;
+	delete cinematicIntroState;
+	delete pauseMenuState;
+	delete checkMazeMenuState;
+	delete checkCluesMenuState;
+	delete matchOverState;
+	delete keyMenuState;
+
+	delete samuState;
+	delete jimboState;
+	delete nievesState;
+	delete luisState;
+	delete tutorialBoardState;
+
+	delete multiplayerLobbyState;
+	delete multiplayerPreGameState;
+	delete multiplayerGameState;
+	delete multiplayerEndGameState;
+	delete currentState->getData();
+	currentState->setData(nullptr);
+
 	delete mngr_;
-
-	mainMenuState = nullptr;
-	cityState = nullptr;
-	officeState = nullptr;
-	shopState = nullptr;
-	//boardState = nullptr;
-	samuState = nullptr;
-	jimboState = nullptr;
-	nievesState = nullptr;
-	matchOverState = nullptr;
-	luisState = nullptr;
-	deckBuildingState = nullptr;
-
 }
 
 void GameStateMachine::Render() const
@@ -164,6 +174,7 @@ void GameStateMachine::Update()
 
 	gameStack.top()->update();
 	mouse_->update();
+	case_->update();
 	//para el manager
 	Refresh();
 }

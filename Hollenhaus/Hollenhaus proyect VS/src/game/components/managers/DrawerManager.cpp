@@ -6,14 +6,10 @@
 #include "../../components/Card.h"
 #include "Manager.h"
 
-DrawerManager::DrawerManager() : drawer(GameStateMachine::instance()->getCurrentState()->getDrawer()),
-                                 cajonesAbiertos(0)
-{
-}
+DrawerManager::DrawerManager() : cajonesAbiertos(0),
+drawer(GameStateMachine::instance()->getCurrentState()->getDrawer()) {}
 
-DrawerManager::~DrawerManager()
-{
-}
+DrawerManager::~DrawerManager() {}
 
 #pragma region REFRESHERS
 void DrawerManager::refreshExistencia()
@@ -42,11 +38,11 @@ void DrawerManager::refreshExistencia()
 		{
 			// la crea
 			ecs::entity_t ent = GameStateMachine::instance()->getCurrentState()->createCard
-				(drawer[(CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos) + i], Vector2D(25 * i, 100));
+			(drawer[(CANT_CARTAS_MOSTRADAS_CAJON * cajonesAbiertos) + i], Vector2D(25 * i, 100));
 
 			// si existe
-			if (ent != nullptr)
-			{
+			if (ent != nullptr) {
+
 				// la guarda en el aux
 				cardsAux[i] = ent;
 
@@ -65,9 +61,7 @@ void DrawerManager::refreshPos(int i, ecs::entity_t ent)
 }
 #pragma endregion
 
-void DrawerManager::update()
-{
-}
+void DrawerManager::update() {}
 
 void DrawerManager::initComponent()
 {
@@ -132,7 +126,7 @@ void DrawerManager::removeCard(int id)
 	cardsAux[id % CANT_CARTAS_MOSTRADAS_CAJON] = nullptr;
 
 	// DEBUG
-	std::cout << "Remove card: " << drawer[id] << std::endl;
+	std::cout << "Remove card: " << drawer[id]  << std::endl;
 }
 #pragma endregion
 

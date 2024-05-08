@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 #include "../../utils/Vector2D.h"
 #include <vector>
@@ -7,34 +11,37 @@ class Transform;
 class BoxCollider;
 
 class Drag :
-	public ComponentUpdate
+    public ComponentUpdate
 {
 public:
-	Drag();
-	~Drag() override;
+    Drag();
+    ~Drag();
 
-	void initComponent() override;
+    void initComponent() override;
 
-	void update() override;
+    void update() override;
 
 private:
-	Transform* myTransform;
 
-	BoxCollider* myBoxCollider;
+    Transform* myTransform;
 
-	Vector2D initialMousePos;
-	Vector2D initialTransformPos;
+    BoxCollider* myBoxCollider;
 
-	std::vector<std::function<bool(void)>> conditions;
+    Vector2D initialMousePos;
+    Vector2D initialTransformPos;
 
-	bool isDraged = false;
+    std::vector<std::function<bool(void)>> conditions;
 
-	void OnLeftClickDown();
+    bool isDraged = false;
 
-	void OnLeftClickUp();
+    void OnLeftClickDown();
 
-	bool conditionsValid();
+    void OnLeftClickUp();
+
+    bool conditionsValid();
 
 public:
-	void addCondition(std::function<bool(void)> condition);
+
+    void addCondition(std::function<bool(void)> condition);
 };
+

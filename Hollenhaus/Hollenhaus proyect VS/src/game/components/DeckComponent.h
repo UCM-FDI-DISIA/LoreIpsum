@@ -1,10 +1,13 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 
 #include <list>
 
-#include "../Namespaces.h"
+#include "..\Namespaces.h"
 
 class Card;
 class NetGame;
@@ -13,21 +16,18 @@ class DeckComponent : public ComponentUpdate
 {
 public:
 	DeckComponent() { drawCardCost = 1; }
-
-	~DeckComponent() override
-	{
-	}
+	~DeckComponent(){}
 
 	void addCartToDeck(Card* card);
 
 	int deckSize() { return deck.size(); }
-
+	
 	Card* drawCard();
 	void shuffle();
 
 	int getDrawCardCost() const { return drawCardCost; };
 
-	void setOwner(Players::Owner value) { owner = value; }
+	void setOwner(Players::Owner value) { owner = value;}
 	Players::Owner getOwner() const { return owner; }
 
 	//solo para la IA
@@ -49,4 +49,6 @@ private:
 	void addCardsOnBottom(std::list<Card*> h);
 
 	NetGame* netGame = nullptr;
+
 };
+

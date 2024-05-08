@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 
 class TextComponent;
@@ -10,7 +14,7 @@ class CopyTextComponentOnClipboardButton : public ComponentUpdate
 {
 public:
 	CopyTextComponentOnClipboardButton(TextComponent* textComponent);
-	~CopyTextComponentOnClipboardButton() override;
+	~CopyTextComponentOnClipboardButton();
 
 	void initComponent() override;
 	void update() override;
@@ -21,3 +25,4 @@ private:
 	TextComponent* tc;
 	BoxCollider* bc;
 };
+

@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "../ComponentUpdate.h"
 #include <SDL_net.h>
 
@@ -11,7 +15,7 @@ class NetPregame : public ComponentUpdate
 {
 public:
 	NetPregame(TextComponent* oponentReadyText, TextComponent* readyButtonText);
-	~NetPregame() override;
+	~NetPregame();
 
 	void update() override;
 
@@ -20,8 +24,8 @@ public:
 
 	void SetPlayerReady(bool isReady);
 	void SetRivalReady(bool isReady);
-
 private:
+
 	// We want to use non-blocking communication, the way to do this is via a socket set.
 	SDLNet_SocketSet socketSet;
 
@@ -40,3 +44,4 @@ private:
 	void SendMsgPlayerReady();
 	void SendMsgPlayerNotReady();
 };
+

@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "GameState.h"
 
 //forward declaration
@@ -6,19 +10,21 @@ class TextComponent;
 
 
 class MultiplayerEndGameState
-	: public GameState
+    :public GameState
 {
 public:
-	MultiplayerEndGameState();
-	~MultiplayerEndGameState() override;
+    MultiplayerEndGameState();
+    virtual ~MultiplayerEndGameState();
 
-	void onEnter() override;
-	void onExit() override;
+    void onEnter() override;
+    void onExit() override;
 
 private:
-	void setWindow(int lastWiner);
 
-	void swapColor(TextComponent* tc, bool b);
+    void setWindow(int lastWiner);
 
-	std::string _background, _text;
+    void swapColor(TextComponent* tc, bool b);
+
+    std::string _background, _text;
 };
+

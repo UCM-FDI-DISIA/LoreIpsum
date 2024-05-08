@@ -1,34 +1,42 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 
 class Vector2D;
 
 class DropDetector :
-	public ComponentUpdate
+    public ComponentUpdate
 {
 public:
-	DropDetector();
-	~DropDetector() override;
 
-	void initComponent() override;
-	void update() override;
+    DropDetector();
+    ~DropDetector();
+
+    void initComponent() override;
+    void update() override;
 
 private:
-	bool ocuped = false;
 
-	Vector2D cardPos;
+    bool ocuped = false;
 
-	Vector2D boardPos;
+    Vector2D cardPos;
+
+    Vector2D boardPos;
 
 public:
-	void setOcuped(bool b) { ocuped = b; }
 
-	bool isOcuped() { return ocuped; }
+    void setOcuped(bool b) { ocuped = b; }
 
-	Vector2D& getCardPos() { return cardPos; };
+    bool isOcuped() { return ocuped; }
 
-	Vector2D& getBoardPos() { return boardPos; };
+    Vector2D& getCardPos() { return cardPos; };
 
-	int getBoardPosX() { return boardPos.getX(); }
-	int getBoardPosY() { return boardPos.getY(); }
+    Vector2D& getBoardPos() { return boardPos; };
+
+    int getBoardPosX() { return boardPos.getX(); }
+    int getBoardPosY() { return boardPos.getY(); }
 };
+

@@ -1,3 +1,8 @@
+#pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 #include "../../sdlutils/SDLUtils.h"
 #include "../Namespaces.h"
@@ -16,7 +21,7 @@ class NextText : public ComponentUpdate
 {
 public:
 	NextText();
-	~NextText() override;
+	~NextText();
 
 	void initComponent() override;
 	void update() override;
@@ -40,3 +45,4 @@ private:
 	DialogueEventCollection* eventCollection_;
 	BoxCollider* boxCollider_;
 };
+

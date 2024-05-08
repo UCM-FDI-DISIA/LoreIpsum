@@ -5,19 +5,15 @@
 
 
 void
-Transform::update()
-{
+Transform::update() {
 }
 
-void
-Transform::increaseLayer(int layer)
-{
+void 
+Transform::increaseLayer(int layer) {
 	int nextLayer = layer + layerToIncrease;
 	ent_->setLayer(nextLayer);
-	if (children_.size() > 0)
-	{
-		for (auto it = children_.begin(); it != children_.end(); ++it)
-		{
+	if(children_.size() > 0){
+		for (auto it = children_.begin(); it != children_.end(); ++it) {
 			(*it)->increaseLayer(ent_->getLayer());
 		}
 	}
@@ -25,13 +21,12 @@ Transform::increaseLayer(int layer)
 
 void Transform::setLayerIncrementalInHierarchy(int layer)
 {
+	
 }
 
 void
-Transform::addParent(Transform* p)
-{
-	if (!isChild_)
-	{
+Transform::addParent(Transform* p) {
+	if (!isChild_) {
 		parent_ = p;
 		parent_->addChild(this);
 		relativePos_ = globalPos_ - parent_->getGlobalPos(); // Pos relativa al padre
@@ -40,10 +35,8 @@ Transform::addParent(Transform* p)
 }
 
 void
-Transform::removeParent()
-{
-	if (isChild_)
-	{
+Transform::removeParent() {
+	if (isChild_) {
 		parent_->removeChild(this);
 		parent_ = nullptr;
 		relativePos_ = Vector2D(0, 0);
@@ -53,7 +46,7 @@ Transform::removeParent()
 
 void Transform::killChildren()
 {
-	for (auto& t : children_)
+	for (auto & t : children_)
 	{
 		t->killChildren();
 		t->getEntity()->setAlive(false);
@@ -63,17 +56,16 @@ void Transform::killChildren()
 }
 
 std::list<Transform*>
-Transform::getChildren()
-{
+Transform::getChildren() {
 	return children_;
 }
 
-Vector2D
-Transform::getGlobalPos()
-{
+Vector2D 
+Transform::getGlobalPos() {
 	if (isChild_)
 		return parent_->getGlobalPos() + relativePos_;
-	return globalPos_;
+	else
+		return globalPos_;
 }
 
 
@@ -81,8 +73,10 @@ Vector2D Transform::getGlobalScale()
 {
 	if (isChild_ && parent_ != nullptr)
 		return Vector2D(parent_->getGlobalScale().getX() * relativeScale_.getX(),
-		                parent_->getGlobalScale().getY() * relativeScale_.getY());
-	return relativeScale_;
+			parent_->getGlobalScale().getY() * relativeScale_.getY());
+	else
+		return relativeScale_;
+
 }
 
 float& Transform::getGlobalAngle()
@@ -106,37 +100,32 @@ float& Transform::getRelativeAngle()
 }
 
 void
-Transform::setGlobalPos(Vector2D& pos)
-{
+Transform::setGlobalPos(Vector2D& pos) {
 	globalPos_ = pos;
 	if (isChild_)
 		relativePos_ = globalPos_ - parent_->getGlobalPos();
 }
 
 void
-Transform::setGlobalPos(int x, int y)
-{
+Transform::setGlobalPos(int x, int y) {
 	globalPos_.setX(x);
 	globalPos_.setY(y);
 	if (isChild_)
 		relativePos_ = globalPos_ - parent_->getGlobalPos();
 }
 
-void
-Transform::setGlobalAngle(float angle)
-{
+void 
+Transform::setGlobalAngle(float angle) {
 	globalAngle_ = angle;
 	if (isChild_)
 		relativeAngle_ = globalAngle_ - parent_->globalAngle_;
 }
 
-void
-Transform::setGlobalScale(Vector2D s)
-{
+void 
+Transform::setGlobalScale(Vector2D s) {
 	globalScale_ = s;
 	if (isChild_)
-		relativeScale_.set(globalScale_.getX() / parent_->globalScale_.getX(),
-		                   globalScale_.getY() / parent_->globalScale_.getY());
+		relativeScale_.set(globalScale_.getX() / parent_->globalScale_.getX(), globalScale_.getY() / parent_->globalScale_.getY());
 	else
 		relativeScale_.set(s);
 }
@@ -145,8 +134,7 @@ void Transform::setGlobalScale(float x, float y)
 {
 	globalScale_ = Vector2D(x, y);
 	if (isChild_)
-		relativeScale_.set(globalScale_.getX() / parent_->globalScale_.getX(),
-		                   globalScale_.getY() / parent_->globalScale_.getY());
+		relativeScale_.set(globalScale_.getX() / parent_->globalScale_.getX(), globalScale_.getY() / parent_->globalScale_.getY());
 	else
 		relativeScale_.set(globalScale_);
 }
@@ -162,15 +150,13 @@ void Transform::setRelativePos(float x, float y)
 	relativePos_.setY(y);
 }
 
-Transform*
-Transform::getParent()
-{
+Transform* 
+Transform::getParent() {
 	return parent_;
 }
 
 Transform&
-Transform::operator+(const Transform& t)
-{
+Transform::operator+(const Transform& t) {
 	globalPos_ = globalPos_ + t.globalPos_;
 	globalScale_ = globalScale_ + t.globalScale_;
 	globalAngle_ += t.globalAngle_;
@@ -180,8 +166,7 @@ Transform::operator+(const Transform& t)
 }
 
 Transform&
-Transform::operator-(const Transform& t)
-{
+Transform::operator-(const Transform& t) {
 	globalPos_ = globalPos_ - t.globalPos_;
 	globalScale_ = globalScale_ - t.globalScale_;
 	globalAngle_ -= t.globalAngle_;
@@ -191,8 +176,7 @@ Transform::operator-(const Transform& t)
 }
 
 Transform&
-Transform::operator=(const Transform& t)
-{
+Transform::operator=(const Transform& t) {
 	globalPos_ = t.globalPos_;
 	globalScale_ = t.globalScale_;
 	globalAngle_ = t.globalAngle_;
@@ -201,14 +185,12 @@ Transform::operator=(const Transform& t)
 	return *this;
 }
 
-void
-Transform::addChild(Transform* c)
-{
+void 
+Transform::addChild(Transform* c) {
 	children_.emplace_back(c);
 }
 
-void
-Transform::removeChild(Transform* c)
-{
+void 
+Transform::removeChild(Transform* c) {
 	children_.remove(c);
 }

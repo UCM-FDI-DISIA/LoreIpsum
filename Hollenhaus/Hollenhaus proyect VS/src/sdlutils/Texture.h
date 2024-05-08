@@ -2,6 +2,9 @@
 
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>
@@ -9,9 +12,9 @@
 #include <iostream>
 #include "Font.h"
 
-class Texture
-{
+class Texture {
 public:
+
 	// cannot copy textures
 	Texture(const Texture&) = delete;
 	Texture& operator=(const Texture&) = delete;
@@ -25,29 +28,26 @@ public:
 
 	// Construct from text
 	Texture(SDL_Renderer* renderer, const std::string& text, const Font& font,
-	        const SDL_Color& fgColor);
+		const SDL_Color& fgColor);
 
 	// Construct from text with background
 	Texture(SDL_Renderer* renderer, const std::string& text, const Font& font,
-	        const SDL_Color& fgColor, const SDL_Color& bgColor);
+		const SDL_Color& fgColor, const SDL_Color& bgColor);
 
 	// Construct from text wrapped
 	Texture(SDL_Renderer* renderer, const std::string& text, const Font& font,
-	        const SDL_Color& fgColor, Uint32 wrapLenght, int align);
+		const SDL_Color& fgColor, Uint32 wrapLenght, int align);
 
-	virtual ~Texture()
-	{
+	virtual ~Texture() {
 		if (texture_ != nullptr)
 			SDL_DestroyTexture(texture_); // delete the SDL texture
 	}
 
-	int width() const
-	{
+	inline int width() const {
 		return width_;
 	}
 
-	int height() const
-	{
+	inline int height() const {
 		return height_;
 	}
 
@@ -58,10 +58,9 @@ public:
 	// according to the value of flip. If 'p'is nullptr, the rotation is done
 	// wrt. the center
 	//
-	void render(const SDL_Rect& src, const SDL_Rect& dest, double angle,
-	            const SDL_Point* p = nullptr,
-	            SDL_RendererFlip flip = SDL_FLIP_NONE)
-	{
+	inline void render(const SDL_Rect& src, const SDL_Rect& dest, double angle,
+		const SDL_Point* p = nullptr,
+		SDL_RendererFlip flip = SDL_FLIP_NONE) {
 		assert(texture_ != nullptr);
 		SDL_RenderCopyEx(renderer_, texture_, &src, &dest, angle, p, flip);
 	}
@@ -72,23 +71,21 @@ public:
 	// It can be implemented by calling the previous render method as well,
 	// but we use SDL_RenderCopy directly since it does less checks so it
 	// saves some checks ...
-	void render(const SDL_Rect& src, const SDL_Rect& dest)
-	{
+	inline void render(const SDL_Rect& src, const SDL_Rect& dest) {
 		assert(texture_ != nullptr);
 		SDL_RenderCopy(renderer_, texture_, &src, &dest);
 	}
 
 	// render the complete texture at position (x,y).
-	void render(int x, int y)
-	{
-		SDL_Rect dest = {x, y, width_, height_};
+	inline void render(int x, int y, int alpha = 255) {
+		SDL_Rect dest = { x, y, width_, height_ };
+		applyOpacity(alpha);
 		render(dest);
 	}
 
 	// renders the complete texture at a destination rectangle (dest)
-	void render(const SDL_Rect& dest, int alpha = 255)
-	{
-		SDL_Rect src = {0, 0, width_, height_};
+	inline void render(const SDL_Rect& dest, int alpha = 255) {
+		SDL_Rect src = { 0, 0, width_, height_ };
 
 		if (alpha != 255)
 			applyOpacity(alpha);
@@ -97,9 +94,8 @@ public:
 
 	// renders the complete texture at a destination rectangle (dest),
 	// with rotation
-	void render(const SDL_Rect& dest, float rotation)
-	{
-		SDL_Rect src = {0, 0, width_, height_};
+	inline void render(const SDL_Rect& dest, float rotation) {
+		SDL_Rect src = { 0, 0, width_, height_ };
 		render(src, dest, rotation);
 	}
 
@@ -112,12 +108,27 @@ public:
 	/// <param name="mulScaleY">escala y</param>
 	/// <param name="angle">Angle</param>
 	/// <param name="color">Color a multiplicar</param>
-	void render(int x, int y, float mulScaleX, float mulScaleY, float angle,
-	            SDL_RendererFlip flip = SDL_FLIP_NONE, SDL_Color color = {255, 255, 255, 0},
-	            int alpha = 255)
+	inline void render(int x, int y, float mulScaleX, float mulScaleY, float angle, 
+		SDL_RendererFlip flip = SDL_FLIP_NONE, 
+		SDL_Color color = { 255,255,255,0 },
+		int alpha = 255)
 	{
-		SDL_Rect dest = {x, y, width_ * mulScaleX, height_ * mulScaleY};
-		SDL_Rect src = {0, 0, width_, height_};
+		SDL_Rect dest = { x, y, width_ * mulScaleX, height_ * mulScaleY };
+		SDL_Rect src = { 0, 0, width_, height_ };
+
+		applyOpacity(alpha);
+
+		multiplyColor(color.r, color.g, color.b, color.a);
+
+		render(src, dest, angle, nullptr, flip);
+	}
+
+	inline void render(int x, int y, SDL_Rect src, int nRows, int nCols, float mulScaleX, float mulScaleY, float angle, 
+		SDL_RendererFlip flip = SDL_FLIP_NONE, 
+		SDL_Color color = { 255,255,255,0 },
+		int alpha = 255)
+	{
+		SDL_Rect dest = { x, y, width_ * mulScaleX / nCols, height_ * mulScaleY / nRows };
 
 		applyOpacity(alpha);
 
@@ -146,14 +157,15 @@ public:
 	}
 
 private:
+
 	// Construct from text
 	void constructFromText(SDL_Renderer* renderer, const std::string& text,
-	                       const Font& font, const SDL_Color* fgColor,
-	                       const SDL_Color* bgColor = nullptr);
+		const Font& font, const SDL_Color* fgColor,
+		const SDL_Color* bgColor = nullptr);
 
 	// Construct from text wrapped
 	void constructFromWrappedText(SDL_Renderer* renderer, const std::string& text,
-	                              const Font& font, const SDL_Color* fgColor, Uint32 wrapLenght, int align);
+		const Font& font, const SDL_Color* fgColor, Uint32 wrapLenght, int align);
 
 	SDL_Texture* texture_;
 	SDL_Renderer* renderer_;

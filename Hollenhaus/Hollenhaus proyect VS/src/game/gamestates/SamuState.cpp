@@ -97,10 +97,6 @@ void SamuState::onEnter()
 	endTurnButtonJ2->addComponent<BoxCollider>();
 	endTurnButtonJ2->addComponent<EndTurnButton>(MatchManager::TurnState::TurnJ2);*/
 
-
-	//ecs::entity_t puntosDeAccionText = Instantiate(Vector2D(100, 300));
-	//puntosDeAccionText->addComponent<TextComponent>("Puntos de acción:", "8bit_16pt", SDL_Color({ 255, 255, 255, 255 }), 350, TextComponent::BoxPivotPoint::CenterCenter, TextComponent::TextAlignment::Center);
-
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
 	sdlutils().soundEffects().at("battletheme").play(-1);

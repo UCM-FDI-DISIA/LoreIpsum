@@ -1,9 +1,10 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
 
 //forward declaration
-namespace ecs
-{
+namespace ecs {
 	class Entity;
 	using entity_t = Entity*;
 }
@@ -12,16 +13,14 @@ namespace ecs
 class BoardFactory
 {
 public:
-	BoardFactory(int size) : size(size)
-	{
-	};
+	BoardFactory(int size) : size (size){};
 
-	virtual ~BoardFactory()
-	{
-	};
+	virtual ~BoardFactory(){};
 
 	virtual ecs::entity_t createBoard() = 0;
 
 protected:
 	int size;
+
 };
+

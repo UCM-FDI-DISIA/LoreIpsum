@@ -1,8 +1,13 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "../ComponentUpdate.h"
 
 class CardStateManager : public ComponentUpdate
 {
+
 public:
 	CardStateManager();
 

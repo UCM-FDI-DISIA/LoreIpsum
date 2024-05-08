@@ -5,16 +5,16 @@
 #include "../../../sdlutils/SDLUtils.h"
 #include "../../Entity.h"
 
-TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght,
-                             Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment) :
+TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment) :
 	text_(nullptr),
-	txt_(txt),
-	font_(&sdl_.fonts().at(fontID)),
 	color_(color),
+	font_(&sdl_.fonts().at(fontID)),
 	wrapLenght_(wrapLenght),
 	boxPivotPoint_(boxPivotPoint),
-	textAlignment_(textAlignment)
+	textAlignment_(textAlignment),
+	txt_(txt)
 {
+
 	createTexture();
 }
 
@@ -34,14 +34,16 @@ void TextComponent::initComponent()
 
 void TextComponent::render() const
 {
-	//PROVISIONAL
-	Vector2D aux = GetRenderPosAcordingPivotPoint();
 
-	text_->render(aux.getX(), aux.getY());
+	//PROVISIONAL
+	Vector2D aux  = GetRenderPosAcordingPivotPoint();
+
+	text_->render(aux.getX() + offset.getX(), aux.getY() + offset.getY(), alpha);
 
 #ifdef _DEBUG
 	RenderDebugRect( 0, 0, 255, 255 );
 #endif // DEBUG
+	
 }
 
 void TextComponent::setTxt(std::string txt)
@@ -75,11 +77,11 @@ void TextComponent::SetTextAlignment(Text::TextAlignment textAlignment)
 	// No hace falta crear textura nueva
 }
 
-void TextComponent::createTexture()
-{
-	if (text_ != nullptr)
-		delete text_;
+void TextComponent::createTexture() {
 
+	if(text_!= nullptr)
+		delete text_;
+	
 	std::string texto = txt_;
 	if (txt_.empty())
 		texto = " ";
@@ -142,8 +144,8 @@ Vector2D TextComponent::GetRenderPosAcordingPivotPoint() const
 void TextComponent::RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const
 {
 	SDL_Rect textRect = {
-		static_cast<int>(renderPos_.getX()),
-		static_cast<int>(renderPos_.getY()),
+		(int)renderPos_.getX(),
+		(int)renderPos_.getY(),
 		text_->width(),
 		text_->height()
 	};
@@ -153,3 +155,4 @@ void TextComponent::RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const
 	SDL_RenderDrawRect(sdlutils().renderer(), &textRect);
 	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 0, 255);
 }
+

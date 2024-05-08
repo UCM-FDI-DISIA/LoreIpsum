@@ -4,10 +4,13 @@
 #include "MatchManager.h"
 #include "BoardManager.h"
 #include "Manager.h"
+#include "../Button.h"
 #include "../../GameStateMachine.h"
 #include "../../gamestates/GameState.h"
 #include "../../components/basics/TextComponent.h"
 #include "../../components/multiplayer/NetGame.h"
+#include "game/Data.h"
+#include "../Card.h"
 
 MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart,
                            BoardManager* bm) :
@@ -67,14 +70,7 @@ void MatchManager::setActualState(Turns::State newState)
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
 #endif
 		setWinnerOnData();
-		if (netGame == nullptr)
-		{
-			GameStateMachine::instance()->setState(GameStates::MATCHOVER);
-		}
-		else
-		{
-			GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_END_GAME);
-		}
+		InstantiatePanelFinPartida(GameStateMachine::instance()->getCurrentState()->getData()->getWinner());
 		break;
 	case Turns::IA:
 #if _DEBUG
@@ -128,18 +124,24 @@ void MatchManager::substractActualPlayerActionPoints(int points)
 {
 	getActualState() == Turns::J1 ? substractActionPointsJ1(points) : substractActionPointsJ2(points);
 	updateVisuals();
+	// Si la configuracion admite el paso de turno automático
+	if (GameStateMachine::instance()->getCurrentState()->getData()->GetAutomaticNextTurn() && getPlayerTurn() ==
+		Players::PLAYER1)
+		CheckNextTurnAutomatic();
 }
 
 void MatchManager::updateVisuals()
 {
 	//Si queremos meterlo de forma digética es aquí cuando se pueda
 	// Actualiza los puntos de acción restantes de J1
-	actionPointsVisualJ1->getComponent<TextComponent>()->setTxt(
-		"Puntos de accion:\n" + std::to_string(actualActionPointsJ1));
+	if (actionPointsVisualJ1 != nullptr)
+		actionPointsVisualJ1->getComponent<TextComponent>()->setTxt(
+			"Puntos de accion:\n" + std::to_string(actualActionPointsJ1));
 
 	// Actualiza los puntos de acción restantes de J2
-	actionPointsVisualJ2->getComponent<TextComponent>()->setTxt(
-		"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
+	if (actionPointsVisualJ2 != nullptr)
+		actionPointsVisualJ2->getComponent<TextComponent>()->setTxt(
+			"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
 
 	// Actualiza el indicador del propietario del turno actual
 	//Habría que Hacer uan diferenciación también cuando recién cambia de turno para la animación
@@ -201,4 +203,87 @@ void MatchManager::startTurnIA()
 void MatchManager::changeTurnMultiplayer()
 {
 	netGame->nextTurn();
+}
+
+void MatchManager::InstantiatePanelFinPartida(int winner)
+{
+	ecs::entity_t panel = Instantiate(Vector2D(0, 0));
+	panel->setLayer(1000);
+	panel->addComponent<SpriteRenderer>("panelFinPartida");
+
+	ecs::entity_t victoryDefeatText = Instantiate(Vector2D(128, 240));
+	victoryDefeatText->setLayer(1002);
+	auto text = victoryDefeatText->addComponent<TextComponent>("", Fonts::GROTESK_32, SDL_Color({0, 0, 0, 0}), 200,
+	                                                           Text::BoxPivotPoint::CenterCenter,
+	                                                           Text::TextAlignment::Center);
+
+	if (winner == 1)
+	{
+		text->setTxt("EMPATE");
+		text->setColor(SDL_Color({0, 0, 255, 0}));
+	}
+	if (winner == 2)
+	{
+		text->setTxt("VICTORIA");
+		text->setColor(SDL_Color({255, 50, 50, 0}));
+	}
+	if (winner == 3)
+	{
+		text->setTxt("DERROTA");
+		text->setColor(SDL_Color({255, 50, 50, 0}));
+	}
+
+
+	ecs::entity_t continuarButton = Instantiate(Vector2D(128, 320));
+	continuarButton->setLayer(1001);
+	continuarButton->addComponent<TextComponent>("CONTINUAR", Fonts::GROTESK_16, SDL_Color({0, 0, 0, 0}), 200,
+	                                             Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	continuarButton->addComponent<BoxCollider>();
+	continuarButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
+	continuarButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
+	continuarButton->addComponent<Button>();
+	if (netGame == nullptr)
+	{
+		continuarButton->getComponent<Button>()->connectToButton([this]
+		{
+			GameStateMachine::instance()->setState(GameStates::MATCHOVER);
+		});
+	}
+	else
+	{
+		continuarButton->getComponent<Button>()->connectToButton([this]
+		{
+			GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_END_GAME);
+		});
+	}
+}
+
+void MatchManager::CheckNextTurnAutomatic()
+{
+	if (getActualPlayerActualActionPoints() <= 0)
+	{
+		auto hand = playerJ1Hand->getHand();
+
+		for (auto e : hand)
+		{
+			if (e->getCost() == 0)
+			{
+				for (auto& e : hand)
+				{
+					delete e;
+					e = nullptr;
+				}
+				return;
+			}
+		}
+
+		for (auto& e : hand)
+		{
+			delete e;
+			e = nullptr;
+		}
+
+		// Si no quedan puntos de accion y no quedan jugadas disponibles, pasamos turno automáticamente
+		setActualState(netGame == nullptr ? Turns::IA : Turns::J2_MULTIPLAYER);
+	}
 }

@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 
 class BoxCollider;
@@ -8,7 +12,7 @@ class SendInvitationButton : public ComponentUpdate
 {
 public:
 	SendInvitationButton();
-	~SendInvitationButton() override;
+	~SendInvitationButton();
 
 	void initComponent() override;
 	void update() override;
@@ -19,3 +23,4 @@ private:
 	BoxCollider* bc;
 	SendIPFromTextComponent* getIP;
 };
+

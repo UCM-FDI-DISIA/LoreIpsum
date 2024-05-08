@@ -1,4 +1,8 @@
+
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
 
 #ifdef _DEBUG
 //#include <iostream>
@@ -13,30 +17,27 @@
 class ComponentUpdate;
 class ComponentRender;
 
-class GenID
-{
+class GenID {
 public:
 	GenID();
 	virtual ~GenID();
 
-	template <typename T>
-	static int getUpdateId()
-	{
-		if (std::is_base_of_v<ComponentUpdate, T>)
-		{
+	template<typename T>
+	static int getUpdateId() {
+		
+		if (std::is_base_of<ComponentUpdate, T>::value) {
 			static int myUpdateId = updateId++;
 #ifdef _DEBUG
 			//std::cout << "Update cmp: " << updateId << '\n';
 #endif // DEBUG
 			return myUpdateId;
 		}
+
 	}
 
-	template <typename T>
-	static int getRenderId()
-	{
-		if (std::is_base_of_v<ComponentRender, T>)
-		{
+	template<typename T>
+	static int getRenderId() {
+		if (std::is_base_of<ComponentRender, T>::value) {
 			static int myRenderId = renderId++;
 #ifdef _DEBUG
 			//std::cout << "Render cmp: " << renderId << '\n';
@@ -48,6 +49,7 @@ public:
 private:
 	static int updateId;
 	static int renderId;
+
 };
 
 //int GenID::updateId = 0;

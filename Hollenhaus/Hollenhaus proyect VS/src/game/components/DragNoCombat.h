@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 
 class Transform;
@@ -20,7 +24,7 @@ private:
 
 public:
 	DragNoCombat();
-	~DragNoCombat() override;
+	~DragNoCombat();
 
 	void initComponent() override;
 	void update() override;

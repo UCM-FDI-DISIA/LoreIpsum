@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 #include <string>
 
@@ -6,13 +10,15 @@
 class GetIPv4 : public ComponentUpdate
 {
 public:
+
 	GetIPv4();
-	~GetIPv4() override;
+	~GetIPv4();
 
 	std::string GetIP() { return ipv4; }
-
 private:
+
 	std::string ipv4;
 
 	std::string ReadIPv4();
 };
+

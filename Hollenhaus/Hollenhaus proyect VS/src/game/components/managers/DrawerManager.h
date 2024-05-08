@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "../ComponentUpdate.h"
 #include "../../Data.h"
 #include "../../ecs.h"
@@ -6,7 +10,7 @@
 #include <array>
 
 // cuantas cartas hay por cajon
-constexpr int CANT_CARTAS_MOSTRADAS_CAJON = 6;
+const int CANT_CARTAS_MOSTRADAS_CAJON = 6;
 
 class DrawerManager : public ComponentUpdate
 {
@@ -14,14 +18,18 @@ private:
 	// Cartas desbloqueadas
 	std::array<int, CARDS_IN_GAME> drawer;
 
+	int posY = 480;
+	int posX = 315;
+	int paddingX = 60;
+
 	// posiciones de la carta en el cajon
 	std::array<Vector2D, CANT_CARTAS_MOSTRADAS_CAJON> refreshPositions{
-		Vector2D(350, 450),
-		Vector2D(400, 450),
-		Vector2D(450, 450),
-		Vector2D(500, 450),
-		Vector2D(550, 450),
-		Vector2D(600, 450)
+		Vector2D(posX, posY),
+		Vector2D(posX + paddingX, posY),
+		Vector2D(posX + paddingX * 2, posY),
+		Vector2D(posX + paddingX * 3, posY),
+		Vector2D(posX + paddingX * 4, posY),
+		Vector2D(posX + paddingX * 5, posY)
 	};
 
 	// lleva la cuenta de en que cajon estamos
@@ -40,7 +48,7 @@ private:
 public:
 	// ---- Constructora/Destructora ----
 	DrawerManager();
-	~DrawerManager() override;
+	~DrawerManager();
 
 	// ---- Metodos heredados ----
 	void update() override;
