@@ -123,7 +123,7 @@ void CityState::onEnter()
 
 
 	/// FANTASMIKO
-	fantasmiko = Instantiate(Vector2D(sdlutils().width() / 2 - 50, sdlutils().height() - 200));
+	fantasmiko = Instantiate(Vector2D(sdlutils().width() / 2 - 50, sdlutils().height() - 210));
 	fantasmiko->addComponent<SpriteRenderer>("fantasma_caminando");
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
@@ -140,9 +140,9 @@ void CityState::onEnter()
 	// twinsiiiis
 	auto fanY = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
 	fantastween =
-		tweeny::from(fanY - 5)
-		.to(fanY + 5)
-		.to(fanY - 5)
+		tweeny::from(fanY - 10)
+		.to(fanY + 10)
+		.to(fanY - 10)
 		.during(60)
 		.via(tweeny::easing::sinusoidalInOut);
 	///
