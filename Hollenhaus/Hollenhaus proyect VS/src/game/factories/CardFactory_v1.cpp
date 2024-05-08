@@ -220,7 +220,6 @@ ecs::entity_t CardFactory_v1::createDeckJ2Multiplayer()
 		);
 		ent->setLayer(1);
 		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
-		
 	}
 
 
@@ -286,16 +285,17 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 			std::string valueText = effects[i].value() < 0 ? "" : "+";
 			valueText = valueText + std::to_string(effects[i].value());
 
-			auto color = SDL_Color({ 255,255,255, 255 });
+			auto color = Colors::PEARL_HOLLENHAUS;
 
-			if(effects[i].value() < 0)
-				color = SDL_Color({ 255,50,50, 255 });
+			if (effects[i].value() < 0)
+				color = Colors::ROJO_HOLLENHAUS;
 			else
-				color = SDL_Color({ 50,255,50, 255 });
+				color = Colors::VERDE_BANKIA;
 			if (rival) 
-				color = SDL_Color({ 40,200,200, 255 });
+				color = Colors::TEAL_MIKU;
 
-			auto valueChange = effectImage->addComponent<TextComponent>(valueText, "8bit_size_16", color, 100);
+			auto valueChange = effectImage->addComponent<TextComponent>(valueText, 
+				Fonts::GROTESK_32, color, 100);
 		}
 	}
 }
@@ -303,27 +303,25 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 {
 	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
+	auto posX = 10;
 
 	// Texto blanco para el valor
-	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_20", SDL_Color({ 255, 255, 255, 255 }), 100,
+	textoValor->addComponent<TextComponent>(std::to_string(value), Fonts::GROTESK_16, 
+		Colors::PEARL_HOLLENHAUS, 100,
 		Text::CenterCenter, Text::Center);
 
 	textoValor->getComponent<Transform>()->addParent(card->getComponent<Transform>());
-
-	textoValor->getComponent<Transform>()->getRelativePos().set(10, 102);
-
+	textoValor->getComponent<Transform>()->getRelativePos().set(posX, 104);
 	textoValor->setLayer(card->getLastLayer());
 
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
-
 	// Texto amarillo para el coste
-	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_20", SDL_Color({ 255, 255, 0, 255 }), 100,
+	textoCoste->addComponent<TextComponent>(std::to_string(cost), Fonts::GROTESK_16, 
+		Colors::AMARILLO_PIS, 100,
 		Text::CenterCenter, Text::Center);
-
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
-
-	textoCoste->getComponent<Transform>()->getRelativePos().set(10, 10);
+	textoCoste->getComponent<Transform>()->getRelativePos().set(posX, 11);
 	textoCoste->getComponent<Transform>()->setGlobalScale(10, 10); // esta linea aporta 0 porque es una fuente
 	//textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
 

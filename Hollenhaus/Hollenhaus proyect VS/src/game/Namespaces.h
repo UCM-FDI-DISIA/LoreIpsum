@@ -5,8 +5,11 @@
 
 namespace Colors
 {
+	// colores
 	constexpr SDL_Color ROJO_HOLLENHAUS = {148, 47, 55, 255};
 	constexpr SDL_Color AMARILLO_PIS = {191, 180, 138, 255};
+	constexpr SDL_Color VERDE_BANKIA = {199,208, 19, 255};
+	constexpr SDL_Color TEAL_MIKU = { 40, 200, 200, 255};
 	// blancos
 	constexpr SDL_Color PEARL_HOLLENHAUS = {226, 223, 210, 255};
 	constexpr SDL_Color PEARL_CLICK = {250, 248, 240, 255};

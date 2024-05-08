@@ -63,10 +63,9 @@ void FakeCardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonDa
 	int offSetY = 15;
 	int nCols = 2;
 	int layer = 10;
-	float scale = effects.size() == 1 ? 0.078 : 0.045;
+	float scale = effects.size() == 1 ? 0.08 : 0.045;
 
 	ecs::entity_t effectImage;
-	ecs::entity_t valueChange;
 
 	std::vector<std::string> efectsIdsNames{ "esquina", "centro", "flecha", "superflecha", "block", "unblockable" };
 	std::string efectID;
@@ -75,39 +74,45 @@ void FakeCardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonDa
 	for (int i = 0; i < effects.size(); i++)
 	{
 		effectImage = Instantiate(Vector2D(0, 0));
+
 		efectID = efectsIdsNames[effects[i].type()];
 
 		effectImage->addComponent<SpriteRenderer>(efectID);
+
+
 		effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
-		//effectImage->getComponent<Transform>()->getGlobalScale().set(1, 1);
+
 		effectImage->getComponent<Transform>()->setGlobalScale(scale, scale);
-
 		Vector2D gpos(initialX + ((i % nCols) * offSetX), initialY + ((i / nCols) * offSetY));
-		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
-		effectImage->setLayer(layer);
 
-		// si es una flecha, girarla
-		if (effects[i].type() >= 2 && effects[i].type() <= 4)
+		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
+
+		effectImage->setLayer(card->getLastLayer());
+
+
+		//si es una flecha, girarla
+		if (effects[i].type() >= Effects::Flecha && effects[i].type() <= Effects::Block)
 		{
 			Effects::Direction dir = effects[i].directions()[0];
 			effectImage->getComponent<Transform>()->getGlobalAngle() =
 				dir == Effects::Right ? 90.f : dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
 		}
 
-		// poner el simbolo del valor
+		//poner el simbolo del valor
 		if (effects[i].value() != 0)
 		{
-			std::string valueText = effects[i].value() < 0 ? "-" : "+";
+			std::string valueText = effects[i].value() < 0 ? "" : "+";
 			valueText = valueText + std::to_string(effects[i].value());
 
-			valueChange = Instantiate(Vector2D(0, 0));
+			auto color = Colors::PEARL_HOLLENHAUS;
 
-			valueChange->addComponent<TextComponent>(valueText, "8bit_size_8", SDL_Color({ 0, 0, 0, 255 }), 100);
+			if (effects[i].value() < 0)
+				color = Colors::ROJO_HOLLENHAUS;
+			else
+				color = Colors::VERDE_BANKIA;
 
-			valueChange->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
-			valueChange->getComponent<Transform>()->getRelativePos().set(-5, 0);
-
-			valueChange->setLayer(layer + 1);
+			auto valueChange = effectImage->addComponent<TextComponent>(valueText, 
+				Fonts::GROTESK_16, color, 100);
 		}
 	}
 }
