@@ -68,7 +68,7 @@ void MatchOverState::setWindow(int lastWinner) {
 		_text = "JUGADOR 1!";
 		break;
 	case 3: // Jugador2:
-		_background = "npc";
+		_background = "logo_hollen";
 		_text = "JUGADOR 2!";
 		break;
 	default:

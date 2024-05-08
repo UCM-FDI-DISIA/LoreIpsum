@@ -96,7 +96,7 @@ void NPC::talkTo()
 								dialogue.Convo(convo_).isAuto(), //Si el texto es auto o no
 								Fonts::GROTESK_24,	//mirar el JSON resources para cambiar el tamanio de texto
 								Colors::MIDNIGHT_HOLLENHAUS, //Color black
-								240, //wrap length
+								260, //wrap length
 								Text::BoxPivotPoint::LeftCenter,
 								Text::TextAlignment::Center);
 
