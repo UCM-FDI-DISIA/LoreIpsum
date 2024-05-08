@@ -141,6 +141,7 @@ void DeckBuildingState::onEnter()
 	shinePostit->addEnt(Confirm->getComponent<SpriteRenderer>(), "postit_guardar_mazo_brilli");
 
 
+
 	// ---- Pasar cajon alante:
 	Vector2D botScale(0.75,0.75);
 	int botX = 720;

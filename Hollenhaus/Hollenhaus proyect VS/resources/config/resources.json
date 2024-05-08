@@ -5,6 +5,7 @@
         {"id": "key",             "file": "resources/images/libreta.png"},
         {"id": "board",           "file": "resources/images/board4.png"},
         {"id": "board5",          "file": "resources/images/board5.png"},
+        {"id": "board6",          "file": "resources/images/board6.png"},
         {"id": "mouse",           "file": "resources/images/mouse.png"},
         {"id": "farolascerca",    "file": "resources/images/farolascerca.png" },
         {"id": "farolaslejos",    "file": "resources/images/farolaslejos.png"},
