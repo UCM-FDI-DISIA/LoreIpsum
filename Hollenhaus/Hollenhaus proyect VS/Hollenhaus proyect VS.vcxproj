@@ -127,7 +127,6 @@
     <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp" />
     <ClCompile Include="src\game\gamestates\GameState.cpp" />
     <ClCompile Include="src\game\gamestates\JimboState.cpp" />
-    <ClCompile Include="src\game\gamestates\KeyMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\LuisState.cpp" />
     <ClCompile Include="src\game\gamestates\MainMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\MatchOverState.cpp" />
@@ -304,7 +303,6 @@
     <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h" />
     <ClInclude Include="src\game\MultiplayerNamespaces.h" />
-    <ClInclude Include="src\game\gamestates\KeyMenuState.h" />
     <ClInclude Include="src\game\gamestates\TutorialBoardState.h" />
     <ClInclude Include="src\game\gamestates\multiplayerModeState.h" />
     <ClInclude Include="src\game\gamestates\optionsMainMenuState.h" />

@@ -8,6 +8,7 @@
 #include "../components/Button.h"
 #include "game/components/Clickable.h"
 #include "game/components/ShineComponent.h"
+#include "game/gamestates/GameState.h"
 
 ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
 {
@@ -17,7 +18,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
     keyButton->addComponent<BoxCollider>();
     keyButton->addComponent<Button>()->connectToButton([]
     {
-	    GameStateMachine::instance()->setState(GameStates::KEYMENU);
+    	GameStateMachine::instance()->getCurrentState()->setKey();
     });
     keyButton->setLayer(4);
     auto shine = keyButton->addComponent<ShineComponent>();

@@ -48,8 +48,7 @@ namespace GameStates
 		MULTIPLAYER_LOBBY,
 		MULTIPLAYER_PREGAME,
 		MULTIPLAYER_GAME,
-		MULTIPLAYER_END_GAME,
-		KEYMENU
+		MULTIPLAYER_END_GAME
 	};
 }
 
@@ -99,8 +98,6 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* pauseMenuState;
 	GameState* checkMazeMenuState;
 	GameState* checkCluesMenuState;
-
-	GameState* keyMenuState;
 	 
 	// Estados auxiliares
 	GameState* movementState;
@@ -223,9 +220,6 @@ public:
 			break;
 		case GameStates::CLUESMENU:
 			newState = checkCluesMenuState;
-			break;
-		case GameStates::KEYMENU:
-			newState = keyMenuState;
 			break;
 		default:
 			break;

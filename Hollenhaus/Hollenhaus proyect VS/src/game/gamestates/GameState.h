@@ -69,6 +69,8 @@ public:
 	//----Para resetear el brillo de las monedas.
 	virtual void deSelected() {}
 
+	virtual void setKey();
+
 	virtual void saveData();
 	virtual void loadData();
 
