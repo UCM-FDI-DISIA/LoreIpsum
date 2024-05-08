@@ -77,8 +77,9 @@ public:
 	}
 
 	// render the complete texture at position (x,y).
-	inline void render(int x, int y) {
+	inline void render(int x, int y, int alpha = 255) {
 		SDL_Rect dest = { x, y, width_, height_ };
+		applyOpacity(alpha);
 		render(dest);
 	}
 

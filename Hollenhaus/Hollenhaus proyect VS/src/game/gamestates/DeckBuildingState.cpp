@@ -39,6 +39,10 @@ void DeckBuildingState::update()
 	std::string cardsInMaze = std::to_string(pizarra_->getCantCartds()) + " / " + std::to_string(MAX_CARDS_MAZE);
 
 	cantCards_->setTxt(cardsInMaze);
+
+	/// Feedback
+	tweenFade.step(1);
+	fbSaved->getComponent<TextComponent>()->setAlpha(tweenFade.peek());
 }
 
 void DeckBuildingState::render() const
@@ -76,8 +80,8 @@ void DeckBuildingState::onEnter()
 	// Cantidad de cartas:
 	ecs::entity_t cantCards = Instantiate(Vector2D(80, 90));
 	cantCards_ = cantCards->addComponent<TextComponent>(
-		"xx / xx", "space_grotesk_bold_24", 
-		Colors::PEARL_HOLLENHAUS, 70, 
+		"xx / xx", "space_grotesk_bold_24",
+		Colors::PEARL_HOLLENHAUS, 70,
 		Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	cantCards->setLayer(1);
 
@@ -109,7 +113,7 @@ void DeckBuildingState::onEnter()
 	caj->setLayer(0);
 
 	// ---- BOTONES ----
-	#pragma region BOTONES
+#pragma region BOTONES
 	// ---- Salir:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
@@ -123,7 +127,7 @@ void DeckBuildingState::onEnter()
 	exit->addComponent<Clickable>("boton_flecha", true);
 
 	// ---- Confirmar Mazo:
-	Vector2D botMazScale(0.51f,0.51f);
+	Vector2D botMazScale(0.51f, 0.51f);
 	ecs::entity_t Confirm = Instantiate();
 	auto confirmTrans = Confirm->addComponent<Transform>();
 	confirmTrans->addParent(fondo->getComponent<Transform>());
@@ -133,17 +137,21 @@ void DeckBuildingState::onEnter()
 	Confirm->getComponent<Transform>()->setGlobalPos(ConfirmPos);
 	Confirm->getComponent<Transform>()->setGlobalScale(botMazScale);
 	Confirm->addComponent<Button>();
-	Confirm->getComponent<Button>()->connectToButton([this]() { pizarra_->saveMaze(); });
-	Confirm->getComponent<Button>()->connectToButton([this]() { drawer_->saveDrawer(); });
+	Confirm->getComponent<Button>()->connectToButton([this]()
+	{
+		resetFade();
+		pizarra_->saveMaze();
+		drawer_->saveDrawer();
+
+	});
 	Confirm->setLayer(2);
 	Confirm->addComponent<SpriteRenderer>("postit_guardar_mazo");
 	auto shinePostit = Confirm->addComponent<ShineComponent>();
 	shinePostit->addEnt(Confirm->getComponent<SpriteRenderer>(), "postit_guardar_mazo_brilli");
 
 
-
 	// ---- Pasar cajon alante:
-	Vector2D botScale(0.75,0.75);
+	Vector2D botScale(0.75, 0.75);
 	int botX = 720;
 	int botY = 470;
 	int botSep = 60;
@@ -173,10 +181,10 @@ void DeckBuildingState::onEnter()
 	botPatras->addComponent<Button>();
 	botPatras->getComponent<Button>()->connectToButton([this]() { drawer_->drawerPatras(); });
 	botPatras->setLayer(2);
-	#pragma endregion 
+#pragma endregion
 
 	// ---- PIZARRA ----
-	#pragma region PIZARRA
+#pragma region PIZARRA
 	Vector2D pizarraPos(120, 35);
 	ecs::entity_t pizarra = Instantiate(pizarraPos, ecs::grp::DROPZONE);
 
@@ -198,10 +206,10 @@ void DeckBuildingState::onEnter()
 
 	// lo guarda
 	pizarra_ = pizarra->getComponent<PizarraManager>();
-	#pragma endregion
+#pragma endregion
 
 	// ---- CAJON ----
-	#pragma region CAJON
+#pragma region CAJON
 	Vector2D cajonPos(300, 450);
 	ecs::entity_t cajon = Instantiate(cajonPos, ecs::grp::DROPZONE);
 
@@ -221,7 +229,26 @@ void DeckBuildingState::onEnter()
 
 	// lo guarda
 	drawer_ = cajon->getComponent<DrawerManager>();
-	#pragma endregion
+#pragma endregion
+
+
+	/// Feedback guardado
+	fbSaved = Instantiate(Vector2D());
+	auto fbTrans = fbSaved->getComponent<Transform>();
+	fbTrans->setGlobalPos(10, sdlutils().height() - 20 - 10);
+	fbSaved->addComponent<TextComponent>(
+		"Mazo guardado", Fonts::GROTESK_32,
+		Colors::PEARL_HOLLENHAUS, 350,
+		Text::BoxPivotPoint::LeftCenter, Text::TextAlignment::Left
+	);
+	fbSaved->setLayer(10);
+
+	tweenFade = // dummy declaration
+		tweeny::from(0)
+		.to(0)
+		.during(30)
+		.via(tweeny::easing::linear);
+
 
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
@@ -252,7 +279,7 @@ void DeckBuildingState::onExit()
 
 void DeckBuildingState::onPauseDB()
 {
-	if (!paused) 
+	if (!paused)
 	{
 		paused = true;
 
@@ -307,7 +334,21 @@ ecs::entity_t DeckBuildingState::createCard(int id, Vector2D pos)
 {
 	// Hace LA carta segun su id, en la pos que se pida
 	auto card = sdlutils().cards().at(std::to_string(id));
-	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
+	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(),
+	                                            card.effects());
 	return ent;
+}
+
+void DeckBuildingState::resetFade()
+{
+	tweenFade =
+		tweeny::from(0)
+		.to(255)
+		.during(30)
+		.to(255)
+		.during(60)
+		.to(0)
+		.during(30)
+		.via(tweeny::easing::linear);
 }
 #pragma endregion

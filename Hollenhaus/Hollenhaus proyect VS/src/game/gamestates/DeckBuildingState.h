@@ -37,5 +37,9 @@ private:
 	TextComponent* cantCards_;
 	Factory* factory;
 
+	ecs::entity_t fbSaved;
+	tweeny::tween<int> tweenFade;
+	int fbTimer = 0;
 	bool paused;
+	void resetFade();
 };

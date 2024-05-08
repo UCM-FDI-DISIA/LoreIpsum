@@ -5,16 +5,17 @@
 #include "../EffectCollection.h"
 #include "../Namespaces.h"
 
-ecs::entity_t FakeCardFactory_v0::createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
+ecs::entity_t FakeCardFactory_v0::createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite,
+                                                 bool unblockable, std::vector<JsonData::CardEffect>& effects)
 {
-    ecs::entity_t fakeCard = Instantiate(pos, ecs::grp::CARDS);
-    fakeCard->addComponent<Transform>();
-    fakeCard->addComponent<SpriteRenderer>("card");
-    fakeCard->addComponent<BoxCollider>();
-    fakeCard->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	ecs::entity_t fakeCard = Instantiate(pos, ecs::grp::CARDS);
+	fakeCard->addComponent<Transform>();
+	fakeCard->addComponent<SpriteRenderer>("card");
+	fakeCard->addComponent<BoxCollider>();
+	fakeCard->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	fakeCard->getComponent<Transform>()->setGlobalScale(cardScale, cardScale);
 	fakeCard->getComponent<Transform>()->setGlobalPos(pos);
-    fakeCard->addComponent<Card>( id, cost, value, sprite, unblockable );
+	fakeCard->addComponent<Card>(id, cost, value, sprite, unblockable);
 	Card* cardComp = fakeCard->getComponent<Card>();
 
 	fakeCard->setLayer(2);
@@ -22,6 +23,8 @@ ecs::entity_t FakeCardFactory_v0::createFakeCard(int id, Vector2D pos, int cost,
 	addEffects(cardComp, effects);
 	addValueCostTexts(fakeCard, value, cost);
 	addEffectsImages(fakeCard, effects);
+	addShadow(0,0,1, fakeCard->getComponent<Transform>());
+
 	return fakeCard;
 }
 
@@ -32,9 +35,9 @@ void FakeCardFactory_v0::addValueCostTexts(ecs::entity_t card, int value, int co
 
 
 	// Texto blanco para el valor
-	textoValor->addComponent<TextComponent>(std::to_string(value), 
-		Fonts::GROTESK_16, Colors::PEARL_HOLLENHAUS, 10,
-		Text::CenterCenter, Text::Center);
+	textoValor->addComponent<TextComponent>(std::to_string(value),
+	                                        Fonts::GROTESK_16, Colors::PEARL_HOLLENHAUS, 10,
+	                                        Text::CenterCenter, Text::Center);
 
 	textoValor->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 	textoValor->getComponent<Transform>()->getRelativePos().set(posX, 88);
@@ -43,9 +46,9 @@ void FakeCardFactory_v0::addValueCostTexts(ecs::entity_t card, int value, int co
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
 	// Texto amarillo para el coste
-	textoCoste->addComponent<TextComponent>(std::to_string(cost), 
-		Fonts::GROTESK_16, Colors::AMARILLO_PIS, 10,
-		Text::CenterCenter, Text::Center);
+	textoCoste->addComponent<TextComponent>(std::to_string(cost),
+	                                        Fonts::GROTESK_16, Colors::AMARILLO_PIS, 10,
+	                                        Text::CenterCenter, Text::Center);
 
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 	textoCoste->getComponent<Transform>()->getRelativePos().set(posX, 10);
@@ -67,7 +70,7 @@ void FakeCardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonDa
 
 	ecs::entity_t effectImage;
 
-	std::vector<std::string> efectsIdsNames{ "esquina", "centro", "flecha", "superflecha", "block", "unblockable" };
+	std::vector<std::string> efectsIdsNames{"esquina", "centro", "flecha", "superflecha", "block", "unblockable"};
 	std::string efectID;
 
 
@@ -117,11 +120,10 @@ void FakeCardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonDa
 			textTrans->addParent(effectImage->getComponent<Transform>());
 			auto textPos = Vector2D(23, 8);
 			textTrans->setRelativePos(textPos);
-			textEntity->addComponent<TextComponent>(valueText, 
-				Fonts::GROTESK_18, color, 100);
+			textEntity->addComponent<TextComponent>(valueText,
+			                                        Fonts::GROTESK_18, color, 100);
 			/*auto valueChange = effectImage->addComponent<TextComponent>(valueText, 
 				Fonts::GROTESK_16, color, 100);*/
-			
 		}
 	}
 }
@@ -150,4 +152,15 @@ void FakeCardFactory_v0::addEffects(Card* cardComp, std::vector<JsonData::CardEf
 					)
 				);
 	}
+}
+
+void FakeCardFactory_v0::addShadow(int x, int y, int layer, Transform* parent)
+{
+	auto shadow = Instantiate(Vector2D(x, y));
+	auto newPos = parent->getGlobalPos();
+	shadow->getComponent<Transform>()->setGlobalPos(newPos.getX() + 2, newPos.getY() + 2);
+	shadow->getComponent<Transform>()->setRelativePos(0, 0);
+	shadow->addComponent<SpriteRenderer>("card_sombra");
+	shadow->getComponent<Transform>()->addParent(parent);
+	shadow->setLayer(layer);
 }

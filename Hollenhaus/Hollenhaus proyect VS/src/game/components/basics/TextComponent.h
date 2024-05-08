@@ -70,6 +70,7 @@ public:
 	SDL_Color getColor() { return color_; }
 	void setOffset(int x, int y) { offset = Vector2D(x, y); }
 	Vector2D getOffset() const { return offset; }
+	void setAlpha(int v) { alpha = v; }
 
 private:
 
@@ -90,8 +91,9 @@ private:
 	Vector2D renderPos_;
 	Vector2D offset = { 0, 0 };
 
-	void createTexture();
+	int alpha = 255;
 
+	void createTexture();
 	void RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const;
 
 };
