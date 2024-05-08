@@ -45,14 +45,14 @@ void MultiplayerModeState::onEnter()
 
 
 	mainMenuButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 170));
-	mainMenuButton->addComponent<TextComponent>("MENU PRINCIPAL", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	mainMenuButton->addComponent<TextComponent>("MENU PRINCIPAL", Fonts::GROTESK_32, ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	mainMenuButton->addComponent<BoxCollider>();
 	mainMenuButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	mainMenuButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	mainMenuButton->addComponent<NPC>(0, 0);
 	
 	iniGameButton = Instantiate(Vector2D(sdlutils().width() - 200, sdlutils().height() - 120));
-	iniGameButton->addComponent<TextComponent>("INICIAR", "8bit_size_32", ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	iniGameButton->addComponent<TextComponent>("INICIAR", Fonts::GROTESK_32, ROJO_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	iniGameButton->addComponent<BoxCollider>();
 	iniGameButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
 	iniGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-50, -20));

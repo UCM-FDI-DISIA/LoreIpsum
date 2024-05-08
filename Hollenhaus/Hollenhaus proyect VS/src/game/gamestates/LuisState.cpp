@@ -90,8 +90,8 @@ void LuisState::onEnter()
 
 
 	// UI 
-	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(100, 500);
-	ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
+	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 500);
+	//ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
 
 	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(600, 200, 200, 180);
 	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 265);
@@ -108,7 +108,7 @@ void LuisState::onEnter()
 	// Enlazado de la UI con los scripts que la controlan
 	matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
 	matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
-	matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
+	//matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
 	matchManagerComponent->updateVisuals();
 
 	boardManagerComponent->setScoreVisualJ1(visual_ScoreCounterJ1);

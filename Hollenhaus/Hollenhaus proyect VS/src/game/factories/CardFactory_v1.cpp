@@ -16,8 +16,9 @@
 #include "../gamestates/GameState.h"
 
 
-ecs::entity_t CardFactory_v1::createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable,
-	std::vector<JsonData::CardEffect>& effects, bool bocarriba)
+ecs::entity_t CardFactory_v1::createCard(int id, Vector2D pos, int cost, int value, std::string& sprite,
+                                         bool unblockable,
+                                         std::vector<JsonData::CardEffect>& effects, bool bocarriba)
 {
 	ecs::entity_t card = Instantiate(pos, ecs::grp::CARDS);
 
@@ -47,8 +48,8 @@ ecs::entity_t CardFactory_v1::createCard(int id, Vector2D pos, int cost, int val
 //crea la mano del jugador
 ecs::entity_t CardFactory_v1::createHand()
 {
-	int initY = 470;
-	int initX = 320;
+	int initY = 465;
+	int initX = 360;
 	int offSetX = 50;
 
 	Vector2D deckPos(initX, initY);
@@ -205,7 +206,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2Multiplayer()
 	auto maze = GameStateMachine::instance()->getCurrentState()->getMazeRival();
 
 	for (auto c : maze)
-	{	
+	{
 		auto card = sdlutils().cards().at(std::to_string(c));
 		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		ecs::entity_t ent = createCard(
@@ -229,7 +230,8 @@ ecs::entity_t CardFactory_v1::createDeckJ2Multiplayer()
 	return deck;
 }
 
-void CardFactory_v1::addInfo(ecs::entity_t card, int cost, int value, std::vector<JsonData::CardEffect>& effects, bool bocabajo)
+void CardFactory_v1::addInfo(ecs::entity_t card, int cost, int value, std::vector<JsonData::CardEffect>& effects,
+                             bool bocabajo)
 {
 	addEffects(card->getComponent<Card>(), effects);
 	addValueCostTexts(card, value, cost);
@@ -244,11 +246,11 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 	int offSetY = 15;
 	int nCols = 2;
 	int layer = 10;
-	float scale = effects.size() == 1 ? 0.07 : 0.045;
+	float scale = effects.size() == 1 ? 0.08 : 0.045;
 
 	ecs::entity_t effectImage;
 
-	std::vector<std::string> efectsIdsNames{ "esquina", "centro", "flecha", "superflecha", "block", "unblockable" };
+	std::vector<std::string> efectsIdsNames{"esquina", "centro", "flecha", "superflecha", "block", "unblockable"};
 	std::string efectID;
 
 
@@ -287,15 +289,25 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 			auto color = Colors::PEARL_HOLLENHAUS;
 
-			if (effects[i].value() < 0)
-				color = Colors::ROJO_HOLLENHAUS;
-			else
-				color = Colors::VERDE_BANKIA;
-			if (rival) 
-				color = Colors::TEAL_MIKU;
 
-			auto valueChange = effectImage->addComponent<TextComponent>(valueText, 
-				Fonts::GROTESK_32, color, 100);
+			if (effects[i].value() < 0)
+			{
+				if (!rival)
+					color = Colors::ROJO_HOLLENHAUS;
+				else
+					color = Colors::NARANJA_PERJUICIO;
+			}
+			else
+			{
+				if (!rival)
+					color = Colors::BAHIA_BENEFICIO;
+				else
+					color = Colors::VERDE_BENEFICIO;
+			}
+
+			auto valueChange = effectImage->addComponent<TextComponent>(valueText,
+			                                                            Fonts::GROTESK_18, color, 100);
+			valueChange->setOffset(25, 20);
 		}
 	}
 }
@@ -306,9 +318,9 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 	auto posX = 10;
 
 	// Texto blanco para el valor
-	textoValor->addComponent<TextComponent>(std::to_string(value), Fonts::GROTESK_16, 
-		Colors::PEARL_HOLLENHAUS, 100,
-		Text::CenterCenter, Text::Center);
+	textoValor->addComponent<TextComponent>(std::to_string(value), Fonts::GROTESK_16,
+	                                        Colors::PEARL_HOLLENHAUS, 100,
+	                                        Text::CenterCenter, Text::Center);
 
 	textoValor->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 	textoValor->getComponent<Transform>()->getRelativePos().set(posX, 104);
@@ -317,9 +329,9 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
 	// Texto amarillo para el coste
-	textoCoste->addComponent<TextComponent>(std::to_string(cost), Fonts::GROTESK_16, 
-		Colors::AMARILLO_PIS, 100,
-		Text::CenterCenter, Text::Center);
+	textoCoste->addComponent<TextComponent>(std::to_string(cost), Fonts::GROTESK_16,
+	                                        Colors::AMARILLO_PIS, 100,
+	                                        Text::CenterCenter, Text::Center);
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 	textoCoste->getComponent<Transform>()->getRelativePos().set(posX, 11);
 	textoCoste->getComponent<Transform>()->setGlobalScale(10, 10); // esta linea aporta 0 porque es una fuente

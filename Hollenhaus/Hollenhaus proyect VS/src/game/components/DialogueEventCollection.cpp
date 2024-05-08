@@ -35,7 +35,7 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent, int greenD
 							scene, // Escena
 							greenDecision, //greenDecision
 							redDecision, //redDecision
-							"8bit_size_24", //fontId
+							Fonts::GROTESK_24, //fontId
 							SDL_Color({ 0, 0, 0, 255 }), //color del txt
 							100, //wraplength
 							Text::BoxPivotPoint::LeftTop,

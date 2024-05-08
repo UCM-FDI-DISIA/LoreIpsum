@@ -12,16 +12,17 @@
 #include "game/Data.h"
 #include "../Card.h"
 
-MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm) :
+MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart,
+                           BoardManager* bm) :
+	actualState(turnStart),
 	board_(bm),
 	defaultActionPointsJ1(defaultActionPointsJ1),
 	defaultActionPointsJ2(defaultActionPointsJ2),
 	actualActionPointsJ1(defaultActionPointsJ1),
 	actualActionPointsJ2(defaultActionPointsJ2),
-	actualState(turnStart),
+	actualTurnVisual(nullptr),
 	actionPointsVisualJ1(nullptr),
-	actionPointsVisualJ2(nullptr),
-	actualTurnVisual(nullptr)
+	actionPointsVisualJ2(nullptr)
 {
 }
 
@@ -53,32 +54,32 @@ void MatchManager::setActualState(Turns::State newState)
 	switch (actualState)
 	{
 	case Turns::J1:
-#if _DEBUG 
+#if _DEBUG
 		std::cout << "Nuevo turno: Jugador 1" << std::endl; 
 #endif
-		resetActualActionPoints();	
+		resetActualActionPoints();
 		break;
 	case Turns::J2:
-#if _DEBUG 
+#if _DEBUG
 		std::cout << "Nuevo turno: Jugador 2" << std::endl;
 #endif
-		resetActualActionPoints();	
+		resetActualActionPoints();
 		break;
 	case Turns::Finish:
-#if _DEBUG 
+#if _DEBUG
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
 #endif
 		setWinnerOnData();
 		InstantiatePanelFinPartida(GameStateMachine::instance()->getCurrentState()->getData()->getWinner());
 		break;
 	case Turns::IA:
-#if _DEBUG 
+#if _DEBUG
 		std::cout << "Turno: IA" << std::endl;
 #endif
 		startTurnIA();
 		break;
 	case Turns::J2_MULTIPLAYER:
-#if _DEBUG 
+#if _DEBUG
 		std::cout << "Turno: J2_MULTIPLAYER" << std::endl;
 #endif
 		break;
@@ -91,8 +92,7 @@ void MatchManager::setActualState(Turns::State newState)
 
 int MatchManager::getActualPlayerActualActionPoints()
 {
-	return getActualState() == Turns::J1 ? 
-		getActualActionPointsJ1() : getActualActionPointsJ2();
+	return getActualState() == Turns::J1 ? getActualActionPointsJ1() : getActualActionPointsJ2();
 }
 
 Players::Owner MatchManager::getPlayerTurn() const
@@ -109,10 +109,10 @@ Players::Owner MatchManager::getPlayerTurn() const
 		return Players::NONE;
 		break;
 	case Turns::IA:
-		return  Players::IA;
+		return Players::IA;
 		break;
 	case Turns::J2_MULTIPLAYER:
-		return  Players::PLAYER2_MULTIPLAYER;
+		return Players::PLAYER2_MULTIPLAYER;
 		break;
 	default:
 		return Players::NONE;
@@ -122,30 +122,31 @@ Players::Owner MatchManager::getPlayerTurn() const
 
 void MatchManager::substractActualPlayerActionPoints(int points)
 {
-	getActualState() == Turns::J1 ? 
-		substractActionPointsJ1(points) : substractActionPointsJ2(points);
+	getActualState() == Turns::J1 ? substractActionPointsJ1(points) : substractActionPointsJ2(points);
 	updateVisuals();
 	// Si la configuracion admite el paso de turno automático
-	if(GameStateMachine::instance()->getCurrentState()->getData()->GetAutomaticNextTurn() && getPlayerTurn() == Players::PLAYER1)
+	if (GameStateMachine::instance()->getCurrentState()->getData()->GetAutomaticNextTurn() && getPlayerTurn() ==
+		Players::PLAYER1)
 		CheckNextTurnAutomatic();
-	
 }
 
 void MatchManager::updateVisuals()
 {
 	//Si queremos meterlo de forma digética es aquí cuando se pueda
 	// Actualiza los puntos de acción restantes de J1
-	actionPointsVisualJ1->getComponent<TextComponent>()->setTxt(
-		"Puntos de accion:\n" + std::to_string(actualActionPointsJ1));
+	if (actionPointsVisualJ1 != nullptr)
+		actionPointsVisualJ1->getComponent<TextComponent>()->setTxt(
+			"Puntos de accion:\n" + std::to_string(actualActionPointsJ1));
 
 	// Actualiza los puntos de acción restantes de J2
-	actionPointsVisualJ2->getComponent<TextComponent>()->setTxt(
-		"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
+	if (actionPointsVisualJ2 != nullptr)
+		actionPointsVisualJ2->getComponent<TextComponent>()->setTxt(
+			"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
 
 	// Actualiza el indicador del propietario del turno actual
 	//Habría que Hacer uan diferenciación también cuando recién cambia de turno para la animación
 	std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
-	SDL_Color color = actualState == Turns::J1 ? SDL_Color({ 102, 255, 102, 255 }) : SDL_Color({ 255, 102, 255, 255 });
+	SDL_Color color = actualState == Turns::J1 ? SDL_Color({102, 255, 102, 255}) : SDL_Color({255, 102, 255, 255});
 	actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
 	actualTurnVisual->getComponent<TextComponent>()->setColor(color);
 }
@@ -164,7 +165,6 @@ void MatchManager::endTurnIA()
 {
 	setActualState(Turns::J1);
 	// Animacion gira la estatua
-
 }
 
 void MatchManager::resetActualActionPoints()
@@ -207,55 +207,69 @@ void MatchManager::changeTurnMultiplayer()
 
 void MatchManager::InstantiatePanelFinPartida(int winner)
 {
-
 	ecs::entity_t panel = Instantiate(Vector2D(0, 0));
 	panel->setLayer(1000);
 	panel->addComponent<SpriteRenderer>("panelFinPartida");
 
 	ecs::entity_t victoryDefeatText = Instantiate(Vector2D(128, 240));
 	victoryDefeatText->setLayer(1002);
-	auto text = victoryDefeatText->addComponent<TextComponent>("", "8bit_size_32", SDL_Color({ 0, 0, 0 ,0 }), 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	auto text = victoryDefeatText->addComponent<TextComponent>("", Fonts::GROTESK_32, SDL_Color({0, 0, 0, 0}), 200,
+	                                                           Text::BoxPivotPoint::CenterCenter,
+	                                                           Text::TextAlignment::Center);
 
-	if (winner == 1) {
+	if (winner == 1)
+	{
 		text->setTxt("EMPATE");
-		text->setColor(SDL_Color({ 0, 0, 255 ,0 }));
+		text->setColor(SDL_Color({0, 0, 255, 0}));
 	}
-	if (winner == 2) {
+	if (winner == 2)
+	{
 		text->setTxt("VICTORIA");
-		text->setColor(SDL_Color({ 255, 50, 50 ,0 }));
+		text->setColor(SDL_Color({255, 50, 50, 0}));
 	}
-	if (winner == 3) {
+	if (winner == 3)
+	{
 		text->setTxt("DERROTA");
-		text->setColor(SDL_Color({ 255, 50, 50 ,0 }));
+		text->setColor(SDL_Color({255, 50, 50, 0}));
 	}
-	
+
 
 	ecs::entity_t continuarButton = Instantiate(Vector2D(128, 320));
 	continuarButton->setLayer(1001);
-	continuarButton->addComponent<TextComponent>("CONTINUAR", "8bit_size_16", SDL_Color({ 0, 0, 0 ,0 }), 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	continuarButton->addComponent<TextComponent>("CONTINUAR", Fonts::GROTESK_16, SDL_Color({0, 0, 0, 0}), 200,
+	                                             Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	continuarButton->addComponent<BoxCollider>();
 	continuarButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
 	continuarButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
 	continuarButton->addComponent<Button>();
-	if (netGame == nullptr) {
-		continuarButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(GameStates::MATCHOVER); });
+	if (netGame == nullptr)
+	{
+		continuarButton->getComponent<Button>()->connectToButton([this]
+		{
+			GameStateMachine::instance()->setState(GameStates::MATCHOVER);
+		});
 	}
-	else {
-		continuarButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_END_GAME); });
+	else
+	{
+		continuarButton->getComponent<Button>()->connectToButton([this]
+		{
+			GameStateMachine::instance()->setState(GameStates::MULTIPLAYER_END_GAME);
+		});
 	}
-	
 }
 
 void MatchManager::CheckNextTurnAutomatic()
 {
-	if (getActualPlayerActualActionPoints() <= 0) {
-		
+	if (getActualPlayerActualActionPoints() <= 0)
+	{
 		auto hand = playerJ1Hand->getHand();
 
-		for (auto e : hand) {
-
-			if (e->getCost() == 0) {
-				for (auto& e :hand) {
+		for (auto e : hand)
+		{
+			if (e->getCost() == 0)
+			{
+				for (auto& e : hand)
+				{
 					delete e;
 					e = nullptr;
 				}
@@ -263,7 +277,8 @@ void MatchManager::CheckNextTurnAutomatic()
 			}
 		}
 
-		for (auto& e : hand) {
+		for (auto& e : hand)
+		{
 			delete e;
 			e = nullptr;
 		}

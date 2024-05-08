@@ -87,7 +87,7 @@ void MatchOverState::setWindow(int lastWinner) {
 
 	// ---- Texto ----
 	ecs::entity_t matchOverText = Instantiate(Vector2D(sdlutils().width() / 2, sdlutils().height() / 2));
-	matchOverText->addComponent<TextComponent>("¡GANADOR: " + _text, "8bit_size_40", SDL_Color({ 255, 255, 255, 255 }), 500, Text::CenterCenter, Text::Center);
+	matchOverText->addComponent<TextComponent>("¡GANADOR: " + _text, Fonts::GROTESK_40, SDL_Color({ 255, 255, 255, 255 }), 500, Text::CenterCenter, Text::Center);
 	matchOverText->setLayer(1);
 
 	// ---- Resetea el ganador a nulo al salir del estado ----

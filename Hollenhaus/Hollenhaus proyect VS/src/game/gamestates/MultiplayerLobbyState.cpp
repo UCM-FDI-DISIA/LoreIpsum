@@ -60,13 +60,13 @@ void MultiplayerLobbyState::onEnter()
 
 	// Entidad cuadro de texto para recoger una ip
 	ecs::entity_t cuadroTexto = Instantiate(Vector2D(400, 300));
-	cuadroTexto->addComponent<TextComponent>("", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	cuadroTexto->addComponent<TextComponent>("", Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	cuadroTexto->addComponent<TextWritter>();
 	cuadroTexto->addComponent<InputForTextWritter>();
 
 	// Botón para pegar el clipboard en el cuadro de texto
 	ecs::entity_t pasteButton = Instantiate(Vector2D(400, 350));
-	pasteButton->addComponent<TextComponent>("PASTE", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	pasteButton->addComponent<TextComponent>("PASTE", Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	pasteButton->addComponent<BoxCollider>();
 	pasteButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 40));
 	pasteButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -20));
@@ -76,14 +76,14 @@ void MultiplayerLobbyState::onEnter()
 	ecs::entity_t idHint = Instantiate(Vector2D(700, 50));
 	auto getipv4 = idHint->addComponent<GetIPv4>();
 #if _DEBUG
-	idHint->addComponent<TextComponent>("localhost", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	idHint->addComponent<TextComponent>("localhost", Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 #else
-	idHint->addComponent<TextComponent>(getipv4->GetIP(), "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	idHint->addComponent<TextComponent>(getipv4->GetIP(), Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 #endif // 
 
 	// Botón para copiar tu IP al clipboard
 	ecs::entity_t copyButton = Instantiate(Vector2D(700, 100));
-	copyButton->addComponent<TextComponent>("COPY IP", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	copyButton->addComponent<TextComponent>("COPY IP", Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	copyButton->addComponent<BoxCollider>();
 	copyButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 40));
 	copyButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -20));
@@ -92,7 +92,7 @@ void MultiplayerLobbyState::onEnter()
 
 	// Texto que renderiza el estado del lobby
 	ecs::entity_t lobbyStatusRenderer = Instantiate(Vector2D(400, 400));
-	lobbyStatusRenderer->addComponent<TextComponent>("", "8bit_size_16", SDL_Color({ 0, 0,0 ,0 }), 500, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	lobbyStatusRenderer->addComponent<TextComponent>("", Fonts::GROTESK_16, SDL_Color({ 0, 0,0 ,0 }), 500, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 
 
 	// Para almacenar el estado del lobby
@@ -115,7 +115,7 @@ void MultiplayerLobbyState::onEnter()
 
 	// Botón para enviar una invitación a aquella IP que esté guardada en el cuadro de texto
 	ecs::entity_t sendInvButton = Instantiate(Vector2D(600, 530));
-	sendInvButton->addComponent<TextComponent>("SEND INVITATION", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	sendInvButton->addComponent<TextComponent>("SEND INVITATION", Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	sendInvButton->addComponent<BoxCollider>();
 	sendInvButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	sendInvButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));

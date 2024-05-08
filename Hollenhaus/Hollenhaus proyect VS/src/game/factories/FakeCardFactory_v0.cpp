@@ -104,15 +104,24 @@ void FakeCardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonDa
 			std::string valueText = effects[i].value() < 0 ? "" : "+";
 			valueText = valueText + std::to_string(effects[i].value());
 
-			auto color = Colors::PEARL_HOLLENHAUS;
+			auto color = Colors::TEAL_MIKU;
 
 			if (effects[i].value() < 0)
 				color = Colors::ROJO_HOLLENHAUS;
 			else
-				color = Colors::VERDE_BANKIA;
+				color = Colors::BAHIA_BENEFICIO;
 
-			auto valueChange = effectImage->addComponent<TextComponent>(valueText, 
-				Fonts::GROTESK_16, color, 100);
+			auto textEntity = Instantiate(Vector2D());
+			auto textTrans = textEntity->getComponent<Transform>();
+			textEntity->setLayer(effectImage->getLayer());
+			textTrans->addParent(effectImage->getComponent<Transform>());
+			auto textPos = Vector2D(23, 8);
+			textTrans->setRelativePos(textPos);
+			textEntity->addComponent<TextComponent>(valueText, 
+				Fonts::GROTESK_18, color, 100);
+			/*auto valueChange = effectImage->addComponent<TextComponent>(valueText, 
+				Fonts::GROTESK_16, color, 100);*/
+			
 		}
 	}
 }

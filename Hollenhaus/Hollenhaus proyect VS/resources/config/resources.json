@@ -163,6 +163,16 @@
         "size": 16
       },
       {
+        "id": "space_grotesk_bold_20",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 20
+      },
+      {
+        "id": "space_grotesk_bold_18",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 18
+      },
+      {
         "id": "space_grotesk_bold_32",
         "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
         "size": 32
@@ -171,6 +181,11 @@
         "id": "space_grotesk_bold_40",
         "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
         "size": 40  
+      },
+      {
+        "id": "space_grotesk_bold_48",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 48
       },
       {
         "id": "space_grotesk_bold_8",

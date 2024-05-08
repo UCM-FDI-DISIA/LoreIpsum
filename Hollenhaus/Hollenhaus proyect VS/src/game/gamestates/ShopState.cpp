@@ -74,11 +74,6 @@ void ShopState::onEnter()
 	shopManager->addComponent<ShopComponent>();
 	shopManager->setLayer(1);
 
-	//------Texto de la tienda:
-	//ecs::entity_t shopText = Instantiate(Vector2D(400, 30));
-	//shopText->addComponent<TextComponent>("TIENDA", "8bit_size_40", SDL_Color({ 255, 255, 255, 255 }), 350,
-	//	Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
-	//shopText->setLayer(1);
 
 	//-----Imagen de fondo:
 	ecs::entity_t fondo = Instantiate();

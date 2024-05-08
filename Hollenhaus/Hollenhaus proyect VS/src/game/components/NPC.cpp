@@ -94,7 +94,7 @@ void NPC::talkTo()
 								getEntity(), //Parent 
 								3, //LAYER
 								dialogue.Convo(convo_).isAuto(), //Si el texto es auto o no
-								"8bit_size_20",	//mirar el JSON resources para cambiar el tamanio de texto
+								Fonts::GROTESK_20,	//mirar el JSON resources para cambiar el tamanio de texto
 								SDL_Color({0, 0, 0, 255}), //Color black
 								220, //wrap length
 								Text::BoxPivotPoint::LeftTop,

@@ -38,7 +38,7 @@ void TextComponent::render() const
 	//PROVISIONAL
 	Vector2D aux  = GetRenderPosAcordingPivotPoint();
 
-	text_->render(aux.getX(), aux.getY());
+	text_->render(aux.getX() + offset.getX(), aux.getY() + offset.getY());
 
 #ifdef _DEBUG
 	RenderDebugRect( 0, 0, 255, 255 );

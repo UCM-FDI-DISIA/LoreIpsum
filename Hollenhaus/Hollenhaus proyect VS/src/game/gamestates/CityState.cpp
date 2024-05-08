@@ -65,12 +65,6 @@ void CityState::onEnter()
 		static_cast<NPCFactory*>(new NPCFactory_V0()));
 
 
-	//------Texto de la ciudad:
-	//ecs::entity_t cityText = Instantiate(Vector2D(500, 30));
-	//cityText->addComponent<TextComponent>("CIUDAD", "8bit_size_40", SDL_Color({255, 255, 255, 255}), 350,
-	//                                      Text::CenterCenter, Text::Center);
-	//cityText->setLayer(1);
-
 	/// ---- FONDO CIUDAD ----
 	auto scaleFondo = Vector2D(0.495f, 0.495f);
 	fondo = Instantiate(Vector2D(0, 2));

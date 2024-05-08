@@ -13,7 +13,7 @@ KeyComponent::KeyComponent(const int keys) :
 	firstOffset_(60, 60),
 	secondOffset_(10, 60),
 	bookWidth_(),
-	font_("8bit_size_16")
+	font_(Fonts::GROTESK_16)
 {
 	// Inicializacion del vector con los nombres
 	keyNames_.reserve(TOTAL_KEYS);
