@@ -68,14 +68,14 @@ void CityState::onEnter()
 
 	/// ---- FONDO CIUDAD ----
 	auto scaleFondo = Vector2D(0.495f, 0.495f);
-	fondo = Instantiate(Vector2D(0, 2));
+	fondo = Instantiate(Vector2D(0, 0));
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("edificios");
 	fondo->addComponent<MoveOnClick>(3.0f);
 	fondo->addComponent<BoxCollider>();
 	fondo->getComponent<Transform>()->setGlobalScale(scaleFondo);
 	Vector2D globalPos = getLastPaulPos();
-	Vector2D realFondoPos = Vector2D(globalPos.getX(), globalPos.getY() + 2);
+	Vector2D realFondoPos = Vector2D(globalPos.getX(), globalPos.getY());
 	fondo->getComponent<Transform>()->setGlobalPos(realFondoPos);
 	fondo->setLayer(0);
 
