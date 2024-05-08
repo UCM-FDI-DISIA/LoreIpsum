@@ -90,7 +90,7 @@ void LuisState::onEnter()
 
 
 	// UI 
-	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 500);
+	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 310);
 	//ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
 
 	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(600, 200, 200, 180);

@@ -41,7 +41,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int 
 
 ecs::entity_t MatchStateUIFactory_v0::createVisual_ActionPointsCounter(int posX, int posY)
 {
-    ecs::entity_t actionPointsVisual = Instantiate(Vector2D(posX + 70, posY)); // 100, 500 | 100, 100
+    ecs::entity_t actionPointsVisual = Instantiate(Vector2D(posX, posY)); // 100, 500 | 100, 100
     actionPointsVisual->addComponent<TextComponent>("Puntos de accion:\n---",
         Fonts::GROTESK_24, Colors::AMARILLO_ACCION, 200,  
         Text::BoxPivotPoint::CenterCenter,
