@@ -2,7 +2,7 @@
     "images": [
         {"id": "rice",            "file": "./resources/images/rice.png"},
         {"id": "card",            "file": "resources/images/card.png"},
-        {"id": "key",             "file": "resources/images/libreta.png"},
+        {"id": "key",             "file": "resources/images/pagina_leyenda.png"},
         {"id": "board",           "file": "resources/images/board4.png"},
         {"id": "board5",          "file": "resources/images/board5.png"},
         {"id": "board6",          "file": "resources/images/board6.png"},

@@ -10,8 +10,8 @@ KeyComponent::KeyComponent(const int keys) :
 	tr_(),
 	sr_(),
 	pos_(),
-	firstOffset_(60, 60),
-	secondOffset_(10, 60),
+	firstOffset_(100, 150),
+	secondOffset_(50, 150),
 	bookWidth_(),
 	font_(Fonts::GROTESK_16)
 {

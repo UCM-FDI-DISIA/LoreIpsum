@@ -54,7 +54,7 @@ void LuisState::update()
 	if (moveKey_)
 	{
 		Vector2D newPos = keyTr_->getGlobalPos();
-		if(newPos.getX() >= 200) {
+		if(newPos.getX() >= 100) {
 			newPos = newPos - Vector2D(10, 0);
 			keyTr_->setGlobalPos(newPos);
 		}
@@ -127,7 +127,6 @@ void LuisState::onEnter()
 	key_->addComponent<SpriteRenderer>("key");
 	key_->addComponent<KeyComponent>(getKeys());
 	keyTr_ = key_->getComponent<Transform>();
-	keyTr_->increaseLayer(key_->getLayer());
 
 	// UI 
 	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 280);
@@ -136,7 +135,9 @@ void LuisState::onEnter()
 	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(600, 200, 200, 180);
 	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 250);
 	colliders_.push_back(visual_EndTurnButton->getComponent<BoxCollider>());
-	ecs::entity_t visual_KeyButton = factory->createVisual_KeyButton(700, 400);
+	ecs::entity_t visual_KeyButton = factory->createVisual_KeyButton(720, 400);
+	visual_KeyButton->getComponent<Transform>()->addParent(keyTr_);
+	keyTr_->increaseLayer(key_->getLayer());
 
 	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 
