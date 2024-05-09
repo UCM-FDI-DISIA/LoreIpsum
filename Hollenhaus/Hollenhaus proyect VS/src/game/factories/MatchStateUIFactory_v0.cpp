@@ -8,16 +8,17 @@
 #include "../components/Button.h"
 #include "game/components/Clickable.h"
 #include "game/components/ShineComponent.h"
+#include "game/gamestates/GameState.h"
 
 ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
 {
     ecs::entity_t keyButton = Instantiate(Vector2D(posX, posY));
-    keyButton->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
+    keyButton->getComponent<Transform>()->setGlobalScale(1, 1);
     auto sprite = keyButton->addComponent<SpriteRenderer>("leyenda_boton");
     keyButton->addComponent<BoxCollider>();
     keyButton->addComponent<Button>()->connectToButton([]
     {
-	    GameStateMachine::instance()->setState(GameStates::KEYMENU);
+    	GameStateMachine::instance()->getCurrentState()->setKey();
     });
     keyButton->setLayer(4);
     auto shine = keyButton->addComponent<ShineComponent>();

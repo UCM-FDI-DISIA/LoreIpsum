@@ -163,6 +163,10 @@ void GameState::setDrawer(std::array<int, 50> drawerToSave)
 	data->SetNewDrawer(drawerToSave);
 }
 
+void GameState::setKey()
+{
+}
+
 void GameState::saveData()
 {
 	data->Write();

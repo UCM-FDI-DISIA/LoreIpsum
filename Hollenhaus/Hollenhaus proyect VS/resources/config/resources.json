@@ -2,7 +2,7 @@
     "images": [
         {"id": "rice",            "file": "./resources/images/rice.png"},
         {"id": "card",            "file": "resources/images/card.png"},
-        {"id": "key",             "file": "resources/images/libreta.png"},
+        {"id": "key",             "file": "resources/images/pagina_leyenda.png"},
         {"id": "board",           "file": "resources/images/board4.png"},
         {"id": "board5",          "file": "resources/images/board5.png"},
         {"id": "board6",          "file": "resources/images/board6.png"},
@@ -23,7 +23,9 @@
         {"id": "unblockable",     "file": "resources/images/ef_unblockable.png" },
         {"id": "tiendafondo",     "file": "resources/images/provtienda.png" },
         {"id": "oficinafondo",    "file": "resources/images/OficinaBG.png"  },
+        {"id": "oldWhiteRect",    "file": "resources/images/rectBlanco.png"  },
         {"id": "fantasma",        "file": "resources/images/fantasma.png"  },
+        {"id": "logo_hollen",        "file": "resources/images/logo_hollenhaus.png"  },
         {"id": "fantasma_caminando",        "file": "resources/images/fantasma_caminando.png"  },
         {"id": "leyenda_boton",    "file": "resources/images/boton_leyenda.png"  },
         {"id": "leyenda_boton_brilli",    "file": "resources/images/boton_leyenda_brilli.png"  },
