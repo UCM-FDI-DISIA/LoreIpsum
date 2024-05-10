@@ -17,9 +17,11 @@
 /* formato de la página */
 
 html {
-  /* overflow: hidden; */
+  overflow: hidden;
   font-size: 1.2rem;
   font: 'grotesk';
+  width: 100%;
+  height: 100%;
 }
 
 body { display: block;}
@@ -44,9 +46,85 @@ body { display: block;}
   /* margin-bottom: 1%; */
 }
 
-.columna2 {
-  justify-content: center;
+.parent {
+  position: relative;
 }
+
+.parent .box {
+  position: absolute;
+  width: calc(1.6vw + 100px); height: calc(1.6vw + 100px);
+}
+
+
+
+.parent .box.media {
+  top: 12%;
+  left: 49%;
+}
+
+.parent .box.media .linkpic1 {
+  min-width: 4vw;
+  min-height: 4vh;
+  max-width: 17.5vw;
+  max-height: 17.5vh;
+  opacity: 0;
+
+}
+
+
+
+.parent .box.info {
+  top: 12%;
+  left: 58vw;
+}
+
+.parent .box.info .linkpic3 {
+  min-width: 4vw;
+  min-height: 4vh;
+  max-width: 17.5vw;
+  max-height: 17.5vh;
+  opacity: 0;
+
+}
+
+
+
+.parent .box.release {
+  top: 44%;
+  left: 48vw;
+}
+
+.parent .box.release .linkpic4 {
+  min-width: 4vw;
+  min-height: 4vh;
+  width: 80%;
+  height: 120%;
+  max-width: 17.5vw;
+  max-height: 17.5vh;
+  opacity: 0;
+}
+
+
+
+.parent .box.extra {
+  transform: rotate(-25deg);
+  bottom: 25%;
+  left: 57vw;
+}
+
+.parent .box.extra .linkpic2 {
+  min-width: 4vw;
+  min-height: 4vh;
+  max-width: 17.5vw;
+  max-height: 17.5vh;
+  opacity: 0;
+
+}
+
+.fondo {
+  z-index: -1;
+}
+
 
 
 
@@ -235,42 +313,7 @@ body {
 
 
 
-/* pestañas */
-#extra {
-  position: relative;
-  top: 25vw;
-  left: 70vw;
-  z-index: 1;
-}
 
-#info {
-  position: absolute;
-  top: 250px;
-  left: 1000px;
-  z-index: 1;
-}
-
-#media {
-  position: relative;
-  bottom: 51vh;
-  left: 3.5vw;
-}
-
-.linkpic1 {
-  max-width: 17vw;
-  max-height: 17vh;
-}
-
-#release {
-  position: absolute;
-  top: 500px;
-  left: 1000px;
-  z-index: 1;
-}
-
-.fondo {
-  z-index: -1;
-}
 
 
 
