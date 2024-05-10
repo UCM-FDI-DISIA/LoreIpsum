@@ -316,11 +316,18 @@ body {
 
 
 
+main {  
+  --tilt-angle: 3deg;
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr max-content;
+  height: 100vh;
+  width: 30rem;
+  margin: auto;
+  font-size: 2.4rem;
+  top: 10vh;
+}
 
-
-
-
-/*Cartas*/
 .card {
   position: sticky;
   top: calc(var(--top) * 1px);
@@ -330,12 +337,11 @@ body {
   padding: 3em;
   margin-bottom: 2em;
   transform: rotate(calc(var(--tilt-angle) * (2 * (var(--r) - 0.5))));
-  transition: 0.3s ease;
+  transition: * 0.3s ease;
 }
 
 .card.stuck {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  /* Add a box shadow effect */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Add a box shadow effect */
   background-color: red;
 }
 
@@ -348,20 +354,30 @@ body {
 .card:nth-child(4n + 1) {
   --r: 0.2;
   --top: 50;
-
+  
 }
 
 .card:nth-child(4n + 2) {
   --r: 0.9;
   --top: 100;
-
+  
 }
 
 .card:nth-child(4n + 3) {
   --r: 0.4;
   --top: 150;
-
+  
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
