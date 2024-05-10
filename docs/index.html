@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
-  <title>HöllenHaus</title>
+  <title>HÖLLENHAUS</title>
   <link rel="icon" type="image/png" href="./web/images/favicon.png"> <!--Pone el loguito de la pestaña -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./web/estilo.css"> <!-- Esto cargaria un archivo de estilo, pero no es necesario en Fiddle porque lo hace automáticamente -->
+  <link rel="stylesheet" href="./web/styles/estilo.css">
 </head>
 
 <body>
 
   <div class="contenedor">
 
-    <div class="columna1"> </div>
-
-    <div class="columna2">
-
-      <div>
-        <!--- Imagen de Título --->
-        <img src="./web/images/title.png" >
-        <p>· - - - - - - - - Realizado por - - - - - - - - ·</p>
-      </div>
+      <!--- Imagen de Título --->
+      <img id="title" src="./web/images/title.png">
+      <!-- <p>· - - - - - - - - Realizado por - - - - - - - - ·</p> -->
       <!--- LoreIpsum magico --->
       <div class="LoreIpsum">
         <span class="key">L</span>
@@ -33,58 +28,42 @@
         <span class="key">U</span>
         <span class="key">M</span>
       </div>
-    
-      <div >
+
+      <div>
         <!--- Botones con los enlaces --->
-        <div>
-          <img src="./web/images/DeckbuildingBG.png" class= "fondo" > 
-          <a href="./web/Extra.html"> <img src="./web/images/square.webp" class= "extra"> </a>
-          <a href="./web/Info_Sobre_el_juego.html"> <img src="../web/images/square.webp" class= "info"> </a>
-          <a href="./web/Videos_imagenes.html"> <img src="./web/images/square.webp" class= "videos"> </a>
-          <a href="./index.html"> <img src="./web/images/square.webp" class= "release"> </a>
-          
-        </div> 
-    
-       <!--Lista de cosas que poner en la página web  -->
-        <div>
-          <h4 class = clase>
-            <p>
-              · - - - - - - - - ·
-              <ul>
-                <li> Enlace al release</li>
-              </ul>
-              · - - - - - - - - ·
-            </p>
-          </h4>
+        <div class = "parent">
+          <img id="tablon" src="./web/images/portada_web_botones.png">
+
+          <div id="media">
+            <a href="./web/media.html"> <img class="linkpic1" src="./web/images/square.webp"> </a>
+          </div>
+
+
+          <div>
+            <a id="extra" href="./web/extra.html"> 
+              <img class = "linkpic1" src="./web/images/square.webp"> 
+            </a>
+          </div>
+          <!-- <a id="info" href="./web/info.html"> <img src="../web/images/square.webp"> </a> -->
+          <!-- <a id="release"  href="./index.html"> <img src="./web/images/square.webp"> </a> -->
+
         </div>
-        <!-- Prueba de lo de las cartitas  -->
-        <!--
-        <div id = stack>
-          <div class = card> whatever </div>
-          <div class = card> let's go </div>
-          <div class = card> not your worst </div>
-          <div class = card> right on </div>
-          <div class = card> party time </div>
-          <div class = card> I think I get it </div>
-          <div class = card> enough then </div>
-        </div>
-        -->
+
 
         <!--- <hr class="footer-divider"> --->
-        <footer class="container">
-        <p class="float-right"><a id="link" href="#">Volver al inicio</a></p>
-        <p>Proyectos II. Curso 2023-2024</p>
-        <p> ⚝ · LoreIpsum · ⚝</p>
-        <p>Grado en Desarrollo de Videojuegos &middot; <a id="link" target="_blank" href="http://informatica.ucm.es">Facultad de Informática</a> &middot; <a id="link" target="_blank" href="http://www.ucm.es">UCM</a></p>
-        <p><a id="link" target="_blank" href="https://github.com/UCM-FDI-DISIA/LoreIpsum" >Ir a GitHub</a></p>
-        </footer>
+        <!-- <footer class="container">
+          <p class="float-right"><a id="link" href="#">Volver al inicio</a></p>
+          <p>Proyectos II. Curso 2023-2024</p>
+          <p> ⚝ · LoreIpsum · ⚝</p>
+          <p>Grado en Desarrollo de Videojuegos &middot; <a id="link" target="_blank"
+              href="http://informatica.ucm.es">Facultad de Informática</a> &middot; <a id="link" target="_blank"
+              href="http://www.ucm.es">UCM</a></p>
+          <p><a id="link" target="_blank" href="https://github.com/UCM-FDI-DISIA/LoreIpsum">Ir a GitHub</a></p>
+        </footer> -->
       </div>
 
-    </div>
-
-    <div class="columna3"> </div>
-
   </div>
- 
+
 </body>
+
 </html>
