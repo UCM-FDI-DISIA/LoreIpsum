@@ -51,14 +51,14 @@
 ![Oficina](/docs/GDD/images/captura04.png)
 ![Deckbuilding](/docs/GDD/images/captura05.png)
 ### Vídeo
-...
+![](https://www.youtube.com/watch?v=QCxwNdkSUNI)
 ### Página
 Enlace a la [página web](https://ucm-fdi-disia.github.io/LoreIpsum/)
 ## Presentaciones
 - **Hito 0**: [transparencias](https://docs.google.com/presentation/d/14X1H2WW96c6soYmThStQAicIRp_3ZJsN-hTsZ-rOBvw/edit?usp=drive_link) y [protocolo](https://docs.google.com/document/d/1nzUwn2zeJeuQBZWjjvqF6Tlv1n-C4KZrPEBRIF91SRE/edit?usp=sharing)
 - **Hito 1**: [transparencias](https://docs.google.com/presentation/d/1n5Ko22xPMVLtqO-oFY6cvgndLT4iQ3dGm4_wTjoHPe4/edit?usp=sharing), [protocolo](https://docs.google.com/document/d/1zDPQPwhtZNLIt8iL_xZ378V7yQT1QKjliIeKrCuGFmk/edit?usp=sharing) y [guión](https://docs.google.com/document/d/1oxUlDSbENCnBTgExxYuLocpCrcsxeR2cbJSiAwpyqUE/edit?usp=sharing)
 - **Hito 2**: [transparencias](https://docs.google.com/presentation/d/1RRbo9XOWkO9gCZej6tLlH4qD4hG9qMLc2hf5ba_PbnE/edit?usp=sharing), [gráficas](https://docs.google.com/spreadsheets/d/1teqh66NJ_fqeRnTNbOUWAlwWpkwhWEhiVeuGfHJ3qas/edit?usp=sharing) y [guión](https://docs.google.com/document/d/1GnP6rd4fdsNH70kAZ0Tve3oDKUXk1_WaQ3tPDaFFwzs/edit?usp=sharing)
-- Hito final
+- **Hito final**: [vídeo](https://www.youtube.com/watch?v=QCxwNdkSUNI).
 ## Arquitectura 
 Enlace al [UML general](https://www.figma.com/file/QBQ7K1ngk58sNtPMxOUhRx/Hollenhaus-UML?type=whiteboard&node-id=0-1&t=s07Dx0HenMNke7FV-0 ).
 ## GDD
