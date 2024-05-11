@@ -43,6 +43,8 @@
 ## Proyecto
 ### Descripción
 **HÖLLENHAUS** es un videojuego de cartas creado por *LoreIpsum* en el que tú —un fantasma en el limbo que busca un nuevo hogar en el infierno— luchas contra tu adversario por sumar la mayor cantidad de puntos en las casillas de un tablero. Te enfrentarás a diversos personajes a lo largo de la historia, ganando las almas necesarias para costearte un hogar en el infierno.
+### Vídeo
+[![](https://markdown-videos-api.jorgenkh.no/youtube/QCxwNdkSUNI)](https://youtu.be/QCxwNdkSUNI)
 ### Capturas
 ![Menú de inicio](/docs/GDD/images/captura00.png)
 ![Overworld](/docs/GDD/images/captura01.png)
@@ -50,8 +52,6 @@
 ![Batalla](/docs/GDD/images/captura03.png)
 ![Oficina](/docs/GDD/images/captura04.png)
 ![Deckbuilding](/docs/GDD/images/captura05.png)
-### Vídeo
-[![](https://markdown-videos-api.jorgenkh.no/youtube/QCxwNdkSUNI)](https://youtu.be/QCxwNdkSUNI)
 ### Página
 Enlace a la [página web](https://ucm-fdi-disia.github.io/LoreIpsum/)
 ## Presentaciones
