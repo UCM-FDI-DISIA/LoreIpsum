@@ -51,7 +51,7 @@
 ![Oficina](/docs/GDD/images/captura04.png)
 ![Deckbuilding](/docs/GDD/images/captura05.png)
 ### Vídeo
-![](https://www.youtube.com/watch?v=QCxwNdkSUNI)
+[![](https://markdown-videos-api.jorgenkh.no/youtube/QCxwNdkSUNI)](https://youtu.be/QCxwNdkSUNI)
 ### Página
 Enlace a la [página web](https://ucm-fdi-disia.github.io/LoreIpsum/)
 ## Presentaciones
