@@ -1,5 +1,9 @@
 #ifndef GameState_H_
 #define GameState_H_
+
+//Checkml
+#include <game/checkML.h>
+
 #include <array>
 
 #include <SDL_net.h>
@@ -52,6 +56,8 @@ public:
 	virtual void substractMoney(int money);
 	//----Devuelve el dinero del jugador:
 	virtual int getMoney();
+	//----Devuelve las almas del jugador:
+	virtual int getSouls();
 	//----Devuelve el numero de llaves disponibles
 	virtual int getKeys();
 	//----Comprueba si una carta con id id esta en el mazo.
@@ -63,11 +69,13 @@ public:
 	//----Para resetear el brillo de las monedas.
 	virtual void deSelected() {}
 
+	virtual void setKey();
+
 	virtual void saveData();
 	virtual void loadData();
 
 	// ---- crea carta ----
-	virtual ecs::entity_t createCard(int id, Vector2D pos) { return nullptr; };
+	virtual ecs::entity_t createCard(int id, Vector2D pos);
 
 	// ---- getters ----
 	virtual std::array<int, 50> getDrawer();

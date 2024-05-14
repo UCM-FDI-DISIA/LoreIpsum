@@ -78,7 +78,7 @@ void TutorialManager::setColliderWall(std::vector<ecs::entity_t> e, ecs::entity_
 
 	// --------
 	colliderWall->addComponent<Transform>();
-	colliderWall->addComponent<SpriteRenderer>("whiteRect");
+	colliderWall->addComponent<SpriteRenderer>("oldWhiteRect");
 	colliderWall->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
 
 	//dialogue->getComponent<Transform>()->getRelativeScale().set(scaleBox.getX(), scaleBox.getY()); //escala del whiteRect

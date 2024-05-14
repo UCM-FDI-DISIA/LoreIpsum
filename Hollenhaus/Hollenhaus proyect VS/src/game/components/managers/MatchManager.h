@@ -1,6 +1,11 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "../ComponentUpdate.h"
 #include "BoardManager.h"
+#include "../HandComponent.h"
 
 class IA_manager;
 class NetGame;
@@ -53,6 +58,11 @@ public:
 
     void InstantiatePanelFinPartida(int winner);
 
+    // Revisa si no hay más jugadas disponibles y pasa de turno si afirmativo
+    void CheckNextTurnAutomatic();
+
+    void SetHandComponent(HandComponent* hand) { playerJ1Hand = hand; }
+
 private:
 
     Turns::State actualState;
@@ -60,6 +70,9 @@ private:
     // Queremos una referencia al board para detectar cuándo se llena y acabar la partida.
     // También necesitamos el board para evaluar qué jugador tiene más puntos y pasarlo a la data.
     BoardManager* board_ = nullptr;
+
+    // Queremos una referencia a la mano del jugador para pasar turno automáticamente si no tiene jugadas disponibles
+    HandComponent* playerJ1Hand;
 
     int defaultActionPointsJ1;
     int defaultActionPointsJ2;
@@ -81,6 +94,8 @@ private:
     void setWinnerOnData();
 
     void startTurnIA();
+
+
 
 };
 

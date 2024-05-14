@@ -1,7 +1,9 @@
 #ifndef GameStateMachine_H_
 #define GameStateMachine_H_
 
-#include "checkML.h"
+//Checkml
+#include <game/checkML.h>
+
 #include <stack>
 #include <functional>
 #include "../utils/Singleton.h"
@@ -11,6 +13,7 @@ class GameState;
 class Data;
 class Mouse;
 class Fade;
+class CaseManager;
 
 namespace ecs
 {
@@ -63,6 +66,8 @@ class GameStateMachine : public Singleton<GameStateMachine>
 
 	Mouse* mouse_;
 
+	CaseManager* case_;
+
 	//Creacion de los distintos estados del juego
 	// 
 	// Current
@@ -97,8 +102,6 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* pauseMenuState;
 	GameState* checkMazeMenuState;
 	GameState* checkCluesMenuState;
-
-	GameState* keyMenuState;
 	 
 	// Estados auxiliares
 	GameState* movementState;
@@ -121,6 +124,11 @@ public:
 	ecs::Manager* getMngr()
 	{
 		return mngr_;
+	}
+
+	CaseManager* caseMngr() 
+	{
+		return case_;
 	}
 
 	void init();

@@ -24,14 +24,21 @@
 #include "../components/managers/Manager.h"
 #include "../GameStateMachine.h"
 #include "../components/managers/PlayerCardsManager.h"
+#include "game/components/Card.h"
+#include "game/components/KeyComponent.h"
 
-LuisState::LuisState() : GameState()
+LuisState::LuisState() :
+	GameState(),
+	key_(nullptr),
+	keyTr_(nullptr),
+	moveKey_(false)
 {
 	TuVieja("Loading LuisState");
 }
 
 LuisState::~LuisState()
 {
+	
 }
 
 
@@ -43,6 +50,24 @@ void LuisState::refresh()
 void LuisState::update()
 {
 	GameState::update();
+
+	if (moveKey_)
+	{
+		Vector2D newPos = keyTr_->getGlobalPos();
+		if(newPos.getX() >= 100) {
+			newPos = newPos - Vector2D(10, 0);
+			keyTr_->setGlobalPos(newPos);
+		}
+	}
+	else
+	{
+		Vector2D newPos = keyTr_->getGlobalPos();
+		if(newPos.getX() <= 800)
+		{
+			newPos = newPos + Vector2D(10, 0);
+			keyTr_->setGlobalPos(newPos);
+		}
+	}
 
 #if _DEBUG
 	//std::cout << sdlutils().dialogues().at("0").text()<< std::endl;
@@ -60,7 +85,7 @@ void LuisState::onEnter()
 
 	TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
 
-	Factory* factory = new Factory();
+	factory = new Factory();
 	factory->SetFactories(
 		static_cast<BoardFactory*>(new BoardFactory_v0(4)),
 		static_cast<CardFactory*>(new CardFactory_v1()),
@@ -85,16 +110,34 @@ void LuisState::onEnter()
 
 	// Factoría de cartas. Con ella generamos la mano inicial
 	ecs::entity_t deckPlayer1 = factory->createDeck();
+	for (const auto c : deckPlayer1->getComponent<DeckComponent>()->getDeck())
+		colliders_.push_back(c->getEntity()->getComponent<BoxCollider>());
+	colliders_.push_back(deckPlayer1->getComponent<BoxCollider>());
+
 	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
 
+	// Leyenda
+	for (int i = 0; i < 6; ++i)
+	{
+		addKey();
+	}
+	key_ = Instantiate(Vector2D(800, 50));
+	key_->setLayer(200);
+	key_->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
+	key_->addComponent<SpriteRenderer>("key");
+	key_->addComponent<KeyComponent>(getKeys());
+	keyTr_ = key_->getComponent<Transform>();
 
 	// UI 
-	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(100, 500);
-	ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
+	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 280);
+	//ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
 
 	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(600, 200, 200, 180);
-	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 265);
-	ecs::entity_t visual_KeyButton = factory->createVisual_KeyButton(700, 400);
+	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 250);
+	colliders_.push_back(visual_EndTurnButton->getComponent<BoxCollider>());
+	ecs::entity_t visual_KeyButton = factory->createVisual_KeyButton(720, 400);
+	visual_KeyButton->getComponent<Transform>()->addParent(keyTr_);
+	keyTr_->increaseLayer(key_->getLayer());
 
 	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 
@@ -107,12 +150,17 @@ void LuisState::onEnter()
 	// Enlazado de la UI con los scripts que la controlan
 	matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
 	matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
-	matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
+	//matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
 	matchManagerComponent->updateVisuals();
 
 	boardManagerComponent->setScoreVisualJ1(visual_ScoreCounterJ1);
 	boardManagerComponent->setScoreVisualJ2(visual_ScoreCounterJ2);
 	boardManagerComponent->updateVisuals();
+
+
+	// Seteamos la mano de J1 en el matchManager
+	matchManagerComponent->SetHandComponent(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
+
 
 
 	// incicia la cancion en bucle
@@ -130,7 +178,6 @@ void LuisState::onEnter()
 	//le decimos al endTurn que existe la IA
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
 
-	
 
 	//seters de referencias de la ia
 
@@ -157,5 +204,25 @@ void LuisState::onExit()
 
 	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
+
+	delete factory;
+
 	GameStateMachine::instance()->getMngr()->Free();
+
+
+}
+
+void LuisState::setKey()
+{
+	moveKey_ = !moveKey_;
+	if (moveKey_)
+	{
+		for (const auto b : colliders_)
+			b->setPosOffset(Vector2D(1000, 1000));
+	}
+	else
+	{
+		for (const auto b : colliders_)
+			b->setPosOffset(Vector2D(0, 0));
+	}
 }

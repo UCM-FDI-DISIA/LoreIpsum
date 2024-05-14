@@ -157,7 +157,7 @@ void HandComponent::removeCard(ecs::entity_t card) {
 				auto texto = child->getEntity()->getComponent<TextComponent>();
 				if (texto != nullptr)
 				{
-					texto->setFont("8bit_size_16");
+					texto->setFont(Fonts::GROTESK_16);
 					child->getRelativePos().set(
 						child->getRelativePos().getX(),
 						child->getRelativePos().getY() - child->getRelativePos().getY() / 6.25

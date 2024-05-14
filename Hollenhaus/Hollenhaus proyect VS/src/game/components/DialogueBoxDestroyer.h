@@ -1,5 +1,8 @@
 #pragma once
-#include <../pchs/pch.h>
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 
 class DialogueBoxDestroyer : public ComponentUpdate

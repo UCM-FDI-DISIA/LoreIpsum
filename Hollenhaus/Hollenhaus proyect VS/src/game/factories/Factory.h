@@ -1,13 +1,15 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
 
 
 class CardFactory;
 class FakeCardFactory;
 class HandFactory;
 class BoardFactory;
-class MatchStateUIFactory;
 class DialogueFactory;
+class MatchStateUIFactory;
 class NPCFactory;
 class DecisionFactory;
 
@@ -67,6 +69,7 @@ public:
 		SetFactories(std::forward<Ts>(args)...);
 	}
 
+
 	template<typename ...Ts>
 	void SetFactories(NPCFactory* npcf, Ts &&... args) {
 		npcFactory = npcf;
@@ -94,31 +97,7 @@ public:
 
 	{};
 
-	~Factory() {
-		delete boardFactory;
-		boardFactory = nullptr;
-
-		delete cardFactory;
-		cardFactory = nullptr;
-
-		delete handFactory;
-		handFactory = nullptr;
-
-		delete matchStateUIFactory;
-		matchStateUIFactory = nullptr;
-
-		delete dialogueFactory;
-		dialogueFactory = nullptr;
-
-		delete npcFactory;
-		npcFactory = nullptr;
-
-		delete fakeCardFactory;
-		fakeCardFactory = nullptr;
-
-		delete decisionFactory;
-		decisionFactory = nullptr;
-	}
+	~Factory();
 
 
 	ecs::entity_t createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects);
@@ -143,7 +122,7 @@ public:
 
 	// metodos para los NPCs
 	// i de index para especificar el npc que quieres crear del json
-	ecs::entity_t createNPC(int i, ecs::entity_t parent);
+	ecs::entity_t createNPC(int i, ecs::entity_t parent, int convo = 0);
 
 	// metodos para los dialogos
 	ecs::entity_t createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,

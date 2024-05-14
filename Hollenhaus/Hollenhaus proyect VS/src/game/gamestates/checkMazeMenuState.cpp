@@ -5,6 +5,7 @@
 #include "checkMazeMenuState.h"
 #include "../components/NPC.h"
 #include "game/Data.h"
+#include "game/components/Clickable.h"
 
 CheckMazeMenuState::CheckMazeMenuState()
 {
@@ -34,6 +35,12 @@ void CheckMazeMenuState::onEnter()
 {
 	std::cout << "\nENTER CHECK MAZE\n";
 
+	ecs::entity_t fondo = Instantiate();
+	fondo->addComponent<Transform>();
+	fondo->addComponent<SpriteRenderer>("optfondo");
+	fondo->getComponent<Transform>()->setGlobalScale(100, 100);
+	fondo->setLayer(0);
+
 	//// ---- Salir:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
@@ -44,6 +51,7 @@ void CheckMazeMenuState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(17);
 	exit->setLayer(5);
+	exit->addComponent<Clickable>("boton_flecha", true);
 
 	ShowMaze();
 }
@@ -51,18 +59,22 @@ void CheckMazeMenuState::onEnter()
 void CheckMazeMenuState::onExit()
 {
 	std::cout << "\nEXIT CHECK MAZE\n";
+	GameStateMachine::instance()->getMngr()->Free();
 }
 
 void CheckMazeMenuState::ShowMaze()
 {
-	for (int i = 0; i < GameStateMachine::instance()->getCurrentState()->getMaze().size(); i++)
-	{
-		// si la carta esta desbloqueada
-		if (GameStateMachine::instance()->getCurrentState()->getDrawer()[i] != -1)
+	mazeAux = GameStateMachine::instance()->getCurrentState()->getMaze();
+
+	int i = 1;
+	for (auto e : mazeAux) {
+
+		if (e != -1)
 		{
-			// la crea
 			ecs::entity_t ent = GameStateMachine::instance()->getCurrentState()->createCard
-			(GameStateMachine::instance()->getCurrentState()->getDrawer()[i], Vector2D(25 * i, 100));
+			(e, Vector2D(i * 70, 100));
 		}
+
+		i++;
 	}
 }

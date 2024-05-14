@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "GameState.h"
 class PauseMenuState : public GameState
 {
@@ -19,6 +23,15 @@ public:
     }
 
     int previousState;
+
     void onDespause();
+
+    void exitGame();
+
+    ecs::entity_t mirarMazo;
+    ecs::entity_t options;
+    ecs::entity_t guardar;
+    ecs::entity_t mainmenu;
+    ecs::entity_t salir;
 };
 

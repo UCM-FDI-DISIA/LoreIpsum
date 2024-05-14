@@ -174,6 +174,11 @@ void Data::setLastState(int ls)
 	lastState = ls;
 }
 
+void Data::SetAutomaticNextTurn(bool b)
+{
+	automaticNextTurn = b;
+}
+
 //------Busqueda:
 
 // ------ DECKBUILDING ------
