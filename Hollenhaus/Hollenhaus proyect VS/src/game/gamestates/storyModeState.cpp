@@ -51,7 +51,7 @@ void StoryModeState::onEnter()
 	auto firstFrame = "boton_flecha";
 	returnButton = Instantiate(Vector2D(50, 50));
 	returnButton->addComponent<Transform>();
-	returnButton->addComponent<BoxCollider>();
+	returnButton->addComponent<BoxCollider>()->setSize(Vector2D(100, 60));
 	returnButton->addComponent<SpriteRenderer>(firstFrame);
 	returnButton->addComponent<Clickable>(firstFrame, true);
 	/// Si queremos fade in / fade out en la clase Button en vez de NPC hay que gestionar
@@ -64,22 +64,23 @@ void StoryModeState::onEnter()
 	//	GameStateMachine::instance()->setState(GameStates::MAINMENU); // usar enums en vez de numeros a palo seco
 	//});
 	returnButton->addComponent<NPC>(GameStates::MAINMENU, NPC::Type::BUTTON, "", 0, true, true);
+	returnButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
 
-	newGameButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 300));
-	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "8bit_size_32", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	newGameButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 320));
+	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	newGameButton->addComponent<NPC>(15, 0);
+	newGameButton->addComponent<NPC>(GameStates::TRANSITIONTEXT, 0);
 	newGameButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
 
-	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 250));
-	continueButton->addComponent<TextComponent>("CONTINUAR", "8bit_size_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 270));
+	continueButton->addComponent<TextComponent>("CONTINUAR", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	continueButton->addComponent<BoxCollider>();
 	continueButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	continueButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	continueButton->addComponent<NPC>(15, 0);
+	continueButton->addComponent<NPC>(GameStates::TRANSITIONTEXT, 0);
 	continueButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
 }
 

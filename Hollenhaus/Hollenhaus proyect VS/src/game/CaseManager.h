@@ -22,5 +22,6 @@ private:
 	ecs::entity_t npc_;
 
 	bool accepted_;
+
 };
 

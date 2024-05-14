@@ -35,7 +35,6 @@
 #include "gamestates/pauseMenuState.h"
 #include "gamestates/storyModeState.h"
 #include "gamestates/transitionTextMenuState.h"
-#include "gamestates/KeyMenuState.h"
 
 #include "components/managers/Manager.h"
 #include "Mouse.h"
@@ -82,7 +81,6 @@ GameStateMachine::GameStateMachine()
 	checkMazeMenuState = new CheckMazeMenuState();
 	checkCluesMenuState = new CheckCluesMenuState();
 	matchOverState = new MatchOverState();
-	keyMenuState = new KeyMenuState();
 
 	// Estados de gente
 	samuState = new SamuState();
@@ -111,6 +109,7 @@ GameStateMachine::~GameStateMachine()
 {
 	delete mouse_;
 	delete fade_;
+	delete case_;
 
 	delete cityState;
 	delete officeState;
@@ -128,7 +127,6 @@ GameStateMachine::~GameStateMachine()
 	delete checkMazeMenuState;
 	delete checkCluesMenuState;
 	delete matchOverState;
-	delete keyMenuState;
 
 	delete samuState;
 	delete jimboState;
@@ -144,7 +142,6 @@ GameStateMachine::~GameStateMachine()
 	currentState->setData(nullptr);
 
 	delete mngr_;
-	delete case_;
 }
 
 void GameStateMachine::Render() const

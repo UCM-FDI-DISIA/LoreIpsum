@@ -2,15 +2,14 @@
 #include "CaseManager.h"
 
 CaseManager::CaseManager() :
-	npc_(nullptr),
+	npc_(),
 	accepted_(false)
 {
 }
 
 CaseManager::~CaseManager()
 {
-	delete npc_;
-	npc_ = nullptr;
+
 }
 
 void CaseManager::update()

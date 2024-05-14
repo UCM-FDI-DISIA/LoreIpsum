@@ -15,6 +15,7 @@ private:
 	void addEffectsImages(ecs::entity_t card, std::vector<JsonData::CardEffect>& effects);
 	void addValueCostTexts(ecs::entity_t card, int vale, int cost);
 	void addEffects(Card* cardComp, std::vector<JsonData::CardEffect>& effects);
+	void addShadow(int x = 0, int y = 0, int layer = 1, Transform* parent = nullptr);
 
 public:
 

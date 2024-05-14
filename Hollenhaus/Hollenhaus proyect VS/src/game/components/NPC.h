@@ -19,7 +19,7 @@ public:
 		TALKING
 	};
 
-	NPC(int scene, int t = BUTTON, std::string name_ = "", int convo = 0, bool = false, bool = false);
+	NPC(int scene, int t = BUTTON, std::string name_ = "", int convo = 0, bool = true, bool = true);
 	~NPC() override;
 
 	void initComponent() override;

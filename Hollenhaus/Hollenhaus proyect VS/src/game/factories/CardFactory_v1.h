@@ -32,5 +32,7 @@ private:
 	void addEffects(Card* cardComp, std::vector<JsonData::CardEffect>& effects);
 	void addDeckImage(int initX, int initY, bool opposite = false);
 	void addDeckImageChild(ecs::entity_t card);
+	void addDeckShadow(int x, int y, int layer = 1);
+	void addShadow(int x = 0, int y = 0, int layer = 1, Transform* parent = nullptr);
 };
 

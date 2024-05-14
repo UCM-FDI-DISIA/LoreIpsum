@@ -17,7 +17,7 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) :
 {
 	decision_ = decision;
 	parent_ = parent;
-	//scene_ = scene,
+	scene_ = scene;
 	click_ = false;
 
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
@@ -92,6 +92,9 @@ void ClickDecision::TakeDecision()
 	case 4: // CASO DEAFULT PARA NEGAR CUALQUIER COSA
 		parent_->getComponent<NextText>()->setDead(true);
 		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+		break;
+	case 5:
+		parent_->getComponent<DialogueEventCollection>()->ChangeScene(GameStates::LUIS);
 		break;
 	default:
 		TuVieja("Esta decision no existe. Añadir en ClickDecision.cpp");

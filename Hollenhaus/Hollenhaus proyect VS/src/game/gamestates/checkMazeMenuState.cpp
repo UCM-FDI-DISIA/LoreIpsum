@@ -35,6 +35,12 @@ void CheckMazeMenuState::onEnter()
 {
 	std::cout << "\nENTER CHECK MAZE\n";
 
+	ecs::entity_t fondo = Instantiate();
+	fondo->addComponent<Transform>();
+	fondo->addComponent<SpriteRenderer>("optfondo");
+	fondo->getComponent<Transform>()->setGlobalScale(100, 100);
+	fondo->setLayer(0);
+
 	//// ---- Salir:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();

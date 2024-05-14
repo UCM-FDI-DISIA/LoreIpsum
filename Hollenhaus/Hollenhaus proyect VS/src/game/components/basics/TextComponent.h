@@ -68,6 +68,9 @@ public:
 	// GETTERS
 	std::string getText() { return txt_; }
 	SDL_Color getColor() { return color_; }
+	void setOffset(int x, int y) { offset = Vector2D(x, y); }
+	Vector2D getOffset() const { return offset; }
+	void setAlpha(int v) { alpha = v; }
 
 private:
 
@@ -86,9 +89,11 @@ private:
 	// Atributo y método para calcular la posicion de renderizado según el punto de pivote de la caja de texto
 	Vector2D GetRenderPosAcordingPivotPoint() const;
 	Vector2D renderPos_;
+	Vector2D offset = { 0, 0 };
+
+	int alpha = 255;
 
 	void createTexture();
-
 	void RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const;
 
 };

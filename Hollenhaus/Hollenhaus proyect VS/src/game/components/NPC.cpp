@@ -76,8 +76,8 @@ void NPC::talkTo()
 	{
 		TuVieja("Que charlatan el tio...");
 
-		float x = ent_->getComponent<Transform>()->getGlobalPos().getX() - 150;
-		float y = ent_->getComponent<Transform>()->getGlobalPos().getY() - 250;
+		float x = myTransform->getGlobalPos().getX() - 150;
+		float y = myTransform->getGlobalPos().getY() - 250;
 
 		TuVieja(std::to_string(x));
 
@@ -89,14 +89,14 @@ void NPC::talkTo()
 		npcDialogue = factory->createDialogue(dialogue.NPCName(), convo_, node,
 								{x, y},//POS
 								{2,2}, //SIZE
-								5, //Speed
-								10, //Cooldown
+								2, //Speed
+								1, //Cooldown
 								getEntity(), //Parent 
 								3, //LAYER
 								dialogue.Convo(convo_).isAuto(), //Si el texto es auto o no
-								"8bit_size_20",	//mirar el JSON resources para cambiar el tamanio de texto
-								SDL_Color({0, 0, 0, 255}), //Color black
-								220, //wrap length
+								Fonts::GROTESK_24,	//mirar el JSON resources para cambiar el tamanio de texto
+								Colors::MIDNIGHT_HOLLENHAUS, //Color black
+								260, //wrap length
 								Text::BoxPivotPoint::LeftTop,
 								Text::TextAlignment::Left);
 

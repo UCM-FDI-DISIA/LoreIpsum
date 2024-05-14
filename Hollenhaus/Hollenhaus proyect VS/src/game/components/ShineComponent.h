@@ -15,7 +15,7 @@ class ShineComponent : public ComponentUpdate {
 
 public: 
 	ShineComponent();
-	~ShineComponent();
+	~ShineComponent()override;
 
 	void initComponent() override;
 	void update() override;

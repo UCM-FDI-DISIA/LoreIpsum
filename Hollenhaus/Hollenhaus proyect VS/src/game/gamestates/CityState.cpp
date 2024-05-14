@@ -12,6 +12,7 @@
 #include "../factories/NPCFactory_V0.h"
 #include "pauseMenuState.h"
 #include "game/components/Clickable.h"
+#include "game/components/ImageWithFrames.h"
 
 CityState::CityState()
 {
@@ -65,22 +66,16 @@ void CityState::onEnter()
 		static_cast<NPCFactory*>(new NPCFactory_V0()));
 
 
-	//------Texto de la ciudad:
-	//ecs::entity_t cityText = Instantiate(Vector2D(500, 30));
-	//cityText->addComponent<TextComponent>("CIUDAD", "8bit_size_40", SDL_Color({255, 255, 255, 255}), 350,
-	//                                      Text::CenterCenter, Text::Center);
-	//cityText->setLayer(1);
-
 	/// ---- FONDO CIUDAD ----
 	auto scaleFondo = Vector2D(0.495f, 0.495f);
-	fondo = Instantiate(Vector2D(0, 2));
+	fondo = Instantiate(Vector2D(0, 0));
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("edificios");
 	fondo->addComponent<MoveOnClick>(3.0f);
 	fondo->addComponent<BoxCollider>();
 	fondo->getComponent<Transform>()->setGlobalScale(scaleFondo);
 	Vector2D globalPos = getLastPaulPos();
-	Vector2D realFondoPos = Vector2D(globalPos.getX(), globalPos.getY() + 2);
+	Vector2D realFondoPos = Vector2D(globalPos.getX(), globalPos.getY());
 	fondo->getComponent<Transform>()->setGlobalPos(realFondoPos);
 	fondo->setLayer(0);
 
@@ -128,11 +123,12 @@ void CityState::onEnter()
 
 
 	/// FANTASMIKO
-	fantasmiko = Instantiate(Vector2D(sdlutils().width() / 2 - 50, sdlutils().height() - 200));
-	fantasmiko->addComponent<SpriteRenderer>("fantasma");
+	fantasmiko = Instantiate(Vector2D(sdlutils().width() / 2 - 50, sdlutils().height() - 210));
+	fantasmiko->addComponent<SpriteRenderer>("fantasma_caminando");
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
 	fantasmiko->setLayer(2);
+	fantasmiko->addComponent<ImageWithFrames>(fantasmiko->getComponent<SpriteRenderer>(), 1, 4);
 
 	auto moc = fondo->getComponent<MoveOnClick>();
 	moc->registerFantasmaTrans(fantasmiko);
@@ -144,12 +140,15 @@ void CityState::onEnter()
 	// twinsiiiis
 	auto fanY = fantasmiko->getComponent<Transform>()->getGlobalPos().getY();
 	fantastween =
-		tweeny::from(fanY - 5)
-		.to(fanY + 5)
-		.to(fanY - 5)
+		tweeny::from(fanY - 10)
+		.to(fanY + 10)
+		.to(fanY - 10)
 		.during(60)
 		.via(tweeny::easing::sinusoidalInOut);
 	///
+
+
+
 
 	///------NPCs:
 	//----Para entrar en la oficina.
