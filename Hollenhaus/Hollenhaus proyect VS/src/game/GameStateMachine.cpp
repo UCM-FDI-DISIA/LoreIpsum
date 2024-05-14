@@ -89,6 +89,7 @@ GameStateMachine::GameStateMachine()
 	luisState = new LuisState();
 	tutorialBoardState = new TutorialBoardState();
 	tutorialDeckbuildingState = new DeckBuildingState(true);
+	tutorialShopState = new ShopState(true);
 
 	multiplayerLobbyState = new MultiplayerLobbyState();
 	multiplayerPreGameState = new MultiplayerPreGameState();
@@ -100,7 +101,7 @@ GameStateMachine::GameStateMachine()
 	//currentState = new MainMenuState();
 	// tutorialDeckbuildingState
 
-	currentState = tutorialDeckbuildingState;
+	currentState = tutorialShopState;
 
 	// settea la data en el current state para acceder a ella desde cualquier estado
 	currentState->setData(new Data());

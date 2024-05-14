@@ -86,7 +86,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* tutorialState;
 	GameState* tutorialBoardState;
 	GameState* tutorialDeckbuildingState;
-	//GameState* tutorialShopState;
+	GameState* tutorialShopState;
 
 
 	// Estados de gente

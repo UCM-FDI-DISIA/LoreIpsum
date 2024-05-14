@@ -22,8 +22,8 @@ void TutorialShopManager::initComponent()
 		static_cast<DialogueFactory*>(new DialogueFactory_V0())
 	);
 
-	//currentState = Tutorials::Deckbuilder::DECKBUILDER_NONE;
-	//nextState = Tutorials::Deckbuilder::DECKBUILDING_INIT;
+	currentState = Tutorials::Tienda::SHOP_NONE;
+	nextState = Tutorials::Tienda::SHOP_INIT;
 	ended = false;
 	checked = false;
 

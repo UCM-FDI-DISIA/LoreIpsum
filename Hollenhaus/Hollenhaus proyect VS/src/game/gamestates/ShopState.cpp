@@ -284,8 +284,8 @@ void ShopState::setTutorial()
 
 		tutorial->getComponent<TutorialManager>()->startTutorial();
 		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::SHOP);
-		//tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Deckbuilder::DECKBUILDER_NONE);
-		//tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Deckbuilder::DECKBUILDING_INIT);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Tienda::SHOP_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Tienda::SHOP_INIT);
 
 		// PAIGRO AQUI
 

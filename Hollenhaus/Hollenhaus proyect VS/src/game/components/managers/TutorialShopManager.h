@@ -36,7 +36,6 @@ private:
 
     void setPURCHASE();
 
-    void setACTION();
 
 
 };
