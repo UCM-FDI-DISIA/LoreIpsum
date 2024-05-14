@@ -69,9 +69,6 @@ void TutorialShopManager::setState()
 	case Tutorials::Tienda::PURCHASE:
 		setPURCHASE();
 		break;
-	case Tutorials::Tienda::ACTIONS:
-		setACTION();
-		break;
 	default:
 		break;
 	}
@@ -85,22 +82,24 @@ void TutorialShopManager::setState()
 
 void TutorialShopManager::setINIT()
 {
-	//createPopUp(250, 200, "Deck Tutorial", 0, base);
+	createPopUp(250, 200, "Tienda Tutorial", 0, base);
 
 }
 
 void TutorialShopManager::setSHOW_MONEY()
 {
+	createPopUp(250, 200, "Tienda Tutorial", 1, base);
+
 }
 
 void TutorialShopManager::setSHOW_CARDS()
 {
+	createPopUp(250, 200, "Tienda Tutorial", 2, base);
+
 }
 
 void TutorialShopManager::setPURCHASE()
 {
-}
+	createPopUp(250, 200, "Tienda Tutorial", 3, base);
 
-void TutorialShopManager::setACTION()
-{
 }

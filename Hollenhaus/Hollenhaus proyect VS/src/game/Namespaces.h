@@ -403,8 +403,7 @@ namespace Tutorials
 		SHOP_INIT,
 		SHOW_CARDS,
 		SHOW_MONEY,
-		PURCHASE,
-		ACTIONS
+		PURCHASE
 	};
 
 	enum General
