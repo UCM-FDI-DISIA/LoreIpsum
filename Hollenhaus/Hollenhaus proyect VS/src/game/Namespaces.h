@@ -392,9 +392,9 @@ namespace Tutorials
 	{
 		DECKBUILDER_NONE,
 		DECKBUILDING_INIT,
+		DRAWER,
 		PIZARRA,
-		CARDS,
-		DRAWER
+		CARDS
 	};
 	
 	enum Tienda 
