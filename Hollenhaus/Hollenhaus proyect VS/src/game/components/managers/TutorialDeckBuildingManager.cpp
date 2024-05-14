@@ -69,6 +69,12 @@ void TutorialDeckBuilderManager::setState()
 	case Tutorials::Deckbuilder::PIZARRA:
 		setPIZARRA();
 		break;
+	case Tutorials::Deckbuilder::CARDS:
+		setCard();
+		break;
+	case Tutorials::Deckbuilder::DRAWER:
+		setDrawer();
+		break;
 	default:
 		break;
 	}
@@ -88,6 +94,18 @@ void TutorialDeckBuilderManager::setINIT()
 
 void TutorialDeckBuilderManager::setPIZARRA()
 {
-	std::cout << "a " << std::endl;
+	std::cout << "pizarra " << std::endl;
+
+}
+
+void TutorialDeckBuilderManager::setCard()
+{
+	std::cout << "card " << std::endl;
+
+}
+
+void TutorialDeckBuilderManager::setDrawer()
+{
+	std::cout << "drawer " << std::endl;
 
 }

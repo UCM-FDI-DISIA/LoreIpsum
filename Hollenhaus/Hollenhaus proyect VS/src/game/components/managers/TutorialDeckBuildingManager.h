@@ -30,5 +30,9 @@ private:
 
     void setPIZARRA();
 
+    void setCard();
+
+    void setDrawer();
+
 
 };
