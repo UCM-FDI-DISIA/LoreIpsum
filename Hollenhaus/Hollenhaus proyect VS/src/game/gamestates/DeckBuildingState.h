@@ -56,5 +56,7 @@ private:
 	ecs::entity_t base;             // entidad para colocar los popups, se va moviendo segun donde los queramos
 	ecs::entity_t tutorial;
 
+	std::vector<ecs::entity_t> objs;
+
 	void resetFade();
 };

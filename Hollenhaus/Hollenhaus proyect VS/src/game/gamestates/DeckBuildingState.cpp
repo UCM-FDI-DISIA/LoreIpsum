@@ -214,6 +214,12 @@ void DeckBuildingState::onEnter()
 
 	// lo guarda
 	pizarra_ = pizarra->getComponent<PizarraManager>();
+
+
+	objs.push_back(Confirm);
+	objs.push_back(botPalante);
+	objs.push_back(botPatras);
+
 #pragma endregion
 
 	// ---- CAJON ----
@@ -256,7 +262,6 @@ void DeckBuildingState::onEnter()
 		.to(0)
 		.during(30)
 		.via(tweeny::easing::linear);
-
 
 	setTutorial();
 
