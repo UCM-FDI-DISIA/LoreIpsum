@@ -5,24 +5,21 @@
 class Factory;
 
 
-// TUTORIAL PARA EL DECKBUILDER WIP
-// INES AQUI
-// (copypasteado del tutorialboardmanager)
-
-class TutorialDeckbuilderManager : public ComponentUpdate
+class TutorialBaseManager : public ComponentUpdate
 {
 public:
-    TutorialDeckbuilderManager(ecs::entity_t b, ecs::entity_t t);
-    ~TutorialDeckbuilderManager() override;
+    TutorialBaseManager();
+    TutorialBaseManager(ecs::entity_t b, ecs::entity_t t);
+    ~TutorialBaseManager() override;
 
-    void initComponent() override;
+    virtual void initComponent();
     void update() override;
 
     void nextTutorialState();
     void updateTutorialState();
     bool actionEnded();
     void resetEnded();
-    void setState();
+    virtual void setState();
 
     void setDeck(ecs::entity_t d) { deck = d; };
     void setNextTurn(ecs::entity_t n) { nextTurn = n; };
@@ -37,7 +34,7 @@ public:
     void addToHand(ecs::entity_t c);
 
 
-private:
+protected:
 
     int currentState;       //
     int nextState;          //
@@ -58,12 +55,6 @@ private:
 
     int cooldown = 10;
     int count = 0;
-
-    // gestion de estados individuales
-    void setINIT();
-
-    void setCARD();
-
 
 
 };

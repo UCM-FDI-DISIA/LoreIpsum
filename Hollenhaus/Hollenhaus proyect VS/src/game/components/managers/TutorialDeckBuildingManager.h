@@ -3,14 +3,15 @@
 #include <../pchs/pch.h>
 #include "TutorialBaseManager.h"
 
+
 class Factory;
 
 
-class TutorialBoardManager : public TutorialBaseManager
+class TutorialDeckBuilderManager : public TutorialBaseManager
 {
 public:
-    TutorialBoardManager(ecs::entity_t b, ecs::entity_t t);
-    ~TutorialBoardManager() override;
+    TutorialDeckBuilderManager(ecs::entity_t b, ecs::entity_t t);
+    ~TutorialDeckBuilderManager() override;
 
     void initComponent() override;
     void update();
@@ -23,7 +24,6 @@ public:
 
 private:
 
-   
 
     // gestion de estados individuales
     void setINIT();
@@ -63,6 +63,6 @@ private:
     void setENDTUTORIAL();
 
     void setFREEDOM();
-    
+
 
 };

@@ -66,6 +66,8 @@
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
     <ClCompile Include="src\game\components\GetIPv4.cpp" />
     <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialBaseManager.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialDeckBuildingManager.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetEndGame.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetLobby.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetPregame.cpp" />
@@ -246,6 +248,8 @@
     <ClInclude Include="src\game\components\EndTurnButton.h" />
     <ClInclude Include="src\game\components\GetIPv4.h" />
     <ClInclude Include="src\game\components\LobbyStatusIndicator.h" />
+    <ClInclude Include="src\game\components\managers\TutorialBaseManager.h" />
+    <ClInclude Include="src\game\components\managers\TutorialDeckBuildingManager.h" />
     <ClInclude Include="src\game\components\multiplayer\NetEndGame.h" />
     <ClInclude Include="src\game\components\multiplayer\NetLobby.h" />
     <ClInclude Include="src\game\components\multiplayer\NetPregame.h" />
@@ -297,6 +301,7 @@
     <ClInclude Include="src\game\gamestates\MultiplayerGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h" />
+    <ClInclude Include="src\game\gamestates\TutorialDeckBuildingState.h" />
     <ClInclude Include="src\game\MultiplayerNamespaces.h" />
     <ClInclude Include="src\game\gamestates\KeyMenuState.h" />
     <ClInclude Include="src\game\gamestates\TutorialBoardState.h" />

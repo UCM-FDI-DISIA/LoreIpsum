@@ -3,14 +3,15 @@
 #include <../pchs/pch.h>
 #include "TutorialBaseManager.h"
 
+
 class Factory;
 
 
-class TutorialBoardManager : public TutorialBaseManager
+class TutorialDeckBuilderManager : public TutorialBaseManager
 {
 public:
-    TutorialBoardManager(ecs::entity_t b, ecs::entity_t t);
-    ~TutorialBoardManager() override;
+    TutorialDeckBuilderManager(ecs::entity_t b, ecs::entity_t t);
+    ~TutorialDeckBuilderManager() override;
 
     void initComponent() override;
     void update();
@@ -23,7 +24,25 @@ public:
 
 private:
 
-   
+    int currentState;       //
+    int nextState;          //
+    bool ended;             //
+    bool checked;
+
+    Factory* factory;               //
+    ecs::entity_t base;             // entidad para colocar los popups, se va moviendo segun donde los queramos
+    ecs::entity_t tutorial;
+    ecs::entity_t colliderWallBase;
+    std::vector<ecs::entity_t> objs;
+    ecs::entity_t image;
+
+    ecs::entity_t deck;
+    ecs::entity_t nextTurn;
+    ecs::entity_t card;
+    std::vector<ecs::entity_t> hand;
+
+    int cooldown = 10;
+    int count = 0;
 
     // gestion de estados individuales
     void setINIT();
@@ -63,6 +82,6 @@ private:
     void setENDTUTORIAL();
 
     void setFREEDOM();
-    
+
 
 };
