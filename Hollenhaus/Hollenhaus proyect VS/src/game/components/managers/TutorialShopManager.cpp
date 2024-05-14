@@ -57,17 +57,20 @@ void TutorialShopManager::setState()
 
 	switch (t)
 	{
-	case Tutorials::Deckbuilder::DECKBUILDING_INIT:
-
+	case Tutorials::Tienda::SHOP_INIT:
+		setINIT();
 		break;
-	case Tutorials::Deckbuilder::PIZARRA:
-
+	case Tutorials::Tienda::SHOW_MONEY:
+		setSHOW_MONEY();
 		break;
-	case Tutorials::Deckbuilder::CARDS:
-
+	case Tutorials::Tienda::SHOW_CARDS:
+		setSHOW_CARDS();
 		break;
-	case Tutorials::Deckbuilder::DRAWER:
-
+	case Tutorials::Tienda::PURCHASE:
+		setPURCHASE();
+		break;
+	case Tutorials::Tienda::ACTIONS:
+		setACTION();
 		break;
 	default:
 		break;
@@ -78,4 +81,26 @@ void TutorialShopManager::setState()
 	ent_->getComponent<TutorialManager>()->setCurrentTutorialState(t);
 
 	checked = false;
+}
+
+void TutorialShopManager::setINIT()
+{
+	//createPopUp(250, 200, "Deck Tutorial", 0, base);
+
+}
+
+void TutorialShopManager::setSHOW_MONEY()
+{
+}
+
+void TutorialShopManager::setSHOW_CARDS()
+{
+}
+
+void TutorialShopManager::setPURCHASE()
+{
+}
+
+void TutorialShopManager::setACTION()
+{
 }
