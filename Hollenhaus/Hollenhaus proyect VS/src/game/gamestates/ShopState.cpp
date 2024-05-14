@@ -11,6 +11,10 @@
 #include "../components/Button.h"
 #include "../components/DecisionComponent.h"
 #include "../../sdlutils/RandomNumberGenerator.h"
+#include "../components/managers/TutorialShopManager.h"
+#include "../TutorialManager.h"
+
+
 // Factorias:
 #include "../factories/Factory.h"
 #include "../factories/FakeCardFactory_v0.h"
@@ -19,6 +23,14 @@
 ShopState::ShopState() : rand_(sdlutils().rand())
 {
 	TuVieja("Loading ShopState");
+	isTutorial = false;
+
+}
+
+ShopState::ShopState(bool a) : rand_(sdlutils().rand())
+{
+
+	isTutorial = a;
 }
 
 void ShopState::update()
@@ -145,6 +157,8 @@ void ShopState::onEnter()
 	exitButton->addComponent<Clickable>("boton_flecha", true);
 	exitButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
+	setTutorial();
+
 	//------Sonido de la tienda:
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("shoptheme").play(-1);
@@ -252,6 +266,51 @@ void ShopState::updateCoins()
 			hideCoin(mngr().getEntities(ecs::grp::COINS)[i]);
 		}
 	}
+}
+
+void ShopState::setTutorial()
+{
+	if (isTutorial) {
+
+		// entidad tutorial para gestionar cositas
+		tutorial = Instantiate();
+
+		tutorial->addComponent<TutorialManager>();
+		auto manager = tutorial->addComponent<TutorialShopManager>(base, tutorial);
+		GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
+
+		prepareTutorial();
+
+		tutorial->getComponent<TutorialManager>()->startTutorial();
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::SHOP);
+		//tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Deckbuilder::DECKBUILDER_NONE);
+		//tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Deckbuilder::DECKBUILDING_INIT);
+
+		// PAIGRO AQUI
+
+
+		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
+
+		//tutorial->getComponent<TutorialBoardManager>()->setObjs(objs);
+
+	}
+}
+
+void ShopState::prepareTutorial()
+{
+	// base
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
+}
+
+void ShopState::startTutorial(bool a)
+{
+	isTutorial = a;
 }
 
 void ShopState::showCoin(ecs::entity_t coinToShow)

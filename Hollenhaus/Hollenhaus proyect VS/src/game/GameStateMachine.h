@@ -50,7 +50,9 @@ namespace GameStates
 		MULTIPLAYER_GAME,
 		MULTIPLAYER_END_GAME,
 		KEYMENU,
-		TUTORIAL_DECKBUILDING
+		TUTORIAL_DECKBUILDING,
+		TUTORIAL_SHOP,
+		TUTORIAL_GENERAL	
 	};
 }
 
@@ -84,6 +86,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* tutorialState;
 	GameState* tutorialBoardState;
 	GameState* tutorialDeckbuildingState;
+	//GameState* tutorialShopState;
 
 
 	// Estados de gente
