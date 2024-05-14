@@ -951,7 +951,15 @@
                     "nodes": [
                         {
                             "nodeID": 0,
-                            "text": "Ahora que hemos visto las partes, vamos a ver lo que puedes hacer.",
+                            "text": "Ahora que hemos visto las partes. Vamos a ver lo que puedes hacer.",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": 0,
+                            "text": "Puedes mover cartas de los cajones a la pizarra y viceversa.",
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [
@@ -959,7 +967,7 @@
                         },
                         {
                             "nodeID": 1,
-                            "text": "Puedes mover cartas de los cajones a la pizarra y viceversa para crear tu mazo como quieras.",
+                            "text": "Ahora crea el mazo que mas te guste y a jugar.",
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [
@@ -1065,9 +1073,18 @@
                     "convoID": 3,
                     "autoConvo": false,
                     "nodes": [
+
                         {
                             "nodeID": 0,
                             "text": "Cuando desee una carta, haga click sobre ella y se resaltaran las monedas que le costaran.",
+                            "eventStart": 0,
+                            "eventFinish": 0,
+                            "events": [
+                            ]
+                        },
+                        {
+                            "nodeID": 1,
+                            "text": "No le molesto mas, mire lo que quiera y si tiene alguna duda aqui me tiene.",
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [
