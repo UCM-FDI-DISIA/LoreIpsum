@@ -30,6 +30,13 @@ private:
     // gestion de estados individuales
     void setINIT();
 
+    void setSHOW_MONEY();
+
+    void setSHOW_CARDS();
+
+    void setPURCHASE();
+
+    void setACTION();
 
 
 };
