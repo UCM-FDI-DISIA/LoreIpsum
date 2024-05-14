@@ -388,12 +388,28 @@ namespace Tutorials
 		FREEDOM
 	};
 
-	enum Deckbuilder {
+	enum Deckbuilder 
+	{
 		DECKBUILDER_NONE,
 		DECKBUILDING_INIT,
 		PIZARRA,
 		CARDS,
 		DRAWER
 	};
+	
+	enum Tienda 
+	{
+		SHOP_NONE,
+		SHOP_INIT,
+		SHOW_CARDS,
+		SHOW_MONEY,
+		PURCHASE,
+		ACTIONS
+	};
 
+	enum General
+	{
+		GENERAL_NONE,
+		GENEREAL_INIT
+	};
 }
