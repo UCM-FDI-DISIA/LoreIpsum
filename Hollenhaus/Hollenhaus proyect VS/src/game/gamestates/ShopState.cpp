@@ -275,11 +275,12 @@ void ShopState::setTutorial()
 		// entidad tutorial para gestionar cositas
 		tutorial = Instantiate();
 
+		prepareTutorial();
+
 		tutorial->addComponent<TutorialManager>();
 		auto manager = tutorial->addComponent<TutorialShopManager>(base, tutorial);
 		GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
 
-		prepareTutorial();
 
 		tutorial->getComponent<TutorialManager>()->startTutorial();
 		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::SHOP);

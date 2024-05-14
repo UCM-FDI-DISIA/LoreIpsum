@@ -88,13 +88,23 @@ void TutorialDeckBuilderManager::setState()
 
 void TutorialDeckBuilderManager::setINIT()
 {
+	TuVieja("Setting INIT");
 
-	std::cout << "init " << std::endl;
+
+	createPopUp(250, 200, "Deck Tutorial", 0, base);
+	std::vector<ecs::entity_t> v;
+
+	/*tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);*/
 }
 
 void TutorialDeckBuilderManager::setPIZARRA()
 {
 	std::cout << "pizarra " << std::endl;
+
+	createPopUp(250, 200, "Deck Tutorial", 1, base);
+	std::vector<ecs::entity_t> v;
 
 }
 
@@ -102,10 +112,15 @@ void TutorialDeckBuilderManager::setCard()
 {
 	std::cout << "card " << std::endl;
 
+	createPopUp(250, 200, "Deck Tutorial", 2, base);
+	std::vector<ecs::entity_t> v;
+
 }
 
 void TutorialDeckBuilderManager::setDrawer()
 {
 	std::cout << "drawer " << std::endl;
+	createPopUp(250, 200, "Deck Tutorial", 3, base);
+	std::vector<ecs::entity_t> v;
 
 }

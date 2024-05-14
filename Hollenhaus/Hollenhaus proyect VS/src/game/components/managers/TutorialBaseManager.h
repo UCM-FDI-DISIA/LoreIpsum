@@ -27,6 +27,8 @@ public:
 
     //
     ecs::entity_t createPopUp(float x, float y, std::string popup, int convo);
+    ecs::entity_t createPopUp(float x, float y, std::string popup, int convo, ecs::entity_t b);
+
     void setBase(ecs::entity_t b);
     void setTutorial(ecs::entity_t t);
     void setObjs(std::vector<ecs::entity_t> v);
