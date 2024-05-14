@@ -298,7 +298,10 @@ namespace Tutorials {
 	};
 
 	enum Deckbuilder {
-		DECKBUILDER_NONE
-
+		DECKBUILDER_NONE,
+		DECKBUILDING_INIT,
+		PIZARRA,
+		CARDS,
+		DRAWER
 	};
 }

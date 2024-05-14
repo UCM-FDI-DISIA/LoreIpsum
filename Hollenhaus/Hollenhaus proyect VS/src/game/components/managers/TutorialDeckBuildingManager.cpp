@@ -24,8 +24,8 @@ void TutorialDeckBuilderManager::initComponent()
 		static_cast<DialogueFactory*>(new DialogueFactory_V0())
 	);
 
-	currentState = Tutorials::Board::BOARD_NONE;
-	nextState = Tutorials::Board::INIT;
+	currentState = Tutorials::Deckbuilder::DECKBUILDER_NONE;
+	nextState = Tutorials::Deckbuilder::DECKBUILDING_INIT;
 	ended = false;
 	checked = false;
 
@@ -55,21 +55,19 @@ void TutorialDeckBuilderManager::addToHand(ecs::entity_t c)
 void TutorialDeckBuilderManager::setState()
 {
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
-	ent_->getComponent<TutorialManager>()->activateColliders(objs);
-	ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
+	/*ent_->getComponent<TutorialManager>()->activateColliders(objs);
+	ent_->getComponent<TutorialManager>()->resetColliderWall(objs);*/
 	image->getComponent<SpriteRenderer>()->enable(false);
+
 
 
 	switch (t)
 	{
-	case Tutorials::Board::INIT:
+	case Tutorials::Deckbuilder::DECKBUILDING_INIT:
 		setINIT();
 		break;
-	case Tutorials::Board::CARD:
-		setCARD();
-		break;
-	case Tutorials::Board::CARD_COST:
-		setCARDCOST();
+	case Tutorials::Deckbuilder::PIZARRA:
+		setPIZARRA();
 		break;
 	default:
 		break;
@@ -80,4 +78,16 @@ void TutorialDeckBuilderManager::setState()
 	ent_->getComponent<TutorialManager>()->setCurrentTutorialState(t);
 
 	checked = false;
+}
+
+void TutorialDeckBuilderManager::setINIT()
+{
+
+	std::cout << "init " << std::endl;
+}
+
+void TutorialDeckBuilderManager::setPIZARRA()
+{
+	std::cout << "a " << std::endl;
+
 }

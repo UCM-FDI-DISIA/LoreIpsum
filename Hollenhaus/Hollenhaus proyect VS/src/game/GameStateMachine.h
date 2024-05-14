@@ -46,7 +46,8 @@ namespace GameStates
 		MULTIPLAYER_PREGAME,
 		MULTIPLAYER_GAME,
 		MULTIPLAYER_END_GAME,
-		KEYMENU
+		KEYMENU,
+		TUTORIAL_DECKBUILDING
 	};
 }
 
@@ -77,6 +78,8 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* deckBuildingState;
 	GameState* tutorialState;
 	GameState* tutorialBoardState;
+	GameState* tutorialDeckbuildingState;
+
 
 	// Estados de gente
 	GameState* paigroState;
@@ -216,6 +219,9 @@ public:
 			break;
 		case GameStates::KEYMENU:
 			newState = keyMenuState;
+			break;
+		case GameStates::TUTORIAL_DECKBUILDING: 
+			newState = tutorialDeckbuildingState;
 			break;
 		default:
 			break;

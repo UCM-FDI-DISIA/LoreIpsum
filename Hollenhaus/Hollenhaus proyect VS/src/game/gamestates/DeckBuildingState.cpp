@@ -21,6 +21,8 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/Button.h"
 #include "../components/NPC.h"
+#include "../TutorialManager.h"
+#include "../components/managers/TutorialDeckBuildingManager.h"
 
 // ------------------------------------------------------- //
 
@@ -28,6 +30,12 @@
 DeckBuildingState::DeckBuildingState()
 {
 	TuVieja("Loading DeckBuildingState");
+	isTutorial = false;
+}
+
+DeckBuildingState::DeckBuildingState(bool t)
+{
+	isTutorial = true;
 }
 
 // ---- basicos ----
@@ -211,6 +219,8 @@ void DeckBuildingState::onEnter()
 	drawer_ = cajon->getComponent<DrawerManager>();
 	#pragma endregion
 
+	setTutorial();
+
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("deckbuilder_theme").play(-1);
@@ -295,5 +305,46 @@ ecs::entity_t DeckBuildingState::createCard(int id, Vector2D pos)
 	auto card = sdlutils().cards().at(std::to_string(id));
 	ecs::entity_t ent = factory->createFakeCard(id, pos, card.cost(), card.value(), card.sprite(), card.unblockable(), card.effects());
 	return ent;
+}
+void DeckBuildingState::setTutorial()
+{
+	if (isTutorial) {
+
+		// entidad tutorial para gestionar cositas
+		tutorial = Instantiate();
+
+		tutorial->addComponent<TutorialManager>();
+		auto manager = tutorial->addComponent<TutorialDeckBuilderManager>(base, tutorial);
+		GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
+
+		prepareTutorial();
+
+		tutorial->getComponent<TutorialManager>()->startTutorial();
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::DECKBUILDER);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Deckbuilder::DECKBUILDER_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Deckbuilder::DECKBUILDING_INIT);
+
+
+		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
+
+		//tutorial->getComponent<TutorialBoardManager>()->setObjs(objs);
+
+	}
+}
+void DeckBuildingState::prepareTutorial()
+{
+	// base
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
+
+}
+void DeckBuildingState::startTutorial(bool a)
+{
+	isTutorial = a;
 }
 #pragma endregion

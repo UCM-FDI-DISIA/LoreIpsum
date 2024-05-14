@@ -91,6 +91,7 @@ GameStateMachine::GameStateMachine()
 	luisState = new LuisState();
 	deckBuildingState = new DeckBuildingState();
 	tutorialBoardState = new TutorialBoardState();
+	tutorialDeckbuildingState = new DeckBuildingState(true);
 
 	multiplayerLobbyState = new MultiplayerLobbyState();
 	multiplayerPreGameState = new MultiplayerPreGameState();
@@ -101,7 +102,7 @@ GameStateMachine::GameStateMachine()
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();
 
-	currentState = mainMenuState;
+	currentState = tutorialDeckbuildingState;
 
 	// settea la data en el current state para acceder a ella desde cualquier estado
 	currentState->setData(new Data());
@@ -136,6 +137,7 @@ GameStateMachine::~GameStateMachine()
 	matchOverState = nullptr;
 	luisState = nullptr;
 	deckBuildingState = nullptr;
+	//tutorialDecbuildingState = nullptr;
 
 }
 
