@@ -225,9 +225,6 @@ public:
 		case GameStates::CLUESMENU:
 			newState = checkCluesMenuState;
 			break;
-		case GameStates::KEYMENU:
-			newState = keyMenuState;
-			break;
 		case GameStates::TUTORIAL_DECKBUILDING: 
 			newState = tutorialDeckbuildingState;
 			break;
