@@ -8,6 +8,7 @@
 #include <functional>
 #include "../utils/Singleton.h"
 #include "../utils/tweeny-3.2.0.h"
+#include "gamestates/GameState.h"
 
 class GameState;
 class Data;

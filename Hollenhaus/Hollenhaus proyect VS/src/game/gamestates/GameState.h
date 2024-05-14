@@ -71,6 +71,8 @@ public:
 
 	virtual void setKey();
 
+	virtual void setJ2(std::string rival);
+
 	virtual void saveData();
 	virtual void loadData();
 

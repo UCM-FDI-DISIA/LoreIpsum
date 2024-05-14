@@ -25,7 +25,7 @@ ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t par
 	npc->getComponent<Transform>()->setGlobalPos(pos);
 
 	npc->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	npc->addComponent<NPC>(info.getScene(), info.getType(), info.getName(), convo, true, true);
+	npc->addComponent<NPC>(info.getScene(), info.getType(), info.getName(), info.getID(),convo, true, true);
 	npc->setLayer(info.getLayer());
 
 	npc->addComponent<ShineComponent>();

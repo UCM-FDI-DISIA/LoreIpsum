@@ -23,6 +23,7 @@ public:
     void onExit() override;
 
     void setKey() override;
+    void setJ2(std::string rival) override;
 
 private:
     Factory* factory = nullptr;
@@ -31,5 +32,6 @@ private:
     Transform* keyTr_;
     std::list<BoxCollider*> colliders_;
     bool moveKey_;
+    std::string j2_;
 };
 

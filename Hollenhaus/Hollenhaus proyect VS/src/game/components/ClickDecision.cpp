@@ -12,8 +12,7 @@
 #include "../factories/NPCFactory_V0.h"
 #include "../components/NPC.h"
 
-ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) :
-	factory()
+ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 {
 	decision_ = decision;
 	parent_ = parent;
@@ -26,18 +25,12 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) :
 
 ClickDecision::~ClickDecision()
 {
-	delete factory;
-	factory = nullptr;
 }
 
 void ClickDecision::initComponent()
 {
 	scene_ = 0;
-
-	factory = new Factory();
-	factory->SetFactories(
-		static_cast<NPCFactory*>(new NPCFactory_V0())
-	);
+	myNpc_ = parent_->getComponent<Transform>()->getParent()->getEntity()->getComponent<Transform>()->getParent()->getEntity()->getComponent<NPC>();
 }
 
 void ClickDecision::update()
@@ -95,6 +88,7 @@ void ClickDecision::TakeDecision()
 		break;
 	case 5:
 		parent_->getComponent<DialogueEventCollection>()->ChangeScene(GameStates::LUIS);
+		GameStateMachine::instance()->getCurrentState()->setJ2(std::to_string(myNpc_->getID()));
 		break;
 	default:
 		TuVieja("Esta decision no existe. Añadir en ClickDecision.cpp");

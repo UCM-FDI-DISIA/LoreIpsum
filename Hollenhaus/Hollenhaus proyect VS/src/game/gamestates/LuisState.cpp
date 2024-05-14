@@ -114,7 +114,7 @@ void LuisState::onEnter()
 		colliders_.push_back(c->getEntity()->getComponent<BoxCollider>());
 	colliders_.push_back(deckPlayer1->getComponent<BoxCollider>());
 
-	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
+	ecs::entity_t deckPlayer2 = factory->createDeckJ2(j2_);
 
 	// Leyenda
 	for (int i = 0; i < 6; ++i)
@@ -225,4 +225,9 @@ void LuisState::setKey()
 		for (const auto b : colliders_)
 			b->setPosOffset(Vector2D(0, 0));
 	}
+}
+
+void LuisState::setJ2(std::string rival)
+{
+	j2_ = rival;
 }

@@ -12,7 +12,7 @@ Card::Card()
 }
 
 Card::Card(const Card& other) {
-
+	id = other.id;
 	cost = other.cost;
 	value = other.value;
 	sprite = other.sprite;

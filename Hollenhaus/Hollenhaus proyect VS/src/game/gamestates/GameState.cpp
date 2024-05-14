@@ -167,6 +167,10 @@ void GameState::setKey()
 {
 }
 
+void GameState::setJ2(std::string rival)
+{
+}
+
 void GameState::saveData()
 {
 	data->Write();

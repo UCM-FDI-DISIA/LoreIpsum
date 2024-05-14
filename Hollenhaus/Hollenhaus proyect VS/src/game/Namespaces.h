@@ -309,9 +309,9 @@ namespace JsonData
 		NPCData();
 
 		NPCData(int id, std::string name, std::string s, std::string shine, float sx, float sy, int px, float py,
-		        float t, int scen, int lay) :
+		        float t, int scen, int lay, std::vector<CardData> d) :
 			NPCID_(id), name(name), sprite(s), shineSprite(shine), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t),
-			scene(scen), layer(lay)
+			scene(scen), layer(lay), deck(d)
 		{
 		};
 
@@ -324,6 +324,7 @@ namespace JsonData
 		int getType() { return type; }
 		int getScene() { return scene; }
 		int getLayer() { return layer; }
+		std::vector<CardData> npcDeck() { return deck; }
 
 	private:
 		int NPCID_;
@@ -335,6 +336,7 @@ namespace JsonData
 		int type;
 		int scene;
 		int layer;
+		std::vector<CardData> deck;
 	};
 
 	struct KeyData

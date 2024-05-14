@@ -10,9 +10,10 @@
 #include "../components/NextText.h"
 #include "../components/DialogueBoxDestroyer.h"
 #include "../components/DialogueDestroyer.h"
+#include "game/gamestates/GameState.h"
 
-NPC::NPC(int scene, int t, std::string name_, int convo, bool toFadeIn, bool toFadeOut)
-	: _scene(scene), click(false), type(t), talking(false), name(name_), myBoxCollider(nullptr), convo_(convo)
+NPC::NPC(int scene, int t, std::string name_, int id, int convo, bool toFadeIn, bool toFadeOut)
+	: _scene(scene), click(false), type(t), talking(false), name(name_), _id(id), myBoxCollider(nullptr), convo_(convo)
 {
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this, toFadeIn, toFadeOut] { OnLeftClickDown(_scene, toFadeIn, toFadeOut); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
