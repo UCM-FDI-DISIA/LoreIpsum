@@ -1048,15 +1048,7 @@
                         },
                         {
                             "nodeID": 3,
-                            "text": "¿Le interesan verdad?",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "Con el boton de abajo a la izquierda puedes guardar tu mazo.",
+                            "text": "Le interesan verdad",
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [
@@ -1075,7 +1067,7 @@
                     "nodes": [
                         {
                             "nodeID": 0,
-                            "text": "Cuando desee una carta, haga click sobre ella y se resaltaran las monedas que le costaran..",
+                            "text": "Cuando desee una carta, haga click sobre ella y se resaltaran las monedas que le costaran.",
                             "eventStart": 0,
                             "eventFinish": 0,
                             "events": [
