@@ -11,6 +11,10 @@
 #include "../components/NPC.h"
 #include "game/components/Clickable.h"
 #include "game/components/ShineComponent.h"
+#include "../TutorialManager.h"
+#include "../components/managers/TutorialOfficeManager.h"
+
+
 
 
 
@@ -150,7 +154,7 @@ void OfficeState::setTutorial()
 		prepareTutorial();
 
 		tutorial->addComponent<TutorialManager>();
-		auto manager = tutorial->addComponent<TutorialDeckBuilderManager>(base, tutorial);
+		auto manager = tutorial->addComponent<TutorialOfficeManager>(base, tutorial);
 		GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
 
 
@@ -162,7 +166,7 @@ void OfficeState::setTutorial()
 
 		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
-		tutorial->getComponent<TutorialDeckBuilderManager>()->setObjs(objs);
+		tutorial->getComponent<TutorialOfficeManager>()->setObjs(objs);
 
 	}
 }

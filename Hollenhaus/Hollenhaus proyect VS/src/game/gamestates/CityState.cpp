@@ -14,6 +14,7 @@
 #include "game/components/Clickable.h"
 #include "game/components/ImageWithFrames.h"
 
+
 CityState::CityState()
 {
 	TuVieja("Loading CityState");
