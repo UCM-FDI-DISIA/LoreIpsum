@@ -52,7 +52,8 @@ namespace GameStates
 		KEYMENU,
 		TUTORIAL_DECKBUILDING,
 		TUTORIAL_SHOP,
-		TUTORIAL_GENERAL	
+		TUTORIAL_CITY,
+		TUTORIAL_OFFICE
 	};
 }
 
@@ -87,6 +88,8 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* tutorialBoardState;
 	GameState* tutorialDeckbuildingState;
 	GameState* tutorialShopState;
+	GameState* tutorialOfficeState;
+	GameState* tutorialCityState;
 
 
 	// Estados de gente

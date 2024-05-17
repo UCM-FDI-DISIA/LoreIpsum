@@ -90,6 +90,9 @@ GameStateMachine::GameStateMachine()
 	tutorialBoardState = new TutorialBoardState();
 	tutorialDeckbuildingState = new DeckBuildingState(true);
 	tutorialShopState = new ShopState(true);
+	tutorialCityState = new CityState(true);
+	tutorialOfficeState = new OfficeState(true);
+
 
 	multiplayerLobbyState = new MultiplayerLobbyState();
 	multiplayerPreGameState = new MultiplayerPreGameState();
@@ -119,6 +122,11 @@ GameStateMachine::~GameStateMachine()
 	delete shopState;
 	delete deckBuildingState;
 	delete tutorialState;
+	delete tutorialBoardState;
+	delete tutorialCityState;
+	delete tutorialDeckbuildingState;
+	delete tutorialOfficeState;
+	delete tutorialShopState;
 
 	delete mainMenuState;
 	delete storyModeState;
@@ -157,7 +165,11 @@ GameStateMachine::~GameStateMachine()
 	matchOverState = nullptr;
 	luisState = nullptr;
 	deckBuildingState = nullptr;
-	//tutorialDecbuildingState = nullptr;
+	tutorialBoardState = nullptr;
+	tutorialCityState = nullptr;
+	tutorialDeckbuildingState = nullptr;
+	tutorialOfficeState = nullptr;
+	tutorialShopState = nullptr;
 
 }
 
