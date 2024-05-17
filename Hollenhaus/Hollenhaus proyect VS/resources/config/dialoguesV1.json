@@ -982,122 +982,186 @@
                 }
             ]
         },
-        {
-            "NPCName": "Tienda Tutorial",
-            "convo": [
-                {
-                    "convoID": 0,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Sea bienvenido a mi santeria.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Aqui encontraras articulos esotericos de toda clase.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 1,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Puede dejar sus monedas aqui, no se preocupe, yo se las guardo mientras mira.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 2,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Dejeme que le ensenye algo. Creo que le interesara.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Son estas cartas que tengo aqui.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "De la mejor calidad.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Le interesan verdad",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 3,
-                    "autoConvo": false,
-                    "nodes": [
-
-                        {
-                            "nodeID": 0,
-                            "text": "Cuando desee una carta, haga click sobre ella y se resaltaran las monedas que le costaran.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "No le molesto mas, mire lo que quiera y si tiene alguna duda aqui me tiene.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                }
+      {
+        "NPCName": "Tienda Tutorial",
+        "convo": [
+          {
+            "convoID": 0,
+            "autoConvo": false,
+            "nodes": [
+              {
+                "nodeID": 0,
+                "text": "Sea bienvenido a mi santeria.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                ]
+              },
+              {
+                "nodeID": 1,
+                "text": "Aqui encontraras articulos esotericos de toda clase.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                  {
+                    "timing": 1,
+                    "type": 4,
+                    "scene": 0
+                  }
+                ]
+              }
             ]
-        }
+          },
+          {
+            "convoID": 1,
+            "autoConvo": false,
+            "nodes": [
+              {
+                "nodeID": 0,
+                "text": "Puede dejar sus monedas aqui, no se preocupe, yo se las guardo mientras mira.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                ]
+              }
+            ]
+          },
+          {
+            "convoID": 2,
+            "autoConvo": false,
+            "nodes": [
+              {
+                "nodeID": 0,
+                "text": "Dejeme que le ensenye algo. Creo que le interesara.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                ]
+              },
+              {
+                "nodeID": 1,
+                "text": "Son estas cartas que tengo aqui.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                ]
+              },
+              {
+                "nodeID": 2,
+                "text": "De la mejor calidad.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                ]
+              },
+              {
+                "nodeID": 3,
+                "text": "Le interesan verdad",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                  {
+                    "timing": 1,
+                    "type": 4,
+                    "scene": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "convoID": 3,
+            "autoConvo": false,
+            "nodes": [
+
+              {
+                "nodeID": 0,
+                "text": "Cuando desee una carta, haga click sobre ella y se resaltaran las monedas que le costaran.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                ]
+              },
+              {
+                "nodeID": 1,
+                "text": "No le molesto mas, mire lo que quiera y si tiene alguna duda aqui me tiene.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                  {
+                    "timing": 1,
+                    "type": 4,
+                    "scene": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "NPCName": "City Tutorial",
+        "convo": [
+          {
+            "convoID": 0,
+            "autoConvo": false,
+            "nodes": [
+              {
+                "nodeID": 0,
+                "text": "city tutorial 1",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                ]
+              },
+              {
+                "nodeID": 1,
+                "text": "city tutorial 2",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                  {
+                    "timing": 1,
+                    "type": 4,
+                    "scene": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "NPCName": "Office Tutorial",
+        "convo": [
+          {
+            "convoID": 0,
+            "autoConvo": false,
+            "nodes": [
+              {
+                "nodeID": 0,
+                "text": "office tutorial 1",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                ]
+              },
+              {
+                "nodeID": 1,
+                "text": "office tutorial 2",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                  {
+                    "timing": 1,
+                    "type": 4,
+                    "scene": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     ]
 }
