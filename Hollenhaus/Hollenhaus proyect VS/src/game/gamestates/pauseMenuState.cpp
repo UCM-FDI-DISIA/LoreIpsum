@@ -41,6 +41,8 @@ void PauseMenuState::onEnter()
 {
 	std::cout << "\nENTER PAUSE.\n";
 
+	//SetLastState(GameStates::PAUSEMENU);
+
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onDespause(); });
 

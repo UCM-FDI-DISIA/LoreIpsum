@@ -45,6 +45,8 @@ void MainMenuState::onEnter()
 
 	_Tu_Vieja("DINERO: " << getMoney());
 
+	SetLastState(GameStates::MAINMENU);
+
 	/// Fondo
 	//-----Ciudad de fondo:
 	ecs::entity_t fondo = Instantiate(Vector2D(0,0));
