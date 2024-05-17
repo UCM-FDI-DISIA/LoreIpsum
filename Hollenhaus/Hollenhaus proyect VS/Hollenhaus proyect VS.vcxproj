@@ -71,8 +71,10 @@
     <ClCompile Include="src\game\components\ImageWithFrames.cpp" />
     <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp" />
     <ClCompile Include="src\game\components\managers\TutorialBaseManager.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialCityManager.cpp" />
     <ClCompile Include="src\game\components\managers\TutorialDeckBuildingManager.cpp" />
     <ClCompile Include="src\game\components\managers\TutorialGeneralManager.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialOfficeManager.cpp" />
     <ClCompile Include="src\game\components\managers\TutorialShopManager.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetEndGame.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetLobby.cpp" />
@@ -258,8 +260,10 @@
     <ClInclude Include="src\game\components\ImageWithFrames.h" />
     <ClInclude Include="src\game\components\LobbyStatusIndicator.h" />
     <ClInclude Include="src\game\components\managers\TutorialBaseManager.h" />
+    <ClInclude Include="src\game\components\managers\TutorialCityManager.h" />
     <ClInclude Include="src\game\components\managers\TutorialDeckBuildingManager.h" />
     <ClInclude Include="src\game\components\managers\TutorialGeneralManager.h" />
+    <ClInclude Include="src\game\components\managers\TutorialOfficeManager.h" />
     <ClInclude Include="src\game\components\managers\TutorialShopManager.h" />
     <ClInclude Include="src\game\components\multiplayer\NetEndGame.h" />
     <ClInclude Include="src\game\components\multiplayer\NetLobby.h" />

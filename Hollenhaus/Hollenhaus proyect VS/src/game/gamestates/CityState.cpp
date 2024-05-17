@@ -17,6 +17,13 @@
 CityState::CityState()
 {
 	TuVieja("Loading CityState");
+	isTutorial = false;
+
+}
+
+CityState::CityState(bool t)
+{
+	isTutorial = t;
 }
 
 CityState::~CityState()

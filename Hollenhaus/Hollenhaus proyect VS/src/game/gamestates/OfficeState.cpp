@@ -13,9 +13,18 @@
 #include "game/components/ShineComponent.h"
 
 
+
+
 OfficeState::OfficeState()
 {
 	TuVieja("Loading OfficeState");
+	isTutorial = false;
+}
+
+OfficeState::OfficeState(bool t)
+{
+	isTutorial = t;
+
 }
 
 void OfficeState::update()
@@ -129,5 +138,42 @@ void OfficeState::onPauseOF()
 {
 	SetLastState(2);
 	GameStateMachine::instance()->setState(17);
+}
+
+void OfficeState::setTutorial()
+{
+	if (isTutorial) {
+
+		// entidad tutorial para gestionar cositas
+		tutorial = Instantiate();
+
+		prepareTutorial();
+
+		tutorial->addComponent<TutorialManager>();
+		auto manager = tutorial->addComponent<TutorialDeckBuilderManager>(base, tutorial);
+		GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
+
+
+		tutorial->getComponent<TutorialManager>()->startTutorial();
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::DECKBUILDER);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Deckbuilder::DECKBUILDER_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Deckbuilder::DECKBUILDING_INIT);
+
+
+		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
+
+		tutorial->getComponent<TutorialDeckBuilderManager>()->setObjs(objs);
+
+	}
+}
+
+void OfficeState::prepareTutorial()
+{
+
+
+}
+
+void OfficeState::startTutorial(bool a)
+{
 }
 

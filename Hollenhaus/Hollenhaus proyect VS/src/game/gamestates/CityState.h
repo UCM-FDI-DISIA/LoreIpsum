@@ -13,6 +13,8 @@ class CityState : public GameState
 public:
 
 	CityState(); //Constructora
+	CityState(bool t); //Constructora tutorial
+
 	~CityState();
 
 	void update() override;
@@ -37,6 +39,9 @@ private:
 
 	// tween fantasmiko
 	tweeny::tween<float> fantastween;
+
+
+	bool isTutorial;
 
 
 };

@@ -406,9 +406,19 @@ namespace Tutorials
 		PURCHASE
 	};
 
-	enum General
+	enum Ciudad
 	{
-		GENERAL_NONE,
-		GENEREAL_INIT
+		CITY_NONE,
+		CITY_INIT,
+		CITY_MOVE,
+		CITY_PERSON
+	};
+
+	enum Oficina {
+		OFFICE_NONE,
+		OFFICE_INIT,
+		OFFICE_PHONE,
+		OFFICE_PIZARRA
+
 	};
 }

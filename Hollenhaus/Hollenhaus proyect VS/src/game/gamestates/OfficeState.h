@@ -12,6 +12,7 @@ class OfficeState : public GameState
 public:
 
 	OfficeState();		//Constructora
+	OfficeState(bool t);	// constructora tutorial
 	~OfficeState() { }
 	void update() override;
 	void render() const override;
@@ -22,11 +23,18 @@ public:
 
 	void onPauseOF();
 
+	// -------------- tutorial --------------------
+	void setTutorial();
+	void prepareTutorial();
+	void startTutorial(bool a);
+
 private:
 	Factory* factory;
 
 	//Cambiar a combate (Tarotista) -> Teléfono
 	//Gestionar mazo
 	//Volver a CIU
+
+	bool isTutorial;
 };
 
