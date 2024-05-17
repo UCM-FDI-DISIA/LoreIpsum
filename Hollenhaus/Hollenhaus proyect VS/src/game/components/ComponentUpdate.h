@@ -1,5 +1,8 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include "Component.h"
 
 class ComponentUpdate : public ecs::Component {

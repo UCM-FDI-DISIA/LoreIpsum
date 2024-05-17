@@ -2,22 +2,19 @@
     "images": [
         {"id": "rice",            "file": "./resources/images/rice.png"},
         {"id": "card",            "file": "resources/images/card.png"},
-        {"id": "hand",            "file": "resources/images/hand.png"},
-        {"id": "key",             "file": "resources/images/libreta.png"},
+        {"id": "key",             "file": "resources/images/pagina_leyenda.png"},
         {"id": "board",           "file": "resources/images/board4.png"},
         {"id": "board5",          "file": "resources/images/board5.png"},
+        {"id": "board6",          "file": "resources/images/board6.png"},
         {"id": "mouse",           "file": "resources/images/mouse.png"},
-        {"id": "ciudad",          "file": "resources/images/ciudad.png"},
-        {"id": "npc",             "file": "resources/images/npc.png"},
-        {"id": "hombre",             "file": "resources/images/hombre.png"},
-        {"id": "hombreIlu",             "file": "resources/images/hombreIluminado.png"},
-        {"id": "cityExample",     "file": "resources/images/cityExample.png" },
         {"id": "farolascerca",    "file": "resources/images/farolascerca.png" },
         {"id": "farolaslejos",    "file": "resources/images/farolaslejos.png"},
         {"id": "ambasfarolas",    "file": "resources/images/ambasfarolas.png"},
         {"id": "edificios",       "file": "resources/images/edificios.png"},
         {"id": "ciudadcompleta",  "file": "resources/images/ciudadcompleta.png"},
         {"id": "EndTurnButton",   "file": "resources/images/end_turn_button.png"},
+        {"id": "EndTurnButton_click",   "file": "resources/images/end_turn_button_click.png"},
+        {"id": "EndTurnButton_hover",   "file": "resources/images/end_turn_button_hover.png"},
         {"id": "esquina",         "file": "resources/images/ef_esquina.png"},
         {"id": "centro",          "file": "resources/images/ef_centro.png" },
         {"id": "flecha",          "file": "resources/images/ef_flecha.png" },
@@ -26,16 +23,22 @@
         {"id": "unblockable",     "file": "resources/images/ef_unblockable.png" },
         {"id": "tiendafondo",     "file": "resources/images/provtienda.png" },
         {"id": "oficinafondo",    "file": "resources/images/OficinaBG.png"  },
+        {"id": "oldWhiteRect",    "file": "resources/images/rectBlanco.png"  },
         {"id": "fantasma",        "file": "resources/images/fantasma.png"  },
+        {"id": "logo_hollen",        "file": "resources/images/logo_hollenhaus.png"  },
+        {"id": "fantasma_caminando",        "file": "resources/images/fantasma_caminando.png"  },
+        {"id": "leyenda_boton",    "file": "resources/images/postit_cant_cartas.png"  },
+        {"id": "leyenda_boton_brilli",    "file": "resources/images/postit_cant_cartas_brilli.png"  },
         {"id": "main_menu_bg",    "file": "resources/images/main_menu.png"  },
-        {"id": "boton_nueva_partida", "file": "resources/images/boton_nueva_partida.png"  },
-        {"id": "boton_salir",     "file": "resources/images/boton_salir.png"  },
         {"id": "boton_flecha",    "file": "resources/images/boton_flecha.png"},
+        {"id": "boton_flecha_click",    "file": "resources/images/boton_flecha_click.png"},
+        {"id": "boton_flecha_hover",    "file": "resources/images/boton_flecha_hover.png"},
         {"id": "black_box",       "file": "resources/images/black_background.png"  },
-        {"id": "whiteRect",       "file": "resources/images/rectBlanco.png"},
-        {"id": "redRect",       "file": "resources/images/redRect.png"},
-        {"id": "greenRect",       "file": "resources/images/greenRect.png"},
+        {"id": "whiteRect",       "file": "resources/images/bocadillo_npc.png"},
+        {"id": "redRect",       "file": "resources/images/recuadro_rojo.png"},
+        {"id": "greenRect",       "file": "resources/images/recuadro_verde.png"},
         {"id": "reverseCard",       "file": "resources/images/card_reverse.png"  },
+        {"id": "reverseCard_brilli",       "file": "resources/images/card_reverse_brilli.png"  },
         {"id": "moneda",       "file": "resources/images/moneda.png"  },
         {"id": "monedaIlu",       "file": "resources/images/monedaIluminada.png"  },
         {"id": "fondoTienda",       "file": "resources/images/tienda_ph.png"  },
@@ -43,32 +46,40 @@
         {"id": "estanteria",       "file": "resources/images/estanteriaTienda.png"  },
         {"id": "cell",       "file": "resources/images/cardCell.png"  },  
         {"id": "DeckbuildingBG",       "file": "resources/images/DeckbuildingBG.png"  },      
-        {"id": "boton_ph",       "file": "resources/images/botonph.png"  },  
-        {"id": "DeckbuildingMesaBG",       "file": "resources/images/DeckBuildingMesaBG.png"  },  
         {"id": "DeckbuildingCajonBG",       "file": "resources/images/DeckBuildingCajonBG.png"  },
-        {"id": "SaveMazeBut",       "file": "resources/images/boton_guardar_mazo.png"  },
         {"id": "DownDrawer",       "file": "resources/images/down_drawer.png"  },
+        {"id": "DownDrawer_click",       "file": "resources/images/down_drawer_click.png"  },
+        {"id": "DownDrawer_hover",       "file": "resources/images/down_drawer_hover.png"  },
         {"id": "UpDrawer",       "file": "resources/images/up_drawer.png"  },
-        {"id": "TiendaNPC",       "file": "resources/images/tienda_dibujo.png"  },
+        {"id": "UpDrawer_click",       "file": "resources/images/up_drawer_click.png"  },
+        {"id": "UpDrawer_hover",       "file": "resources/images/up_drawer_hover.png"  },
         {"id": "CompbateNPC",       "file": "resources/images/juego_dibujo.png"  },
-        {"id": "OficinaNPC",       "file": "resources/images/ofi_dibujo.png"  },
         {"id": "NPCNPC",       "file": "resources/images/npc_dibujo.png"  },
-        {"id": "TiendaNPC_brilli", "file": "resources/images/tienda_dibujo_brilli.png"},
         {"id": "CompbateNPC_brilli",       "file": "resources/images/juego_dibujo_brilli.png"  },
-        {"id": "OficinaNPC_brilli",       "file": "resources/images/ofi_dibujo_brilli.png"  },
         {"id": "NPCNPC_brilli",       "file": "resources/images/npc_dibujo_brilli.png"  },
         {"id": "multiplayer_lobby_bg",       "file": "resources/images/multiplayer_lobby_bg.png"  },
         {"id": "multiplayer_pregame_bg",       "file": "resources/images/multiplayer_pregame_bg.png"  },
         { "id": "feedback_flecha", "file": "resources/images/feedback_flecha.png" },
         { "id": "feedback_circulo", "file": "resources/images/feedback_circulo.png" },
         { "id": "card_ejemplo", "file": "resources/images/card_ejemplo.png"},
-        {"id": "BrilliNPC",       "file": "resources/images/brilliNPC.png"  },
         {"id": "juegobrillo",       "file": "resources/images/juego_brillo.png"  },
         {"id": "ofibrillo",       "file": "resources/images/ofi_brillo.png"  },
         {"id": "npcbrillo",       "file": "resources/images/npc_brillo.png"  },
-        {"id": "mpfondo",       "file": "resources/images/multiplayer.png"  },
-        {"id": "optfondo",       "file": "resources/images/optionsMenu.png"  },
-        {"id": "transitionbg",       "file": "resources/images/transitionBG.png"  }
+        {"id": "optfondo",       "file": "resources/images/midnightBlue.png"  },
+        {"id": "transitionbg",       "file": "resources/images/transitionBG.png"  },
+        {"id": "santeria",       "file": "resources/images/santeria.png"  },
+        {"id": "santeria_brilli",       "file": "resources/images/santeria_brilli.png"  },
+        {"id": "oficina",       "file": "resources/images/oficina.png"  },
+        {"id": "oficina_brilli",       "file": "resources/images/oficina_brilli.png"  },
+        {"id": "pizarra",       "file": "resources/images/pizarra.png"  },
+        {"id": "tfno",       "file": "resources/images/tfno.png"  },
+        {"id": "pizarra_brilli",       "file": "resources/images/pizarra_brilli.png"  },
+        {"id": "tfno_brilli",       "file": "resources/images/tfno_brilli.png"  },
+        {"id": "postit_guardar_mazo",       "file": "resources/images/postit_guardar_mazo.png"  },
+        {"id": "postit_guardar_mazo_brilli",       "file": "resources/images/postit_guardar_mazo_brilli.png"  },
+        {"id": "deck_sombra",       "file": "resources/images/reverseCard_sombra.png"  },
+        {"id": "card_sombra",       "file": "resources/images/card_shadow.png"  },
+        {"id": "panelFinPartida",       "file": "resources/images/PanelFinPartida.png"  }
     ],
     "fonts": [
       {
@@ -120,6 +131,76 @@
         "id": "8bit_size_72",
         "file": "resources/fonts/NotJamOldStyle14.ttf",
         "size": 72
+      },
+      {
+        "id": "space_grotesk_regular_16",
+        "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
+        "size": 16
+      },
+      {
+        "id": "space_grotesk_regular_32",
+        "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
+        "size": 32
+      },
+      {
+        "id": "space_grotesk_regular_8",
+        "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
+        "size": 8
+      },
+      {
+        "id": "space_grotesk_semibold_16",
+        "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
+        "size": 16
+      },
+      {
+        "id": "space_grotesk_semibold_32",
+        "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
+        "size": 32
+      },
+      {
+        "id": "space_grotesk_semibold_8",
+        "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
+        "size": 8
+      },
+      {
+        "id": "space_grotesk_bold_16",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 16
+      },
+      {
+        "id": "space_grotesk_bold_20",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 20
+      },
+      {
+        "id": "space_grotesk_bold_18",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 18
+      },
+      {
+        "id": "space_grotesk_bold_32",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 32
+      },
+      {
+        "id": "space_grotesk_bold_40",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 40  
+      },
+      {
+        "id": "space_grotesk_bold_48",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 48
+      },
+      {
+        "id": "space_grotesk_bold_8",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 8
+      },
+      {
+        "id": "space_grotesk_bold_24",
+        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+        "size": 24
       }
     ],
     "sounds": [

@@ -272,7 +272,7 @@ void CardFactory_v0::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 
 			valueChange = Instantiate(Vector2D(0,0));
 
-			valueChange->addComponent<TextComponent>(valueText, "8bit_size_8", SDL_Color({0, 0, 0, 255}), 100);
+			valueChange->addComponent<TextComponent>(valueText, Fonts::GROTESK_8, SDL_Color({0, 0, 0, 255}), 100);
 
 			valueChange->getComponent<Transform>()->addParent(effectImage->getComponent<Transform>());
 			valueChange->getComponent<Transform>()->getRelativePos().set(-5, 0);
@@ -288,7 +288,7 @@ void CardFactory_v0::addValueCostTexts(ecs::entity_t card,  int value, int cost)
 {
 	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
 
-	textoValor->addComponent<TextComponent>(std::to_string(value), "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }), 100,Text::BoxPivotPoint::CenterCenter,Text::TextAlignment::Center);
+	textoValor->addComponent<TextComponent>(std::to_string(value), Fonts::GROTESK_16, SDL_Color({ 255, 255, 255, 255 }), 100,Text::BoxPivotPoint::CenterCenter,Text::TextAlignment::Center);
 
 	textoValor->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 
@@ -299,7 +299,7 @@ void CardFactory_v0::addValueCostTexts(ecs::entity_t card,  int value, int cost)
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
 
-	textoCoste->addComponent<TextComponent>(std::to_string(cost), "8bit_size_12", SDL_Color({ 255, 255, 255, 255 }),100, Text::BoxPivotPoint::CenterCenter,Text::TextAlignment::Center);
+	textoCoste->addComponent<TextComponent>(std::to_string(cost), Fonts::GROTESK_16, SDL_Color({ 255, 255, 255, 255 }),100, Text::BoxPivotPoint::CenterCenter,Text::TextAlignment::Center);
 
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 

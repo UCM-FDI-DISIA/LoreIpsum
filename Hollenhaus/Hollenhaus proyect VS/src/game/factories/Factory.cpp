@@ -10,6 +10,34 @@
 #include "DecisionFactory.h"
 
 
+Factory::~Factory()
+{
+	delete boardFactory;
+	boardFactory = nullptr;
+
+	delete cardFactory;
+	cardFactory = nullptr;
+
+	delete handFactory;
+	handFactory = nullptr;
+
+	delete matchStateUIFactory;
+	matchStateUIFactory = nullptr;
+
+	delete dialogueFactory;
+	dialogueFactory = nullptr;
+
+	delete npcFactory;
+	npcFactory = nullptr;
+
+	delete fakeCardFactory;
+	fakeCardFactory = nullptr;
+
+	delete decisionFactory;
+	decisionFactory = nullptr;
+}
+
+
 ecs::entity_t Factory::createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
 {
 	if (cardFactory == nullptr) {
@@ -107,7 +135,7 @@ ecs::entity_t Factory::createVisual_BackgroundFullImage()
 	return matchStateUIFactory->createVisual_BackgroundBoard();
 }
 
-ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent)
+ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent, int convo)
 {
 	if (npcFactory == nullptr) {
 		throw "no existe npcFactory";
@@ -117,7 +145,7 @@ ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent)
 	JsonData::NPCData info = sdlutils().npcs().at(std::to_string(i));
 
 	// PLACEHOLDER
-	return npcFactory->createNPC(info, parent);
+	return npcFactory->createNPC(info, parent, convo);
 }
 
 // Mirar comentario de createDialogue(), la funci�n del return

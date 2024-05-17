@@ -2,50 +2,73 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>HöllenHaus</title>
+  <title>HÖLLENHAUS</title>
   <link rel="icon" type="image/png" href="./web/images/favicon.png"> <!--Pone el loguito de la pestaña -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./web/estilo.css"> <!-- Esto cargaria un archivo de estilo, pero no es necesario en Fiddle porque lo hace automáticamente -->
-  <script src="./web/lib/phaser.js"></script> <!--Aquí podriamos cargar los scripts, también se puede en el <body>, y pasa lo mismo que con el css de antes, en verdad aquí no estamos cargando nada-->
+  <link rel="stylesheet" href="./web/styles/estilo.css">
 </head>
 
 <body>
-  <h1>HöllenHaus</h1>
-  <div>
-    <h2 class=clase>Realizado por LoreIpsum</h2>
+
+  <div class="contenedor">
+
+      <!--- Imagen de Título --->
+      <img id="title" src="./web/images/title.png">
+      <!-- <p>· - - - - - - - - Realizado por - - - - - - - - ·</p> -->
+      <!--- LoreIpsum magico --->
+      <div class="LoreIpsum">
+        <span class="key">L</span>
+        <span class="key">O</span>
+        <span class="key">R</span>
+        <span class="key">E</span>
+        <span class="key">I</span>
+        <span class="key">P</span>
+        <span class="key">S</span>
+        <span class="key">U</span>
+        <span class="key">M</span>
+      </div>
+
+      <div>
+        <!--- Botones con los enlaces --->
+        <div class = "parent">
+          <img id="tablon" src="./web/images/portada_web_botones.png">
+
+          <div class="box media">
+            <a href="https://www.youtube.com/watch?v=QCxwNdkSUNI" target=”_blank”> <img class="linkpic1" src="./web/images/square.webp"> </a>
+          </div>
+
+
+          <div class="box extra">
+            <a href="./web/extra.html" target=”_blank”> 
+              <img class = "linkpic2" src="./web/images/square.webp"> 
+            </a>
+          </div>
+          
+          <div>
+            <a class="box info" href="./web/info.html" target=”_blank”> 
+              <img class = "linkpic3" src="../web/images/square.webp"> </a>
+          </div>
+
+          <div>
+            <a class="box release"  href="https://github.com/UCM-FDI-DISIA/LoreIpsum/releases/latest" target=”_blank”> <img class = "linkpic4" src="./web/images/square.webp"> </a>
+          </div>
+        </div>
+
+
+        <!--- <hr class="footer-divider"> --->
+        <!-- <footer class="container">
+          <p class="float-right"><a id="link" href="#">Volver al inicio</a></p>
+          <p>Proyectos II. Curso 2023-2024</p>
+          <p> ⚝ · LoreIpsum · ⚝</p>
+          <p>Grado en Desarrollo de Videojuegos &middot; <a id="link" target="_blank"
+              href="http://informatica.ucm.es">Facultad de Informática</a> &middot; <a id="link" target="_blank"
+              href="http://www.ucm.es">UCM</a></p>
+          <p><a id="link" target="_blank" href="https://github.com/UCM-FDI-DISIA/LoreIpsum">Ir a GitHub</a></p>
+        </footer> -->
+      </div>
+
   </div>
 
-  <div >
-    <!--- Botones con los enlaces --->
-    <div>
-      <img src="./web/images/tablero_prototipo.jpg" class= "fondo" > 
-      <a href="./web/Extra.html"> <img src="./web/images/square.webp" class= "extra"> </a>
-      <a href="./web/Info_Sobre_el_juego.html"> <img src="../web/images/square.webp" class= "info"> </a>
-      <a href="./web/Videos_imagenes.html"> <img src="./web/images/square.webp" class= "videos"> </a>
-      <a href="./index.html"> <img src="./web/images/square.webp" class= "release"> </a>
-    </div> 
-
-   <!--Lista de cosas que poner en la página web  -->
-    <div>
-      <h4 class = clase>
-        <p>
-          · - - - - - - - - ·
-          <ul>
-            <li> Enlace al release</li>
-          </ul>
-          · - - - - - - - - ·
-        </p>
-      </h4>
-    </div>
-  </div>
-  
-<!--- <hr class="footer-divider"> --->
-  <footer class="container">
-    <p class="float-right"><a id="link" href="#">Volver al inicio</a></p>
-    <p>Proyectos II. Curso 2023-2024</p>
-    <p> ⚝ · LoreIpsum · ⚝</p>
-    <p>Grado en Desarrollo de Videojuegos &middot; <a id="link" target="_blank" href="http://informatica.ucm.es">Facultad de Informática</a> &middot; <a id="link" target="_blank" href="http://www.ucm.es">UCM</a></p>
-    <p><a id="link" target="_blank" href="https://github.com/UCM-FDI-DISIA/LoreIpsum" >Ir a GitHub</a></p>
-  </footer>
 </body>
+
 </html>

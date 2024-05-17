@@ -14,6 +14,7 @@
 // Factorias:
 #include "../factories/Factory.h"
 #include "../factories/FakeCardFactory_v0.h"
+#include "game/components/Clickable.h"
 
 ShopState::ShopState() : rand_(sdlutils().rand())
 {
@@ -73,11 +74,6 @@ void ShopState::onEnter()
 	shopManager->addComponent<ShopComponent>();
 	shopManager->setLayer(1);
 
-	//------Texto de la tienda:
-	ecs::entity_t shopText = Instantiate(Vector2D(400, 30));
-	shopText->addComponent<TextComponent>("TIENDA", "8bit_size_40", SDL_Color({ 255, 255, 255, 255 }), 350,
-		Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
-	shopText->setLayer(1);
 
 	//-----Imagen de fondo:
 	ecs::entity_t fondo = Instantiate();
@@ -139,13 +135,15 @@ void ShopState::onEnter()
 	carta4->setLayer(2);
 
 	//------Boton para volver:
-	ecs::entity_t exitButton = Instantiate(Vector2D(10, 10));
+	ecs::entity_t exitButton = Instantiate(Vector2D(20, 20));
 	exitButton->addComponent<Transform>();
 	exitButton->addComponent<SpriteRenderer>("boton_flecha");
 	exitButton->addComponent<BoxCollider>();
 	exitButton->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exitButton->addComponent<Button>();
 	exitButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(1);});
+	exitButton->addComponent<Clickable>("boton_flecha", true);
+	exitButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
 	//------Sonido de la tienda:
 	auto& sdl = *SDLUtils::instance();
@@ -164,6 +162,8 @@ void ShopState::onExit()
 	auto& sdl = *SDLUtils::instance();
 	sdl.soundEffects().at("shoptheme").pauseChannel();
 	GameStateMachine::instance()->getMngr()->Free();
+
+	delete factory;
 }
 
 void ShopState::onPauseSH()
@@ -190,11 +190,14 @@ void ShopState::cardSelected(int prize)
 
 void ShopState::deSelected()
 {
+	if (mngr().getEntities(ecs::grp::COINS).capacity() == 0)
+	{
 	for (int i = 0; i < 8; i++)
 	{
 		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda");
 	}
 	updateCoins();
+	}
 }
 
 void ShopState::shine(int nCoins)

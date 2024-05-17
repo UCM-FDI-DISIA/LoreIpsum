@@ -10,10 +10,10 @@ KeyComponent::KeyComponent(const int keys) :
 	tr_(),
 	sr_(),
 	pos_(),
-	firstOffset_(60, 60),
-	secondOffset_(10, 60),
+	firstOffset_(100, 150),
+	secondOffset_(50, 150),
 	bookWidth_(),
-	font_("8bit_size_16")
+	font_(Fonts::GROTESK_16)
 {
 	// Inicializacion del vector con los nombres
 	keyNames_.reserve(TOTAL_KEYS);

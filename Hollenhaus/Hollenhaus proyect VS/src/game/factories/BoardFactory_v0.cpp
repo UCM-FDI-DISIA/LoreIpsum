@@ -16,8 +16,8 @@
 ecs::entity_t BoardFactory_v0::createBoard()
 {
 	// odio estos putisimos numeros
-	int initialX = 260;//284
-	int initialY = 90-9;//135
+	int initialX = 266;//284
+	int initialY = 86;//135
 	int offSetX = 67;//62
 	int offSetY = 96;//84
 

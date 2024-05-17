@@ -83,9 +83,11 @@ void TutorialBoardState::onExit()
 {
 	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
-	GameStateMachine::instance()->getMngr()->Free();
-
 	tutorial->getComponent<TutorialManager>()->endTutorial();
+
+	delete factory;
+
+	GameStateMachine::instance()->getMngr()->Free();
 
 }
 
@@ -97,7 +99,7 @@ void TutorialBoardState::setBoard()
 
 	//TuVieja(sdlutils().dialogues().at("El Xungo del Barrio").Convo(0).Node(3).Text());
 
-	Factory* factory = new Factory();
+	factory = new Factory();
 	factory->SetFactories(
 		static_cast<BoardFactory*>(new BoardFactory_v0(4)),
 		static_cast<CardFactory*>(new CardFactory_v1()),
@@ -162,6 +164,8 @@ void TutorialBoardState::setBoard()
 	boardManagerComponent->updateVisuals();
 
 
+	// Seteamos la mano de J1 en el matchManager
+	matchManagerComponent->SetHandComponent(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
 
 
 	// incicia la cancion en bucle

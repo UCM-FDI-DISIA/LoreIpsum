@@ -148,7 +148,7 @@ void NetLobby::connectToServer(const char* host, const int port)
 void NetLobby::InstantiateInvitationPanel()
 {
 	acceptButton = Instantiate(Vector2D(100, 530));
-	acceptButton->addComponent<TextComponent>("ACCEPT INV", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	acceptButton->addComponent<TextComponent>("ACCEPT INV", Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	acceptButton->addComponent<BoxCollider>();
 	acceptButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	acceptButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
@@ -156,7 +156,7 @@ void NetLobby::InstantiateInvitationPanel()
 	acceptButton->getComponent<Button>()->connectToButton([this] {AcceptConection(); });
 
 	declineButton = Instantiate(Vector2D(300, 530));
-	declineButton->addComponent<TextComponent>("DECLINE INV", "8bit_size_32", SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	declineButton->addComponent<TextComponent>("DECLINE INV", Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	declineButton->addComponent<BoxCollider>();
 	declineButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	declineButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));

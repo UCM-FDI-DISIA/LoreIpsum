@@ -408,9 +408,6 @@
     <ClCompile Include="src\game\components\managers\AnimatorManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\gamestates\KeyMenuState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="pchs\pch.cpp">
       <Filter>Archivos de origen\Auxiliares</Filter>
     </ClCompile>
@@ -419,6 +416,17 @@
     </ClCompile>
     <ClCompile Include="src\game\components\DecisionComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Fade.cpp" />
+    <ClCompile Include="src\game\CaseManager.cpp" />
+    <ClCompile Include="src\game\components\Clickable.cpp" />
+    <ClCompile Include="src\game\components\ClickableText.cpp" />
+    <ClCompile Include="src\game\components\ImageWithFrames.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialBaseManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialDeckBuildingManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -809,9 +817,6 @@
     <ClInclude Include="src\game\components\managers\AnimatorManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\gamestates\KeyMenuState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="pchs\pch.h">
       <Filter>Archivos de encabezado\Auxiliares</Filter>
     </ClInclude>
@@ -819,11 +824,23 @@
     <ClInclude Include="src\game\components\KeyComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\factories\DeckBuildingFactory.h" />
-    <ClInclude Include="src\game\factories\DeckBuildingFactory_v0.h" />
     <ClInclude Include="src\game\components\DecisionComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\Fade.h" />
+    <ClInclude Include="src\game\gamestates\TutorialDeckBuildingState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialBaseManager.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialDeckBuildingManager.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\CaseManager.h" />
+    <ClInclude Include="src\game\components\Clickable.h" />
+    <ClInclude Include="src\game\components\ClickableText.h" />
+    <ClInclude Include="src\game\components\ImageWithFrames.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">

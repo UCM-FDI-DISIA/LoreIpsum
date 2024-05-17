@@ -7,6 +7,7 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../Data.h"
 #include "../components/NPC.h"
+#include "game/components/Clickable.h"
 
 MatchOverState::MatchOverState()
 {
@@ -42,6 +43,7 @@ void MatchOverState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
 	exit->setLayer(1);
+	exit->addComponent<Clickable>("boton_flecha", true);
 
 	setWindow(data->getWinner());
 }
@@ -66,7 +68,7 @@ void MatchOverState::setWindow(int lastWinner) {
 		_text = "JUGADOR 1!";
 		break;
 	case 3: // Jugador2:
-		_background = "npc";
+		_background = "logo_hollen";
 		_text = "JUGADOR 2!";
 		break;
 	default:
@@ -85,7 +87,7 @@ void MatchOverState::setWindow(int lastWinner) {
 
 	// ---- Texto ----
 	ecs::entity_t matchOverText = Instantiate(Vector2D(sdlutils().width() / 2, sdlutils().height() / 2));
-	matchOverText->addComponent<TextComponent>("¡GANADOR: " + _text, "8bit_size_40", SDL_Color({ 255, 255, 255, 255 }), 500, Text::CenterCenter, Text::Center);
+	matchOverText->addComponent<TextComponent>("¡GANADOR: " + _text, Fonts::GROTESK_40, SDL_Color({ 255, 255, 255, 255 }), 500, Text::CenterCenter, Text::Center);
 	matchOverText->setLayer(1);
 
 	// ---- Resetea el ganador a nulo al salir del estado ----

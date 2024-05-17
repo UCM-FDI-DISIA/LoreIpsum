@@ -1,5 +1,8 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 #include <vector>
 
@@ -12,7 +15,7 @@ class ShineComponent : public ComponentUpdate {
 
 public: 
 	ShineComponent();
-	~ShineComponent();
+	~ShineComponent()override;
 
 	void initComponent() override;
 	void update() override;

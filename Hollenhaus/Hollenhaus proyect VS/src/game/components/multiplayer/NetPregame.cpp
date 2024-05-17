@@ -141,7 +141,6 @@ void NetPregame::SetRivalReady(bool isReady)
 	}
 }
 
-
 // Avisamos al oponente que estamos listos.
 // Le enviamos nuestro mazo
 void NetPregame::SendMsgPlayerReady()

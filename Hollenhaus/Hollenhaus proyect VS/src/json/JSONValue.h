@@ -25,6 +25,9 @@
 #ifndef _JSONVALUE_H_
 #define _JSONVALUE_H_
 
+ //Checkml
+#include <game/checkML.h>
+
 #include <vector>
 #include <string>
 

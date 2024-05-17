@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include <list>
 #include <array>
 
@@ -38,6 +42,10 @@ private:
 		currentSouls = 0,
 		winner = 0,
 		lastState = 0;
+
+	// ---- CONFIGURACION DEL JUEGO ----
+	bool automaticNextTurn = true;
+
 
 	std::list<int> defeatedNPCS;
 	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
@@ -100,6 +108,10 @@ public:
 	// 
 	void setLastState(int ls);
 
+	// ---- CONFIGURACION ----
+	void SetAutomaticNextTurn(bool b);
+
+
 	// ---- Getters ----
 	#pragma region GETTERS
 	// -- DECKBUILDING --
@@ -134,6 +146,9 @@ public:
 	int getShopCardById(int id);
 	//----Devuelve ultimo estado antes de entrar a pausa
 	int getLastState() { return lastState; }
+
+	// ---- CONFIGURACION ----
+	bool GetAutomaticNextTurn() { return automaticNextTurn; }
 
 	//------Busqueda:
 
