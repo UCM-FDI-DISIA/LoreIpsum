@@ -17,7 +17,6 @@ public:
 
     void initComponent() override;
     void update();
-    void addToHand(ecs::entity_t c);
 
 
     void setState() override;

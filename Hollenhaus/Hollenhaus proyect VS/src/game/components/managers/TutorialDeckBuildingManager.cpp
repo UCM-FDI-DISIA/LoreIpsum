@@ -55,8 +55,8 @@ void TutorialDeckBuilderManager::addToHand(ecs::entity_t c)
 void TutorialDeckBuilderManager::setState()
 {
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
-	/*ent_->getComponent<TutorialManager>()->activateColliders(objs);
-	ent_->getComponent<TutorialManager>()->resetColliderWall(objs);*/
+	ent_->getComponent<TutorialManager>()->activateColliders(objs);
+	//ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
 	image->getComponent<SpriteRenderer>()->enable(false);
 
 
@@ -94,7 +94,7 @@ void TutorialDeckBuilderManager::setINIT()
 	createPopUp(250, 250, "Deck Tutorial", 0, base);
 	std::vector<ecs::entity_t> v;
 
-	//tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
@@ -107,8 +107,10 @@ void TutorialDeckBuilderManager::setPIZARRA()
 
 	std::vector<ecs::entity_t> v;
 
-	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 }
 
@@ -120,9 +122,9 @@ void TutorialDeckBuilderManager::setCard()
 
 	std::vector<ecs::entity_t> v;
 
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
-
-
 }
 
 void TutorialDeckBuilderManager::setDrawer()
@@ -132,6 +134,8 @@ void TutorialDeckBuilderManager::setDrawer()
 	createPopUp(10, 250, "Deck Tutorial", 1, base);
 
 	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 

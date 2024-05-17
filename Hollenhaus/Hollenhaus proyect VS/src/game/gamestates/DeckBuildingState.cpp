@@ -375,7 +375,7 @@ void DeckBuildingState::setTutorial()
 
 		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
-		//tutorial->getComponent<TutorialBoardManager>()->setObjs(objs);
+		tutorial->getComponent<TutorialDeckBuilderManager>()->setObjs(objs);
 
 	}
 }
