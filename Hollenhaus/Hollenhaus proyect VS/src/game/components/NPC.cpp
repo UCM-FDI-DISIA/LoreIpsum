@@ -115,7 +115,6 @@ void NPC::nextConvo()
 	npcDialogue->getComponent<DialogueBoxDestroyer>()->destroy();
 	talking = true;
 	++convo_;
-	talkTo();
 }
 
 void NPC::update()
