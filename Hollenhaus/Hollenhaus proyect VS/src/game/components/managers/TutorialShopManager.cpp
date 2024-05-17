@@ -49,8 +49,8 @@ void TutorialShopManager::update()
 void TutorialShopManager::setState()
 {
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
-	/*ent_->getComponent<TutorialManager>()->activateColliders(objs);
-	ent_->getComponent<TutorialManager>()->resetColliderWall(objs);*/
+	ent_->getComponent<TutorialManager>()->activateColliders(objs);
+	//ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
 	image->getComponent<SpriteRenderer>()->enable(false);
 
 
@@ -84,11 +84,23 @@ void TutorialShopManager::setINIT()
 {
 	createPopUp(250, 200, "Tienda Tutorial", 0, base);
 
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
 }
 
 void TutorialShopManager::setSHOW_MONEY()
 {
 	createPopUp(250, 200, "Tienda Tutorial", 1, base);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 }
 
@@ -96,10 +108,21 @@ void TutorialShopManager::setSHOW_CARDS()
 {
 	createPopUp(250, 200, "Tienda Tutorial", 2, base);
 
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	std::vector<ecs::entity_t> v;
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
 }
 
 void TutorialShopManager::setPURCHASE()
 {
 	createPopUp(250, 200, "Tienda Tutorial", 3, base);
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 }
