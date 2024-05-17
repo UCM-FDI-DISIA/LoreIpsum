@@ -128,7 +128,7 @@ void ClickDecision::caseAccepted()
 	if (click_) {
 		TuVieja("CASO ACEPTADO");
 		CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
-		caseMngr->setAccepted(true);
+		caseMngr->accept();
 
 		NPC* npc = caseMngr->caseNPC()->getComponent<NPC>();
 		npc->nextConvo();

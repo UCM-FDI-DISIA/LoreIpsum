@@ -110,7 +110,39 @@
         "layer": 1,
         "deck": [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-          ]
+        ]
+      },
+      {
+        "npcID": "7",
+        "name": "Nazi",
+        "sprite": "tfno",
+        "shine": "tfno_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 345,
+        "posY": 384,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "8",
+        "name": "Cineasta",
+        "sprite": "tfno",
+        "shine": "tfno_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 345,
+        "posY": 384,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
       }
     ]
 

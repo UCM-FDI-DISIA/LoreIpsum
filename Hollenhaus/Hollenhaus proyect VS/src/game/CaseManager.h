@@ -16,12 +16,11 @@ public:
 
 	// Caso
 	bool accepted();
-	void setAccepted(bool b);
-
+	void accept();
+	void resetCase();
 private:
 	ecs::entity_t npc_;
 
 	bool accepted_;
-
 };
 

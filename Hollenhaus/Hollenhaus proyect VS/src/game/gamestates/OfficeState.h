@@ -28,5 +28,6 @@ private:
 	//Cambiar a combate (Tarotista) -> Teléfono
 	//Gestionar mazo
 	//Volver a CIU
+	int offset_;
 };
 

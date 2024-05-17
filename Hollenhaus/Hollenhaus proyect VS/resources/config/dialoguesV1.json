@@ -836,6 +836,311 @@
           ]
         }
       ]
+    },
+    {
+      "NPCName": "Nazi",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Saludos, camarada.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Se comenta por la facultad de filosofia que quien llame a este numero puede pedir un favor a un fantasma",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "como una especie de sicario del susto, que triste que tengamos que escondernos, verdad?...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Hola? No te preocupes puedes hablar sin tapujos estamos entre companyeros de lucha...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "Esta bien, mantente en silencio, no esta el horno para bollos.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 0,
+                  "scene": 0
+                }
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "Llamo porque tengo un objetivo, un cerdo fascista que...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 6,
+              "text": "Ni siquiera te vas a alegrar de que tenga un objetivo? Nada? Ninguna reaccion?...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 7,
+              "text": "Sin rodeos, eh? Egbert Schwarz, profesor de filosofia de segundo, muy fanatico del trabajo de Heidegger, ya me entiendes",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 8,
+              "text": "Le puedes asustar con la promesa de una nacion libre y socialista, con la liberacion del pueblo obrero",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "o con el gluten, es celiaco.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 10,
+              "text": "Si es verdad eso que dicen de que hay que pagar la contratacion en alma",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 11,
+              "text": "estoy deseando que la liberes de la subyugacion de mi cuerpo, a no ser que sea metaforico",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+
+              ]
+            },
+            {
+              "nodeID": 12,
+              "text": "que entonces no la liberes de nada. Larga vida al pueblo. *Cuelga*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 2,
+                  "gdecision": 3,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 13,
+              "text": "*Deberia aceptar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Tarotisa: Tom y Jerry eh?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Tienes todo listo?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Cineasta",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "No me voy a andar con rodeos, tu puedes hacer algo por mi y yo tengo algo que tu quieres",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Ludwig Neumann, el famoso cineasta, como me temia, sigue sacando peliculas.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Tales crimenes y aberraciones contra el septimo arte no deben quedar impunes.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Su ultima pelicula no es menos, una amalgama de intento de buen gusto y profundidad",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "un nefasto gusto para el balance de color, y todo esto coronado por un estrepitoso guion",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 0,
+                  "scene": 0
+                }
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "La alta valoracion de este energumeno en la critica audiovisual es absolutamente intolerable",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 6,
+              "text": "la sociedad cada vez esta mas corrupta con el cine extranjero",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 7,
+              "text": "ya no se distingue de un plano general y un plano conjunto, ya no se valora el cine a color.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 8,
+              "text": "Neumann debe estar aterrado del buen gusto y del criterio artistico, debe ser la unica explicacion.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Y encima se esta tirando a mi mujer. *Cuelga*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 2,
+                  "gdecision": 3,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 13,
+              "text": "*Deberia aceptar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Tarotisa: nunca me gusto el cine",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Tienes todo listo?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

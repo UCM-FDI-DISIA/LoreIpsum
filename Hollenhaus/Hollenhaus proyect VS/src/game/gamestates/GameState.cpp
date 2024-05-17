@@ -80,6 +80,12 @@ void GameState::setLastPaulDir(bool dir)
 {
 	data->setPaulDir(dir);
 }
+
+void GameState::nextCase()
+{
+	data->AddCaseIndex();
+}
+
 void GameState::setSocketRival(TCPsocket _rival)
 {
 	data->setSocketRival(_rival);

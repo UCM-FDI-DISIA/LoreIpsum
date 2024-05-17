@@ -26,9 +26,15 @@ bool CaseManager::accepted()
 	return accepted_;
 }
 
-void CaseManager::setAccepted(bool b)
+void CaseManager::accept()
 {
-	accepted_ = b;
+	accepted_ = true;
+}
+
+void CaseManager::resetCase()
+{
+	accepted_ = false;
+	GameStateMachine::instance()->getCurrentState()->nextCase();
 }
 
 ecs::entity_t CaseManager::caseNPC()

@@ -95,6 +95,7 @@ public:
 	virtual void setWinnerOnData(int w);
 	virtual void setLastPaulPos(Vector2D paulPos);
 	virtual void setLastPaulDir(bool);
+	virtual void nextCase();
 
 	//MULTIPLAYER
 

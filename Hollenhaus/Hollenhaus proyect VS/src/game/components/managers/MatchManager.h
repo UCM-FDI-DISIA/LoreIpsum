@@ -14,7 +14,7 @@ class MatchManager : public ComponentUpdate
 {
 public:
 
-    MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm = nullptr);
+    MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm = nullptr, std::string j2 = " ");
 
     ~MatchManager();
 
@@ -78,6 +78,9 @@ private:
     int defaultActionPointsJ2;
     int actualActionPointsJ1;
     int actualActionPointsJ2;
+
+    bool isBoss;
+    std::string j2_;
 
     // Referencias a los elementos del HUD
     ecs::entity_t actualTurnVisual;
