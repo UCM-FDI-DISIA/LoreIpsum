@@ -253,6 +253,9 @@ void DragManager::colorEffects(ecs::entity_t drop)
 
 	auto cell = drop->getComponent<Cell>();	//Celda sobre la que está la carta
 
+	//Valor original de las cartas
+	auto v = 0;
+
 	//Miramos todos los efectos que tenga la carta
 	for (auto e : l.effects()) {
 
@@ -264,7 +267,17 @@ void DragManager::colorEffects(ecs::entity_t drop)
 				while (cell != nullptr)	//Pintamos toda la fila
 				{
 					cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+
+					//Cambiar aquí los números??
+					/*auto cardEffect = cell->getCard();
+					if (cardEffect != nullptr) {
+						v = cardEffect->getValue();
+
+						cardEffect->setValue(e.value() + v);
+					}*/
 					cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
+					//cardEffect->setValue(v);
+
 				}
 			}
 			break;
@@ -278,6 +291,7 @@ void DragManager::colorEffects(ecs::entity_t drop)
 					
 					cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
 					cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
+					//Cambiar aquí los números??
 					cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
 				}
 			}
@@ -286,12 +300,14 @@ void DragManager::colorEffects(ecs::entity_t drop)
 		case Effects::Esquina:
 			if (cell->getCorner()) {
 				cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+				//Con esto sería en la propia carta
 			}
 			break;
 
 		case Effects::Centro:
 			if (cell->getCenter()) {
 				cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+				//Aquí tambien sería en la propia carta
 			}
 			break;
 		}
