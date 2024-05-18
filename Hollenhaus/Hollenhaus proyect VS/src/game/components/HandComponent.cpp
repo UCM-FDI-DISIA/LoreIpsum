@@ -193,12 +193,18 @@ void HandComponent::removeCard(ecs::entity_t card)
 		}
 		else // la carta es jugada
 		{
+			/////////////////////////////////////////////////////////
+			///MOMENTO EN EL QUE SE CAMBIA LA ESCALA DE LA CARTA/////
+			/////////////////////////////////////////////////////////
 			// cambia la escala para ajustarse a la celda del tablero
 			card->getComponent<Transform>()->setGlobalScale(cardScaleBoard_, cardScaleBoard_);
-
+			int j = 2;
+			card->setLayer(j);
 			// ajusta tambien los textos
 			for (auto child : card->getComponent<Transform>()->getChildren())
 			{
+				j++;
+				child->getEntity()->setLayer(j);
 				auto texto = child->getEntity()->getComponent<TextComponent>();
 				if (texto != nullptr)
 				{
@@ -209,6 +215,9 @@ void HandComponent::removeCard(ecs::entity_t card)
 					);
 				}
 			}
+			/////////////////////////////////////////////////////////
+			/// ///////////////////////////////////////////////// ///
+			/////////////////////////////////////////////////////////
 
 			// su parent ya no es la mano izq
 			cardsInHand_[i]->getComponent<Transform>()->removeParent();
