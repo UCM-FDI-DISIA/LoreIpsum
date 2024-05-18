@@ -104,11 +104,18 @@ void OfficeState::onEnter()
 
 	//------Boton para telefono: (WIP de Poli: El telf en realidad es un NPC invisible,
 	//  que al clicarlo hace que aparezca el dialogo.)
+	
+	ecs::entity_t telf;
 
-	if(caseManager->accepted())
-		caseManager->addNPC(factory->createNPC(6, fondo, 1));
-	else
-		caseManager->addNPC(factory->createNPC(6, fondo));
+	if (caseManager->accepted()) {
+		telf = factory->createNPC(6, fondo, 1);
+		caseManager->addNPC(telf);
+	}
+	else {
+		telf = factory->createNPC(6, fondo);
+		caseManager->addNPC(telf);
+	}
+		
 
 	//Idea para los casos:
 	// - En dialoguesV1.json meter el texto de los casos que queremos que se diga. Como Caso0, Caso1, etc.
@@ -116,6 +123,11 @@ void OfficeState::onEnter()
 	// - Se instanciaria aqui, usando factory->createNPC(getCurrentCase() + offset, fondo), donde el offset
 	//   seria el numero de npcs que hay antes en npcs.json
 
+	objs.push_back(db);
+	objs.push_back(exit);
+	objs.push_back(telf);
+
+	setTutorial();
 
 	/// MUSICA
 	auto& sdl = *SDLUtils::instance();
@@ -159,9 +171,9 @@ void OfficeState::setTutorial()
 
 
 		tutorial->getComponent<TutorialManager>()->startTutorial();
-		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::DECKBUILDER);
-		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Deckbuilder::DECKBUILDER_NONE);
-		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Deckbuilder::DECKBUILDING_INIT);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::OFFICE);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Oficina::OFFICE_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Oficina::OFFICE_INIT);
 
 
 		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
@@ -173,11 +185,19 @@ void OfficeState::setTutorial()
 
 void OfficeState::prepareTutorial()
 {
-
+	// base
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
 
 }
 
 void OfficeState::startTutorial(bool a)
 {
+	isTutorial = a;
 }
 

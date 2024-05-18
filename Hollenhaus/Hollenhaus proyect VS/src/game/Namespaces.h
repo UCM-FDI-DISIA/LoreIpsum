@@ -361,6 +361,8 @@ namespace Tutorials
 		BOARD,
 		DECKBUILDER,
 		SHOP,
+		OFFICE,
+		CITY,
 		GENERAL
 	};
 

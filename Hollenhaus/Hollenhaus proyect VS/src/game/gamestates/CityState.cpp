@@ -14,6 +14,9 @@
 #include "game/components/Clickable.h"
 #include "game/components/ImageWithFrames.h"
 
+#include "../TutorialManager.h"
+#include "../components/managers/TutorialCityManager.h"
+
 
 CityState::CityState()
 {
@@ -208,4 +211,48 @@ void CityState::onPause()
 {
 	SetLastState(1);
 	GameStateMachine::instance()->setState(17);
+}
+
+void CityState::setTutorial()
+{
+
+	if (isTutorial) {
+
+		// entidad tutorial para gestionar cositas
+		tutorial = Instantiate();
+
+		prepareTutorial();
+
+		tutorial->addComponent<TutorialManager>();
+		auto manager = tutorial->addComponent<TutorialCityManager>(base, tutorial);
+		GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
+
+
+		tutorial->getComponent<TutorialManager>()->startTutorial();
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::CITY);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Ciudad::CITY_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Ciudad::CITY_INIT);
+
+
+		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
+
+		tutorial->getComponent<TutorialCityManager>()->setObjs(objs);
+	}
+}
+
+void CityState::prepareTutorial()
+{
+	// base
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
+}
+
+void CityState::startTutorial(bool a)
+{
+	isTutorial = a;
 }

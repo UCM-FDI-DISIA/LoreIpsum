@@ -59,8 +59,6 @@ void TutorialDeckBuilderManager::setState()
 	//ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
 	image->getComponent<SpriteRenderer>()->enable(false);
 
-
-
 	switch (t)
 	{
 	case Tutorials::Deckbuilder::DECKBUILDING_INIT:

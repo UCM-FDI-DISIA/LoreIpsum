@@ -49,9 +49,6 @@ void TutorialOfficeManager::setState()
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
 	ent_->getComponent<TutorialManager>()->activateColliders(objs);
 	//ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
-	image->getComponent<SpriteRenderer>()->enable(false);
-
-
 
 	switch (t)
 	{
