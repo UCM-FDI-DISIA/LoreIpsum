@@ -253,6 +253,7 @@ void Data::Write() {
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
 	file << currentSouls << "\n";
+	file << currentCase << "\n";
 
 	file << "Mazo_y_posiciones" << "\n";
 	//Guarda el mazo y posiciones en la pizarra
@@ -279,6 +280,10 @@ void Data::Write() {
 	for (int i = 0;i < CARDS_IN_SHOP; i++) {
 		file << shopCards[i] << "\n";
 	}
+	file << "Paul" << "\n";
+	file << lastPaulPos.getX() << "\n";
+	file << lastPaulPos.getY() << "\n";
+	file << lastPaulDir << "\n";
 	file.close();
 }
 
@@ -357,6 +362,12 @@ void Data::Read() {
 		file >> number;
 		shopCards[i] = number;
 	}
+
+	file >> falsedades; // "Paul".
+	float posX, posY;
+	file >> posX >> posY >> lastPaulDir;
+	lastPaulPos.setX(posX);
+	lastPaulPos.setY(posY);
 
 	file.close();
 }
