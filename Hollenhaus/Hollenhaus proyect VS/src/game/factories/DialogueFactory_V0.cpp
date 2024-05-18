@@ -10,6 +10,8 @@
 #include "../components/DialogueDestroyer.h"
 #include "../components/DialogueBoxDestroyer.h"
 
+#include "../components/FadeComponent.h"
+
 
 // De Luis: Esto habría que refactorizarlo en algún momento.
 // El tamanio del diálogo depende del tamanio de la textura "whiteRect", motivo por el cual no funciona el parámetro size.
@@ -24,9 +26,11 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 {
 	ecs::entity_t dialogue = Instantiate();
 
+	TuVieja("Empieza dialogo");
 
 	dialogue->addComponent<Transform>();
-	dialogue->addComponent<SpriteRenderer>("whiteRect");
+	dialogue->addComponent<SpriteRenderer>("whiteRect")->setOpacity(0);
+	dialogue->addComponent<FadeComponent>();
 	dialogue->addComponent<BoxCollider>(); //pos -> se le suma la posicion de la entidad
 	dialogue->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
 	

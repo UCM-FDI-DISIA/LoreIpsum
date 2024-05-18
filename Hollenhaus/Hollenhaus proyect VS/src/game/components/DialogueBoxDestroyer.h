@@ -15,6 +15,7 @@ public:
 	void update() override;
 
 	void destroy();
+	void continueDestroy();
 
 private:
 	ecs::entity_t text;

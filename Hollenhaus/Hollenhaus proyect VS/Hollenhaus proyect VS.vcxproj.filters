@@ -501,6 +501,9 @@
     <ClCompile Include="src\game\GenID.cpp">
       <Filter>Archivos de origen\Auxiliares</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\FadeComponent.cpp">
+      <Filter>Archivos de origen\Componentes\Feedback</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -931,6 +934,9 @@
     </ClInclude>
     <ClInclude Include="src\game\components\managers\DrawerManager.h">
       <Filter>Archivos de encabezado\Componentes\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\FadeComponent.h">
+      <Filter>Archivos de encabezado\Componentes\Feedback</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

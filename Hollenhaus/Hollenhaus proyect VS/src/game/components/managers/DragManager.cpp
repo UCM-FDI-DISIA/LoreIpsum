@@ -87,8 +87,9 @@ void DragManager::updateFeedback()
 	else {
 		boardManager->returnColors();
 		if (lastCell != nullptr) lastCell->getComponent<ShineComponent>()->outShine();
-		}
+	}
 }
+
 void DragManager::setNetGame(NetGame* _netGame)
 {
 	netGame = _netGame;
@@ -101,7 +102,6 @@ void DragManager::playCardMultiplayer(ecs::entity_t e ,Vector2D pos)
 		netGame->playCard(e, pos);
 	}
 }
-
 
 void DragManager::OnLeftClickDown()
 {
@@ -273,14 +273,29 @@ void DragManager::colorEffects(ecs::entity_t drop)
 					cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
 
 					//Cambiar aquí los números??
-					/*auto cardEffect = cell->getCard();
-					if (cardEffect != nullptr) {
-						v = cardEffect->getValue();
+					Card* cardEffect = cell->getCard();
+					Card* lastCardEffect = nullptr;
 
-						cardEffect->setValue(e.value() + v);
-					}*/
+					if (cardEffect != nullptr) {
+						
+						
+						if (lastCardEffect != cardEffect) {
+							//Se sobreescribe habría que diferenciar
+							v = cardEffect->getValue();
+							cardEffect->setValue(e.value() + v);
+
+							std::cout << e.value() + v << std::endl;
+							lastCardEffect = cardEffect;
+						}
+						else {
+							//cardEffect->setValue(e.value() - v);
+							//v = 0;
+						}
+					}
+					
 					cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
-					//cardEffect->setValue(v);
+					
+
 
 				}
 			}
@@ -297,6 +312,7 @@ void DragManager::colorEffects(ecs::entity_t drop)
 					cell = cell->getAdjacents()[d];		//Hace que miremos la celda ayacente
 					//Cambiar aquí los números??
 					cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
+					TuVieja("Flecha");
 				}
 			}
 			break;
@@ -305,6 +321,7 @@ void DragManager::colorEffects(ecs::entity_t drop)
 			if (cell->getCorner()) {
 				cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
 				//Con esto sería en la propia carta
+				TuVieja("Esquina");
 			}
 			break;
 
@@ -312,6 +329,8 @@ void DragManager::colorEffects(ecs::entity_t drop)
 			if (cell->getCenter()) {
 				cell->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(85, 100, 235, 255);
 				//Aquí tambien sería en la propia carta
+
+				TuVieja("Centro");
 			}
 			break;
 		}
