@@ -281,11 +281,11 @@ void DragManager::colorEffects(ecs::entity_t drop)
 						
 						if (lastCardEffect != cardEffect) {
 							//Se sobreescribe habría que diferenciar
-							v = cardEffect->getValue();
-							cardEffect->setValue(e.value() + v);
+							// v = cardEffect->getValue();
+							// cardEffect->setValue(e.value() + v);
 
-							std::cout << e.value() + v << std::endl;
-							lastCardEffect = cardEffect;
+							// std::cout << e.value() + v << std::endl;
+							// lastCardEffect = cardEffect;
 						}
 						else {
 							//cardEffect->setValue(e.value() - v);
