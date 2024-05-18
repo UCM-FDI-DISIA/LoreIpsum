@@ -121,6 +121,26 @@
         {"type": 3,"value": -2,"directions": ["arriba"]},
         {"type": 1,"value": 8}
       ]
+    },
+    {"id": "25","cost": 1,"value": 0,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 2,"value": -1,"directions": ["arriba"]}
+      ]
+    },
+    {"id": "26","cost": 1,"value": 0,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 2,"value": -1,"directions": ["Derecha"]}
+      ]
+    },
+    {"id": "27","cost": 2,"value": 0,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 2,"value": 3,"directions": ["Derecha"]}
+      ]
+    },
+    {"id": "28","cost": 1,"value": 2,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 2,"value": 1,"directions": ["Derecha"]}
+      ]
     }
   ]
 
