@@ -117,10 +117,10 @@ void LuisState::onEnter()
 	ecs::entity_t deckPlayer2 = factory->createDeckJ2(j2_);
 
 	// Leyenda
-	for (int i = 0; i < 6; ++i)
+	/*for (int i = 0; i < 6; ++i)
 	{
 		addKey();
-	}
+	}*/
 	key_ = Instantiate(Vector2D(800, 50));
 	key_->setLayer(200);
 	key_->getComponent<Transform>()->setGlobalScale(0.5, 0.5);

@@ -418,10 +418,15 @@
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\Fade.cpp" />
-    <ClCompile Include="src\game\CaseManager.cpp" />
     <ClCompile Include="src\game\components\Clickable.cpp" />
     <ClCompile Include="src\game\components\ClickableText.cpp" />
     <ClCompile Include="src\game\components\ImageWithFrames.cpp" />
+    <ClCompile Include="src\game\CaseManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\EndGameState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -822,10 +827,15 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\Fade.h" />
-    <ClInclude Include="src\game\CaseManager.h" />
     <ClInclude Include="src\game\components\Clickable.h" />
     <ClInclude Include="src\game\components\ClickableText.h" />
     <ClInclude Include="src\game\components\ImageWithFrames.h" />
+    <ClInclude Include="src\game\gamestates\EndGameState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\CaseManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">

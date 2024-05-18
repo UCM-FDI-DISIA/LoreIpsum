@@ -20,7 +20,8 @@ public:
 
 	// cambia la ventana en funcion del ganador
 	void setWindow(int lastWinner);
+	void setJ2(std::string rival) override;
 
 private:
-	std::string _background, _text;
+	std::string _background, _text, j2_;
 };

@@ -49,7 +49,8 @@ namespace GameStates
 		MULTIPLAYER_LOBBY,
 		MULTIPLAYER_PREGAME,
 		MULTIPLAYER_GAME,
-		MULTIPLAYER_END_GAME
+		MULTIPLAYER_END_GAME,
+		ENDGAME
 	};
 }
 
@@ -82,6 +83,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* deckBuildingState;
 	GameState* tutorialState;
 	GameState* tutorialBoardState;
+	GameState* endGameState;
 
 	// Estados de gente
 	GameState* paigroState;
@@ -221,6 +223,9 @@ public:
 			break;
 		case GameStates::CLUESMENU:
 			newState = checkCluesMenuState;
+			break;
+		case GameStates::ENDGAME:
+			newState = endGameState;
 			break;
 		default:
 			break;

@@ -74,8 +74,12 @@ void MatchManager::setActualState(Turns::State newState)
 #if _DEBUG
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
 #endif
-		if (isBoss) GameStateMachine::instance()->caseMngr()->resetCase();
 		setWinnerOnData();
+		if (isBoss
+			&& GameStateMachine::instance()->getCurrentState()->getData()->getWinner() == 2) {
+
+			GameStateMachine::instance()->caseMngr()->resetCase();
+		}
 		InstantiatePanelFinPartida(GameStateMachine::instance()->getCurrentState()->getData()->getWinner());
 		break;
 	case Turns::IA:

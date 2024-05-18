@@ -7,7 +7,6 @@ CaseManager::CaseManager() :
 	npcCounter_(),
 	initialNpc_()
 {
-	
 }
 
 CaseManager::~CaseManager()

@@ -125,6 +125,7 @@
     <ClCompile Include="src\game\gamestates\cinematicIntroState.cpp" />
     <ClCompile Include="src\game\gamestates\CityState.cpp" />
     <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp" />
+    <ClCompile Include="src\game\gamestates\EndGameState.cpp" />
     <ClCompile Include="src\game\gamestates\GameState.cpp" />
     <ClCompile Include="src\game\gamestates\JimboState.cpp" />
     <ClCompile Include="src\game\gamestates\LuisState.cpp" />
@@ -298,6 +299,7 @@
     <ClInclude Include="src\game\gamestates\checkMazeMenuState.h" />
     <ClInclude Include="src\game\gamestates\cinematicIntroState.h" />
     <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
+    <ClInclude Include="src\game\gamestates\EndGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerEndGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
