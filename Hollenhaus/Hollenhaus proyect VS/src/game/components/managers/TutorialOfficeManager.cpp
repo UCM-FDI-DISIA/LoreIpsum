@@ -87,7 +87,7 @@ void TutorialOfficeManager::setINIT()
 
 void TutorialOfficeManager::setPHONE()
 {
-	createPopUp(250, 250, "Office Tutorial", 0, base);
+	createPopUp(100, 250, "Office Tutorial", 1, base);
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
@@ -98,7 +98,7 @@ void TutorialOfficeManager::setPHONE()
 
 void TutorialOfficeManager::setPIZARRA()
 {
-	createPopUp(250, 250, "Office Tutorial", 0, base);
+	createPopUp(200, 50, "Office Tutorial", 2, base);
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);

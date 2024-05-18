@@ -1140,15 +1140,74 @@
             "nodes": [
               {
                 "nodeID": 0,
-                "text": "office tutorial 1",
+                "text": "Sea usted bienvenido a su nueva oficina!",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": []
+              },
+              {
+                "nodeID": 1,
+                "text": "Aqui podra gestionar sus llamadas, y organizar sus cartas.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                  {
+                    "timing": 1,
+                    "type": 4,
+                    "scene": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "convoID": 1,
+            "autoConvo": false,
+            "nodes": [
+              {
+                "nodeID": 0,
+                "text": "Hable con sus clientes pulsando en el telefono,",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": []
+              },
+              {
+                "nodeID": 1,
+                "text": "y recibira un caso a resolver.",
                 "eventStart": 0,
                 "eventFinish": 0,
                 "events": [
                 ]
               },
               {
+                "nodeID": 2,
+                "text": "Cuando se vea preparado, podra llamar a la medium desde el telefono, y asi, canalizar su ataque.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": [
+                  {
+                    "timing": 1,
+                    "type": 4,
+                    "scene": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "convoID": 2,
+            "autoConvo": false,
+            "nodes": [
+              {
+                "nodeID": 0,
+                "text": "Tambien tiene a su disposicion la pizarra.",
+                "eventStart": 0,
+                "eventFinish": 0,
+                "events": []
+              },
+              {
                 "nodeID": 1,
-                "text": "office tutorial 2",
+                "text": "Si pulsa en ella, accedera a la gestion de sus cartas, podra modificar su mazo como desee.",
                 "eventStart": 0,
                 "eventFinish": 0,
                 "events": [
