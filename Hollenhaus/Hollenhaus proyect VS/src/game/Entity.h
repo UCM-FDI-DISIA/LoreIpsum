@@ -74,7 +74,7 @@ public:
 
 	void setLayer(int nextLayer);
 
-	int getLayer() {
+	int getLayer() const {
 		return layer;
 	};
 
