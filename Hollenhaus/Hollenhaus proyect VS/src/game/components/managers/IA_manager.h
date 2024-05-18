@@ -1,5 +1,8 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include "../ComponentUpdate.h"
 
 #include "../../../utils/Vector2D.h"
@@ -61,6 +64,12 @@ public:
 				_boardBools.push_back(bools);
 			}
 		};
+
+
+		~State() {
+
+			
+		}
 
 		//varios tableros para representar el estado 
 		std::vector<std::vector<bool>> _boardBools;
@@ -202,12 +211,18 @@ private:
 
 	#pragma endregion
 
+	int maxCardInHand = 6;
+
 
 	// ------ TWEENS ------
 	InfoJugada play_;
 	bool makePlay_;
 	bool colocadas_;
 	uint16_t cartasColocadas_;
+
+
+	//para el borrado de memoria
+	std::vector<Card*> toBeDeleted;
 };
 
 

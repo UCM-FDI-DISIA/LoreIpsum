@@ -1,5 +1,8 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include "GameState.h"
 
 class MultiplayerModeState : public GameState
@@ -14,5 +17,11 @@ public:
 
     void onEnter() override;
     void onExit() override;
+
+private:
+
+    ecs::entity_t mainMenuButton;
+    ecs::entity_t iniGameButton;
+
 };
 

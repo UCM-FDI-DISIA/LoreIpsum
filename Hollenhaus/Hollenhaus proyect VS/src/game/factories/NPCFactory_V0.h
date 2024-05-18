@@ -1,5 +1,7 @@
 #pragma once
-#include <../pchs/pch.h>
+
+//Checkml
+#include <game/checkML.h>
 
 #include "NPCFactory.h"
 
@@ -9,5 +11,5 @@ public:
 	NPCFactory_V0() : NPCFactory() {};
 	~NPCFactory_V0() {};
 
-	ecs::entity_t createNPC(JsonData::NPCData info, ecs::entity_t parent) override;
+	ecs::entity_t createNPC(JsonData::NPCData info, ecs::entity_t parent, int convo) override;
 };

@@ -25,7 +25,7 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	accept->addComponent<TextComponent>("Si", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	accept->setLayer(layer);
 
-	accept->addComponent<ClickDecision>(greenDecision, parent, scene); //si decision es 0, se ira a scene
+	accept->addComponent<ClickDecision>(greenDecision, parent, scene); //si decision es 0, se ira a scene PAIGRO AQUI
 
 	// ----------ENTIDAD RECHAZAR COMBATE-----------
 	ecs::entity_t deny = Instantiate();
@@ -47,7 +47,7 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	deny->addComponent<TextComponent>("Byebye", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	deny->setLayer(layer);
 
-	deny->addComponent<ClickDecision>(redDecision, parent, scene); //si decision es 1, no se ira a scene, pero se destruira dialogue
+	deny->addComponent<ClickDecision>(redDecision, parent, scene);
 
 	//cuando aparezca el decision, el collider del parent (caja de dialogo) deberia anularse
 	if (parent->hasComponent<BoxCollider>())

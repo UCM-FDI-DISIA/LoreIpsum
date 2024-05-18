@@ -3,7 +3,6 @@
 #include "JimboState.h"
 #include "../components/managers/Manager.h"
 #include "../components/basics/Transform.h"
-#include "../components/managers/KeyManager.h"
 #include "../components/basics/SpriteRenderer.h"
 
 JimboState::JimboState() : GameState() {

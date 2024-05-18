@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "../ComponentRender.h"
 
 class Transform;
@@ -60,6 +64,13 @@ public:
 		return texture_;
 	}
 
+	void setAnimated(bool v) { isAnimated = v; }
+	bool getAnimated() const { return isAnimated; }
+	void setSourceRect(SDL_Rect r) { sourceRect = r;}
+	SDL_Rect getSourceRect() const { return sourceRect; }
+	void setRows(int n) { nRows = n; }
+	void setCols(int n) { nCols = n; }
+
 private:
 
 	// Instancia del singleton
@@ -84,5 +95,13 @@ private:
 	// Alfa de la textura
 	int opacity = 255;
 
+
+
+	/// animaciones
+	bool isAnimated = false;
+	SDL_Rect sourceRect = { 0, 0, 0, 0 };
+	SDL_Rect destRect = { 0, 0, 0, 0 };
+	int nRows;
+	int nCols;
 };
 

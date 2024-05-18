@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "ComponentUpdate.h"
 #include "./basics/BoxCollider.h"
 #include "./managers/DrawerManager.h"

@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "CardFactory.h"
 class Card;
 
@@ -17,11 +21,6 @@ public:
 	ecs::entity_t createDeckJ2() override;
 	ecs::entity_t createDeckJ2Multiplayer() override;
 
-	//ecs::entity_t createDropDetector(Vector2D pos = Vector2D(0,0)) ;
-	//ecs::entity_t createDropDetector_v2(Vector2D pos = Vector2D(0,0)) ;
-
-	//ecs::entity_t createBoard() ;
-
 private:
 	float cardScale = 0.55f;
 	int cardsOnDeck = 16;
@@ -33,5 +32,7 @@ private:
 	void addEffects(Card* cardComp, std::vector<JsonData::CardEffect>& effects);
 	void addDeckImage(int initX, int initY, bool opposite = false);
 	void addDeckImageChild(ecs::entity_t card);
+	void addDeckShadow(int x, int y, int layer = 1);
+	void addShadow(int x = 0, int y = 0, int layer = 1, Transform* parent = nullptr);
 };
 

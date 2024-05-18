@@ -1,6 +1,16 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "DecisionFactory.h"
 #include "../components/NextText.h"
+
+/// <summary>
+/// COMO CREAR LAS OPCIONES DESPUES DE UN DIALOGO. 24/04/24
+/// 
+/// 
+/// </summary>
 
 class DecisionFactory_V0 : public DecisionFactory
 {

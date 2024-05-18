@@ -10,13 +10,41 @@
 #include "DecisionFactory.h"
 
 
+Factory::~Factory()
+{
+	delete boardFactory;
+	boardFactory = nullptr;
+
+	delete cardFactory;
+	cardFactory = nullptr;
+
+	delete handFactory;
+	handFactory = nullptr;
+
+	delete matchStateUIFactory;
+	matchStateUIFactory = nullptr;
+
+	delete dialogueFactory;
+	dialogueFactory = nullptr;
+
+	delete npcFactory;
+	npcFactory = nullptr;
+
+	delete fakeCardFactory;
+	fakeCardFactory = nullptr;
+
+	delete decisionFactory;
+	decisionFactory = nullptr;
+}
+
+
 ecs::entity_t Factory::createCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
 {
 	if (cardFactory == nullptr) {
 		throw "no existe cardFactory";
 	}
 
-	return cardFactory->createCard(id, pos,cost,value,sprite,unblockable,effects);
+	return cardFactory->createCard(id, pos, cost, value, sprite, unblockable, effects);
 
 }
 ecs::entity_t Factory::createFakeCard(int id, Vector2D pos, int cost, int value, std::string& sprite, bool unblockable, std::vector<JsonData::CardEffect>& effects)
@@ -70,6 +98,11 @@ ecs::entity_t Factory::createBoard()
 	return boardFactory->createBoard();
 }
 
+ecs::entity_t Factory::createVisual_KeyButton(int posX, int posY)
+{
+	return matchStateUIFactory->createVisual_KeyButton(posX, posY);
+}
+
 ecs::entity_t Factory::createVisual_EndTurnButton(int posX, int posY)
 {
 	return matchStateUIFactory->createVisual_NextTurnButton(posX, posY);
@@ -102,7 +135,7 @@ ecs::entity_t Factory::createVisual_BackgroundFullImage()
 	return matchStateUIFactory->createVisual_BackgroundBoard();
 }
 
-ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent)
+ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent, int convo)
 {
 	if (npcFactory == nullptr) {
 		throw "no existe npcFactory";
@@ -112,10 +145,10 @@ ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent)
 	JsonData::NPCData info = sdlutils().npcs().at(std::to_string(i));
 
 	// PLACEHOLDER
-	return npcFactory->createNPC(info, parent);
+	return npcFactory->createNPC(info, parent, convo);
 }
 
-// Mirar comentario de createDialogue(), la función del return
+// Mirar comentario de createDialogue(), la funciï¿½n del return
 ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
 	int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
 	Text::TextAlignment textAlignment)
@@ -126,16 +159,16 @@ ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vecto
 
 	dialogueFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	return dialogueFactory->createDialogue(id, convo, node, pos, size, speed, cooldown, parent, layer, auto_);
-	
+
 }
 
 void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene, int greenDecision, int redDecision,
-	std::string fontID, SDL_Color color, Uint32 wrapLenght,Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment)
+	std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint, Text::TextAlignment textAlignment)
 {
 	if (decisionFactory == nullptr) {
 		throw "no existe decisionFactory";
 	}
 
 	decisionFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
-	decisionFactory->createPopUp(pos, size, parent, layer, scene, greenDecision, redDecision);
+	decisionFactory->createPopUp(pos, size, parent, layer, scene, greenDecision, redDecision); // PAIGRO POPUP
 }

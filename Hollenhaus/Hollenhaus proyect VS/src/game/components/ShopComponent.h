@@ -1,5 +1,8 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include <list>
 
 
@@ -39,7 +42,7 @@ public:
 	//------devuelve el dinero del jugador
 	int getPlayerMoney();
 	//------Para abrir el diálogo de confirmacion de compra.
-	bool confirmPurchase(int prize);
+	void confirmPurchase(int prize,int id);
 	//------Dada una carta calcula su precio según su coste y modificadores.
 	int calculatePrize(ecs::entity_t card);
 	//------Dado un id de una carta, devuelve su poscion en shopCards, shopCardsPrize y shopCardsPositions porque comparten indexacion.
@@ -48,20 +51,43 @@ public:
 	void setTexts();
 	//------Actualiza los textos de dinero y precio de las cartas.
 	void updateTexts();
+	//----Ahora si cuando se confirma por el dialogo la compra se compra la carta.
+	void purchaseCard();
+	//----Cancelar compra.
+	void cancelPurchase();
+	//----Actualizar los colores de las cartas.
+	void updateColors();
 private:
-	//----Guarda las CARDS_IN_SHOP cartas de la tienda.
-	int* shopCards;
-	//----Precio de las cartas.
-	int* shopCardsPrize;
-	//----Guarda las posiciones de las cartas.
-	Vector2D* shopCardsPositions;
-	//----Guarda las cartas creadas para luego interactuar con ellas.
-	std::list<Card*> buyableCards;
-	//----Guarda los botones para luego poder acceder a la entidad del boton clickado.
-	std::list<Button*> buttons;
 	//----Dinero del jugador:
 	int money;
-	//------------------------------lo del precio de las cartas deberia de estar en el json. Todas en el mismo json.
+
+	bool clicked = false;
+
+	//----Guarda las CARDS_IN_SHOP cartas de la tienda.
+	int* shopCards;
+
+	//----Precio de las cartas.
+	int* shopCardsPrize;
+
+	//----Guarda las posiciones de las cartas.
+	Vector2D* shopCardsPositions;
+
+	//----Guarda las cartas creadas para luego interactuar con ellas.
+	std::list<Card*> buyableCards;
+
+	//----Guarda los botones para luego poder acceder a la entidad del boton clickado.
+	std::list<Button*> buttons;
+	
+
+	//----Factoria para el dialogo de confimacion.
+	Factory* factory;
+	//----Dialogo de confirmacion de compra.
+	ecs::entity_t shopDialogue;
+
+	//----Manager de la decision de comprar.
+	ecs::entity_t handler;
+
+	//------Esta feo esto por favor no mirar mucho :)
 	//----Texto que muestra el dinero.
 	ecs::entity_t moneyText;
 	//----Texto que muestra el precio de la carta 0.
@@ -72,9 +98,7 @@ private:
 	ecs::entity_t cardPrizeText2;
 	//----Texto que muestra el precio de la carta 3.
 	ecs::entity_t cardPrizeText3;
-	//----Factoria para el dialogo de confimacion.
-	Factory* factory2;
-	//
-	ecs::entity_t shopDialogue;
+
+
 };
 

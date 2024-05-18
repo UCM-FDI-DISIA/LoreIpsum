@@ -133,6 +133,12 @@ void Data::AddMoney(int m) {
 void Data::SubtractMoney(int m) {
 	currentMoney -= m;
 }
+
+void Data::AddKey()
+{
+	currentKeys++;
+}
+
 //----Almas:
 void Data::AddSouls(int s) {
 	currentSouls += s;
@@ -166,6 +172,11 @@ bool Data::setShopCard(int id) {
 void Data::setLastState(int ls)
 {
 	lastState = ls;
+}
+
+void Data::SetAutomaticNextTurn(bool b)
+{
+	automaticNextTurn = b;
 }
 
 //------Busqueda:

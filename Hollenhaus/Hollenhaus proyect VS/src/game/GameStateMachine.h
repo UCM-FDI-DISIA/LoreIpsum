@@ -1,7 +1,9 @@
 #ifndef GameStateMachine_H_
 #define GameStateMachine_H_
 
-#include "checkML.h"
+//Checkml
+#include <game/checkML.h>
+
 #include <stack>
 #include <functional>
 #include "../utils/Singleton.h"
@@ -11,6 +13,7 @@ class GameState;
 class Data;
 class Mouse;
 class Fade;
+class CaseManager;
 
 namespace ecs
 {
@@ -45,7 +48,12 @@ namespace GameStates
 		MULTIPLAYER_LOBBY,
 		MULTIPLAYER_PREGAME,
 		MULTIPLAYER_GAME,
-		MULTIPLAYER_END_GAME
+		MULTIPLAYER_END_GAME,
+		KEYMENU,
+		TUTORIAL_DECKBUILDING,
+		TUTORIAL_SHOP,
+		TUTORIAL_CITY,
+		TUTORIAL_OFFICE
 	};
 }
 
@@ -60,6 +68,8 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	ecs::Manager* mngr_;
 
 	Mouse* mouse_;
+
+	CaseManager* case_;
 
 	//Creacion de los distintos estados del juego
 	// 
@@ -76,6 +86,11 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* deckBuildingState;
 	GameState* tutorialState;
 	GameState* tutorialBoardState;
+	GameState* tutorialDeckbuildingState;
+	GameState* tutorialShopState;
+	GameState* tutorialOfficeState;
+	GameState* tutorialCityState;
+
 
 	// Estados de gente
 	GameState* paigroState;
@@ -93,7 +108,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* pauseMenuState;
 	GameState* checkMazeMenuState;
 	GameState* checkCluesMenuState;
-
+	 
 	// Estados auxiliares
 	GameState* movementState;
 
@@ -109,11 +124,17 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	tweeny::tween<int> fadetween;
 	bool toFadeIn;
 	bool toFadeOut;
+	int gameStateEnumValue;
 
 public:
 	ecs::Manager* getMngr()
 	{
 		return mngr_;
+	}
+
+	CaseManager* caseMngr() 
+	{
+		return case_;
 	}
 
 	void init();
@@ -135,6 +156,7 @@ public:
 	void setState(int state, bool fadeIn = false, bool fadeOut = false)
 	{
 		GameState* newState = nullptr;
+
 		switch (state)
 		{
 		case GameStates::MAINMENU:
@@ -209,12 +231,17 @@ public:
 		case GameStates::CLUESMENU:
 			newState = checkCluesMenuState;
 			break;
+		case GameStates::TUTORIAL_DECKBUILDING: 
+			newState = tutorialDeckbuildingState;
+			break;
 		default:
 			break;
 		}
 		currentState = newState;
 		toFadeIn = fadeIn;
 		toFadeOut = fadeOut;
+
+		gameStateEnumValue = state;
 
 		if (toFadeIn) fadetween.forward();
 		if (!toFadeIn && toFadeOut) fadetween.backward();
@@ -225,6 +252,8 @@ public:
 	bool Empty() const { return gameStack.empty(); }
 
 	GameState* getCurrentState() { return currentState; }
+
+	int getCurrentStateEnum() { return gameStateEnumValue;  }
 };
 
 // --------

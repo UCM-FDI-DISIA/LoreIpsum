@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "GameState.h"
 class StoryModeState : public GameState
 {
@@ -12,4 +16,11 @@ public:
 
     void onEnter() override;
     void onExit() override;
+
+private:
+
+    ecs::entity_t newGameButton;
+    ecs::entity_t continueButton;
+    ecs::entity_t returnButton;
+
 };

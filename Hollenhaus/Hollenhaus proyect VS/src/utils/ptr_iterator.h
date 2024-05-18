@@ -2,6 +2,9 @@
 
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 template<typename T>
 struct ptr_iterator {
 	T *ptr_;

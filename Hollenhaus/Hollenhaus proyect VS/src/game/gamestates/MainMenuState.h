@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "GameState.h"
 
 class MainMenuState : public GameState
@@ -18,6 +22,7 @@ private:
 	ecs::entity_t newGameButton;
 	ecs::entity_t multiplayerButton;
 	ecs::entity_t exitButton;
+	ecs::entity_t optionsButton;
 	void exitGame();
 	//Fondo
 	//Botones

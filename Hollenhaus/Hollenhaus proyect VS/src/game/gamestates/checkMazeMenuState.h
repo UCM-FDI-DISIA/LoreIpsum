@@ -1,5 +1,8 @@
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include "GameState.h"
 
 class CheckMazeMenuState : public GameState
@@ -14,4 +17,8 @@ public:
 
     void onEnter() override;
     void onExit() override;
+
+    void ShowMaze();
+
+    std::list<int> mazeAux;
 };

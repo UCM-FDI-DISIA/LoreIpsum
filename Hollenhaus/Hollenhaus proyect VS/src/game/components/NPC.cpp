@@ -9,9 +9,10 @@
 #include "../factories/CardFactory_v1.h"
 #include "../components/NextText.h"
 #include "../components/DialogueBoxDestroyer.h"
+#include "../components/DialogueDestroyer.h"
 
-NPC::NPC(int scene, int t, std::string name_, bool toFadeIn, bool toFadeOut)
-: _scene(scene), click(false), type(t), talking(false), name(name_), myBoxCollider(nullptr)
+NPC::NPC(int scene, int t, std::string name_, int convo, bool toFadeIn, bool toFadeOut)
+	: _scene(scene), click(false), type(t), talking(false), name(name_), myBoxCollider(nullptr), convo_(convo)
 {
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this, toFadeIn, toFadeOut] { OnLeftClickDown(_scene, toFadeIn, toFadeOut); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
@@ -20,9 +21,10 @@ NPC::NPC(int scene, int t, std::string name_, bool toFadeIn, bool toFadeOut)
 	factory->SetFactories(
 		static_cast<DialogueFactory*>(new DialogueFactory_V0())
 	);
+
 }
 
-NPC::~NPC() 
+NPC::~NPC()
 {
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] {OnLeftClickDown(_scene); });
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_UP, [this] {OnLeftClickUp(); });
@@ -63,39 +65,38 @@ void NPC::reactToClick(int scene, bool toFadeIn, bool toFadeOut) // Te lleva al 
 		}
 		else if (type == TALKING) 
 		{
-			talkTo();   
+			talkTo();
 		}
 	}
 }
 
 void NPC::talkTo()
 {
-	if (!click && myBoxCollider->isCursorOver() && !talking && closeToPaul) // Recoge click para hablar con un NPC.
+	if ((!click && myBoxCollider->isCursorOver() && !talking && closeToPaul) || talking) // Recoge click para hablar con un NPC.
 	{
 		TuVieja("Que charlatan el tio...");
-		
-		float x = ent_->getComponent<Transform>()->getGlobalPos().getX() - 150;
-		float y = ent_->getComponent<Transform>()->getGlobalPos().getY() - 250;
+
+		float x = myTransform->getGlobalPos().getX() - 150;
+		float y = myTransform->getGlobalPos().getY() - 250;
 
 		TuVieja(std::to_string(x));
 
 		JsonData::DialogueData dialogue = sdlutils().dialogues().at(name);
-		int conv = 0;
 		int node = 0;
 
 		// crear dialogo del FACTORY de dialogos
-		//// Mirar comentario en el interior de la funci�n
-		npcDialogue = factory->createDialogue(dialogue.NPCName(), conv, node,
+		//// Mirar comentario en el interior de la funcion
+		npcDialogue = factory->createDialogue(dialogue.NPCName(), convo_, node,
 								{x, y},//POS
 								{2,2}, //SIZE
-								5, //Speed
-								10, //Cooldown
+								2, //Speed
+								1, //Cooldown
 								getEntity(), //Parent 
 								3, //LAYER
-								dialogue.Convo(conv).isAuto(), //Si el texto es auto o no
-								"8bit_size_20",	//mirar el JSON resources para cambiar el tamanio de texto
-								SDL_Color({0, 0, 0, 255}), //Color black
-								220, //wrap length
+								dialogue.Convo(convo_).isAuto(), //Si el texto es auto o no
+								Fonts::GROTESK_24,	//mirar el JSON resources para cambiar el tamanio de texto
+								Colors::MIDNIGHT_HOLLENHAUS, //Color black
+								260, //wrap length
 								Text::BoxPivotPoint::LeftTop,
 								Text::TextAlignment::Left);
 
@@ -108,7 +109,15 @@ void NPC::stoppedTalking()
 	talking = false;
 }
 
-void NPC::update() 
+void NPC::nextConvo()
+{
+	npcDialogue->getComponent<DialogueBoxDestroyer>()->destroy();
+	talking = true;
+	++convo_;
+	talkTo();
+}
+
+void NPC::update()
 {
 	// Si el dialogo ha sido creado y no estamos cerca de Paul -> destruir dialog, y dejamos de hablar.
 	if (talking && !closeToPaul)

@@ -1,11 +1,13 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include "DialogueFactory.h"
 
 class DialogueFactory_V0 : public DialogueFactory {
 
 public:
-	DialogueFactory_V0() : DialogueFactory() {};
-	virtual ~DialogueFactory_V0() {};
 
 	ecs::entity_t createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
 		int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_) override;

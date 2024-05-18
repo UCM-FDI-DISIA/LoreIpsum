@@ -2,6 +2,9 @@
 
 #pragma once
 
+//Checkml
+#include <game/checkML.h>
+
 #include <cstdint>
 
 #include "GenID.h"
@@ -34,7 +37,8 @@
     MATCH_MANAGER, \
 	PADDLE, \
 	TUTORIAL_MANAGER, \
-    DRAG_MANAGER
+	DECISION_MANAGER, \
+    DRAG_MANAGER			// PAIGRO AQUI
 
 // Systems list - must have at least one element
 //

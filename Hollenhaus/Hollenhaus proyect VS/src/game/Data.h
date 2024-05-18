@@ -1,4 +1,8 @@
 #pragma once
+
+//Checkml
+#include <game/checkML.h>
+
 #include <list>
 #include <array>
 
@@ -31,10 +35,15 @@ private:
 
 	// ---- FLUJO ----
 	int currentMoney = 0,
+		currentKeys = 0,
 		currentCase = 0,
 		currentSouls = 0,
 		winner = 0,
 		lastState = 0;
+
+	// ---- CONFIGURACION DEL JUEGO ----
+	bool automaticNextTurn = true;
+
 
 	std::list<int> defeatedNPCS;
 	int* shopCards; // Guardas las cartas que estan en la tienda en la ronda. Si no hay cartas en (-1 ,-1, -1, -1). Se tiene que actualizar cada ronda.
@@ -83,6 +92,8 @@ public:
 	//----Dinero:
 	void AddMoney(int m);
 	void SubtractMoney(int m);
+	//---Leyenda:
+	void AddKey();
 	//----Almas:
 	void AddSouls(int s);
 	//----Caso:
@@ -93,6 +104,10 @@ public:
 	bool setShopCard(int id);
 	// 
 	void setLastState(int ls);
+
+	// ---- CONFIGURACION ----
+	void SetAutomaticNextTurn(bool b);
+
 
 	// ---- Getters ----
 	#pragma region GETTERS
@@ -113,7 +128,9 @@ public:
 	//----NPCs:
 	const std::list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
 	//----Dinero:
-	const int GetMoney() const  { return currentMoney; }
+	const int GetMoney() { return currentMoney; }
+	//----Leyenda:
+	int GetKeys() const { return currentKeys; }
 	//----Almas:
 	const int GetSouls() { return currentSouls; };
 	//----Caso:
@@ -126,6 +143,9 @@ public:
 	int getShopCardById(int id);
 	//----Devuelve ultimo estado antes de entrar a pausa
 	int getLastState() { return lastState; }
+
+	// ---- CONFIGURACION ----
+	bool GetAutomaticNextTurn() { return automaticNextTurn; }
 
 	//------Busqueda:
 

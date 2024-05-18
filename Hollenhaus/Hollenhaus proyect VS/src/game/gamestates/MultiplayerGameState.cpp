@@ -110,6 +110,8 @@ void MultiplayerGameState::onEnter()
 	boardManagerComponent->updateVisuals();
 
 
+
+
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
 	//sdlutils().soundEffects().at("battletheme").play(-1);
@@ -121,6 +123,10 @@ void MultiplayerGameState::onEnter()
 	ecs::entity_t deckPlayer1 = factory->createDeck();
 
 	ecs::entity_t deckPlayer2 = factory->createDeckJ2Multiplayer();
+
+
+	// Seteamos la mano de J1 en el matchManager
+	matchManagerComponent->SetHandComponent(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
 
 #pragma endregion
 
@@ -151,6 +157,36 @@ void MultiplayerGameState::onEnter()
 	deckPlayer1->getComponent<DeckComponent>()->setNetGame(netGameCmp);
 	
 	dragManager->getComponent<DragManager>()->setNetGame(netGameCmp);
+
+#pragma endregion
+
+
+#pragma region Debug de envio de mazos
+
+	auto v = getMaze();
+
+	//_Tu_Vieja();
+
+	for (auto& e : v) {
+#ifdef _DEBUG
+		std::cout << e << ", ";
+#endif // _DEBUG
+
+	}
+	
+	//_Tu_Vieja();
+
+	auto w = getMazeRival();
+	
+	//_Tu_Vieja();
+
+	for (auto& e : w) {
+#ifdef _DEBUG
+		std::cout << e << ", ";
+#endif // _DEBUG
+	}
+	
+	//_Tu_Vieja();
 
 #pragma endregion
 

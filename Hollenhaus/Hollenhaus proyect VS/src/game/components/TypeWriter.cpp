@@ -78,13 +78,16 @@ void TypeWriter::finishTypewrite()
 {
 	if (writing) {
 
-		writing = false;
 		finaltext = text;
 		// actualiza el texto
 		setText();
+
+		writing = false;
+
 	}
 	
 }
+
 
 bool TypeWriter::ended()
 {
