@@ -45,7 +45,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="src\game\components\Animation.cpp" />
     <ClCompile Include="src\game\components\AutoDialogue.cpp" />
     <ClCompile Include="src\game\components\basics\BoxCollider.cpp" />
     <ClCompile Include="src\game\components\basics\SpriteRenderer.cpp" />
@@ -231,7 +230,6 @@
     <ClInclude Include="pchs\pch.h" />
     <ClInclude Include="pchs\pch_c++_basic.h" />
     <ClInclude Include="pchs\pch_SDL.h" />
-    <ClInclude Include="src\game\components\Animation.h" />
     <ClInclude Include="src\game\components\AutoDialogue.h" />
     <ClInclude Include="src\game\components\basics\BoxCollider.h" />
     <ClInclude Include="src\game\components\basics\SpriteRenderer.h" />
