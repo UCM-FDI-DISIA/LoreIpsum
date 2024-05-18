@@ -504,6 +504,9 @@
     <ClCompile Include="src\game\components\FadeComponent.cpp">
       <Filter>Archivos de origen\Componentes\Feedback</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\Hover.cpp">
+      <Filter>Archivos de origen\Componentes\Feedback</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -937,6 +940,9 @@
     </ClInclude>
     <ClInclude Include="src\game\components\FadeComponent.h">
       <Filter>Archivos de encabezado\Componentes\Feedback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Hover.h">
+      <Filter>Archivos de origen\Componentes\Feedback</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
