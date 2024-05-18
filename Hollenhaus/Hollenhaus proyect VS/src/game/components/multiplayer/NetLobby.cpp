@@ -147,16 +147,16 @@ void NetLobby::connectToServer(const char* host, const int port)
 // Recibimos una invitación, y lanzamos un panel para que el jugador la gestione
 void NetLobby::InstantiateInvitationPanel()
 {
-	acceptButton = Instantiate(Vector2D(100, 530));
-	acceptButton->addComponent<TextComponent>("ACCEPT INV", Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	acceptButton = Instantiate(Vector2D(125, 530));
+	acceptButton->addComponent<TextComponent>("ACEPTAR INVITACIÓN", Fonts::GROTESK_32, Colors::VERDE_BENEFICIO, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	acceptButton->addComponent<BoxCollider>();
 	acceptButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	acceptButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
 	acceptButton->addComponent<Button>();
 	acceptButton->getComponent<Button>()->connectToButton([this] {AcceptConection(); });
 
-	declineButton = Instantiate(Vector2D(300, 530));
-	declineButton->addComponent<TextComponent>("DECLINE INV", Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	declineButton = Instantiate(Vector2D(325, 530));
+	declineButton->addComponent<TextComponent>("RECHAZAR INVITACIÓN", Fonts::GROTESK_32, Colors::ROJO_PERJUICIO, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	declineButton->addComponent<BoxCollider>();
 	declineButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	declineButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
