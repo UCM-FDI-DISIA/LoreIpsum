@@ -1,122 +1,150 @@
 {
   "cards": [
-    {"id": "0","cost": 1,"value": 2,"sprite": "card","unblockable": true,
-      "effects": [
-        {"type": 0,"value": 2}
-      ]
-    },
-    {"id": "1","cost": 2,"value": 3,"sprite": "card","unblockable": true,
-      "effects": [
-        {"type": 0,"value": 3}
-      ]
-    },
-    {"id": "2","cost": 1,"value": 2,"sprite": "card","unblockable": true,
-      "effects": [
-        {"type": 3,"value": 1,"directions": ["arriba"]}
-      ]
-    },
-    {"id": "3","cost": 2,"value": 0,"sprite": "card","unblockable": true,
-      "effects": [
-        {"type": 3,"value": 2,"directions": ["arriba"]}
-      ]
-    },
-    {"id": "4","cost": 0,"value": 2,"sprite": "card","unblockable": true,
+    {"id": "0","cost": 0,"value": 2,"sprite": "card","unblockable": true,
       "effects": []
     },
-    {"id": "5","cost": 0,"value": 0,"sprite": "card","unblockable": true,
+    {"id": "1","cost": 0,"value": 2,"sprite": "card","unblockable": true,
+      "effects": []
+    },
+    {"id": "2","cost": 0,"value": 0,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 2,"value": 1,"directions": ["arriba"]}
       ]
     },
-    {"id": "6","cost": 1,"value": 2,"sprite": "card","unblockable": true,
+    {"id": "3","cost": 2,"value": 2,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 2,"value": 2,"directions": ["arriba"]}
+      ]
+    },
+    {"id": "4","cost": 1,"value": 2,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 2,"value": 1,"directions": ["arriba"]}
       ]
     },
-    {"id": "7","cost": 2,"value": 2,"sprite": "card","unblockable": true,
+    {"id": "5","cost": 1,"value": 0,"sprite": "card","unblockable": true,
       "effects": [
-        {"type": 2,"value": 2,"directions": ["arriba"]}
+        {"type": 2,"value": -1,"directions": ["arriba"]}
       ]
     },
-    {"id": "8","cost": 2,"value": 1,"sprite": "card","unblockable": true,
+    {"id": "6","cost": 1,"value": 0,"sprite": "card","unblockable": true,
       "effects": [
-        {"type": 2,"value": 2,"directions": ["arriba"]}
+        {"type": 2,"value": -1,"directions": ["Derecha"]}
+      ]
+    },
+    {"id": "7","cost": 1,"value": 0,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 2,"value": -1,"directions": ["Derecha"]}
+      ]
+    },
+    {"id": "8","cost": 2,"value": 0,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 2,"value": 3,"directions": ["Derecha"]}
       ]
     },
     {"id": "9","cost": 1,"value": 2,"sprite": "card","unblockable": true,
       "effects": [
-        {"type": 2,"value": 1,"directions": ["arriba"]}
+        {"type": 2,"value": 1,"directions": ["Derecha"]}
       ]
     },
-    {"id": "10","cost": 2,"value": 0,"sprite": "card","unblockable": true,
+    {"id": "10","cost": 1,"value": 2,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 0,"value": 2}
+      ]
+    },
+    {"id": "11","cost": 2,"value": 3,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 0,"value": 3}
+      ]
+    },
+    {"id": "12","cost": 1,"value": 2,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 3,"value": 1,"directions": ["arriba"]}
+      ]
+    },
+    {"id": "13","cost": 2,"value": 0,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 3,"value": 2,"directions": ["arriba"]}
+      ]
+    },
+    {"id": "14","cost": 2,"value": 1,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 2,"value": 2,"directions": ["arriba"]}
       ]
     },
-    {"id": "11","cost": 2,"value": 2,"sprite": "card","unblockable": true,
+    {"id": "15","cost": 1,"value": 2,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 2,"value": 1,"directions": ["arriba"]}
+      ]
+    },
+    {"id": "16","cost": 2,"value": 0,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 2,"value": 2,"directions": ["arriba"]}
+      ]
+    },
+    {"id": "17","cost": 2,"value": 2,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 1,"value": 3}
       ]
     },
-    {"id": "12","cost": 3,"value": 3,"sprite": "card","unblockable": true,
+    {"id": "18","cost": 3,"value": 3,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 1,"value": 5}
       ]
     },
-    {"id": "13","cost": 1,"value": 1,"sprite": "card","unblockable": true,
+    {"id": "19","cost": 1,"value": 1,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 3,"value": -1,"directions": ["abajo"]}
       ]
     },
-    {"id": "14","cost": 3,"value": 1,"sprite": "card","unblockable": true,
+    {"id": "20","cost": 3,"value": 1,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 3,"value": -2,"directions": ["abajo"]}
       ]
     },
-    {"id": "15","cost": 2,"value": 3,"sprite": "card","unblockable": true,
+    {"id": "21","cost": 2,"value": 3,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 3,"value": -1,"directions": ["abajo"]}
       ]
     },
-    {"id": "16","cost": 1,"value": 0,"sprite": "card","unblockable": true,
+    {"id": "22","cost": 1,"value": 0,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 2,"value": -1,"directions": [ "izquierda"]}
       ]
     },
-    {"id": "17","cost": 2,"value": 1,"sprite": "card","unblockable": true,
+    {"id": "23","cost": 2,"value": 1,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 2,"value": -2,"directions": [ "izquierda"]}
       ]
     },
-    {"id": "18","cost": 1,"value": 1,"sprite": "card","unblockable": true,
+    {"id": "24","cost": 1,"value": 1,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 3,"value": -1,"directions": ["Derecha"]}
       ]
     },
-    {"id": "19","cost": 2,"value": 3,"sprite": "card","unblockable": true,
+    {"id": "25","cost": 2,"value": 3,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 3,"value": -1,"directions": ["Derecha"]}
       ]
     },
-    {"id": "20","cost": 3,"value": 0,"sprite": "card","unblockable": true,
+    {"id": "26","cost": 3,"value": 0,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 3,"value": -2,"directions": ["Derecha"]}
       ]
     },
-    {"id": "21","cost": 4,"value": 4,"sprite": "card","unblockable": true,
+    {"id": "27","cost": 4,"value": 4,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 3,"value": 2,"directions": ["izquierda"]}
       ]
     },
-    {"id": "22","cost": 4,"value": 8,"sprite": "card","unblockable": true,
+    {"id": "28","cost": 4,"value": 8,"sprite": "card","unblockable": true,
       "effects": []
     },
-    {"id": "23","cost": 4,"value": 2,"sprite": "card","unblockable": true,
+    {"id": "29","cost": 4,"value": 2,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 3,"value": 2,"directions": ["Derecha"]}
       ]
     },
-    {"id": "24","cost": 4,"value": 2,"sprite": "card","unblockable": true,
+    {"id": "30","cost": 4,"value": 2,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 3,"value": -2,"directions": ["arriba"]},
         {"type": 1,"value": 8}
