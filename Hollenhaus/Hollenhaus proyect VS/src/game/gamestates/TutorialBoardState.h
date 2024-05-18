@@ -23,6 +23,8 @@ public:
     void onEnter() override;
     void onExit() override;
 
+    void setJ2(std::string rival) override;
+
 private:
 
     //
@@ -42,6 +44,6 @@ private:
     int cooldown = 10;
     int count = 0;
 
-
+    std::string j2_;
 
 };

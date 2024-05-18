@@ -123,6 +123,27 @@ public:
 		}
 	}
 
+	inline void setFullscreen()
+	{
+		auto flags = SDL_GetWindowFlags(window_);
+		if (!(flags & SDL_WINDOW_FULLSCREEN))
+			SDL_SetWindowFullscreen(window_, SDL_WINDOW_FULLSCREEN);
+	}
+
+	inline void setWindowed()
+	{
+		//auto flags = SDL_GetWindowFlags(window_);
+		//if (flags & SDL_WINDOW_FULLSCREEN)
+		SDL_SetWindowFullscreen(window_, 0);
+	}
+
+	inline void setMaximized()
+	{
+		auto flags = SDL_GetWindowFlags(window_);
+		if (!(flags & SDL_WINDOW_MAXIMIZED))
+			SDL_SetWindowFullscreen(window_, SDL_WINDOW_MAXIMIZED);
+	}
+
 // show the cursor when mouse is over the window
 	inline void showCursor() {
 		SDL_ShowCursor(1);

@@ -17,15 +17,15 @@ public:
 
 private:
     ecs::entity_t chascarrillo;
-    std::string Ctext;
+    //std::string Ctext;
 
     ecs::entity_t casoText;
     ecs::entity_t casoNum;
     int caso;
     ecs::entity_t dineroText;
     ecs::entity_t dineroNum;
-    int money;    
-    
+    int money;
+
     ecs::entity_t almasText;
     ecs::entity_t almasNum;
     int almas;
@@ -33,5 +33,7 @@ private:
     RandomNumberGenerator& rand_;
 
     ecs::entity_t continuar;
+
+    std::string Ctext;
 };
 

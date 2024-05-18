@@ -19,7 +19,7 @@ public:
 
 	ecs::entity_t createHand() override;
 	ecs::entity_t createDeck() override { return nullptr; };
-	ecs::entity_t createDeckJ2() override { return nullptr; };
+	ecs::entity_t createDeckJ2(std::string j2) override { return nullptr; };
 	//ecs::entity_t createDropDetector(Vector2D pos = Vector2D(0,0)) ;
 	//ecs::entity_t createDropDetector_v2(Vector2D pos = Vector2D(0,0)) ;
 

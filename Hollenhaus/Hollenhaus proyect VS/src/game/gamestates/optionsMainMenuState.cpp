@@ -46,11 +46,11 @@ void OptionsMainMenuState::onEnter()
 	fondo->setLayer(0);
 
 	audioText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 420));
-	audioText->addComponent<TextComponent>("VOLUMEN", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	audioText->addComponent<TextComponent>("VOLUMEN", Fonts::GROTESK_32, PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	audioText->setLayer(1);
 
 	audioText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 360));
-	audioText->addComponent<TextComponent>("PONER AQUÍ LA BARRA", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 500, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	audioText->addComponent<TextComponent>("PONER AQUÍ LA BARRA", Fonts::GROTESK_32, PEARL_HOLLENHAUS, 500, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	audioText->setLayer(1);
 
 	//SONIDO (MIRAR MAS TARDE CON INES)
@@ -58,22 +58,31 @@ void OptionsMainMenuState::onEnter()
 	//sdl.soundEffects().at("citytheme").play(-1);
 	//sdl.soundEffects().at("citytheme").setChannelVolume(10);
 
+
 	fullScreenText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 300));
-	fullScreenText->addComponent<TextComponent>("PANTALLA COMPLETA", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 400, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	fullScreenText->addComponent<TextComponent>("PANTALLA COMPLETA", Fonts::GROTESK_32, PEARL_HOLLENHAUS, 400, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	fullScreenText->addComponent<BoxCollider>();
 	fullScreenText->getComponent<BoxCollider>()->setSize(Vector2D(400, 40));
 	fullScreenText->getComponent<BoxCollider>()->setPosOffset(Vector2D(-200, -20));
 	fullScreenText->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
+	fullScreenText->addComponent<Button>()->connectToButton([this]
+	{
+		sdlutils().setFullscreen();
+	});
 	
 	windowModeText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 240));
-	windowModeText->addComponent<TextComponent>("MODO VENTANA", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	windowModeText->addComponent<TextComponent>("MODO VENTANA", Fonts::GROTESK_32, PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	windowModeText->addComponent<BoxCollider>();
 	windowModeText->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	windowModeText->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	windowModeText->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
-
+	windowModeText->addComponent<Button>()->connectToButton([this]
+	{
+		sdlutils().setWindowed();
+	});
+	
 	returnButton = Instantiate(Vector2D(10, 10));
-	returnButton->addComponent<Transform>();
+	returnButton->addComponent<Transform>()->setGlobalPos(10,10);
 	returnButton->addComponent<BoxCollider>();
 	returnButton->addComponent<SpriteRenderer>("boton_flecha");
 	returnButton->addComponent<Button>();

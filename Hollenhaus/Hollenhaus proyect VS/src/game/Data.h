@@ -36,7 +36,7 @@ private:
 	// ---- FLUJO ----
 	int currentMoney = 0,
 		currentKeys = 0,
-		currentCase = 0,
+		currentCase = 1,
 		currentSouls = 0,
 		winner = 0,
 		lastState = 0;

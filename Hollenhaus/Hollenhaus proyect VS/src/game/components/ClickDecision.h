@@ -8,7 +8,7 @@
 #include "managers/Manager.h"
 #include "basics/BoxCollider.h"
 
-class Factory;
+class NPC;
 
 class ClickDecision :
     public ComponentUpdate
@@ -37,9 +37,8 @@ public:
 private:
     void caseAccepted();
 
-    Factory* factory;
-
     ecs::entity_t parent_;
+    NPC* myNpc_;
     int scene_;
 
     int decision_;

@@ -124,7 +124,7 @@ ecs::entity_t CardFactory_v1::createDeck()
 	return deck;
 }
 
-ecs::entity_t CardFactory_v1::createDeckJ2()
+ecs::entity_t CardFactory_v1::createDeckJ2(std::string j2)
 {
 	int initX = 600;
 	int initY = -12;
@@ -147,7 +147,8 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 	//añadir las cartas al mazo
 	for (int i = 0; i < cardsOnDeck; i++)
 	{
-		auto card = sdlutils().cards().at(std::to_string(i));
+
+		auto card = sdlutils().npcs().at(j2).npcDeck()[i];
 		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		ecs::entity_t ent = createCard(
 			card.id(),
@@ -166,7 +167,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 	//las añadimos otra vez para asegurar que el enemigo tenga cartas de sobra
 	for (int i = 0; i < cardsOnDeck; i++)
 	{
-		auto card = sdlutils().cards().at(std::to_string(i));
+		auto card = sdlutils().npcs().at(j2).npcDeck()[i];
 		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		ecs::entity_t ent = createCard(
 			card.id(),

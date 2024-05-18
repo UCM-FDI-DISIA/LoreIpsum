@@ -1,6 +1,7 @@
 #include <../pchs/pch.h>
 
 #include <iostream>
+#include <utility>
 #include "MatchManager.h"
 #include "BoardManager.h"
 #include "Manager.h"
@@ -11,15 +12,18 @@
 #include "../../components/multiplayer/NetGame.h"
 #include "game/Data.h"
 #include "../Card.h"
+#include "game/CaseManager.h"
 
 MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart,
-                           BoardManager* bm) :
+                           BoardManager* bm, std::string j2) :
 	actualState(turnStart),
 	board_(bm),
 	defaultActionPointsJ1(defaultActionPointsJ1),
 	defaultActionPointsJ2(defaultActionPointsJ2),
 	actualActionPointsJ1(defaultActionPointsJ1),
 	actualActionPointsJ2(defaultActionPointsJ2),
+	isBoss(false),
+	j2_(std::move(j2)),
 	actualTurnVisual(nullptr),
 	actionPointsVisualJ1(nullptr),
 	actionPointsVisualJ2(nullptr)
@@ -32,6 +36,7 @@ MatchManager::~MatchManager()
 
 void MatchManager::initComponent()
 {
+	isBoss = j2_ == "6" || j2_ == "7" || j2_ == "8";
 }
 
 void MatchManager::update()
@@ -70,6 +75,11 @@ void MatchManager::setActualState(Turns::State newState)
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
 #endif
 		setWinnerOnData();
+		if (isBoss
+			&& GameStateMachine::instance()->getCurrentState()->getData()->getWinner() == 2) {
+
+			GameStateMachine::instance()->caseMngr()->resetCase();
+		}
 		InstantiatePanelFinPartida(GameStateMachine::instance()->getCurrentState()->getData()->getWinner());
 		break;
 	case Turns::IA:

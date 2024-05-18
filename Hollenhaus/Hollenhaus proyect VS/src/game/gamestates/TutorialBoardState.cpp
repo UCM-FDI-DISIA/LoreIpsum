@@ -91,6 +91,10 @@ void TutorialBoardState::onExit()
 
 }
 
+void TutorialBoardState::setJ2(std::string rival)
+{
+	j2_ = rival;
+}
 
 
 void TutorialBoardState::setBoard()
@@ -127,7 +131,7 @@ void TutorialBoardState::setBoard()
 
 	// Factoria de cartas. Con ella generamos la mano inicial
 	ecs::entity_t deckPlayer1 = factory->createDeck();
-	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
+	ecs::entity_t deckPlayer2 = factory->createDeckJ2(j2_);
 
 	objs.push_back(deckPlayer1);
 	objs.push_back(deckPlayer2);

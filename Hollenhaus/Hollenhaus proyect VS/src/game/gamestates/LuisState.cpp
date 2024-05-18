@@ -99,7 +99,7 @@ void LuisState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, Turns::J1, boardManagerComponent);
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, Turns::J1, boardManagerComponent, j2_);
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
@@ -114,13 +114,13 @@ void LuisState::onEnter()
 		colliders_.push_back(c->getEntity()->getComponent<BoxCollider>());
 	colliders_.push_back(deckPlayer1->getComponent<BoxCollider>());
 
-	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
+	ecs::entity_t deckPlayer2 = factory->createDeckJ2(j2_);
 
 	// Leyenda
-	for (int i = 0; i < 6; ++i)
+	/*for (int i = 0; i < 6; ++i)
 	{
 		addKey();
-	}
+	}*/
 	key_ = Instantiate(Vector2D(800, 50));
 	key_->setLayer(200);
 	key_->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
@@ -225,4 +225,9 @@ void LuisState::setKey()
 		for (const auto b : colliders_)
 			b->setPosOffset(Vector2D(0, 0));
 	}
+}
+
+void LuisState::setJ2(std::string rival)
+{
+	j2_ = rival;
 }

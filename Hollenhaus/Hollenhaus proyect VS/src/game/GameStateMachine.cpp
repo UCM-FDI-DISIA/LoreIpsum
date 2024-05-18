@@ -42,6 +42,7 @@
 #include "Data.h"
 #include "Fade.h"
 #include "CaseManager.h"
+#include "gamestates/EndGameState.h"
 
 constexpr Uint8 FADE_SPEED = 30;
 
@@ -51,6 +52,7 @@ void GameStateMachine::init()
 	pushState(currentState);
 
 	initFade();
+	case_->init();
 }
 
 //constructor
@@ -69,6 +71,7 @@ GameStateMachine::GameStateMachine()
 	shopState = new ShopState();
 	deckBuildingState = new DeckBuildingState();
 	tutorialState = new TutorialState();
+	endGameState = new EndGameState();
 
 	// Estados de menuses
 	mainMenuState = new MainMenuState();
@@ -122,6 +125,7 @@ GameStateMachine::~GameStateMachine()
 	delete shopState;
 	delete deckBuildingState;
 	delete tutorialState;
+	delete endGameState;
 	delete tutorialBoardState;
 	delete tutorialCityState;
 	delete tutorialDeckbuildingState;

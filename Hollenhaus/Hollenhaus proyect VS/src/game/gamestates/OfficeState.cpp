@@ -19,13 +19,17 @@
 
 
 
-OfficeState::OfficeState()
+OfficeState::OfficeState() :
+	factory(nullptr),
+	offset_(5)
 {
 	TuVieja("Loading OfficeState");
 	isTutorial = false;
 }
 
-OfficeState::OfficeState(bool t)
+OfficeState::OfficeState(bool t) :
+	factory(nullptr),
+	offset_(5)
 {
 	isTutorial = t;
 
@@ -104,11 +108,15 @@ void OfficeState::onEnter()
 
 	//------Boton para telefono: (WIP de Poli: El telf en realidad es un NPC invisible,
 	//  que al clicarlo hace que aparezca el dialogo.)
-
-	if(caseManager->accepted())
-		caseManager->addNPC(factory->createNPC(6, fondo, 1));
+	const int caso = getCurrentCase() + offset_;
+	ecs::entity_t npc;
+	if (caseManager->accepted())
+		npc = factory->createNPC(caso, fondo, 1);
 	else
-		caseManager->addNPC(factory->createNPC(6, fondo));
+		npc = factory->createNPC(caso, fondo);
+
+	caseManager->addNPC(npc);
+	objs.push_back(npc);
 
 	//Idea para los casos:
 	// - En dialoguesV1.json meter el texto de los casos que queremos que se diga. Como Caso0, Caso1, etc.
