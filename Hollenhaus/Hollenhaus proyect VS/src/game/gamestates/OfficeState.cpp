@@ -77,7 +77,13 @@ void OfficeState::onEnter()
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
+
+	if (GameStateMachine::instance()->TUTORIAL_CITY_COMPLETE()) {
+		exit->addComponent<NPC>(GameStates::CITY); // Lleva a la ciudad (1).
+	}
+	else if (GameStateMachine::instance()->TUTORIAL_DECKBUILDING_COMPLETE()) {
+		exit->addComponent<NPC>(GameStates::TUTORIAL_CITY); // Lleva a la ciudad (1).
+	}
 	exit->setLayer(1);
 		exit->addComponent<Clickable>("boton_flecha", true);
 
@@ -95,8 +101,13 @@ void OfficeState::onEnter()
 
 	Vector2D dbPos(478, 112);
 	dbTrans->setGlobalPos(dbPos);
+	if (isTutorial) {
+		db->addComponent<NPC>(GameStates::TUTORIAL_DECKBUILDING); // Lleva al deckbuilding TUTORIAL (9).
+	}
+	else {
+		db->addComponent<NPC>(GameStates::DECKBUILDING); // Lleva al deckbuilding (9).
+	}
 
-	db->addComponent<NPC>(9); // Lleva al deckbuilding (9).
 	db->setLayer(1);
 	db->addComponent<SpriteRenderer>("pizarra");
 	auto dbShine = db->addComponent<ShineComponent>();

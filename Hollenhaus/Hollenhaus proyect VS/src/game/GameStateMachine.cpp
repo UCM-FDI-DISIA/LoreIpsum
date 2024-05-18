@@ -104,7 +104,7 @@ GameStateMachine::GameStateMachine()
 	//currentState = new MainMenuState();
 	// tutorialDeckbuildingState
 
-	currentState = tutorialCityState;
+	currentState = mainMenuState;
 
 	// settea la data en el current state para acceder a ella desde cualquier estado
 	currentState->setData(new Data());

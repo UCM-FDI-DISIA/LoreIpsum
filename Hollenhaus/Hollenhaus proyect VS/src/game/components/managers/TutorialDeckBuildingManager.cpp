@@ -138,4 +138,6 @@ void TutorialDeckBuilderManager::setDrawer()
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 
+	GameStateMachine::instance()->setTUTORIAL_DECKBUILDING_COMPLETE(true);
+
 }

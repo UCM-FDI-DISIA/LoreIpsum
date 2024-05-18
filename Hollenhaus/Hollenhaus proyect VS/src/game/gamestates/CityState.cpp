@@ -161,11 +161,30 @@ void CityState::onEnter()
 	///------NPCs:
 	//----Para entrar en la oficina.
 	//factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
-	ecs::entity_t npc1 = factory->createNPC(0, fondo);
-	ecs::entity_t npc2 = factory->createNPC(1, fondo);
-	ecs::entity_t npc3 = factory->createNPC(2, fondo);
-	ecs::entity_t npc4 = factory->createNPC(3, fondo);
-	ecs::entity_t npc5 = factory->createNPC(4, fondo);
+	ecs::entity_t npc1 = factory->createNPC(0, fondo);		// oficina
+
+	if (GameStateMachine::instance()->TUTORIAL_SHOP_COMPLETE()) {
+		ecs::entity_t npc2 = factory->createNPC(1, fondo);		// tienda
+		objs.push_back(npc2);
+	}
+	else {
+		ecs::entity_t npc2 = factory->createNPC(7, fondo);		// tienda TUTO
+		objs.push_back(npc2);
+	}
+
+
+
+	ecs::entity_t npc4 = factory->createNPC(3, fondo);			// txt
+
+	// BOARD
+	if (GameStateMachine::instance()->TUTORIAL_BOARD_COMPLETE()) {
+		ecs::entity_t npc5 = factory->createNPC(4, fondo);		// tuto board
+		objs.push_back(npc5);
+	}
+	else {
+		ecs::entity_t npc3 = factory->createNPC(2, fondo);		// board
+		objs.push_back(npc3);
+	}
 	///
 
 	// --- Boton para volver al menu principal ---
@@ -181,11 +200,9 @@ void CityState::onEnter()
 	exit->addComponent<Clickable>("boton_flecha", true);
 
 
-	objs.push_back(npc1);
-	objs.push_back(npc2);
-	objs.push_back(npc3);
-	objs.push_back(npc4);
-	objs.push_back(npc5);
+	//objs.push_back(npc1);
+	/*objs.push_back(npc2);
+	objs.push_back(npc4);*/
 	objs.push_back(colliderSuelo);
 
 	setTutorial();
