@@ -8,19 +8,19 @@ namespace Colors
 	/// colores
 	constexpr SDL_Color ROJO_HOLLENHAUS = {148, 47, 55, 255};
 	constexpr SDL_Color AMARILLO_PIS = {191, 180, 138, 255};
-	constexpr SDL_Color AMARILLO_ACCION = {251, 187, 118, 255 };
-		// colores de cartas del jugador
-	constexpr SDL_Color ROJO_PERJUICIO = { 232, 79, 69, 255};
-	constexpr SDL_Color BAHIA_BENEFICIO = { 44, 67, 212, 255};
+	constexpr SDL_Color AMARILLO_ACCION = {251, 187, 118, 255};
+	// colores de cartas del jugador
+	constexpr SDL_Color ROJO_PERJUICIO = {232, 79, 69, 255};
+	constexpr SDL_Color BAHIA_BENEFICIO = {44, 67, 212, 255};
 	//constexpr SDL_Color BAHIA_BENEFICIO = { 37, 56, 177, 255};
 
-		// colores de cartas del enemigo
-	constexpr SDL_Color VERDE_BENEFICIO = { 79, 218, 88, 255};
-	constexpr SDL_Color NARANJA_PERJUICIO = { 251, 142, 40, 255};
+	// colores de cartas del enemigo
+	constexpr SDL_Color VERDE_BENEFICIO = {79, 218, 88, 255};
+	constexpr SDL_Color NARANJA_PERJUICIO = {251, 142, 40, 255};
 
 	// offtopic
-	constexpr SDL_Color VERDE_BANKIA = {199,208, 19, 255};
-	constexpr SDL_Color TEAL_MIKU = { 40, 200, 200, 255};
+	constexpr SDL_Color VERDE_BANKIA = {199, 208, 19, 255};
+	constexpr SDL_Color TEAL_MIKU = {40, 200, 200, 255};
 
 	/// blancos
 	constexpr SDL_Color PEARL_HOLLENHAUS = {226, 223, 210, 255};
@@ -33,19 +33,19 @@ namespace Colors
 
 namespace Fonts
 {
-	const std::string GROTESK_8 = "space_grotesk_bold_8";
-	const std::string GROTESK_16 = "space_grotesk_bold_16";
-	const std::string GROTESK_18 = "space_grotesk_bold_18";
-	const std::string GROTESK_20 = "space_grotesk_bold_20";
-	const std::string GROTESK_24 = "space_grotesk_bold_24";
-	const std::string GROTESK_32 = "space_grotesk_bold_32";
-	const std::string GROTESK_40 = "space_grotesk_bold_40";
-	const std::string GROTESK_48 = "space_grotesk_bold_48";
-	const std::string BIT_8 = "8bit_size_8";
-	const std::string BIT_16 = "8bit_size_16";
-	const std::string BIT_24 = "8bit_size_24";
-	const std::string BIT_32 = "8bit_size_32";
-	const std::string BIT_40 = "8bit_size_40";
+	const std::string GROTESK_8 = "space_grotesk_bold_8",
+	                  GROTESK_16 = "space_grotesk_bold_16",
+	                  GROTESK_18 = "space_grotesk_bold_18",
+	                  GROTESK_20 = "space_grotesk_bold_20",
+	                  GROTESK_24 = "space_grotesk_bold_24",
+	                  GROTESK_32 = "space_grotesk_bold_32",
+	                  GROTESK_40 = "space_grotesk_bold_40",
+	                  GROTESK_48 = "space_grotesk_bold_48",
+	                  BIT_8 = "8bit_size_8",
+	                  BIT_16 = "8bit_size_16",
+	                  BIT_24 = "8bit_size_24",
+	                  BIT_32 = "8bit_size_32",
+	                  BIT_40 = "8bit_size_40";
 }
 
 namespace Cards
@@ -388,7 +388,7 @@ namespace Tutorials
 		FREEDOM
 	};
 
-	enum Deckbuilder 
+	enum Deckbuilder
 	{
 		DECKBUILDER_NONE,
 		DECKBUILDING_INIT,
@@ -396,8 +396,8 @@ namespace Tutorials
 		PIZARRA,
 		CARDS
 	};
-	
-	enum Tienda 
+
+	enum Tienda
 	{
 		SHOP_NONE,
 		SHOP_INIT,
@@ -414,11 +414,11 @@ namespace Tutorials
 		CITY_PERSON
 	};
 
-	enum Oficina {
+	enum Oficina
+	{
 		OFFICE_NONE,
 		OFFICE_INIT,
 		OFFICE_PHONE,
 		OFFICE_PIZARRA
-
 	};
 }
