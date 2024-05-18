@@ -109,10 +109,14 @@ void OfficeState::onEnter()
 	//------Boton para telefono: (WIP de Poli: El telf en realidad es un NPC invisible,
 	//  que al clicarlo hace que aparezca el dialogo.)
 	const int caso = getCurrentCase() + offset_;
-	if(caseManager->accepted())
-		caseManager->addNPC(factory->createNPC(caso, fondo, 1));
+	ecs::entity_t npc;
+	if (caseManager->accepted())
+		npc = factory->createNPC(caso, fondo, 1);
 	else
-		caseManager->addNPC(factory->createNPC(caso, fondo));
+		npc = factory->createNPC(caso, fondo);
+
+	caseManager->addNPC(npc);
+	objs.push_back(npc);
 
 	//Idea para los casos:
 	// - En dialoguesV1.json meter el texto de los casos que queremos que se diga. Como Caso0, Caso1, etc.
