@@ -1141,6 +1141,414 @@
           ]
         }
       ]
+    },
+    {
+      "NPCName": "Wanda",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Wanda",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Norbert",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Norbert",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Zelig",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Zelig",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Gretchen",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Wanda",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Schmetterling",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Wanda",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Frederika",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Frederika",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Ritter",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Ritter",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Anna",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Anna",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Bertram",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Bertram",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Gorgen",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Gorgen",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Dagna",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Dagna",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Chloris",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Chloris",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Combate?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

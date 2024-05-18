@@ -37,6 +37,4 @@ private:
 
 	// tween fantasmiko
 	tweeny::tween<float> fantastween;
-
-
 };

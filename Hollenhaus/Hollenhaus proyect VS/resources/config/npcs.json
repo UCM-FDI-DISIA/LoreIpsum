@@ -11,8 +11,8 @@
             "posY": 193,
             "type": 0,
             "scene": 2,
-          "layer": 1,
-          "deck": [
+            "layer": 1,
+            "deck": [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
           ]
         },
@@ -51,8 +51,8 @@
         {
           "npcID": "3",
           "name": "El Xungo del Barrio",
-          "sprite": "NPCNPC",
-          "shine": "npcbrillo",
+          "sprite": "npc_dibujo",
+          "shine": "npc_dibujo_brilli",
           "scaleX": 0.25,
           "scaleY": 0.25,
           "posX": 1600,
@@ -137,6 +137,198 @@
         "scaleY": 0.25,
         "posX": 345,
         "posY": 384,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "9",
+        "name": "Wanda",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1300,
+        "posY": 360,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "10",
+        "name": "Norbert",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1600,
+        "posY": 425,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "11",
+        "name": "Zelig",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1100,
+        "posY": 425,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "12",
+        "name": "Gretchen",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1200,
+        "posY": 425,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "13",
+        "name": "Schmetterling",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1600,
+        "posY": 425,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "14",
+        "name": "Frederika",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1300,
+        "posY": 360,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "15",
+        "name": "Ritter",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1700,
+        "posY": 360,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "16",
+        "name": "Anna",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1700,
+        "posY": 360,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "17",
+        "name": "Bertram",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1300,
+        "posY": 360,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "18",
+        "name": "Gorgen",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1600,
+        "posY": 425,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "19",
+        "name": "Dagna",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 1200,
+        "posY": 425,
+        "type": 1,
+        "scene": 2,
+        "layer": 1,
+        "deck": [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "npcID": "20",
+        "name": "Chloris",
+        "sprite": "npc_dibujo",
+        "shine": "npc_dibujo_brilli",
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "posX": 2000,
+        "posY": 425,
         "type": 1,
         "scene": 2,
         "layer": 1,

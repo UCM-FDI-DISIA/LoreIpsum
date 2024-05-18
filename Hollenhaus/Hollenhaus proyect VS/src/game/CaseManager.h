@@ -9,6 +9,7 @@ public:
 	~CaseManager();
 
 	void update();
+	void init();
 
 	// NPC
 	ecs::entity_t caseNPC();
@@ -18,9 +19,13 @@ public:
 	bool accepted();
 	void accept();
 	void resetCase();
+	int npc_n() { return npcCounter_; }
+	int npcBegin() { return initialNpc_; }
 private:
 	ecs::entity_t npc_;
 
 	bool accepted_;
+	int npcCounter_;
+	int initialNpc_;
 };
 

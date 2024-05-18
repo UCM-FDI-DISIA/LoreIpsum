@@ -11,6 +11,7 @@
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
 #include "pauseMenuState.h"
+#include "game/CaseManager.h"
 #include "game/components/Clickable.h"
 #include "game/components/ImageWithFrames.h"
 
@@ -65,6 +66,7 @@ void CityState::onEnter()
 	factory->SetFactories(
 		static_cast<NPCFactory*>(new NPCFactory_V0()));
 
+	CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
 
 	/// ---- FONDO CIUDAD ----
 	auto scaleFondo = Vector2D(0.495f, 0.495f);
@@ -153,12 +155,19 @@ void CityState::onEnter()
 	///------NPCs:
 	//----Para entrar en la oficina.
 	//factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
+	// Oficina
 	factory->createNPC(0, fondo);
+	// Tienda
 	factory->createNPC(1, fondo);
-	factory->createNPC(2, fondo);
-	factory->createNPC(3, fondo);
+	// Tutorial
 	factory->createNPC(4, fondo);
-	///
+	// Npcs de caso
+	if(caseMngr->accepted()) {
+		for(int i = 0; i < caseMngr->npc_n(); ++i)
+		{
+			factory->createNPC(caseMngr->npcBegin() + i, fondo);
+		}
+	}
 
 	// --- Boton para volver al menu principal ---
 	ecs::entity_t exit = Instantiate();

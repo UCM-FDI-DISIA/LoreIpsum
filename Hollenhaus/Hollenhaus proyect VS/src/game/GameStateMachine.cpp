@@ -51,6 +51,7 @@ void GameStateMachine::init()
 	pushState(currentState);
 
 	initFade();
+	case_->init();
 }
 
 //constructor

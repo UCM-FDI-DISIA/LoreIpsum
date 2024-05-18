@@ -3,8 +3,11 @@
 
 CaseManager::CaseManager() :
 	npc_(),
-	accepted_(false)
+	accepted_(false),
+	npcCounter_(),
+	initialNpc_()
 {
+	
 }
 
 CaseManager::~CaseManager()
@@ -14,6 +17,18 @@ CaseManager::~CaseManager()
 
 void CaseManager::update()
 {
+}
+
+void CaseManager::init()
+{
+	npcCounter_ = GameStateMachine::instance()->getCurrentState()->getCurrentCase() + 2;
+
+	if (GameStateMachine::instance()->getCurrentState()->getCurrentCase() == 1)
+		initialNpc_ = 9;
+	else if (GameStateMachine::instance()->getCurrentState()->getCurrentCase() == 2)
+		initialNpc_ = 12;
+	else if (GameStateMachine::instance()->getCurrentState()->getCurrentCase() == 3)
+		initialNpc_ = 16;
 }
 
 void CaseManager::addNPC(ecs::entity_t npc)
@@ -33,6 +48,8 @@ void CaseManager::accept()
 
 void CaseManager::resetCase()
 {
+	initialNpc_ += npcCounter_;
+	npcCounter_++;
 	accepted_ = false;
 	GameStateMachine::instance()->getCurrentState()->nextCase();
 }
