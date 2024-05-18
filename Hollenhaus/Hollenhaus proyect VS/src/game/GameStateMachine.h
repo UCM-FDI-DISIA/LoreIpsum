@@ -234,6 +234,15 @@ public:
 		case GameStates::TUTORIAL_DECKBUILDING: 
 			newState = tutorialDeckbuildingState;
 			break;
+		case GameStates::TUTORIAL_SHOP:
+			newState = tutorialShopState;
+			break;
+		case GameStates::TUTORIAL_CITY:
+			newState = tutorialCityState;
+			break;
+		case GameStates::TUTORIAL_OFFICE:
+			newState = tutorialOfficeState;
+			break;
 		default:
 			break;
 		}

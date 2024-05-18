@@ -428,8 +428,16 @@
     <ClCompile Include="src\game\components\managers\TutorialDeckBuildingManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\managers\TutorialShopManager.cpp" />
     <ClCompile Include="src\game\components\managers\TutorialGeneralManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialShopManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialCityManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialOfficeManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
   </ItemGroup>
@@ -842,8 +850,16 @@
     <ClInclude Include="src\game\components\Clickable.h" />
     <ClInclude Include="src\game\components\ClickableText.h" />
     <ClInclude Include="src\game\components\ImageWithFrames.h" />
-    <ClInclude Include="src\game\components\managers\TutorialShopManager.h" />
     <ClInclude Include="src\game\components\managers\TutorialGeneralManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialCityManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialShopManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialOfficeManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
   </ItemGroup>
