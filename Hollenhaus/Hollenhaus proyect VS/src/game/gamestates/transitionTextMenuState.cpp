@@ -92,31 +92,31 @@ void TransitionTextMenuState::onEnter()
 			Ctext = "Para un economista la vida real es un caso especial.";
 			break;
 		case 1:
-			Ctext = "Le ped� a un economista su n�mero de tel�fono y me dio su estimaci�n.";
+			Ctext = "Le pedí a un economista su número de teléfono y me dio su estimación.";
 			break;
 		case 2:
-			Ctext = "�Cu�ndo puedes decir que un economista est� mintiendo? Cuando se mueven sus labios.";
+			Ctext = "¿Cuándo puedes decir que un economista está mintiendo? Cuando se mueven sus labios.";
 			break;
 		case 3:
-			Ctext = "�Sabes a d�nde van las pulgas cuando mueren? Al pulgatorio.";
+			Ctext = "¿Sabes a dónde van las pulgas cuando mueren? Al pulgatorio.";
 			break;
 		case 4:
-			Ctext = "�Por qu� los fantasmas nunca hacen la colada? Porque corren el peligro de meter en la lavadora a sus parientes.";
+			Ctext = "¿Por qué los fantasmas nunca hacen la colada? Porque corren el peligro de meter en la lavadora a sus parientes.";
 			break;
 		case 5:
-			Ctext = "Van dos fantasmas y se cae el del m�dium.";
+			Ctext = "Van dos fantasmas y se cae el del médium.";
 			break;
 		case 6:
-			Ctext = "�Has probado a poner el nombre completo del fantasma protagonista en el traductor de alem�n?";
+			Ctext = "¿Has probado a poner el nombre completo del fantasma protagonista en el traductor de alemán?";
 			break;
 		case 7:
-			Ctext = "�Sab�as que Paul muri� sacrificado por una secta?";
+			Ctext = "¿Sabías que Paul murió sacrificado por una secta?";
 			break;
 		case 8:
-			Ctext = "�Sab�as que Paul tuvo una aparici�n en La Nave del Misterio?";
+			Ctext = "¿Sabías que Paul tuvo una aparición en La Nave del Misterio?";
 			break;
 		case 9:
-			Ctext = "�Sab�as que las �nicas humanas de H�llenhaus que pueden ver a Paul son la tendera y la m�dium?";
+			Ctext = "¿Sabías que las únicas humanas de Höllenhaus que pueden ver a Paul son la tendera y la médium?";
 			break;
 		case 10:
 			Ctext = "Fallasustos3000 was here.";
