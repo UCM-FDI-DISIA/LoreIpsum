@@ -80,7 +80,8 @@
         {"id": "postit_guardar_mazo_brilli",       "file": "resources/images/postit_guardar_mazo_brilli.png"  },
         {"id": "deck_sombra",       "file": "resources/images/reverseCard_sombra.png"  },
         {"id": "card_sombra",       "file": "resources/images/card_shadow.png"  },
-        {"id": "panelFinPartida",       "file": "resources/images/PanelFinPartida.png"  }
+        {"id": "panelFinPartida", "file": "resources/images/PanelFinPartida.png" }, 
+        {"id": "tienda", "file": "resources/images/tienda_background.png"}
     ],
     "fonts": [
       {

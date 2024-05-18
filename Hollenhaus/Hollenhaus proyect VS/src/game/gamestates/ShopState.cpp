@@ -86,11 +86,10 @@ void ShopState::onEnter()
 	shopManager->addComponent<ShopComponent>();
 	shopManager->setLayer(1);
 
-
 	//-----Imagen de fondo:
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
-	fondo->addComponent<SpriteRenderer>("fondoTienda");
+	fondo->addComponent<SpriteRenderer>("tienda");
 	fondo->getComponent<Transform>()->setGlobalScale(0.475f, 0.475f);
 	fondo->setLayer(0);
 
