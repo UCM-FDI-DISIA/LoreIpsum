@@ -27,6 +27,8 @@ public:
 
 	void onPause();
 
+
+	// ----- Tutorial ----
 	void setTutorial();
 	void prepareTutorial();
 	void startTutorial(bool a);
