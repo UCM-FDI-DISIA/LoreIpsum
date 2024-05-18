@@ -27,7 +27,9 @@ OfficeState::OfficeState() :
 	isTutorial = false;
 }
 
-OfficeState::OfficeState(bool t)
+OfficeState::OfficeState(bool t) :
+	factory(nullptr),
+	offset_(5)
 {
 	isTutorial = t;
 
