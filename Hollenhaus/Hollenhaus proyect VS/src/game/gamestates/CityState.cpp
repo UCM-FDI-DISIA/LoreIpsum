@@ -177,7 +177,7 @@ void CityState::onEnter()
 	ecs::entity_t npc4 = factory->createNPC(3, fondo);			// txt
 
 	// BOARD
-	if (GameStateMachine::instance()->TUTORIAL_BOARD_COMPLETE()) {
+	if (!GameStateMachine::instance()->TUTORIAL_BOARD_COMPLETE()) {
 		ecs::entity_t npc5 = factory->createNPC(4, fondo);		// tuto board
 		objs.push_back(npc5);
 	}
