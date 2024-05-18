@@ -143,7 +143,6 @@ GameStateMachine::~GameStateMachine()
 	delete jimboState;
 	delete nievesState;
 	delete luisState;
-	delete tutorialBoardState;
 
 	delete multiplayerLobbyState;
 	delete multiplayerPreGameState;
