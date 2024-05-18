@@ -51,7 +51,6 @@ namespace GameStates
 		MULTIPLAYER_GAME,
 		MULTIPLAYER_END_GAME,
 		ENDGAME,
-		KEYMENU,
 		TUTORIAL_DECKBUILDING,
 		TUTORIAL_SHOP,
 		TUTORIAL_CITY,
@@ -236,6 +235,7 @@ public:
 			break;
 		case GameStates::ENDGAME:
 			newState = endGameState;
+			break;
 		case GameStates::TUTORIAL_DECKBUILDING: 
 			newState = tutorialDeckbuildingState;
 			break;

@@ -148,9 +148,9 @@
     <ClCompile Include="src\game\gamestates\pauseMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\SamuState.cpp" />
     <ClCompile Include="src\game\gamestates\ShopState.cpp" />
+    <ClCompile Include="src\game\gamestates\TransitionTextMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\TutorialBoardState.cpp" />
     <ClCompile Include="src\game\gamestates\storyModeState.cpp" />
-    <ClCompile Include="src\game\gamestates\transitionTextMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\tutorialState.cpp" />
     <ClCompile Include="src\game\Mouse.cpp" />
     <ClCompile Include="src\game\Data.cpp">
@@ -314,13 +314,13 @@
     <ClInclude Include="src\game\gamestates\MultiplayerGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h" />
+    <ClInclude Include="src\game\gamestates\TransitionTextMenuState.h" />
     <ClInclude Include="src\game\MultiplayerNamespaces.h" />
     <ClInclude Include="src\game\gamestates\TutorialBoardState.h" />
     <ClInclude Include="src\game\gamestates\multiplayerModeState.h" />
     <ClInclude Include="src\game\gamestates\optionsMainMenuState.h" />
     <ClInclude Include="src\game\gamestates\pauseMenuState.h" />
     <ClInclude Include="src\game\gamestates\storyModeState.h" />
-    <ClInclude Include="src\game\gamestates\transitionTextMenuState.h" />
     <ClInclude Include="src\game\gamestates\tutorialState.h" />
     <ClInclude Include="src\game\Namespaces.h" />
     <ClInclude Include="src\game\factories\BoardFactory.h" />
