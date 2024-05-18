@@ -205,7 +205,7 @@ void ShopComponent::confirmPurchase(int prize, int id)
 		shopDialogue = factory->createDialogue("Tienda", 0, 0,
 			{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f }, // Posicion.
 			{ 0.3,0.1 }, // Tamanyo.
-			5, // Velocidad.
+			2, // Velocidad.
 			10, // Cooldown.
 			this->getEntity(), // Padre.
 			3,			// Capa.
