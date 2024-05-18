@@ -45,5 +45,4 @@ public:
 	void update() override;
 	void onHoverEnter();
 	void onHoverExit();
-
 };

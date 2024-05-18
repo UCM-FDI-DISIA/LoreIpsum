@@ -5,12 +5,21 @@ void Hover::initComponent()
 {
 	tr = getEntity()->getComponent<Transform>();
 	spr = getEntity()->getComponent<SpriteRenderer>();
+
+	iniScale = tr->getGlobalScale();
+	iniPos = tr->getGlobalPos();
+	iniLayer = getEntity()->getLayer();
 }
 
 void Hover::update()
 {
-	iniScale = tr->getGlobalScale();
-	iniPos = tr->getGlobalPos();
-	iniLayer = getEntity()->getLayer();
-	getEntity()->getLastLayer()
+
+}
+
+void Hover::onHoverEnter()
+{
+}
+
+void Hover::onHoverExit()
+{
 }
