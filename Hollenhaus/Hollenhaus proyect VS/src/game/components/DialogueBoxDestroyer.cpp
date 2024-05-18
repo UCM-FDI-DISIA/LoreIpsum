@@ -14,23 +14,14 @@ void DialogueBoxDestroyer::initComponent()
 
 void DialogueBoxDestroyer::update()
 {
-	if (this->getEntity()->getComponent<SpriteRenderer>() != nullptr
-		&& this->getEntity()->getComponent<FadeComponent>() != nullptr) {
-		if (this->getEntity()->getComponent<SpriteRenderer>()->getOpacity() == 0
-			&& !this->getEntity()->getComponent<FadeComponent>()->getFadeIn()) {
 
-			continueDestroy();
-
-		}
-	}
 }
 
 void DialogueBoxDestroyer::destroy()
 {
-	//text->getComponent<FadeComponent>()->FadeIn();
+	text->getComponent<DialogueDestroyer>()->destroyDialogue();
 }
 
 void DialogueBoxDestroyer::continueDestroy()
 {
-	text->getComponent<DialogueDestroyer>()->destroyDialogue();
 }

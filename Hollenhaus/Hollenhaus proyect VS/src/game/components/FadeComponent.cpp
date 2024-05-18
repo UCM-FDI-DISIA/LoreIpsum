@@ -13,6 +13,7 @@ void FadeComponent::initComponent()
 {
 	f = ent_->getComponent<SpriteRenderer>();
 
+	fadeIn = true;
 	//Creamos el tween
 	// FADE TWEEN
 	fadetween =
