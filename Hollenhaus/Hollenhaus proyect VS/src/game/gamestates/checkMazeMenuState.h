@@ -21,4 +21,5 @@ public:
     void ShowMaze();
 
     std::list<int> mazeAux;
+    int cardsYPos[3] = {100, 250, 400};
 };
