@@ -91,6 +91,11 @@ GameStateMachine::GameStateMachine()
 	nievesState = new NievesState();
 	luisState = new LuisState();
 	tutorialBoardState = new TutorialBoardState();
+	tutorialDeckbuildingState = new DeckBuildingState(true);
+	tutorialShopState = new ShopState(true);
+	tutorialCityState = new CityState(true);
+	tutorialOfficeState = new OfficeState(true);
+
 
 	multiplayerLobbyState = new MultiplayerLobbyState();
 	multiplayerPreGameState = new MultiplayerPreGameState();
@@ -100,6 +105,7 @@ GameStateMachine::GameStateMachine()
 
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();
+	// tutorialDeckbuildingState
 
 	currentState = mainMenuState;
 
@@ -120,6 +126,11 @@ GameStateMachine::~GameStateMachine()
 	delete deckBuildingState;
 	delete tutorialState;
 	delete endGameState;
+	delete tutorialBoardState;
+	delete tutorialCityState;
+	delete tutorialDeckbuildingState;
+	delete tutorialOfficeState;
+	delete tutorialShopState;
 
 	delete mainMenuState;
 	delete storyModeState;
@@ -136,7 +147,6 @@ GameStateMachine::~GameStateMachine()
 	delete jimboState;
 	delete nievesState;
 	delete luisState;
-	delete tutorialBoardState;
 
 	delete multiplayerLobbyState;
 	delete multiplayerPreGameState;
@@ -146,6 +156,24 @@ GameStateMachine::~GameStateMachine()
 	currentState->setData(nullptr);
 
 	delete mngr_;
+
+	mainMenuState = nullptr;
+	cityState = nullptr;
+	officeState = nullptr;
+	shopState = nullptr;
+	//boardState = nullptr;
+	samuState = nullptr;
+	jimboState = nullptr;
+	nievesState = nullptr;
+	matchOverState = nullptr;
+	luisState = nullptr;
+	deckBuildingState = nullptr;
+	tutorialBoardState = nullptr;
+	tutorialCityState = nullptr;
+	tutorialDeckbuildingState = nullptr;
+	tutorialOfficeState = nullptr;
+	tutorialShopState = nullptr;
+
 }
 
 void GameStateMachine::Render() const

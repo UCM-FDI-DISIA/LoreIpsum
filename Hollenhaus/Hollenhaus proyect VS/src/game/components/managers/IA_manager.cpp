@@ -49,7 +49,7 @@ void IA_manager::update() {
 	if (matchManager->getActualState() == Turns::State::IA) {
 
 		// Espera a que haya robado las cartas y se hayan puesto en la mano para colocarlas
-		if (enemyHandCmp->doneAnimations() && !colocadas_)
+		if (enemyHandCmp->doneDrawAnimations() && !colocadas_)
 		{
 			ColocarCarta();
 			colocadas_ = true;
@@ -57,7 +57,7 @@ void IA_manager::update() {
 		}
 
 		// Cuando las cartas son colocadas se pasa de turno
-		if (colocadas_)
+		if (colocadas_ && enemyHandCmp->donePosAnimations())
 		{
 			matchManager->endTurnIA();
 			cartasColocadas_ = 0;

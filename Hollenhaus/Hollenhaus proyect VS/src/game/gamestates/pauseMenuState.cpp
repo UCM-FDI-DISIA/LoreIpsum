@@ -11,6 +11,7 @@
 #include "game/components/Clickable.h"
 #include "game/components/ClickableText.h"
 #include "../components/basics/TextComponent.h"
+#include "../components/Button.h"
 
 PauseMenuState::PauseMenuState()
 {
@@ -40,6 +41,8 @@ void PauseMenuState::refresh()
 void PauseMenuState::onEnter()
 {
 	std::cout << "\nENTER PAUSE.\n";
+
+	//SetLastState(GameStates::PAUSEMENU);
 
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onDespause(); });
@@ -88,7 +91,8 @@ void PauseMenuState::onEnter()
 	guardar->addComponent<BoxCollider>();
 	guardar->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	guardar->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	guardar->addComponent<NPC>(GameStates::OPTIONSMENU, 0);
+	guardar->addComponent<Button>();
+	guardar->getComponent<Button>()->connectToButton([this] { saveData(); });
 	guardar->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 
 	// main menu

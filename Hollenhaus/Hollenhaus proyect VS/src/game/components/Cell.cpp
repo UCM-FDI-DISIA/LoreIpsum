@@ -75,7 +75,6 @@ void Cell::emit() const
 {
 	for (SDLEventCallback cellCallback : effectCallbacks) {
 		cellCallback(); // llama a todas las funciones registradas
-		//this->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(104, 52, 177, 200);
 	}
 		
 }

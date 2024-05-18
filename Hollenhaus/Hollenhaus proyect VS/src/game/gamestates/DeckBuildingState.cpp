@@ -20,6 +20,8 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/Button.h"
 #include "../components/NPC.h"
+#include "../TutorialManager.h"
+#include "../components/managers/TutorialDeckBuildingManager.h"
 #include "game/components/Clickable.h"
 #include "game/components/ShineComponent.h"
 
@@ -29,6 +31,12 @@
 DeckBuildingState::DeckBuildingState()
 {
 	TuVieja("Loading DeckBuildingState");
+	isTutorial = false;
+}
+
+DeckBuildingState::DeckBuildingState(bool t)
+{
+	isTutorial = true;
 }
 
 // ---- basicos ----
@@ -206,6 +214,12 @@ void DeckBuildingState::onEnter()
 
 	// lo guarda
 	pizarra_ = pizarra->getComponent<PizarraManager>();
+
+
+	objs.push_back(Confirm);
+	objs.push_back(botPalante);
+	objs.push_back(botPatras);
+
 #pragma endregion
 
 	// ---- CAJON ----
@@ -249,6 +263,7 @@ void DeckBuildingState::onEnter()
 		.during(30)
 		.via(tweeny::easing::linear);
 
+	setTutorial();
 
 	// ---- SONIDO ----
 	auto& sdl = *SDLUtils::instance();
@@ -338,6 +353,49 @@ ecs::entity_t DeckBuildingState::createCard(int id, Vector2D pos)
 	                                            card.effects());
 	return ent;
 }
+void DeckBuildingState::setTutorial()
+{
+	if (isTutorial) {
+
+		// entidad tutorial para gestionar cositas
+		tutorial = Instantiate();
+
+		prepareTutorial();
+
+		tutorial->addComponent<TutorialManager>();
+		auto manager = tutorial->addComponent<TutorialDeckBuilderManager>(base, tutorial);
+		GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
+
+
+		tutorial->getComponent<TutorialManager>()->startTutorial();
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::DECKBUILDER);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Deckbuilder::DECKBUILDER_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Deckbuilder::DECKBUILDING_INIT);
+
+
+		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
+
+		tutorial->getComponent<TutorialDeckBuilderManager>()->setObjs(objs);
+
+	}
+}
+void DeckBuildingState::prepareTutorial()
+{
+	// base
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
+
+}
+void DeckBuildingState::startTutorial(bool a)
+{
+	isTutorial = a;
+}
+#pragma endregion
 
 void DeckBuildingState::resetFade()
 {

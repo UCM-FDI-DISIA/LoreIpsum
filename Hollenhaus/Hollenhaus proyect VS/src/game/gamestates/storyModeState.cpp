@@ -72,7 +72,7 @@ void StoryModeState::onEnter()
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	newGameButton->addComponent<NPC>(GameStates::TRANSITIONTEXT, 0);
+	newGameButton->addComponent<NPC>(GameStates::TUTORIAL_OFFICE, 0);
 	newGameButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
 
 	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 270));

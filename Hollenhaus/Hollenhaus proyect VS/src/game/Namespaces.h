@@ -362,6 +362,8 @@ namespace Tutorials
 	{
 		BOARD,
 		DECKBUILDER,
+		SHOP,
+		GENERAL
 	};
 
 	enum Board
@@ -388,8 +390,37 @@ namespace Tutorials
 		FREEDOM
 	};
 
-	enum Deckbuilder
+	enum Deckbuilder 
 	{
-		DECKBUILDER_NONE
+		DECKBUILDER_NONE,
+		DECKBUILDING_INIT,
+		DRAWER,
+		PIZARRA,
+		CARDS
+	};
+	
+	enum Tienda 
+	{
+		SHOP_NONE,
+		SHOP_INIT,
+		SHOW_CARDS,
+		SHOW_MONEY,
+		PURCHASE
+	};
+
+	enum Ciudad
+	{
+		CITY_NONE,
+		CITY_INIT,
+		CITY_MOVE,
+		CITY_PERSON
+	};
+
+	enum Oficina {
+		OFFICE_NONE,
+		OFFICE_INIT,
+		OFFICE_PHONE,
+		OFFICE_PIZARRA
+
 	};
 }

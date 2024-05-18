@@ -186,6 +186,7 @@ void ShopComponent::updateColors()
 	}
 }
 
+
 int ShopComponent::calculatePrize(ecs::entity_t card)
 {
 	int prize = 0;

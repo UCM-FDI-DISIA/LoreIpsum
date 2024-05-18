@@ -20,7 +20,8 @@ class ShopState : public GameState
 {
 public:
 	// Constructora.
-	ShopState();	
+	ShopState();
+	ShopState(bool a);
 
 	void update() override;
 	void render() const override;
@@ -69,5 +70,19 @@ private:
 	//pratica : la practica como base. 70
 	// simulacro de examen el dia 8.
 	// hace falta aprobar las dos partes para poder aprobar.
+
+		//---Tutorial
+
+	bool isTutorial = false;
+
+	ecs::entity_t base;             // entidad para colocar los popups, se va moviendo segun donde los queramos
+	ecs::entity_t tutorial;
+	std::vector<ecs::entity_t> objs;
+
+	// -------------- tutorial --------------------
+	void setTutorial();
+	void prepareTutorial();
+	void startTutorial(bool a);
+
 };
 

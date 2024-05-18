@@ -15,9 +15,17 @@
 #include "game/components/Clickable.h"
 #include "game/components/ImageWithFrames.h"
 
+
 CityState::CityState()
 {
 	TuVieja("Loading CityState");
+	isTutorial = false;
+
+}
+
+CityState::CityState(bool t)
+{
+	isTutorial = t;
 }
 
 CityState::~CityState()

@@ -98,6 +98,7 @@ private:
 	ecs::entity_t cardPrizeText2;
 	//----Texto que muestra el precio de la carta 3.
 	ecs::entity_t cardPrizeText3;
-	
+
+
 };
 

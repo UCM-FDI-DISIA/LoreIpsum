@@ -12,6 +12,7 @@ class OfficeState : public GameState
 public:
 
 	OfficeState();		//Constructora
+	OfficeState(bool t);	// constructora tutorial
 	~OfficeState() { }
 	void update() override;
 	void render() const override;
@@ -22,12 +23,24 @@ public:
 
 	void onPauseOF();
 
+	// -------------- tutorial --------------------
+	void setTutorial();
+	void prepareTutorial();
+	void startTutorial(bool a);
+
 private:
 	Factory* factory;
 
-	//Cambiar a combate (Tarotista) -> Teléfono
+	//Cambiar a combate (Tarotista) -> Telï¿½fono
 	//Gestionar mazo
 	//Volver a CIU
 	int offset_;
+
+	bool isTutorial;
+
+	ecs::entity_t base;             // entidad para colocar los popups, se va moviendo segun donde los queramos
+	ecs::entity_t tutorial;
+
+	std::vector<ecs::entity_t> objs;
 };
 

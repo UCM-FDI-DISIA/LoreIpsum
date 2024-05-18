@@ -49,7 +49,7 @@ void CheckMazeMenuState::onEnter()
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(17);
+	exit->addComponent<NPC>(GameStates::PAUSEMENU);
 	exit->setLayer(5);
 	exit->addComponent<Clickable>("boton_flecha", true);
 
@@ -65,14 +65,33 @@ void CheckMazeMenuState::onExit()
 void CheckMazeMenuState::ShowMaze()
 {
 	mazeAux = GameStateMachine::instance()->getCurrentState()->getMaze();
+	int cardsPos; 
+	int i = 2;
 
-	int i = 1;
 	for (auto e : mazeAux) {
 
 		if (e != -1)
 		{
+			if(i <= 9) { cardsPos = 100; }
+			else if(i >= 10 && i <= 17)
+			{
+				if(i == 10)
+				{
+					i = 2;
+				}
+				cardsPos = 200;
+			}
+			else if(i >= 18)
+			{
+				if (i == 18)
+				{
+					i = 2;
+				}
+				cardsPos = 300;
+			}
+
 			ecs::entity_t ent = GameStateMachine::instance()->getCurrentState()->createCard
-			(e, Vector2D(i * 70, 100));
+			(e, Vector2D(i * 70, cardsPos));
 		}
 
 		i++;
