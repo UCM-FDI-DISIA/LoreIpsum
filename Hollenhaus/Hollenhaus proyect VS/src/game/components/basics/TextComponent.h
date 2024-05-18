@@ -67,7 +67,8 @@ public:
 
 	// GETTERS
 	std::string getText() { return txt_; }
-	SDL_Color getColor() { return color_; }
+	Texture* getTexture() const { return text_; }
+	SDL_Color getColor() const { return color_; }
 	void setOffset(int x, int y) { offset = Vector2D(x, y); }
 	Vector2D getOffset() const { return offset; }
 	void setAlpha(int v) { alpha = v; }

@@ -60,6 +60,7 @@
         {"id": "npc_dibujo_brilli",       "file": "resources/images/npc_dibujo_brilli.png"  },
         {"id": "multiplayer_lobby_bg",       "file": "resources/images/multiplayer_lobby_bg.png"  },
         {"id": "multiplayer_pregame_bg",       "file": "resources/images/multiplayer_pregame_bg.png"  },
+        {"id": "mpfondo",       "file": "resources/images/multiplayer_pregame_bg.png"  },
         { "id": "feedback_flecha", "file": "resources/images/feedback_flecha.png" },
         { "id": "feedback_circulo", "file": "resources/images/feedback_circulo.png" },
         { "id": "card_ejemplo", "file": "resources/images/card_ejemplo.png"},
