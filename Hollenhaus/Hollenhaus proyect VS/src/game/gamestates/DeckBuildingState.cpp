@@ -215,10 +215,10 @@ void DeckBuildingState::onEnter()
 	// lo guarda
 	pizarra_ = pizarra->getComponent<PizarraManager>();
 
-
 	objs.push_back(Confirm);
 	objs.push_back(botPalante);
 	objs.push_back(botPatras);
+	objs.push_back(exit);
 
 #pragma endregion
 
