@@ -67,6 +67,7 @@
     <ClCompile Include="src\game\components\DropZone.cpp" />
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
     <ClCompile Include="src\game\components\GetIPv4.cpp" />
+    <ClCompile Include="src\game\components\Hover.cpp" />
     <ClCompile Include="src\game\components\ImageWithFrames.cpp" />
     <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp" />
     <ClCompile Include="src\game\components\managers\TutorialBaseManager.cpp" />
@@ -255,6 +256,7 @@
     <ClInclude Include="src\game\components\DropZone.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
     <ClInclude Include="src\game\components\GetIPv4.h" />
+    <ClInclude Include="src\game\components\Hover.h" />
     <ClInclude Include="src\game\components\ImageWithFrames.h" />
     <ClInclude Include="src\game\components\LobbyStatusIndicator.h" />
     <ClInclude Include="src\game\components\managers\TutorialBaseManager.h" />
