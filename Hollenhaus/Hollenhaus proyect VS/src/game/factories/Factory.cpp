@@ -149,7 +149,7 @@ ecs::entity_t Factory::createNPC(int i, ecs::entity_t parent, int convo)
 }
 
 // Mirar comentario de createDialogue(), la funci�n del return
-ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
+ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vector2D pos,
 	int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
 	Text::TextAlignment textAlignment)
 {
@@ -158,7 +158,7 @@ ecs::entity_t Factory::createDialogue(std::string id, int convo, int node, Vecto
 	}
 
 	dialogueFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
-	return dialogueFactory->createDialogue(id, convo, node, pos, size, speed, cooldown, parent, layer, auto_);
+	return dialogueFactory->createDialogue(id, convo, node, pos, speed, cooldown, parent, layer, auto_);
 
 }
 
