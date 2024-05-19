@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "ComponentUpdate.h"
+#include "HandComponent.h"
 
 constexpr int HOVER_SPEED = 30,
               HOVER_TIMER = 500,
@@ -23,6 +24,7 @@ class Hover : public ComponentUpdate
 	SpriteRenderer* spr = nullptr;
 	Transform* tr = nullptr;
 	BoxCollider* bc = nullptr;
+	HandComponent* hc = nullptr;
 
 	/// tweeny
 	tweeny::tween<float> hoverTweenX;
@@ -43,6 +45,8 @@ class Hover : public ComponentUpdate
 	
 	void onHoverEnter();
 	void onHoverExit();
+
+	void updateEveryComponent();
 public:
 	Hover() = default;
 
@@ -56,5 +60,6 @@ public:
 	void initComponent() override;
 	void update() override;
 	void setOnHand(bool value) { isOnHand = value; }
-
+	void setHandComponent(HandComponent* h) { hc = h; }
+	void setIniPos(Vector2D v) { iniPos = v; }
 };
