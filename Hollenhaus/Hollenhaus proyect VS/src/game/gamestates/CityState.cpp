@@ -11,6 +11,7 @@
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
 #include "pauseMenuState.h"
+#include "game/CaseManager.h"
 #include "game/components/Clickable.h"
 #include "game/components/ImageWithFrames.h"
 
@@ -76,6 +77,7 @@ void CityState::onEnter()
 	factory->SetFactories(
 		static_cast<NPCFactory*>(new NPCFactory_V0()));
 
+	CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
 
 	/// ---- FONDO CIUDAD ----
 	auto scaleFondo = Vector2D(0.495f, 0.495f);
@@ -161,7 +163,9 @@ void CityState::onEnter()
 	///------NPCs:
 	//----Para entrar en la oficina.
 	//factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
-	ecs::entity_t npc1 = factory->createNPC(0, fondo);		// oficina
+	// Oficina
+	ecs::entity_t npc1 = factory->createNPC(0, fondo);
+
 
 	if (GameStateMachine::instance()->TUTORIAL_SHOP_COMPLETE()) {
 		ecs::entity_t npc2 = factory->createNPC(1, fondo);		// tienda
@@ -172,20 +176,31 @@ void CityState::onEnter()
 		objs.push_back(npc2);
 	}
 
+		// NPC prueba
+	factory->createNPC(9, fondo);
 
-
-	ecs::entity_t npc4 = factory->createNPC(3, fondo);			// txt
-
-	// BOARD
+	// Tutorial
+	factory->createNPC(4, fondo);
 	if (!GameStateMachine::instance()->TUTORIAL_BOARD_COMPLETE()) {
 		ecs::entity_t npc5 = factory->createNPC(4, fondo);		// tuto board
 		objs.push_back(npc5);
 	}
+	// CASOS
 	else {
-		ecs::entity_t npc3 = factory->createNPC(2, fondo);		// board
-		objs.push_back(npc3);
+		if(caseMngr->accepted()) {
+			for(int i = 0; i < caseMngr->npc_n(); ++i)
+			{
+				auto npc = factory->createNPC(caseMngr->npcBegin() + i, fondo);
+				objs.push_back(npc);
+
+			}
+		}
 	}
-	///
+
+
+
+	// Npcs de caso
+	
 
 	// --- Boton para volver al menu principal ---
 	ecs::entity_t exit = Instantiate();

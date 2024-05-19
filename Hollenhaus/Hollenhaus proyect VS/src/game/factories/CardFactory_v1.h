@@ -18,7 +18,7 @@ public:
 	
 	ecs::entity_t createHand() override;
 	ecs::entity_t createDeck() override;
-	ecs::entity_t createDeckJ2() override;
+	ecs::entity_t createDeckJ2(std::string j2) override;
 	ecs::entity_t createDeckJ2Multiplayer() override;
 
 private:

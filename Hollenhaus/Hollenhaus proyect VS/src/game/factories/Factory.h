@@ -107,7 +107,7 @@ public:
 
 	ecs::entity_t createHand();
 	ecs::entity_t createDeck();
-	ecs::entity_t createDeckJ2();
+	ecs::entity_t createDeckJ2(std::string j2);
 	ecs::entity_t createDeckJ2Multiplayer();
 	ecs::entity_t createBoard();
 

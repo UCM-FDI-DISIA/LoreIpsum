@@ -31,9 +31,10 @@ public:
 private:
 	Factory* factory;
 
-	//Cambiar a combate (Tarotista) -> Teléfono
+	//Cambiar a combate (Tarotista) -> Telï¿½fono
 	//Gestionar mazo
 	//Volver a CIU
+	int offset_;
 
 	bool isTutorial;
 

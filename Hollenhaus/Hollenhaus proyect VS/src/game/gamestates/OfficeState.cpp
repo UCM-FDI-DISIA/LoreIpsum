@@ -14,18 +14,17 @@
 #include "../TutorialManager.h"
 #include "../components/managers/TutorialOfficeManager.h"
 
-
-
-
-
-
-OfficeState::OfficeState()
+OfficeState::OfficeState() :
+	factory(nullptr),
+	offset_(5)
 {
 	TuVieja("Loading OfficeState");
 	isTutorial = false;
 }
 
-OfficeState::OfficeState(bool t)
+OfficeState::OfficeState(bool t) :
+	factory(nullptr),
+	offset_(5)
 {
 	isTutorial = t;
 
@@ -56,17 +55,13 @@ void OfficeState::onEnter()
 	CaseManager* caseManager = GameStateMachine::instance()->caseMngr();
 	
 	factory = new Factory();
-	factory->SetFactories(
-		static_cast<NPCFactory*>(new NPCFactory_V0())
-	);
-
+	factory->SetFactories(static_cast<NPCFactory*>(new NPCFactory_V0()));
 
 	//-----Imagen de fondo:
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("oficinafondo");
 	fondo->getComponent<Transform>()->setGlobalScale(0.5f, 0.55f);
-	//fondo->getComponent<Transform>()->getGlobalScale().set(0.85f, 0.85f);
 	fondo->setLayer(0);
 
 	//------Boton para volver:
@@ -85,9 +80,7 @@ void OfficeState::onEnter()
 		exit->addComponent<NPC>(GameStates::TUTORIAL_CITY); // Lleva a la ciudad (1).
 	}
 	exit->setLayer(1);
-		exit->addComponent<Clickable>("boton_flecha", true);
-
-
+	exit->addComponent<Clickable>("boton_flecha", true);
 
 	//------Boton para deckBuilding:
 	ecs::entity_t db = Instantiate();
@@ -115,18 +108,15 @@ void OfficeState::onEnter()
 
 	//------Boton para telefono: (WIP de Poli: El telf en realidad es un NPC invisible,
 	//  que al clicarlo hace que aparezca el dialogo.)
-	
-	ecs::entity_t telf;
+	const int caso = getCurrentCase() + offset_;
+	ecs::entity_t npc;
+	if (caseManager->accepted())
+		npc = factory->createNPC(caso, fondo, 1);
+	else
+		npc = factory->createNPC(caso, fondo);
 
-	if (caseManager->accepted()) {
-		telf = factory->createNPC(6, fondo, 1);
-		caseManager->addNPC(telf);
-	}
-	else {
-		telf = factory->createNPC(6, fondo);
-		caseManager->addNPC(telf);
-	}
-		
+	caseManager->addNPC(npc);
+	objs.push_back(npc);
 
 	//Idea para los casos:
 	// - En dialoguesV1.json meter el texto de los casos que queremos que se diga. Como Caso0, Caso1, etc.
@@ -190,7 +180,6 @@ void OfficeState::setTutorial()
 		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
 		tutorial->getComponent<TutorialOfficeManager>()->setObjs(objs);
-
 	}
 }
 

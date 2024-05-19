@@ -22,7 +22,7 @@ public:
 
 	virtual ecs::entity_t createHand() = 0;
 	virtual ecs::entity_t createDeck() = 0;
-	virtual ecs::entity_t createDeckJ2() = 0;
+	virtual ecs::entity_t createDeckJ2(std::string j2) = 0;
 	virtual ecs::entity_t createDeckJ2Multiplayer() = 0;
 
 };

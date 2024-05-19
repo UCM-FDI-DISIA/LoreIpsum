@@ -8,6 +8,7 @@
 #include <functional>
 #include "../utils/Singleton.h"
 #include "../utils/tweeny-3.2.0.h"
+#include "gamestates/GameState.h"
 
 class GameState;
 class Data;
@@ -49,7 +50,7 @@ namespace GameStates
 		MULTIPLAYER_PREGAME,
 		MULTIPLAYER_GAME,
 		MULTIPLAYER_END_GAME,
-		KEYMENU,
+		ENDGAME,
 		TUTORIAL_DECKBUILDING,
 		TUTORIAL_SHOP,
 		TUTORIAL_CITY,
@@ -86,6 +87,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* deckBuildingState;
 	GameState* tutorialState;
 	GameState* tutorialBoardState;
+	GameState* endGameState;
 	GameState* tutorialDeckbuildingState;
 	GameState* tutorialShopState;
 	GameState* tutorialOfficeState;
@@ -235,6 +237,9 @@ public:
 			break;
 		case GameStates::CLUESMENU:
 			newState = checkCluesMenuState;
+			break;
+		case GameStates::ENDGAME:
+			newState = endGameState;
 			break;
 		case GameStates::TUTORIAL_DECKBUILDING: 
 			newState = tutorialDeckbuildingState;

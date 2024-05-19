@@ -66,36 +66,29 @@ public:
 
 	inline ecs::grpId_t groupId();
 
-	inline void setAlive(bool alive);
-
-	inline bool isAlive();
-
 	inline void setHandler(hdlrId_t hId);
 
-	void setLayer(int nextLayer);
+	/// LIFE
+	inline void setAlive(bool alive);
+	inline bool isAlive();
 
-	int getLayer() {
-		return layer;
-	};
+	/// SET LAYERS
+	// cambia la entidad a nextLayer y a sus hijos a nextLayer + n siendo n la generacion
+	void setEveryLayer(int nextLayer);
+	// cambia la layer de la entidad, independientemente de sus padres e hijos
+	void setLayer(int nextLayer)
+	{
+		changeLayer(nextLayer);
+	}
+	void changeLayer(int nextLayer);
 
-	int getLastLayer() {
-		int layer = getLayer();
-		if (getComponent<Transform>() != nullptr)
-		{
-			for (const auto child : getComponent<Transform>()->getChildren())
-			{
-				if (!child->getChildren().empty())
-				{ // si el hijo tiene hijos
-					return child->getEntity()->getLastLayer();
-				} // si el hijo no es padre
-				if (child->getEntity()->getLayer() > layer)
-				{
-					layer = child->getEntity()->getLayer();
-				}
-			}
-		}
+	/// GET LAYERS
+	int getLayer() const
+	{
 		return layer;
 	}
+	// devuelve la capa mas profunda de una entidad contando a todos sus hijos
+	int getLastLayer(); 
 
 private:
 

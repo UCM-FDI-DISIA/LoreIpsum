@@ -71,6 +71,8 @@ public:
 
 	virtual void setKey();
 
+	virtual void setJ2(std::string rival);
+
 	virtual void saveData();
 	virtual void loadData();
 
@@ -93,6 +95,7 @@ public:
 	virtual void setWinnerOnData(int w);
 	virtual void setLastPaulPos(Vector2D paulPos);
 	virtual void setLastPaulDir(bool);
+	virtual void nextCase();
 
 	//MULTIPLAYER
 

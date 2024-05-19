@@ -1,5 +1,4 @@
 #include <../pchs/pch.h>
-
 #include "MatchOverState.h"
 #include "ShopState.h"
 #include "../components/managers/Manager.h"
@@ -7,7 +6,9 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../Data.h"
 #include "../components/NPC.h"
-#include "game/components/Clickable.h"
+#include "./game/components/Button.h"
+#include "./game/components/Clickable.h"
+//#include "../../sdlutils/SDLUtils.h"
 
 MatchOverState::MatchOverState()
 {
@@ -41,7 +42,17 @@ void MatchOverState::onEnter()
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
+	if (j2_ == "8") {
+		exit->addComponent<Button>();
+		exit->getComponent<Button>()->connectToButton([this]
+		{
+			GameStateMachine::instance()->setState(GameStates::ENDGAME);
+		});
+	}
+	else
+	{
+		exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
+	}
 	exit->setLayer(1);
 	exit->addComponent<Clickable>("boton_flecha", true);
 
@@ -60,20 +71,20 @@ void MatchOverState::setWindow(int lastWinner) {
 	switch (lastWinner)
 	{
 	case 1: // Empate:
-		_background = "rice";
-		_text = "TIE :(";
+		_background = "board6";
+		_text = "EMPATE :^O!";
 		break;
 	case 2: // Jugador1:
-		_background = "fantasma";
+		_background = "board6";
 		_text = "JUGADOR 1!";
 		break;
 	case 3: // Jugador2:
-		_background = "logo_hollen";
+		_background = "board6";
 		_text = "JUGADOR 2!";
 		break;
 	default:
-		_background = "board5";
-		_text = "NADIE?";
+		_background = "board6";
+		_text = "NADIE!";
 		break;
 	}
 
@@ -86,10 +97,16 @@ void MatchOverState::setWindow(int lastWinner) {
 	background->setLayer(0);
 
 	// ---- Texto ----
-	ecs::entity_t matchOverText = Instantiate(Vector2D(sdlutils().width() / 2, sdlutils().height() / 2));
-	matchOverText->addComponent<TextComponent>("¡GANADOR: " + _text, Fonts::GROTESK_40, SDL_Color({ 255, 255, 255, 255 }), 500, Text::CenterCenter, Text::Center);
+	ecs::entity_t matchOverText = Instantiate(Vector2D());
+	matchOverText->getComponent<Transform>()->setGlobalPos(400, 300);
+	matchOverText->addComponent<TextComponent>("¡GANADOR: " + _text, Fonts::GROTESK_40, Colors::PEARL_HOLLENHAUS, 500, Text::CenterCenter, Text::Center);
 	matchOverText->setLayer(1);
 
 	// ---- Resetea el ganador a nulo al salir del estado ----
 	data->setWinner(0);
+}
+
+void MatchOverState::setJ2(std::string rival)
+{
+	j2_ = rival;
 }

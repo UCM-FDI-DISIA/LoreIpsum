@@ -19,7 +19,7 @@ public:
 		TALKING
 	};
 
-	NPC(int scene, int t = BUTTON, std::string name_ = "", int convo = 0, bool = true, bool = true);
+	NPC(int scene, int t = BUTTON, std::string name_ = "", int id = 0, int convo = 0, bool = true, bool = true);
 	~NPC() override;
 
 	void initComponent() override;
@@ -31,6 +31,7 @@ public:
 	void talkTo();
 	void stoppedTalking();
 	void nextConvo();
+	int getID() { return _id; }
 
 private:
 	int _id;
