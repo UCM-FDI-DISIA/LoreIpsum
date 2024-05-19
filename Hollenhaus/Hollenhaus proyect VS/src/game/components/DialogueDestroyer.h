@@ -21,6 +21,6 @@ public:
 
 private:
 	
-	ecs::entity_t npc;
-	ecs::entity_t object;
+	ecs::entity_t npc = nullptr;
+	ecs::entity_t object = nullptr;
 };
