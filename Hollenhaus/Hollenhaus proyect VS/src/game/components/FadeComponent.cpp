@@ -56,7 +56,8 @@ void FadeComponent::setFadeInFalse()
 
 void FadeComponent::setFadeOutTrue()
 {
-	fadeOut = true;
+	fadeOut = false;
+	fadeIn = true;
 }
 
 

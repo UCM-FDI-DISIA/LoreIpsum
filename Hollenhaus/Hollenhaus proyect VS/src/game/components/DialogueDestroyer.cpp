@@ -28,16 +28,22 @@ void DialogueDestroyer::update()
 
 void DialogueDestroyer::destroyDialogue()
 {
-	if (object->getComponent<FadeComponent>() == nullptr) TuVieja("no hay fade component");
+	/*if (object->getComponent<FadeComponent>() == nullptr) TuVieja("no hay fade component");
 
 	object->getComponent<FadeComponent>()->setFadeInFalse();
 	auto e = object->getComponent<Transform>()->getParent()->getParent()->getChildren();
 	auto it = e.begin();
-	(*it)->getEntity()->getComponent<FadeComponent>()->setFadeInFalse();
+	(*it)->getEntity()->getComponent<FadeComponent>()->setFadeInFalse();*/
+
+	continueDestroy();
 }
 
 void DialogueDestroyer::continueDestroy()
 {
+	/*auto e = object->getComponent<Transform>()->getParent()->getParent()->getChildren();
+	auto it = e.begin();
+	(*it)->getEntity()->getComponent<FadeComponent>()->setFadeOutTrue();*/
+
 	if (npc->hasComponent<NPC>()) {
 		npc->getComponent<NPC>()->stoppedTalking();
 	}
