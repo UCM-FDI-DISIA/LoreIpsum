@@ -154,12 +154,17 @@ void MatchManager::updateVisuals()
 		actionPointsVisualJ2->getComponent<TextComponent>()->setTxt(
 			"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
 
+	/// ACTUALIZACION DE IMAGENES
+	turnPointsOff();
+	turnPointsOn();
+
+
 	// Actualiza el indicador del propietario del turno actual
 	//Habría que Hacer uan diferenciación también cuando recién cambia de turno para la animación
-	std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
 	SDL_Color color = actualState == Turns::J1 ? SDL_Color({102, 255, 102, 255}) : SDL_Color({255, 102, 255, 255});
 	if (actualTurnVisual != nullptr)
 	{
+		std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
 		actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
 		actualTurnVisual->getComponent<TextComponent>()->setColor(color);
 	}
@@ -302,4 +307,27 @@ void MatchManager::CheckNextTurnAutomatic()
 		// Si no quedan puntos de accion y no quedan jugadas disponibles, pasamos turno automáticamente
 		setActualState(netGame == nullptr ? Turns::IA : Turns::J2_MULTIPLAYER);
 	}
+}
+
+void MatchManager::turnPointsOff()
+{
+	for (auto point : actionPointsJ1)
+	{
+		if (point->getComponent<SpriteRenderer>() != nullptr)
+			point->getComponent<SpriteRenderer>()->setOpacity(0);
+	}
+}
+
+void MatchManager::turnPointsOn()
+{
+	for (int i = actualActionPointsJ1; i > 0; i--)
+	{
+		if (actionPointsJ1[i - 1]->getComponent<SpriteRenderer>() != nullptr)
+			actionPointsJ1[i - 1]->getComponent<SpriteRenderer>()->setOpacity(255);
+	}
+}
+
+void MatchManager::turnEveryPointOn()
+{
+
 }

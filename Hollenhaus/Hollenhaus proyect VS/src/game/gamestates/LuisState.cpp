@@ -25,6 +25,7 @@
 #include "../GameStateMachine.h"
 #include "../components/managers/PlayerCardsManager.h"
 #include "game/components/Card.h"
+#include "game/components/ImageWithFrames.h"
 #include "game/components/KeyComponent.h"
 
 LuisState::LuisState() :
@@ -38,7 +39,6 @@ LuisState::LuisState() :
 
 LuisState::~LuisState()
 {
-	
 }
 
 
@@ -54,7 +54,8 @@ void LuisState::update()
 	if (moveKey_)
 	{
 		Vector2D newPos = keyTr_->getGlobalPos();
-		if(newPos.getX() >= 100) {
+		if (newPos.getX() >= 100)
+		{
 			newPos = newPos - Vector2D(10, 0);
 			keyTr_->setGlobalPos(newPos);
 		}
@@ -62,7 +63,7 @@ void LuisState::update()
 	else
 	{
 		Vector2D newPos = keyTr_->getGlobalPos();
-		if(newPos.getX() <= 800)
+		if (newPos.getX() <= 800)
 		{
 			newPos = newPos + Vector2D(10, 0);
 			keyTr_->setGlobalPos(newPos);
@@ -99,7 +100,8 @@ void LuisState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, Turns::J1, boardManagerComponent, j2_);
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(
+		4, 4, Turns::J1, boardManagerComponent, j2_);
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
@@ -129,15 +131,16 @@ void LuisState::onEnter()
 	keyTr_ = key_->getComponent<Transform>();
 
 
-
-
-
-
 	/// UI ///
 	factory->createVisual_BackgroundFullImage();
 	/// PUNTOS DE ACCION
+	// to be deprecated:
 	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 280);
-	//ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
+	// deprecated:
+	// ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
+
+	auto j1Puntos = createPointsJ1();
+	auto j2Puntos = createPointsJ2();
 
 	/// BOTON END TURN
 	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 250);
@@ -156,16 +159,10 @@ void LuisState::onEnter()
 
 
 
-
-
-
-
-
-
-
 	// Enlazado de la UI con los scripts que la controlan
 	//matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
 	matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
+	matchManagerComponent->setActionPointsJ1(j1Puntos);
 	//matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
 	matchManagerComponent->updateVisuals();
 
@@ -178,19 +175,18 @@ void LuisState::onEnter()
 	matchManagerComponent->SetHandComponent(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
 
 
-
 	// incicia la cancion en bucle
 	//sdl.musics().at("tryTheme").play();
 	sdlutils().soundEffects().at("battletheme").play(-1);
 	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
 
 
-	#pragma region Seccion IA
+#pragma region Seccion IA
 
 	//crear la entidad y añadirle el componente
 	ecs::entity_t IA_controler = Instantiate();
 	IA_manager* ia_managerComponent = IA_controler->addComponent<IA_manager>();
-	
+
 	//le decimos al endTurn que existe la IA
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
 
@@ -210,8 +206,7 @@ void LuisState::onEnter()
 	matchManagerComponent->setIA_Manager(ia_managerComponent);
 
 
-	#pragma endregion
-
+#pragma endregion
 }
 
 void LuisState::onExit()
@@ -224,8 +219,6 @@ void LuisState::onExit()
 	delete factory;
 
 	GameStateMachine::instance()->getMngr()->Free();
-
-
 }
 
 void LuisState::setKey()
@@ -246,4 +239,66 @@ void LuisState::setKey()
 void LuisState::setJ2(std::string rival)
 {
 	j2_ = rival;
+}
+
+std::array<ecs::entity_t, 4> LuisState::createPointsJ1()
+{
+	std::array<ecs::entity_t, 4> puntosJ1 =
+	{
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D())
+	};
+
+	for (auto punto : puntosJ1)
+	{
+		punto->getComponent<Transform>()->setGlobalScale(0.75f, 0.75f);
+		punto->addComponent<SpriteRenderer>("llamitas");
+		punto->addComponent<ImageWithFrames>(1, 4, 200);
+		//->setCurrentCol(sdlutils().rand().nextInt(0,4);
+	}
+
+	puntosJ1[0]->getComponent<Transform>()->setGlobalPos(-48, 388);
+	puntosJ1[1]->getComponent<Transform>()->setGlobalPos(5, 320);
+	puntosJ1[2]->getComponent<Transform>()->setGlobalPos(52, 385);
+	puntosJ1[3]->getComponent<Transform>()->setGlobalPos(13, 450);
+
+	puntosJ1[0]->getComponent<ImageWithFrames>()->setCurrentCol(0);
+	puntosJ1[1]->getComponent<ImageWithFrames>()->setCurrentCol(1);
+	puntosJ1[2]->getComponent<ImageWithFrames>()->setCurrentCol(2);
+	puntosJ1[3]->getComponent<ImageWithFrames>()->setCurrentCol(3);
+
+	return puntosJ1;
+}
+
+std::array<ecs::entity_t, 4> LuisState::createPointsJ2()
+{
+	std::array<ecs::entity_t, 4> puntosJ2 =
+	{
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D())
+	};
+
+	for (auto punto : puntosJ2)
+	{
+		punto->getComponent<Transform>()->setGlobalScale(0.75f, 0.75f);
+		punto->addComponent<SpriteRenderer>("llamitas");
+		punto->addComponent<ImageWithFrames>(1, 4, 200);
+		//->setCurrentCol(sdlutils().rand().nextInt(0,4);
+	}
+
+	puntosJ2[0]->getComponent<Transform>()->setGlobalPos(-15, -48);
+	puntosJ2[1]->getComponent<Transform>()->setGlobalPos(70, -48);
+	puntosJ2[2]->getComponent<Transform>()->setGlobalPos(-23, 25);
+	puntosJ2[3]->getComponent<Transform>()->setGlobalPos(50, 25);
+
+	puntosJ2[0]->getComponent<ImageWithFrames>()->setCurrentCol(3);
+	puntosJ2[1]->getComponent<ImageWithFrames>()->setCurrentCol(1);
+	puntosJ2[2]->getComponent<ImageWithFrames>()->setCurrentCol(0);
+	puntosJ2[3]->getComponent<ImageWithFrames>()->setCurrentCol(2);
+
+	return puntosJ2;
 }

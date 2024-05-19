@@ -273,6 +273,10 @@
       "file": "resources/images/tfno.png"
     },
     {
+      "id": "llamitas",
+      "file": "resources/images/llamitas_animacion.png"
+    },
+    {
       "id": "pizarra_brilli",
       "file": "resources/images/pizarra_brilli.png"
     },

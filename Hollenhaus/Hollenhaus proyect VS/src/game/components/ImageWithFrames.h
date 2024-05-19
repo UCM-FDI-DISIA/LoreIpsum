@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <SDL_stdinc.h>
 #include "../../sdlutils/Texture.h"
+constexpr int FRAME_SPEED = 300	;
 
 class ImageWithFrames : public ComponentUpdate
 {
@@ -19,13 +20,20 @@ class ImageWithFrames : public ComponentUpdate
 
 	Uint32 frameTimer; // contador del tiempo
 
+	int frameSpeed;
+
 public:
 
 	ImageWithFrames() = default;
-	ImageWithFrames(int, int);
-	ImageWithFrames(SpriteRenderer*, int, int);
+	ImageWithFrames(int, int, int = FRAME_SPEED);
+	ImageWithFrames(SpriteRenderer*, int, int, int = FRAME_SPEED);
 	~ImageWithFrames() override;
 	void initComponent() override;
 	void update() override;
 	void syncRenderer();
+
+
+	void setFrameSpeed(int speed) { frameSpeed = speed; }
+	void setCurrentCol(int col) { currentCol_ = col;}
+	void setCurrentRow(int row) { currentRow_ = row;}
 };
