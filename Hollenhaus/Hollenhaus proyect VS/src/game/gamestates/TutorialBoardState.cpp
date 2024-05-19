@@ -255,7 +255,7 @@ std::array<ecs::entity_t, 4> TutorialBoardState::createPointsJ1()
 	{
 		punto->getComponent<Transform>()->setGlobalScale(0.75f, 0.75f);
 		punto->addComponent<SpriteRenderer>("llamitas");
-		punto->addComponent<ImageWithFrames>(1, 4, 200);
+		punto->addComponent<ImageWithFrames>(1, 4, -1, 500);
 		//->setCurrentCol(sdlutils().rand().nextInt(0,4);
 	}
 
@@ -286,7 +286,7 @@ std::array<ecs::entity_t, 4> TutorialBoardState::createPointsJ2()
 	{
 		punto->getComponent<Transform>()->setGlobalScale(0.75f, 0.75f);
 		punto->addComponent<SpriteRenderer>("llamitas");
-		punto->addComponent<ImageWithFrames>(1, 4, 200);
+		punto->addComponent<ImageWithFrames>(1, 4, -1, 500);
 		//->setCurrentCol(sdlutils().rand().nextInt(0,4);
 	}
 
