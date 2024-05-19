@@ -102,7 +102,8 @@ private:
     std::array<ecs::entity_t, 4> actionPointsJ2; // en imagenes
     std::array<bool, 4> fadeInIndexes = { false, false, false, false };
     std::array<bool, 4> fadeOutIndexes = { false, false, false, false };
-
+    void resetFadeIndexes();
+    bool fadeIn = false;
 
     IA_manager* ia_manager;
 

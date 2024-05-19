@@ -44,7 +44,6 @@ void MatchManager::initComponent()
 		.to(255)
 		.during(15)
 		.via(tweeny::easing::linear);
-
 }
 
 void MatchManager::update()
@@ -60,14 +59,26 @@ void MatchManager::update()
 	}
 
 	fadeTween.step(1);
+	if (fadeTween.progress() >= 1.0) fadeIn = false;
 	for (int i = 3; i >= 0; i--)
 	{
-		if (fadeOutIndexes[i])
+		if (fadeOutIndexes[i]
+			|| fadeInIndexes[i]
+		)
 		{
 			auto spr = actionPointsJ1[i]->getComponent<SpriteRenderer>();
-			if (spr != nullptr
-				&& spr->getOpacity() > 0)
-				spr->setOpacity(fadeTween.peek());
+			if (fadeIn)
+			{
+				if (spr != nullptr
+					&& spr->getOpacity() < 255)
+					spr->setOpacity(fadeTween.peek());
+			}
+			else
+			{
+				if (spr != nullptr
+					&& spr->getOpacity() > 0)
+					spr->setOpacity(fadeTween.peek());
+			}
 		}
 	}
 }
@@ -97,8 +108,8 @@ void MatchManager::setActualState(Turns::State newState)
 #endif
 		setWinnerOnData();
 		if (isBoss
-			&& GameStateMachine::instance()->getCurrentState()->getData()->getWinner() == 2) {
-
+			&& GameStateMachine::instance()->getCurrentState()->getData()->getWinner() == 2)
+		{
 			GameStateMachine::instance()->caseMngr()->resetCase();
 		}
 		InstantiatePanelFinPartida(GameStateMachine::instance()->getCurrentState()->getData()->getWinner());
@@ -176,16 +187,31 @@ void MatchManager::updateVisuals()
 
 	/// ACTUALIZACION DE IMAGENES
 	lastSpentPoints = lastPointsJ1 - actualActionPointsJ1;
+	if (lastSpentPoints <= 0)
+	{ // ha habido reseteo
+		auto pointsWon = actualActionPointsJ1 - lastPointsJ1;
+		fadeIn = true;
+		lastSpentPoints = 0;
+		/*for (int i = actualActionPointsJ1; i > actualActionPointsJ1 - pointsWon; i--)
+		{
+			fadeInIndexes[i - 1] = true;
+		}*/
 
-	for (int i = lastPointsJ1; i > actualActionPointsJ1; i--)
+		for (int i = 0; i < 4; i++)
+			fadeInIndexes[i] = true;
+		startPointsOn();
+	}
+	else
 	{
-		fadeOutIndexes[i - 1] = true;
+		// se han gastado
+		resetFadeIndexes();
+		fadeIn = false;
+		for (int i = lastPointsJ1; i > actualActionPointsJ1; i--)
+		{
+			fadeOutIndexes[i - 1] = true;
+		}
 		startPointsOff();
 	}
-
-	//turnPointsOff();
-	//turnPointsOn();
-
 	lastPointsJ1 = actualActionPointsJ1;
 
 	// Actualiza el indicador del propietario del turno actual
@@ -213,6 +239,15 @@ void MatchManager::endTurnIA()
 {
 	setActualState(Turns::J1);
 	// Animacion gira la estatua
+}
+
+void MatchManager::resetFadeIndexes()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		fadeInIndexes[i] = false;
+		fadeOutIndexes[i] = false;
+	}
 }
 
 void MatchManager::resetActualActionPoints()
@@ -290,7 +325,8 @@ void MatchManager::InstantiatePanelFinPartida(int winner)
 	continuarButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
 	continuarButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
 	continuarButton->addComponent<Button>();
-	continuarButton->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
+	continuarButton->addComponent<
+		ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 
 	if (netGame == nullptr)
 	{
