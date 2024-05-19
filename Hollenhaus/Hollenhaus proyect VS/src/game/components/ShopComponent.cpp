@@ -16,7 +16,7 @@
 #include "../factories/DecisionFactory_V0.h"
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
-shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(525, 80),Vector2D(660, 80) ,Vector2D(525, 200) ,Vector2D(660, 200) }),
+shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(490, 120),Vector2D(600,  120) ,Vector2D(490, 230) ,Vector2D(600, 230) }),
 shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
 //,money(800)
 {}
@@ -264,10 +264,10 @@ void ShopComponent::setTexts()
 	cardPrizeText0 = Instantiate(Vector2D(shopCardsPositions[0].getX() + 30, shopCardsPositions[0].getY() + 40));
 	if (!cardIsBought(shopCards[0]))
 	{
-		cardPrizeText0->addComponent<TextComponent>(std::to_string(shopCardsPrize[0]), Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText0->addComponent<TextComponent>(std::to_string(shopCardsPrize[0]) + " DM", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	else {
-		cardPrizeText0->addComponent<TextComponent>("vendida", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText0->addComponent<TextComponent>("vendida", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 100, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	cardPrizeText0->setLayer(10);
 	//----Carta 1----
