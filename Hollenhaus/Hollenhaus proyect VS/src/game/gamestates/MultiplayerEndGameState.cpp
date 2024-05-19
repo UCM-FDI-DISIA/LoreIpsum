@@ -6,6 +6,7 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/multiplayer/NetEndGame.h"
 #include "../Data.h"
+#include "game/components/ClickableText.h"
 
 
 MultiplayerEndGameState::MultiplayerEndGameState()
@@ -27,8 +28,8 @@ void MultiplayerEndGameState::onEnter()
 	auto netEndGame = netMn->addComponent<NetEndGame>();
 
 	//------Boton para volver:
-	auto playAgainButton = Instantiate(Vector2D(sdlutils().width()/2, 230));
-	auto playAgainText = playAgainButton->addComponent<TextComponent>("Jugar Otra Vez", Fonts::GROTESK_32, SDL_Color({ 255, 255,255 ,255 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	auto playAgainButton = Instantiate(Vector2D(sdlutils().width()/2, 260));
+	auto playAgainText = playAgainButton->addComponent<TextComponent>("JUGAR OTRA VEZ", Fonts::GROTESK_32, Colors::PEARL_HOLLENHAUS, 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	playAgainButton->addComponent<BoxCollider>();
 	playAgainButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	playAgainButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
@@ -42,10 +43,11 @@ void MultiplayerEndGameState::onEnter()
 			swapColor(playAgainText, netEndGame->getPlayAgainSelected());
 		});
 	playAgainButton->setLayer(1);
+				playAgainButton->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 
 	//------Boton para cambiar mazo:
-	auto changeMazeButton = Instantiate(Vector2D(sdlutils().width() / 2, 330));
-	auto changeMazeText = changeMazeButton->addComponent<TextComponent>("Cambiar Mazo", Fonts::GROTESK_32, SDL_Color({ 255, 255,255 ,255 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	auto changeMazeButton = Instantiate(Vector2D(sdlutils().width() / 2, 360));
+	auto changeMazeText = changeMazeButton->addComponent<TextComponent>("CAMBIAR MAZO", Fonts::GROTESK_32, Colors::PEARL_HOLLENHAUS, 350, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	changeMazeButton->addComponent<BoxCollider>();
 	changeMazeButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	changeMazeButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
@@ -61,11 +63,12 @@ void MultiplayerEndGameState::onEnter()
 		});
 
 	changeMazeButton->setLayer(1);
+			changeMazeButton->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 
 
 	//------Boton para salir
-	auto exitButton = Instantiate(Vector2D(sdlutils().width() / 2, 430));
-	exitButton->addComponent<TextComponent>("Salir", Fonts::GROTESK_32, SDL_Color({ 255, 255,255 ,255 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	auto exitButton = Instantiate(Vector2D(sdlutils().width() / 2, 490));
+	exitButton->addComponent<TextComponent>("SALIR", Fonts::GROTESK_32, Colors::PEARL_HOLLENHAUS, 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	exitButton->addComponent<BoxCollider>();
 	exitButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 40));
 	exitButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -20));
@@ -73,6 +76,7 @@ void MultiplayerEndGameState::onEnter()
 	//conectar la funcion del netEndGame
 	exitButton->getComponent<Button>()->connectToButton([this, netEndGame] {netEndGame->exit(); });
 	exitButton->setLayer(1);
+		exitButton->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 
 
 	setWindow(data->getWinner());
@@ -91,7 +95,7 @@ void MultiplayerEndGameState::setWindow(int lastWinner)
 	{
 	case 1: // Empate:
 		_background = "rice";
-		_text = "TIE :(";
+		_text = "EMPATE :^O!";
 		break;
 	case 2: // Jugador1:
 		_background = "fantasma";
@@ -103,7 +107,7 @@ void MultiplayerEndGameState::setWindow(int lastWinner)
 		break;
 	default:
 		_background = "board5";
-		_text = "NADIE?";
+		_text = "NADIE!";
 		break;
 	}
 
@@ -116,8 +120,8 @@ void MultiplayerEndGameState::setWindow(int lastWinner)
 	background->setLayer(0);
 
 	// ---- Texto ----
-	ecs::entity_t matchOverText = Instantiate(Vector2D(sdlutils().width() / 2, 100));
-	matchOverText->addComponent<TextComponent>("¡GANADOR: " + _text, Fonts::GROTESK_40, SDL_Color({ 255, 255, 255, 255 }), 500, Text::CenterCenter, Text::Center);
+	ecs::entity_t matchOverText = Instantiate(Vector2D(sdlutils().width() / 2, 140));
+	matchOverText->addComponent<TextComponent>("¡GANADOR: " + _text, Fonts::GROTESK_40, Colors::PEARL_HOLLENHAUS, 500, Text::CenterCenter, Text::Center);
 	matchOverText->setLayer(1);
 
 	// ---- Resetea el ganador a nulo al salir del estado ----
@@ -128,7 +132,7 @@ void MultiplayerEndGameState::setWindow(int lastWinner)
 void MultiplayerEndGameState::swapColor(TextComponent* tc, bool b)
 {
 	//color verde si seleccionado, blanco sino
-	tc->setColor(b ? SDL_Color({ 0, 255, 0, 255 }) :  SDL_Color({ 255, 255, 255, 255 }));
+	tc->setColor(b ? Colors::VERDE_BENEFICIO : Colors::PEARL_HOLLENHAUS);
 }
 
 

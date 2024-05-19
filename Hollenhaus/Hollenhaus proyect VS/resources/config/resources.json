@@ -60,6 +60,7 @@
         {"id": "npc_dibujo_brilli",       "file": "resources/images/npc_dibujo_brilli.png"  },
         {"id": "multiplayer_lobby_bg",       "file": "resources/images/multiplayer_lobby_bg.png"  },
         {"id": "multiplayer_pregame_bg",       "file": "resources/images/multiplayer_pregame_bg.png"  },
+        {"id": "mpfondo",       "file": "resources/images/multiplayer_pregame_bg.png"  },
         { "id": "feedback_flecha", "file": "resources/images/feedback_flecha.png" },
         { "id": "feedback_circulo", "file": "resources/images/feedback_circulo.png" },
         { "id": "card_ejemplo", "file": "resources/images/card_ejemplo.png"},
@@ -80,7 +81,8 @@
         {"id": "postit_guardar_mazo_brilli",       "file": "resources/images/postit_guardar_mazo_brilli.png"  },
         {"id": "deck_sombra",       "file": "resources/images/reverseCard_sombra.png"  },
         {"id": "card_sombra",       "file": "resources/images/card_shadow.png"  },
-        {"id": "panelFinPartida",       "file": "resources/images/PanelFinPartida.png"  }
+        {"id": "panelFinPartida", "file": "resources/images/PanelFinPartida.png" }, 
+        {"id": "tienda", "file": "resources/images/tienda_background.png"}
     ],
     "fonts": [
       {

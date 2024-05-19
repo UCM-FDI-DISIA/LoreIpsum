@@ -67,7 +67,6 @@ void StoryModeState::onEnter()
 	returnButton->addComponent<NPC>(GameStates::MAINMENU, NPC::Type::BUTTON, "", 0, true, true);
 	returnButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
-
 	newGameButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 320));
 	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	newGameButton->addComponent<BoxCollider>();

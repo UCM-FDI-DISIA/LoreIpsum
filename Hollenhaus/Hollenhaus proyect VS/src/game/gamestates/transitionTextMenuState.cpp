@@ -125,7 +125,7 @@ void TransitionTextMenuState::onEnter()
 	chascarrillo->setLayer(1);
 
 	continuar = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 100));
-	continuar->addComponent<TextComponent>("¿CONTINUAR", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	continuar->addComponent<TextComponent>("CONTINUAR", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	continuar->addComponent<BoxCollider>();
 	continuar->getComponent<BoxCollider>()->setSize(Vector2D(220, 40));
 	continuar->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));

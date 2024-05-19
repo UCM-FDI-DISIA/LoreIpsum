@@ -86,7 +86,7 @@ void OptionsMainMenuState::onEnter()
 	returnButton->addComponent<BoxCollider>();
 	returnButton->addComponent<SpriteRenderer>("boton_flecha");
 	returnButton->addComponent<Button>();
-	returnButton->getComponent<Button>()->connectToButton([this] { if((GetLastState() != GameStates::CITY) || (GetLastState() != GameStates::TUTORIAL_CITY)) { GameStateMachine::instance()->setState(GetLastState()); } else { GameStateMachine::instance()->setState(GameStates::PAUSEMENU); }});
+	returnButton->getComponent<Button>()->connectToButton([this] { if(GetLastState() == GameStates::MAINMENU) { GameStateMachine::instance()->setState(GameStates::MAINMENU); } else { GameStateMachine::instance()->setState(GameStates::PAUSEMENU); }});
 	returnButton->addComponent<Clickable>("boton_flecha", true);
 }
 
