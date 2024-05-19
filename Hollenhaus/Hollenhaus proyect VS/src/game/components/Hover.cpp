@@ -1,6 +1,8 @@
 ﻿#include "../pchs/pch.h"
 #include "Hover.h"
 
+#include "basics/TextComponent.h"
+
 void Hover::initComponent()
 {
 	tr = getEntity()->getComponent<Transform>();
@@ -30,7 +32,6 @@ void Hover::update()
 		{
 			if (hoverTimer + hoverActivationSpeed <= currTime)
 			{
-				TuVieja(">>>>>>>>>>>>>>ENTRA HOVER *aplausos*");
 				onHoverEnter();
 			}
 		}
@@ -40,15 +41,14 @@ void Hover::update()
 		hoverTimer = currTime; // se resetea el contador
 		if (intoHover)
 		{
-			TuVieja(">>>>>>>>>>>>>>SALE HOVER *tristezas*");
 			onHoverExit();
 		}
 	}
 
-	//spr->setOffset(
-	//	hoverTweenX.peek(),
-	//	hoverTweenY.peek()
-	//);
+	hoverTweenX.step(1);
+	hoverTweenY.step(1);
+
+	updateEveryComponent();
 }
 
 void Hover::onHoverEnter()
@@ -63,6 +63,32 @@ void Hover::onHoverExit()
 	intoHover = false;
 	outoHover = true;
 	/// ...
+}
+
+void Hover::updateEveryComponent()
+{
+	//std::cout << hoverTweenX.peek() << std::endl;
+	//std::cout << hoverTweenY.peek() << std::endl;
+
+	//spr->setOffset(
+	//	hoverTweenX.peek(),
+	//	hoverTweenY.peek()
+	//);
+
+	//getEntity()->getComponent<Transform>()->setGlobalScale(hoverScale, hoverScale);
+	//getEntity()->setEveryLayer(2);
+	// ajusta tambien los textos
+	//for (auto child : getEntity()->getComponent<Transform>()->getChildren())
+	//{
+	//	auto texto = child->getEntity()->getComponent<TextComponent>();
+	//	if (texto != nullptr)
+	//	{
+	//		child->getRelativePos().set(
+	//			child->getRelativePos().getX(),
+	//			child->getRelativePos().getY() - child->getRelativePos().getY() / 6.25
+	//		);
+	//	}
+	//}
 }
 
 
