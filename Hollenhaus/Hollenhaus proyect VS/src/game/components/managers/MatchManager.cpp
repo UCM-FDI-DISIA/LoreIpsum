@@ -187,7 +187,7 @@ void MatchManager::updateVisuals()
 
 	/// ACTUALIZACION DE IMAGENES
 	lastSpentPoints = lastPointsJ1 - actualActionPointsJ1;
-	if (lastSpentPoints <= 0)
+	if (lastSpentPoints < 0)
 	{ // ha habido reseteo
 		auto pointsWon = actualActionPointsJ1 - lastPointsJ1;
 		fadeIn = true;
@@ -201,7 +201,7 @@ void MatchManager::updateVisuals()
 			fadeInIndexes[i] = true;
 		startPointsOn();
 	}
-	else
+	else if (lastSpentPoints > 0)
 	{
 		// se han gastado
 		resetFadeIndexes();
