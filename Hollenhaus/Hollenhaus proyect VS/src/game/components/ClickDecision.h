@@ -29,7 +29,7 @@ public:
 
     void TakeDecision();
 
-    void setScene(int s); // PAIGRO AQUI
+    void setScene(int s);
 
     void purchaseCard();
     void cancelPurchase();

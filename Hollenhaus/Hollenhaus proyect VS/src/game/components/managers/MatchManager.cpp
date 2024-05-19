@@ -306,9 +306,11 @@ void MatchManager::setWinnerOnData()
 	}
 
 	// JUGADOR 1
-	if (board_->getPlayer1Points() > board_->getPlayer2Points())
+	if (board_->getPlayer1Points() > board_->getPlayer2Points()) // Gana el jugador.
 	{
 		GameStateMachine::instance()->getCurrentState()->setWinnerOnData(2);
+		GameStateMachine::instance()->getCurrentState()->setDefeatedNPC(std::stoi(j2_)); // Se supone que stoi convierte el string a int. Espero que si...
+		GameStateMachine::instance()->getCurrentState()->saveData(); // Guardar Data para que se escriba el NPC derrotado.
 	}
 
 	// JUGADOR 2

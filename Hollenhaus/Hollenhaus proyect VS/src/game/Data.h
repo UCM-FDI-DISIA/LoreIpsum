@@ -131,6 +131,7 @@ public:
 	// ------ FLUJO ------
 	//----NPCs:
 	const std::list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
+	int getLastDefeatedNPC(); // Devuelve el ultimo NPC derrotado.
 	//----Dinero:
 	const int GetMoney() { return currentMoney; }
 	//----Leyenda:

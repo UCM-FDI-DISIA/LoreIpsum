@@ -170,5 +170,5 @@ void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, 
 	}
 
 	decisionFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
-	decisionFactory->createPopUp(pos, size, parent, layer, scene, greenDecision, redDecision); // PAIGRO POPUP
+	decisionFactory->createPopUp(pos, size, parent, layer, scene, greenDecision, redDecision);
 }
