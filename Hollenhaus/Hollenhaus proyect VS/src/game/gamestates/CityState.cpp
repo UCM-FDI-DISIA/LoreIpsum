@@ -173,7 +173,7 @@ void CityState::onEnter()
 		objs.push_back(npc2);
 	}
 	else {
-		ecs::entity_t npc2 = factory->createNPC(7, fondo);		// tienda TUTO
+		ecs::entity_t npc2 = factory->createNPC(21, fondo);		// tienda TUTO
 		objs.push_back(npc2);
 	}
 

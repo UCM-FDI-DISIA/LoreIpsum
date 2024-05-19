@@ -49,8 +49,6 @@ void TutorialCityManager::setState()
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
 	ent_->getComponent<TutorialManager>()->activateColliders(objs);
 
-
-
 	switch (t)
 	{
 	case Tutorials::Ciudad::CITY_INIT:
