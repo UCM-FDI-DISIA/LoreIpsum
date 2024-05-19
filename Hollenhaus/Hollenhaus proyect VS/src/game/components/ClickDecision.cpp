@@ -89,7 +89,8 @@ void ClickDecision::TakeDecision()
 		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
 		break;
 	case 5:
-		parent_->getComponent<DialogueEventCollection>()->ChangeScene(GameStates::LUIS);
+		//parent_->getComponent<DialogueEventCollection>()->ChangeScene(GameStates::LUIS);
+		GameStateMachine::instance()->setState(GameStates::LUIS);
 		GameStateMachine::instance()->getCurrentState()->setJ2(std::to_string(myNpc_->getID()));
 		break;
 	default:
