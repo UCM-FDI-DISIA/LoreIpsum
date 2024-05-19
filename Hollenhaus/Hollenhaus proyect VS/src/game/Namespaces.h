@@ -29,6 +29,10 @@ namespace Colors
 	constexpr SDL_Color MIDNIGHT_HOLLENHAUS = {16, 23, 32, 255}; // texto color normal
 	constexpr SDL_Color MIDNIGHT_CLICK = {49, 50, 78, 255}; // click texto color
 	constexpr SDL_Color MIDNIGHT_HOVER = {73, 21, 31, 255}; // hover texto color
+
+	/// scores
+	constexpr SDL_Color MIDNIGHT_LIGHT = {42, 71, 109, 255};
+	constexpr SDL_Color MORADO_BERENJENA = {74, 43, 124, 255};
 }
 
 namespace Fonts

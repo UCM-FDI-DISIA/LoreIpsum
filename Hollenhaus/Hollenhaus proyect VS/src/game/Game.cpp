@@ -10,7 +10,7 @@
 
 Game::Game()
 {
-	SDLUtils::init("Hollenhaus", 800, 600,
+	SDLUtils::init("HOLLENHAUS", 800, 600,
 		"resources/config/resources.json", "resources/config/cards.json", "resources/config/dialoguesV1.json",
 		"resources/config/npcs.json", "resources/config/keytexts.json");
 

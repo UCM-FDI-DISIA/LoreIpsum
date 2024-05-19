@@ -144,7 +144,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2(std::string j2)
 
 	//instantie
 
-	//añadir las cartas al mazo
+	//aï¿½adir las cartas al mazo
 	for (int i = 0; i < cardsOnDeck; i++)
 	{
 
@@ -164,7 +164,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2(std::string j2)
 		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 	}
 
-	//las añadimos otra vez para asegurar que el enemigo tenga cartas de sobra
+	//las aï¿½adimos otra vez para asegurar que el enemigo tenga cartas de sobra
 	for (int i = 0; i < cardsOnDeck; i++)
 	{
 		auto card = sdlutils().npcs().at(j2).npcDeck()[i];

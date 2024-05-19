@@ -68,10 +68,6 @@ void DeckBuildingState::onEnter()
 {
 	std::cout << "\nENTER DECKBUILDING.\n";
 
-	// llamada al input
-	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPauseDB(); });
-	paused = false;
-
 	// carga el data
 	loadData();
 
@@ -274,10 +270,6 @@ void DeckBuildingState::onEnter()
 // ---- EXIT ESTADO ----
 void DeckBuildingState::onExit()
 {
-	// se desuscribe al evento
-	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPauseDB(); });
-	paused = false;
-
 	// al salir del estado guardas la info
 	saveData();
 
@@ -290,34 +282,6 @@ void DeckBuildingState::onExit()
 	std::cout << "\nEXIT DECKBUILDING.\n";
 
 	delete factory;
-}
-
-void DeckBuildingState::onPauseDB()
-{
-	if (!paused)
-	{
-		paused = true;
-
-		rice = Instantiate();
-		rice->addComponent<Transform>();
-		rice->addComponent<SpriteRenderer>("rice");
-		rice->addComponent<BoxCollider>();
-		Vector2D posRice(300, 300);
-		rice->getComponent<Transform>()->setGlobalPos(posRice);
-		rice->getComponent<Transform>()->setGlobalScale(0.5f, 0.4f);
-		rice->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-		rice->setLayer(4);
-	}
-	else if (paused && rice != nullptr)
-	{
-		paused = false;
-		rice->setAlive(false);
-	}
-
-	//SetLastState(9);
-	//pizarra_->saveMaze();
-	//drawer_->saveDrawer();
-	//GameStateMachine::instance()->setState(17);
 }
 
 #pragma region DECKBUILDING
