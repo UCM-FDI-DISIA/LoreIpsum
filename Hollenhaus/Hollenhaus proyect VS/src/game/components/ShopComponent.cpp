@@ -20,6 +20,10 @@ constexpr int CARD_POS_Y = 120,
 			  CARD_OFFSET_Y = 110,
 			  CARD_OFFSET_X = 100;
 
+//constexpr std::vector<int> CASE_1_CARDS = {};
+//constexpr std::vector<int> CASE_2_CARDS = {};
+//constexpr std::vector<int> CASE_3_CARDS = {};
+
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
 shopCardsPositions(
 	new Vector2D[CARDS_IN_SHOP]
