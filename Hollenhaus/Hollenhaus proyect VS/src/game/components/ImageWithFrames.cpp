@@ -64,7 +64,7 @@ void ImageWithFrames::update()
 	syncRenderer();
 
 	// Si ha terminado todas los loops que debe hacer ejecuta el callback
-	if (loops < 0 && loops != -1 && callbacksExecuted) {
+	if (loops <= 0 && loops != -1 && !callbacksExecuted) {
 		useCallback();
 		callbacksExecuted = true;
 	}
