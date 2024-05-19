@@ -63,7 +63,7 @@ void PauseMenuState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(GetLastState()); // Lleva a la oficina (2).
 	exit->setLayer(5);
-		exit->addComponent<Clickable>("boton_flecha", true);
+	exit->addComponent<Clickable>("boton_flecha", true);
 
 	auto font = "space_grotesk_bold_40";
 
