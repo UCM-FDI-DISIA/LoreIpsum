@@ -185,8 +185,7 @@ void LuisState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startMusic(Musics::BATTLE_P_M);
-	music->startMusic(Musics::BATTLE_T_M);
+	music->startDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
 
 
 #pragma region Seccion IA
@@ -222,8 +221,7 @@ void LuisState::onExit()
 	TuVieja("\nExit LuisState");
 
 	auto music = SoundManager::instance();
-	music->stopMusic(Musics::BATTLE_P_M);
-	music->stopMusic(Musics::BATTLE_T_M);
+	music->stopDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
 
 	saveData();
 

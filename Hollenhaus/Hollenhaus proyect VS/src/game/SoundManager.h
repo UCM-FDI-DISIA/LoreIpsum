@@ -43,6 +43,7 @@ public:
 
 	void startDynamicMusic(Musics::MUSIC a, Musics::MUSIC b);
 	void stopDynamicMusic(Musics::MUSIC a, Musics::MUSIC b);
+	void changeDynamicMusic(Musics::MUSIC a, Musics::MUSIC b);
 
 	// ----------
 	void startMusic(Musics::MUSIC M);

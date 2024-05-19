@@ -131,7 +131,6 @@ void MatchManager::setActualState(Turns::State newState)
 #endif
 		resetActualActionPoints();
 
-
 	}
 		break;
 	case Turns::J2:
@@ -171,6 +170,10 @@ void MatchManager::setActualState(Turns::State newState)
 	default:
 		break;
 	}
+
+
+	changeMusicTurn(actualState);
+
 
 	updateVisuals();
 }
@@ -457,8 +460,7 @@ void MatchManager::changeMusicTurn(Turns::State i)
 		break;
 	}
 
-	music->ChannelVolume(a, music->getVolume());
-	music->ChannelVolume(b, 0);
+	music->changeDynamicMusic(a,b);
 
 
 }

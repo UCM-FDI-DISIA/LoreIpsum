@@ -58,6 +58,15 @@ void SoundManager::stopDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
 	stopMusic(b);
 }
 
+void SoundManager::changeDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
+{
+	auto n = music_names[a];
+	auto m = music_names[b];
+
+	sdlutils().soundEffects().at(n).setChannelVolume(master_volume, a);
+	sdlutils().soundEffects().at(m).setChannelVolume(0, b);
+}
+
 void SoundManager::startMusic(Musics::MUSIC m)
 {
 	auto n = music_names[m];
