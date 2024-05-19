@@ -78,8 +78,8 @@ void NPC::talkTo()
 	{
 		TuVieja("Que charlatan el tio...");
 
-		float x = myTransform->getGlobalPos().getX() - 250;
-		float y = myTransform->getGlobalPos().getY() - 225;
+		float x = myTransform->getGlobalPos().getX() - 285;
+		float y = myTransform->getGlobalPos().getY() - 210;
 
 		TuVieja(std::to_string(x));
 
@@ -102,12 +102,15 @@ void NPC::talkTo()
 								Text::BoxPivotPoint::LeftTop,
 								Text::TextAlignment::Center);
 
+		myBoxCollider->setPosOffset(Vector2D(2000, 2000));
+
 		talking = true;
 	}
 }
 
 void NPC::stoppedTalking()
 {
+	myBoxCollider->setPosOffset(Vector2D(0, 0));
 	talking = false;
 }
 
