@@ -86,7 +86,7 @@ void ShopComponent::showCards() {
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
 		auto card = GameStateMachine::instance()->getCurrentState()->createCard(shopCards[i], shopCardsPositions[i]);
-		card->setLayer(3);
+		//card->setLayer(3);
 		int id = card->getComponent<Card>()->getID();
 		if (!cardIsBought(id)) // Si la carta ya esta comprada entonces no debe de ser un boton pero igualmente tiene que aparecer pero oscurecida.
 		{
@@ -256,7 +256,7 @@ void ShopComponent::update()
 void ShopComponent::setTexts()
 {
 	//----Dinero-----
-	moneyText = Instantiate(Vector2D(90, 530));
+	moneyText = Instantiate(Vector2D(100, 550));
 	moneyText->addComponent<TextComponent>(std::to_string(money) + " DM", Fonts::GROTESK_32, SDL_Color({ 16, 23, 32, 255 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	moneyText->setLayer(10);
 	//--------Esta muy feo ya lo siento a quien mire esto :).

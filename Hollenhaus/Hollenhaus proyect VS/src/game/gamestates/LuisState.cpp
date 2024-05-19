@@ -128,27 +128,41 @@ void LuisState::onEnter()
 	key_->addComponent<KeyComponent>(getKeys());
 	keyTr_ = key_->getComponent<Transform>();
 
+
+
+
+
+
 	// UI 
 	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 280);
 	//ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
 
 	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(600, 200, 200, 180);
+	
+
 	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 250);
 	colliders_.push_back(visual_EndTurnButton->getComponent<BoxCollider>());
 	ecs::entity_t visual_KeyButton = factory->createVisual_KeyButton(720, 400);
 	visual_KeyButton->getComponent<Transform>()->addParent(keyTr_);
 	keyTr_->increaseLayer(key_->getLayer());
 
-	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
+	//ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 
-	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, {102, 255, 255, 255});
-	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, { 255, 102, 255, 255 });
+	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, Colors::MIDNIGHT_LIGHT);
+	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, Colors::MORADO_BERENJENA);
 
 	ecs::entity_t visual_BackgroundBoard = factory->createVisual_BackgroundFullImage();
 
 
+
+
+
+
+
+
+
 	// Enlazado de la UI con los scripts que la controlan
-	matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
+	//matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
 	matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
 	//matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
 	matchManagerComponent->updateVisuals();
