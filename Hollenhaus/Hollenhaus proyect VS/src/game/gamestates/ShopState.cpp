@@ -114,7 +114,7 @@ void ShopState::onEnter()
 	carta2->addComponent<Transform>();
 	carta2->addComponent<BoxCollider>();
 	//carta2->addComponent<SpriteRenderer>("card");
-	carta2->addComponent<ShineComponent>();
+	carta2->addComponent<ShineComponent>();	
 
 	Vector2D card2Pos(600, 120);
 	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
