@@ -17,6 +17,8 @@ public:
     void onEnter() override;
     void onExit() override;
 
+    void newGameStart();
+
 private:
 
     ecs::entity_t newGameButton;

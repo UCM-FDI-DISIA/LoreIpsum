@@ -187,6 +187,11 @@ void GameState::loadData()
 	data->Read();
 }
 
+void GameState::newGameData()
+{
+	data->resetSave();
+}
+
 ecs::entity_t GameState::createCard(int id, Vector2D pos)
 {
 	// ---- CARDS ----

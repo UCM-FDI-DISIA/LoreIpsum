@@ -75,6 +75,7 @@ public:
 
 	virtual void saveData();
 	virtual void loadData();
+	virtual void newGameData();
 
 	// ---- crea carta ----
 	virtual ecs::entity_t createCard(int id, Vector2D pos);
