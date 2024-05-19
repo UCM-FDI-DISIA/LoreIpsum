@@ -20,7 +20,8 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 
 TextComponent::~TextComponent()
 {
-	delete text_;
+	//delete text_;
+	text_ = nullptr;
 }
 
 void TextComponent::initComponent()
@@ -80,12 +81,13 @@ void TextComponent::SetTextAlignment(Text::TextAlignment textAlignment)
 void TextComponent::createTexture()
 {
 	delete text_;
-	
+	text_ = nullptr;
+
 	std::string texto = txt_;
 	if (txt_.empty())
 		texto = " ";
 
-	// Se utiliza una nueva constructora específica para crear una textura a partir de un texto embebido en una caja
+	// Se utiliza una nueva constructora especï¿½fica para crear una textura a partir de un texto embebido en una caja
 	text_ = new Texture(sdl_.renderer(), texto, *font_, color_, wrapLenght_, textAlignment_);
 }
 

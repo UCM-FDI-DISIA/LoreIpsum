@@ -21,13 +21,27 @@ void DialogueDestroyer::initComponent()
 void DialogueDestroyer::update()
 {
 	if (object->getComponent<FadeComponent>()->getFadeOut() 
-		&& object->getComponent<FadeComponent>()->getProgress() == 0.0) {
+		&& object->getComponent<FadeComponent>()->getProgress() <= 0.0) {
+
+		object->getComponent<FadeComponent>()->setFadeOutTrue();
+		auto e = object->getComponent<Transform>()->getParent()->getParent()->getChildren();
+		auto it = e.begin();
+		auto en = (*it)->getEntity();
+		en->getComponent<FadeComponent>()->setFadeOutTrue();
+
 		continueDestroy();
+		//ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PRESS_NEXT_TURN);
+	}
+
+	if (object->getComponent<FadeComponent>()->getFadeOut()) {
+		std::cout << object->getComponent<FadeComponent>()->getProgress() << std::endl;
 	}
 }
 
 void DialogueDestroyer::destroyDialogue()
 {
+	TuVieja("Adios dialogo");
+
 	/*if (object->getComponent<FadeComponent>() == nullptr) TuVieja("no hay fade component");
 
 	object->getComponent<FadeComponent>()->setFadeInFalse();
@@ -36,14 +50,12 @@ void DialogueDestroyer::destroyDialogue()
 	(*it)->getEntity()->getComponent<FadeComponent>()->setFadeInFalse();*/
 
 	continueDestroy();
+
 }
 
 void DialogueDestroyer::continueDestroy()
 {
-	/*auto e = object->getComponent<Transform>()->getParent()->getParent()->getChildren();
-	auto it = e.begin();
-	(*it)->getEntity()->getComponent<FadeComponent>()->setFadeOutTrue();*/
-
+	TuVieja("continua");
 	if (npc->hasComponent<NPC>()) {
 		npc->getComponent<NPC>()->stoppedTalking();
 	}

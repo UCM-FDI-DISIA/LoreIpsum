@@ -18,12 +18,12 @@ KeyComponent::KeyComponent(const int keys) :
 	// Inicializacion del vector con los nombres
 	keyNames_.reserve(TOTAL_KEYS);
 
-	keyNames_.emplace_back("esquina");
-	keyNames_.emplace_back("centro");
-	keyNames_.emplace_back("unblockable");
 	keyNames_.emplace_back("flecha");
 	keyNames_.emplace_back("superflecha");
+	keyNames_.emplace_back("esquina");
+	keyNames_.emplace_back("centro");
 	keyNames_.emplace_back("block");
+	keyNames_.emplace_back("unblockable");
 }
 
 void
