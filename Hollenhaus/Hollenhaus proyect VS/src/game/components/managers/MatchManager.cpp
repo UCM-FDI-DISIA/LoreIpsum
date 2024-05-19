@@ -26,7 +26,7 @@ MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2,
 	actualActionPointsJ2(defaultActionPointsJ2),
 	isBoss(false),
 	j2_(std::move(j2)),
-	actualTurnVisual(nullptr),
+	actualTurnVisual(nullptr),	
 	actionPointsVisualJ1(nullptr),
 	actionPointsVisualJ2(nullptr)
 {
@@ -467,6 +467,7 @@ void MatchManager::turnPointsOff()
 {
 	for (auto point : actionPointsJ1)
 	{
+		if (point == nullptr) continue;
 		if (point->getComponent<SpriteRenderer>() != nullptr)
 			point->getComponent<SpriteRenderer>()->setOpacity(0);
 	}
@@ -476,6 +477,7 @@ void MatchManager::turnPointsOn()
 {
 	for (int i = actualActionPointsJ1; i > 0; i--)
 	{
+		if (actionPointsJ1[i - 1] == nullptr) continue; 
 		if (actionPointsJ1[i - 1]->getComponent<SpriteRenderer>() != nullptr)
 			actionPointsJ1[i - 1]->getComponent<SpriteRenderer>()->setOpacity(255);
 	}

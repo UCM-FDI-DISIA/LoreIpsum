@@ -14,15 +14,13 @@
 #include "../factories/Factory.h"
 #include "../factories/DialogueFactory_V0.h"
 #include "../factories/DecisionFactory_V0.h"
+#include "game/CaseManager.h"
+#include "game/Game.h"
 
 constexpr int CARD_POS_Y = 120,
-CARD_POS_X = 490,
-CARD_OFFSET_Y = 110,
-CARD_OFFSET_X = 100;
-
-//constexpr std::vector CASE_1_CARDS = {3, 4, 5};
-//constexpr std::vector<int> CASE_2_CARDS = {};
-//constexpr std::vector<int> CASE_3_CARDS = {};
+              CARD_POS_X = 490,
+              CARD_OFFSET_Y = 110,
+              CARD_OFFSET_X = 100;
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
 shopCardsPositions(
@@ -60,16 +58,22 @@ void ShopComponent::initComponent()
 
 	if (GameStateMachine::instance()->getCurrentState()->checkDataShopCardsIsEmpty()) // Si no hay cartas de la tienda en Data entonces se tienen que generar.
 	{
-		std::cout << "\nTienda genera cartas:" << std::endl;
+#if _DEBUG
+		std::cout << "\nTienda genera cartas:" << "\n";
+#endif
 		generateCards();
 	}
 	else
 	{
-		std::cout << "\nTienda trae cartas de Data:" << std::endl;
+#if _DEBUG
+		std::cout << "\nTienda trae cartas de Data:" << "\n";
+#endif
 		for (int i = 0; i < CARDS_IN_SHOP; i++)
 		{
 			shopCards[i] = GameStateMachine::instance()->getCurrentState()->getShopCardById(i);
-			std::cout << shopCards[i] << std::endl;
+#if _DEBUG
+			std::cout << shopCards[i] << "\n";
+#endif
 		}
 	}
 
@@ -83,13 +87,16 @@ void ShopComponent::initComponent()
 
 void ShopComponent::generateCards()
 {
-	//-------------------------------------------------Esto luego sera random del json demomento es el i del for.
+	CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
-		int cardId = 20 + i;
+		const int cardId = caseMngr->getCaseShopCardsById(i);
 		GameStateMachine::instance()->getCurrentState()->setShopCard(cardId);
 		shopCards[i] = cardId;
-		std::cout << shopCards[i] << std::endl;
+
+#if _DEBUG
+		std::cout << "Carta generada con id: " << shopCards[i] << "\n";
+#endif
 	}
 }
 
