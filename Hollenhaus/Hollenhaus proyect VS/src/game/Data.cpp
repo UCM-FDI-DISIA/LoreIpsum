@@ -242,7 +242,11 @@ bool Data::shopCardsIsEmpty() {
 int Data::getShopCardById(int id) {
 	return shopCards[id];
 }
-
+//----Ultimo NPC derrotado.
+int Data::getLastDefeatedNPC()
+{
+	return defeatedNPCS.back();
+}
 //------Escribir en el archivo:
 void Data::Write() {
 	std::ofstream file;
@@ -255,7 +259,7 @@ void Data::Write() {
 #endif
 		return;
 	}
-	else 
+	else
 	{
 		std::cout << "\nBUENOS DIAS PARTIDA GUARDADA WRITE EN SAVE.\n";
 	}
@@ -301,7 +305,7 @@ void Data::Write() {
 void Data::Read() {
 	EmptyLists();
 
-	std::ifstream file; // PAIGRO AQUI
+	std::ifstream file;
 	file.open(SAVE_FILE);
 
 	if (!file.is_open())
@@ -311,7 +315,7 @@ void Data::Read() {
 #endif
 		return;
 	}
-	else 
+	else
 	{
 		std::cout << "\nBUENOS DIAS LECTURA DEL SAVE.\n";
 	}
@@ -351,7 +355,7 @@ void Data::Read() {
 			(*it).second = Vector2D(x, y);
 		}
 	}
-	// PAIGRO AQUI.
+
 	file >> falsedades;
 
 	// Lee cartas desbloqueadas
@@ -458,7 +462,7 @@ void Data::resetSave()
 #endif
 		return;
 	}
-	else 
+	else
 	{
 		std::cout << "\nBUENOS DIAS NUEVA PARTIDA RESET DEL SAVE.\n";
 	}
@@ -523,7 +527,7 @@ void Data::resetSave()
 	file2 >> number; // Dir.
 	file << number << "\n";
 
-	file.close(); // paigro aqui.
+	file.close();
 	file2.close();
 }
 

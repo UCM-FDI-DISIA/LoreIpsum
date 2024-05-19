@@ -294,9 +294,6 @@ void ShopState::setTutorial()
 		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Tienda::SHOP_NONE);
 		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Tienda::SHOP_INIT);
 
-		// PAIGRO AQUI
-
-
 		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
 		tutorial->getComponent<TutorialShopManager>()->setObjs(objs);

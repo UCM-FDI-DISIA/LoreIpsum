@@ -29,7 +29,7 @@ void CinematicIntroState::render() const
 
 void CinematicIntroState::onEnter()
 {
-	TuVieja("\nEnter CinematicIntroState");
+	/*TuVieja("\nEnter CinematicIntroState");
 	auto eCin = Instantiate(Vector2D());
 
 	auto eCinTr = eCin->addComponent<Transform>();
@@ -40,8 +40,8 @@ void CinematicIntroState::onEnter()
 
 	eCinIwf->addCallback([this]
 		{
+		});*/
 			GameStateMachine::instance()->setState(GameStates::TUTORIAL_OFFICE, true, true);
-		});
 }
 
 void CinematicIntroState::onExit()

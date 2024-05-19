@@ -86,6 +86,11 @@ void GameState::nextCase()
 	data->AddCaseIndex();
 }
 
+void GameState::setDefeatedNPC(int id)
+{
+	data->AddDefeatedNPC(id);
+}
+
 void GameState::setSocketRival(TCPsocket _rival)
 {
 	data->setSocketRival(_rival);
@@ -158,6 +163,11 @@ int GameState::GetLastState()
 	return data->getLastState();
 }
 
+int GameState::getLastDefeatedNPC()
+{
+	return data->getLastDefeatedNPC();
+}
+
 // para settear el mazo del data desde el estado
 void GameState::setMaze(std::list<int> mazeToSave, std::list<Vector2D> MazePosToSave)
 {
@@ -195,7 +205,7 @@ void GameState::newGameData()
 ecs::entity_t GameState::createCard(int id, Vector2D pos)
 {
 	// ---- CARDS ----
-	Factory *factory = new Factory();
+	Factory* factory = new Factory();
 	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
 
 	// Hace LA carta segun su id, en la pos que se pida
@@ -272,3 +282,5 @@ int GameState::getCurrentCase()
 {
 	return data->GetCurrentCase();
 }
+
+

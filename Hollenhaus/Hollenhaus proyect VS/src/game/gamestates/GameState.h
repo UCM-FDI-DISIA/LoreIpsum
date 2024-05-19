@@ -88,6 +88,7 @@ public:
 	virtual bool getLastPaulDir() const;
 	virtual int GetLastState();
 	static Data* getData() { return data; }
+	virtual int getLastDefeatedNPC(); // Para conseguir el id del ultimo NPC derrotado.
 
 	// ---- setters ----
 	static void setData(Data* _data); // settea la data
@@ -97,6 +98,7 @@ public:
 	virtual void setLastPaulPos(Vector2D paulPos);
 	virtual void setLastPaulDir(bool);
 	virtual void nextCase();
+	virtual void setDefeatedNPC(int id); // Para guardar en Data el id del ultimo NPC derrotado.
 
 	//MULTIPLAYER
 
