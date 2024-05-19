@@ -31,7 +31,7 @@ void HandComponent::addCard(ecs::entity_t card) {
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(Cards::ON_HAND);
 
-	if (owner_ == Players::IA)
+	if (owner_ == Players::IA )
 	{
 		card->getComponent<Transform>()->setGlobalAngle(180.0f);
 	}

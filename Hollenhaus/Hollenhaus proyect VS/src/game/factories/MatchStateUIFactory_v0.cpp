@@ -56,7 +56,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_ScoreCounter(int posX, int po
 {
     ecs::entity_t scoreVisual = Instantiate(Vector2D(posX, posY)); // 300, 350 | 300, 225
     scoreVisual->addComponent<TextComponent>("0", 
-        Fonts::GROTESK_48, color, 120,    // 102, 255, 255 | 255, 102, 255
+        Fonts::GROTESK_40, color, 120,    // 102, 255, 255 | 255, 102, 255
         Text::CenterCenter, 
         Text::Center);
     scoreVisual->setLayer(9);

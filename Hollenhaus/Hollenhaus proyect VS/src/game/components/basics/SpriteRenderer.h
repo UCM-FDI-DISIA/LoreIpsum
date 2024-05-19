@@ -48,6 +48,10 @@ public:
 		color.a = a;
 	}
 
+	void setMultiplyColor(SDL_Color scolor) { 
+		color = scolor;
+	}
+
 	void setOpacity(int alpha) { opacity = alpha; }
 	int getOpacity() const { return opacity; }
 

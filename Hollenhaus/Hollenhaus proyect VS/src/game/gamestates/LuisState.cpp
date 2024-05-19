@@ -149,10 +149,10 @@ void LuisState::onEnter()
 	keyTr_->increaseLayer(key_->getLayer());
 
 	/// TURNO Y SCORE
-	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(550, 150, 200, 180);
+	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(560, 170, 200, 180);
 	//ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
-	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, Colors::MIDNIGHT_LIGHT);
-	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, Colors::MORADO_BERENJENA);
+	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(680, 233, Colors::MORADO_BERENJENA);
+	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(680, 313, Colors::MIDNIGHT_LIGHT);
 
 
 
