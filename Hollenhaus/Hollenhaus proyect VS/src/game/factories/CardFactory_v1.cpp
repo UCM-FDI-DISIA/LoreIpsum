@@ -92,7 +92,7 @@ ecs::entity_t CardFactory_v1::createDeck()
 		hand->getComponent<HandComponent>(),
 		deck->getComponent<DeckComponent>()
 	);
-	deck->setLayer(2);
+	deck->setLayer(4);
 	deck->getComponent<DeckComponent>()->setOwner(Players::PLAYER1);
 
 	auto maze = GameStateMachine::instance()->getCurrentState()->getMazeWithPos();
@@ -112,7 +112,7 @@ ecs::entity_t CardFactory_v1::createDeck()
 				card.unblockable(),
 				card.effects()
 			);
-			ent->setLayer(1);
+			ent->setLayer(3);
 			deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 		}
 	}
@@ -129,7 +129,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2(std::string j2 = "6")
 	int initX = 600;
 	int initY = -12;
 
-	if (j2.empty()) j2 = "6";
+	if (j2 == "") j2 = "6";
 	
 	ecs::entity_t hand = createHandJ2();
 
@@ -431,7 +431,7 @@ void CardFactory_v1::addShadow(int x, int y, int layer, Transform* parent)
 	auto newPos = parent->getGlobalPos();
 	shadow->getComponent<Transform>()->setGlobalPos(newPos.getX() + 4, newPos.getY() + 4);
 	shadow->getComponent<Transform>()->setRelativePos(0,0);
-	shadow->addComponent<SpriteRenderer>("card_sombra");
+	shadow->addComponent<SpriteRenderer>("card_sombra")->setOffset(-2, -2);
 	shadow->getComponent<Transform>()->addParent(parent);
 	shadow->setLayer(layer);
 }
