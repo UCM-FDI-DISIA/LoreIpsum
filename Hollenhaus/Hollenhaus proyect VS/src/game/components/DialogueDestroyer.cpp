@@ -21,7 +21,7 @@ void DialogueDestroyer::initComponent()
 void DialogueDestroyer::update()
 {
 	if (!object->getComponent<FadeComponent>()->getFadeIn()) {
-		continueDestroy();
+		//continueDestroy();
 	}
 }
 
@@ -32,6 +32,9 @@ void DialogueDestroyer::destroyDialogue()
 	if (object->getComponent<FadeComponent>() == nullptr) TuVieja("no hay fade component");
 
 	object->getComponent<FadeComponent>()->setFadeInFalse();
+	auto e = object->getComponent<Transform>()->getParent()->getParent()->getChildren();
+	auto it = e.begin();
+	(*it)->getEntity()->getComponent<FadeComponent>()->setFadeInFalse();
 }
 
 void DialogueDestroyer::continueDestroy()

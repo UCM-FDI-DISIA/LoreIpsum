@@ -3,6 +3,7 @@
 #include "NPCFactory_V0.h"
 #include "../components/NPC.h"
 #include "../components/ShineComponent.h"
+#include "../components/FadeComponent.h"
 #include "../gamestates/GameState.h"
 
 ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t parent, int convo)
@@ -30,6 +31,8 @@ ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t par
 
 	npc->addComponent<ShineComponent>();
 	npc->getComponent<ShineComponent>()->addEnt(npc->getComponent<SpriteRenderer>(), info.shine());
+
+	npc->addComponent<FadeComponent>();
 
     return npc;
 }
