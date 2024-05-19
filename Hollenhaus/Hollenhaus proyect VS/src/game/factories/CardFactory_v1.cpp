@@ -92,7 +92,7 @@ ecs::entity_t CardFactory_v1::createDeck()
 		hand->getComponent<HandComponent>(),
 		deck->getComponent<DeckComponent>()
 	);
-	deck->setLayer(2);
+	deck->setLayer(4);
 	deck->getComponent<DeckComponent>()->setOwner(Players::PLAYER1);
 
 	auto maze = GameStateMachine::instance()->getCurrentState()->getMazeWithPos();
@@ -112,7 +112,7 @@ ecs::entity_t CardFactory_v1::createDeck()
 				card.unblockable(),
 				card.effects()
 			);
-			ent->setLayer(1);
+			ent->setEveryLayer(3);
 			deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 		}
 	}
@@ -124,11 +124,11 @@ ecs::entity_t CardFactory_v1::createDeck()
 	return deck;
 }
 
-ecs::entity_t CardFactory_v1::createDeckJ2()
+ecs::entity_t CardFactory_v1::createDeckJ2(std::string j2)
 {
 	int initX = 600;
 	int initY = -12;
-
+	
 	ecs::entity_t hand = createHandJ2();
 
 	Vector2D deckPos(initX, initY);
@@ -144,29 +144,13 @@ ecs::entity_t CardFactory_v1::createDeckJ2()
 
 	//instantie
 
-	//añadir las cartas al mazo
+	//aï¿½adir las cartas al mazo
+	const auto rivalDeck = sdlutils().npcs().at(j2).npcDeck();
+	cardsOnDeck = rivalDeck.size();
 	for (int i = 0; i < cardsOnDeck; i++)
 	{
-		auto card = sdlutils().cards().at(std::to_string(i));
-		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
-		ecs::entity_t ent = createCard(
-			card.id(),
-			Vector2D(initX, initY),
-			card.cost(),
-			card.value(),
-			card.sprite(),
-			card.unblockable(),
-			card.effects(),
-			false
-		);
-		ent->setLayer(1);
-		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
-	}
 
-	//las añadimos otra vez para asegurar que el enemigo tenga cartas de sobra
-	for (int i = 0; i < cardsOnDeck; i++)
-	{
-		auto card = sdlutils().cards().at(std::to_string(i));
+		auto card = rivalDeck[i];
 		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		ecs::entity_t ent = createCard(
 			card.id(),
@@ -428,7 +412,7 @@ void CardFactory_v1::addShadow(int x, int y, int layer, Transform* parent)
 	auto newPos = parent->getGlobalPos();
 	shadow->getComponent<Transform>()->setGlobalPos(newPos.getX() + 4, newPos.getY() + 4);
 	shadow->getComponent<Transform>()->setRelativePos(0,0);
-	shadow->addComponent<SpriteRenderer>("card_sombra");
+	shadow->addComponent<SpriteRenderer>("card_sombra")->setOffset(-2, -2);
 	shadow->getComponent<Transform>()->addParent(parent);
 	shadow->setLayer(layer);
 }

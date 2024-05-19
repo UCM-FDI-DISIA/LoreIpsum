@@ -15,8 +15,9 @@ public:
 	void update() override;
 
 	void destroy();
+	void continueDestroy();
 
 private:
-	ecs::entity_t text;
+	ecs::entity_t text = nullptr;
 };
 

@@ -8,6 +8,7 @@
 #include <functional>
 #include "../utils/Singleton.h"
 #include "../utils/tweeny-3.2.0.h"
+#include "gamestates/GameState.h"
 
 class GameState;
 class Data;
@@ -42,6 +43,7 @@ namespace GameStates
 		OPTIONSMENU,
 		TRANSITIONTEXT,
 		CINEMATICINTRO,
+		CINEMATICOUTRO,
 		PAUSEMENU,
 		MAZEMENU,
 		CLUESMENU,
@@ -49,7 +51,7 @@ namespace GameStates
 		MULTIPLAYER_PREGAME,
 		MULTIPLAYER_GAME,
 		MULTIPLAYER_END_GAME,
-		KEYMENU,
+		ENDGAME,
 		TUTORIAL_DECKBUILDING,
 		TUTORIAL_SHOP,
 		TUTORIAL_CITY,
@@ -86,6 +88,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* deckBuildingState;
 	GameState* tutorialState;
 	GameState* tutorialBoardState;
+	GameState* endGameState;
 	GameState* tutorialDeckbuildingState;
 	GameState* tutorialShopState;
 	GameState* tutorialOfficeState;
@@ -104,11 +107,12 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* multiplayerModeState;
 	GameState* optionsMainMenuState;
 	GameState* cinematicIntroState;
+	GameState* cinematicOutroState;
 	GameState* transitionTextMenuState;
 	GameState* pauseMenuState;
 	GameState* checkMazeMenuState;
 	GameState* checkCluesMenuState;
-	 
+
 	// Estados auxiliares
 	GameState* movementState;
 
@@ -126,13 +130,18 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	bool toFadeOut;
 	int gameStateEnumValue;
 
+	bool dbt_c = false;
+	bool ct_c = false;
+	bool bt_c = false;
+	bool st_c = false;
+
 public:
 	ecs::Manager* getMngr()
 	{
 		return mngr_;
 	}
 
-	CaseManager* caseMngr() 
+	CaseManager* caseMngr()
 	{
 		return case_;
 	}
@@ -222,6 +231,9 @@ public:
 		case GameStates::CINEMATICINTRO:
 			newState = cinematicIntroState;
 			break;
+		case GameStates::CINEMATICOUTRO:
+			newState = cinematicOutroState;
+			break;
 		case GameStates::PAUSEMENU:
 			newState = pauseMenuState;
 			break;
@@ -231,7 +243,10 @@ public:
 		case GameStates::CLUESMENU:
 			newState = checkCluesMenuState;
 			break;
-		case GameStates::TUTORIAL_DECKBUILDING: 
+		case GameStates::ENDGAME:
+			newState = endGameState;
+			break;
+		case GameStates::TUTORIAL_DECKBUILDING:
 			newState = tutorialDeckbuildingState;
 			break;
 		case GameStates::TUTORIAL_SHOP:
@@ -262,7 +277,19 @@ public:
 
 	GameState* getCurrentState() { return currentState; }
 
-	int getCurrentStateEnum() { return gameStateEnumValue;  }
+	int getCurrentStateEnum() { return gameStateEnumValue; }
+
+
+	// TUTORIAL
+	bool TUTORIAL_DECKBUILDING_COMPLETE() { return dbt_c; }
+	void setTUTORIAL_DECKBUILDING_COMPLETE(bool a) { dbt_c = a; }
+	bool TUTORIAL_CITY_COMPLETE() { return ct_c; }
+	void setTUTORIAL_CITY_COMPLETE(bool a) { ct_c = a; }
+	bool TUTORIAL_BOARD_COMPLETE() { return bt_c; }
+	void setTUTORIAL_BOARD_COMPLETE(bool a) { bt_c = a; }
+	bool TUTORIAL_SHOP_COMPLETE() { return st_c; }
+	void setTUTORIAL_SHOP_COMPLETE(bool a) { st_c = a; }
+
 };
 
 // --------

@@ -7,6 +7,7 @@
 // managers
 #include "../components/managers/Manager.h"
 #include "../components/DropZone.h"
+#include "../SoundManager.h"
 #include "../components/DragNoCombat.h"
 
 // factorias
@@ -67,10 +68,6 @@ void DeckBuildingState::refresh()
 void DeckBuildingState::onEnter()
 {
 	std::cout << "\nENTER DECKBUILDING.\n";
-
-	// llamada al input
-	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPauseDB(); });
-	paused = false;
 
 	// carga el data
 	loadData();
@@ -215,10 +212,10 @@ void DeckBuildingState::onEnter()
 	// lo guarda
 	pizarra_ = pizarra->getComponent<PizarraManager>();
 
-
 	objs.push_back(Confirm);
 	objs.push_back(botPalante);
 	objs.push_back(botPatras);
+	objs.push_back(exit);
 
 #pragma endregion
 
@@ -265,59 +262,27 @@ void DeckBuildingState::onEnter()
 
 	setTutorial();
 
-	// ---- SONIDO ----
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("deckbuilder_theme").play(-1);
-	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startMusic(Musics::OFFICE_M);
 }
 
 // ---- EXIT ESTADO ----
 void DeckBuildingState::onExit()
 {
-	// se desuscribe al evento
-	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPauseDB(); });
-	paused = false;
-
 	// al salir del estado guardas la info
 	saveData();
 
-	// ---- SONIDO ----
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
+
+	auto music = SoundManager::instance();
+	music->stopMusic(Musics::OFFICE_M);
+
 
 	GameStateMachine::instance()->getMngr()->Free();
 
 	std::cout << "\nEXIT DECKBUILDING.\n";
 
 	delete factory;
-}
-
-void DeckBuildingState::onPauseDB()
-{
-	if (!paused)
-	{
-		paused = true;
-
-		rice = Instantiate();
-		rice->addComponent<Transform>();
-		rice->addComponent<SpriteRenderer>("rice");
-		rice->addComponent<BoxCollider>();
-		Vector2D posRice(300, 300);
-		rice->getComponent<Transform>()->setGlobalPos(posRice);
-		rice->getComponent<Transform>()->setGlobalScale(0.5f, 0.4f);
-		rice->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-		rice->setLayer(4);
-	}
-	else if (paused && rice != nullptr)
-	{
-		paused = false;
-		rice->setAlive(false);
-	}
-
-	//SetLastState(9);
-	//pizarra_->saveMaze();
-	//drawer_->saveDrawer();
-	//GameStateMachine::instance()->setState(17);
 }
 
 #pragma region DECKBUILDING

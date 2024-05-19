@@ -67,7 +67,7 @@ void SamuState::onEnter()
 
 	// Factoría de cartas. Con ella generamos la mano inicial
 	factory->createDeck();
-	factory->createDeckJ2();
+	//factory->createDeckJ2();
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
 	ecs::entity_t ent = Instantiate();

@@ -29,17 +29,22 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent, int greenD
 	float y = parent->getComponent<Transform>()->getGlobalPos().getY() + 150;
 
 	factory->createDecision({ x,y }, //pos
-							{ 0,0 }, //size
+							{ 0,0}, //size
 							parent, //parent
 							4, //layer
 							scene, // Escena
 							greenDecision, //greenDecision
 							redDecision, //redDecision
-							Fonts::GROTESK_24, //fontId
-							SDL_Color({ 0, 0, 0, 255 }), //color del txt
+							Fonts::GROTESK_20, //fontId
+							Colors::MIDNIGHT_HOLLENHAUS, //color del txt
 							100, //wraplength
 							Text::BoxPivotPoint::LeftTop,
 							Text::TextAlignment::Center);
+
+	//auto a = parent->hasComponent<BoxCollider>();
+
+	auto coll = parent->getComponent<NextText>()->getCollider();
+	coll->setPosOffset({ 1000, 1000});
 
 	delete factory;
 	factory = nullptr;

@@ -12,6 +12,7 @@
 #include "gamestates/DeckBuildingState.h"
 #include "gamestates/tutorialState.h"
 #include "gamestates/cinematicIntroState.h"
+#include "gamestates/cinematicOutroState.h"
 
 #include "gamestates/SamuState.h"
 #include "gamestates/JimboState.h"
@@ -42,6 +43,7 @@
 #include "Data.h"
 #include "Fade.h"
 #include "CaseManager.h"
+#include "gamestates/EndGameState.h"
 
 constexpr Uint8 FADE_SPEED = 30;
 
@@ -51,6 +53,7 @@ void GameStateMachine::init()
 	pushState(currentState);
 
 	initFade();
+	case_->init();
 }
 
 //constructor
@@ -69,6 +72,7 @@ GameStateMachine::GameStateMachine()
 	shopState = new ShopState();
 	deckBuildingState = new DeckBuildingState();
 	tutorialState = new TutorialState();
+	endGameState = new EndGameState();
 
 	// Estados de menuses
 	mainMenuState = new MainMenuState();
@@ -77,6 +81,7 @@ GameStateMachine::GameStateMachine()
 	optionsMainMenuState = new OptionsMainMenuState();
 	transitionTextMenuState = new TransitionTextMenuState();
 	cinematicIntroState = new CinematicIntroState();
+	cinematicOutroState = new CinematicOutroState();
 	pauseMenuState = new PauseMenuState();
 	checkMazeMenuState = new CheckMazeMenuState();
 	checkCluesMenuState = new CheckCluesMenuState();
@@ -122,6 +127,7 @@ GameStateMachine::~GameStateMachine()
 	delete shopState;
 	delete deckBuildingState;
 	delete tutorialState;
+	delete endGameState;
 	delete tutorialBoardState;
 	delete tutorialCityState;
 	delete tutorialDeckbuildingState;
@@ -134,6 +140,7 @@ GameStateMachine::~GameStateMachine()
 	delete optionsMainMenuState;
 	delete transitionTextMenuState;
 	delete cinematicIntroState;
+	delete cinematicOutroState;
 	delete pauseMenuState;
 	delete checkMazeMenuState;
 	delete checkCluesMenuState;

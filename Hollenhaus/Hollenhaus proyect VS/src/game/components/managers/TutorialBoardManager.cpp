@@ -439,5 +439,10 @@ void TutorialBoardManager::setENDTUTORIAL()
 void TutorialBoardManager::setFREEDOM()
 {
 	std::cout << "LIBERTAD OMFG" << std::endl;
+
+
+	// FIN DEL TUTO
+	GameStateMachine::instance()->setTUTORIAL_BOARD_COMPLETE(true);
+
 }
 

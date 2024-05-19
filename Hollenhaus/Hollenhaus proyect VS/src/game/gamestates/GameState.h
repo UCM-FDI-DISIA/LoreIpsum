@@ -71,8 +71,11 @@ public:
 
 	virtual void setKey();
 
+	virtual void setJ2(std::string rival);
+
 	virtual void saveData();
 	virtual void loadData();
+	virtual void newGameData();
 
 	// ---- crea carta ----
 	virtual ecs::entity_t createCard(int id, Vector2D pos);
@@ -93,6 +96,7 @@ public:
 	virtual void setWinnerOnData(int w);
 	virtual void setLastPaulPos(Vector2D paulPos);
 	virtual void setLastPaulDir(bool);
+	virtual void nextCase();
 
 	//MULTIPLAYER
 

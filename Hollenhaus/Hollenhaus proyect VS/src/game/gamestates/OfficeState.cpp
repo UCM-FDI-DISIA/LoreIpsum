@@ -7,6 +7,7 @@
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
 #include "../CaseManager.h"
+#include "../SoundManager.h"
 
 #include "../components/NPC.h"
 #include "game/components/Clickable.h"
@@ -14,20 +15,20 @@
 #include "../TutorialManager.h"
 #include "../components/managers/TutorialOfficeManager.h"
 
-
-
-
-
-
-OfficeState::OfficeState()
+OfficeState::OfficeState() :
+	factory(nullptr),
+	offset_(5)
 {
 	TuVieja("Loading OfficeState");
 	isTutorial = false;
 }
 
-OfficeState::OfficeState(bool t)
+OfficeState::OfficeState(bool t) :
+	factory(nullptr),
+	offset_(5)
 {
 	isTutorial = t;
+
 
 }
 
@@ -56,17 +57,13 @@ void OfficeState::onEnter()
 	CaseManager* caseManager = GameStateMachine::instance()->caseMngr();
 	
 	factory = new Factory();
-	factory->SetFactories(
-		static_cast<NPCFactory*>(new NPCFactory_V0())
-	);
-
+	factory->SetFactories(static_cast<NPCFactory*>(new NPCFactory_V0()));
 
 	//-----Imagen de fondo:
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("oficinafondo");
 	fondo->getComponent<Transform>()->setGlobalScale(0.5f, 0.55f);
-	//fondo->getComponent<Transform>()->getGlobalScale().set(0.85f, 0.85f);
 	fondo->setLayer(0);
 
 	//------Boton para volver:
@@ -77,11 +74,15 @@ void OfficeState::onEnter()
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(1); // Lleva a la ciudad (1).
+
+	if (!isTutorial || GameStateMachine::instance()->TUTORIAL_CITY_COMPLETE()) {
+		exit->addComponent<NPC>(GameStates::CITY); // Lleva a la ciudad (1).
+	}
+	else if (GameStateMachine::instance()->TUTORIAL_DECKBUILDING_COMPLETE()) {
+		exit->addComponent<NPC>(GameStates::TUTORIAL_CITY); // Lleva a la ciudad (1).
+	}
 	exit->setLayer(1);
-		exit->addComponent<Clickable>("boton_flecha", true);
-
-
+	exit->addComponent<Clickable>("boton_flecha", true);
 
 	//------Boton para deckBuilding:
 	ecs::entity_t db = Instantiate();
@@ -95,8 +96,13 @@ void OfficeState::onEnter()
 
 	Vector2D dbPos(478, 112);
 	dbTrans->setGlobalPos(dbPos);
+	if (isTutorial) {
+		db->addComponent<NPC>(GameStates::TUTORIAL_DECKBUILDING); // Lleva al deckbuilding TUTORIAL (9).
+	}
+	else {
+		db->addComponent<NPC>(GameStates::DECKBUILDING); // Lleva al deckbuilding (9).
+	}
 
-	db->addComponent<NPC>(9); // Lleva al deckbuilding (9).
 	db->setLayer(1);
 	db->addComponent<SpriteRenderer>("pizarra");
 	auto dbShine = db->addComponent<ShineComponent>();
@@ -104,11 +110,15 @@ void OfficeState::onEnter()
 
 	//------Boton para telefono: (WIP de Poli: El telf en realidad es un NPC invisible,
 	//  que al clicarlo hace que aparezca el dialogo.)
-
-	if(caseManager->accepted())
-		caseManager->addNPC(factory->createNPC(6, fondo, 1));
+	const int caso = getCurrentCase() + offset_;
+	ecs::entity_t npc;
+	if (caseManager->accepted())
+		npc = factory->createNPC(caso, fondo, 1);
 	else
-		caseManager->addNPC(factory->createNPC(6, fondo));
+		npc = factory->createNPC(caso, fondo);
+
+	caseManager->addNPC(npc);
+	objs.push_back(npc);
 
 	//Idea para los casos:
 	// - En dialoguesV1.json meter el texto de los casos que queremos que se diga. Como Caso0, Caso1, etc.
@@ -116,11 +126,17 @@ void OfficeState::onEnter()
 	// - Se instanciaria aqui, usando factory->createNPC(getCurrentCase() + offset, fondo), donde el offset
 	//   seria el numero de npcs que hay antes en npcs.json
 
+	objs.push_back(db);
+	objs.push_back(exit);
+
+	
+
+	setTutorial();
+
 
 	/// MUSICA
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("deckbuilder_theme").play(-1);
-	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
+	auto music = SoundManager::instance();
+	music->startMusic(Musics::OFFICE_M);
 }
 
 void OfficeState::onExit()
@@ -130,8 +146,8 @@ void OfficeState::onExit()
 	// se desuscribe al evento
 	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPauseOF(); });
 
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
+	auto music = SoundManager::instance();
+	music->stopMusic(Musics::OFFICE_M);
 
 	GameStateMachine::instance()->getMngr()->Free();
 
@@ -159,25 +175,35 @@ void OfficeState::setTutorial()
 
 
 		tutorial->getComponent<TutorialManager>()->startTutorial();
-		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::DECKBUILDER);
-		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Deckbuilder::DECKBUILDER_NONE);
-		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Deckbuilder::DECKBUILDING_INIT);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::OFFICE);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Oficina::OFFICE_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Oficina::OFFICE_INIT);
 
 
 		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
 		tutorial->getComponent<TutorialOfficeManager>()->setObjs(objs);
-
+	}
+	else {
+		GameStateMachine::instance()->setTUTORIAL_DECKBUILDING_COMPLETE(true);
 	}
 }
 
 void OfficeState::prepareTutorial()
 {
-
+	// base
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
 
 }
 
 void OfficeState::startTutorial(bool a)
 {
+	isTutorial = a;
 }
 

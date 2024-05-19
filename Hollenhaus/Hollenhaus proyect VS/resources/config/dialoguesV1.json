@@ -1,1167 +1,2305 @@
 {
-    "owner": [
+  "owner": [
+    {
+      "NPCName": "El Xungo del Barrio",
+      "convo": [
         {
-            "NPCName": "El Xungo del Barrio",
-            "convo": [
-                {
-                    "convoID": 0,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Hola, que tal?",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "He oido por ahi que ha salido un nuevo juego de cartas.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Hulenjaus, creo?",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "No se, no juego mucho.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 0,
-                                    "scene": 0
-                                }
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "Dicen que esta muy guapo,",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "aunque que voy a saber yo, solo soy Paco...",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "Por cierto,",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "si te estas preguntando por que hablo sin signos de puntuacion...",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "...es porque no se parsear un JSON mejor, je, je.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 1,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Otra conversacion por aqui",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Ha quedado buena tarde",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "NPCName": "Javivu24",
-            "convo": [
-                {
-                    "convoID": 0,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "que",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "jajaja....",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "es completamente IMPOSIBLE que funciones",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "a la pared ya, estas tardando",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "vamos, el coach rcibiendo un balon",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "NPCName": "Board Tutorial",
-            "convo": [
-                {
-                    "convoID": 0,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Bienvenido a las partidas de cartas.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Con las partidas de cartas podras conseguir dinero con el que podras comprar nuevas cartas en la tienda.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Pero empecemos desde el principio.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 1,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Esto es una carta.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Las cartas guardan informacion.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 2,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Arriba a la izquierda informan de su coste",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "cada vez que uses una carta tendras que pagar su precio",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 3,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Abajo a la izquierda guardan su valor",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Cuando coloques una carta en el tablero se te sumara ese valor a tu puntuacion",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 4,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 4,
-                            "text": "En el centro de la carta se encuentra un pictograma que indica el efecto que posee",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 5,
-                            "text": "Ademas de sumar un valor, las cartas aplicaran un efecto al tablero",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 6,
-                            "text": "Sigue jugando y descubriras todos los efectos!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 5,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Este es tu mazo",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "El mazo se compone de las cartas que tu quieras. Desde tu oficina lo puedes modificar.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Roba una carta de tu mazo para tenerla en tu mano.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 6,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Bien hecho!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Solo podras usar cartas que tienes en tu mano",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Prueba a arrastrar la carta a una celda!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 7,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "A la derecha del tablero tienes la puntuacion de cada jugador",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "El jugador que tenga mas puntos al llenarse el tablero gana!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Suerte!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 8,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Completar distintas acciones supondra un coste.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Robar una carta cuesta 1 punto de accion",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Colocar una carta en el tablero dependera de cada carta.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Este coste se puede ver en la esquina superior derecha de cada carta.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 8,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Cuando no puedas hacer mas acciones pulsa el boton de Siguiente Turno.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Esto le dara la oportunidad a tu enemigo de jugar sus cartas.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 10,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Ya no tenemos nada mas que hacer",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Pulsa el boton a la izquierda del tablero para pasar de turno",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
+          "convoID": "0",
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Hey, que tal",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "He oido por ahi que ha salido un nuevo juego de cartas",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "jolenjaus creo?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "no se, no juego mucho",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
 
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 11,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Es el turno de nuestro oponente, veamos",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 12,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Hmm, nuestro oponentees bueno",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Haz tu mejor jugada!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 13,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Los efectos de las cartas no solo afectan a tus cartas",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Tambien se aplican a las cartas enemigas",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Ten cuidado y no te restes demasiados puntos sin querer",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Nadie se salva del poder de las cartas!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 14,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Veo que lo pillas rapido!",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Animo en la partida, y suerte con el piso",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "pero dicen que esta guapo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
         },
         {
-            "NPCName": "Tienda",
-            "convo": [
+          "convoID": "1",
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": "0",
+              "text": "Otra conversacion por aqui",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": "1",
+              "text": "Ha quedado buena tarde",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Javivu24",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "que",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "jajaja....",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "es completamente IMPOSIBLE que funciones",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "a la pared ya, estas tardando",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "vamos, el coach rcibiendo un balon",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Board Tutorial",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Bienvenido a las partidas de cartas.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Con las partidas de cartas podras conseguir dinero con el que podras comprar nuevas cartas en la tienda.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Pero empecemos desde el principio.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
                 {
-                    "convoID": "0",
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": "0",
-                            "text": "Has terminado de mirar?",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 3,
-                                    "scene": 3,
-                                    "gdecision": 2,
-                                    "rdecision": 0
-                                }
-                            ]
-                        },
-                        {
-                            "nodeID": "1",
-                            "text": "Seguro que quieres comprar esta carta?",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
                 }
-            ]
+              ]
+            }
+          ]
         },
         {
-            "NPCName": "Cleon",
-            "convo": [
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Esto es una carta.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Las cartas guardan informacion.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
                 {
-                    "convoID": 0,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Hola? Llamo por el anuncio de la agencia de sustos. A ver si jodes un poco a mi companyero de trabajo",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "El se llama Rome, y claro, Rome me debe dinero porque le pille con una chavala y el esta casado sabes",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "asi que le pregunte y resulta que esta enrollado con su profesora de pilates y yo le dije, no sera verdad?",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Porque la profesora es de la edad de nuestras madres y la mujer esta embarazada, asi que dije",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 0,
-                                    "scene": 0
-                                }
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "Pues le voy a pedir pasta y le voy a extorsionar porque el y yo en realidad nunca nos hemos llevado bien",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 5,
-                            "text": "y el rector siempre le quiso mas a el y bueno algo tengo que sacar yo de esto asi que voy y le digo 2000 pavos",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 6,
-                            "text": "y no se lo digo a la parienta y ni puto caso y coje el tio y llama a otro companyero de trabajo",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 7,
-                            "text": "para contarle la verdad sobre aquella fatidica tarde del 2010",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 8,
-                            "text": "y pues eso, que quiero que le jodas la vida",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 3,
-                                    "scene": 2,
-                                    "gdecision": 3,
-                                    "rdecision": 4
-                                }
-                            ]
-                        },
-                        {
-                            "nodeID": 9,
-                            "text": "Aceptas? Te lo compensare con un aprobado",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 1,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Muchas gracias de verdad",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 3,
-                                    "scene": 6,
-                                    "gdecision": 5,
-                                    "rdecision": 4
-                                }
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Cuando quieras hablas con la medium",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        }
-                    ]
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
                 }
-            ]
+              ]
+            }
+          ]
         },
         {
-            "NPCName": "Deck Tutorial",
-            "convo": [
+          "convoID": 2,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Arriba a la izquierda informan de su coste",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "cada vez que uses una carta tendras que pagar su precio",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
                 {
-                    "convoID": 0,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Bienvenido a tu organizador de casos.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Consta de tu pizarra y tus cajones.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 1,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Estos son tus cajones.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Puedes navegar entre ellos con las flechas de la derecha.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "En los cajones se encuentran todas las cartas que vayas consiguiendo.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Ya sea derrotando enemigos o adquiriendolas en la tienda.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 2,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Esta es tu pizarra.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Aqui estan las cartas que forman el mazo con el que luchas.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 2,
-                            "text": "Puedes tener un minimo de 10 cartas en tu mazo.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 3,
-                            "text": "Y hasta un maximo de 20.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 4,
-                            "text": "Con el boton de abajo a la izquierda puedes guardar tu mazo.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 5,
-                            "text": "No te olvides de hacerlo antes de salir porque no se guarda automaticamente.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "convoID": 3,
-                    "autoConvo": false,
-                    "nodes": [
-                        {
-                            "nodeID": 0,
-                            "text": "Ahora que hemos visto las partes. Vamos a ver lo que puedes hacer.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 0,
-                            "text": "Puedes mover cartas de los cajones a la pizarra y viceversa.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                            ]
-                        },
-                        {
-                            "nodeID": 1,
-                            "text": "Ahora crea el mazo que mas te guste y a jugar.",
-                            "eventStart": 0,
-                            "eventFinish": 0,
-                            "events": [
-                                {
-                                    "timing": 1,
-                                    "type": 4,
-                                    "scene": 0
-                                }
-                            ]
-                        }
-                    ]
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
                 }
-            ]
+              ]
+            }
+          ]
         },
-      {
-        "NPCName": "Tienda Tutorial",
-        "convo": [
-          {
-            "convoID": 0,
-            "autoConvo": false,
-            "nodes": [
-              {
-                "nodeID": 0,
-                "text": "Sea bienvenido a mi santeria.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
-              },
-              {
-                "nodeID": 1,
-                "text": "Aqui encontraras articulos esotericos de toda clase.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                  {
-                    "timing": 1,
-                    "type": 4,
-                    "scene": 0
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "convoID": 1,
-            "autoConvo": false,
-            "nodes": [
-              {
-                "nodeID": 0,
-                "text": "Puede dejar sus monedas aqui, no se preocupe, yo se las guardo mientras mira.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
-              }
-            ]
-          },
-          {
-            "convoID": 2,
-            "autoConvo": false,
-            "nodes": [
-              {
-                "nodeID": 0,
-                "text": "Dejeme que le ensenye algo. Creo que le interesara.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
-              },
-              {
-                "nodeID": 1,
-                "text": "Son estas cartas que tengo aqui.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
-              },
-              {
-                "nodeID": 2,
-                "text": "De la mejor calidad.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
-              },
-              {
-                "nodeID": 3,
-                "text": "Le interesan verdad",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                  {
-                    "timing": 1,
-                    "type": 4,
-                    "scene": 0
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "convoID": 3,
-            "autoConvo": false,
-            "nodes": [
+        {
+          "convoID": 3,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Abajo a la izquierda guardan su valor",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Cuando coloques una carta en el tablero se te sumara ese valor a tu puntuacion",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 4,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 4,
+              "text": "En el centro de la carta se encuentra un pictograma que indica el efecto que posee",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "Ademas de sumar un valor, las cartas aplicaran un efecto al tablero",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 6,
+              "text": "Sigue jugando y descubriras todos los efectos!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 5,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Este es tu mazo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "El mazo se compone de las cartas que tu quieras. Desde tu oficina lo puedes modificar.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Roba una carta de tu mazo para tenerla en tu mano.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 6,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Bien hecho!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Solo podras usar cartas que tienes en tu mano",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Prueba a arrastrar la carta a una celda!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 7,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "A la derecha del tablero tienes la puntuacion de cada jugador",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "El jugador que tenga mas puntos al llenarse el tablero gana!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Suerte!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 8,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Completar distintas acciones supondra un coste.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Robar una carta cuesta 1 punto de accion",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Colocar una carta en el tablero dependera de cada carta.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Este coste se puede ver en la esquina superior derecha de cada carta.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 8,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Cuando no puedas hacer mas acciones pulsa el boton de Siguiente Turno.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Esto le dara la oportunidad a tu enemigo de jugar sus cartas.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 10,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Ya no tenemos nada mas que hacer",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Pulsa el boton a la izquierda del tablero para pasar de turno",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
 
-              {
-                "nodeID": 0,
-                "text": "Cuando desee una carta, haga click sobre ella y se resaltaran las monedas que le costaran.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
-              },
-              {
-                "nodeID": 1,
-                "text": "No le molesto mas, mire lo que quiera y si tiene alguna duda aqui me tiene.",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                  {
-                    "timing": 1,
-                    "type": 4,
-                    "scene": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "NPCName": "City Tutorial",
-        "convo": [
-          {
-            "convoID": 0,
-            "autoConvo": false,
-            "nodes": [
-              {
-                "nodeID": 0,
-                "text": "city tutorial 1",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
-              },
-              {
-                "nodeID": 1,
-                "text": "city tutorial 2",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                  {
-                    "timing": 1,
-                    "type": 4,
-                    "scene": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "NPCName": "Office Tutorial",
-        "convo": [
-          {
-            "convoID": 0,
-            "autoConvo": false,
-            "nodes": [
-              {
-                "nodeID": 0,
-                "text": "office tutorial 1",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                ]
-              },
-              {
-                "nodeID": 1,
-                "text": "office tutorial 2",
-                "eventStart": 0,
-                "eventFinish": 0,
-                "events": [
-                  {
-                    "timing": 1,
-                    "type": 4,
-                    "scene": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 11,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Es el turno de nuestro oponente, veamos",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 12,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Hmm, nuestro oponentees bueno",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Haz tu mejor jugada!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 13,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Los efectos de las cartas no solo afectan a tus cartas",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Tambien se aplican a las cartas enemigas",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Ten cuidado y no te restes demasiados puntos sin querer",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Nadie se salva del poder de las cartas!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 14,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Veo que lo pillas rapido!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Animo en la partida, y suerte con el piso",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Tienda",
+      "convo": [
+        {
+          "convoID": "0",
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": "0",
+              "text": "Has terminado de mirar?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 3,
+                  "gdecision": 2,
+                  "rdecision": 0
+                }
+              ]
+            },
+            {
+              "nodeID": "1",
+              "text": "Seguro que quieres comprar esta carta?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Cleon",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Hola? Llamo por el anuncio de la agencia de sustos. A ver si jodes un poco a mi companyero de trabajo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "El se llama Rome, y claro, Rome me debe dinero porque le pille con una chavala y el esta casado sabes",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "asi que le pregunte y resulta que esta enrollado con su profesora de pilates y yo le dije, no sera verdad?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Porque la profesora es de la edad de nuestras madres y la mujer esta embarazada, asi que dije",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 0,
+                  "scene": 0
+                }
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "Pues le voy a pedir pasta y le voy a extorsionar porque el y yo en realidad nunca nos hemos llevado bien",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "y el rector siempre le quiso mas a el y bueno algo tengo que sacar yo de esto asi que voy y le digo 2000 pavos",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 6,
+              "text": "y no se lo digo a la parienta y ni puto caso y coje el tio y llama a otro companyero de trabajo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 7,
+              "text": "para contarle la verdad sobre aquella fatidica tarde del 2010",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 8,
+              "text": "y pues eso, que quiero que le jodas la vida",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 2,
+                  "gdecision": 3,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Aceptas? Te lo compensare con un aprobado",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Muchas gracias de verdad",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Cuando quieras hablas con la medium",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Deck Tutorial",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Bienvenido a su organizador de casos.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Consta de su pizarra y sus cajones.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Estos son sus cajones.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Puede navegar entre ellos con las flechas a su derecha.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "En los cajones se encuentran todas las cartas que vaya consiguiendo.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Ya sea derrotando enemigos o adquiriendolas en la tienda.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 2,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Esta es su pizarra.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Aqui estan las cartas que forman el mazo con usted luche.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Puede tener un minimo de 10 cartas en tu mazo.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Y hasta un maximo de 20.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "Con el boton de abajo a la izquierda puede guardar su mazo.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "No se olvides de hacerlo antes de salir porque no se guarda automaticamente.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 3,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Ahora que hemos visto las partes. Vamos a ver lo que puede hacer.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 0,
+              "text": "Puede mover cartas de los cajones a la pizarra y viceversa.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Ahora cree el mazo que mas le guste y a jugar.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Tienda Tutorial",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Sea bienvenido a mi santeria.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Aqui encontraras articulos esotericos de toda clase.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Puede dejar sus monedas aqui, no se preocupe, yo se las guardo mientras mira.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 2,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Dejeme que le ensenye algo. Creo que le interesara.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Son estas cartas que tengo aqui.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "De la mejor calidad.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Le interesan verdad.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 3,
+          "autoConvo": false,
+          "nodes": [
+
+            {
+              "nodeID": 0,
+              "text": "Cuando desee una carta, haga click sobre ella y se resaltaran las monedas que le costaran.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "No le molesto mas, mire lo que quiera y si tiene alguna duda aqui me tiene.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "City Tutorial",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Humilde ciudad, le gusta?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Puede moverse por ella pulsando en el suelo, aqui no hay transporte publico...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 2,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Para hablar con la gente, pulse sobre ellos. Puede ganar experiencia en combate si es que le retan.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 3,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Si quiere volver a su oficina, pulse sobre el edificio. Le invito tambien a visitar otros lugares.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Al este de la ciudad, se encuentra la tienda, donde podra usted comprar nuevas cartas.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Office Tutorial",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Sea usted bienvenido a su nueva oficina!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": []
+            },
+            {
+              "nodeID": 1,
+              "text": "Aqui podra gestionar sus llamadas, y organizar sus cartas.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Hable con sus clientes pulsando en el telefono,",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": []
+            },
+            {
+              "nodeID": 1,
+              "text": "y recibira un caso a resolver.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Cuando se vea preparado, podra llamar a la medium desde el telefono, y asi, canalizar su ataque.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 2,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Tambien tiene a su disposicion la pizarra.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": []
+            },
+            {
+              "nodeID": 1,
+              "text": "Si pulsa en ella, accedera a la gestion de sus cartas, podra modificar su mazo como desee.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "ExMarido",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Hola? Este telefono funciona? HOLA? He visto el anuncio de la parada del tranvia, llamo para ver si...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Es verdad lo que dices? Puedes... fastidiar... a alguien?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "No quiero parecer una insensible pero no se cuanto tiempo voy a poder seguir aguantando a mi ex marido.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Desde el divorcio no ha hecho otra cosa que perseguirme. Legalmente quiero decir.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "Hasta que no me saque hasta el ultimo marco no va a parar y... OYE? HOLA? *sonidos de golpes*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 0,
+                  "scene": 0
+                }
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "Supongo que es por el secretismo... Bien... Hablare mas bajito... No le deseo la muerte ni mucho menos",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 6,
+              "text": "a mi ex marido digo, pero si le vendria bien un buen escarmiento, no se...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 7,
+              "text": "una brutal aparicion de su madre, un sangriento reencuentro con su pasado...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 8,
+              "text": "Ni idea, no soy creativa, solo vengativa, ya veras tu lo que haces...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Respecto a lo de mi alma... Haz lo que quieras",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 10,
+              "text": "yo el alma y todo eso que defendia Schopenhauer ni lo entiendo ni quiero hacerlo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 11,
+              "text": "hasta aqui mi llamada supongo, espero que no me haya escuchado mi vecina. *Cuelga*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 2,
+                  "gdecision": 3,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 12,
+              "text": "*Deberia aceptar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Tarotisa: una vieja divorciada? interesante",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Tienes todo listo?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Nazi",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Saludos, camarada.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Se comenta por la facultad de filosofia que quien llame a este numero puede pedir un favor a un fantasma",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "como una especie de sicario del susto, que triste que tengamos que escondernos, verdad?...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Hola? No te preocupes puedes hablar sin tapujos estamos entre companyeros de lucha...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "Esta bien, mantente en silencio, no esta el horno para bollos.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 0,
+                  "scene": 0
+                }
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "Llamo porque tengo un objetivo, un cerdo fascista que...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 6,
+              "text": "Ni siquiera te vas a alegrar de que tenga un objetivo? Nada? Ninguna reaccion?...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 7,
+              "text": "Sin rodeos, eh? Egbert Schwarz, profesor de filosofia de segundo, muy fanatico del trabajo de Heidegger, ya me entiendes",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 8,
+              "text": "Le puedes asustar con la promesa de una nacion libre y socialista, con la liberacion del pueblo obrero",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "o con el gluten, es celiaco.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 10,
+              "text": "Si es verdad eso que dicen de que hay que pagar la contratacion en alma",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 11,
+              "text": "estoy deseando que la liberes de la subyugacion de mi cuerpo, a no ser que sea metaforico",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+
+              ]
+            },
+            {
+              "nodeID": 12,
+              "text": "que entonces no la liberes de nada. Larga vida al pueblo. *Cuelga*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 2,
+                  "gdecision": 3,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 13,
+              "text": "*Deberia aceptar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Tarotisa: Tom y Jerry eh?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Tienes todo listo?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Cineasta",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "No me voy a andar con rodeos, tu puedes hacer algo por mi y yo tengo algo que tu quieres",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Ludwig Neumann, el famoso cineasta, como me temia, sigue sacando peliculas.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Tales crimenes y aberraciones contra el septimo arte no deben quedar impunes.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Su ultima pelicula no es menos, una amalgama de intento de buen gusto y profundidad",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "un nefasto gusto para el balance de color, y todo esto coronado por un estrepitoso guion",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 0,
+                  "scene": 0
+                }
+              ]
+            },
+            {
+              "nodeID": 5,
+              "text": "La alta valoracion de este energumeno en la critica audiovisual es absolutamente intolerable",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 6,
+              "text": "la sociedad cada vez esta mas corrupta con el cine extranjero",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 7,
+              "text": "ya no se distingue de un plano general y un plano conjunto, ya no se valora el cine a color.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 8,
+              "text": "Neumann debe estar aterrado del buen gusto y del criterio artistico, debe ser la unica explicacion.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 9,
+              "text": "Y encima se esta tirando a mi mujer. *Cuelga*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 2,
+                  "gdecision": 3,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 13,
+              "text": "*Deberia aceptar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 1,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Tarotisa: nunca me gusto el cine",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Tienes todo listo?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Wanda",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Encantada soy Wanda, la vecina",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "conozco a que horas peleaban, cuando se iba ella con el amante",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "incluso todas las formas en las que se disculpaban antes de volver a pelearse.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Si quieres saber algo soy tu chica, es lo que tiene pasarse horas pegada en la mirilla",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Norbert",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Soy Norbert, el abogado (el que tengo aqui colgado)",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "y definitivamente tendria que haber estudiado otra rama de la abogacia.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "No aguanto mas este divorcio",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Zelig",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Paz y amor! Soy Zelig, el amante de ella",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "ya sabes lo que dicen, haz el amor no la guerra jejeJehghCOF COF",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Gretchen",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Gretchen, la revolucionaria, para servirte a ti y a la causa del pueblo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "soy la delegada uno de la clase",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "asi que tengo informacion personal de Egbert de mis reuniones con el",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "estoy dispuesta a intercambiar favores",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Schmetterling",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Saludos, soy Schmetterling, la conserje de la facultad",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "si necesitas cualquier cosa yo tengo la llave",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Frederika",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Buenas tardes, soy Frederika, la conservadora",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "no entiendo a los que quieren echar a Egbert de su merecido puesto",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "es un hombre inteligente y con una labia y saber estar envidiable",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "ya les gustaria a muchos",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Ritter",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Encantado, me llamo Ritter y soy el decano de la facultad de filosofia de la universidad nacional",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "lo siento, mi profesionalidad me impide compartir cualquier informacion personal de alguno de nuestros profesores",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Anna",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Hola, soy Anna la mayor fan de Neumann",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "presidenta del club de fans de la ciudad a mucha honra, que necesitas saber de el?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "conozco cada uno de sus pensamientos, soy una con su mente",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Bertram",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Ey, soy Bertram, el representante de Neumann",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "te doy mi numero por si quieres llegar a un acuerdo, llamame",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Gorgen",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Buenas, soy Gorgen, uno de los pocos conocedores de cine experimental de la zona",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "la critica no miente, Neumann es todo un descubrimiento y tesoro nacional",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "mi gusto exquisito no falla",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Dagna",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Ya debes de saber quien soy, Dagna, la critica de cine del periodico mas vendido",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Neumann nos paga mucho dinero y nosotros hacemos nuestro trabajo, asi es el mercado",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "NPCName": "Chloris",
+      "convo": [
+        {
+          "convoID": 0,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Si, hola, no tengo mucho tiempo, soy Chloris, la publicista",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Que como es trabajar con Neumann?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "pues como con cualquier otro cineasta prepotente con alardes de grandeza",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "que necesitas saber? Neumann solo habla de Neumann",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 3,
+                  "scene": 6,
+                  "gdecision": 5,
+                  "rdecision": 4
+                }
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "*Deberia investigar?*",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

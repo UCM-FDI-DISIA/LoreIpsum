@@ -59,8 +59,6 @@ void TutorialDeckBuilderManager::setState()
 	//ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
 	image->getComponent<SpriteRenderer>()->enable(false);
 
-
-
 	switch (t)
 	{
 	case Tutorials::Deckbuilder::DECKBUILDING_INIT:
@@ -139,5 +137,7 @@ void TutorialDeckBuilderManager::setDrawer()
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
+
+	GameStateMachine::instance()->setTUTORIAL_DECKBUILDING_COMPLETE(true);
 
 }

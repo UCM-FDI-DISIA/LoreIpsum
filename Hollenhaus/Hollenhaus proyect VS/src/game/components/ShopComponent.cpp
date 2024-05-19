@@ -14,12 +14,32 @@
 #include "../factories/Factory.h"
 #include "../factories/DialogueFactory_V0.h"
 #include "../factories/DecisionFactory_V0.h"
+#include "game/CaseManager.h"
+#include "game/Game.h"
+
+constexpr int CARD_POS_Y = 120,
+              CARD_POS_X = 490,
+              CARD_OFFSET_Y = 110,
+              CARD_OFFSET_X = 100;
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
-shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(525, 80),Vector2D(660, 80) ,Vector2D(525, 200) ,Vector2D(660, 200) }),
-shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
-//,money(800)
-{}
+shopCardsPositions(
+	new Vector2D[CARDS_IN_SHOP]
+	{
+		Vector2D(CARD_POS_X, CARD_POS_Y),
+		Vector2D(CARD_POS_X + CARD_OFFSET_X, CARD_POS_Y),
+		Vector2D(CARD_POS_X, CARD_POS_Y + CARD_OFFSET_Y),
+		Vector2D(CARD_POS_X + CARD_OFFSET_X, CARD_POS_Y + CARD_OFFSET_Y)
+	}),
+	shopCardsPrize(
+		new int[CARDS_IN_SHOP]
+		{
+			0, 0, 0, 0
+		})
+	//,money(800)
+{
+
+}
 
 ShopComponent::~ShopComponent()
 {
@@ -38,16 +58,22 @@ void ShopComponent::initComponent()
 
 	if (GameStateMachine::instance()->getCurrentState()->checkDataShopCardsIsEmpty()) // Si no hay cartas de la tienda en Data entonces se tienen que generar.
 	{
-		std::cout << "\nTienda genera cartas:" << std::endl;
+#if _DEBUG
+		std::cout << "\nTienda genera cartas:" << "\n";
+#endif
 		generateCards();
 	}
 	else
 	{
-		std::cout << "\nTienda trae cartas de Data:" << std::endl;
+#if _DEBUG
+		std::cout << "\nTienda trae cartas de Data:" << "\n";
+#endif
 		for (int i = 0; i < CARDS_IN_SHOP; i++)
 		{
 			shopCards[i] = GameStateMachine::instance()->getCurrentState()->getShopCardById(i);
-			std::cout << shopCards[i] << std::endl;
+#if _DEBUG
+			std::cout << shopCards[i] << "\n";
+#endif
 		}
 	}
 
@@ -61,13 +87,16 @@ void ShopComponent::initComponent()
 
 void ShopComponent::generateCards()
 {
-	//-------------------------------------------------Esto luego sera random del json demomento es el i del for.
+	CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
-		int cardId = 20 + i;
+		const int cardId = caseMngr->getCaseShopCardsById(i);
 		GameStateMachine::instance()->getCurrentState()->setShopCard(cardId);
 		shopCards[i] = cardId;
-		std::cout << shopCards[i] << std::endl;
+
+#if _DEBUG
+		std::cout << "Carta generada con id: " << shopCards[i] << "\n";
+#endif
 	}
 }
 
@@ -86,7 +115,7 @@ void ShopComponent::showCards() {
 	for (int i = 0; i < CARDS_IN_SHOP; i++)
 	{
 		auto card = GameStateMachine::instance()->getCurrentState()->createCard(shopCards[i], shopCardsPositions[i]);
-		card->setLayer(3);
+		//card->setLayer(3);
 		int id = card->getComponent<Card>()->getID();
 		if (!cardIsBought(id)) // Si la carta ya esta comprada entonces no debe de ser un boton pero igualmente tiene que aparecer pero oscurecida.
 		{
@@ -203,18 +232,19 @@ void ShopComponent::confirmPurchase(int prize, int id)
 	if (shopDialogue != nullptr)
 	{
 		shopDialogue = factory->createDialogue("Tienda", 0, 0,
-			{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f }, // Posicion.
-			{ 0.3,0.1 }, // Tamanyo.
-			5, // Velocidad.
+			{ 190.0f,30.0f }, // Posicion.
+			{ 0.25, 0.25 }, // Tamanyo.
+			2, // Velocidad.
 			10, // Cooldown.
 			this->getEntity(), // Padre.
 			3,			// Capa.
 			false,		// Auto.
 			Fonts::GROTESK_20,	// Font.
-			SDL_Color({ 0, 0, 0, 255 }), // Color.
+			Colors::MIDNIGHT_HOLLENHAUS, // Color.
 			220, // Wrap length.
 			Text::BoxPivotPoint::LeftTop,
 			Text::TextAlignment::Center);
+		shopDialogue->getComponent<SpriteRenderer>()->setFlipX(true); // Flipea el sprite para que parezca que hable la tendera.
 	}
 }
 
@@ -256,48 +286,48 @@ void ShopComponent::update()
 void ShopComponent::setTexts()
 {
 	//----Dinero-----
-	moneyText = Instantiate(Vector2D(40, 100));
-	moneyText->addComponent<TextComponent>(std::to_string(money), Fonts::GROTESK_40, SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	moneyText = Instantiate(Vector2D(100, 550));
+	moneyText->addComponent<TextComponent>(std::to_string(money) + " DM", Fonts::GROTESK_32, SDL_Color({ Colors::MIDNIGHT_HOLLENHAUS }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	moneyText->setLayer(10);
 	//--------Esta muy feo ya lo siento a quien mire esto :).
 	//----Carta 0----
-	cardPrizeText0 = Instantiate(Vector2D(shopCardsPositions[0].getX() + 30, shopCardsPositions[0].getY() + 40));
+	cardPrizeText0 = Instantiate(Vector2D(shopCardsPositions[0].getX() + 32, shopCardsPositions[0].getY() + 40));
 	if (!cardIsBought(shopCards[0]))
 	{
-		cardPrizeText0->addComponent<TextComponent>(std::to_string(shopCardsPrize[0]), Fonts::GROTESK_40, SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText0->addComponent<TextComponent>(std::to_string(shopCardsPrize[0]), Fonts::GROTESK_32, SDL_Color({ Colors::ROJO_HOLLENHAUS }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	else {
-		cardPrizeText0->addComponent<TextComponent>("vendida", Fonts::GROTESK_40, SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText0->addComponent<TextComponent>(" ", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 100, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	cardPrizeText0->setLayer(10);
 	//----Carta 1----
-	cardPrizeText1 = Instantiate(Vector2D(shopCardsPositions[1].getX() + 30, shopCardsPositions[1].getY() + 40));
+	cardPrizeText1 = Instantiate(Vector2D(shopCardsPositions[1].getX() + 32, shopCardsPositions[1].getY() + 40));
 	if (!cardIsBought(shopCards[1]))
 	{
-		cardPrizeText1->addComponent<TextComponent>(std::to_string(shopCardsPrize[1]), Fonts::GROTESK_40, SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText1->addComponent<TextComponent>(std::to_string(shopCardsPrize[1]), Fonts::GROTESK_32, SDL_Color({ Colors::ROJO_HOLLENHAUS }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	else {
-		cardPrizeText1->addComponent<TextComponent>("vendida", Fonts::GROTESK_40, SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText1->addComponent<TextComponent>(" ", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	cardPrizeText1->setLayer(10);
 	//----Carta 2----
-	cardPrizeText2 = Instantiate(Vector2D(shopCardsPositions[2].getX() + 30, shopCardsPositions[2].getY() + 40));
+	cardPrizeText2 = Instantiate(Vector2D(shopCardsPositions[2].getX() + 32, shopCardsPositions[2].getY() + 40));
 	if (!cardIsBought(shopCards[2]))
 	{
-		cardPrizeText2->addComponent<TextComponent>(std::to_string(shopCardsPrize[2]), Fonts::GROTESK_40, SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText2->addComponent<TextComponent>(std::to_string(shopCardsPrize[2]), Fonts::GROTESK_32, SDL_Color({ Colors::ROJO_HOLLENHAUS }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	else {
-		cardPrizeText2->addComponent<TextComponent>("vendida", Fonts::GROTESK_40, SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText2->addComponent<TextComponent>(" ", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	cardPrizeText2->setLayer(10);
 	//----Carta 3----
-	cardPrizeText3 = Instantiate(Vector2D(shopCardsPositions[3].getX() + 30, shopCardsPositions[3].getY() + 40));
+	cardPrizeText3 = Instantiate(Vector2D(shopCardsPositions[3].getX() + 32, shopCardsPositions[3].getY() + 40));
 	if (!cardIsBought(shopCards[3]))
 	{
-		cardPrizeText3->addComponent<TextComponent>(std::to_string(shopCardsPrize[3]), Fonts::GROTESK_40, SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText3->addComponent<TextComponent>(std::to_string(shopCardsPrize[3]), Fonts::GROTESK_32, SDL_Color({ Colors::ROJO_HOLLENHAUS }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	else {
-		cardPrizeText3->addComponent<TextComponent>("vendida", Fonts::GROTESK_40, SDL_Color({ 255, 0, 0, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText3->addComponent<TextComponent>(" ", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	cardPrizeText3->setLayer(10);
 }
@@ -305,27 +335,26 @@ void ShopComponent::setTexts()
 void ShopComponent::updateTexts()
 {
 	//----Dinero----
-	moneyText->getComponent<TextComponent>()->setTxt(std::to_string(money));
+	moneyText->getComponent<TextComponent>()->setTxt(std::to_string(money) + " DM");
+
 	//----Carta 0----
 	if (cardIsBought(shopCards[0]))
 	{
-		cardPrizeText0->getComponent<TextComponent>()->setTxt("vendida");
+		cardPrizeText0->getComponent<TextComponent>()->setTxt(" ");
 	}
 	//----Carta 1----
 	if (cardIsBought(shopCards[1]))
 	{
-		cardPrizeText1->getComponent<TextComponent>()->setTxt("vendida");
+		cardPrizeText1->getComponent<TextComponent>()->setTxt(" ");
 	}
 	//----Carta 2----
 	if (cardIsBought(shopCards[2]))
 	{
-		cardPrizeText2->getComponent<TextComponent>()->setTxt("vendida");
+		cardPrizeText2->getComponent<TextComponent>()->setTxt(" ");
 	}
 	//----Carta 3----
 	if (cardIsBought(shopCards[3]))
 	{
-		cardPrizeText3->getComponent<TextComponent>()->setTxt("vendida");
+		cardPrizeText3->getComponent<TextComponent>()->setTxt(" ");
 	}
 }
-
-

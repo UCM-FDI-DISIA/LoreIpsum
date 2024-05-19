@@ -1,7 +1,9 @@
 ﻿#pragma once
 #include <SDL_stdinc.h>
 #include "../../sdlutils/Texture.h"
+constexpr int FRAME_SPEED = 300	;
 
+using SDLEventCallback = std::function<void(void)>;
 class ImageWithFrames : public ComponentUpdate
 {
 	Texture* image_ = nullptr;
@@ -19,13 +21,30 @@ class ImageWithFrames : public ComponentUpdate
 
 	Uint32 frameTimer; // contador del tiempo
 
+	int frameSpeed;
+
+	int loops; // veces que se loopea (-1 infinito)
+
+	// ---- CALLBACKS ----
+	std::list<SDLEventCallback> callbacks;
+	bool callbacksExecuted;
+	void useCallback() const;
+
 public:
 
 	ImageWithFrames() = default;
-	ImageWithFrames(int, int);
-	ImageWithFrames(SpriteRenderer*, int, int);
+	ImageWithFrames(int, int, int, int = FRAME_SPEED);
+	ImageWithFrames(SpriteRenderer*, int, int, int, int = FRAME_SPEED);
 	~ImageWithFrames() override;
 	void initComponent() override;
 	void update() override;
 	void syncRenderer();
+
+
+	void setFrameSpeed(int speed) { frameSpeed = speed; }
+	void setCurrentCol(int col) { currentCol_ = col;}
+	void setCurrentRow(int row) { currentRow_ = row;}
+
+	// Add callback
+	void addCallback(SDLEventCallback _callback);
 };

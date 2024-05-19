@@ -21,10 +21,10 @@ NetPregame::NetPregame(TextComponent* oponentReadyText, TextComponent* readyButt
 	SDLNet_TCP_AddSocket(socketSet, conn);
 
 
-	_oponentReadyText->setColor(SDL_Color({ 255, 0, 0, 0 }));
-	_oponentReadyText->setTxt("Oponent is NOT ready!");
-	_readyButtonText->setColor(SDL_Color({ 255, 0, 0, 0 }));
-	_readyButtonText->setTxt("READY");
+	_oponentReadyText->setColor(Colors::ROJO_PERJUICIO);
+	_oponentReadyText->setTxt("Tu oponente no está preparado");
+	_readyButtonText->setColor(Colors::ROJO_PERJUICIO);
+	_readyButtonText->setTxt("LISTO");
 
 }
 
@@ -109,11 +109,11 @@ void NetPregame::SetPlayerReady(bool isReady)
 	playerReady = isReady;
 
 	if (isReady) {
-		_readyButtonText->setColor(SDL_Color({ 0, 255, 0, 0 }));
+		_readyButtonText->setColor(Colors::VERDE_BENEFICIO);
 		SendMsgPlayerReady();
 	}
 	else {
-		_readyButtonText->setColor(SDL_Color({ 255, 0, 0, 0 }));
+		_readyButtonText->setColor(Colors::ROJO_PERJUICIO);
 		SendMsgPlayerNotReady();
 	}
 	
@@ -132,12 +132,12 @@ void NetPregame::SetRivalReady(bool isReady)
 	rivalReady = isReady;
 
 	if (isReady) {
-		_oponentReadyText->setColor(SDL_Color({ 0, 255, 0, 0 }));
-		_oponentReadyText->setTxt("Oponent is ready!");
+		_oponentReadyText->setColor(Colors::VERDE_BENEFICIO);
+		_oponentReadyText->setTxt("¡Tu oponente está listo!");
 	}
 	else {
-		_oponentReadyText->setColor(SDL_Color({ 255, 0, 0, 0 }));
-		_oponentReadyText->setTxt("Oponent is NOT ready!");
+		_oponentReadyText->setColor(Colors::ROJO_PERJUICIO);
+		_oponentReadyText->setTxt("Tu oponente no está listo");
 	}
 }
 

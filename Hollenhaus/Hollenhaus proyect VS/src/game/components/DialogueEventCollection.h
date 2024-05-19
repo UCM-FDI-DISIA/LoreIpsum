@@ -25,7 +25,7 @@ public:
 	static void ActionEnded();
 
 	//para llamar a decisionFactory
-	Factory* factory;
+	Factory* factory = nullptr;
 
 	/// En funcion del indice, devuelve el callback del efecto
 	///	*** Esto es terrible, quiero que sirva para salir al paso

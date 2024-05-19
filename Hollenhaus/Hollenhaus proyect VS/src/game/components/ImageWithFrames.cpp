@@ -1,19 +1,21 @@
 ﻿#include <../pchs/pch.h>
 #include "ImageWithFrames.h"
 #include "../../sdlutils/SDLUtils.h"
-constexpr int FRAME_SPEED = 300	;
 
-ImageWithFrames::ImageWithFrames(int rows, int cols) : currentRow_(0), currentCol_(0),
-                                                       nRows_(rows), nCols_(cols)
+ImageWithFrames::ImageWithFrames(int rows, int cols, int lups = -1, int speed)
+	: currentRow_(0), currentCol_(0), nRows_(rows), nCols_(cols), frameSpeed(speed), loops(lups), callbacksExecuted(false)
 {
 }
 
-ImageWithFrames::ImageWithFrames(SpriteRenderer* img, int rows, int cols) :
+ImageWithFrames::ImageWithFrames(SpriteRenderer* img, int rows, int cols, int lups = -1, int speed) :
 	spriteRend_(img),
 	currentRow_(0),
 	currentCol_(0),
 	nRows_(rows),
-	nCols_(cols)
+	nCols_(cols),
+	frameSpeed(speed),
+	loops(lups),
+	callbacksExecuted(false)
 {
 }
 
@@ -39,8 +41,9 @@ void ImageWithFrames::initComponent()
 
 void ImageWithFrames::update()
 {
-	if (sdlutils().currRealTime() > frameTimer + FRAME_SPEED)
+	if (sdlutils().currRealTime() > frameTimer + frameSpeed && (loops > 0 || loops == -1))
 	{
+		frameTimer = sdlutils().currRealTime();
 		/*auto col = nCols_;
 		if (col > 1) col -= 1;
 
@@ -50,12 +53,20 @@ void ImageWithFrames::update()
 		currentCol_ = (currentCol_ + 1) % col;
 		currentRow_ = (currentRow_ + 1) % row;*/
 
-		currentCol_ = (currentCol_ + 1) % nCols_;
-		if (currentCol_ == 0)
-			currentRow_ = (currentRow_ + 1) % nRows_;
+		currentCol_ = (currentCol_ + 1) % (nCols_ - 0);
+		if (currentCol_ == 0 && nRows_ > 1)
+			currentRow_ = (currentRow_ + 1) % (nRows_ - 0);
 
-		frameTimer = sdlutils().currRealTime();
-		syncRenderer();
+		// 
+		if (loops != -1 && ((currentCol_ + 1) * (currentRow_ + 1) >= nCols_ * nRows_))
+			loops--;
+	}
+	syncRenderer();
+
+	// Si ha terminado todas los loops que debe hacer ejecuta el callback
+	if (loops <= 0 && loops != -1 && !callbacksExecuted) {
+		useCallback();
+		callbacksExecuted = true;
 	}
 }
 
@@ -68,4 +79,16 @@ void ImageWithFrames::syncRenderer()
 		frameHeight_
 	);
 	spriteRend_->setSourceRect(srce);
+}
+
+void ImageWithFrames::addCallback(SDLEventCallback _callback)
+{
+	callbacks.push_back(_callback);
+}
+
+void ImageWithFrames::useCallback() const
+{
+	for (auto e : callbacks) {
+		e();
+	}
 }

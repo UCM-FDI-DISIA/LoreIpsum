@@ -31,7 +31,8 @@ Mouse::Mouse(const std::string& image, int frames) : image_(&sdlutils().images()
 
 Mouse::~Mouse()
 {
-	
+	//ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { changeFrame(1); });
+	//ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { changeFrame(0); });
 }
 
 void Mouse::render() const

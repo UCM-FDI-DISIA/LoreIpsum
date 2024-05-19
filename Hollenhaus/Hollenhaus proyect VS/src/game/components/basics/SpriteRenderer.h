@@ -48,6 +48,10 @@ public:
 		color.a = a;
 	}
 
+	void setMultiplyColor(SDL_Color scolor) { 
+		color = scolor;
+	}
+
 	void setOpacity(int alpha) { opacity = alpha; }
 	int getOpacity() const { return opacity; }
 
@@ -70,6 +74,7 @@ public:
 	SDL_Rect getSourceRect() const { return sourceRect; }
 	void setRows(int n) { nRows = n; }
 	void setCols(int n) { nCols = n; }
+	void setOffset(float x, float y) { offset = { x, y };}
 
 private:
 
@@ -95,7 +100,7 @@ private:
 	// Alfa de la textura
 	int opacity = 255;
 
-
+	Vector2D offset = { 0, 0};
 
 	/// animaciones
 	bool isAnimated = false;

@@ -56,8 +56,8 @@ void SpriteRenderer::render() const
 	if (!isAnimated)
 	{
 		texture_->render(
-			transform_->getGlobalPos().getX(),
-			transform_->getGlobalPos().getY(),
+			transform_->getGlobalPos().getX() + offset.getX(),
+			transform_->getGlobalPos().getY() + offset.getY(),
 			transform_->getGlobalScale().getX(),
 			transform_->getGlobalScale().getY(),
 			transform_->getGlobalAngle(),
@@ -68,8 +68,8 @@ void SpriteRenderer::render() const
 	else
 	{
 		texture_->render(
-			transform_->getGlobalPos().getX(),
-			transform_->getGlobalPos().getY(),
+			transform_->getGlobalPos().getX() + offset.getX(),
+			transform_->getGlobalPos().getY() + offset.getY(),
 			sourceRect,
 			nRows,
 			nCols,

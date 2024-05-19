@@ -48,9 +48,6 @@ void TutorialCityManager::setState()
 
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
 	ent_->getComponent<TutorialManager>()->activateColliders(objs);
-	image->getComponent<SpriteRenderer>()->enable(false);
-
-
 
 	switch (t)
 	{
@@ -62,6 +59,9 @@ void TutorialCityManager::setState()
 		break;
 	case Tutorials::Ciudad::CITY_PERSON:
 		setINTERACTION();
+		break;
+	case Tutorials::Ciudad::CITY_BUILDING:
+		setBUILDING();
 		break;
 	default:
 		break;
@@ -86,7 +86,7 @@ void TutorialCityManager::setINIT()
 
 void TutorialCityManager::setINTERACTION()
 {
-	createPopUp(250, 250, "City Tutorial", 0, base);
+	createPopUp(250, 250, "City Tutorial", 2, base);
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
@@ -96,7 +96,17 @@ void TutorialCityManager::setINTERACTION()
 
 void TutorialCityManager::setMOVE()
 {
-	createPopUp(250, 250, "City Tutorial", 0, base);
+	createPopUp(250, 250, "City Tutorial", 1, base);
+	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+}
+
+void TutorialCityManager::setBUILDING()
+{
+	createPopUp(250, 250, "City Tutorial", 3, base);
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);

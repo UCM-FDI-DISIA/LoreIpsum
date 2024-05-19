@@ -80,6 +80,12 @@ void GameState::setLastPaulDir(bool dir)
 {
 	data->setPaulDir(dir);
 }
+
+void GameState::nextCase()
+{
+	data->AddCaseIndex();
+}
+
 void GameState::setSocketRival(TCPsocket _rival)
 {
 	data->setSocketRival(_rival);
@@ -167,6 +173,10 @@ void GameState::setKey()
 {
 }
 
+void GameState::setJ2(std::string rival)
+{
+}
+
 void GameState::saveData()
 {
 	data->Write();
@@ -175,6 +185,11 @@ void GameState::saveData()
 void GameState::loadData()
 {
 	data->Read();
+}
+
+void GameState::newGameData()
+{
+	data->resetSave();
 }
 
 ecs::entity_t GameState::createCard(int id, Vector2D pos)

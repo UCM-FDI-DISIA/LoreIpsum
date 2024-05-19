@@ -10,9 +10,10 @@
 #include "../components/NextText.h"
 #include "../components/DialogueBoxDestroyer.h"
 #include "../components/DialogueDestroyer.h"
+#include "game/gamestates/GameState.h"
 
-NPC::NPC(int scene, int t, std::string name_, int convo, bool toFadeIn, bool toFadeOut)
-	: _scene(scene), click(false), type(t), talking(false), name(name_), myBoxCollider(nullptr), convo_(convo)
+NPC::NPC(int scene, int t, std::string name_, int id, int convo, bool toFadeIn, bool toFadeOut)
+	: _scene(scene), click(false), type(t), talking(false), name(name_), _id(id), myBoxCollider(nullptr), convo_(convo)
 {
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this, toFadeIn, toFadeOut] { OnLeftClickDown(_scene, toFadeIn, toFadeOut); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
@@ -62,6 +63,7 @@ void NPC::reactToClick(int scene, bool toFadeIn, bool toFadeOut) // Te lleva al 
 		if (type == BUTTON) {
 			TuVieja("Cambio de escena.");
 			GameStateMachine::instance()->setState(scene, toFadeIn, toFadeOut);
+			GameStateMachine::instance()->getCurrentState()->setJ2(std::to_string(_id));
 		}
 		else if (type == TALKING) 
 		{
@@ -94,11 +96,11 @@ void NPC::talkTo()
 								getEntity(), //Parent 
 								3, //LAYER
 								dialogue.Convo(convo_).isAuto(), //Si el texto es auto o no
-								Fonts::GROTESK_24,	//mirar el JSON resources para cambiar el tamanio de texto
+								Fonts::GROTESK_20,	//mirar el JSON resources para cambiar el tamanio de texto
 								Colors::MIDNIGHT_HOLLENHAUS, //Color black
-								260, //wrap length
+								253, //wrap length
 								Text::BoxPivotPoint::LeftTop,
-								Text::TextAlignment::Left);
+								Text::TextAlignment::Center);
 
 		talking = true;
 	}
@@ -114,7 +116,6 @@ void NPC::nextConvo()
 	npcDialogue->getComponent<DialogueBoxDestroyer>()->destroy();
 	talking = true;
 	++convo_;
-	talkTo();
 }
 
 void NPC::update()

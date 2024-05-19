@@ -79,13 +79,13 @@ ecs::entity_t Factory::createDeck()
 	return cardFactory->createDeck();
 }
 
-ecs::entity_t Factory::createDeckJ2()
+ecs::entity_t Factory::createDeckJ2(std::string j2)
 {
 	if (cardFactory == nullptr) {
 		throw "no existe cardFactory";
 	}
 
-	return cardFactory->createDeckJ2();
+	return cardFactory->createDeckJ2(j2);
 }
 
 ecs::entity_t Factory::createDeckJ2Multiplayer()

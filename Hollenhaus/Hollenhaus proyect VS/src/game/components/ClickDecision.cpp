@@ -12,8 +12,7 @@
 #include "../factories/NPCFactory_V0.h"
 #include "../components/NPC.h"
 
-ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) :
-	factory()
+ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 {
 	decision_ = decision;
 	parent_ = parent;
@@ -26,18 +25,14 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) :
 
 ClickDecision::~ClickDecision()
 {
-	delete factory;
-	factory = nullptr;
+	//ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	//ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
 void ClickDecision::initComponent()
 {
 	scene_ = 0;
-
-	factory = new Factory();
-	factory->SetFactories(
-		static_cast<NPCFactory*>(new NPCFactory_V0())
-	);
+	myNpc_ = parent_->getComponent<Transform>()->getParent()->getEntity()->getComponent<Transform>()->getParent()->getEntity()->getComponent<NPC>();
 }
 
 void ClickDecision::update()
@@ -74,7 +69,7 @@ void ClickDecision::TakeDecision()
 
 		TuVieja("Cambio de escena");
 		parent_->getComponent<DialogueEventCollection>()->ChangeScene(scene_);
-		//abria que hacer actual node ++?¿?¿
+		//abria que hacer actual node ++?ï¿½?ï¿½
 
 
 		break;
@@ -94,10 +89,12 @@ void ClickDecision::TakeDecision()
 		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
 		break;
 	case 5:
-		parent_->getComponent<DialogueEventCollection>()->ChangeScene(GameStates::LUIS);
+		//parent_->getComponent<DialogueEventCollection>()->ChangeScene(GameStates::LUIS);
+		GameStateMachine::instance()->setState(GameStates::LUIS);
+		GameStateMachine::instance()->getCurrentState()->setJ2(std::to_string(myNpc_->getID()));
 		break;
 	default:
-		TuVieja("Esta decision no existe. Añadir en ClickDecision.cpp");
+		TuVieja("Esta decision no existe. Aï¿½adir en ClickDecision.cpp");
 		break;
 	}
 	
@@ -134,7 +131,7 @@ void ClickDecision::caseAccepted()
 	if (click_) {
 		TuVieja("CASO ACEPTADO");
 		CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
-		caseMngr->setAccepted(true);
+		caseMngr->accept();
 
 		NPC* npc = caseMngr->caseNPC()->getComponent<NPC>();
 		npc->nextConvo();

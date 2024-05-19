@@ -15,6 +15,7 @@ Texture& Texture::operator=(Texture &&other) noexcept {
 	return *this;
 }
 
+
 Texture::Texture(Texture &&other) noexcept {
 	texture_ = other.texture_;
 	other.texture_ = nullptr;
@@ -23,6 +24,7 @@ Texture::Texture(Texture &&other) noexcept {
 	width_ = other.width_;
 	height_ = other.height_;
 }
+
 
 Texture::Texture(SDL_Renderer *renderer, const std::string &fileName) {
 	assert(renderer != nullptr);
