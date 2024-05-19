@@ -112,7 +112,7 @@ ecs::entity_t CardFactory_v1::createDeck()
 				card.unblockable(),
 				card.effects()
 			);
-			ent->setLayer(3);
+			ent->setEveryLayer(3);
 			deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
 		}
 	}
