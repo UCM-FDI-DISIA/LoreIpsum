@@ -31,7 +31,7 @@ private:
 	// ---- MOVIMIENTO ----
 	// ultima pos de paul en la ciudad
 	Vector2D lastPaulPos;
-	bool lastPaulDir = false;
+	bool lastPaulDir = true;
 
 	// ---- FLUJO ----
 	int currentMoney = 0,

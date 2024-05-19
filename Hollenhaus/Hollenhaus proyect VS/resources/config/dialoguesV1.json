@@ -1046,7 +1046,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Humilde ciudad, te gusta?",
+              "text": "Humilde ciudad, le gusta?",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1065,7 +1065,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Puedes moverte por ella pulsando en el suelo, aqui no hay transporte publico...",
+              "text": "Puedes moverse por ella pulsando en el suelo, aqui no hay transporte publico...",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1084,7 +1084,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Para hablar con la gente, pulsa sobre ellos. Puedes ganar experiencia en combate si es que le retan.",
+              "text": "Para hablar con la gente, pulse sobre ellos. Puedes ganar experiencia en combate si es que le retan.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
