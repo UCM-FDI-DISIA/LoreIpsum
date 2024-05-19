@@ -72,6 +72,9 @@ public:
 	Vector2D getOffset() const { return offset; }
 	void setAlpha(int v) { alpha = v; }
 
+	void setTxtDialogue(std::string txt);
+	bool onDialog;
+
 private:
 
 	Transform* tr_;

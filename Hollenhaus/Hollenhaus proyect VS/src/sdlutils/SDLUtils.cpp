@@ -41,6 +41,8 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height,
 SDLUtils::~SDLUtils() {
 	closeSDLExtensions();
 	closeWindow();
+
+	for (item& i : Items) delete i.text_;
 }
 
 void SDLUtils::initWindow() {
@@ -195,6 +197,25 @@ void SDLUtils::loadResources(std::string filenameResources,
 	loadDialogues(rootDialogues, filenameDialogues);
 	loadNPCs(rootNPCs, filenameNPCs);
 	loadKeyText(rootKeys, filenameKeys);
+
+
+	for (std::pair<std::string, JsonData::DialogueData> e : dialogueAccessWrapper_.map_) {
+		for (JsonData::ConvoData c : e.second.ConvosVector()) {
+			for (JsonData::NodeData n : c.NodesVector()) {
+				std::string aux = "";
+				for (int i = 0; i < n.Text().size(); i++) {
+					aux += n.Text()[i];
+					item it;
+					it.t = aux;
+					it.text_ = new Texture(renderer(), aux, *&fonts().at(Fonts::GROTESK_24), Colors::MIDNIGHT_HOLLENHAUS, 260, Text::TextAlignment::Left);
+					Items.push_back(it);
+				}
+			}
+		}
+	}
+
+	std::cout << "a" << std::endl;
+
 }
 
 void SDLUtils::loadFonts(JSONObject rootResources, std::string filenameResources)

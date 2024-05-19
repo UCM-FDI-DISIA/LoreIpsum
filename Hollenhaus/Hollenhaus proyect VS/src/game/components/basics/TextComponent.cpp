@@ -12,7 +12,8 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 	wrapLenght_(wrapLenght),
 	boxPivotPoint_(boxPivotPoint),
 	textAlignment_(textAlignment),
-	txt_(txt)
+	txt_(txt),
+	onDialog(false)
 {
 
 	createTexture();
@@ -20,7 +21,8 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 
 TextComponent::~TextComponent()
 {
-	delete text_;
+	if(!onDialog)
+		delete text_;
 }
 
 void TextComponent::initComponent()
@@ -77,10 +79,24 @@ void TextComponent::SetTextAlignment(Text::TextAlignment textAlignment)
 	// No hace falta crear textura nueva
 }
 
-void TextComponent::createTexture() {
+void TextComponent::setTxtDialogue(std::string txt)
+{
+	for (auto e : sdl_.Items) {
+		if (e.t == txt) {
+			text_ = e.text_;
+			onDialog = true;
+		}
+	
+	}
+	
+}
 
-	if(text_!= nullptr)
+void TextComponent::createTexture() {
+	
+	if(text_!= nullptr && !onDialog)
 		delete text_;
+
+	onDialog = false;
 	
 	std::string texto = txt_;
 	if (txt_.empty())
