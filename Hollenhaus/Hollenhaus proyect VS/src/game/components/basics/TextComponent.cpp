@@ -20,7 +20,8 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 
 TextComponent::~TextComponent()
 {
-	delete text_;
+	//delete text_;
+	text_ = nullptr;
 }
 
 void TextComponent::initComponent()

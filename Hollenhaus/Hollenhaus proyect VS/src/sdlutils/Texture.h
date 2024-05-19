@@ -39,8 +39,10 @@ public:
 		const SDL_Color& fgColor, Uint32 wrapLenght, int align);
 
 	virtual ~Texture() {
-		if (texture_ != nullptr)
+		if (texture_ != nullptr){
 			SDL_DestroyTexture(texture_); // delete the SDL texture
+			texture_ = nullptr;
+		}
 	}
 
 	inline int width() const {
