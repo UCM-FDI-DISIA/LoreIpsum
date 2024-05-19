@@ -25,10 +25,12 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 
 ClickDecision::~ClickDecision()
 {
+	click_ = false;
+	collider_ = nullptr;
+
 	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 	ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 
-	collider_ = nullptr;
 }
 
 void ClickDecision::initComponent()

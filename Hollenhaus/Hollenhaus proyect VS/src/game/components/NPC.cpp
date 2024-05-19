@@ -97,9 +97,9 @@ void NPC::talkTo()
 								dialogue.Convo(convo_).isAuto(), //Si el texto es auto o no
 								Fonts::GROTESK_20,	//mirar el JSON resources para cambiar el tamanio de texto
 								Colors::MIDNIGHT_HOLLENHAUS, //Color black
-								260, //wrap length
+								253, //wrap length
 								Text::BoxPivotPoint::LeftTop,
-								Text::TextAlignment::Left);
+								Text::TextAlignment::Center);
 
 		talking = true;
 	}
