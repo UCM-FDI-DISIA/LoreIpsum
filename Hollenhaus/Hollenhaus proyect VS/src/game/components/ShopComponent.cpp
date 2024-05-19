@@ -221,8 +221,8 @@ void ShopComponent::confirmPurchase(int prize, int id)
 	if (shopDialogue != nullptr)
 	{
 		shopDialogue = factory->createDialogue("Tienda", 0, 0,
-			{ 50.0f,70.0f }, // Posicion.
-			{ 0.3,0.1 }, // Tamanyo.
+			{ 170.0f,30.0f }, // Posicion.
+			{ 0.25, 0.25 }, // Tamanyo.
 			2, // Velocidad.
 			10, // Cooldown.
 			this->getEntity(), // Padre.

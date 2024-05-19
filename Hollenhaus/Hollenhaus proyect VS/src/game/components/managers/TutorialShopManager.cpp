@@ -78,7 +78,7 @@ void TutorialShopManager::setState()
 
 void TutorialShopManager::setINIT()
 {
-	createPopUp(50, 70, "Tienda Tutorial", 0, base);
+	createPopUp(170, 30, "Tienda Tutorial", 0, base);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -90,7 +90,7 @@ void TutorialShopManager::setINIT()
 
 void TutorialShopManager::setSHOW_MONEY()
 {
-	createPopUp(50, 70, "Tienda Tutorial", 1, base);
+	createPopUp(170, 30, "Tienda Tutorial", 1, base);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -105,7 +105,7 @@ void TutorialShopManager::setSHOW_MONEY()
 
 void TutorialShopManager::setSHOW_CARDS()
 {
-	createPopUp(50, 70, "Tienda Tutorial", 2, base);
+	createPopUp(170, 30, "Tienda Tutorial", 2, base);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -116,7 +116,7 @@ void TutorialShopManager::setSHOW_CARDS()
 
 void TutorialShopManager::setPURCHASE()
 {
-	createPopUp(50, 70, "Tienda Tutorial", 3, base);
+	createPopUp(170, 30, "Tienda Tutorial", 3, base);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
