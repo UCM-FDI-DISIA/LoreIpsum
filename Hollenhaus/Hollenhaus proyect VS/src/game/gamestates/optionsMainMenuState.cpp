@@ -132,5 +132,8 @@ void OptionsMainMenuState::onEnter()
 
 void OptionsMainMenuState::onExit()
 {
+	music->stopMusic(Musics::MUSIC::OFFICE_M);
+
+
 	GameStateMachine::instance()->getMngr()->Free();
 }
