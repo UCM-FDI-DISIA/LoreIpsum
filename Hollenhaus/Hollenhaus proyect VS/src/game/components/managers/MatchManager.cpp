@@ -38,6 +38,12 @@ MatchManager::~MatchManager()
 void MatchManager::initComponent()
 {
 	isBoss = j2_ == "6" || j2_ == "7" || j2_ == "8";
+
+	fadeTween =
+		tweeny::from(0)
+		.to(255)
+		.during(15)
+		.via(tweeny::easing::linear);
 }
 
 void MatchManager::update()
@@ -48,7 +54,55 @@ void MatchManager::update()
 		{
 			//Finaliza la partida cuando se llena el tablero
 			setActualState(Turns::Finish);
+			board_->resetVisuals();
 		}
+	}
+
+	fadeTween.step(1);
+	if (fadeTween.progress() >= 1.0) fadeIn = false;
+	for (int i = 0; i < 4; i++)
+	{
+		auto spr = actionPointsJ1[i]->getComponent<SpriteRenderer>();
+
+		if (fadeIn)
+		{
+			if (fadeInIndexes[i])
+			{
+				if (spr != nullptr
+					&& spr->getOpacity() < 255)
+					spr->setOpacity(fadeTween.peek());
+			}
+			else spr->setOpacity(255);
+		}
+		else
+		{
+			if (fadeOutIndexes[i])
+			{
+				if (spr != nullptr
+					&& spr->getOpacity() > 0)
+					spr->setOpacity(fadeTween.peek());
+			}
+		}
+
+
+		//if (fadeOutIndexes[i]
+		//	|| fadeInIndexes[i]
+		//)
+		//{
+		//	if (fadeIn)
+		//	{
+		//		if (spr != nullptr
+		//			&& spr->getOpacity() < 255)
+		//			spr->setOpacity(fadeTween.peek());
+		//	}
+		//	else
+		//	{
+		//		if (spr != nullptr
+		//			&& spr->getOpacity() > 0)
+		//			spr->setOpacity(fadeTween.peek());
+		//	}
+		//}
+
 	}
 }
 
@@ -77,8 +131,8 @@ void MatchManager::setActualState(Turns::State newState)
 #endif
 		setWinnerOnData();
 		if (isBoss
-			&& GameStateMachine::instance()->getCurrentState()->getData()->getWinner() == 2) {
-
+			&& GameStateMachine::instance()->getCurrentState()->getData()->getWinner() == 2)
+		{
 			GameStateMachine::instance()->caseMngr()->resetCase();
 		}
 		InstantiatePanelFinPartida(GameStateMachine::instance()->getCurrentState()->getData()->getWinner());
@@ -154,12 +208,41 @@ void MatchManager::updateVisuals()
 		actionPointsVisualJ2->getComponent<TextComponent>()->setTxt(
 			"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
 
+	/// ACTUALIZACION DE IMAGENES
+	lastSpentPoints = lastPointsJ1 - actualActionPointsJ1;
+	if (lastSpentPoints < 0)
+	{
+		// ha habido reseteo
+		auto pointsWon = actualActionPointsJ1 - lastPointsJ1;
+		fadeIn = true;
+		lastSpentPoints = 0;
+		resetFadeIndexes();
+		for (int i = actualActionPointsJ1; i > actualActionPointsJ1 - pointsWon; i--)
+			fadeInIndexes[i - 1] = true;
+
+		//for (int i = 0; i < 4; i++)
+		//	fadeInIndexes[i] = true;
+		startPointsOn();
+	}
+	else if (lastSpentPoints > 0)
+	{
+		// se han gastado
+		resetFadeIndexes();
+		fadeIn = false;
+		for (int i = lastPointsJ1; i > actualActionPointsJ1; i--)
+		{
+			fadeOutIndexes[i - 1] = true;
+		}
+		startPointsOff();
+	}
+	lastPointsJ1 = actualActionPointsJ1;
+
 	// Actualiza el indicador del propietario del turno actual
 	//Habría que Hacer uan diferenciación también cuando recién cambia de turno para la animación
-	std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
 	SDL_Color color = actualState == Turns::J1 ? SDL_Color({102, 255, 102, 255}) : SDL_Color({255, 102, 255, 255});
 	if (actualTurnVisual != nullptr)
 	{
+		std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
 		actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
 		actualTurnVisual->getComponent<TextComponent>()->setColor(color);
 	}
@@ -179,6 +262,15 @@ void MatchManager::endTurnIA()
 {
 	setActualState(Turns::J1);
 	// Animacion gira la estatua
+}
+
+void MatchManager::resetFadeIndexes()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		fadeInIndexes[i] = false;
+		fadeOutIndexes[i] = false;
+	}
 }
 
 void MatchManager::resetActualActionPoints()
@@ -225,38 +317,39 @@ void MatchManager::InstantiatePanelFinPartida(int winner)
 	panel->setLayer(1000);
 	panel->addComponent<SpriteRenderer>("panelFinPartida");
 
-	ecs::entity_t victoryDefeatText = Instantiate(Vector2D(128, 240));
+	ecs::entity_t victoryDefeatText = Instantiate(Vector2D(sdlutils().width() - 120, 240));
 	victoryDefeatText->setLayer(1002);
-	auto text = victoryDefeatText->addComponent<TextComponent>("", Fonts::GROTESK_32, SDL_Color({0, 0, 0, 0}), 200,
+	auto text = victoryDefeatText->addComponent<TextComponent>("", Fonts::GROTESK_32, Colors::MIDNIGHT_HOLLENHAUS, 200,
 	                                                           Text::BoxPivotPoint::CenterCenter,
 	                                                           Text::TextAlignment::Center);
 
 	if (winner == 1)
 	{
 		text->setTxt("EMPATE");
-		text->setColor(SDL_Color({0, 0, 255, 0}));
+		text->setColor(Colors::AMARILLO_PIS);
 	}
 	if (winner == 2)
 	{
 		text->setTxt("VICTORIA");
-		text->setColor(SDL_Color({255, 50, 50, 0}));
+		text->setColor(Colors::VERDE_BANKIA);
 	}
 	if (winner == 3)
 	{
 		text->setTxt("DERROTA");
-		text->setColor(SDL_Color({255, 50, 50, 0}));
+		text->setColor(Colors::ROJO_HOLLENHAUS);
 	}
 
 
-	ecs::entity_t continuarButton = Instantiate(Vector2D(128, 320));
+	ecs::entity_t continuarButton = Instantiate(Vector2D(sdlutils().width() - 120, 310));
 	continuarButton->setLayer(1001);
-	continuarButton->addComponent<TextComponent>("CONTINUAR", Fonts::GROTESK_16, SDL_Color({0, 0, 0, 0}), 200,
+	continuarButton->addComponent<TextComponent>("CONTINUAR", Fonts::GROTESK_24, Colors::MIDNIGHT_HOLLENHAUS, 200,
 	                                             Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	continuarButton->addComponent<BoxCollider>();
 	continuarButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
 	continuarButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
 	continuarButton->addComponent<Button>();
-	continuarButton->addComponent<ClickableText>(Colors::MIDNIGHT_HOLLENHAUS, Colors::MIDNIGHT_CLICK, Colors::ROJO_HOLLENHAUS);
+	continuarButton->addComponent<
+		ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 
 	if (netGame == nullptr)
 	{
@@ -302,4 +395,41 @@ void MatchManager::CheckNextTurnAutomatic()
 		// Si no quedan puntos de accion y no quedan jugadas disponibles, pasamos turno automáticamente
 		setActualState(netGame == nullptr ? Turns::IA : Turns::J2_MULTIPLAYER);
 	}
+}
+
+void MatchManager::turnPointsOff()
+{
+	for (auto point : actionPointsJ1)
+	{
+		if (point->getComponent<SpriteRenderer>() != nullptr)
+			point->getComponent<SpriteRenderer>()->setOpacity(0);
+	}
+}
+
+void MatchManager::turnPointsOn()
+{
+	for (int i = actualActionPointsJ1; i > 0; i--)
+	{
+		if (actionPointsJ1[i - 1]->getComponent<SpriteRenderer>() != nullptr)
+			actionPointsJ1[i - 1]->getComponent<SpriteRenderer>()->setOpacity(255);
+	}
+}
+
+void MatchManager::startPointsOn()
+{
+	turnPointsOff();
+	fadeTween =
+		tweeny::from(0)
+		.to(255)
+		.during(15)
+		.via(tweeny::easing::linear);
+}
+
+void MatchManager::startPointsOff()
+{
+	fadeTween =
+		tweeny::from(255)
+		.to(0)
+		.during(15)
+		.via(tweeny::easing::linear);
 }

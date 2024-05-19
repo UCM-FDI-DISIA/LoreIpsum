@@ -25,8 +25,6 @@ void DialogueDestroyer::update()
 void DialogueDestroyer::destroyDialogue()
 {
 
-	this;
-
 	if (npc->hasComponent<NPC>()) {
 		npc->getComponent<NPC>()->stoppedTalking();
 	}	

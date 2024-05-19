@@ -36,6 +36,8 @@ void DialogueReader::initComponent() {
 }
 void DialogueReader::NextNode()
 {
+	if (ent_ == nullptr) return;
+	if (ent_->getComponent<NextText>() == nullptr) return;
 	if (!ent_->getComponent<NextText>()->isDead()) {
 
 		//std::cout << convo_->Node(actualNode_).NodeID() << std::endl;

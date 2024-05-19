@@ -1,6 +1,7 @@
 #include <../pchs/pch.h>
 #include "DialogueBoxDestroyer.h"
 #include "../components/DialogueDestroyer.h"
+#include "../components/FadeComponent.h"
 
 DialogueBoxDestroyer::DialogueBoxDestroyer(ecs::entity_t child_)
 {
@@ -13,9 +14,14 @@ void DialogueBoxDestroyer::initComponent()
 
 void DialogueBoxDestroyer::update()
 {
+
 }
 
 void DialogueBoxDestroyer::destroy()
 {
 	text->getComponent<DialogueDestroyer>()->destroyDialogue();
+}
+
+void DialogueBoxDestroyer::continueDestroy()
+{
 }

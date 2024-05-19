@@ -104,7 +104,7 @@ void ShopState::onEnter()
 	//carta1->addComponent<SpriteRenderer>("card");
 	carta1->addComponent<ShineComponent>();
 
-	Vector2D card1Pos(525, 80);
+	Vector2D card1Pos(490, 120);
 	carta1->getComponent<Transform>()->setGlobalPos(card1Pos);
 	carta1->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta1->setLayer(2);
@@ -114,9 +114,9 @@ void ShopState::onEnter()
 	carta2->addComponent<Transform>();
 	carta2->addComponent<BoxCollider>();
 	//carta2->addComponent<SpriteRenderer>("card");
-	carta2->addComponent<ShineComponent>();
+	carta2->addComponent<ShineComponent>();	
 
-	Vector2D card2Pos(660, 80);
+	Vector2D card2Pos(600, 120);
 	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
 	carta2->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta2->setLayer(2);
@@ -128,7 +128,7 @@ void ShopState::onEnter()
 	//carta3->addComponent<SpriteRenderer>("card");
 	carta3->addComponent<ShineComponent>();
 
-	Vector2D card3Pos(525, 200);
+	Vector2D card3Pos(490, 230);
 	carta3->getComponent<Transform>()->setGlobalPos(card3Pos);
 	carta3->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta3->setLayer(2);
@@ -140,7 +140,7 @@ void ShopState::onEnter()
 	//carta4->addComponent<SpriteRenderer>("card");
 	carta4->addComponent<ShineComponent>();
 
-	Vector2D card4Pos(660, 200);
+	Vector2D card4Pos(600, 230);
 	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
 	carta4->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	//carta4->setLayer(2);
@@ -156,7 +156,7 @@ void ShopState::onEnter()
 	exitButton->addComponent<Clickable>("boton_flecha", true);
 	exitButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
-	objs.push_back(exitButton);
+	//objs.push_back(exitButton);
 	objs.push_back(carta1);
 	objs.push_back(carta2);
 	objs.push_back(carta3);
@@ -249,7 +249,7 @@ ecs::entity_t ShopState::createCoin(int x, int y)
 	coin->addComponent<Transform>();
 	Vector2D coinPos(x, y);
 	coin->getComponent<Transform>()->setGlobalPos(coinPos);
-	coin->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
+	coin->getComponent<Transform>()->setGlobalScale(0.5f, 0.5f);
 	coin->addComponent<SpriteRenderer>("moneda_tienda");
 	coin->setLayer(4);
 

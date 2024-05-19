@@ -26,6 +26,8 @@ public:
     void setJ2(std::string rival) override;
 
 private:
+    std::array<ecs::entity_t, 4>  createPointsJ1();
+    std::array<ecs::entity_t, 4> createPointsJ2();
     Factory* factory = nullptr;
 
     ecs::entity_t key_;

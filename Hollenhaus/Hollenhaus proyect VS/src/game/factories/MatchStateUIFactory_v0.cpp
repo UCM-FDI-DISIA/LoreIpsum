@@ -56,7 +56,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_ScoreCounter(int posX, int po
 {
     ecs::entity_t scoreVisual = Instantiate(Vector2D(posX, posY)); // 300, 350 | 300, 225
     scoreVisual->addComponent<TextComponent>("0", 
-        Fonts::GROTESK_48, color, 120,    // 102, 255, 255 | 255, 102, 255
+        Fonts::GROTESK_40, color, 120,    // 102, 255, 255 | 255, 102, 255
         Text::CenterCenter, 
         Text::Center);
     scoreVisual->setLayer(9);
@@ -81,12 +81,12 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_BackgroundBlackBox(int posX, 
 {
 
     ecs::entity_t blackBox = Instantiate(Vector2D(posX, posY)); // 600, 200
-    blackBox->addComponent<SpriteRenderer>("optfondo");
+    blackBox->addComponent<SpriteRenderer>("score_bg_v1");
 
     // Obtenemos la altura y anchura de "black_box" para definir el tama�o del sprite en pixeles
-    int textureW = blackBox->getComponent<SpriteRenderer>()->getTexture()->width();
-    int textureH = blackBox->getComponent<SpriteRenderer>()->getTexture()->height();
-    blackBox->getComponent<Transform>()->setGlobalScale(xPixelsSize / textureW, yPixelsSize / textureH);
+    //int textureW = blackBox->getComponent<SpriteRenderer>()->getTexture()->width();
+    //int textureH = blackBox->getComponent<SpriteRenderer>()->getTexture()->height();
+    blackBox->getComponent<Transform>()->setGlobalScale(1.f, 1.f);
     //blackBox->getComponent<Transform>()->getGlobalScale().set(xPixelsSize / textureW, yPixelsSize / textureH);
 
     blackBox->setLayer(1);

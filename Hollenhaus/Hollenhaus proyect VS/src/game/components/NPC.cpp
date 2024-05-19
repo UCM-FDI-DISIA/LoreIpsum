@@ -63,6 +63,7 @@ void NPC::reactToClick(int scene, bool toFadeIn, bool toFadeOut) // Te lleva al 
 		if (type == BUTTON) {
 			TuVieja("Cambio de escena.");
 			GameStateMachine::instance()->setState(scene, toFadeIn, toFadeOut);
+			GameStateMachine::instance()->getCurrentState()->setJ2(std::to_string(_id));
 		}
 		else if (type == TALKING) 
 		{
@@ -95,11 +96,11 @@ void NPC::talkTo()
 								getEntity(), //Parent 
 								3, //LAYER
 								dialogue.Convo(convo_).isAuto(), //Si el texto es auto o no
-								Fonts::GROTESK_24,	//mirar el JSON resources para cambiar el tamanio de texto
+								Fonts::GROTESK_20,	//mirar el JSON resources para cambiar el tamanio de texto
 								Colors::MIDNIGHT_HOLLENHAUS, //Color black
-								260, //wrap length
+								253, //wrap length
 								Text::BoxPivotPoint::LeftTop,
-								Text::TextAlignment::Left);
+								Text::TextAlignment::Center);
 
 		talking = true;
 	}

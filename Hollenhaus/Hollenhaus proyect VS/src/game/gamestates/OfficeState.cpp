@@ -72,7 +72,13 @@ void OfficeState::onEnter()
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(GameStates::CITY); // Lleva a la ciudad (1).
+
+	if (GameStateMachine::instance()->TUTORIAL_CITY_COMPLETE()) {
+		exit->addComponent<NPC>(GameStates::CITY); // Lleva a la ciudad (1).
+	}
+	else if (GameStateMachine::instance()->TUTORIAL_DECKBUILDING_COMPLETE()) {
+		exit->addComponent<NPC>(GameStates::TUTORIAL_CITY); // Lleva a la ciudad (1).
+	}
 	exit->setLayer(1);
 	exit->addComponent<Clickable>("boton_flecha", true);
 
@@ -88,8 +94,13 @@ void OfficeState::onEnter()
 
 	Vector2D dbPos(478, 112);
 	dbTrans->setGlobalPos(dbPos);
+	if (isTutorial) {
+		db->addComponent<NPC>(GameStates::TUTORIAL_DECKBUILDING); // Lleva al deckbuilding TUTORIAL (9).
+	}
+	else {
+		db->addComponent<NPC>(GameStates::DECKBUILDING); // Lleva al deckbuilding (9).
+	}
 
-	db->addComponent<NPC>(9); // Lleva al deckbuilding (9).
 	db->setLayer(1);
 	db->addComponent<SpriteRenderer>("pizarra");
 	auto dbShine = db->addComponent<ShineComponent>();
@@ -113,6 +124,10 @@ void OfficeState::onEnter()
 	// - Se instanciaria aqui, usando factory->createNPC(getCurrentCase() + offset, fondo), donde el offset
 	//   seria el numero de npcs que hay antes en npcs.json
 
+	objs.push_back(db);
+	objs.push_back(exit);
+
+	setTutorial();
 
 	/// MUSICA
 	auto& sdl = *SDLUtils::instance();
@@ -156,9 +171,9 @@ void OfficeState::setTutorial()
 
 
 		tutorial->getComponent<TutorialManager>()->startTutorial();
-		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::DECKBUILDER);
-		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Deckbuilder::DECKBUILDER_NONE);
-		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Deckbuilder::DECKBUILDING_INIT);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::OFFICE);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Oficina::OFFICE_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Oficina::OFFICE_INIT);
 
 
 		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
@@ -169,11 +184,19 @@ void OfficeState::setTutorial()
 
 void OfficeState::prepareTutorial()
 {
-
+	// base
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
 
 }
 
 void OfficeState::startTutorial(bool a)
 {
+	isTutorial = a;
 }
 

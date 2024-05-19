@@ -23,6 +23,7 @@ void HandComponent::initComponent() {
 
 	transform_ = ent_->getComponent<Transform>();
 	transform_->getGlobalPos().set(400, 400);
+	getEntity()->setLayer(10);
 }
 
 void HandComponent::addCard(ecs::entity_t card) {
@@ -30,7 +31,7 @@ void HandComponent::addCard(ecs::entity_t card) {
 	auto cardCardStateManager = card->getComponent<CardStateManager>();
 	cardCardStateManager->setState(Cards::ON_HAND);
 
-	if (owner_ == Players::IA)
+	if (owner_ == Players::IA )
 	{
 		card->getComponent<Transform>()->setGlobalAngle(180.0f);
 	}
@@ -42,9 +43,9 @@ void HandComponent::addCard(ecs::entity_t card) {
 	//card->getComponent<Transform>()->getRelativeScale().set(cardScale_, cardScale_);
 
 	if (lastCardAdded_ != nullptr)
-		card->setLayer(lastCardAdded_->getLayer() + 3); // COSITAS DEL ORDER IN LAYER :D (JIMBO)
+		card->setEveryLayer(lastCardAdded_->getLastLayer() + 1); // COSITAS DEL ORDER IN LAYER :D (JIMBO)
 	else
-		card->setLayer(1);
+		card->setEveryLayer(getEntity()->getLayer());
 	card->getComponent<Transform>()->increaseLayer(card->getLayer());
 
 
@@ -193,9 +194,12 @@ void HandComponent::removeCard(ecs::entity_t card)
 		}
 		else // la carta es jugada
 		{
+			/////////////////////////////////////////////////////////
+			///MOMENTO EN EL QUE SE CAMBIA LA ESCALA DE LA CARTA/////
+			/////////////////////////////////////////////////////////
 			// cambia la escala para ajustarse a la celda del tablero
 			card->getComponent<Transform>()->setGlobalScale(cardScaleBoard_, cardScaleBoard_);
-
+			card->setEveryLayer(2);
 			// ajusta tambien los textos
 			for (auto child : card->getComponent<Transform>()->getChildren())
 			{
@@ -209,6 +213,9 @@ void HandComponent::removeCard(ecs::entity_t card)
 					);
 				}
 			}
+			/////////////////////////////////////////////////////////
+			/// ///////////////////////////////////////////////// ///
+			/////////////////////////////////////////////////////////
 
 			// su parent ya no es la mano izq
 			cardsInHand_[i]->getComponent<Transform>()->removeParent();

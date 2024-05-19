@@ -22,7 +22,7 @@
     },
     {
       "id": "board6",
-      "file": "resources/images/board6.png"
+      "file": "resources/images/board8.png"
     },
     {
       "id": "mouse",
@@ -83,10 +83,6 @@
     {
       "id": "unblockable",
       "file": "resources/images/ef_unblockable.png"
-    },
-    {
-      "id": "tiendafondo",
-      "file": "resources/images/provtienda.png"
     },
     {
       "id": "oficinafondo",
@@ -155,26 +151,6 @@
     {
       "id": "reverseCard_brilli",
       "file": "resources/images/card_reverse_brilli.png"
-    },
-    {
-      "id": "moneda",
-      "file": "resources/images/moneda.png"
-    },
-    {
-      "id": "monedaIlu",
-      "file": "resources/images/monedaIluminada.png"
-    },
-    {
-      "id": "fondoTienda",
-      "file": "resources/images/tienda_ph.png"
-    },
-    {
-      "id": "mostrador",
-      "file": "resources/images/mostradorTienda.png"
-    },
-    {
-      "id": "estanteria",
-      "file": "resources/images/estanteriaTienda.png"
     },
     {
       "id": "cell",
@@ -273,10 +249,6 @@
       "file": "resources/images/midnightBlue.png"
     },
     {
-      "id": "transitionbg",
-      "file": "resources/images/transitionBG.png"
-    },
-    {
       "id": "santeria",
       "file": "resources/images/santeria.png"
     },
@@ -299,6 +271,10 @@
     {
       "id": "tfno",
       "file": "resources/images/tfno.png"
+    },
+    {
+      "id": "llamitas",
+      "file": "resources/images/llamitas_animacion.png"
     },
     {
       "id": "pizarra_brilli",
@@ -327,6 +303,14 @@
     {
       "id": "panelFinPartida",
       "file": "resources/images/PanelFinPartida.png"
+    },
+    {
+      "id": "score_bg_v0",
+      "file": "resources/images/score_bg_v0.png"
+    },
+    {
+      "id": "score_bg_v1",
+      "file": "resources/images/score_bg_v1.png"
     },
     {
       "id": "tienda",

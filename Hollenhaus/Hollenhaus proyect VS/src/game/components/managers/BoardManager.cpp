@@ -91,7 +91,8 @@ bool BoardManager::setCard(int x, int y, Card* c, Players::Owner o)
 	//Cambia el color de la carta si es del jugador 2
 	if (o == Players::PLAYER2 || o == Players::IA || o == Players::PLAYER2_MULTIPLAYER)
 	{
-		c->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(104, 52, 177, 200);
+		c->getEntity()->getComponent<SpriteRenderer>()->setMultiplyColor(
+			Colors::MORADO_BERENJENA.r, Colors::MORADO_BERENJENA.g, Colors::MORADO_BERENJENA.b, 200);
 		auto children = c->getEntity()->getComponent<Transform>()->getChildren();
 		// SE PRESUPONE QUE EL ULTIMO HIJO ES EL DORSO DE LA CARTA XDXDDSDSSD JAAAAAA ayuda
 		auto it = children.end();
@@ -164,6 +165,12 @@ void BoardManager::updateVisuals()
 	//Cambia directamente el número, si queremos poner algún efecto cero que sería aquí
 	scoreVisualJ1->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer1));
 	scoreVisualJ2->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
+}
+
+void BoardManager::resetVisuals()
+{
+	scoreVisualJ1->getComponent<TextComponent>()->setTxt("");
+	scoreVisualJ2->getComponent<TextComponent>()->setTxt("");
 }
 
 
