@@ -213,7 +213,7 @@ void ShopState::deSelected()
 	{
 	for (int i = 0; i < 8; i++)
 	{
-		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda");
+		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda_tienda");
 	}
 	updateCoins();
 	}
@@ -223,7 +223,7 @@ void ShopState::shine(int nCoins)
 {
 	for (int i = 0; i < nCoins; i++)
 	{
-		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("monedaIlu");
+		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda_tienda_brilli");
 	}
 }
 #pragma endregion
@@ -250,7 +250,7 @@ ecs::entity_t ShopState::createCoin(int x, int y)
 	Vector2D coinPos(x, y);
 	coin->getComponent<Transform>()->setGlobalPos(coinPos);
 	coin->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
-	coin->addComponent<SpriteRenderer>("moneda");
+	coin->addComponent<SpriteRenderer>("moneda_tienda");
 	coin->setLayer(4);
 
 	return coin;
