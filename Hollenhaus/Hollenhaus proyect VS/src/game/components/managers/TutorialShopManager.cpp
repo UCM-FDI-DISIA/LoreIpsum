@@ -65,6 +65,9 @@ void TutorialShopManager::setState()
 	case Tutorials::Tienda::SHOW_CARDS:
 		setSHOW_CARDS();
 		break;
+	case Tutorials::Tienda::PURCHASE:
+		setPURCHASE();
+		break;
 	default:
 		break;
 	}
