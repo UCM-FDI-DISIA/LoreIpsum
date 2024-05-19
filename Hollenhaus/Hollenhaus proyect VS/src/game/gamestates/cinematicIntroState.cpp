@@ -29,6 +29,7 @@ void CinematicIntroState::render() const
 
 void CinematicIntroState::onEnter()
 {
+	TuVieja("\nEnter CinematicIntroState");
 	auto eCin = Instantiate(Vector2D());
 
 	auto eCinTr = eCin->addComponent<Transform>();
@@ -45,7 +46,7 @@ void CinematicIntroState::onEnter()
 
 void CinematicIntroState::onExit()
 {
-	TuVieja("\nExit CinematicState");
+	TuVieja("\nExit CinematicIntroState");
 
 	GameStateMachine::instance()->getMngr()->Free();
 }

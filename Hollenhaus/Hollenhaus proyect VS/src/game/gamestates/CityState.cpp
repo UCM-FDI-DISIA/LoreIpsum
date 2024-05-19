@@ -14,6 +14,7 @@
 #include "game/CaseManager.h"
 #include "game/components/Clickable.h"
 #include "game/components/ImageWithFrames.h"
+#include "../SoundManager.h"
 
 #include "../TutorialManager.h"
 #include "../components/managers/TutorialCityManager.h"
@@ -167,6 +168,8 @@ void CityState::onEnter()
 	// Oficina
 	ecs::entity_t ofi = factory->createNPC(0, fondo);
 
+	ecs::entity_t wanda = factory->createNPC(9, fondo);		// tienda
+	objs.push_back(wanda);
 
 	if (GameStateMachine::instance()->TUTORIAL_SHOP_COMPLETE()) {
 		ecs::entity_t npc2 = factory->createNPC(1, fondo);		// tienda
@@ -220,11 +223,12 @@ void CityState::onEnter()
 
 	setTutorial();
 
-	// SDLUTILS
-	// referencia a sdlutils
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("citytheme").play(-1);
-	sdl.soundEffects().at("citytheme").setChannelVolume(10);
+
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startMusic(Musics::CITY_M);
+
+
 }
 
 void CityState::onExit()
@@ -237,8 +241,9 @@ void CityState::onExit()
 	setLastPaulPos(fondo->getComponent<Transform>()->getGlobalPos());
 	setLastPaulDir(fondo->getComponent<MoveOnClick>()->getDir());
 
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("citytheme").pauseChannel();
+	auto music = SoundManager::instance();
+	music->stopMusic(Musics::CITY_M);
+
 	GameStateMachine::instance()->getMngr()->Free();
 
 	delete factory;

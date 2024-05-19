@@ -130,6 +130,7 @@
     <ClCompile Include="src\game\gamestates\checkCluesMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\checkMazeMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\cinematicIntroState.cpp" />
+    <ClCompile Include="src\game\gamestates\cinematicOutroState.cpp" />
     <ClCompile Include="src\game\gamestates\CityState.cpp" />
     <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp" />
     <ClCompile Include="src\game\gamestates\EndGameState.cpp" />
@@ -167,6 +168,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\game\main.cpp" />
+    <ClCompile Include="SRC\GAME\SOUNDMANAGER.CPP" />
     <ClCompile Include="src\game\TutorialManager.cpp" />
     <ClCompile Include="src\json\JSON.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
@@ -312,6 +314,7 @@
     <ClInclude Include="src\game\gamestates\checkCluesMenuState.h" />
     <ClInclude Include="src\game\gamestates\checkMazeMenuState.h" />
     <ClInclude Include="src\game\gamestates\cinematicIntroState.h" />
+    <ClInclude Include="src\game\gamestates\cinematicOutroState.h" />
     <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
     <ClInclude Include="src\game\gamestates\EndGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerEndGameState.h" />
@@ -358,6 +361,7 @@
     <ClInclude Include="src\game\Game.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
     <ClInclude Include="src\game\GenID.h" />
+    <ClInclude Include="src\game\SoundManager.h" />
     <ClInclude Include="src\game\TutorialManager.h" />
     <ClInclude Include="src\json\JSON.h" />
     <ClInclude Include="src\json\JSONValue.h" />

@@ -167,8 +167,8 @@ private:
 	void constructFromWrappedText(SDL_Renderer* renderer, const std::string& text,
 		const Font& font, const SDL_Color* fgColor, Uint32 wrapLenght, int align);
 
-	SDL_Texture* texture_;
-	SDL_Renderer* renderer_;
+	SDL_Texture* texture_ = nullptr;
+	SDL_Renderer* renderer_ = nullptr;
 	int width_;
 	int height_;
 };

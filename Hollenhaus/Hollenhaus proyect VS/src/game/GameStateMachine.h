@@ -43,6 +43,7 @@ namespace GameStates
 		OPTIONSMENU,
 		TRANSITIONTEXT,
 		CINEMATICINTRO,
+		CINEMATICOUTRO,
 		PAUSEMENU,
 		MAZEMENU,
 		CLUESMENU,
@@ -106,11 +107,12 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* multiplayerModeState;
 	GameState* optionsMainMenuState;
 	GameState* cinematicIntroState;
+	GameState* cinematicOutroState;
 	GameState* transitionTextMenuState;
 	GameState* pauseMenuState;
 	GameState* checkMazeMenuState;
 	GameState* checkCluesMenuState;
-	 
+
 	// Estados auxiliares
 	GameState* movementState;
 
@@ -139,7 +141,7 @@ public:
 		return mngr_;
 	}
 
-	CaseManager* caseMngr() 
+	CaseManager* caseMngr()
 	{
 		return case_;
 	}
@@ -229,6 +231,9 @@ public:
 		case GameStates::CINEMATICINTRO:
 			newState = cinematicIntroState;
 			break;
+		case GameStates::CINEMATICOUTRO:
+			newState = cinematicOutroState;
+			break;
 		case GameStates::PAUSEMENU:
 			newState = pauseMenuState;
 			break;
@@ -241,7 +246,7 @@ public:
 		case GameStates::ENDGAME:
 			newState = endGameState;
 			break;
-		case GameStates::TUTORIAL_DECKBUILDING: 
+		case GameStates::TUTORIAL_DECKBUILDING:
 			newState = tutorialDeckbuildingState;
 			break;
 		case GameStates::TUTORIAL_SHOP:
@@ -272,7 +277,7 @@ public:
 
 	GameState* getCurrentState() { return currentState; }
 
-	int getCurrentStateEnum() { return gameStateEnumValue;  }
+	int getCurrentStateEnum() { return gameStateEnumValue; }
 
 
 	// TUTORIAL

@@ -7,6 +7,7 @@
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
 #include "../CaseManager.h"
+#include "../SoundManager.h"
 
 #include "../components/NPC.h"
 #include "game/components/Clickable.h"
@@ -27,6 +28,7 @@ OfficeState::OfficeState(bool t) :
 	offset_(5)
 {
 	isTutorial = t;
+
 
 }
 
@@ -127,12 +129,14 @@ void OfficeState::onEnter()
 	objs.push_back(db);
 	objs.push_back(exit);
 
+	
+
 	setTutorial();
 
+
 	/// MUSICA
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("deckbuilder_theme").play(-1);
-	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
+	auto music = SoundManager::instance();
+	music->startMusic(Musics::OFFICE_M);
 }
 
 void OfficeState::onExit()
@@ -142,8 +146,8 @@ void OfficeState::onExit()
 	// se desuscribe al evento
 	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPauseOF(); });
 
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
+	auto music = SoundManager::instance();
+	music->stopMusic(Musics::OFFICE_M);
 
 	GameStateMachine::instance()->getMngr()->Free();
 
@@ -179,6 +183,9 @@ void OfficeState::setTutorial()
 		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
 		tutorial->getComponent<TutorialOfficeManager>()->setObjs(objs);
+	}
+	else {
+		GameStateMachine::instance()->setTUTORIAL_DECKBUILDING_COMPLETE(true);
 	}
 }
 

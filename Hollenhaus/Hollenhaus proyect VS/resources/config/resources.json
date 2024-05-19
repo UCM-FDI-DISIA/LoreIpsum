@@ -106,7 +106,7 @@
     },
     {
       "id": "transicion_puerta",
-      "file": "resources/images/Transiciones/Puerta_abre.png"
+      "file": "resources/images/transiciones/puerta_abre.png"
     },
     {
       "id": "leyenda_boton",
@@ -547,28 +547,32 @@
         "size": 24
       }
     ],
-    "sounds": [
-      {
-        "id": "citytheme",
-        "file": "resources/sound/music/layer_cake.wav"
-      },
-      {
-        "id": "battletheme",
-        "file": "resources/sound/music/hollenhaus_battletheme_v1_2.wav"
-      },
-	{
-        "id": "deckbuilder_theme",
-        "file": "resources/sound/music/confession.wav"
-      },
-	{
-        "id": "shoptheme",
-        "file": "resources/sound/music/tanaka_comodities.wav"
-      },
-	{
-        "id": "menutheme",
-        "file": "resources/sound/music/bangarang.wav"
-      }
-    ],
+  "sounds": [
+    {
+      "id": "citytheme",
+      "file": "resources/sound/music/layer_cake.wav"
+    },
+    {
+      "id": "battletheme_paul",
+      "file": "resources/sound/music/hollenhaus_paul.wav"
+    },
+    {
+      "id": "battletheme_tarot",
+      "file": "resources/sound/music/hollenhaus_tarot.wav"
+    },
+    {
+      "id": "deckbuilder_theme",
+      "file": "resources/sound/music/tarotkarten.wav"
+    },
+    {
+      "id": "shoptheme",
+      "file": "resources/sound/music/olor_a_incienso.wav"
+    },
+    {
+      "id": "menutheme",
+      "file": "resources/sound/music/tarotkarten.wav"
+    }
+  ],
     "musics": [
       {
         "id": "layercake",

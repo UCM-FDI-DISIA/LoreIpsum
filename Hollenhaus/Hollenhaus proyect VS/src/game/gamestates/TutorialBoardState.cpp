@@ -19,6 +19,7 @@
 #include "../components/managers/MatchManager.h"
 #include "../components/EndTurnButton.h"
 #include "../components/NPC.h"
+#include "../SoundManager.h"
 
 #include "../components/managers/IA_manager.h"
 
@@ -71,11 +72,17 @@ void TutorialBoardState::onEnter()
 	int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
 	tutorial->getComponent<TutorialBoardManager>()->setObjs(objs);
+
+
+	auto music = SoundManager::instance();
+	music->startDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
 }
 
 void TutorialBoardState::onExit()
 {
-	sdlutils().soundEffects().at("battletheme").pauseChannel();
+	auto music = SoundManager::instance();
+	music->stopDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
+
 
 	tutorial->getComponent<TutorialManager>()->endTutorial();
 
@@ -179,10 +186,8 @@ void TutorialBoardState::setBoard()
 	matchManagerComponent->SetHandComponent(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
 
 
-	// incicia la cancion en bucle
-	//sdl.musics().at("tryTheme").play();
-	sdlutils().soundEffects().at("battletheme").play(-1);
-	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
+	auto music = SoundManager::instance();
+	music->startDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
 
 
 #pragma region Seccion IA
@@ -255,7 +260,7 @@ std::array<ecs::entity_t, 4> TutorialBoardState::createPointsJ1()
 	{
 		punto->getComponent<Transform>()->setGlobalScale(0.75f, 0.75f);
 		punto->addComponent<SpriteRenderer>("llamitas");
-		punto->addComponent<ImageWithFrames>(1, 4, 200);
+		punto->addComponent<ImageWithFrames>(1, 4, -1, 500);
 		//->setCurrentCol(sdlutils().rand().nextInt(0,4);
 	}
 
@@ -286,7 +291,7 @@ std::array<ecs::entity_t, 4> TutorialBoardState::createPointsJ2()
 	{
 		punto->getComponent<Transform>()->setGlobalScale(0.75f, 0.75f);
 		punto->addComponent<SpriteRenderer>("llamitas");
-		punto->addComponent<ImageWithFrames>(1, 4, 200);
+		punto->addComponent<ImageWithFrames>(1, 4, -1, 500);
 		//->setCurrentCol(sdlutils().rand().nextInt(0,4);
 	}
 
