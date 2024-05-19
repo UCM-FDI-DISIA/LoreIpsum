@@ -511,6 +511,9 @@
       <Filter>Archivos de origen\Componentes\Feedback</Filter>
     </ClCompile>
     <ClCompile Include="SRC\GAME\SOUNDMANAGER.CPP" />
+    <ClCompile Include="src\game\gamestates\cinematicOutroState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -953,6 +956,9 @@
     </ClInclude>
     <ClInclude Include="src\game\SoundManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\cinematicOutroState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

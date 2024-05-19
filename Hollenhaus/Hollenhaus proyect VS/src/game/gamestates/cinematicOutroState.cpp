@@ -3,33 +3,33 @@
 #include "../components/basics/SpriteRenderer.h"
 #include "../components/ImageWithFrames.h"
 #include "../components/basics/Transform.h"
-#include "cinematicIntroState.h"
+#include "CinematicOutroState.h"
 
-CinematicIntroState::CinematicIntroState()
+CinematicOutroState::CinematicOutroState()
 {
 }
 
-CinematicIntroState::~CinematicIntroState()
+CinematicOutroState::~CinematicOutroState()
 {
 }
 
-void CinematicIntroState::refresh()
+void CinematicOutroState::refresh()
 {
 }
 
-void CinematicIntroState::update()
+void CinematicOutroState::update()
 {
 	GameState::update();
 }
 
-void CinematicIntroState::render() const
+void CinematicOutroState::render() const
 {
 	GameState::render();
 }
 
-void CinematicIntroState::onEnter()
+void CinematicOutroState::onEnter()
 {
-	TuVieja("\nEnter CinematicIntroState");
+	TuVieja("\nEnter CinematicOutroState");
 	auto eCin = Instantiate(Vector2D());
 
 	auto eCinTr = eCin->addComponent<Transform>();
@@ -40,13 +40,13 @@ void CinematicIntroState::onEnter()
 
 	eCinIwf->addCallback([this]
 		{
-			GameStateMachine::instance()->setState(GameStates::TUTORIAL_OFFICE, true, true);
+			GameStateMachine::instance()->setState(GameStates::MAINMENU, true, true);
 		});
 }
 
-void CinematicIntroState::onExit()
+void CinematicOutroState::onExit()
 {
-	TuVieja("\nExit CinematicIntroState");
+	TuVieja("\nExit CinematicOutroState");
 
 	GameStateMachine::instance()->getMngr()->Free();
 }
