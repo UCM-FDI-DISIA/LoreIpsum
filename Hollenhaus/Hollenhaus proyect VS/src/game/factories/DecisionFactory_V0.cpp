@@ -8,7 +8,7 @@
 void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t parent, int layer, int scene, int greenDecision, int redDecision)
 {
 	//tamanyo de los cuadros de texto
-	Vector2D scaleBox = Vector2D(0.95, 0.7); //no tocar cerdos que se me descoloca
+	Vector2D scaleBox = Vector2D(1.50, 0.8); //no tocar cerdos que se me descoloca
 
 	// ----------ENTIDAD ACEPTAR COMBATE-----------
 	ecs::entity_t accept = Instantiate();
@@ -22,7 +22,7 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	accept->getComponent<Transform>()->setGlobalPos(pos);
 	accept->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
-	accept->addComponent<TextComponent>("Si", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
+	accept->addComponent<TextComponent>("Aceptar", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	accept->setLayer(layer);
 
 	accept->addComponent<ClickDecision>(greenDecision, parent, scene); //si decision es 0, se ira a scene PAIGRO AQUI
@@ -44,7 +44,7 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	deny->getComponent<Transform>()->getGlobalPos().setX(100);
 	deny->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
-	deny->addComponent<TextComponent>("Byebye", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
+	deny->addComponent<TextComponent>("Rechazar", fontID, color, wrapLenght, boxPivotPoint, textAlignment);
 	deny->setLayer(layer);
 
 	deny->addComponent<ClickDecision>(redDecision, parent, scene);
