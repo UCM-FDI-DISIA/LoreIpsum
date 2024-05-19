@@ -5,7 +5,8 @@ CaseManager::CaseManager() :
 	npc_(),
 	accepted_(false),
 	npcCounter_(),
-	initialNpc_()
+	initialNpc_(),
+	case_(1)
 {
 }
 
@@ -51,6 +52,7 @@ void CaseManager::resetCase()
 	npcCounter_++;
 	accepted_ = false;
 	GameStateMachine::instance()->getCurrentState()->nextCase();
+	++case_;
 }
 
 ecs::entity_t CaseManager::caseNPC()

@@ -181,6 +181,11 @@
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
             }
           ]
@@ -203,10 +208,21 @@
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "convoID": 3,
+          "autoConvo": false,
+          "nodes": [
             {
-              "nodeID": 2,
+              "nodeID": 0,
               "text": "Abajo a la izquierda guardan su valor",
               "eventStart": 0,
               "eventFinish": 0,
@@ -214,13 +230,24 @@
               ]
             },
             {
-              "nodeID": 3,
+              "nodeID": 1,
               "text": "Cuando coloques una carta en el tablero se te sumara ese valor a tu puntuacion",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "convoID": 4,
+          "autoConvo": false,
+          "nodes": [
             {
               "nodeID": 4,
               "text": "En el centro de la carta se encuentra un pictograma que indica el efecto que posee",
@@ -230,7 +257,7 @@
               ]
             },
             {
-              "nodeID": 0,
+              "nodeID": 5,
               "text": "Ademas de sumar un valor, las cartas aplicaran un efecto al tablero",
               "eventStart": 0,
               "eventFinish": 0,
@@ -238,18 +265,22 @@
               ]
             },
             {
-              "nodeID": 0,
+              "nodeID": 6,
               "text": "Sigue jugando y descubriras todos los efectos!",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
-
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
             }
           ]
         },
         {
-          "convoID": 3,
+          "convoID": 5,
           "autoConvo": false,
           "nodes": [
             {
@@ -269,7 +300,7 @@
               ]
             },
             {
-              "nodeID": 1,
+              "nodeID": 2,
               "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
               "eventStart": 0,
               "eventFinish": 0,
@@ -277,86 +308,8 @@
               ]
             },
             {
-              "nodeID": 2,
+              "nodeID": 3,
               "text": "Roba una carta de tu mazo para tenerla en tu mano.",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-                {
-                  "timing": 1,
-                  "type": 4,
-                  "scene": 0
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "convoID": 4,
-          "autoConvo": false,
-          "nodes": [
-            {
-              "nodeID": 0,
-              "text": "Bien hecho!",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 2,
-              "text": "Solo podras usar cartas que tienes en tu mano",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 3,
-              "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero.",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 4,
-              "text": "Prueba a arrastrar la carta a una celda!",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-                {
-                  "timing": 1,
-                  "type": 4,
-                  "scene": 0
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "convoID": 5,
-          "autoConvo": false,
-          "nodes": [
-            {
-              "nodeID": 0,
-              "text": "A la derecha del tablero tienes la puntuacion de cada jugador",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 2,
-              "text": "El jugador que tenga mas puntos al llenarse el tablero gana!",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 3,
-              "text": "Suerte!",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -383,7 +336,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Completar distintas acciones supondra un coste.",
+              "text": "Solo podras usar cartas que tienes en tu mano",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -391,6 +344,76 @@
             },
             {
               "nodeID": 2,
+              "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Prueba a arrastrar la carta a una celda!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 7,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "A la derecha del tablero tienes la puntuacion de cada jugador",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "El jugador que tenga mas puntos al llenarse el tablero gana!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "Suerte!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 8,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Completar distintas acciones supondra un coste.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
               "text": "Robar una carta cuesta 1 punto de accion",
               "eventStart": 0,
               "eventFinish": 0,
@@ -421,7 +444,7 @@
           ]
         },
         {
-          "convoID": 7,
+          "convoID": 8,
           "autoConvo": false,
           "nodes": [
             {
@@ -448,7 +471,7 @@
           ]
         },
         {
-          "convoID": 8,
+          "convoID": 10,
           "autoConvo": false,
           "nodes": [
             {
@@ -476,7 +499,7 @@
           ]
         },
         {
-          "convoID": 9,
+          "convoID": 11,
           "autoConvo": false,
           "nodes": [
             {
@@ -495,7 +518,7 @@
           ]
         },
         {
-          "convoID": 10,
+          "convoID": 12,
           "autoConvo": false,
           "nodes": [
             {
@@ -517,7 +540,7 @@
           ]
         },
         {
-          "convoID": 11,
+          "convoID": 13,
           "autoConvo": false,
           "nodes": [
             {
@@ -560,7 +583,7 @@
           ]
         },
         {
-          "convoID": 12,
+          "convoID": 14,
           "autoConvo": false,
           "nodes": [
             {
@@ -577,10 +600,13 @@
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
-
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
             }
-
           ]
         }
       ]
