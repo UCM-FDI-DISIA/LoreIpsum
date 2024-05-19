@@ -18,6 +18,7 @@ void FadeComponent::initComponent()
 	if (t != nullptr) isText = true;
 
 	fadeIn = true;
+	fadeOut = false;
 	//Creamos el tween
 	// FADE TWEEN
 	fadetween =
@@ -31,8 +32,8 @@ void FadeComponent::update()
 {
 	//Poner bool para que solo se haga al principio?
 	if (fadeIn) {
-		if (fadetween.progress() >= 1.0)
-			fadeIn = false;
+		/*if (fadetween.progress() >= 1.0)
+			fadeIn = false;*/
 
 		fadetween.step(1); // avanza
 		if (isImage)
@@ -40,11 +41,23 @@ void FadeComponent::update()
 		if (isText)
 			t->setAlpha(fadetween.peek());
 	}
+	else {
+		//Cuando ponemos fadeIn a false se da la vuelta
+		fadetween.backward();
+		fadeIn = true;	//Para que se siga reproduciendo
+		fadeOut = true;	//Para mostrar que ahora va al reves
+	}
 }
 
 void FadeComponent::setFadeInFalse()
 {
 	fadeIn = false;
+}
+
+void FadeComponent::setFadeOutTrue()
+{
+	fadeOut = false;
+	fadeIn = true;
 }
 
 

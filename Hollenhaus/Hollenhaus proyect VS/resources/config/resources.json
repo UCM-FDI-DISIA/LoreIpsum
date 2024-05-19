@@ -105,6 +105,10 @@
       "file": "resources/images/fantasma_caminando.png"
     },
     {
+      "id": "transicion_puerta",
+      "file": "resources/images/Transiciones/Puerta_abre.png"
+    },
+    {
       "id": "leyenda_boton",
       "file": "resources/images/postit_cant_cartas.png"
     },

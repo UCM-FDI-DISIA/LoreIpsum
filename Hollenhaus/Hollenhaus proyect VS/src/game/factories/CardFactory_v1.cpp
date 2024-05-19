@@ -145,29 +145,12 @@ ecs::entity_t CardFactory_v1::createDeckJ2(std::string j2)
 	//instantie
 
 	//a�adir las cartas al mazo
+	const auto rivalDeck = sdlutils().npcs().at(j2).npcDeck();
+	cardsOnDeck = rivalDeck.size();
 	for (int i = 0; i < cardsOnDeck; i++)
 	{
 
-		auto card = sdlutils().npcs().at(j2).npcDeck()[i];
-		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
-		ecs::entity_t ent = createCard(
-			card.id(),
-			Vector2D(initX, initY),
-			card.cost(),
-			card.value(),
-			card.sprite(),
-			card.unblockable(),
-			card.effects(),
-			false
-		);
-		ent->setLayer(1);
-		deck->getComponent<DeckComponent>()->addCartToDeck(ent->getComponent<Card>());
-	}
-
-	//las a�adimos otra vez para asegurar que el enemigo tenga cartas de sobra
-	for (int i = 0; i < cardsOnDeck; i++)
-	{
-		auto card = sdlutils().npcs().at(j2).npcDeck()[i];
+		auto card = rivalDeck[i];
 		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		ecs::entity_t ent = createCard(
 			card.id(),

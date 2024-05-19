@@ -17,6 +17,8 @@ public:
 
 	void destroyDialogue();
 
+	void continueDestroy();
+
 private:
 	
 	ecs::entity_t npc;
