@@ -29,7 +29,7 @@ void DialogueReader::initComponent() {
 	assert(dialogueDestroyer_ != nullptr);
 
 	//convo_->Node(2);
-
+	if (convo_ == nullptr) return;
 	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
 	exeEvents(convo_->Node(actualNode_).NodeEventsStart());
 

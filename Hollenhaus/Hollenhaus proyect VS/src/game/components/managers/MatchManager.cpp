@@ -13,6 +13,7 @@
 #include "game/Data.h"
 #include "../Card.h"
 #include "game/CaseManager.h"
+#include "game/components/ClickableText.h"
 
 MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart,
                            BoardManager* bm, std::string j2) :
@@ -157,8 +158,11 @@ void MatchManager::updateVisuals()
 	//Habría que Hacer uan diferenciación también cuando recién cambia de turno para la animación
 	std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
 	SDL_Color color = actualState == Turns::J1 ? SDL_Color({102, 255, 102, 255}) : SDL_Color({255, 102, 255, 255});
-	actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
-	actualTurnVisual->getComponent<TextComponent>()->setColor(color);
+	if (actualTurnVisual != nullptr)
+	{
+		actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
+		actualTurnVisual->getComponent<TextComponent>()->setColor(color);
+	}
 }
 
 void MatchManager::setIA_Manager(IA_manager* ia)
@@ -252,6 +256,8 @@ void MatchManager::InstantiatePanelFinPartida(int winner)
 	continuarButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
 	continuarButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
 	continuarButton->addComponent<Button>();
+	continuarButton->addComponent<ClickableText>(Colors::MIDNIGHT_HOLLENHAUS, Colors::MIDNIGHT_CLICK, Colors::ROJO_HOLLENHAUS);
+
 	if (netGame == nullptr)
 	{
 		continuarButton->getComponent<Button>()->connectToButton([this]

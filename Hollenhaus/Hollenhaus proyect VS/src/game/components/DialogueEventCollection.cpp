@@ -36,7 +36,7 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent, int greenD
 							greenDecision, //greenDecision
 							redDecision, //redDecision
 							Fonts::GROTESK_24, //fontId
-							SDL_Color({ 0, 0, 0, 255 }), //color del txt
+							Colors::MIDNIGHT_HOLLENHAUS, //color del txt
 							100, //wraplength
 							Text::BoxPivotPoint::LeftTop,
 							Text::TextAlignment::Center);
