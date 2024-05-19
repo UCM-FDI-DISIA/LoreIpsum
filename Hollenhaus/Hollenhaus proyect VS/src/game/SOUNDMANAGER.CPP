@@ -21,8 +21,9 @@ void SoundManager::init()
 	music_names.push_back("battletheme_paul");
 	music_names.push_back("battletheme_tarot");
 	music_names.push_back("shoptheme");
-	music_names.push_back("citytheme");
+	music_names.push_back("shoptheme");
 
+	// INES AQUI CAMBIAR
 
 	master_volume = 70;
 	Volume(master_volume);
