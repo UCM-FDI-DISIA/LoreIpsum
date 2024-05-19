@@ -216,6 +216,7 @@ void LuisState::onExit()
 
 	sdlutils().soundEffects().at("battletheme").pauseChannel();
 
+	saveData();
 
 	delete factory;
 

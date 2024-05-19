@@ -20,6 +20,10 @@ constexpr int CARD_POS_Y = 120,
 			  CARD_OFFSET_Y = 110,
 			  CARD_OFFSET_X = 100;
 
+//constexpr std::vector<int> CASE_1_CARDS = {};
+//constexpr std::vector<int> CASE_2_CARDS = {};
+//constexpr std::vector<int> CASE_3_CARDS = {};
+
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
 shopCardsPositions(
 	new Vector2D[CARDS_IN_SHOP]
@@ -275,47 +279,47 @@ void ShopComponent::setTexts()
 {
 	//----Dinero-----
 	moneyText = Instantiate(Vector2D(100, 550));
-	moneyText->addComponent<TextComponent>(std::to_string(money) + " DM", Fonts::GROTESK_32, SDL_Color({ 16, 23, 32, 255 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	moneyText->addComponent<TextComponent>(std::to_string(money) + " DM", Fonts::GROTESK_32, SDL_Color({ Colors::MIDNIGHT_HOLLENHAUS }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	moneyText->setLayer(10);
 	//--------Esta muy feo ya lo siento a quien mire esto :).
 	//----Carta 0----
-	cardPrizeText0 = Instantiate(Vector2D(shopCardsPositions[0].getX() + 30, shopCardsPositions[0].getY() + 40));
+	cardPrizeText0 = Instantiate(Vector2D(shopCardsPositions[0].getX() + 32, shopCardsPositions[0].getY() + 40));
 	if (!cardIsBought(shopCards[0]))
 	{
-		cardPrizeText0->addComponent<TextComponent>(std::to_string(shopCardsPrize[0]), Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText0->addComponent<TextComponent>(std::to_string(shopCardsPrize[0]), Fonts::GROTESK_32, SDL_Color({ Colors::ROJO_HOLLENHAUS }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	else {
-		cardPrizeText0->addComponent<TextComponent>("VENDIDA", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 100, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText0->addComponent<TextComponent>(" ", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 100, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	cardPrizeText0->setLayer(10);
 	//----Carta 1----
-	cardPrizeText1 = Instantiate(Vector2D(shopCardsPositions[1].getX() + 30, shopCardsPositions[1].getY() + 40));
+	cardPrizeText1 = Instantiate(Vector2D(shopCardsPositions[1].getX() + 32, shopCardsPositions[1].getY() + 40));
 	if (!cardIsBought(shopCards[1]))
 	{
-		cardPrizeText1->addComponent<TextComponent>(std::to_string(shopCardsPrize[1]), Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText1->addComponent<TextComponent>(std::to_string(shopCardsPrize[1]), Fonts::GROTESK_32, SDL_Color({ Colors::ROJO_HOLLENHAUS }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	else {
-		cardPrizeText1->addComponent<TextComponent>("VENDIDA", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText1->addComponent<TextComponent>(" ", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	cardPrizeText1->setLayer(10);
 	//----Carta 2----
-	cardPrizeText2 = Instantiate(Vector2D(shopCardsPositions[2].getX() + 30, shopCardsPositions[2].getY() + 40));
+	cardPrizeText2 = Instantiate(Vector2D(shopCardsPositions[2].getX() + 32, shopCardsPositions[2].getY() + 40));
 	if (!cardIsBought(shopCards[2]))
 	{
-		cardPrizeText2->addComponent<TextComponent>(std::to_string(shopCardsPrize[2]), Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText2->addComponent<TextComponent>(std::to_string(shopCardsPrize[2]), Fonts::GROTESK_32, SDL_Color({ Colors::ROJO_HOLLENHAUS }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	else {
-		cardPrizeText2->addComponent<TextComponent>("VENDIDA", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText2->addComponent<TextComponent>(" ", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	cardPrizeText2->setLayer(10);
 	//----Carta 3----
-	cardPrizeText3 = Instantiate(Vector2D(shopCardsPositions[3].getX() + 30, shopCardsPositions[3].getY() + 40));
+	cardPrizeText3 = Instantiate(Vector2D(shopCardsPositions[3].getX() + 32, shopCardsPositions[3].getY() + 40));
 	if (!cardIsBought(shopCards[3]))
 	{
-		cardPrizeText3->addComponent<TextComponent>(std::to_string(shopCardsPrize[3]), Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText3->addComponent<TextComponent>(std::to_string(shopCardsPrize[3]), Fonts::GROTESK_32, SDL_Color({ Colors::ROJO_HOLLENHAUS }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	else {
-		cardPrizeText3->addComponent<TextComponent>("VENDIDA", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+		cardPrizeText3->addComponent<TextComponent>(" ", Fonts::GROTESK_32, SDL_Color({ 148, 47, 55, 255 }), 80, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	}
 	cardPrizeText3->setLayer(10);
 }
@@ -324,26 +328,25 @@ void ShopComponent::updateTexts()
 {
 	//----Dinero----
 	moneyText->getComponent<TextComponent>()->setTxt(std::to_string(money));
+
 	//----Carta 0----
 	if (cardIsBought(shopCards[0]))
 	{
-		cardPrizeText0->getComponent<TextComponent>()->setTxt("VENDIDA");
+		cardPrizeText0->getComponent<TextComponent>()->setTxt(" ");
 	}
 	//----Carta 1----
 	if (cardIsBought(shopCards[1]))
 	{
-		cardPrizeText1->getComponent<TextComponent>()->setTxt("VENDIDA");
+		cardPrizeText1->getComponent<TextComponent>()->setTxt(" ");
 	}
 	//----Carta 2----
 	if (cardIsBought(shopCards[2]))
 	{
-		cardPrizeText2->getComponent<TextComponent>()->setTxt("VENDIDA");
+		cardPrizeText2->getComponent<TextComponent>()->setTxt(" ");
 	}
 	//----Carta 3----
 	if (cardIsBought(shopCards[3]))
 	{
-		cardPrizeText3->getComponent<TextComponent>()->setTxt("VENDIDA");
-	}
+		cardPrizeText3->getComponent<TextComponent>()->setTxt(" ");
+	} 
 }
-
-

@@ -66,6 +66,10 @@ void Data::SubtractCardFromMaze(int id) {
 }
 //----Cajon:
 void Data::AddCardToDrawer(int id) {
+#if _DEBUG
+	std::cout << "Added card with id: " << id << "\n";
+#endif
+
 	drawer[id] = id;
 }
 
