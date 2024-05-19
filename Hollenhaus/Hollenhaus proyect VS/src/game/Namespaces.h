@@ -422,7 +422,8 @@ namespace Tutorials
 		CITY_INIT,
 		CITY_MOVE,
 		CITY_PERSON,
-		CITY_BUILDING
+		CITY_BUILDING,
+		CITY_SHOPPING
 	};
 
 	enum Oficina

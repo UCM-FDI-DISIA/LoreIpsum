@@ -1065,7 +1065,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Puedes moverse por ella pulsando en el suelo, aqui no hay transporte publico...",
+              "text": "Puede moverse por ella pulsando en el suelo, aqui no hay transporte publico...",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1107,11 +1107,23 @@
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
-            },
+            }
+
+          ]
+        },
+        {
+          "convoID": 4,
+          "autoConvo": false,
+          "nodes": [
             {
-              "nodeID": 1,
-              "text": "Al este de la ciudad, se encuentra la tienda, donde podra usted comprar nuevas cartas.",
+              "nodeID": 0,
+              "text": "Al este de la ciudad, se encuentra la santeria, donde podra usted comprar nuevas cartas.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
