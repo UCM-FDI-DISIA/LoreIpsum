@@ -106,7 +106,7 @@
     },
     {
       "id": "transicion_puerta",
-      "file": "resources/images/Transiciones/Puerta_abre.png"
+      "file": "resources/images/transiciones/puerta_abre.png"
     },
     {
       "id": "leyenda_boton",

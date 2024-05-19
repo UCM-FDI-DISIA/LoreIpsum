@@ -81,12 +81,12 @@ void TextComponent::createTexture()
 {
 	delete text_;
 	text_ = nullptr;
-	
+
 	std::string texto = txt_;
 	if (txt_.empty())
 		texto = " ";
 
-	// Se utiliza una nueva constructora específica para crear una textura a partir de un texto embebido en una caja
+	// Se utiliza una nueva constructora especï¿½fica para crear una textura a partir de un texto embebido en una caja
 	text_ = new Texture(sdl_.renderer(), texto, *font_, color_, wrapLenght_, textAlignment_);
 }
 
