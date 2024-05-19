@@ -209,13 +209,13 @@ void ShopState::cardSelected(int prize)
 
 void ShopState::deSelected()
 {
-	if (mngr().getEntities(ecs::grp::COINS).capacity() == 0)
+	if (mngr().getEntities(ecs::grp::COINS).capacity() != 0)
 	{
-	for (int i = 0; i < 8; i++)
-	{
-		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda_tienda");
-	}
-	updateCoins();
+		for (int i = 0; i < mngr().getEntities(ecs::grp::COINS).size(); i++)
+		{
+			mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda_tienda");
+		}
+		updateCoins();
 	}
 }
 
