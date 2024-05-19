@@ -102,6 +102,7 @@ void LuisState::onEnter()
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
 	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(
 		4, 4, Turns::J1, boardManagerComponent, j2_);
+	matchManagerComponent->setBoardManager(boardManagerComponent);
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
@@ -134,8 +135,8 @@ void LuisState::onEnter()
 	/// UI ///
 	factory->createVisual_BackgroundFullImage();
 	/// PUNTOS DE ACCION
-	// to be deprecated:
-	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 280);
+	// deprecated:
+	// ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 280);
 	// deprecated:
 	// ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
 
@@ -161,7 +162,7 @@ void LuisState::onEnter()
 
 	// Enlazado de la UI con los scripts que la controlan
 	//matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
-	matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
+	//matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
 	matchManagerComponent->setActionPointsJ1(j1Puntos);
 	//matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
 	matchManagerComponent->updateVisuals();

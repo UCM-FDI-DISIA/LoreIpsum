@@ -38,6 +38,13 @@ MatchManager::~MatchManager()
 void MatchManager::initComponent()
 {
 	isBoss = j2_ == "6" || j2_ == "7" || j2_ == "8";
+
+	fadeTween =
+		tweeny::from(0)
+		.to(255)
+		.during(15)
+		.via(tweeny::easing::linear);
+
 }
 
 void MatchManager::update()
@@ -48,6 +55,7 @@ void MatchManager::update()
 		{
 			//Finaliza la partida cuando se llena el tablero
 			setActualState(Turns::Finish);
+			board_->resetVisuals();
 		}
 	}
 }
@@ -230,38 +238,38 @@ void MatchManager::InstantiatePanelFinPartida(int winner)
 	panel->setLayer(1000);
 	panel->addComponent<SpriteRenderer>("panelFinPartida");
 
-	ecs::entity_t victoryDefeatText = Instantiate(Vector2D(128, 240));
+	ecs::entity_t victoryDefeatText = Instantiate(Vector2D(sdlutils().width() - 120, 240));
 	victoryDefeatText->setLayer(1002);
-	auto text = victoryDefeatText->addComponent<TextComponent>("", Fonts::GROTESK_32, SDL_Color({0, 0, 0, 0}), 200,
+	auto text = victoryDefeatText->addComponent<TextComponent>("", Fonts::GROTESK_32, Colors::MIDNIGHT_HOLLENHAUS, 200,
 	                                                           Text::BoxPivotPoint::CenterCenter,
 	                                                           Text::TextAlignment::Center);
 
 	if (winner == 1)
 	{
 		text->setTxt("EMPATE");
-		text->setColor(SDL_Color({0, 0, 255, 0}));
+		text->setColor(Colors::AMARILLO_PIS);
 	}
 	if (winner == 2)
 	{
 		text->setTxt("VICTORIA");
-		text->setColor(SDL_Color({255, 50, 50, 0}));
+		text->setColor(Colors::VERDE_BANKIA);
 	}
 	if (winner == 3)
 	{
 		text->setTxt("DERROTA");
-		text->setColor(SDL_Color({255, 50, 50, 0}));
+		text->setColor(Colors::ROJO_HOLLENHAUS);
 	}
 
 
-	ecs::entity_t continuarButton = Instantiate(Vector2D(128, 320));
+	ecs::entity_t continuarButton = Instantiate(Vector2D(sdlutils().width() - 120, 310));
 	continuarButton->setLayer(1001);
-	continuarButton->addComponent<TextComponent>("CONTINUAR", Fonts::GROTESK_16, SDL_Color({0, 0, 0, 0}), 200,
+	continuarButton->addComponent<TextComponent>("CONTINUAR", Fonts::GROTESK_24, Colors::MIDNIGHT_HOLLENHAUS, 200,
 	                                             Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	continuarButton->addComponent<BoxCollider>();
 	continuarButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
 	continuarButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
 	continuarButton->addComponent<Button>();
-	continuarButton->addComponent<ClickableText>(Colors::MIDNIGHT_HOLLENHAUS, Colors::MIDNIGHT_CLICK, Colors::ROJO_HOLLENHAUS);
+	continuarButton->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 
 	if (netGame == nullptr)
 	{
@@ -327,7 +335,22 @@ void MatchManager::turnPointsOn()
 	}
 }
 
-void MatchManager::turnEveryPointOn()
+void MatchManager::startPointsOn()
 {
+	fadeIn = true;
+	turnPointsOff();
+	fadeTween =
+		tweeny::from(0)
+		.to(255)
+		.during(15)
+		.via(tweeny::easing::linear);
+}
 
+void MatchManager::startPointsOff()
+{
+	fadeTween =
+		tweeny::from(255)
+		.to(0)
+		.during(15)
+		.via(tweeny::easing::linear);
 }

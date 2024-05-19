@@ -167,6 +167,12 @@ void BoardManager::updateVisuals()
 	scoreVisualJ2->getComponent<TextComponent>()->setTxt(std::to_string(pPlayer2));
 }
 
+void BoardManager::resetVisuals()
+{
+	scoreVisualJ1->getComponent<TextComponent>()->setTxt("");
+	scoreVisualJ2->getComponent<TextComponent>()->setTxt("");
+}
+
 
 //falta refacorizar esto dividiendolo en metodos y teniendo en cuenta los metodos originales
 int BoardManager::heuristicIA(IA_manager::State* s)

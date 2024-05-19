@@ -82,8 +82,11 @@ private:
     int actualActionPointsJ2;
     void turnPointsOff();
     void turnPointsOn();
-    void turnEveryPointOn();
-
+    void startPointsOn();
+    void startPointsOff();
+    tweeny::tween<int> fadeTween;
+    bool fadeIn = true;
+    bool fadeOut = false;
 
 
     bool isBoss;
