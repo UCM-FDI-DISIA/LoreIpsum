@@ -126,7 +126,7 @@ void TutorialManager::deactivateColliders(std::vector<ecs::entity_t> n)
 void TutorialManager::activateColliders(std::vector<ecs::entity_t> n)
 {
 	for (auto obj : n) {
-		if (obj->hasComponent<BoxCollider>()) {
+		if (obj->hasComponent<BoxCollider>() && (obj->getComponent<BoxCollider>() != nullptr)) {
 			returnCollider(obj->getComponent<BoxCollider>());
 		}
 		

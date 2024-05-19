@@ -11,7 +11,8 @@ namespace Musics {
 		BATTLE_P_M,
 		BATTLE_T_M,
 		SHOP_M,
-		CITY_M
+		CITY_M,
+		MAIN_MENU_M
 	};
 
 	enum CHANNELS {

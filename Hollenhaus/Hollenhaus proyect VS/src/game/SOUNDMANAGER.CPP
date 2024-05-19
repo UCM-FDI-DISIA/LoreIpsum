@@ -21,7 +21,8 @@ void SoundManager::init()
 	music_names.push_back("battletheme_paul");
 	music_names.push_back("battletheme_tarot");
 	music_names.push_back("shoptheme");
-	music_names.push_back("shoptheme");
+	music_names.push_back("citytheme");
+	music_names.push_back("mainmenutheme");
 
 	// INES AQUI CAMBIAR
 
