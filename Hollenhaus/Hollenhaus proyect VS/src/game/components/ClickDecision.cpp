@@ -25,19 +25,14 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 
 ClickDecision::~ClickDecision()
 {
-	click_ = false;
-	collider_ = nullptr;
-
-	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
-	ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
-
+	//ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	//ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
 void ClickDecision::initComponent()
 {
 	scene_ = 0;
 	myNpc_ = parent_->getComponent<Transform>()->getParent()->getEntity()->getComponent<Transform>()->getParent()->getEntity()->getComponent<NPC>();
-	collider_ = getEntity()->getComponent<BoxCollider>();
 }
 
 void ClickDecision::update()
@@ -46,7 +41,7 @@ void ClickDecision::update()
 
 void ClickDecision::OnLeftClickDown()
 {
-	if (collider_ != nullptr && collider_ ->isCursorOver())
+	if (mouseRaycast() == ent_)
 	{
 		click_ = true;
 		TakeDecision();
@@ -74,7 +69,7 @@ void ClickDecision::TakeDecision()
 
 		TuVieja("Cambio de escena");
 		parent_->getComponent<DialogueEventCollection>()->ChangeScene(scene_);
-		//abria que hacer actual node ++?¿?¿
+		//abria que hacer actual node ++?ï¿½?ï¿½
 
 
 		break;
@@ -98,7 +93,7 @@ void ClickDecision::TakeDecision()
 		GameStateMachine::instance()->getCurrentState()->setJ2(std::to_string(myNpc_->getID()));
 		break;
 	default:
-		TuVieja("Esta decision no existe. Añadir en ClickDecision.cpp");
+		TuVieja("Esta decision no existe. Aï¿½adir en ClickDecision.cpp");
 		break;
 	}
 	

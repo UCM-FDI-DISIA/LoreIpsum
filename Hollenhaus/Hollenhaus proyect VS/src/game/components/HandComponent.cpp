@@ -198,13 +198,10 @@ void HandComponent::removeCard(ecs::entity_t card)
 			/////////////////////////////////////////////////////////
 			// cambia la escala para ajustarse a la celda del tablero
 			card->getComponent<Transform>()->setGlobalScale(cardScaleBoard_, cardScaleBoard_);
-			int j = 2;
-			card->setLayer(j);
+			card->setEveryLayer(2);
 			// ajusta tambien los textos
 			for (auto child : card->getComponent<Transform>()->getChildren())
 			{
-				j++;
-				child->getEntity()->setLayer(j);
 				auto texto = child->getEntity()->getComponent<TextComponent>();
 				if (texto != nullptr)
 				{
