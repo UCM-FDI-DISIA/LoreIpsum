@@ -71,7 +71,7 @@
       {
         "npcID": "4",
         "name": "Tutorial",
-        "sprite": "CompbateNPC",
+        "sprite": "wanda",
         "shine": "juegobrillo",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -156,7 +156,7 @@
       {
         "npcID": "9",
         "name": "Wanda",
-        "sprite": "npc_dibujo",
+        "sprite": "wanda",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -173,7 +173,7 @@
       {
         "npcID": "10",
         "name": "Norbert",
-        "sprite": "npc_dibujo",
+        "sprite": "norbert",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -190,7 +190,7 @@
       {
         "npcID": "11",
         "name": "Zelig",
-        "sprite": "npc_dibujo",
+        "sprite": "zelig",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -207,7 +207,7 @@
       {
         "npcID": "12",
         "name": "Gretchen",
-        "sprite": "npc_dibujo",
+        "sprite": "gretchen",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -224,7 +224,7 @@
       {
         "npcID": "13",
         "name": "Schmetterling",
-        "sprite": "npc_dibujo",
+        "sprite": "schmetterling",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -241,7 +241,7 @@
       {
         "npcID": "14",
         "name": "Frederika",
-        "sprite": "npc_dibujo",
+        "sprite": "frederika",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -258,7 +258,7 @@
       {
         "npcID": "15",
         "name": "Ritter",
-        "sprite": "npc_dibujo",
+        "sprite": "ritter",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -275,7 +275,7 @@
       {
         "npcID": "16",
         "name": "Anna",
-        "sprite": "npc_dibujo",
+        "sprite": "anna",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -292,7 +292,7 @@
       {
         "npcID": "17",
         "name": "Bertram",
-        "sprite": "npc_dibujo",
+        "sprite": "bertram",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -309,7 +309,7 @@
       {
         "npcID": "18",
         "name": "Gorgen",
-        "sprite": "npc_dibujo",
+        "sprite": "gorgen",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -326,7 +326,7 @@
       {
         "npcID": "19",
         "name": "Dagna",
-        "sprite": "npc_dibujo",
+        "sprite": "dagna",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,
@@ -343,7 +343,7 @@
       {
         "npcID": "20",
         "name": "Chloris",
-        "sprite": "npc_dibujo",
+        "sprite": "chloris",
         "shine": "npc_dibujo_brilli",
         "scaleX": 0.25,
         "scaleY": 0.25,

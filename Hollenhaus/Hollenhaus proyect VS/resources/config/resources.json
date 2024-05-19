@@ -323,6 +323,54 @@
     {
       "id": "moneda_tienda_brilli",
       "file": "resources/images/moneda_tienda_Iluminada.png"
+    },
+    {
+      "id": "anna",
+      "file": "resources/images/hollenhaus_pers/anna.png"
+    },
+    {
+      "id": "bertram",
+      "file": "resources/images/hollenhaus_pers/bertram.png"
+    },
+    {
+      "id": "chloris",
+      "file": "resources/images/hollenhaus_pers/chloris.png"
+    },
+    {
+      "id": "dagna",
+      "file": "resources/images/hollenhaus_pers/dagna.png"
+    },
+    {
+      "id": "frederika",
+      "file": "resources/images/hollenhaus_pers/frederika.png"
+    },
+    {
+      "id": "gorgen",
+      "file": "resources/images/hollenhaus_pers/gorgen.png"
+    },
+    {
+      "id": "gretchen",
+      "file": "resources/images/hollenhaus_pers/gretchen.png"
+    },
+    {
+      "id": "norbert",
+      "file": "resources/images/hollenhaus_pers/norbert.png"
+    },
+    {
+      "id": "ritter",
+      "file": "resources/images/hollenhaus_pers/ritter.png"
+    },
+    {
+      "id": "schmetterling",
+      "file": "resources/images/hollenhaus_pers/schmetterling.png"
+    },
+    {
+      "id": "wanda",
+      "file": "resources/images/hollenhaus_pers/wanda.png"
+    },
+    {
+      "id": "zelig",
+      "file": "resources/images/hollenhaus_pers/zelig.png"
     }
   ],
     "fonts": [
