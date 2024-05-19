@@ -249,7 +249,7 @@ ecs::entity_t ShopState::createCoin(int x, int y)
 	coin->addComponent<Transform>();
 	Vector2D coinPos(x, y);
 	coin->getComponent<Transform>()->setGlobalPos(coinPos);
-	coin->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
+	coin->getComponent<Transform>()->setGlobalScale(0.5f, 0.5f);
 	coin->addComponent<SpriteRenderer>("moneda_tienda");
 	coin->setLayer(4);
 

@@ -15,11 +15,29 @@
 #include "../factories/DialogueFactory_V0.h"
 #include "../factories/DecisionFactory_V0.h"
 
+constexpr int CARD_POS_Y = 110,
+			  CARD_POS_X = 490,
+			  CARD_OFFSET_Y = 120,
+			  CARD_OFFSET_X = 100;
+
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
-shopCardsPositions(new Vector2D[CARDS_IN_SHOP]{ Vector2D(525, 80),Vector2D(660, 80) ,Vector2D(525, 200) ,Vector2D(660, 200) }),
-shopCardsPrize(new int[CARDS_IN_SHOP] {0, 0, 0, 0})
+shopCardsPositions(
+	new Vector2D[CARDS_IN_SHOP]
+	{
+		Vector2D(CARD_POS_X, CARD_POS_Y),
+		Vector2D(CARD_POS_X + CARD_OFFSET_X, CARD_POS_Y),
+		Vector2D(CARD_POS_X, CARD_POS_Y + CARD_OFFSET_Y),
+		Vector2D(CARD_POS_X + CARD_OFFSET_X, CARD_POS_Y + CARD_OFFSET_Y)
+	}),
+shopCardsPrize(
+	new int[CARDS_IN_SHOP]
+	{
+		0, 0, 0, 0
+	})
 //,money(800)
-{}
+{
+	
+}
 
 ShopComponent::~ShopComponent()
 {

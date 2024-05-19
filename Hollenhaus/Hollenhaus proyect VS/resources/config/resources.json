@@ -85,10 +85,6 @@
       "file": "resources/images/ef_unblockable.png"
     },
     {
-      "id": "tiendafondo",
-      "file": "resources/images/provtienda.png"
-    },
-    {
       "id": "oficinafondo",
       "file": "resources/images/OficinaBG.png"
     },
@@ -155,26 +151,6 @@
     {
       "id": "reverseCard_brilli",
       "file": "resources/images/card_reverse_brilli.png"
-    },
-    {
-      "id": "moneda",
-      "file": "resources/images/moneda.png"
-    },
-    {
-      "id": "monedaIlu",
-      "file": "resources/images/monedaIluminada.png"
-    },
-    {
-      "id": "fondoTienda",
-      "file": "resources/images/tienda_ph.png"
-    },
-    {
-      "id": "mostrador",
-      "file": "resources/images/mostradorTienda.png"
-    },
-    {
-      "id": "estanteria",
-      "file": "resources/images/estanteriaTienda.png"
     },
     {
       "id": "cell",
