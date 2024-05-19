@@ -21,13 +21,14 @@ void CaseManager::update()
 
 void CaseManager::init()
 {
-	npcCounter_ = GameStateMachine::instance()->getCurrentState()->getCurrentCase() + 2;
+	case_ = GameStateMachine::instance()->getCurrentState()->getCurrentCase();
+	npcCounter_ = case_ + 2;
 
-	if (GameStateMachine::instance()->getCurrentState()->getCurrentCase() == 1)
+	if (case_ == 1)
 		initialNpc_ = 9;
-	else if (GameStateMachine::instance()->getCurrentState()->getCurrentCase() == 2)
+	else if (case_ == 2)
 		initialNpc_ = 12;
-	else if (GameStateMachine::instance()->getCurrentState()->getCurrentCase() == 3)
+	else if (case_ == 3)
 		initialNpc_ = 16;
 }
 
