@@ -101,9 +101,9 @@
         {"type": 3,"value": -2,"directions": ["abajo"]}
       ]
     },
-    {"id": "21","cost": 2,"value": 3,"sprite": "card","unblockable": true,
+    {"id": "21","cost": 3,"value": 3,"sprite": "card","unblockable": true,
       "effects": [
-        {"type": 3,"value": -1,"directions": ["abajo"]}
+        {"type": 1,"value": 3}
       ]
     },
     {"id": "22","cost": 1,"value": 0,"sprite": "card","unblockable": true,
@@ -232,17 +232,24 @@
     },
     {"id": "45","cost": 2,"value": 2,"sprite": "card","unblockable": true,
       "effects": [
-        {"type": 4, "directions": ["Derecha"]}
+        {"type": 4, "directions": ["Derecha"]},
+        {"type": 5}
       ]
     },
-    {"id": "46","cost": 2,"value": 3,"sprite": "card","unblockable": true,
+    {"id": "46","cost": 1,"value": 3,"sprite": "card","unblockable": true,
       "effects": [
         {"type": 5}
       ]
     },
-    {"id": "47","cost": 2,"value": 3,"sprite": "card","unblockable": true,
+    {"id": "47","cost": 2,"value": 2,"sprite": "card","unblockable": true,
       "effects": [
-        {"type": 5}
+        {"type": 5},
+        {"type": 2,"value": 2,"directions": ["arriba"]}
+      ]
+    },
+    {"id": "48","cost": 4,"value": 0,"sprite": "card","unblockable": true,
+      "effects": [
+        {"type": 0,"value": 5}
       ]
     }
   ]
