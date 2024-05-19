@@ -60,26 +60,49 @@ void MatchManager::update()
 
 	fadeTween.step(1);
 	if (fadeTween.progress() >= 1.0) fadeIn = false;
-	for (int i = 3; i >= 0; i--)
+	for (int i = 0; i < 4; i++)
 	{
-		if (fadeOutIndexes[i]
-			|| fadeInIndexes[i]
-		)
+		auto spr = actionPointsJ1[i]->getComponent<SpriteRenderer>();
+
+		if (fadeIn)
 		{
-			auto spr = actionPointsJ1[i]->getComponent<SpriteRenderer>();
-			if (fadeIn)
+			if (fadeInIndexes[i])
 			{
 				if (spr != nullptr
 					&& spr->getOpacity() < 255)
 					spr->setOpacity(fadeTween.peek());
 			}
-			else
+			else spr->setOpacity(255);
+		}
+		else
+		{
+			if (fadeOutIndexes[i])
 			{
 				if (spr != nullptr
 					&& spr->getOpacity() > 0)
 					spr->setOpacity(fadeTween.peek());
 			}
 		}
+
+
+		//if (fadeOutIndexes[i]
+		//	|| fadeInIndexes[i]
+		//)
+		//{
+		//	if (fadeIn)
+		//	{
+		//		if (spr != nullptr
+		//			&& spr->getOpacity() < 255)
+		//			spr->setOpacity(fadeTween.peek());
+		//	}
+		//	else
+		//	{
+		//		if (spr != nullptr
+		//			&& spr->getOpacity() > 0)
+		//			spr->setOpacity(fadeTween.peek());
+		//	}
+		//}
+
 	}
 }
 
@@ -188,17 +211,17 @@ void MatchManager::updateVisuals()
 	/// ACTUALIZACION DE IMAGENES
 	lastSpentPoints = lastPointsJ1 - actualActionPointsJ1;
 	if (lastSpentPoints < 0)
-	{ // ha habido reseteo
+	{
+		// ha habido reseteo
 		auto pointsWon = actualActionPointsJ1 - lastPointsJ1;
 		fadeIn = true;
 		lastSpentPoints = 0;
-		/*for (int i = actualActionPointsJ1; i > actualActionPointsJ1 - pointsWon; i--)
-		{
+		resetFadeIndexes();
+		for (int i = actualActionPointsJ1; i > actualActionPointsJ1 - pointsWon; i--)
 			fadeInIndexes[i - 1] = true;
-		}*/
 
-		for (int i = 0; i < 4; i++)
-			fadeInIndexes[i] = true;
+		//for (int i = 0; i < 4; i++)
+		//	fadeInIndexes[i] = true;
 		startPointsOn();
 	}
 	else if (lastSpentPoints > 0)
