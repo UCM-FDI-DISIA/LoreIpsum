@@ -225,7 +225,7 @@ void ShopComponent::confirmPurchase(int prize, int id)
 	if (shopDialogue != nullptr)
 	{
 		shopDialogue = factory->createDialogue("Tienda", 0, 0,
-			{ 170.0f,30.0f }, // Posicion.
+			{ 190.0f,30.0f }, // Posicion.
 			{ 0.25, 0.25 }, // Tamanyo.
 			2, // Velocidad.
 			10, // Cooldown.
@@ -237,6 +237,7 @@ void ShopComponent::confirmPurchase(int prize, int id)
 			220, // Wrap length.
 			Text::BoxPivotPoint::LeftTop,
 			Text::TextAlignment::Center);
+		shopDialogue->getComponent<SpriteRenderer>()->setFlipX(true); // Flipea el sprite para que parezca que hable la tendera.
 	}
 }
 

@@ -78,19 +78,20 @@ void TutorialShopManager::setState()
 
 void TutorialShopManager::setINIT()
 {
-	createPopUp(170, 30, "Tienda Tutorial", 0, base);
+	auto dialogue = createPopUp(190, 30, "Tienda Tutorial", 0, base);
+	dialogue->getComponent<SpriteRenderer>()->setFlipX(true); // Para que parezca que habla la tendera.
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
-
 }
 
 void TutorialShopManager::setSHOW_MONEY()
 {
-	createPopUp(170, 30, "Tienda Tutorial", 1, base);
+	auto dialogue = createPopUp(190, 30, "Tienda Tutorial", 1, base);
+	dialogue->getComponent<SpriteRenderer>()->setFlipX(true); // Para que parezca que habla la tendera.
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -105,25 +106,23 @@ void TutorialShopManager::setSHOW_MONEY()
 
 void TutorialShopManager::setSHOW_CARDS()
 {
-	createPopUp(170, 30, "Tienda Tutorial", 2, base);
+	auto dialogue = createPopUp(190, 30, "Tienda Tutorial", 2, base);
+	dialogue->getComponent<SpriteRenderer>()->setFlipX(true); // Para que parezca que habla la tendera.
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	std::vector<ecs::entity_t> v;
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
-
 }
 
 void TutorialShopManager::setPURCHASE()
 {
-	createPopUp(170, 30, "Tienda Tutorial", 3, base);
+	auto dialogue = createPopUp(190, 30, "Tienda Tutorial", 3, base);
+	dialogue->getComponent<SpriteRenderer>()->setFlipX(true); // Para que parezca que habla la tendera.
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
-
-
-
 }
