@@ -75,14 +75,11 @@ void OfficeState::onEnter()
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
-	if (GameStateMachine::instance()->TUTORIAL_CITY_COMPLETE()) {
+	if (!isTutorial || GameStateMachine::instance()->TUTORIAL_CITY_COMPLETE()) {
 		exit->addComponent<NPC>(GameStates::CITY); // Lleva a la ciudad (1).
 	}
 	else if (GameStateMachine::instance()->TUTORIAL_DECKBUILDING_COMPLETE()) {
 		exit->addComponent<NPC>(GameStates::TUTORIAL_CITY); // Lleva a la ciudad (1).
-	}
-	else {
-		exit->addComponent<NPC>(GameStates::CITY); // Lleva a la ciudad (1).
 	}
 	exit->setLayer(1);
 	exit->addComponent<Clickable>("boton_flecha", true);
