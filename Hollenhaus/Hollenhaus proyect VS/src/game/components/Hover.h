@@ -1,9 +1,10 @@
 ﻿#pragma once
 #include "ComponentUpdate.h"
 
-constexpr int HOVER_TIMER = 500,
-			  HOVER_SCALE = 2,
-			  HOVER_LAYER = 999;
+constexpr int HOVER_SPEED = 30,
+              HOVER_TIMER = 500,
+              HOVER_SCALE = 2,
+              HOVER_LAYER = 999;
 const Vector2D HOVER_OFFSET = {-20, -20};
 
 class Hover : public ComponentUpdate
@@ -21,28 +22,39 @@ class Hover : public ComponentUpdate
 	/// component access
 	SpriteRenderer* spr = nullptr;
 	Transform* tr = nullptr;
+	BoxCollider* bc = nullptr;
 
 	/// tweeny
-	tweeny::tween<double> hoverTween;
+	tweeny::tween<float> hoverTweenX;
+	tweeny::tween<float> hoverTweenY;
 
 	/// timer
 	int hoverTimer = 0;
+	int hoverActivationSpeed = HOVER_TIMER;
 
-	//hoverTween =
-	//	tweeny::from(fanY - 10)
-	//	.to(fanY + 5)
-	//	.to(fanY - 10)
-	//	.during(30)
-	//	.via(tweeny::easing::sinusoidalInOut);
+	/// sentido de la animacion
+	bool intoHover = false;
+	bool outoHover = false;
+	int hoverSpeed = HOVER_SPEED;
+	bool isOnHand = false;
 
+	void resetTweensForward();
+	void resetTweensBackward();
+	
+	void onHoverEnter();
+	void onHoverExit();
 public:
 	Hover() = default;
-	Hover(int scale, int layer, const Vector2D& offset)
-	: hoverScale(scale), hoverLayer(layer), hoverOffset(offset)
-	{}
+
+	//Hover(int scale, int layer, const Vector2D& offset = HOVER_OFFSET, int actSpeed = HOVER_TIMER, int hoverSpeed = 30)
+	//	: hoverScale(scale), hoverLayer(layer), hoverOffset(offset), iniLayer(1),
+	//	  hoverActivationSpeed(actSpeed), hoverSpeed(hoverSpeed)
+	//{
+	//}
+
 	~Hover() override = default;
 	void initComponent() override;
 	void update() override;
-	void onHoverEnter();
-	void onHoverExit();
+	void setOnHand(bool value) { isOnHand = value; }
+
 };
