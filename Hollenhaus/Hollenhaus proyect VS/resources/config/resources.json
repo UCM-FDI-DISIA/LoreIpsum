@@ -574,14 +574,7 @@
     }
   ],
     "musics": [
-      {
-        "id": "layercake",
-        "file": "resources/sound/music/layer_cake.wav"
-      },
-      {
-        "id": "tryTheme",
-        "file": "resources/sound/music/suspicious_person.wav"
-      }
+      
     ]
 }
 

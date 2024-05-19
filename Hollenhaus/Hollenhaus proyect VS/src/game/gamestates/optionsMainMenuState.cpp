@@ -9,6 +9,7 @@
 #include "../components/basics/Transform.h"
 #include "game/components/Clickable.h"
 #include "game/components/ClickableText.h"
+#include "../SoundManager.h"
 
 
 constexpr SDL_Color PEARL_HOLLENHAUS = { 226, 223, 210, 255 };
@@ -40,6 +41,10 @@ void OptionsMainMenuState::onEnter()
 {
 	std::cout << "opciones " << std::endl;
 
+	music = SoundManager::instance();
+
+	music->startMusic(Musics::MUSIC::OFFICE_M);
+
 	ecs::entity_t fondo = Instantiate(Vector2D(0, 0));
 	fondo->addComponent<SpriteRenderer>("optfondo");
 	fondo->getComponent<Transform>()->setGlobalScale(Vector2D(6, 6));
@@ -53,10 +58,40 @@ void OptionsMainMenuState::onEnter()
 	audioText->addComponent<TextComponent>("PONER AQUÍ LA BARRA", Fonts::GROTESK_32, PEARL_HOLLENHAUS, 500, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	audioText->setLayer(1);
 
-	//SONIDO (MIRAR MAS TARDE CON INES)
-	//auto& sdl = *SDLUtils::instance();
-	//sdl.soundEffects().at("citytheme").play(-1);
-	//sdl.soundEffects().at("citytheme").setChannelVolume(10);
+	/*windowModeText->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
+	windowModeText->addComponent<Button>()->connectToButton([this]
+		{
+			sdlutils().setWindowed();
+		});*/
+
+	ecs::entity_t audioUP = Instantiate();
+	audioUP->addComponent<Transform>();
+	audioUP->addComponent<SpriteRenderer>("UpDrawer");
+	audioUP->addComponent<BoxCollider>();
+	audioUP->addComponent<Clickable>("UpDrawer", true);
+	audioUP->getComponent<Transform>()->setGlobalPos(sdlutils().width() - 225, sdlutils().height() - 400);
+	//audioUP->getComponent<Transform>()->setRelativePos(sdlutils().width(), sdlutils().height());
+	//audioUP->getComponent<Transform>()->setGlobalScale(botScale);
+	audioUP->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	audioUP->addComponent<Button>();
+	audioUP->getComponent<Button>()->connectToButton([this]() { 
+		music->addVolume(20);
+		});
+	audioUP->setLayer(2);
+
+	ecs::entity_t audioDOWN = Instantiate();
+	audioDOWN->addComponent<Transform>();
+	audioDOWN->addComponent<SpriteRenderer>("DownDrawer");
+	audioDOWN->addComponent<BoxCollider>();
+	audioDOWN->addComponent<Clickable>("DownDrawer", true);
+	audioDOWN->getComponent<Transform>()->setGlobalPos(sdlutils().width() - 640, sdlutils().height() - 400);
+	audioDOWN->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	audioDOWN->addComponent<Button>();
+	audioDOWN->getComponent<Button>()->connectToButton([this]() {
+		music->addVolume(-20);
+		});
+	audioDOWN->setLayer(2);
+
 
 
 	fullScreenText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 300));
