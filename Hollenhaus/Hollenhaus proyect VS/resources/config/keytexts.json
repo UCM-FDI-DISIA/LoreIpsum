@@ -1,18 +1,6 @@
 {
   "keys": [
     {
-      "id": "esquina",
-      "text": "Activa su efecto si se encuentra en las esquinas"
-    },
-    {
-      "id": "centro",
-      "text": "Activa su efecto si se encuentra en el centro"
-    },
-    {
-      "id": "unblockable",
-      "text": "No le afectan modificadores"
-    },
-    {
       "id": "flecha",
       "text": "Su efecto se aplica a la carta adyacente en la direccion a la que apunta"
     },
@@ -21,8 +9,20 @@
       "text": "Su efecto se aplica todas las cartas en la direccion a la que apunta"
     },
     {
+      "id": "esquina",
+      "text": "Activa su efecto si se encuentra en las esquinas"
+    },
+    {
+      "id": "centro",
+      "text": "Activa su efecto si se encuentra en el centro"
+    },
+    {
       "id": "block",
       "text": "Anula la habilidad de la carta adyacente en la direccion en la que apunta"
+    },
+    {
+      "id": "unblockable",
+      "text": "No le afectan modificadores"
     }
   ]
 }
