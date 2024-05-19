@@ -13,13 +13,7 @@
 #include "../components/FadeComponent.h"
 
 
-// De Luis: Esto habría que refactorizarlo en algún momento.
-// El tamanio del diálogo depende del tamanio de la textura "whiteRect", motivo por el cual no funciona el parámetro size.
-// Además, el transform del dialogue es escalado, lo cual no es buena idea ya que afecta a los tamanios de otros elementos.
-// He metido el texto en una entidad hija del dialogue, pero el componente transform no trabaja correctamente con los hijos, 
-// asi que hay que hacer apanios un poco feos
-// El margen entre el texto y la caja de diálogo tambien es un numero mágico
-// En general hay qe refactorizar para que crear diálogos sea una tarea sencilla y parametrizable.
+// Ahora si
 
 ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
 	int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_)
