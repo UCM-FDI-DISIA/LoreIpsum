@@ -12,6 +12,7 @@
 #include "gamestates/DeckBuildingState.h"
 #include "gamestates/tutorialState.h"
 #include "gamestates/cinematicIntroState.h"
+#include "gamestates/cinematicOutroState.h"
 
 #include "gamestates/SamuState.h"
 #include "gamestates/JimboState.h"
@@ -80,6 +81,7 @@ GameStateMachine::GameStateMachine()
 	optionsMainMenuState = new OptionsMainMenuState();
 	transitionTextMenuState = new TransitionTextMenuState();
 	cinematicIntroState = new CinematicIntroState();
+	cinematicOutroState = new CinematicOutroState();
 	pauseMenuState = new PauseMenuState();
 	checkMazeMenuState = new CheckMazeMenuState();
 	checkCluesMenuState = new CheckCluesMenuState();
@@ -138,6 +140,7 @@ GameStateMachine::~GameStateMachine()
 	delete optionsMainMenuState;
 	delete transitionTextMenuState;
 	delete cinematicIntroState;
+	delete cinematicOutroState;
 	delete pauseMenuState;
 	delete checkMazeMenuState;
 	delete checkCluesMenuState;
