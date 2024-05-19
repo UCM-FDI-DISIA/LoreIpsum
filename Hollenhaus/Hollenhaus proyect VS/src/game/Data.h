@@ -17,6 +17,8 @@ MAX_CARDS_MAZE = 20, // Maximo de cartas en el mazo
 // Cantidad de cartas de la tienda. Cambiar en shopComponent tambien.
 CARDS_IN_SHOP = 4;
 
+class RandomNumberGenerator;
+
 class Data
 {
 private:
@@ -50,6 +52,8 @@ private:
 	bool playerWon; // True si la ultima partida ha sido ganado el jugador. False lo contrario.
 
 	std::list<int> thisCaseClues; // Id de las cartas conseguidas durante el caso (deben ser aniadidas al drawer y aqui al ser conseguidass)
+
+	RandomNumberGenerator& rand_; // Para generar numeros aleatorios.
 
 	enum WINNER {
 		NONE,
@@ -190,5 +194,6 @@ public:
 	void setIsHost(bool b);
 	bool getIsHost();
 
-
+	//------Reset:
+	void resetSave(); // Modifica el txt para cargar una Nueva Partida.
 };

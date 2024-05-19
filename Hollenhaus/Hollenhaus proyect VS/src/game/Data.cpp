@@ -4,17 +4,19 @@
 #include <SDL_net.h>
 
 const std::string SAVE_FILE = "./resources/saves/save.txt";
-
+const std::string RESET_FILE = "./resources/saves/savereset.txt";
+const int BASE_MAZE = 10;
+const int BASE_DRAWER = 4;
 
 //------Constructora y destructora:
-Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
+Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}), rand_(sdlutils().rand())
 {
 	//TCPsocket;
 	EmptyDrawer();
 	//Read();
 }
 Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def)
-	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[CARDS_IN_SHOP])
+	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[CARDS_IN_SHOP]), rand_(sdlutils().rand())
 {};
 Data::~Data() {
 	delete shopCards;
@@ -253,7 +255,7 @@ void Data::Write() {
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
 	file << currentSouls << "\n";
-	file << currentCase << "\n";
+	file << lastState << "\n";
 
 	file << "Mazo_y_posiciones" << "\n";
 	//Guarda el mazo y posiciones en la pizarra
@@ -291,7 +293,7 @@ void Data::Write() {
 void Data::Read() {
 	EmptyLists();
 
-	std::ifstream file;
+	std::ifstream file; // PAIGRO AQUI
 	file.open(SAVE_FILE);
 
 	if (!file.is_open())
@@ -304,7 +306,7 @@ void Data::Read() {
 
 	int number, iterations;
 
-	file >> currentMoney >> currentCase >> currentSouls;
+	file >> currentMoney >> currentCase >> currentSouls >> lastState;
 	std::string falsedades;
 	file >> falsedades;
 
@@ -337,7 +339,7 @@ void Data::Read() {
 			(*it).second = Vector2D(x, y);
 		}
 	}
-
+	// PAIGRO AQUI.
 	file >> falsedades;
 
 	// Lee cartas desbloqueadas
@@ -426,4 +428,141 @@ bool Data::getIsHost()
 {
 	return isHost;
 }
+#pragma endregion
+
+#pragma region Resets.
+
+void Data::resetSave()
+{
+	std::ofstream file;
+	std::ifstream file2;
+	file.open(SAVE_FILE);
+	file2.open(RESET_FILE);
+
+	if (!file.is_open())
+	{
+#ifdef _DEBUG
+		TuVieja("ERROR DE LECTURA: No se ha podido leer el archivo de guardado para reseteralo.");
+#endif
+		return;
+	}
+	if (file2.is_open())
+	{
+#ifdef _DEBUG
+		TuVieja("ERROR DE LECTURA2: No se ha podido leer el archivo de guardado para reseteralo.");
+#endif
+		//return;
+	}
+
+	int number, iterations;
+	std::string falsedad;
+
+
+	for (int i = 0; i < 4; i++) // Los 4 valores iniciales. Dinero, caso, almas y ultimo estado.
+	{
+		file2 >> number;
+		file << number << "\n";
+	}
+
+
+	file2 >> falsedad; // "Mazo_y_posiciones".
+	file << falsedad << "\n";
+	file2 >> iterations; // Numero de cartas del mazo.
+	file << iterations << "\n";
+	for (int i = 0; i < iterations * 3; i++) // Multiplicado por 3 porque son id, posX y posY.
+	{
+		file2 >> number;
+		file << number << "\n";
+	}
+
+
+	file2 >> falsedad; // "Drawer".
+	file << falsedad << "\n";
+	file2 >> iterations; // Numero de cartas del drawer.
+	file << iterations << "\n";
+	for (int i = 0; i < iterations; i++)
+	{
+		file2 >> number;
+		file << number << "\n";
+	}
+
+
+	file2 >> iterations; // Numero de NPCs.
+	file << iterations << "\n";
+	for (int i = 0; i < iterations; i++)
+	{
+		file2 >> number;
+		file << number << "\n";
+	}
+
+
+	file2 >> iterations; // Numero de cartas de la tienda.
+	file << iterations << "\n";
+	for (int i = 0; i < iterations; i++)
+	{
+		file2 >> number;
+		file << number << "\n";
+	}
+
+
+	file2 >> falsedad; // "Paul".
+	file << falsedad << "\n";
+	file2 >> number; // PosX.
+	file << number << "\n";
+	file2 >> number; // PoxY.
+	file << number << "\n";
+	file2 >> number; // Dir.
+	file << number << "\n";
+
+	file.close(); // paigro aqui.
+	file2.close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*	file << 0 << "\n"; // Dinero.
+		file << 0 << "\n"; // Caso.
+		file << 0 << "\n"; // Almas.
+		file << 0 << "\n"; // Last state.
+
+		file << "Mazo_y_posiciones" << "\n"; // Separador.
+		// Guarda el mazo y posiciones en la pizarra
+		file << BASE_MAZE << "\n";
+		for (int i = 0; i < BASE_MAZE; i++)
+		{
+			file << i << "\n"; // Id de la carta.
+			file << rand_.nextInt(0, 700) << "\n";; // Posicion X de la carta.
+			file << rand_.nextInt(0, 700) << "\n";; // Posicion Y de la carta.
+		}
+
+		file << "Drawer" << "\n"; // Separador.
+		file << CARDS_IN_GAME << "\n";
+		// Guarda las cartas desbloqueadas del drawer. La 10, 11, 12 y 13.
+		for (int i = BASE_MAZE; i < BASE_MAZE + BASE_DRAWER; i++)
+		{
+			file << i << "\n";
+		}
+		// Resto de cartas del juego: las 36 restantes.
+		for (int i = 0; i < CARDS_IN_GAME - (BASE_MAZE + BASE_DRAWER); i++)
+		{
+			file << -1 << "\n";
+		}
+
+		// Pone las cartas de la tienda a -1.
+		file << CARDS_IN_SHOP << "\n";
+		for (int i = 0;i < CARDS_IN_SHOP; i++) {
+			file << -1 << "\n";
+		}*/
+}
+
 #pragma endregion
