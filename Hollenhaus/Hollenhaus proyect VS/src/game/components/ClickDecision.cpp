@@ -25,17 +25,14 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
 
 ClickDecision::~ClickDecision()
 {
-	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
-	ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
-
-	collider_ = nullptr;
+	//ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	//ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
 void ClickDecision::initComponent()
 {
 	scene_ = 0;
 	myNpc_ = parent_->getComponent<Transform>()->getParent()->getEntity()->getComponent<Transform>()->getParent()->getEntity()->getComponent<NPC>();
-	collider_ = getEntity()->getComponent<BoxCollider>();
 }
 
 void ClickDecision::update()
@@ -44,7 +41,7 @@ void ClickDecision::update()
 
 void ClickDecision::OnLeftClickDown()
 {
-	if (collider_ != nullptr && collider_ ->isCursorOver())
+	if (mouseRaycast() == ent_)
 	{
 		click_ = true;
 		TakeDecision();
