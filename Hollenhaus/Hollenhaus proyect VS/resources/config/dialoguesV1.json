@@ -760,7 +760,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Bienvenido a tu organizador de casos.",
+              "text": "Bienvenido a su organizador de casos.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -768,7 +768,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Consta de tu pizarra y tus cajones.",
+              "text": "Consta de su pizarra y sus cajones.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -787,7 +787,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Estos son tus cajones.",
+              "text": "Estos son sus cajones.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -795,7 +795,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Puedes navegar entre ellos con las flechas de la derecha.",
+              "text": "Puede navegar entre ellos con las flechas a su derecha.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -803,7 +803,7 @@
             },
             {
               "nodeID": 2,
-              "text": "En los cajones se encuentran todas las cartas que vayas consiguiendo.",
+              "text": "En los cajones se encuentran todas las cartas que vaya consiguiendo.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -830,7 +830,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Esta es tu pizarra.",
+              "text": "Esta es su pizarra.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -838,7 +838,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Aqui estan las cartas que forman el mazo con el que luchas.",
+              "text": "Aqui estan las cartas que forman el mazo con usted luche.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -846,7 +846,7 @@
             },
             {
               "nodeID": 2,
-              "text": "Puedes tener un minimo de 10 cartas en tu mazo.",
+              "text": "Puede tener un minimo de 10 cartas en tu mazo.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -862,7 +862,7 @@
             },
             {
               "nodeID": 4,
-              "text": "Con el boton de abajo a la izquierda puedes guardar tu mazo.",
+              "text": "Con el boton de abajo a la izquierda puede guardar su mazo.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -870,7 +870,7 @@
             },
             {
               "nodeID": 5,
-              "text": "No te olvides de hacerlo antes de salir porque no se guarda automaticamente.",
+              "text": "No se olvides de hacerlo antes de salir porque no se guarda automaticamente.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -889,7 +889,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Ahora que hemos visto las partes. Vamos a ver lo que puedes hacer.",
+              "text": "Ahora que hemos visto las partes. Vamos a ver lo que puede hacer.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -897,7 +897,7 @@
             },
             {
               "nodeID": 0,
-              "text": "Puedes mover cartas de los cajones a la pizarra y viceversa.",
+              "text": "Puede mover cartas de los cajones a la pizarra y viceversa.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -905,7 +905,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Ahora crea el mazo que mas te guste y a jugar.",
+              "text": "Ahora cree el mazo que mas le guste y a jugar.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -994,7 +994,7 @@
             },
             {
               "nodeID": 3,
-              "text": "Le interesan verdad",
+              "text": "Le interesan verdad.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
