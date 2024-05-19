@@ -18,7 +18,7 @@ constexpr SDL_Color ROJO_HOLLENHAUS = { 148, 47, 55, 255 };
 
 StoryModeState::StoryModeState()
 {
-	
+
 }
 
 StoryModeState::~StoryModeState()
@@ -95,5 +95,5 @@ void StoryModeState::onExit()
 void StoryModeState::newGameStart()
 {
 	newGameData(); // Llama al metodo que pone el txt con mazo de inicio, dinero a 0, etc.
-	GameStateMachine::instance()->setState(GameStates::TUTORIAL_OFFICE); // Cambia al estado de tutorial.
+	GameStateMachine::instance()->setState(GameStates::CINEMATICINTRO); // Cambia al estado de tutorial.
 }
