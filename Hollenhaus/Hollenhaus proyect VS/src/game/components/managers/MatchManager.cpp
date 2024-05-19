@@ -14,6 +14,7 @@
 #include "../Card.h"
 #include "game/CaseManager.h"
 #include "game/components/ClickableText.h"
+#include "game/SoundManager.h"
 
 MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart,
                            BoardManager* bm, std::string j2) :
@@ -113,17 +114,24 @@ void MatchManager::setActualState(Turns::State newState)
 
 	switch (actualState)
 	{
-	case Turns::J1:
+	case Turns::J1: {
+
+
 #if _DEBUG
-		std::cout << "Nuevo turno: Jugador 1" << std::endl; 
+		std::cout << "Nuevo turno: Jugador 1" << std::endl;
 #endif
 		resetActualActionPoints();
+
+
+	}
 		break;
 	case Turns::J2:
+	{
 #if _DEBUG
 		std::cout << "Nuevo turno: Jugador 2" << std::endl;
 #endif
 		resetActualActionPoints();
+	}
 		break;
 	case Turns::Finish:
 #if _DEBUG
@@ -138,10 +146,12 @@ void MatchManager::setActualState(Turns::State newState)
 		InstantiatePanelFinPartida(GameStateMachine::instance()->getCurrentState()->getData()->getWinner());
 		break;
 	case Turns::IA:
+	{
 #if _DEBUG
 		std::cout << "Turno: IA" << std::endl;
 #endif
 		startTurnIA();
+	}
 		break;
 	case Turns::J2_MULTIPLAYER:
 #if _DEBUG
@@ -395,6 +405,45 @@ void MatchManager::CheckNextTurnAutomatic()
 		// Si no quedan puntos de accion y no quedan jugadas disponibles, pasamos turno automáticamente
 		setActualState(netGame == nullptr ? Turns::IA : Turns::J2_MULTIPLAYER);
 	}
+}
+
+void MatchManager::changeMusicTurn(Turns::State i)
+{
+	auto music = SoundManager::instance();
+
+	Musics::MUSIC a = Musics::MUSIC::BATTLE_P_M;
+	Musics::MUSIC b = Musics::MUSIC::BATTLE_T_M;
+
+	switch (i)
+	{
+	case Turns::J1:
+		Musics::MUSIC a = Musics::MUSIC::BATTLE_P_M;
+		Musics::MUSIC b = Musics::MUSIC::BATTLE_T_M;
+		break;
+	case Turns::J2:
+		Musics::MUSIC a = Musics::MUSIC::BATTLE_P_M;
+		Musics::MUSIC b = Musics::MUSIC::BATTLE_T_M;
+		break;
+	case Turns::Finish:
+		Musics::MUSIC a = Musics::MUSIC::BATTLE_P_M;
+		Musics::MUSIC b = Musics::MUSIC::BATTLE_T_M;
+		break;
+	case Turns::IA:
+		Musics::MUSIC a = Musics::MUSIC::BATTLE_T_M;
+		Musics::MUSIC b = Musics::MUSIC::BATTLE_P_M;
+		break;
+	case Turns::J2_MULTIPLAYER:
+		Musics::MUSIC a = Musics::MUSIC::BATTLE_T_M;
+		Musics::MUSIC b = Musics::MUSIC::BATTLE_P_M;
+		break;
+	default:
+		break;
+	}
+
+	music->ChannelVolume(a, music->getVolume());
+	music->ChannelVolume(b, 0);
+
+
 }
 
 void MatchManager::turnPointsOff()

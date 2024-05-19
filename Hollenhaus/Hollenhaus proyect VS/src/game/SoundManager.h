@@ -29,14 +29,16 @@ public:
 
 
 	// aumenta o disminuye el volumen MASTER
-	void Volume(int i);
+	int Volume(int i);
+	int getVolume() { return master_volume; };
 
 	// volumen especifico para canales
-	void ChannelVolume(std::string channel, int v);
+	void ChannelVolume(Musics::MUSIC channel, int v);
 
 	// ----------
 	void startMusic(Musics::MUSIC M);
 	void stopMusic(Musics::MUSIC m);
 
 	std::vector<std::string> music_names;
+	int master_volume;
 };

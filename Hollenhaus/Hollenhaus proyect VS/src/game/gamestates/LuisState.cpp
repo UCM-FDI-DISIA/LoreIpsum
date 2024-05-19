@@ -180,7 +180,8 @@ void LuisState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	//music->startMusic(Musics::BATTLE_M);
+	music->startMusic(Musics::BATTLE_P_M);
+	music->startMusic(Musics::BATTLE_T_M);
 
 
 #pragma region Seccion IA

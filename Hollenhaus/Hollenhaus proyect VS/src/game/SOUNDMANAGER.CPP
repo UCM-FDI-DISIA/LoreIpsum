@@ -27,14 +27,16 @@ void SoundManager::init()
 	Volume(30);
 }
 
-void SoundManager::Volume(int i)
+int SoundManager::Volume(int i)
 {
-	Mix_MasterVolume(i);
+	master_volume = i;
+	return Mix_MasterVolume(i);
 }
 
-void SoundManager::ChannelVolume(std::string channel, int v)
+void SoundManager::ChannelVolume(Musics::MUSIC channel, int v)
 {
-	sdlutils().soundEffects().at(channel).setChannelVolume(v);
+	auto n = music_names[channel];
+	sdlutils().soundEffects().at(n).setChannelVolume(v);
 }
 
 void SoundManager::startMusic(Musics::MUSIC m)
