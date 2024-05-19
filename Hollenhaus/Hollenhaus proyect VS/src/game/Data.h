@@ -195,5 +195,5 @@ public:
 	bool getIsHost();
 
 	//------Reset:
-	void resetSave(); // Modifica el txt para cargar una Nueva Partida.
+	void resetSave(); // Copia al save.txt un txt auxiliar (savereset.txt) donde estan los datos para una nueva partida.
 };

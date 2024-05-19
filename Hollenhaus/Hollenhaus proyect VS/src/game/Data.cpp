@@ -446,19 +446,12 @@ void Data::resetSave()
 #endif
 		return;
 	}
-	if (file2.is_open())
-	{
-#ifdef _DEBUG
-		TuVieja("ERROR DE LECTURA2: No se ha podido leer el archivo de guardado para reseteralo.");
-#endif
-		//return;
-	}
 
 	int number, iterations;
 	std::string falsedad;
 
 
-	for (int i = 0; i < 4; i++) // Los 4 valores iniciales. Dinero, caso, almas y ultimo estado.
+	for (int i = 0; i < 4; i++) // Los 4 valores iniciales: dinero, caso, almas y ultimo estado.
 	{
 		file2 >> number;
 		file << number << "\n";
@@ -516,53 +509,6 @@ void Data::resetSave()
 
 	file.close(); // paigro aqui.
 	file2.close();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/*	file << 0 << "\n"; // Dinero.
-		file << 0 << "\n"; // Caso.
-		file << 0 << "\n"; // Almas.
-		file << 0 << "\n"; // Last state.
-
-		file << "Mazo_y_posiciones" << "\n"; // Separador.
-		// Guarda el mazo y posiciones en la pizarra
-		file << BASE_MAZE << "\n";
-		for (int i = 0; i < BASE_MAZE; i++)
-		{
-			file << i << "\n"; // Id de la carta.
-			file << rand_.nextInt(0, 700) << "\n";; // Posicion X de la carta.
-			file << rand_.nextInt(0, 700) << "\n";; // Posicion Y de la carta.
-		}
-
-		file << "Drawer" << "\n"; // Separador.
-		file << CARDS_IN_GAME << "\n";
-		// Guarda las cartas desbloqueadas del drawer. La 10, 11, 12 y 13.
-		for (int i = BASE_MAZE; i < BASE_MAZE + BASE_DRAWER; i++)
-		{
-			file << i << "\n";
-		}
-		// Resto de cartas del juego: las 36 restantes.
-		for (int i = 0; i < CARDS_IN_GAME - (BASE_MAZE + BASE_DRAWER); i++)
-		{
-			file << -1 << "\n";
-		}
-
-		// Pone las cartas de la tienda a -1.
-		file << CARDS_IN_SHOP << "\n";
-		for (int i = 0;i < CARDS_IN_SHOP; i++) {
-			file << -1 << "\n";
-		}*/
 }
 
 #pragma endregion
