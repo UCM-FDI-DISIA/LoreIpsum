@@ -142,7 +142,7 @@ void CityState::onEnter()
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
 	fantasmiko->setLayer(2);
-	fantasmiko->addComponent<ImageWithFrames>(fantasmiko->getComponent<SpriteRenderer>(), 1, 4);
+	fantasmiko->addComponent<ImageWithFrames>(fantasmiko->getComponent<SpriteRenderer>(), 1, 4, -1);
 
 	auto moc = fondo->getComponent<MoveOnClick>();
 	moc->registerFantasmaTrans(fantasmiko);
@@ -164,7 +164,7 @@ void CityState::onEnter()
 	///------NPCs:
 	//----Para entrar en la oficina.
 	//factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
-	
+
 	// Oficina
 	ecs::entity_t ofi = factory->createNPC(0, fondo);
 
@@ -178,7 +178,7 @@ void CityState::onEnter()
 		objs.push_back(npc2);
 	}
 
-		// NPC prueba
+	// NPC prueba
 	factory->createNPC(9, fondo);
 
 	// Tutorial
@@ -189,8 +189,8 @@ void CityState::onEnter()
 	}
 	// CASOS
 	else {
-		if(caseMngr->accepted()) {
-			for(int i = 0; i < caseMngr->npc_n(); ++i)
+		if (caseMngr->accepted()) {
+			for (int i = 0; i < caseMngr->npc_n(); ++i)
 			{
 				auto npc = factory->createNPC(caseMngr->npcBegin() + i, fondo);
 				objs.push_back(npc);
@@ -202,7 +202,7 @@ void CityState::onEnter()
 
 
 	// Npcs de caso
-	
+
 
 	// --- Boton para volver al menu principal ---
 	ecs::entity_t exit = Instantiate();

@@ -220,6 +220,7 @@ void LuisState::onExit()
 	music->stopMusic(Musics::BATTLE_P_M);
 	music->stopMusic(Musics::BATTLE_T_M);
 
+	saveData();
 
 	delete factory;
 

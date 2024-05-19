@@ -114,6 +114,8 @@ private:
 
     void resetActualActionPoints();
 
+    void dropCard();
+
     // Método para pasarle el ganador al GameState y guardarlo en data.
     void setWinnerOnData();
 
