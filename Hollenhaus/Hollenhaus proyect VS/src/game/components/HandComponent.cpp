@@ -40,7 +40,10 @@ void HandComponent::addCard(ecs::entity_t card)
 
 	/// GESTION DEL HOVER
 	if (auto* hover = card->getComponent<Hover>())
+	{
 		hover->setOnHand(true);
+		hover->setOnHand(this);
+	}
 
 	/// GESTIÓN DE LAYERS
 	if (lastCardAdded_ != nullptr)
@@ -115,10 +118,21 @@ void HandComponent::update()
 			// Si esta en posicion suma uno a cartas en posicion
 			if (tweenDrawCardX[i].progress() == 1.0 && tweenDrawCardY[i].progress() == 1.0)
 			{
+				/// Gestion del hover
+				if (auto* hover = cardsInHand_[i]->getComponent<Hover>())
+				{
+					hover->setOnHand(true);
+					hover->setIniPos(cardsInHand_[i]->getComponent<Transform>()->getGlobalPos());
+				}
 				cardsInPos++;
 			}
 			else
 			{
+				/// Gestion del hover
+				if (auto* hover = cardsInHand_[i]->getComponent<Hover>())
+				{
+					hover->setOnHand(false);
+				}
 				// Mueve la carta
 				cardsInHand_[i]->getComponent<Transform>()->setRelativePos(step);
 			}
@@ -162,10 +176,21 @@ void HandComponent::update()
 			// Si esta en posicion suma uno a cartas en posicion
 			if (tweenDrawCardX[i].progress() == 1.0 && tweenDrawCardY[i].progress() == 1.0)
 			{
+				/// Gestion del hover
+				if (auto* hover = cardsInHand_[i]->getComponent<Hover>())
+				{
+					hover->setOnHand(true);
+					hover->setIniPos(cardsInHand_[i]->getComponent<Transform>()->getGlobalPos());
+				}
 				cardsInPos++;
 			}
 			else
 			{
+				/// Gestion del hover
+				if (auto* hover = cardsInHand_[i]->getComponent<Hover>())
+				{
+					hover->setOnHand(false);
+				}
 				// Mueve la carta
 				cardsInHand_[i]->getComponent<Transform>()->setRelativePos(step);
 			}
@@ -224,7 +249,10 @@ void HandComponent::removeCard(ecs::entity_t card)
 
 			/// Gestion del hover
 			if (auto* hover = card->getComponent<Hover>())
+			{
 				hover->setOnHand(false);
+				hover->setHandComponent(nullptr);
+			}
 		}
 	}
 
