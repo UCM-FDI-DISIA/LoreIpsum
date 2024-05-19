@@ -18,6 +18,7 @@ void FadeComponent::initComponent()
 	if (t != nullptr) isText = true;
 
 	fadeIn = true;
+	fadeOut = false;
 	//Creamos el tween
 	// FADE TWEEN
 	fadetween =
@@ -41,14 +42,21 @@ void FadeComponent::update()
 			t->setAlpha(fadetween.peek());
 	}
 	else {
+		//Cuando ponemos fadeIn a false se da la vuelta
 		fadetween.backward();
-		fadeIn = true;
+		fadeIn = true;	//Para que se siga reproduciendo
+		fadeOut = true;	//Para mostrar que ahora va al reves
 	}
 }
 
 void FadeComponent::setFadeInFalse()
 {
 	fadeIn = false;
+}
+
+void FadeComponent::setFadeOutTrue()
+{
+	fadeOut = true;
 }
 
 

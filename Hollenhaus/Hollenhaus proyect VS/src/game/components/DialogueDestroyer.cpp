@@ -20,15 +20,14 @@ void DialogueDestroyer::initComponent()
 
 void DialogueDestroyer::update()
 {
-	if (!object->getComponent<FadeComponent>()->getFadeIn()) {
-		//continueDestroy();
+	if (object->getComponent<FadeComponent>()->getFadeOut() 
+		&& object->getComponent<FadeComponent>()->getProgress() == 0.0) {
+		continueDestroy();
 	}
 }
 
 void DialogueDestroyer::destroyDialogue()
 {
-	TuVieja("Termina dialogo");
-	
 	if (object->getComponent<FadeComponent>() == nullptr) TuVieja("no hay fade component");
 
 	object->getComponent<FadeComponent>()->setFadeInFalse();
