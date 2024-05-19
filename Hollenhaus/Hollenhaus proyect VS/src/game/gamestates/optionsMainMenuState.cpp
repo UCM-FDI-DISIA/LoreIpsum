@@ -30,6 +30,8 @@ void OptionsMainMenuState::refresh()
 void OptionsMainMenuState::update()
 {
 	GameState::update();
+
+
 }
 
 void OptionsMainMenuState::render() const
@@ -55,7 +57,7 @@ void OptionsMainMenuState::onEnter()
 	audioText->setLayer(1);
 
 	audioText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 360));
-	audioText->addComponent<TextComponent>("PONER AQUÍ LA BARRA", Fonts::GROTESK_32, PEARL_HOLLENHAUS, 500, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	auto auto_text = audioText->addComponent<TextComponent>(std::to_string(music->getVolume()), Fonts::GROTESK_32, PEARL_HOLLENHAUS, 500, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	audioText->setLayer(1);
 
 	/*windowModeText->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
@@ -75,7 +77,8 @@ void OptionsMainMenuState::onEnter()
 	audioUP->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	audioUP->addComponent<Button>();
 	audioUP->getComponent<Button>()->connectToButton([this]() { 
-		music->addVolume(20);
+		music->addVolume(10);
+		audioText->getComponent<TextComponent>()->setTxt(std::to_string(music->getVolume()));
 		});
 	audioUP->setLayer(2);
 
@@ -88,7 +91,9 @@ void OptionsMainMenuState::onEnter()
 	audioDOWN->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	audioDOWN->addComponent<Button>();
 	audioDOWN->getComponent<Button>()->connectToButton([this]() {
-		music->addVolume(-20);
+		music->addVolume(-10);
+		audioText->getComponent<TextComponent>()->setTxt(std::to_string(music->getVolume()));
+
 		});
 	audioDOWN->setLayer(2);
 
