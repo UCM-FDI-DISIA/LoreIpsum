@@ -31,14 +31,18 @@ void FadeComponent::update()
 {
 	//Poner bool para que solo se haga al principio?
 	if (fadeIn) {
-		if (fadetween.progress() >= 1.0)
-			fadeIn = false;
+		/*if (fadetween.progress() >= 1.0)
+			fadeIn = false;*/
 
 		fadetween.step(1); // avanza
 		if (isImage)
 			f->setOpacity(fadetween.peek());
 		if (isText)
 			t->setAlpha(fadetween.peek());
+	}
+	else {
+		fadetween.backward();
+		fadeIn = true;
 	}
 }
 
