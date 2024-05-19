@@ -18,7 +18,8 @@ SoundManager::~SoundManager()
 void SoundManager::init()
 {
 	music_names.push_back("deckbuilder_theme");
-	music_names.push_back("battletheme");
+	music_names.push_back("battletheme_paul");
+	music_names.push_back("battletheme_tarot");
 	music_names.push_back("shoptheme");
 	music_names.push_back("citytheme");
 

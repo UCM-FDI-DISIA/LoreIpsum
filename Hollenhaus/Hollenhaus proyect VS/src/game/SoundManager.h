@@ -8,7 +8,8 @@
 namespace Musics {
 	enum MUSIC {
 		OFFICE_M,
-		BATTLE_M,
+		BATTLE_P_M,
+		BATTLE_T_M,
 		SHOP_M,
 		CITY_M
 	};
