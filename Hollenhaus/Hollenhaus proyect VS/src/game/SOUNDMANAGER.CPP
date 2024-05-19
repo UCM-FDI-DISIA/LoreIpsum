@@ -39,6 +39,20 @@ void SoundManager::ChannelVolume(Musics::MUSIC channel, int v)
 	sdlutils().soundEffects().at(n).setChannelVolume(v);
 }
 
+void SoundManager::startDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
+{
+	startMusic(a);
+	ChannelVolume(a, master_volume);
+	startMusic(b);
+	ChannelVolume(b, 0);
+}
+
+void SoundManager::stopDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
+{
+	stopMusic(a);
+	stopMusic(b);
+}
+
 void SoundManager::startMusic(Musics::MUSIC m)
 {
 	auto n = music_names[m];

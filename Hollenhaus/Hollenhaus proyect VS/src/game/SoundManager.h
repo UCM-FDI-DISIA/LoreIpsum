@@ -35,6 +35,9 @@ public:
 	// volumen especifico para canales
 	void ChannelVolume(Musics::MUSIC channel, int v);
 
+	void startDynamicMusic(Musics::MUSIC a, Musics::MUSIC b);
+	void stopDynamicMusic(Musics::MUSIC a, Musics::MUSIC b);
+
 	// ----------
 	void startMusic(Musics::MUSIC M);
 	void stopMusic(Musics::MUSIC m);

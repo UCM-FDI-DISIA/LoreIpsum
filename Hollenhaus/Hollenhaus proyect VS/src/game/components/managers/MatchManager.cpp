@@ -425,24 +425,24 @@ void MatchManager::changeMusicTurn(Turns::State i)
 	switch (i)
 	{
 	case Turns::J1:
-		Musics::MUSIC a = Musics::MUSIC::BATTLE_P_M;
-		Musics::MUSIC b = Musics::MUSIC::BATTLE_T_M;
+		a = Musics::MUSIC::BATTLE_P_M;
+		b = Musics::MUSIC::BATTLE_T_M;
 		break;
 	case Turns::J2:
-		Musics::MUSIC a = Musics::MUSIC::BATTLE_P_M;
-		Musics::MUSIC b = Musics::MUSIC::BATTLE_T_M;
+		a = Musics::MUSIC::BATTLE_P_M;
+		b = Musics::MUSIC::BATTLE_T_M;
 		break;
 	case Turns::Finish:
-		Musics::MUSIC a = Musics::MUSIC::BATTLE_P_M;
-		Musics::MUSIC b = Musics::MUSIC::BATTLE_T_M;
+		a = Musics::MUSIC::BATTLE_P_M;
+		b = Musics::MUSIC::BATTLE_T_M;
 		break;
 	case Turns::IA:
-		Musics::MUSIC a = Musics::MUSIC::BATTLE_T_M;
-		Musics::MUSIC b = Musics::MUSIC::BATTLE_P_M;
+		a = Musics::MUSIC::BATTLE_T_M;
+		b = Musics::MUSIC::BATTLE_P_M;
 		break;
 	case Turns::J2_MULTIPLAYER:
-		Musics::MUSIC a = Musics::MUSIC::BATTLE_T_M;
-		Musics::MUSIC b = Musics::MUSIC::BATTLE_P_M;
+		a = Musics::MUSIC::BATTLE_T_M;
+		b = Musics::MUSIC::BATTLE_P_M;
 		break;
 	default:
 		break;
