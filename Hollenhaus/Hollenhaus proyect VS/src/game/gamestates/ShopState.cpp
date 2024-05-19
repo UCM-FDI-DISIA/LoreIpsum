@@ -90,7 +90,7 @@ void ShopState::onEnter()
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("tienda");
-	fondo->getComponent<Transform>()->setGlobalScale(0.475f, 0.475f);
+	fondo->getComponent<Transform>()->setGlobalScale(0.5f, 0.5f);
 	fondo->setLayer(0);
 
 	//-----MONEDAS:
