@@ -369,6 +369,8 @@ namespace Tutorials
 		BOARD,
 		DECKBUILDER,
 		SHOP,
+		OFFICE,
+		CITY,
 		GENERAL
 	};
 
@@ -419,7 +421,8 @@ namespace Tutorials
 		CITY_NONE,
 		CITY_INIT,
 		CITY_MOVE,
-		CITY_PERSON
+		CITY_PERSON,
+		CITY_BUILDING
 	};
 
 	enum Oficina

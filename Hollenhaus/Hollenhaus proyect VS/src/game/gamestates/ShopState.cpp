@@ -156,7 +156,7 @@ void ShopState::onEnter()
 	exitButton->addComponent<Clickable>("boton_flecha", true);
 	exitButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
-	objs.push_back(exitButton);
+	//objs.push_back(exitButton);
 	objs.push_back(carta1);
 	objs.push_back(carta2);
 	objs.push_back(carta3);

@@ -50,7 +50,6 @@ void TutorialShopManager::setState()
 {
 	int t = ent_->getComponent<TutorialManager>()->getNextState();
 	ent_->getComponent<TutorialManager>()->activateColliders(objs);
-	//ent_->getComponent<TutorialManager>()->resetColliderWall(objs);
 	image->getComponent<SpriteRenderer>()->enable(false);
 
 
@@ -65,9 +64,6 @@ void TutorialShopManager::setState()
 		break;
 	case Tutorials::Tienda::SHOW_CARDS:
 		setSHOW_CARDS();
-		break;
-	case Tutorials::Tienda::PURCHASE:
-		setPURCHASE();
 		break;
 	default:
 		break;
@@ -102,6 +98,9 @@ void TutorialShopManager::setSHOW_MONEY()
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
+
+	// PONER ESTO EN EL ULTIMO ESTADO DEL TUTORIAL
+	GameStateMachine::instance()->setTUTORIAL_SHOP_COMPLETE(true);
 }
 
 void TutorialShopManager::setSHOW_CARDS()
@@ -124,5 +123,7 @@ void TutorialShopManager::setPURCHASE()
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+
 
 }
