@@ -21,7 +21,7 @@
 // El margen entre el texto y la caja de diálogo tambien es un numero mágico
 // En general hay qe refactorizar para que crear diálogos sea una tarea sencilla y parametrizable.
 
-ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int node, Vector2D pos, 
+ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
 	int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_)
 {
 	Transform* parentTr = parent->getComponent<Transform>();
@@ -36,7 +36,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	dialogue->addComponent<BoxCollider>(); //pos -> se le suma la posicion de la entidad
 	tr->addParent(parentTr);
 
-	tr->setGlobalScale(0.25f / parentTr->getGlobalScale().getX(), 0.25f / parentTr->getGlobalScale().getY()); //escala del whiteRect
+	tr->setGlobalScale((0.25f / parentTr->getGlobalScale().getX()) * size.getX(), (0.25f / parentTr->getGlobalScale().getY()) * size.getY()); //escala del whiteRect
 	tr->setGlobalPos(pos);
 	dialogue->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 
@@ -57,7 +57,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	auto diff = dialogueWidth - textWidth;
 	auto marginX =  diff / 2;
 
-	Vector2D margin = Vector2D((marginX - 20) * tr->getGlobalScale().getX(), 50 * tr->getGlobalScale().getY());
+	Vector2D margin = Vector2D(marginX * tr->getGlobalScale().getX(), 50 * tr->getGlobalScale().getY());
 	localPos = localPos + margin;
 	textTR->setGlobalPos(localPos);
 

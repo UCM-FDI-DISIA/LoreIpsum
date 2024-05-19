@@ -90,6 +90,7 @@ void NPC::talkTo()
 		//// Mirar comentario en el interior de la funcion
 		npcDialogue = factory->createDialogue(dialogue.NPCName(), convo_, node,
 								{x, y},//POS
+								{1,1}, //SIZE
 								2, //Speed
 								1, //Cooldown
 								getEntity(), //Parent 

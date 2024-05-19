@@ -125,7 +125,7 @@ public:
 	ecs::entity_t createNPC(int i, ecs::entity_t parent, int convo = 0);
 
 	// metodos para los dialogos
-	ecs::entity_t createDialogue(std::string id, int convo, int node, Vector2D pos,
+	ecs::entity_t createDialogue(std::string id, int convo, int node, Vector2D pos, Vector2D size,
 		int speed, int cooldown, ecs::entity_t parent, int layer, bool auto_, std::string fontID, SDL_Color color, Uint32 wrapLenght, Text::BoxPivotPoint boxPivotPoint,
 		Text::TextAlignment textAlignment);
 
