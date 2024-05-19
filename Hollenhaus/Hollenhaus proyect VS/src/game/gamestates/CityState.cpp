@@ -163,8 +163,9 @@ void CityState::onEnter()
 	///------NPCs:
 	//----Para entrar en la oficina.
 	//factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
+	
 	// Oficina
-	ecs::entity_t npc1 = factory->createNPC(0, fondo);
+	ecs::entity_t ofi = factory->createNPC(0, fondo);
 
 
 	if (GameStateMachine::instance()->TUTORIAL_SHOP_COMPLETE()) {
@@ -219,6 +220,7 @@ void CityState::onEnter()
 	/*objs.push_back(npc2);
 	objs.push_back(npc4);*/
 	objs.push_back(colliderSuelo);
+	objs.push_back(ofi);
 
 	setTutorial();
 

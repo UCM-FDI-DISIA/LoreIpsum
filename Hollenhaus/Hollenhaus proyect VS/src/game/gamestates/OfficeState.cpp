@@ -126,7 +126,6 @@ void OfficeState::onEnter()
 
 	objs.push_back(db);
 	objs.push_back(exit);
-	objs.push_back(telf);
 
 	setTutorial();
 
