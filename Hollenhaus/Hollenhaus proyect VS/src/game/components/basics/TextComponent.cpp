@@ -77,10 +77,9 @@ void TextComponent::SetTextAlignment(Text::TextAlignment textAlignment)
 	// No hace falta crear textura nueva
 }
 
-void TextComponent::createTexture() {
-
-	if(text_!= nullptr)
-		delete text_;
+void TextComponent::createTexture()
+{
+	delete text_;
 	
 	std::string texto = txt_;
 	if (txt_.empty())

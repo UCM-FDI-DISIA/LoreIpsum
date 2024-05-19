@@ -71,19 +71,19 @@ void MatchOverState::setWindow(int lastWinner) {
 	switch (lastWinner)
 	{
 	case 1: // Empate:
-		_background = "board6";
+		_background = "optfondo";
 		_text = "EMPATE :^O!";
 		break;
 	case 2: // Jugador1:
-		_background = "board6";
+		_background = "optfondo";
 		_text = "JUGADOR 1!";
 		break;
 	case 3: // Jugador2:
-		_background = "board6";
+		_background = "optfondo";
 		_text = "JUGADOR 2!";
 		break;
 	default:
-		_background = "board6";
+		_background = "optfondo";
 		_text = "NADIE!";
 		break;
 	}
