@@ -1,5 +1,5 @@
 #pragma once
-#include "../Fade.h"
+#include "basics/TextComponent.h"
 
 class FadeComponent : public ComponentUpdate
 {
@@ -10,16 +10,19 @@ public:
 	void initComponent() override;
 	void update() override;
 
-	void FadeIn();
+	void setFadeInFalse();
 
 	bool getFadeIn() { return fadeIn; }
 	
 
 private:
-	SpriteRenderer* f;
+	SpriteRenderer* f = nullptr;
+	TextComponent* t = nullptr;
 	tweeny::tween<int> fadetween;
 
 	bool fadeIn;
 	bool fadeOut;
 
+	bool isText = false;
+	bool isImage = false;
 };

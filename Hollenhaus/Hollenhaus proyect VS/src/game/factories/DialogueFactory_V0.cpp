@@ -56,6 +56,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	text->addComponent<TypeWriter>(speed);
 	text->addComponent<DialogueReader>(id, convo);
 	text->addComponent<NextText>();
+	text->addComponent<FadeComponent>();
 
 	text->getComponent<NextText>()->setCollider(dialogue->getComponent<BoxCollider>());
 
