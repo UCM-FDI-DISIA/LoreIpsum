@@ -65,9 +65,6 @@ void TutorialShopManager::setState()
 	case Tutorials::Tienda::SHOW_CARDS:
 		setSHOW_CARDS();
 		break;
-	case Tutorials::Tienda::PURCHASE:
-		setPURCHASE();
-		break;
 	default:
 		break;
 	}
@@ -81,20 +78,19 @@ void TutorialShopManager::setState()
 
 void TutorialShopManager::setINIT()
 {
-	auto dialogue = createPopUp(190, 30, "Tienda Tutorial", 0, base);
-	dialogue->getComponent<SpriteRenderer>()->setFlipX(true); // Para que parezca que habla la tendera.
+	createPopUp(250, 200, "Tienda Tutorial", 0, base);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
 }
 
 void TutorialShopManager::setSHOW_MONEY()
 {
-	auto dialogue = createPopUp(190, 30, "Tienda Tutorial", 1, base);
-	dialogue->getComponent<SpriteRenderer>()->setFlipX(true); // Para que parezca que habla la tendera.
+	createPopUp(250, 200, "Tienda Tutorial", 1, base);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
@@ -103,29 +99,33 @@ void TutorialShopManager::setSHOW_MONEY()
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 
-	// PONER ESTO EN EL ULTIMO ESTADO DEL TUTORIAL
-	GameStateMachine::instance()->setTUTORIAL_SHOP_COMPLETE(true);
+
 }
 
 void TutorialShopManager::setSHOW_CARDS()
 {
-	auto dialogue = createPopUp(190, 30, "Tienda Tutorial", 2, base);
-	dialogue->getComponent<SpriteRenderer>()->setFlipX(true); // Para que parezca que habla la tendera.
+	createPopUp(250, 200, "Tienda Tutorial", 2, base);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	std::vector<ecs::entity_t> v;
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
 }
 
 void TutorialShopManager::setPURCHASE()
 {
-	auto dialogue = createPopUp(190, 30, "Tienda Tutorial", 3, base);
-	dialogue->getComponent<SpriteRenderer>()->setFlipX(true); // Para que parezca que habla la tendera.
+	createPopUp(250, 200, "Tienda Tutorial", 3, base);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+	// PONER ESTO EN EL ULTIMO ESTADO DEL TUTORIAL
+	GameStateMachine::instance()->setTUTORIAL_SHOP_COMPLETE(true);
+
+
+
 }
