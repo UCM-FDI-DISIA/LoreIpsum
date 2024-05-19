@@ -169,6 +169,10 @@ void CityState::onEnter()
 	factory->createNPC(1, fondo);
 	// Tutorial
 	factory->createNPC(4, fondo);
+
+	// NPC prueba
+	factory->createNPC(9, fondo);
+
 	// Npcs de caso
 	if(caseMngr->accepted()) {
 		for(int i = 0; i < caseMngr->npc_n(); ++i)

@@ -129,7 +129,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2(std::string j2 = "6")
 	int initX = 600;
 	int initY = -12;
 
-	if (j2 == "") j2 = "6";
+	if (j2.empty()) j2 = "6";
 	
 	ecs::entity_t hand = createHandJ2();
 
