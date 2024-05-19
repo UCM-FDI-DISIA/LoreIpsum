@@ -58,6 +58,18 @@ void MatchManager::update()
 			board_->resetVisuals();
 		}
 	}
+
+	fadeTween.step(1);
+	for (int i = 3; i >= 0; i--)
+	{
+		if (fadeOutIndexes[i])
+		{
+			auto spr = actionPointsJ1[i]->getComponent<SpriteRenderer>();
+			if (spr != nullptr
+				&& spr->getOpacity() > 0)
+				spr->setOpacity(fadeTween.peek());
+		}
+	}
 }
 
 //Aquí poner las transiciones de cambio de turno y fin de la partida
@@ -163,9 +175,18 @@ void MatchManager::updateVisuals()
 			"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
 
 	/// ACTUALIZACION DE IMAGENES
-	turnPointsOff();
-	turnPointsOn();
+	lastSpentPoints = lastPointsJ1 - actualActionPointsJ1;
 
+	for (int i = lastPointsJ1; i > actualActionPointsJ1; i--)
+	{
+		fadeOutIndexes[i - 1] = true;
+		startPointsOff();
+	}
+
+	//turnPointsOff();
+	//turnPointsOn();
+
+	lastPointsJ1 = actualActionPointsJ1;
 
 	// Actualiza el indicador del propietario del turno actual
 	//Habría que Hacer uan diferenciación también cuando recién cambia de turno para la animación
@@ -337,7 +358,6 @@ void MatchManager::turnPointsOn()
 
 void MatchManager::startPointsOn()
 {
-	fadeIn = true;
 	turnPointsOff();
 	fadeTween =
 		tweeny::from(0)

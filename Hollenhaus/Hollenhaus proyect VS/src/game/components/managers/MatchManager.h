@@ -85,8 +85,8 @@ private:
     void startPointsOn();
     void startPointsOff();
     tweeny::tween<int> fadeTween;
-    bool fadeIn = true;
-    bool fadeOut = false;
+    int lastPointsJ1 = 4;
+    int lastSpentPoints = 0;
 
 
     bool isBoss;
@@ -96,8 +96,13 @@ private:
     ecs::entity_t actualTurnVisual;
 	ecs::entity_t actionPointsVisualJ1; // en texto
     ecs::entity_t actionPointsVisualJ2; //en texto
+
+
     std::array<ecs::entity_t, 4> actionPointsJ1; // en imagenes
     std::array<ecs::entity_t, 4> actionPointsJ2; // en imagenes
+    std::array<bool, 4> fadeInIndexes = { false, false, false, false };
+    std::array<bool, 4> fadeOutIndexes = { false, false, false, false };
+
 
     IA_manager* ia_manager;
 
