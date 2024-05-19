@@ -161,6 +161,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\game\main.cpp" />
+    <ClCompile Include="src\game\SoundManager.cpp" />
     <ClCompile Include="src\game\TutorialManager.cpp" />
     <ClCompile Include="src\json\JSON.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
@@ -347,6 +348,7 @@
     <ClInclude Include="src\game\Game.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
     <ClInclude Include="src\game\GenID.h" />
+    <ClInclude Include="src\game\SoundManager.h" />
     <ClInclude Include="src\game\TutorialManager.h" />
     <ClInclude Include="src\json\JSON.h" />
     <ClInclude Include="src\json\JSONValue.h" />

@@ -11,6 +11,7 @@
 #include "../components/NPC.h"
 #include "game/components/Clickable.h"
 #include "game/components/ShineComponent.h"
+#include "../SoundManager.h"
 
 
 OfficeState::OfficeState()
@@ -105,9 +106,8 @@ void OfficeState::onEnter()
 
 
 	/// MUSICA
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("deckbuilder_theme").play(-1);
-	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
+	auto music = SoundManager::instance();
+	music->startMusic(Musics::OFFICE_M);
 }
 
 void OfficeState::onExit()
