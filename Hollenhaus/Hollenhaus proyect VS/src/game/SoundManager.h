@@ -37,6 +37,7 @@ public:
 
 	// aumenta o disminuye el volumen MASTER
 	int Volume(int i);
+	void addVolume(int i);
 	int getVolume() { return master_volume; };
 
 	// volumen especifico para canales
