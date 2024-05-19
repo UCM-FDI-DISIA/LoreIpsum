@@ -960,6 +960,11 @@
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
             }
           ]

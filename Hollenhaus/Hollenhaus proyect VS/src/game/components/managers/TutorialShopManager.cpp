@@ -59,11 +59,11 @@ void TutorialShopManager::setState()
 	case Tutorials::Tienda::SHOP_INIT:
 		setINIT();
 		break;
-	case Tutorials::Tienda::SHOW_MONEY:
-		setSHOW_MONEY();
-		break;
 	case Tutorials::Tienda::SHOW_CARDS:
 		setSHOW_CARDS();
+		break;
+	case Tutorials::Tienda::SHOW_MONEY:
+		setSHOW_MONEY();
 		break;
 	case Tutorials::Tienda::PURCHASE:
 		setPURCHASE();

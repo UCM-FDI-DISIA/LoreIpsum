@@ -62,6 +62,7 @@ void MatchManager::update()
 	if (fadeTween.progress() >= 1.0) fadeIn = false;
 	for (int i = 0; i < 4; i++)
 	{
+
 		auto spr = actionPointsJ1[i]->getComponent<SpriteRenderer>();
 
 		if (fadeIn)
