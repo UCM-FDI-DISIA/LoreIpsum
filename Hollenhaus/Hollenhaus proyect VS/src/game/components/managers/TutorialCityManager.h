@@ -32,5 +32,5 @@ private:
 
     void setMOVE();
 
-
+    void setBUILDING();
 };

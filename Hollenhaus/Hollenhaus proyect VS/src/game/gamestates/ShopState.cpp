@@ -156,7 +156,7 @@ void ShopState::onEnter()
 	exitButton->addComponent<Clickable>("boton_flecha", true);
 	exitButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
-	objs.push_back(exitButton);
+	//objs.push_back(exitButton);
 	objs.push_back(carta1);
 	objs.push_back(carta2);
 	objs.push_back(carta3);
@@ -209,13 +209,13 @@ void ShopState::cardSelected(int prize)
 
 void ShopState::deSelected()
 {
-	if (mngr().getEntities(ecs::grp::COINS).capacity() == 0)
+	if (mngr().getEntities(ecs::grp::COINS).capacity() != 0)
 	{
-	for (int i = 0; i < 8; i++)
-	{
-		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda_tienda");
-	}
-	updateCoins();
+		for (int i = 0; i < mngr().getEntities(ecs::grp::COINS).size(); i++)
+		{
+			mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda_tienda");
+		}
+		updateCoins();
 	}
 }
 

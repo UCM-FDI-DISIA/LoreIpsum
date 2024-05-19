@@ -134,9 +134,9 @@ ecs::entity_t TutorialBaseManager::createPopUp(float x, float y, std::string pop
 	ecs::entity_t pop = factory->createDialogue(dialogue.NPCName(), convo, node,
 		{ x, y },//POS
 		{ 0.25, 0.25 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-		5, 10, b,
+		2, 10, b,
 		200, dialogue.Convo(convo).isAuto(),  //LAYER
-		"8bit_size_20",	//mirar el JSON para cambiar el tamanio de texto
+		"space_grotesk_bold_24",	//mirar el JSON para cambiar el tamanio de texto
 		SDL_Color({ 0, 0, 0, 255 }),
 		220, //wrap length
 		Text::BoxPivotPoint::LeftTop,

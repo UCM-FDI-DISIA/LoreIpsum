@@ -62,6 +62,8 @@ void MatchManager::update()
 	if (fadeTween.progress() >= 1.0) fadeIn = false;
 	for (int i = 0; i < 4; i++)
 	{
+		if (actionPointsJ1[i] == nullptr) continue;
+
 		auto spr = actionPointsJ1[i]->getComponent<SpriteRenderer>();
 
 		if (fadeIn)
@@ -130,10 +132,11 @@ void MatchManager::setActualState(Turns::State newState)
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
 #endif
 		setWinnerOnData();
-		if (isBoss
-			&& GameStateMachine::instance()->getCurrentState()->getData()->getWinner() == 2)
+		if (GameStateMachine::instance()->getCurrentState()->getData()->getWinner() == 2)
 		{
-			GameStateMachine::instance()->caseMngr()->resetCase();
+			dropCard();
+			if(isBoss)
+				GameStateMachine::instance()->caseMngr()->resetCase();
 		}
 		InstantiatePanelFinPartida(GameStateMachine::instance()->getCurrentState()->getData()->getWinner());
 		break;
@@ -278,6 +281,13 @@ void MatchManager::resetActualActionPoints()
 	actualActionPointsJ1 = defaultActionPointsJ1;
 	actualActionPointsJ2 = defaultActionPointsJ2;
 	updateVisuals();
+}
+
+void MatchManager::dropCard()
+{
+	const int id = sdlutils().npcs().at(j2_).cardToDrop();
+	if(id != -1)
+		GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id);
 }
 
 void MatchManager::setWinnerOnData()

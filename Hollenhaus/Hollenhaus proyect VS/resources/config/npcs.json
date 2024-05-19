@@ -14,7 +14,8 @@
             "layer": 1,
             "deck": [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-          ]
+            ],
+            "card": -1
         },
         {
             "npcID": "1",
@@ -30,7 +31,8 @@
           "layer": 1,
           "deck": [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-          ]
+          ],
+          "card": -1
         },
         {
             "npcID": "2",
@@ -46,7 +48,8 @@
             "layer": 1,
             "deck": [
               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            ]
+            ],
+            "card": -1
         },
         {
           "npcID": "3",
@@ -62,15 +65,16 @@
           "layer": 2,
           "deck": [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-          ]
+          ],
+          "card": -1
         },
       {
         "npcID": "4",
         "name": "Tutorial",
-        "sprite": "CompbateNPC",
-        "shine": "juegobrillo",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "wanda",
+        "shine": "wanda_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1200,
         "posY": 425,
         "type": 0,
@@ -78,7 +82,8 @@
         "layer": 2,
         "deck": [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-          ]
+          ],
+        "card": -1
       },
       {
         "npcID": "5",
@@ -94,7 +99,8 @@
         "layer": 1,
         "deck": [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-          ]
+          ],
+        "card": -1
       },
       {
         "npcID": "6",
@@ -109,8 +115,9 @@
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+            12, 19, 19, 25, 37, 34, 17, 31, 32, 15, 16, 24, 36
+        ],
+        "card": 17
       },
       {
         "npcID": "7",
@@ -125,8 +132,9 @@
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+            0, 39, 29, 17, 30, 11, 11, 19, 39, 19, 0, 33, 18, 0, 23, 0
+        ],
+        "card": 39
       },
       {
         "npcID": "8",
@@ -141,200 +149,230 @@
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+            28, 38, 30, 11, 29, 39, 18, 9, 8, 42, 43, 11, 19, 20, 44, 23, 15, 10, 39, 8
+        ],
+        "card": -1
       },
       {
         "npcID": "9",
         "name": "Wanda",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "wanda",
+        "shine": "wanda_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1300,
         "posY": 360,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+            12, 22, 27, 31, 32, 33, 34, 35, 36, 37
+        ],
+        "card": 12
       },
       {
         "npcID": "10",
         "name": "Norbert",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "norbert",
+        "shine": "norbert_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1600,
         "posY": 425,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+            19, 4, 5, 14, 15, 34, 33, 0, 37, 2
+          ],
+        "card": 19
       },
       {
         "npcID": "11",
         "name": "Zelig",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "zelig",
+        "shine": "zelig_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1100,
         "posY": 425,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+            23, 0, 0, 2, 3, 4, 5, 5, 7, 8
+        ],
+        "card": 23
       },
       {
         "npcID": "12",
         "name": "Gretchen",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "gretchen",
+        "shine": "gretchen_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1300,
         "posY": 425,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+            10, 14, 19, 20, 24, 27, 33, 35, 31, 4, 0, 0, 9
+        ],
+        "card": 10 
       },
       {
         "npcID": "13",
         "name": "Schmetterling",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "schmetterling",
+        "shine": "schmetterling_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1600,
         "posY": 425,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+          11, 34, 0, 24, 16, 7, 7, 24, 12, 3, 11, 16, 0
+        ],
+        "card": 11
       },
       {
         "npcID": "14",
         "name": "Frederika",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "frederika",
+        "shine": "frederika_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1300,
         "posY": 360,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+          17, 36, 38, 0, 20, 0, 15, 0, 17, 15, 9, 9, 0
+        ],
+        "card": 38
       },
       {
         "npcID": "15",
         "name": "Ritter",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "ritter",
+        "shine": "ritter_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1700,
         "posY": 360,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+          18, 0, 32, 35, 27, 0, 24, 19, 15, 16, 0, 13, 0
+        ],
+        "card": 18
       },
       {
         "npcID": "16",
         "name": "Anna",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "anna",
+        "shine": "anna_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1700,
         "posY": 360,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+          0, 19, 11, 0, 8, 30, 4, 5, 23, 25, 17, 11, 0, 29, 33, 0
+        ],
+        "card": 30
       },
       {
         "npcID": "17",
         "name": "Bertram",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "bertram",
+        "shine": "bertram_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1300,
         "posY": 360,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+          23, 38, 40, 0, 29, 39, 44, 0, 13, 0, 39, 45, 7, 9, 15, 22
+        ],
+        "card": 40
       },
       {
         "npcID": "18",
         "name": "Gorgen",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "gorgen",
+        "shine": "gorgen_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1600,
         "posY": 425,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+          0, 2, 18, 23, 2, 34, 38, 41, 0, 0, 29, 17, 39, 24, 38, 10
+        ],
+        "card": 41
       },
       {
         "npcID": "19",
         "name": "Dagna",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "dagna",
+        "shine": "dagna_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 1200,
         "posY": 425,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+          25, 3, 2, 39, 42, 10, 10, 12, 18, 0, 39, 31, 0, 26, 25, 33
+        ],
+        "card": 42
       },
       {
         "npcID": "20",
         "name": "Chloris",
-        "sprite": "npc_dibujo",
-        "shine": "npc_dibujo_brilli",
-        "scaleX": 0.25,
-        "scaleY": 0.25,
+        "sprite": "chloris",
+        "shine": "chloris_brilli",
+        "scaleX": 0.35,
+        "scaleY": 0.35,
         "posX": 2000,
         "posY": 425,
         "type": 1,
         "scene": 2,
         "layer": 1,
         "deck": [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
+          0, 10, 43, 46, 47, 35, 20, 28, 0, 44, 9, 17, 29, 1, 45, 2
+        ],
+        "card": 43
+      },
+      {
+        "npcID": "21",
+        "name": "Tutorial_Tienda",
+        "sprite": "santeria",
+        "shine": "santeria_brilli",
+        "scaleX": 1,
+        "scaleY": 1,
+        "posX": 2263,
+        "posY": 262,
+        "type": 0,
+        "scene": 26,
+        "layer": 1,
+        "deck": [
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ],
+        "card": -1
       }
     ]
 

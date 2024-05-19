@@ -9,6 +9,7 @@
 #include "../components/basics/Transform.h"
 #include "game/components/Clickable.h"
 #include "game/components/ClickableText.h"
+#include "../components/Button.h"
 
 constexpr SDL_Color PEARL_HOLLENHAUS = { 226, 223, 210, 255 };
 constexpr SDL_Color PEARL_CLICK = { 250, 248, 240, 255 };
@@ -71,7 +72,9 @@ void StoryModeState::onEnter()
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	newGameButton->addComponent<NPC>(GameStates::TUTORIAL_OFFICE, 0);
+	newGameButton->addComponent<Button>();
+	newGameButton->getComponent<Button>()->connectToButton([this] { newGameStart(); });
+	//newGameButton->addComponent<NPC>(GameStates::TUTORIAL_OFFICE, 0);
 	newGameButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
 
 	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 270));
@@ -87,4 +90,10 @@ void StoryModeState::onExit()
 {
 	GameStateMachine::instance()->getMngr()->Free();
 
+}
+
+void StoryModeState::newGameStart()
+{
+	newGameData(); // Llama al metodo que pone el txt con mazo de inicio, dinero a 0, etc.
+	GameStateMachine::instance()->setState(GameStates::TUTORIAL_OFFICE); // Cambia al estado de tutorial.
 }

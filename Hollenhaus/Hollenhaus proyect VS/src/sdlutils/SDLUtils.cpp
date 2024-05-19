@@ -554,8 +554,9 @@ void SDLUtils::loadNPCs(JSONObject rootNPCSs, std::string filenameNPCs)
 							cardIds.emplace_back(cardAccessWrapper_[std::to_string((int)c->AsNumber())]);
 						}
 					}
+					int card = npcObj["card"]->AsNumber();
 
-					JsonData::NPCData info(std::stoi(id), name, sprite, shine, sX, sY, pX, pY, type, scene, layer, cardIds);
+					JsonData::NPCData info(std::stoi(id), name, sprite, shine, sX, sY, pX, pY, type, scene, layer, cardIds, card);
 					JsonData::NPCData rinfo = static_cast<JsonData::NPCData>(info);
 
 #ifdef _DEBUG

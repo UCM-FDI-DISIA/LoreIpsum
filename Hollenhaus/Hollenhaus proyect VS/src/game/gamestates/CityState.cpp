@@ -15,6 +15,9 @@
 #include "game/components/Clickable.h"
 #include "game/components/ImageWithFrames.h"
 
+#include "../TutorialManager.h"
+#include "../components/managers/TutorialCityManager.h"
+
 
 CityState::CityState()
 {
@@ -138,7 +141,7 @@ void CityState::onEnter()
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
 	fantasmiko->setLayer(2);
-	fantasmiko->addComponent<ImageWithFrames>(fantasmiko->getComponent<SpriteRenderer>(), 1, 4);
+	fantasmiko->addComponent<ImageWithFrames>(fantasmiko->getComponent<SpriteRenderer>(), 1, 4, -1);
 
 	auto moc = fondo->getComponent<MoveOnClick>();
 	moc->registerFantasmaTrans(fantasmiko);
@@ -157,29 +160,44 @@ void CityState::onEnter()
 		.via(tweeny::easing::sinusoidalInOut);
 	///
 
-
-
-
 	///------NPCs:
 	//----Para entrar en la oficina.
 	//factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
+
 	// Oficina
-	factory->createNPC(0, fondo);
-	// Tienda
-	factory->createNPC(1, fondo);
+	ecs::entity_t ofi = factory->createNPC(0, fondo);
+
+
+	if (GameStateMachine::instance()->TUTORIAL_SHOP_COMPLETE()) {
+		ecs::entity_t npc2 = factory->createNPC(1, fondo);		// tienda
+		objs.push_back(npc2);
+	}
+	else {
+		ecs::entity_t npc2 = factory->createNPC(21, fondo);		// tienda TUTO
+		objs.push_back(npc2);
+	}
+
 	// Tutorial
-	factory->createNPC(4, fondo);
+	if (!GameStateMachine::instance()->TUTORIAL_BOARD_COMPLETE()) {
+		ecs::entity_t npc5 = factory->createNPC(4, fondo);		// tuto board
+		objs.push_back(npc5);
+	}
+	// CASOS
+	else {
+		if (caseMngr->accepted()) {
+			for (int i = 0; i < caseMngr->npc_n(); ++i)
+			{
+				auto npc = factory->createNPC(caseMngr->npcBegin() + i, fondo);
+				objs.push_back(npc);
 
-	// NPC prueba
-	factory->createNPC(9, fondo);
-
-	// Npcs de caso
-	if(caseMngr->accepted()) {
-		for(int i = 0; i < caseMngr->npc_n(); ++i)
-		{
-			factory->createNPC(caseMngr->npcBegin() + i, fondo);
+			}
 		}
 	}
+
+
+
+	// Npcs de caso
+
 
 	// --- Boton para volver al menu principal ---
 	ecs::entity_t exit = Instantiate();
@@ -192,6 +210,15 @@ void CityState::onEnter()
 	exit->addComponent<NPC>(GameStates::MAINMENU); // Lleva al menu (0).
 	exit->setLayer(2);
 	exit->addComponent<Clickable>("boton_flecha", true);
+
+
+	//objs.push_back(npc1);
+	/*objs.push_back(npc2);
+	objs.push_back(npc4);*/
+	objs.push_back(colliderSuelo);
+	objs.push_back(ofi);
+
+	setTutorial();
 
 	// SDLUTILS
 	// referencia a sdlutils
@@ -221,4 +248,48 @@ void CityState::onPause()
 {
 	SetLastState(1);
 	GameStateMachine::instance()->setState(17);
+}
+
+void CityState::setTutorial()
+{
+
+	if (isTutorial) {
+
+		// entidad tutorial para gestionar cositas
+		tutorial = Instantiate();
+
+		prepareTutorial();
+
+		tutorial->addComponent<TutorialManager>();
+		auto manager = tutorial->addComponent<TutorialCityManager>(base, tutorial);
+		GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
+
+
+		tutorial->getComponent<TutorialManager>()->startTutorial();
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::CITY);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Ciudad::CITY_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Ciudad::CITY_INIT);
+
+
+		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
+
+		tutorial->getComponent<TutorialCityManager>()->setObjs(objs);
+	}
+}
+
+void CityState::prepareTutorial()
+{
+	// base
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
+}
+
+void CityState::startTutorial(bool a)
+{
+	isTutorial = a;
 }
