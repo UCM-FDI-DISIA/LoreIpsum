@@ -6,6 +6,7 @@
 #include "GameState.h"
 #include "../../utils/tweeny-3.2.0.h"
 
+
 class Factory;
 
 class CityState : public GameState
@@ -25,6 +26,12 @@ public:
 	void onExit() override;
 
 	void onPause();
+
+
+	// ----- Tutorial ----
+	void setTutorial();
+	void prepareTutorial();
+	void startTutorial(bool a);
 
 private:
 
