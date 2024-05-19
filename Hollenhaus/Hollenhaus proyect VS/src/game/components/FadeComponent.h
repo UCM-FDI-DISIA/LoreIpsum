@@ -11,8 +11,12 @@ public:
 	void update() override;
 
 	void setFadeInFalse();
+	void setFadeOutTrue();
 
 	bool getFadeIn() { return fadeIn; }
+	bool getFadeOut() { return fadeOut; }
+
+	float getProgress() { return fadetween.progress(); }
 	
 
 private:
