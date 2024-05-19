@@ -75,13 +75,13 @@ public:
 
 private:
 
-	Transform* tr_;
+	Transform* tr_ = nullptr;
 	SDLUtils& sdl_ = *SDLUtils::instance();
 
-	Texture* text_;
+	Texture* text_ = nullptr;
 
 	std::string txt_;
-	Font* font_;
+	Font* font_ = nullptr;
 	SDL_Color color_;
 	Uint32 wrapLenght_;
 	Text::BoxPivotPoint boxPivotPoint_;

@@ -42,9 +42,9 @@ private:
 	bool dead;
 	bool hasBC;
 
-	TypeWriter* typeWriter_; //para reiniciarlo cuando se cambie de nodo
-	DialogueReader* dialogueReader_;
-	DialogueEventCollection* eventCollection_;
-	BoxCollider* boxCollider_;
+	TypeWriter* typeWriter_ = nullptr; //para reiniciarlo cuando se cambie de nodo
+	DialogueReader* dialogueReader_ = nullptr;
+	DialogueEventCollection* eventCollection_ = nullptr;
+	BoxCollider* boxCollider_ = nullptr;
 };
 
