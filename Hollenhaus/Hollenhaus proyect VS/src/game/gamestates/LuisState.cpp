@@ -133,6 +133,9 @@ void LuisState::onEnter()
 	keyTr_ = key_->getComponent<Transform>();
 
 
+
+
+
 	/// UI ///
 	factory->createVisual_BackgroundFullImage();
 	/// PUNTOS DE ACCION
@@ -158,6 +161,8 @@ void LuisState::onEnter()
 	//ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(680, 233, Colors::MORADO_BERENJENA);
 	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(680, 313, Colors::MIDNIGHT_LIGHT);
+
+
 
 
 

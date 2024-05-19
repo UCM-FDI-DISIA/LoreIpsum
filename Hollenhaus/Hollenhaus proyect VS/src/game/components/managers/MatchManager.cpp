@@ -30,10 +30,15 @@ MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2,
 	actionPointsVisualJ1(nullptr),
 	actionPointsVisualJ2(nullptr)
 {
+	for (int i = 0; i < 4; i++)
+	{
+		actionPointsJ1[i] = nullptr;
+	}
 }
 
 MatchManager::~MatchManager()
 {
+
 }
 
 void MatchManager::initComponent()
@@ -65,14 +70,17 @@ void MatchManager::update()
 	{
 		if (actionPointsJ1[i] == nullptr) continue;
 
-		auto spr = actionPointsJ1[i]->getComponent<SpriteRenderer>();
+		SpriteRenderer* spr = nullptr;
+		if (actionPointsJ1[i]->getComponent<SpriteRenderer>() != nullptr)
+			spr = actionPointsJ1[i]->getComponent<SpriteRenderer>();
+
+		if (spr == NULL || spr == nullptr) continue;
 
 		if (fadeIn)
 		{
 			if (fadeInIndexes[i])
 			{
-				if (spr != nullptr
-					&& spr->getOpacity() < 255)
+				if (spr->getOpacity() < 255)
 					spr->setOpacity(fadeTween.peek());
 			}
 			else spr->setOpacity(255);
@@ -81,8 +89,7 @@ void MatchManager::update()
 		{
 			if (fadeOutIndexes[i])
 			{
-				if (spr != nullptr
-					&& spr->getOpacity() > 0)
+				if (spr->getOpacity() > 0)
 					spr->setOpacity(fadeTween.peek());
 			}
 		}
