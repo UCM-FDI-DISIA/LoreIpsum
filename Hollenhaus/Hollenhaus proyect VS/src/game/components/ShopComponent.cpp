@@ -16,9 +16,9 @@
 #include "../factories/DecisionFactory_V0.h"
 
 constexpr int CARD_POS_Y = 120,
-			  CARD_POS_X = 490,
-			  CARD_OFFSET_Y = 110,
-			  CARD_OFFSET_X = 100;
+CARD_POS_X = 490,
+CARD_OFFSET_Y = 110,
+CARD_OFFSET_X = 100;
 
 ShopComponent::ShopComponent() : shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}),
 shopCardsPositions(
@@ -29,14 +29,14 @@ shopCardsPositions(
 		Vector2D(CARD_POS_X, CARD_POS_Y + CARD_OFFSET_Y),
 		Vector2D(CARD_POS_X + CARD_OFFSET_X, CARD_POS_Y + CARD_OFFSET_Y)
 	}),
-shopCardsPrize(
-	new int[CARDS_IN_SHOP]
-	{
-		0, 0, 0, 0
-	})
-//,money(800)
+	shopCardsPrize(
+		new int[CARDS_IN_SHOP]
+		{
+			0, 0, 0, 0
+		})
+	//,money(800)
 {
-	
+
 }
 
 ShopComponent::~ShopComponent()
@@ -221,7 +221,7 @@ void ShopComponent::confirmPurchase(int prize, int id)
 	if (shopDialogue != nullptr)
 	{
 		shopDialogue = factory->createDialogue("Tienda", 0, 0,
-			{ sdlutils().width() / 3.0f,sdlutils().height() / 2.0f }, // Posicion.
+			{ 50.0f,70.0f }, // Posicion.
 			{ 0.3,0.1 }, // Tamanyo.
 			2, // Velocidad.
 			10, // Cooldown.
@@ -323,7 +323,7 @@ void ShopComponent::setTexts()
 void ShopComponent::updateTexts()
 {
 	//----Dinero----
-	moneyText->getComponent<TextComponent>()->setTxt(std::to_string(money));
+	moneyText->getComponent<TextComponent>()->setTxt(std::to_string(money) + " DM");
 
 	//----Carta 0----
 	if (cardIsBought(shopCards[0]))
@@ -344,5 +344,5 @@ void ShopComponent::updateTexts()
 	if (cardIsBought(shopCards[3]))
 	{
 		cardPrizeText3->getComponent<TextComponent>()->setTxt(" ");
-	} 
+	}
 }
