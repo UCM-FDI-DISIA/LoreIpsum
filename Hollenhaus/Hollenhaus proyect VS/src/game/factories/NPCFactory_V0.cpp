@@ -32,7 +32,6 @@ ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t par
 	npc->addComponent<ShineComponent>();
 	npc->getComponent<ShineComponent>()->addEnt(npc->getComponent<SpriteRenderer>(), info.shine());
 
-	npc->addComponent<FadeComponent>();
 
     return npc;
 }
