@@ -301,6 +301,14 @@
       "file": "resources/images/PanelFinPartida.png"
     },
     {
+      "id": "score_bg_v0",
+      "file": "resources/images/score_bg_v0.png"
+    },
+    {
+      "id": "score_bg_v1",
+      "file": "resources/images/score_bg_v1.png"
+    },
+    {
       "id": "tienda",
       "file": "resources/images/tienda_background.png"
     },

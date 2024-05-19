@@ -134,7 +134,6 @@ void LuisState::onEnter()
 
 
 	/// UI ///
-	factory->createVisual_BackgroundFullImage();
 	/// PUNTOS DE ACCION
 	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 280);
 	//ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
@@ -154,6 +153,7 @@ void LuisState::onEnter()
 	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, Colors::MIDNIGHT_LIGHT);
 	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, Colors::MORADO_BERENJENA);
 
+	factory->createVisual_BackgroundFullImage();
 
 
 
