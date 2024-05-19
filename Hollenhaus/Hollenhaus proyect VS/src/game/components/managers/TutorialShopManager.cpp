@@ -99,8 +99,7 @@ void TutorialShopManager::setSHOW_MONEY()
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 
 
-	// PONER ESTO EN EL ULTIMO ESTADO DEL TUTORIAL
-	GameStateMachine::instance()->setTUTORIAL_SHOP_COMPLETE(true);
+
 }
 
 void TutorialShopManager::setSHOW_CARDS()
@@ -123,6 +122,9 @@ void TutorialShopManager::setPURCHASE()
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+	// PONER ESTO EN EL ULTIMO ESTADO DEL TUTORIAL
+	GameStateMachine::instance()->setTUTORIAL_SHOP_COMPLETE(true);
 
 
 
