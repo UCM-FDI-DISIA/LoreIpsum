@@ -256,7 +256,7 @@ void ShopComponent::update()
 void ShopComponent::setTexts()
 {
 	//----Dinero-----
-	moneyText = Instantiate(Vector2D(90, 530));
+	moneyText = Instantiate(Vector2D(100, 550));
 	moneyText->addComponent<TextComponent>(std::to_string(money) + " DM", Fonts::GROTESK_32, SDL_Color({ 16, 23, 32, 255 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	moneyText->setLayer(10);
 	//--------Esta muy feo ya lo siento a quien mire esto :).
