@@ -13,6 +13,12 @@ namespace Musics {
 		SHOP_M,
 		CITY_M
 	};
+
+	enum CHANNELS {
+		OFFICE_C,
+		BATTLE_P_C,
+		BATTLE_T_C
+	};
 }
 
 

@@ -72,6 +72,10 @@ void TutorialBoardState::onEnter()
 	int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
 	tutorial->getComponent<TutorialBoardManager>()->setObjs(objs);
+
+
+	auto music = SoundManager::instance();
+	music->startDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
 }
 
 void TutorialBoardState::onExit()

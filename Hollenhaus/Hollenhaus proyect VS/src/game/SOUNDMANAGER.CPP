@@ -24,7 +24,9 @@ void SoundManager::init()
 	music_names.push_back("citytheme");
 
 
-	Volume(30);
+	master_volume = 70;
+	Volume(master_volume);
+
 }
 
 int SoundManager::Volume(int i)
@@ -36,7 +38,8 @@ int SoundManager::Volume(int i)
 void SoundManager::ChannelVolume(Musics::MUSIC channel, int v)
 {
 	auto n = music_names[channel];
-	sdlutils().soundEffects().at(n).setChannelVolume(v);
+	sdlutils().soundEffects().at(n).setChannelVolume(v, channel);
+
 }
 
 void SoundManager::startDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
@@ -45,6 +48,8 @@ void SoundManager::startDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
 	ChannelVolume(a, master_volume);
 	startMusic(b);
 	ChannelVolume(b, 0);
+
+	//sdlutils().soundEffects().at(a).
 }
 
 void SoundManager::stopDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
@@ -56,13 +61,13 @@ void SoundManager::stopDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
 void SoundManager::startMusic(Musics::MUSIC m)
 {
 	auto n = music_names[m];
-	sdlutils().soundEffects().at(n).play(-1);
+	sdlutils().soundEffects().at(n).play(-1, m);
 }
 
 void SoundManager::stopMusic(Musics::MUSIC m)
 {
 	auto n = music_names[m];
-	sdlutils().soundEffects().at(n).pauseChannel();
+	sdlutils().soundEffects().at(n).pauseChannel(m);
 
 }
 
