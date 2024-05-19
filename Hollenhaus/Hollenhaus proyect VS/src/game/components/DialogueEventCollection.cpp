@@ -41,6 +41,11 @@ void DialogueEventCollection::ConfirmationPopUp(ecs::entity_t parent, int greenD
 							Text::BoxPivotPoint::LeftTop,
 							Text::TextAlignment::Center);
 
+	//auto a = parent->hasComponent<BoxCollider>();
+
+	auto coll = parent->getComponent<NextText>()->getCollider();
+	coll->setPosOffset({ 1000, 1000});
+
 	delete factory;
 	factory = nullptr;
 }
