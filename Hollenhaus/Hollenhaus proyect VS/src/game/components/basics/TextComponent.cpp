@@ -80,7 +80,8 @@ void TextComponent::SetTextAlignment(Text::TextAlignment textAlignment)
 void TextComponent::createTexture()
 {
 	delete text_;
-	
+	text_ = nullptr;
+
 	std::string texto = txt_;
 	if (txt_.empty())
 		texto = " ";
