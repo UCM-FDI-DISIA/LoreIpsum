@@ -20,7 +20,7 @@ CARD_POS_X = 490,
 CARD_OFFSET_Y = 110,
 CARD_OFFSET_X = 100;
 
-//constexpr std::vector<int> CASE_1_CARDS = {};
+//constexpr std::vector CASE_1_CARDS = {3, 4, 5};
 //constexpr std::vector<int> CASE_2_CARDS = {};
 //constexpr std::vector<int> CASE_3_CARDS = {};
 
