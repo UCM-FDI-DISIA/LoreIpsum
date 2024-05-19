@@ -63,6 +63,7 @@ void NPC::reactToClick(int scene, bool toFadeIn, bool toFadeOut) // Te lleva al 
 		if (type == BUTTON) {
 			TuVieja("Cambio de escena.");
 			GameStateMachine::instance()->setState(scene, toFadeIn, toFadeOut);
+			GameStateMachine::instance()->getCurrentState()->setJ2(std::to_string(_id));
 		}
 		else if (type == TALKING) 
 		{
