@@ -329,48 +329,96 @@
       "file": "resources/images/hollenhaus_pers/anna.png"
     },
     {
+      "id": "anna_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/anna_b.png"
+    },
+    {
       "id": "bertram",
       "file": "resources/images/hollenhaus_pers/bertram.png"
+    },
+    {
+      "id": "betram_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/bertram_b.png"
     },
     {
       "id": "chloris",
       "file": "resources/images/hollenhaus_pers/chloris.png"
     },
     {
+      "id": "chloris_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/chloris_b.png"
+    },
+    {
       "id": "dagna",
       "file": "resources/images/hollenhaus_pers/dagna.png"
+    },
+    {
+      "id": "dagna_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/dagna_b.png"
     },
     {
       "id": "frederika",
       "file": "resources/images/hollenhaus_pers/frederika.png"
     },
     {
+      "id": "frederika_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/frederika_b.png"
+    },
+    {
       "id": "gorgen",
       "file": "resources/images/hollenhaus_pers/gorgen.png"
+    },
+    {
+      "id": "gorgen_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/gorgen_b.png"
     },
     {
       "id": "gretchen",
       "file": "resources/images/hollenhaus_pers/gretchen.png"
     },
     {
+      "id": "gretchen_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/gretchen_b.png"
+    },
+    {
       "id": "norbert",
       "file": "resources/images/hollenhaus_pers/norbert.png"
+    },
+    {
+      "id": "norbert_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/norbert_b.png"
     },
     {
       "id": "ritter",
       "file": "resources/images/hollenhaus_pers/ritter.png"
     },
     {
+      "id": "ritter_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/ritter_b.png"
+    },
+    {
       "id": "schmetterling",
       "file": "resources/images/hollenhaus_pers/schmetterling.png"
+    },
+    {
+      "id": "schmetterling_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/schmetterling_b.png"
     },
     {
       "id": "wanda",
       "file": "resources/images/hollenhaus_pers/wanda.png"
     },
     {
+      "id": "wanda_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/wanda_b.png"
+    },
+    {
       "id": "zelig",
       "file": "resources/images/hollenhaus_pers/zelig.png"
+    },
+    {
+      "id": "zelig_brilli",
+      "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/zelig_b.png"
     }
   ],
     "fonts": [
