@@ -124,7 +124,7 @@ ecs::entity_t CardFactory_v1::createDeck()
 	return deck;
 }
 
-ecs::entity_t CardFactory_v1::createDeckJ2(std::string j2)
+ecs::entity_t CardFactory_v1::createDeckJ2(std::string j2 = "6")
 {
 	int initX = 600;
 	int initY = -12;
