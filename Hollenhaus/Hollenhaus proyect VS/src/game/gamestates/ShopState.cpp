@@ -13,7 +13,7 @@
 #include "../../sdlutils/RandomNumberGenerator.h"
 #include "../components/managers/TutorialShopManager.h"
 #include "../TutorialManager.h"
-
+#include "../SoundManager.h"
 
 // Factorias:
 #include "../factories/Factory.h"
@@ -164,10 +164,10 @@ void ShopState::onEnter()
 
 	setTutorial();
 
-	//------Sonido de la tienda:
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("shoptheme").play(-1);
-	sdl.soundEffects().at("shoptheme").setChannelVolume(10);
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startMusic(Musics::SHOP_M);
+
 }
 
 void ShopState::onExit()
@@ -178,8 +178,10 @@ void ShopState::onExit()
 	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPauseSH(); });
 
 	saveData();
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("shoptheme").pauseChannel();
+
+	auto music = SoundManager::instance();
+	music->stopMusic(Musics::SHOP_M);
+
 	GameStateMachine::instance()->getMngr()->Free();
 
 	delete factory;

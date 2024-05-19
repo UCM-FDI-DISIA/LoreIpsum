@@ -18,6 +18,7 @@
 #include "../components/managers/MatchManager.h"
 #include "../components/EndTurnButton.h"
 #include "../components/NPC.h"
+#include "../SoundManager.h"
 
 #include "../components/managers/IA_manager.h"
 
@@ -176,10 +177,10 @@ void LuisState::onEnter()
 	matchManagerComponent->SetHandComponent(deckPlayer1->getComponent<PlayerCardsManager>()->getHand());
 
 
-	// incicia la cancion en bucle
-	//sdl.musics().at("tryTheme").play();
-	sdlutils().soundEffects().at("battletheme").play(-1);
-	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
+
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startMusic(Musics::BATTLE_M);
 
 
 #pragma region Seccion IA
@@ -214,7 +215,8 @@ void LuisState::onExit()
 {
 	TuVieja("\nExit LuisState");
 
-	sdlutils().soundEffects().at("battletheme").pauseChannel();
+	auto music = SoundManager::instance();
+	music->stopMusic(Musics::BATTLE_M);
 
 
 	delete factory;

@@ -6,6 +6,7 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/basics/SpriteRenderer.h"
 #include "game/components/ClickableText.h"
+#include "../SoundManager.h"
 
 
 constexpr SDL_Color ROJO_HOLLENHAUS = { 148, 47, 55, 255 };
@@ -89,10 +90,9 @@ void MainMenuState::onEnter()
 	exitButton->addComponent<ClickableText>(MIDNIGHT_HOLLENHAUS, MIDNIGHT_CLICK, MIDNIGHT_HOVER);
 	ih().insertFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
 
-	// Music
-	sdlutils().soundEffects().at("menutheme").play(-1);
-	sdlutils().soundEffects().at("menutheme").setChannelVolume(10);
-
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startMusic(Musics::OFFICE_M);
 }
 
 void MainMenuState::onExit() {
@@ -102,7 +102,10 @@ void MainMenuState::onExit() {
 	setLastPaulPos(globalPos);
 
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
-	sdlutils().soundEffects().at("menutheme").pauseChannel();
+
+	auto music = SoundManager::instance();
+	music->stopMusic(Musics::OFFICE_M);
+
 	GameStateMachine::instance()->getMngr()->Free();
 }
 
