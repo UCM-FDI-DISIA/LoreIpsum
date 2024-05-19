@@ -5,6 +5,8 @@
 
 #include "GameState.h"
 
+class SoundManager;
+
 class OptionsMainMenuState : public GameState
 {
 public:
@@ -23,5 +25,8 @@ private:
     ecs::entity_t audioText;
     ecs::entity_t windowModeText;
     ecs::entity_t fullScreenText;
+
+    SoundManager* music;
+
 };
 

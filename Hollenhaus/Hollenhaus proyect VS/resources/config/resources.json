@@ -550,7 +550,7 @@
   "sounds": [
     {
       "id": "citytheme",
-      "file": "resources/sound/music/layer_cake.wav"
+      "file": "resources/sound/music/paululando.wav"
     },
     {
       "id": "battletheme_paul",
@@ -569,19 +569,12 @@
       "file": "resources/sound/music/olor_a_incienso.wav"
     },
     {
-      "id": "menutheme",
-      "file": "resources/sound/music/tarotkarten.wav"
+      "id": "mainmenutheme",
+      "file": "resources/sound/music/chill_paul.wav"
     }
   ],
     "musics": [
-      {
-        "id": "layercake",
-        "file": "resources/sound/music/layer_cake.wav"
-      },
-      {
-        "id": "tryTheme",
-        "file": "resources/sound/music/suspicious_person.wav"
-      }
+      
     ]
 }
 

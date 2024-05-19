@@ -21,7 +21,8 @@ void SoundManager::init()
 	music_names.push_back("battletheme_paul");
 	music_names.push_back("battletheme_tarot");
 	music_names.push_back("shoptheme");
-	music_names.push_back("shoptheme");
+	music_names.push_back("citytheme");
+	music_names.push_back("mainmenutheme");
 
 	// INES AQUI CAMBIAR
 
@@ -34,6 +35,19 @@ int SoundManager::Volume(int i)
 {
 	master_volume = i;
 	return Mix_MasterVolume(i);
+}
+
+void SoundManager::addVolume(int i)
+{
+	master_volume += i;
+	if (master_volume <= 0) master_volume = 0;
+	else if (master_volume >= 100) master_volume = 100;
+	Mix_MasterVolume(master_volume);
+
+#ifdef _DEBUG
+	std::cout << "volume: " << master_volume;
+#endif // DEBUG
+
 }
 
 void SoundManager::ChannelVolume(Musics::MUSIC channel, int v)

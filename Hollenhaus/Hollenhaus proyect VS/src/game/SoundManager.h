@@ -11,7 +11,8 @@ namespace Musics {
 		BATTLE_P_M,
 		BATTLE_T_M,
 		SHOP_M,
-		CITY_M
+		CITY_M,
+		MAIN_MENU_M
 	};
 
 	enum CHANNELS {
@@ -36,6 +37,7 @@ public:
 
 	// aumenta o disminuye el volumen MASTER
 	int Volume(int i);
+	void addVolume(int i);
 	int getVolume() { return master_volume; };
 
 	// volumen especifico para canales

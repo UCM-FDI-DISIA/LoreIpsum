@@ -14,6 +14,7 @@
 
 #include "../EffectCollection.h"
 #include "../gamestates/GameState.h"
+#include "game/components/Hover.h"
 #include "game/components/ShineComponent.h"
 
 
@@ -43,6 +44,8 @@ ecs::entity_t CardFactory_v1::createCard(int id, Vector2D pos, int cost, int val
 
 	if (!bocarriba)
 		addDeckImageChild(card);
+
+	card->addComponent<Hover>();
 
 	return card;
 }

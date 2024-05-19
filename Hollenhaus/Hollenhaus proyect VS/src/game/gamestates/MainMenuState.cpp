@@ -92,7 +92,7 @@ void MainMenuState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startMusic(Musics::OFFICE_M);
+	music->startMusic(Musics::MAIN_MENU_M);
 }
 
 void MainMenuState::onExit() {
@@ -104,7 +104,7 @@ void MainMenuState::onExit() {
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
 
 	auto music = SoundManager::instance();
-	music->stopMusic(Musics::OFFICE_M);
+	music->stopMusic(Musics::MAIN_MENU_M);
 
 	GameStateMachine::instance()->getMngr()->Free();
 }

@@ -96,5 +96,5 @@ bool TypeWriter::ended()
 
 void TypeWriter::setText()
 {
-	getEntity()->getComponent<TextComponent>()->setTxt(finaltext);
+	getEntity()->getComponent<TextComponent>()->setTxtDialogue(finaltext);
 }

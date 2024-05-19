@@ -42,6 +42,7 @@ class SDLUtils: public Singleton<SDLUtils> {
 	//
 	template<typename T>
 	class map_access_wrapper {
+	public:
 		sdl_resource_table<T> &map_;
 		std::string desc_;
 
@@ -288,6 +289,15 @@ private:
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer
+
+
+public:
+	struct item {
+		Texture* text_;
+		std::string t;
+	};
+
+	std::vector<item> Items;
 };
 
 // This macro defines a compact way for using the singleton SDLUtils, instead of

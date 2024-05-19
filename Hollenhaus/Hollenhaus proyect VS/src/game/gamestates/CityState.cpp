@@ -172,12 +172,12 @@ void CityState::onEnter()
 	objs.push_back(wanda);
 
 	if (GameStateMachine::instance()->TUTORIAL_SHOP_COMPLETE()) {
-		ecs::entity_t npc2 = factory->createNPC(1, fondo);		// tienda
-		objs.push_back(npc2);
+		ecs::entity_t tienda = factory->createNPC(1, fondo);		// tienda
+		objs.push_back(tienda);
 	}
 	else {
-		ecs::entity_t npc2 = factory->createNPC(21, fondo);		// tienda TUTO
-		objs.push_back(npc2);
+		ecs::entity_t tienda_tuto = factory->createNPC(21, fondo);		// tienda TUTO
+		objs.push_back(tienda_tuto);
 	}
 
 	// Tutorial
