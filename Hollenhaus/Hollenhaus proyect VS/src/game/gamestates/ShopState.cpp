@@ -101,49 +101,49 @@ void ShopState::onEnter()
 	ecs::entity_t carta1 = Instantiate();
 	carta1->addComponent<Transform>();
 	carta1->addComponent<BoxCollider>();
-	carta1->addComponent<SpriteRenderer>("card");
+	//carta1->addComponent<SpriteRenderer>("card");
 	carta1->addComponent<ShineComponent>();
 
 	Vector2D card1Pos(525, 80);
 	carta1->getComponent<Transform>()->setGlobalPos(card1Pos);
 	carta1->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
-	carta1->setLayer(2);
+	//carta1->setLayer(2);
 
 	//----Carta2:
 	ecs::entity_t carta2 = Instantiate();
 	carta2->addComponent<Transform>();
 	carta2->addComponent<BoxCollider>();
-	carta2->addComponent<SpriteRenderer>("card");
+	//carta2->addComponent<SpriteRenderer>("card");
 	carta2->addComponent<ShineComponent>();
 
 	Vector2D card2Pos(660, 80);
 	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
 	carta2->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
-	carta2->setLayer(2);
+	//carta2->setLayer(2);
 
 	//----Carta3:
 	ecs::entity_t carta3 = Instantiate();
 	carta3->addComponent<Transform>();
 	carta3->addComponent<BoxCollider>();
-	carta3->addComponent<SpriteRenderer>("card");
+	//carta3->addComponent<SpriteRenderer>("card");
 	carta3->addComponent<ShineComponent>();
 
 	Vector2D card3Pos(525, 200);
 	carta3->getComponent<Transform>()->setGlobalPos(card3Pos);
 	carta3->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
-	carta3->setLayer(2);
+	//carta3->setLayer(2);
 
 	//----Carta4:
 	ecs::entity_t carta4 = Instantiate();
 	carta4->addComponent<Transform>();
 	carta4->addComponent<BoxCollider>();
-	carta4->addComponent<SpriteRenderer>("card");
+	//carta4->addComponent<SpriteRenderer>("card");
 	carta4->addComponent<ShineComponent>();
 
 	Vector2D card4Pos(660, 200);
 	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
 	carta4->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
-	carta4->setLayer(2);
+	//carta4->setLayer(2);
 
 	//------Boton para volver:
 	ecs::entity_t exitButton = Instantiate(Vector2D(20, 20));
