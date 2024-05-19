@@ -27,18 +27,15 @@
 #include "../components/managers/PlayerCardsManager.h"
 #include "../TutorialManager.h"
 #include "../components/managers/TutorialBoardManager.h"
+#include "game/components/ImageWithFrames.h"
 
 TutorialBoardState::TutorialBoardState()
 {
 	TuVieja("Loading Tutorial Board");
-
-	
 }
 
 TutorialBoardState::~TutorialBoardState()
 {
-
-	
 }
 
 void TutorialBoardState::refresh()
@@ -58,10 +55,8 @@ void TutorialBoardState::render() const
 
 void TutorialBoardState::onEnter()
 {
-
 	TuVieja("ENTRANDO AL TUTORIAL...");
 
-	
 
 	setBaseEntity();
 	initTutorial();
@@ -76,7 +71,6 @@ void TutorialBoardState::onEnter()
 	int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
 
 	tutorial->getComponent<TutorialBoardManager>()->setObjs(objs);
-
 }
 
 void TutorialBoardState::onExit()
@@ -88,7 +82,6 @@ void TutorialBoardState::onExit()
 	delete factory;
 
 	GameStateMachine::instance()->getMngr()->Free();
-
 }
 
 void TutorialBoardState::setJ2(std::string rival)
@@ -120,7 +113,8 @@ void TutorialBoardState::setBoard()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, Turns::J1, boardManagerComponent);
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(
+		4, 4, Turns::J1, boardManagerComponent);
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
@@ -139,28 +133,41 @@ void TutorialBoardState::setBoard()
 	tutorial->getComponent<TutorialBoardManager>()->setDeck(deckPlayer1);
 
 
-	// UI 
-	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(100, 500);
-	ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
 
-	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(600, 200, 200, 180);
-	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 265);
 
+
+	/// UI ///
+	factory->createVisual_BackgroundFullImage();
+	/// PUNTOS DE ACCION
+	// deprecated:
+	// ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 280);
+	// deprecated:
+	// ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
+
+	auto j1Puntos = createPointsJ1();
+	auto j2Puntos = createPointsJ2();
+
+	/// BOTON END TURN
+	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 250);
 	objs.push_back(visual_EndTurnButton);
 	tutorial->getComponent<TutorialBoardManager>()->setNextTurn(visual_EndTurnButton);
 
-	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
+	///// LEYENDA
+	//ecs::entity_t visual_KeyButton = factory->createVisual_KeyButton(720, 400);
+	//visual_KeyButton->getComponent<Transform>()->addParent(keyTr_);
+	//keyTr_->increaseLayer(key_->getLayer());
 
-	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, { 102, 255, 255, 255 });
-	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, { 255, 102, 255, 255 });
-
-	ecs::entity_t visual_BackgroundBoard = factory->createVisual_BackgroundFullImage();
+	/// TURNO Y SCORE
+	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(560, 170, 200, 180);
+	//ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
+	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(680, 233, Colors::MORADO_BERENJENA);
+	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(680, 313, Colors::MIDNIGHT_LIGHT);
 
 
 	// Enlazado de la UI con los scripts que la controlan
-	matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
-	matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
-	matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
+	//matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
+	//matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
+	//matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
 	matchManagerComponent->updateVisuals();
 
 	boardManagerComponent->setScoreVisualJ1(visual_ScoreCounterJ1);
@@ -188,7 +195,6 @@ void TutorialBoardState::setBoard()
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
 
 
-
 	//seters de referencias de la ia
 
 	ia_managerComponent->setMatchManager(matchManagerComponent);
@@ -205,7 +211,6 @@ void TutorialBoardState::setBoard()
 
 
 #pragma endregion
-
 }
 
 void TutorialBoardState::setBaseEntity()
@@ -214,18 +219,16 @@ void TutorialBoardState::setBaseEntity()
 	base->addComponent<Transform>();
 	//base->getComponent<Transform>()->addParent(nullptr);
 	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
-	Vector2D pos{ 200, 200 };
+	Vector2D pos{200, 200};
 	base->getComponent<Transform>()->setGlobalPos(pos);
 	base->setLayer(2);
 
 	colliderWallBase = Instantiate();
 	colliderWallBase->addComponent<Transform>();
-	Vector2D pos2{ 0, 0 };
+	Vector2D pos2{0, 0};
 	colliderWallBase->getComponent<Transform>()->setGlobalPos(pos2);
 	colliderWallBase->setLayer(2);
-	
 }
-
 
 
 void TutorialBoardState::initTutorial()
@@ -236,5 +239,66 @@ void TutorialBoardState::initTutorial()
 	tutorial->addComponent<TutorialManager>();
 	auto manager = tutorial->addComponent<TutorialBoardManager>(base, tutorial);
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
+}
 
+std::array<ecs::entity_t, 4> TutorialBoardState::createPointsJ1()
+{
+	std::array<ecs::entity_t, 4> puntosJ1 =
+	{
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D())
+	};
+
+	for (auto punto : puntosJ1)
+	{
+		punto->getComponent<Transform>()->setGlobalScale(0.75f, 0.75f);
+		punto->addComponent<SpriteRenderer>("llamitas");
+		punto->addComponent<ImageWithFrames>(1, 4, 200);
+		//->setCurrentCol(sdlutils().rand().nextInt(0,4);
+	}
+
+	puntosJ1[0]->getComponent<Transform>()->setGlobalPos(-48, 388);
+	puntosJ1[1]->getComponent<Transform>()->setGlobalPos(5, 320);
+	puntosJ1[2]->getComponent<Transform>()->setGlobalPos(52, 385);
+	puntosJ1[3]->getComponent<Transform>()->setGlobalPos(13, 450);
+
+	puntosJ1[0]->getComponent<ImageWithFrames>()->setCurrentCol(0);
+	puntosJ1[1]->getComponent<ImageWithFrames>()->setCurrentCol(1);
+	puntosJ1[2]->getComponent<ImageWithFrames>()->setCurrentCol(2);
+	puntosJ1[3]->getComponent<ImageWithFrames>()->setCurrentCol(3);
+
+	return puntosJ1;
+}
+
+std::array<ecs::entity_t, 4> TutorialBoardState::createPointsJ2()
+{
+	std::array<ecs::entity_t, 4> puntosJ2 =
+	{
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D())
+	};
+
+	for (auto punto : puntosJ2)
+	{
+		punto->getComponent<Transform>()->setGlobalScale(0.75f, 0.75f);
+		punto->addComponent<SpriteRenderer>("llamitas");
+		punto->addComponent<ImageWithFrames>(1, 4, 200);
+		//->setCurrentCol(sdlutils().rand().nextInt(0,4);
+	}
+
+	puntosJ2[0]->getComponent<Transform>()->setGlobalPos(-15, -48);
+	puntosJ2[1]->getComponent<Transform>()->setGlobalPos(70, -48);
+	puntosJ2[2]->getComponent<Transform>()->setGlobalPos(-23, 25);
+	puntosJ2[3]->getComponent<Transform>()->setGlobalPos(50, 25);
+
+	puntosJ2[0]->getComponent<ImageWithFrames>()->setCurrentCol(3);
+	puntosJ2[1]->getComponent<ImageWithFrames>()->setCurrentCol(1);
+	puntosJ2[2]->getComponent<ImageWithFrames>()->setCurrentCol(0);
+	puntosJ2[3]->getComponent<ImageWithFrames>()->setCurrentCol(2);
+
+	return puntosJ2;
 }
