@@ -251,6 +251,10 @@ void Data::Write() {
 #endif
 		return;
 	}
+	else 
+	{
+		std::cout << "\nBUENOS DIAS PARTIDA GUARDADA WRITE EN SAVE.\n";
+	}
 
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
@@ -302,6 +306,10 @@ void Data::Read() {
 		TuVieja("ERROR DE ESCRITURA: No se ha podido abrir el archivo de guardado.");
 #endif
 		return;
+	}
+	else 
+	{
+		std::cout << "\nBUENOS DIAS LECTURA DEL SAVE.\n";
 	}
 
 	int number, iterations;
@@ -445,6 +453,10 @@ void Data::resetSave()
 		TuVieja("ERROR DE LECTURA: No se ha podido leer el archivo de guardado para reseteralo.");
 #endif
 		return;
+	}
+	else 
+	{
+		std::cout << "\nBUENOS DIAS NUEVA PARTIDA RESET DEL SAVE.\n";
 	}
 
 	int number, iterations;
