@@ -7,6 +7,7 @@
 // managers
 #include "../components/managers/Manager.h"
 #include "../components/DropZone.h"
+#include "../SoundManager.h"
 #include "../components/DragNoCombat.h"
 
 // factorias
@@ -261,10 +262,9 @@ void DeckBuildingState::onEnter()
 
 	setTutorial();
 
-	// ---- SONIDO ----
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("deckbuilder_theme").play(-1);
-	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startMusic(Musics::OFFICE_M);
 }
 
 // ---- EXIT ESTADO ----
@@ -273,9 +273,10 @@ void DeckBuildingState::onExit()
 	// al salir del estado guardas la info
 	saveData();
 
-	// ---- SONIDO ----
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
+
+	auto music = SoundManager::instance();
+	music->stopMusic(Musics::OFFICE_M);
+
 
 	GameStateMachine::instance()->getMngr()->Free();
 

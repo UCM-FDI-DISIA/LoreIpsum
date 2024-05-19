@@ -1718,7 +1718,31 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Wanda",
+              "text": "Encantada soy Wanda, la vecina",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "conozco a que horas peleaban, cuando se iba ella con el amante",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "incluso todas las formas en las que se disculpaban antes de volver a pelearse.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "Si quieres saber algo soy tu chica, es lo que tiene pasarse horas pegada en la mirilla",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1732,8 +1756,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 4,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1752,7 +1776,23 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Norbert",
+              "text": "Soy Norbert, el abogado (el que tengo aqui colgado)",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "y definitivamente tendria que haber estudiado otra rama de la abogacia.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "No aguanto mas este divorcio",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1766,8 +1806,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 3,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1786,7 +1826,15 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Zelig",
+              "text": "Paz y amor! Soy Zelig, el amante de ella",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "ya sabes lo que dicen, haz el amor no la guerra jejeJehghCOF COF",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1800,8 +1848,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 2,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1820,7 +1868,31 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Wanda",
+              "text": "Gretchen, la revolucionaria, para servirte a ti y a la causa del pueblo",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "soy la delegada uno de la clase",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "asi que tengo informacion personal de Egbert de mis reuniones con el",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "estoy dispuesta a intercambiar favores",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1834,8 +1906,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 4,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1854,7 +1926,15 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Wanda",
+              "text": "Saludos, soy Schmetterling, la conserje de la facultad",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "si necesitas cualquier cosa yo tengo la llave",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1868,8 +1948,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 2,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1888,7 +1968,31 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Frederika",
+              "text": "Buenas tardes, soy Frederika, la conservadora",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "no entiendo a los que quieren echar a Egbert de su merecido puesto",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "es un hombre inteligente y con una labia y saber estar envidiable",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "ya les gustaria a muchos",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1902,8 +2006,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 4,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1922,7 +2026,15 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Ritter",
+              "text": "Encantado, me llamo Ritter y soy el decano de la facultad de filosofia de la universidad nacional",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "lo siento, mi profesionalidad me impide compartir cualquier informacion personal de alguno de nuestros profesores",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1936,8 +2048,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 2,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1956,7 +2068,23 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Anna",
+              "text": "Hola, soy Anna la mayor fan de Neumann",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "presidenta del club de fans de la ciudad a mucha honra, que necesitas saber de el?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "conozco cada uno de sus pensamientos, soy una con su mente",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1970,8 +2098,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 3,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1990,7 +2118,15 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Bertram",
+              "text": "Ey, soy Bertram, el representante de Neumann",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "te doy mi numero por si quieres llegar a un acuerdo, llamame",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2004,8 +2140,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 2,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2024,7 +2160,23 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Gorgen",
+              "text": "Buenas, soy Gorgen, uno de los pocos conocedores de cine experimental de la zona",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "la critica no miente, Neumann es todo un descubrimiento y tesoro nacional",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "mi gusto exquisito no falla",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2038,8 +2190,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 3,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2058,7 +2210,15 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Dagna",
+              "text": "Ya debes de saber quien soy, Dagna, la critica de cine del periodico mas vendido",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Neumann nos paga mucho dinero y nosotros hacemos nuestro trabajo, asi es el mercado",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2072,8 +2232,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 2,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2092,7 +2252,31 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Chloris",
+              "text": "Si, hola, no tengo mucho tiempo, soy Chloris, la publicista",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 1,
+              "text": "Que como es trabajar con Neumann?",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "pues como con cualquier otro cineasta prepotente con alardes de grandeza",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 3,
+              "text": "que necesitas saber? Neumann solo habla de Neumann",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2106,8 +2290,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Combate?",
+              "nodeID": 4,
+              "text": "*Deberia investigar?*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [

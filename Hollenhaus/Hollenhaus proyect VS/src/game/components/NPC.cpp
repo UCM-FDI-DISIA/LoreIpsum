@@ -78,8 +78,8 @@ void NPC::talkTo()
 	{
 		TuVieja("Que charlatan el tio...");
 
-		float x = myTransform->getGlobalPos().getX() - 150;
-		float y = myTransform->getGlobalPos().getY() - 250;
+		float x = myTransform->getGlobalPos().getX() - 250;
+		float y = myTransform->getGlobalPos().getY() - 225;
 
 		TuVieja(std::to_string(x));
 
@@ -90,7 +90,7 @@ void NPC::talkTo()
 		//// Mirar comentario en el interior de la funcion
 		npcDialogue = factory->createDialogue(dialogue.NPCName(), convo_, node,
 								{x, y},//POS
-								{2,2}, //SIZE
+								{1,1}, //SIZE
 								2, //Speed
 								1, //Cooldown
 								getEntity(), //Parent 

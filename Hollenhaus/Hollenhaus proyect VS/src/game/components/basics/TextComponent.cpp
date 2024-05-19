@@ -12,7 +12,8 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 	wrapLenght_(wrapLenght),
 	boxPivotPoint_(boxPivotPoint),
 	textAlignment_(textAlignment),
-	txt_(txt)
+	txt_(txt),
+	onDialog(false)
 {
 
 	createTexture();
@@ -20,7 +21,9 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 
 TextComponent::~TextComponent()
 {
-	delete text_;
+	if (!onDialog)
+		delete text_;
+
 }
 
 void TextComponent::initComponent()
@@ -36,14 +39,14 @@ void TextComponent::render() const
 {
 
 	//PROVISIONAL
-	Vector2D aux  = GetRenderPosAcordingPivotPoint();
+	Vector2D aux = GetRenderPosAcordingPivotPoint();
 
 	text_->render(aux.getX() + offset.getX(), aux.getY() + offset.getY(), alpha);
 
 #ifdef _DEBUG
-	RenderDebugRect( 0, 0, 255, 255 );
+	RenderDebugRect(0, 0, 255, 255);
 #endif // DEBUG
-	
+
 }
 
 void TextComponent::setTxt(std::string txt)
@@ -77,19 +80,34 @@ void TextComponent::SetTextAlignment(Text::TextAlignment textAlignment)
 	// No hace falta crear textura nueva
 }
 
+void TextComponent::setTxtDialogue(std::string txt)
+{
+	for (auto e : sdl_.Items) {
+		if (e.t == txt) {
+			text_ = e.text_;
+			onDialog = true;
+		}
+
+	}
+
+}
 void TextComponent::createTexture() {
 
-	if(text_!= nullptr)
+	if (text_ != nullptr && !onDialog)
 		delete text_;
-	
+
+	onDialog = false;
+
+
 	std::string texto = txt_;
 	if (txt_.empty())
 		texto = " ";
 
-	// Se utiliza una nueva constructora específica para crear una textura a partir de un texto embebido en una caja
+		// Se utiliza una nueva constructora especï¿½fica para crear una textura a partir de un texto embebido en una caja
 	text_ = new Texture(sdl_.renderer(), texto, *font_, color_, wrapLenght_, textAlignment_);
 }
-
+	
+	
 Vector2D TextComponent::GetRenderPosAcordingPivotPoint() const
 {
 	float x = 0;

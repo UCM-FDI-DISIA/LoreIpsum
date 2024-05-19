@@ -37,13 +37,13 @@ public:
 private:
     void caseAccepted();
 
-    ecs::entity_t parent_;
-    NPC* myNpc_;
+    ecs::entity_t parent_ = nullptr;
+    NPC* myNpc_ = nullptr;
     int scene_;
 
     int decision_;
     bool click_;
 
-    BoxCollider* collider_;
+    BoxCollider* collider_ = nullptr;
 };
 

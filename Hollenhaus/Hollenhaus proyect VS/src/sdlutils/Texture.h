@@ -39,8 +39,10 @@ public:
 		const SDL_Color& fgColor, Uint32 wrapLenght, int align);
 
 	virtual ~Texture() {
-		if (texture_ != nullptr)
+		if (texture_ != nullptr){
 			SDL_DestroyTexture(texture_); // delete the SDL texture
+			texture_ = nullptr;
+		}
 	}
 
 	inline int width() const {
@@ -167,8 +169,8 @@ private:
 	void constructFromWrappedText(SDL_Renderer* renderer, const std::string& text,
 		const Font& font, const SDL_Color* fgColor, Uint32 wrapLenght, int align);
 
-	SDL_Texture* texture_;
-	SDL_Renderer* renderer_;
+	SDL_Texture* texture_ = nullptr;
+	SDL_Renderer* renderer_ = nullptr;
 	int width_;
 	int height_;
 };
