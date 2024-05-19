@@ -35,6 +35,8 @@ public:
 	void setCollider(BoxCollider* coll);
 	bool isDead() { return dead; }
 
+	BoxCollider* getCollider() { return boxCollider_; }
+
 private:
 	bool click;
 	bool dead;

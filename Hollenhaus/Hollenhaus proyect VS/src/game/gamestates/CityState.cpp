@@ -178,11 +178,7 @@ void CityState::onEnter()
 		objs.push_back(npc2);
 	}
 
-	// NPC prueba
-	factory->createNPC(9, fondo);
-
 	// Tutorial
-	factory->createNPC(4, fondo);
 	if (!GameStateMachine::instance()->TUTORIAL_BOARD_COMPLETE()) {
 		ecs::entity_t npc5 = factory->createNPC(4, fondo);		// tuto board
 		objs.push_back(npc5);
