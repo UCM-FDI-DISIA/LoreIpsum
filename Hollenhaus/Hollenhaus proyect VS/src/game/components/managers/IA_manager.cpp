@@ -53,7 +53,7 @@ void IA_manager::update() {
 		{
 			if (cardsToSet.size() <= 0) {
 				ColocarCarta();
-				cardsIt = cardsToSet.begin(); 
+				cardsIt = cardsToSet.begin();
 				posOnBoardIt = posOnBoard.begin();
 				posYTweenIt = tweenPosCardY.begin();
 				posXTweenIt = tweenPosCardX.begin();
@@ -62,66 +62,72 @@ void IA_manager::update() {
 #pragma region Tweens colocar cartas
 
 
-
-			Vector2D step;
-
-			// ------ TWEENS POS Y ------
-			(*posYTweenIt).step(1);
-			if ((*posYTweenIt).peek() > 0)
-				// una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+			if (cardsIt != cardsToSet.end() &&
+				posOnBoardIt != posOnBoard.end() &&
+				posYTweenIt != tweenPosCardY.end() &&
+				posXTweenIt != tweenPosCardX.end())
 			{
-				step.setY((*posYTweenIt).peek());
+
+				Vector2D step;
+
+				// ------ TWEENS POS Y ------
+				(*posYTweenIt).step(1);
+				if ((*posYTweenIt).peek() > 0)
+					// una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+				{
+					step.setY((*posYTweenIt).peek());
+				}
+
+				// ------ TWEENS POS X ------
+				(*posXTweenIt).step(1);
+				if ((*posXTweenIt).peek() > 0)
+					// una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+				{
+					step.setX((*posXTweenIt).peek());
+				}
+
+				// Si esta en posicion suma uno a cartas en posicion
+				if ((*posYTweenIt).progress() == 1.0 && (*posXTweenIt).progress() == 1.0)
+				{
+					cartasColocadas_++;
+
+					// Logica de colocar carta en el tablero
+					Vector2D pos = *posOnBoardIt;
+					const auto dropDet = boardManager->getCell(pos.getX(), pos.getY())->getEntity()->getComponent<DropDetector>();
+
+					(*cardsIt)->getEntity()->getComponent<Transform>()->setGlobalPos(dropDet->getCardPos());
+					(*cardsIt)->getEntity()->getComponent<CardStateManager>()->putOnBoard();
+
+					//comunicacion con el boardManager
+					const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
+					boardManager->setCard(pos.getX(), pos.getY(), *cardsIt, playerTurn);
+
+					// avanza iteradores
+					cardsIt++;
+					posOnBoardIt++;
+					posYTweenIt++;
+					posXTweenIt++;
+
+				}
+				else
+				{
+					// Mueve la carta
+					(*cardsIt)->getEntity()->getComponent<Transform>()->setGlobalPos(step);
+				}
+
+
+				if (cartasColocadas_ >= cardsToSet.size())
+				{
+					// ANIMACION COLOCA LA CARTA EN EL TABLERO
+					colocadas_ = true;
+					//resetea las listas
+					posOnBoard.clear();
+					tweenPosCardY.clear();
+					tweenPosCardX.clear();
+					cardsToSet.clear();
+				}
+
 			}
-
-			// ------ TWEENS POS X ------
-			(*posXTweenIt).step(1);
-			if ((*posXTweenIt).peek() > 0)
-				// una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
-			{
-				step.setX((*posXTweenIt).peek());
-			}
-
-			// Si esta en posicion suma uno a cartas en posicion
-			if ((*posYTweenIt).progress() == 1.0 && (*posXTweenIt).progress() == 1.0)
-			{
-				cartasColocadas_++;
-
-				// Logica de colocar carta en el tablero
-				Vector2D pos = *posOnBoardIt;
-				const auto dropDet = boardManager->getCell(pos.getX(), pos.getY())->getEntity()->getComponent<DropDetector>();
-
-				(*cardsIt)->getEntity()->getComponent<Transform>()->setGlobalPos(dropDet->getCardPos());
-				(*cardsIt)->getEntity()->getComponent<CardStateManager>()->putOnBoard();
-
-				//comunicacion con el boardManager
-				const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
-				boardManager->setCard(pos.getX(), pos.getY(), *cardsIt, playerTurn);
-
-				// avanza iteradores
-				cardsIt++;
-				posOnBoardIt++;
-				posYTweenIt++;
-				posXTweenIt++;
-
-			}
-			else
-			{
-				// Mueve la carta
-				(*cardsIt)->getEntity()->getComponent<Transform>()->setGlobalPos(step);
-			}
-
-
-			if (cartasColocadas_ >= cardsToSet.size())
-			{
-				// ANIMACION COLOCA LA CARTA EN EL TABLERO
-				colocadas_ = true;
-				//resetea las listas
-				posOnBoard.clear();
-				tweenPosCardY.clear();
-				tweenPosCardX.clear();
-				cardsToSet.clear();
-			}
-
 
 #pragma endregion
 
