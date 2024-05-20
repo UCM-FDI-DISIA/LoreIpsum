@@ -175,6 +175,11 @@ void GameState::SetLastState(int ls)
 	data->setLastState(ls);
 }
 
+bool GameState::GetSaveExists()
+{
+	return data->SaveExists();
+}
+
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
 	return data->GetDrawer();
@@ -243,7 +248,8 @@ void GameState::saveData()
 
 void GameState::loadData()
 {
-	data->Read();
+	if (GetSaveExists()) 
+		data->Read();
 }
 
 void GameState::newGameData()

@@ -402,10 +402,10 @@ void Data::Read() {
 
 bool Data::SaveExists()
 {
-	std::ofstream file;
-	file.open(SAVE_FILE);
+	std::fstream file;
+	file.open(SAVE_FILE, std::ios::in);
 
-	if (!file.is_open())
+	if (!file)
 		return false;
 
 	return true;
