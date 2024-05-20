@@ -188,6 +188,8 @@ public:
 	//------Lectura:
 	void Read();
 
+	bool SaveExists();
+
 	//------Vaciar:
 	//----Vaciado de todas las listas a la vez.
 	void EmptyLists();
