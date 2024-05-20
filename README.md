@@ -277,7 +277,7 @@ _Datos sobre los encuestados:_
 
 _Datos sobre el juego:_
 
-![](/docs/GA/ch6.png)
+![](/docs/QA/ch6.png)
 ![](/docs/QA/ch7.png)
 ![](/docs/QA/ch8.png)
 ![](/docs/QA/ch9.png)
