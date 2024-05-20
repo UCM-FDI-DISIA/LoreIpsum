@@ -1350,7 +1350,7 @@
             },
             {
               "nodeID": 2,
-              "text": "No quiero parecer una insensible pero no se cuanto tiempo ",
+              "text": "No quiero parecer una insensible pero no se cuanto tiempo voy a poder seguir aguantando a mi ex marido.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1358,14 +1358,6 @@
             },
             {
               "nodeID": 3,
-              "text": "voy a poder seguir aguantando a mi ex marido.",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
-              "nodeID": 4,
               "text": "Desde el divorcio no ha hecho otra cosa que perseguirme. Legalmente quiero decir.",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1373,7 +1365,7 @@
               ]
             },
             {
-              "nodeID": 5,
+              "nodeID": 4,
               "text": "Hasta que no me saque hasta el ultimo marco no va a parar y... OYE? HOLA? *sonidos de golpes*",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1386,7 +1378,7 @@
               ]
             },
             {
-              "nodeID": 6
+              "nodeID": 5,
               "text": "Supongo que es por el secretismo... Bien... Hablare mas bajito... No le deseo la muerte ni mucho menos",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1394,7 +1386,7 @@
               ]
             },
             {
-              "nodeID": 7,
+              "nodeID": 6,
               "text": "a mi ex marido digo, pero si le vendria bien un buen escarmiento, no se...",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1402,7 +1394,7 @@
               ]
             },
             {
-              "nodeID": 8,
+              "nodeID": 7,
               "text": "una brutal aparicion de su madre, un sangriento reencuentro con su pasado...",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1410,7 +1402,7 @@
               ]
             },
             {
-              "nodeID": 9,
+              "nodeID": 8,
               "text": "Ni idea, no soy creativa, solo vengativa, ya veras tu lo que haces...",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1418,7 +1410,7 @@
               ]
             },
             {
-              "nodeID": 10,
+              "nodeID": 9,
               "text": "Respecto a lo de mi alma... Haz lo que quieras",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1426,7 +1418,7 @@
               ]
             },
             {
-              "nodeID": 11,
+              "nodeID": 10,
               "text": "yo el alma y todo eso que defendia Schopenhauer ni lo entiendo ni quiero hacerlo",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1434,7 +1426,7 @@
               ]
             },
             {
-              "nodeID": 12,
+              "nodeID": 11,
               "text": "hasta aqui mi llamada supongo, espero que no me haya escuchado mi vecina. *Cuelga*",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1449,7 +1441,7 @@
               ]
             },
             {
-              "nodeID": 13,
+              "nodeID": 12,
               "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
