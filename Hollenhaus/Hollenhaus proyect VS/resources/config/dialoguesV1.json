@@ -1530,7 +1530,15 @@
             },
             {
               "nodeID": 4,
-              "text": "Hola? No te preocupes puedes hablar sin tapujos estamos entre companyeros de lucha...",
+              "text": "Hola? No te preocupes puedes hablar sin tapujos,",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
+              "text": "estamos entre amigos de lucha...",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
