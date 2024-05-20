@@ -38,6 +38,11 @@ body { display: block;}
   margin-top: 3vh;
 }
 
+foto {
+  height: auto;
+  width: auto;
+}
+
 #tablon {
   max-width: 55vw;
   max-height: 55vh;
