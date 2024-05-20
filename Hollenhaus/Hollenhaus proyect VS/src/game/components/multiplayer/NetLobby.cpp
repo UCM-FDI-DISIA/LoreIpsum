@@ -143,7 +143,7 @@ void NetLobby::connectToServer(const char* host, const int port)
 	SDLNet_TCP_AddSocket(socketSet, conn);
 
 #ifdef _DEBUG
-	scout << "I AM CLIENT!" << endl;
+	cout << "I AM CLIENT!" << endl;
 #endif
 
 }
