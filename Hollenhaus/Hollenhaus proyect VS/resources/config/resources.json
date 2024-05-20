@@ -598,6 +598,14 @@
     {
       "id": "mainmenutheme",
       "file": "resources/sound/music/chill_paul.wav"
+    },
+    {
+      "id": "door_sound_effect",
+      "file": "resources/sound/sound_effects/doorSE.wav"
+    },
+    {
+      "id": "candle_sound_effect",
+      "file": "resources/sound/sound_effects/candleSE.wav"
     }
   ],
     "musics": [

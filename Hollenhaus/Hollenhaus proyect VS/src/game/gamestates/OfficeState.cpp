@@ -138,7 +138,7 @@ void OfficeState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startMusic(Musics::OFFICE_M);
+	music->startMusic(Sounds::OFFICE_M);
 }
 
 void OfficeState::onExit()
@@ -149,7 +149,7 @@ void OfficeState::onExit()
 	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPauseOF(); });
 
 	auto music = SoundManager::instance();
-	music->stopMusic(Musics::OFFICE_M);
+	music->stopMusic(Sounds::OFFICE_M);
 
 	GameStateMachine::instance()->getMngr()->Free();
 

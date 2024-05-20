@@ -210,7 +210,8 @@ void CityState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startMusic(Musics::CITY_M);
+	music->startMusic(Sounds::MUSIC::CITY_M);
+	//music->startSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_STREET_SE, -1); // INES PLACEHOLDER
 }
 
 void CityState::onExit()
@@ -224,7 +225,7 @@ void CityState::onExit()
 	setLastPaulDir(fondo->getComponent<MoveOnClick>()->getDir());
 
 	auto music = SoundManager::instance();
-	music->stopMusic(Musics::CITY_M);
+	music->stopMusic(Sounds::CITY_M);
 
 	GameStateMachine::instance()->getMngr()->Free();
 

@@ -24,6 +24,9 @@ void SoundManager::init()
 	music_names.push_back("citytheme");
 	music_names.push_back("mainmenutheme");
 
+	sound_effect_names.push_back("door_sound_effect");
+	sound_effect_names.push_back("candle_sound_effect");
+
 	// INES AQUI CAMBIAR
 
 	master_volume = 70;
@@ -50,14 +53,14 @@ void SoundManager::addVolume(int i)
 
 }
 
-void SoundManager::ChannelVolume(Musics::MUSIC channel, int v)
+void SoundManager::ChannelVolume(Sounds::MUSIC channel, int v)
 {
 	auto n = music_names[channel];
 	sdlutils().soundEffects().at(n).setChannelVolume(v, channel);
 
 }
 
-void SoundManager::startDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
+void SoundManager::startDynamicMusic(Sounds::MUSIC a, Sounds::MUSIC b)
 {
 	startMusic(a);
 	ChannelVolume(a, master_volume);
@@ -67,13 +70,13 @@ void SoundManager::startDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
 	//sdlutils().soundEffects().at(a).
 }
 
-void SoundManager::stopDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
+void SoundManager::stopDynamicMusic(Sounds::MUSIC a, Sounds::MUSIC b)
 {
 	stopMusic(a);
 	stopMusic(b);
 }
 
-void SoundManager::changeDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
+void SoundManager::changeDynamicMusic(Sounds::MUSIC a, Sounds::MUSIC b)
 {
 	auto n = music_names[a];
 	auto m = music_names[b];
@@ -82,13 +85,20 @@ void SoundManager::changeDynamicMusic(Musics::MUSIC a, Musics::MUSIC b)
 	sdlutils().soundEffects().at(m).setChannelVolume(0, b);
 }
 
-void SoundManager::startMusic(Musics::MUSIC m)
+void SoundManager::startSoundEffect(Sounds::SOUND_EFFECTS a, int reps)
+{
+	auto n = sound_effect_names[a];
+	sdlutils().soundEffects().at(n).play(reps, 5+ a);
+
+}
+
+void SoundManager::startMusic(Sounds::MUSIC m)
 {
 	auto n = music_names[m];
 	sdlutils().soundEffects().at(n).play(-1, m);
 }
 
-void SoundManager::stopMusic(Musics::MUSIC m)
+void SoundManager::stopMusic(Sounds::MUSIC m)
 {
 	auto n = music_names[m];
 	sdlutils().soundEffects().at(n).pauseChannel(m);

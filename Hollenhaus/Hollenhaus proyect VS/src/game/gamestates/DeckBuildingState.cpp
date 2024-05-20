@@ -279,7 +279,7 @@ void DeckBuildingState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startMusic(Musics::OFFICE_M);
+	music->startMusic(Sounds::OFFICE_M);
 }
 
 // ---- EXIT ESTADO ----
@@ -290,7 +290,7 @@ void DeckBuildingState::onExit()
 
 
 	auto music = SoundManager::instance();
-	music->stopMusic(Musics::OFFICE_M);
+	music->stopMusic(Sounds::OFFICE_M);
 
 
 	GameStateMachine::instance()->getMngr()->Free();
