@@ -37,11 +37,24 @@ void TextComponent::initComponent()
 
 void TextComponent::render() const
 {
-
-	//PROVISIONAL
+	//PROVISIONAL (vengo del futuro, no te lo vas a creer...)
 	Vector2D aux = GetRenderPosAcordingPivotPoint();
 
-	text_->render(aux.getX() + offset.getX(), aux.getY() + offset.getY(), alpha);
+	int sx = scale.getX();
+	int sy = scale.getY();
+
+	if (relativeToTransform)
+	{
+		sx = tr_->getGlobalScale().getX();
+		sy = tr_->getGlobalScale().getY();
+	}
+	
+	text_->render(
+		aux.getX() + offset.getX(), 
+		aux.getY() + offset.getY(),
+		sx,
+		sy,
+		alpha);
 
 #ifdef _DEBUG
 	RenderDebugRect(0, 0, 255, 255);

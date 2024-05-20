@@ -4,14 +4,14 @@
 
 constexpr int HOVER_SPEED = 30,
               HOVER_TIMER = 500,
-              HOVER_SCALE = 2,
+              HOVER_SCALE = 1.5,
               HOVER_LAYER = 999;
-const Vector2D HOVER_OFFSET = {-20, -20};
+const Vector2D HOVER_OFFSET = {-50, -150};
 
 class Hover : public ComponentUpdate
 {
 	/// hover values
-	int hoverScale = HOVER_SCALE; // escala durante el hover
+	float hoverScale = HOVER_SCALE; // escala durante el hover
 	int hoverLayer = HOVER_LAYER;
 	Vector2D hoverOffset = HOVER_OFFSET; // distancia desde la posicion inicial al hacer hover
 

@@ -75,6 +75,9 @@ public:
 
 	void setTxtDialogue(std::string txt);
 	bool onDialog;
+	void setRelativeToTransform(bool value) { relativeToTransform = true; } // si la escala depende de la del transform del padre
+	Vector2D getScale() const { return scale;}
+	void setScale(const Vector2D& s) { scale = s; }
 
 private:
 
@@ -96,6 +99,8 @@ private:
 	Vector2D offset = { 0, 0 };
 
 	int alpha = 255;
+	bool relativeToTransform = false;
+	Vector2D scale { 1, 1 };
 
 	void createTexture();
 	void RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const;

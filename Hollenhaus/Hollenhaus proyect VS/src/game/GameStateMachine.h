@@ -164,7 +164,7 @@ public:
 	void Update();
 	void Refresh();
 
-	void setState(int state, bool fadeIn = false, bool fadeOut = false)
+	void setState(int state, bool fadeIn = true, bool fadeOut = true)
 	{
 		GameState* newState = nullptr;
 

@@ -20,13 +20,29 @@ void Hover::initComponent()
 	iniPos = tr->getGlobalPos();
 	iniLayer = getEntity()->getLayer();
 
+	for (const auto child : getEntity()->getComponent<Transform>()->getChildren())
+	{
+		// si es texto
+		const auto texto = child->getEntity()->getComponent<TextComponent>();
+		if (texto != nullptr)
+			{}
+	}
+
 	resetTweensForward();
 }
 
 void Hover::update()
 {
+	hoverTweenX.step(1);
+	hoverTweenY.step(1);
+
 	if (!isOnHand) return;
-	if (ih().keyDownEvent()) return;
+	std::cout << ih().mouseButtonEvent();
+	if (ih().isKeyDown(SDL_MOUSEBUTTONDOWN))
+	{
+		onHoverExit();
+		return;
+	}
 
 	const auto currTime = sdlutils().virtualTimer().currTime();
 	//if (bc->isCursorOver() && !intoHover)
@@ -46,12 +62,8 @@ void Hover::update()
 		if (intoHover)
 		{
 			onHoverExit();
-			resetEveryComponent();
 		}
 	}
-
-	hoverTweenX.step(1);
-	hoverTweenY.step(1);
 
 	if (intoHover)
 	{
@@ -61,8 +73,10 @@ void Hover::update()
 
 void Hover::onHoverEnter()
 {
+	iniScale = tr->getGlobalScale();
 	intoHover = true;
 	outoHover = false;
+	tr->setGlobalScale(hoverScale, hoverScale);
 	/// ...
 }
 
@@ -70,6 +84,9 @@ void Hover::onHoverExit()
 {
 	intoHover = false;
 	outoHover = true;
+	tr->setGlobalScale(iniScale);
+	resetEveryComponent();
+
 	/// ...
 }
 
@@ -81,6 +98,7 @@ void Hover::updateEveryComponent()
 		hoverTweenY.peek()
 	);
 
+	
 	//escala
 	//getEntity()->getComponent<Transform>()->setGlobalScale(hoverScale, hoverScale);
 
@@ -102,6 +120,7 @@ void Hover::updateEveryComponent()
 				y = EFFECT_OFFSET_Y;
 			}
 			texto->setOffset(hoverTweenX.peek() + x, hoverTweenY.peek() + y);
+			texto->setScale(Vector2D(hoverScale, hoverScale));
 		}
 
 		// si es imagen, puede tener texto
@@ -139,6 +158,7 @@ void Hover::resetEveryComponent()
 				y = EFFECT_OFFSET_Y;
 			}
 			texto->setOffset(x, y);
+			texto->setScale(Vector2D(1, 1));
 		}
 
 		// si es imagen, puede tener texto
