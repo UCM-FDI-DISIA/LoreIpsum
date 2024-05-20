@@ -29,8 +29,8 @@ void CinematicIntroState::render() const
 
 void CinematicIntroState::onEnter()
 {
-	/*TuVieja("\nEnter CinematicIntroState");
-	auto eCin = Instantiate(Vector2D());
+	TuVieja("\nEnter CinematicIntroState");
+	/*auto eCin = Instantiate(Vector2D());
 
 	auto eCinTr = eCin->addComponent<Transform>();
 	eCinTr->setGlobalPos(0, 0);
