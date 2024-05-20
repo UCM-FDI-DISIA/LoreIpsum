@@ -251,9 +251,55 @@ Estética referenciada en los primeros juegos en 3D, con gráficos pre-renderiza
 - [Lost in Vivo](https://store.steampowered.com/app/963710/Lost_in_Vivo/) - KIRA (2018)
 
 ## QA
-- [Cuaderno de bitácora](https://docs.google.com/document/d/1chs1zlM2r6k1SiD8YCIOIoj-Sr1R3oOvAWJ_08ELEhQ/edit?usp=sharing)
-### Proceso
-...
+1. ### Introducción <a name="id1"></a>
+El día 23 de abril de 2024, realizamos un sesión de play testing, en un instituto de tres cantos IES Pintor Antonio Lopez, con el objetivo de recoger datos sobre cómo interactúan los jugadores con nuestro juego, la curva de aprendizaje, las dificultades y las reacciones a los diferentes eventos, y con ello realizar los cambios necesarios para mejorar la experiencia de juego.
+
+2. ### Detalles del estudio <a name="id1"></a>
+Dispusimos de 2 grupos de alumnos de 20-25 personas cada uno, con la duración del testeo siendo 50 minutos, edades entre los 15-18 años, que eran nuestro público objetivo. 
+Para observar a los jugadores y atender sus dudas estábamos allí 9 miembros del equipo, así que pudo tener un buen seguimiento de la progresión  de los jugadores en su interacción con el juego.
+
+En la primera sesión, les dimos a jugar el juego, tras habérselo explicado unos minutos antes en la clase ya que por un fallo de última hora, el tutorial que teníamos preparado nos falló.
+
+En la segunda sesión, tuvimos que realizar otra vez una explicación previa tanto del lore como del gameplay del juego, y después les dimos acceso al juego. En esta sesión a diferencia de la primera, los jugadores pudieron probar también el multijugador local del juego y jugar unos contra otros.
+
+Nuestra observación se centró principalmente en la curva de aprendizaje del juego, ver cuán sencillas o complejas eran las reglas, y que tán complicado les resultaba aprender las reglas y  ganar a la IA, así como observar si los jugadores investigaban  más por la ciudad y utilizaban la tienda y la oficina para comprar cartas y organizar su mazo respectivamente.
+
+La IA a la que se enfrentaban los jugadores tenía siempre las mismas cartas, y el jugador era siempre el que iniciaba la partida. El jugador tenía la posibilidad de añadir y quitar cartas de su mazo en la oficina, pero no estaba disponible la opción de comprar cartas.
+
+3. ### Resultados de la encuesta <a name="id1"></a>
+_Datos sobre los encuestados:_
+
+_Datos sobre el juego:_
+
+4. ### Resultados observados por el equipo <a name="id1"></a>
+De los datos obtenidos de los gráficos, comentarios y respuestas libres de las encuestas y nuestra propia observación durante la misma podemos concluir diferentes cosas:
+- Los jugadores solían necesitar varias partidas para entender las reglas.
+- La curva de aprendizaje era muy buena, en tan solo unos 10 -15 minutos la mayoría de jugadores entendían bien el juego.
+- Una vez los jugadores ganaban su primera partida, seguían ganando las siguientes.
+- Casi ningún jugador editó su mazo ni visitó la tienda, sin embargo aquellos que entendieron el juego con mayor rapidez sí que lo hicieron.
+- De los pocos jugadores que editaron su mazo, veían muy confuso el menú de la oficina.
+- Los símbolos de los efectos de las cartas eran un poco confusos al principio y los jugadores necesitaban preguntar bastante sobre su funcionamiento.
+- Detección de bugs no antes vistos por nosotros.
+
+5. ### Cambios realizados <a name="id1"></a>
+Para solucionar todas estas cosas hicimos bastantes implementaciones, algunas pensadas antes del QA y otras nuevas:
+- Dificultad con las reglas:
+  - Implementación de un tutorial obligatorio cuando empiezas una nueva partida, el tutorial incluye:
+    - Cómo funcionan los casos.
+    - Cómo funciona el deckBuilding
+    - Cómo funciona la partida de cartas
+    - Cómo funciona la tienda
+  - Esto también ayudará a que los jugadores sepan que estas funcionalidades existen.
+- Para que no ganasen siempre y se pierda dificultad se ha añadido la progresión de dificultad con los casos.
+- Añadimos feedback al deckBuilding y el tutorial para evitar la confusión de la oficina.
+- Añadimos una leyenda que explique la funcionalidad de cada símbolo conocido de las cartas.
+- Tratamos de solucionar todos los bugs encontrados.
+- Añadimos más feedback a la partida de cartas para facilitar su comprensión.
+
+6. ### Conclusiones <a name="id1"></a>
+Como conclusión podemos decir que el juego estaba funcionando como queríamos, obteniendo un feedback de parte del alumnado bastante positivo. Los alumnos se divirtieron bastante, se “picaron” con la IA y también jugando entre ellos, alguno incluso nos preguntó cómo podrían descargarlo para jugarlo cuando estuviese completo. Sin embargo le faltaba, en ese momento, trabajo de pulido para que se entendiese y contenido para que cada vez que juegues fuese diferente.
+
+-----------
 <!--
 ### Gráficos
 ...

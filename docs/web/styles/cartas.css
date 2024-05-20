@@ -67,7 +67,15 @@ body {
   height: calc(1.6vw + 100px);
 }
 
+.card #foto {
+  height: 100%;
+  width: 100%;
+}
 
+.parent.box.foto {
+  height: 0.1%;
+  width: 0.1%;
+}
 
 .parent .box.media {
   top: 12%;
