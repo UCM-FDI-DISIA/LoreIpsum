@@ -1559,7 +1559,7 @@
             },
             {
               "nodeID": 7,
-              "text": "Sin rodeos, eh? Egbert Schwarz, profesor de filosofia de segundo, muy fanatico del trabajo de Heidegger, ya me entiendes",
+              "text": "Sin rodeos, eh? Egbert Schwarz, profesor de filosofia de segundo,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1567,7 +1567,7 @@
             },
             {
               "nodeID": 8,
-              "text": "Le puedes asustar con la promesa de una nacion libre y socialista, con la liberacion del pueblo obrero",
+              "text": "muy fanatico del trabajo de Heidegger, ya me entiendes",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1575,7 +1575,7 @@
             },
             {
               "nodeID": 9,
-              "text": "o con el gluten, es celiaco.",
+              "text": "Le puedes asustar con la promesa de una nacion libre y socialista, con la liberacion del pueblo obrero",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1583,7 +1583,7 @@
             },
             {
               "nodeID": 10,
-              "text": "Si es verdad eso que dicen de que hay que pagar la contratacion en alma",
+              "text": "o con el gluten, es celiaco.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1591,6 +1591,14 @@
             },
             {
               "nodeID": 11,
+              "text": "Si es verdad eso que dicen de que hay que pagar la contratacion en alma",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 12,
               "text": "estoy deseando que la liberes de la subyugacion de mi cuerpo, a no ser que sea metaforico",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1599,7 +1607,7 @@
               ]
             },
             {
-              "nodeID": 12,
+              "nodeID": 13,
               "text": "que entonces no la liberes de nada. Larga vida al pueblo. *Cuelga*",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1614,7 +1622,7 @@
               ]
             },
             {
-              "nodeID": 13,
+              "nodeID": 14,
               "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
@@ -2119,7 +2127,15 @@
             },
             {
               "nodeID": 1,
-              "text": "lo siento, mi profesionalidad me impide compartir cualquier informacion personal de alguno de nuestros profesores",
+              "text": "lo siento, pero debido a mi profesionalidad, pero estoy impedido de compartir",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 2,
+              "text": "cualquier informacion personal de alguno de nuestros profesores.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2133,7 +2149,7 @@
               ]
             },
             {
-              "nodeID": 2,
+              "nodeID": 3,
               "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
