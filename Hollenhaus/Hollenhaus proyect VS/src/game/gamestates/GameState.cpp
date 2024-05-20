@@ -248,6 +248,11 @@ void GameState::saveData()
 
 void GameState::loadData()
 {
+	data->Read();
+}
+
+void GameState::loadDataIfExists()
+{
 	if (GetSaveExists()) 
 		data->Read();
 }

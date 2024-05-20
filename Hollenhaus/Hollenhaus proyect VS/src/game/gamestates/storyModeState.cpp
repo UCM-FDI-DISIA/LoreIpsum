@@ -74,7 +74,7 @@ void StoryModeState::onEnter()
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	newGameButton->addComponent<Button>();
-	newGameButton->getComponent<Button>()->connectToButton([this] { newGameStart(); });
+	newGameButton->getComponent<Button>()->connectToButton([this] { newGameStart();  });
 	//newGameButton->addComponent<NPC>(GameStates::TUTORIAL_OFFICE, 0);
 	newGameButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
 
@@ -107,5 +107,6 @@ void StoryModeState::onExit()
 void StoryModeState::newGameStart()
 {
 	newGameData(); // Llama al metodo que pone el txt con mazo de inicio, dinero a 0, etc.
+	loadData();
 	GameStateMachine::instance()->setState(GameStates::CINEMATICINTRO); // Cambia al estado de tutorial.
 }

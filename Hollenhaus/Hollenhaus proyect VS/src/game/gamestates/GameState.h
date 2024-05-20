@@ -78,6 +78,7 @@ public:
 
 	virtual void saveData();
 	virtual void loadData();
+	virtual void loadDataIfExists();
 	virtual void newGameData();
 
 	// ---- crea carta ----
