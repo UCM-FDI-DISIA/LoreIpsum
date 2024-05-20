@@ -229,8 +229,8 @@ void ShopComponent::confirmPurchase(int prize, int id)
 	GameStateMachine::instance()->getCurrentState()->cardSelected(prize);
 
 	handler->getComponent<DecisionComponent>()->setCardToPurchase(id);
-	if (shopDialogue != nullptr)
-	{
+	//if (shopDialogue != nullptr)
+	//{
 		shopDialogue = factory->createDialogue("Tienda", 0, 0,
 			{ 190.0f,30.0f }, // Posicion.
 			{ 1, 1}, // Tamanyo.
@@ -245,7 +245,9 @@ void ShopComponent::confirmPurchase(int prize, int id)
 			Text::BoxPivotPoint::LeftTop,
 			Text::TextAlignment::Center);
 		shopDialogue->getComponent<SpriteRenderer>()->setFlipX(true); // Flipea el sprite para que parezca que hable la tendera.
-	}
+		//shopDialogue->setLayer(10);
+		//shopDialogue->setEveryLayer(10);
+	//}
 }
 
 int ShopComponent::getPlayerMoney()

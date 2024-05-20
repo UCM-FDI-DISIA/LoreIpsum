@@ -41,9 +41,6 @@ void MainMenuState::onEnter()
 {
 	_Tu_Vieja("\nENTER MENU.\n");
 
-	// Carga la data
-	loadData();
-
 	_Tu_Vieja("DINERO: " << getMoney());
 
 	SetLastState(GameStates::MAINMENU);

@@ -37,6 +37,8 @@ public:
 
 private:
 	ecs::entity_t rice;
+	ecs::entity_t botPatras;
+	ecs::entity_t botPalante;
 	PizarraManager* pizarra_;
 	DrawerManager* drawer_;
 	TextComponent* cantCards_;
