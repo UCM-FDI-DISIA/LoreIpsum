@@ -51,9 +51,80 @@ void IA_manager::update() {
 		// Espera a que haya robado las cartas y se hayan puesto en la mano para colocarlas
 		if (enemyHandCmp->doneDrawAnimations() && !colocadas_)
 		{
-			ColocarCarta();
-			colocadas_ = true;
-			// Tweens colocar cartas
+			if (cardsToSet.size() <= 0) {
+				ColocarCarta();
+				cardsIt = cardsToSet.begin(); 
+				posOnBoardIt = posOnBoard.begin();
+				posYTweenIt = tweenPosCardY.begin();
+				posXTweenIt = tweenPosCardX.begin();
+			}
+
+#pragma region Tweens colocar cartas
+
+
+
+			Vector2D step;
+
+			// ------ TWEENS POS Y ------
+			(*posYTweenIt).step(1);
+			if ((*posYTweenIt).peek() > 0)
+				// una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+			{
+				step.setY((*posYTweenIt).peek());
+			}
+
+			// ------ TWEENS POS X ------
+			(*posXTweenIt).step(1);
+			if ((*posXTweenIt).peek() > 0)
+				// una mierda de manera de 1. saber que devuelve un int valido 2. que no se salga
+			{
+				step.setX((*posXTweenIt).peek());
+			}
+
+			// Si esta en posicion suma uno a cartas en posicion
+			if ((*posYTweenIt).progress() == 1.0 && (*posXTweenIt).progress() == 1.0)
+			{
+				cartasColocadas_++;
+
+				// Logica de colocar carta en el tablero
+				Vector2D pos = *posOnBoardIt;
+				const auto dropDet = boardManager->getCell(pos.getX(), pos.getY())->getEntity()->getComponent<DropDetector>();
+
+				(*cardsIt)->getEntity()->getComponent<Transform>()->setGlobalPos(dropDet->getCardPos());
+				(*cardsIt)->getEntity()->getComponent<CardStateManager>()->putOnBoard();
+
+				//comunicacion con el boardManager
+				const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
+				boardManager->setCard(pos.getX(), pos.getY(), *cardsIt, playerTurn);
+
+				// avanza iteradores
+				cardsIt++;
+				posOnBoardIt++;
+				posYTweenIt++;
+				posXTweenIt++;
+
+			}
+			else
+			{
+				// Mueve la carta
+				(*cardsIt)->getEntity()->getComponent<Transform>()->setGlobalPos(step);
+			}
+
+
+			if (cartasColocadas_ >= cardsToSet.size())
+			{
+				// ANIMACION COLOCA LA CARTA EN EL TABLERO
+				colocadas_ = true;
+				//resetea las listas
+				posOnBoard.clear();
+				tweenPosCardY.clear();
+				tweenPosCardX.clear();
+				cardsToSet.clear();
+			}
+
+
+#pragma endregion
+
 		}
 
 		// Cuando las cartas son colocadas se pasa de turno
@@ -205,7 +276,7 @@ void IA_manager::StartTurn()
 			delete i;
 			i = nullptr;
 		}
-	
+
 	}
 
 	delete best;
@@ -300,7 +371,7 @@ std::vector<IA_manager::InfoJugada> IA_manager::calcularTurno(State s, bool isPl
 	int nRobosPosibles = fmin(s.actionPoints,
 		isPlayer ? s.playerDeck.size() : s.enemyDeck.size());
 
-	nRobosPosibles = fmin(nRobosPosibles , (maxCardInHand - (isPlayer ? s.playerHand.size() : s.enemyHand.size())));
+	nRobosPosibles = fmin(nRobosPosibles, (maxCardInHand - (isPlayer ? s.playerHand.size() : s.enemyHand.size())));
 
 	auto& currentDeck = isPlayer ? s.playerDeck : s.enemyDeck;
 	auto& currentHand = isPlayer ? s.playerHand : s.enemyHand;
@@ -384,12 +455,12 @@ int IA_manager::minimax(int depth, int h, bool isPlayer, State& current_state, S
 	for (State& s : all_posible_next_states(current_state, isPlayer)) {
 
 		State* aux = new State(*best);
-		
+
 		int current = minimax(depth + 1, h, !isPlayer, s, aux);
 
 		if (isPlayer && current >= bestValue) { //si es jugador, maximiza el valor			
 			bestValue = current;
-			
+
 			delete best;
 			best = new State(s);
 		}
@@ -451,19 +522,27 @@ void IA_manager::ColocarCarta()
 			// Animacion colocar carta
 			if (card != nullptr)
 			{
-				card->getEntity()->getComponent<Transform>()->setGlobalPos(dropDet->getCardPos());
-				card->getEntity()->getComponent<CardStateManager>()->putOnBoard();
+				// Aniade carta a posicionar
+				cardsToSet.push_back(card);
 
-				//comunicacion con el boardManager
-				const Players::Owner playerTurn = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>()->getPlayerTurn();
-				boardManager->setCard(pos.getX(), pos.getY(), card, playerTurn);
+				// Aniade tweens para posicionar
+				tweenPosCardX.push_back(
+					tweeny::from(card->getEntity()->getComponent<Transform>()->getGlobalPos().getX())
+					.to(dropDet->getCardPos().getX())
+					.during(60)
+					.via(tweeny::easing::sinusoidalInOut));
+				tweenPosCardY.push_back(
+					tweeny::from(card->getEntity()->getComponent<Transform>()->getGlobalPos().getY())
+					.to(dropDet->getCardPos().getY())
+					.during(60)
+					.via(tweeny::easing::sinusoidalInOut));
 
-				cartasColocadas_++;
+				posOnBoard.push_back(pos);
 			}
 
-		
+
 			//borrado de todas las cartas menos la que usamos
-			for (auto& e :hand) {
+			for (auto& e : hand) {
 				if (e == card) continue;
 				delete e;
 				e = nullptr;
