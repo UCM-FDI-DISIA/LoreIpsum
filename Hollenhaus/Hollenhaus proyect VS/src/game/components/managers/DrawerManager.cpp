@@ -65,6 +65,10 @@ void DrawerManager::update() {}
 
 void DrawerManager::initComponent()
 {
+	//Inicialización de los booleanos
+	limitDelante = false;
+	limitDelante = false;
+
 	// recorre todas las cartas de un cajon
 	for (int i = 0; i < CANT_CARTAS_MOSTRADAS_CAJON; i++)
 	{
@@ -144,11 +148,14 @@ void DrawerManager::drawerPalante()
 	{
 		// se actualizan las cartas mostradas
 		refreshExistencia();
+		
+		limitAtras = false;
 	}
 	else
 	{
 		// DEBUG
 		TuVieja("final de la linea");
+		limitDelante = true;
 
 		// lo disminuyes en caso de que no pudieses abrir cajon
 		cajonesAbiertos--;
@@ -165,6 +172,13 @@ void DrawerManager::drawerPatras()
 	{
 		// disminuyes el indice de cajones abiertos
 		cajonesAbiertos--;
+		limitDelante = false;
+		
+		//TuVieja("false");
+	}
+	else {
+		TuVieja("Fin de linea?");
+		limitAtras = true;
 	}
 
 	// se actualizan las cartas mostradas

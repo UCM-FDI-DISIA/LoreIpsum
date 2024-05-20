@@ -125,4 +125,12 @@ void TutorialCityManager::setSHOPPING()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+	GameStateMachine::instance()->setTUTORIAL_CITY_COMPLETE(true);
+
+
+
 }
+
+
+
