@@ -42,9 +42,9 @@ void HandComponent::addCard(ecs::entity_t card)
 	/// GESTION DEL HOVER
 	if (auto* hover = card->getComponent<Hover>())
 	{
-		hover->setOnHand(true);
-		hover->setIniScale(Vector2D(cardScale_,cardScale_));
-		hover->setOnHand(this);
+		hover->setOnHand(false);
+		hover->setIniScale(Vector2D(cardScale_, cardScale_));
+		hover->setHandComponent(this);
 	}
 
 	/// GESTIÓN DE LAYERS
@@ -123,8 +123,11 @@ void HandComponent::update()
 				/// Gestion del hover
 				if (auto* hover = cardsInHand_[i]->getComponent<Hover>())
 				{
-					hover->setOnHand(true);
-					hover->setIniPos(cardsInHand_[i]->getComponent<Transform>()->getGlobalPos());
+					if (owner_ == Players::PLAYER1)
+					{
+						hover->setOnHand(true);
+						hover->setIniPos(cardsInHand_[i]->getComponent<Transform>()->getGlobalPos());
+					}
 				}
 				cardsInPos++;
 			}
@@ -181,9 +184,12 @@ void HandComponent::update()
 				/// Gestion del hover
 				if (auto* hover = cardsInHand_[i]->getComponent<Hover>())
 				{
-					hover->setOnHand(true);
-					hover->setIniScale(Vector2D(cardScale_,cardScale_));
-					hover->setIniPos(cardsInHand_[i]->getComponent<Transform>()->getGlobalPos());
+					if (owner_ == Players::PLAYER1)
+					{
+						hover->setOnHand(true);
+						hover->setIniScale(Vector2D(cardScale_, cardScale_));
+						hover->setIniPos(cardsInHand_[i]->getComponent<Transform>()->getGlobalPos());
+					}
 				}
 				cardsInPos++;
 			}
