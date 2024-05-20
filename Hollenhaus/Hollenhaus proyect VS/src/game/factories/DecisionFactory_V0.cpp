@@ -55,9 +55,9 @@ void DecisionFactory_V0::createPopUp(Vector2D pos, Vector2D size, ecs::entity_t 
 	{
 		parent->removeComponent<BoxCollider>();
 	}
-	const auto fondo = parent->getComponent<Transform>()->getParent()->getParent()->getParent()->getEntity();
-	if(fondo->hasComponent<MoveOnClick>())
-		fondo->getComponent<MoveOnClick>()->getCollider()->setPosOffset(Vector2D(10000, 10000));
+	/*const auto fondo = parent->getComponent<Transform>()->getParent()->getParent()->getParent()->getEntity();
+	if(fondo->hasComponent<MoveOnClick>()) // PAIGRO AQUI
+		fondo->getComponent<MoveOnClick>()->getCollider()->setPosOffset(Vector2D(10000, 10000));*/
 }
 
 void DecisionFactory_V0::setTextValues(std::string fid, SDL_Color c, Uint32 wl, Text::BoxPivotPoint bpp, Text::TextAlignment ta)
