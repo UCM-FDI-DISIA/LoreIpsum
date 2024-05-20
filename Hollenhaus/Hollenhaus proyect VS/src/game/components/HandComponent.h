@@ -83,8 +83,8 @@ private:
 	std::array<tweeny::tween<float>,7 >tweenDrawCardX;
 	std::array<tweeny::tween<float>,7 >tweenDrawCardY;
 	// Tweens colocar en el tablero
-	std::array<tweeny::tween<float>,7 >tweenPosCardX;
-	std::array<tweeny::tween<float>,7 >tweenPosCardY;
+	//std::array<tweeny::tween<float>,7 >tweenPosCardX;
+	//std::array<tweeny::tween<float>,7 >tweenPosCardY;
 
 	ecs::entity_t carta;
 	bool tweenCardRob = false;
