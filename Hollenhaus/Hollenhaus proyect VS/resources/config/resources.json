@@ -449,143 +449,143 @@
       "file": "resources/images/credits_cinem.png"
     }
   ],
-    "fonts": [
-      {
-        "id": "8bit_size_8",
-        "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 8
-      },
-      {
-        "id": "8bit_size_12",
-        "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 12
-      },
-      {
-        "id": "8bit_size_16",
-        "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 16
-      },
-      {
-        "id": "8bit_size_20",
-        "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 20
-      },
-      {
-        "id": "8bit_size_24",
-        "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 24
-      },
-      {
-        "id": "8bit_size_32",
-        "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 32
-      },
-      {
-        "id": "8bit_size_40",
-        "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 40
-      },
-      {
-        "id": "8bit_size_48",
-        "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 48
-      },
-      {
-        "id": "8bit_size_64",
-        "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 64
-      },
-      {
-        "id": "8bit_size_72",
-        "file": "resources/fonts/NotJamOldStyle14.ttf",
-        "size": 72
-      },
-      {
-        "id": "space_grotesk_regular_16",
-        "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
-        "size": 16
-      },
-      {
-        "id": "space_grotesk_regular_32",
-        "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
-        "size": 32
-      },
-      {
-        "id": "space_grotesk_regular_8",
-        "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
-        "size": 8
-      },
-      {
-        "id": "space_grotesk_semibold_16",
-        "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
-        "size": 16
-      },
-      {
-        "id": "space_grotesk_semibold_32",
-        "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
-        "size": 32
-      },
-      {
-        "id": "space_grotesk_semibold_8",
-        "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
-        "size": 8
-      },
-      {
-        "id": "space_grotesk_bold_16",
-        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
-        "size": 16
-      },
-      {
-        "id": "space_grotesk_bold_20",
-        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
-        "size": 20
-      },
-      {
-        "id": "space_grotesk_bold_18",
-        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
-        "size": 18
-      },
-      {
-        "id": "space_grotesk_bold_32",
-        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
-        "size": 32
-      },
-      {
-        "id": "space_grotesk_bold_40",
-        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
-        "size": 40  
-      },
-      {
-        "id": "space_grotesk_bold_48",
-        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
-        "size": 48
-      },
-      {
-        "id": "space_grotesk_bold_26",
-        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
-        "size": 26
-      },
-      {
-        "id": "space_grotesk_bold_28",
-        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
-        "size": 28
-      },
-      {
-        "id": "space_grotesk_bold_30",
-        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
-        "size": 30
-      },
-      {
-        "id": "space_grotesk_bold_8",
-        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
-        "size": 8
-      },
-      {
-        "id": "space_grotesk_bold_24",
-        "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
-        "size": 24
-      }
-    ],
+  "fonts": [
+    {
+      "id": "8bit_size_8",
+      "file": "resources/fonts/NotJamOldStyle14.ttf",
+      "size": 8
+    },
+    {
+      "id": "8bit_size_12",
+      "file": "resources/fonts/NotJamOldStyle14.ttf",
+      "size": 12
+    },
+    {
+      "id": "8bit_size_16",
+      "file": "resources/fonts/NotJamOldStyle14.ttf",
+      "size": 16
+    },
+    {
+      "id": "8bit_size_20",
+      "file": "resources/fonts/NotJamOldStyle14.ttf",
+      "size": 20
+    },
+    {
+      "id": "8bit_size_24",
+      "file": "resources/fonts/NotJamOldStyle14.ttf",
+      "size": 24
+    },
+    {
+      "id": "8bit_size_32",
+      "file": "resources/fonts/NotJamOldStyle14.ttf",
+      "size": 32
+    },
+    {
+      "id": "8bit_size_40",
+      "file": "resources/fonts/NotJamOldStyle14.ttf",
+      "size": 40
+    },
+    {
+      "id": "8bit_size_48",
+      "file": "resources/fonts/NotJamOldStyle14.ttf",
+      "size": 48
+    },
+    {
+      "id": "8bit_size_64",
+      "file": "resources/fonts/NotJamOldStyle14.ttf",
+      "size": 64
+    },
+    {
+      "id": "8bit_size_72",
+      "file": "resources/fonts/NotJamOldStyle14.ttf",
+      "size": 72
+    },
+    {
+      "id": "space_grotesk_regular_16",
+      "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
+      "size": 16
+    },
+    {
+      "id": "space_grotesk_regular_32",
+      "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
+      "size": 32
+    },
+    {
+      "id": "space_grotesk_regular_8",
+      "file": "resources/fonts/SpaceGrotesk-Regular.ttf",
+      "size": 8
+    },
+    {
+      "id": "space_grotesk_semibold_16",
+      "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
+      "size": 16
+    },
+    {
+      "id": "space_grotesk_semibold_32",
+      "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
+      "size": 32
+    },
+    {
+      "id": "space_grotesk_semibold_8",
+      "file": "resources/fonts/SpaceGrotesk-SemiBold.ttf",
+      "size": 8
+    },
+    {
+      "id": "space_grotesk_bold_16",
+      "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+      "size": 16
+    },
+    {
+      "id": "space_grotesk_bold_20",
+      "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+      "size": 20
+    },
+    {
+      "id": "space_grotesk_bold_18",
+      "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+      "size": 18
+    },
+    {
+      "id": "space_grotesk_bold_32",
+      "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+      "size": 32
+    },
+    {
+      "id": "space_grotesk_bold_40",
+      "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+      "size": 40
+    },
+    {
+      "id": "space_grotesk_bold_48",
+      "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+      "size": 48
+    },
+    {
+      "id": "space_grotesk_bold_26",
+      "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+      "size": 26
+    },
+    {
+      "id": "space_grotesk_bold_28",
+      "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+      "size": 28
+    },
+    {
+      "id": "space_grotesk_bold_30",
+      "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+      "size": 30
+    },
+    {
+      "id": "space_grotesk_bold_8",
+      "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+      "size": 8
+    },
+    {
+      "id": "space_grotesk_bold_24",
+      "file": "resources/fonts/SpaceGrotesk-Bold.ttf",
+      "size": 24
+    }
+  ],
   "sounds": [
     {
       "id": "citytheme",
@@ -610,6 +610,22 @@
     {
       "id": "mainmenutheme",
       "file": "resources/sound/music/chill_paul.wav"
+    },
+    {
+      "id": "door_sound_effect",
+      "file": "resources/sound/sound_effects/doorSE.wav"
+    },
+    {
+      "id": "candle_sound_effect",
+      "file": "resources/sound/sound_effects/candleSE.wav"
+    },
+    {
+      "id": "ambience_street_effect",
+      "file": "resources/sound/sound_effects/ambience_streetSE.wav"
+    },
+    {
+      "id": "ambience_office_effect",
+      "file": "resources/sound/sound_effects/office_ambience_effect.wav"
     }
   ],
     "musics": [

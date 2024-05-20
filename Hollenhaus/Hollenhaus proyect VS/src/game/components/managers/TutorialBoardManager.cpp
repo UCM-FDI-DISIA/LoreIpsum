@@ -278,7 +278,7 @@ void TutorialBoardManager::setDRAWCARD()
 
 	std::vector<ecs::entity_t> v;
 
-	ecs::entity_t pop = createPopUp(525, 300, "Board Tutorial", 15);		// MISSION
+	ecs::entity_t pop = createPopUp(525, 170, "Board Tutorial", 15);		// MISSION
 
 	objs.push_back(pop);
 
@@ -319,7 +319,7 @@ void TutorialBoardManager::setPLACECARD()
 {
 	//TuVieja("Setting PLACE CARD");
 
-	ecs::entity_t pop = createPopUp(525, 300, "Board Tutorial", 16);		// MISSION !!!
+	ecs::entity_t pop = createPopUp(525, 170, "Board Tutorial", 16);		// MISSION !!!
 
 
 	objs.push_back(pop);
@@ -400,7 +400,7 @@ void TutorialBoardManager::setPRESSNEXTTURN()
 {
 	std::vector<ecs::entity_t> v;
 
-	ecs::entity_t pop = createPopUp(525, 300, "Board Tutorial", 17);	// MISSION !!
+	ecs::entity_t pop = createPopUp(525, 170, "Board Tutorial", 17);	// MISSION !!
 
 	objs.push_back(pop);
 

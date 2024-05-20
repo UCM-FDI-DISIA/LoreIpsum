@@ -168,9 +168,6 @@ void CityState::onEnter()
 	// Oficina
 	ecs::entity_t ofi = factory->createNPC(0, fondo);
 
-	ecs::entity_t wanda = factory->createNPC(9, fondo);		// tienda
-	objs.push_back(wanda);
-
 	if (GameStateMachine::instance()->TUTORIAL_SHOP_COMPLETE()) {
 		ecs::entity_t tienda = factory->createNPC(1, fondo);		// tienda
 		objs.push_back(tienda);
@@ -197,11 +194,6 @@ void CityState::onEnter()
 		}
 	}
 
-	// Npcs de caso
-	//objs.push_back(npc1);
-	/*objs.push_back(npc2);
-	objs.push_back(npc4);*/
-
 	objs.push_back(colliderSuelo);
 	objs.push_back(ofi);
 
@@ -210,7 +202,8 @@ void CityState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startMusic(Musics::CITY_M);
+	music->startMusic(Sounds::MUSIC::CITY_M);
+	music->startSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_STREET_SE, -1); 
 }
 
 void CityState::onExit()
@@ -224,7 +217,9 @@ void CityState::onExit()
 	setLastPaulDir(fondo->getComponent<MoveOnClick>()->getDir());
 
 	auto music = SoundManager::instance();
-	music->stopMusic(Musics::CITY_M);
+	music->stopMusic(Sounds::CITY_M);
+	music->stopSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_STREET_SE);
+
 
 	GameStateMachine::instance()->getMngr()->Free();
 
