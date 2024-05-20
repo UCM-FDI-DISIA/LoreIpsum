@@ -20,10 +20,10 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 
 TextComponent::~TextComponent()
 {
-	if (text_ != nullptr) {
-		delete text_;
-		text_ = nullptr;
-	}
+	//if (text_ != nullptr) {
+	//	delete text_;
+	//	text_ = nullptr;
+	//}
 		
 
 }
@@ -97,10 +97,10 @@ void TextComponent::SetTextAlignment(Text::TextAlignment textAlignment)
 
 void TextComponent::createTexture() {
 
-	if (text_ != nullptr) {
-		delete text_;
-		text_ = nullptr;
-	}
+	//if (text_ != nullptr) {
+	//	delete text_;
+	//	text_ = nullptr;
+	//}
 
 
 	std::string texto = txt_;
