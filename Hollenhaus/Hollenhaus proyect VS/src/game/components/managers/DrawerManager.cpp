@@ -65,6 +65,10 @@ void DrawerManager::update() {}
 
 void DrawerManager::initComponent()
 {
+	//Inicialización de los booleanos
+	limitDelante = false;
+	limitDelante = false;
+
 	// recorre todas las cartas de un cajon
 	for (int i = 0; i < CANT_CARTAS_MOSTRADAS_CAJON; i++)
 	{
@@ -114,7 +118,6 @@ void DrawerManager::addCard(int id, ecs::entity_t ent)
 	}
 
 	// DEBUG
-	std::cout << "Add card: " << drawer[id] << std::endl;
 }
 
 void DrawerManager::removeCard(int id)
@@ -126,7 +129,6 @@ void DrawerManager::removeCard(int id)
 	cardsAux[id % CANT_CARTAS_MOSTRADAS_CAJON] = nullptr;
 
 	// DEBUG
-	std::cout << "Remove card: " << drawer[id]  << std::endl;
 }
 #pragma endregion
 
@@ -144,11 +146,14 @@ void DrawerManager::drawerPalante()
 	{
 		// se actualizan las cartas mostradas
 		refreshExistencia();
+		
+		limitAtras = false;
 	}
 	else
 	{
 		// DEBUG
 		TuVieja("final de la linea");
+		limitDelante = true;
 
 		// lo disminuyes en caso de que no pudieses abrir cajon
 		cajonesAbiertos--;
@@ -165,6 +170,13 @@ void DrawerManager::drawerPatras()
 	{
 		// disminuyes el indice de cajones abiertos
 		cajonesAbiertos--;
+		limitDelante = false;
+		
+		//TuVieja("false");
+	}
+	else {
+		TuVieja("Fin de linea?");
+		limitAtras = true;
 	}
 
 	// se actualizan las cartas mostradas

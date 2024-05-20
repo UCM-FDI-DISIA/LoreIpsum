@@ -23,7 +23,11 @@ public:
     void onEnter() override;
     void onExit() override;
 
+    void setJ2(std::string rival) override;
+
 private:
+    std::array<ecs::entity_t, 4> createPointsJ1();
+    std::array<ecs::entity_t, 4> createPointsJ2();
 
     //
     void setBoard();
@@ -42,6 +46,6 @@ private:
     int cooldown = 10;
     int count = 0;
 
-
+    std::string j2_;
 
 };

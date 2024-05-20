@@ -6,6 +6,7 @@
 #include "GameState.h"
 #include "../../utils/tweeny-3.2.0.h"
 
+
 class Factory;
 
 class CityState : public GameState
@@ -13,6 +14,8 @@ class CityState : public GameState
 public:
 
 	CityState(); //Constructora
+	CityState(bool t); //Constructora tutorial
+
 	~CityState();
 
 	void update() override;
@@ -23,6 +26,12 @@ public:
 	void onExit() override;
 
 	void onPause();
+
+
+	// ----- Tutorial ----
+	void setTutorial();
+	void prepareTutorial();
+	void startTutorial(bool a);
 
 private:
 
@@ -37,6 +46,14 @@ private:
 
 	// tween fantasmiko
 	tweeny::tween<float> fantastween;
+
+
+	ecs::entity_t base;             // entidad para colocar los popups, se va moviendo segun donde los queramos
+	ecs::entity_t tutorial;
+
+	std::vector<ecs::entity_t> objs;
+
+	bool isTutorial;
 
 
 };

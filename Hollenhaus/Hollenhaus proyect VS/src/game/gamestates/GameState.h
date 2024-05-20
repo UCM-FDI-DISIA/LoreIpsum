@@ -25,6 +25,8 @@ protected:
 	//LAS ENTIDADES NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT 
 	GameState() {}; // constructoras de clases abstractas no deberian ser publicas
 
+	virtual void newKey();
+
 public:
 	virtual ~GameState();		//Destructora
 
@@ -71,8 +73,13 @@ public:
 
 	virtual void setKey();
 
+	virtual void setJ2(std::string rival);
+	virtual bool isDefeated(int i);
+
 	virtual void saveData();
 	virtual void loadData();
+	virtual void loadDataIfExists();
+	virtual void newGameData();
 
 	// ---- crea carta ----
 	virtual ecs::entity_t createCard(int id, Vector2D pos);
@@ -85,6 +92,7 @@ public:
 	virtual bool getLastPaulDir() const;
 	virtual int GetLastState();
 	static Data* getData() { return data; }
+	virtual int getLastDefeatedNPC(); // Para conseguir el id del ultimo NPC derrotado.
 
 	// ---- setters ----
 	static void setData(Data* _data); // settea la data
@@ -93,6 +101,18 @@ public:
 	virtual void setWinnerOnData(int w);
 	virtual void setLastPaulPos(Vector2D paulPos);
 	virtual void setLastPaulDir(bool);
+	virtual void nextCase();
+	virtual void setDefeatedNPC(int id); // Para guardar en Data el id del ultimo NPC derrotado.
+
+	// TUTORIALES
+	virtual bool TUTORIAL_DECKBUILDING_COMPLETE();
+	virtual void setTUTORIAL_DECKBUILDING_COMPLETE(bool a);
+	virtual bool TUTORIAL_CITY_COMPLETE();
+	virtual void setTUTORIAL_CITY_COMPLETE(bool a);
+	virtual bool TUTORIAL_BOARD_COMPLETE();
+	virtual void setTUTORIAL_BOARD_COMPLETE(bool a);
+	virtual bool TUTORIAL_SHOP_COMPLETE();
+	virtual void setTUTORIAL_SHOP_COMPLETE(bool a);
 
 	//MULTIPLAYER
 
@@ -108,6 +128,8 @@ public:
 	virtual std::vector<int> getMazeRival();
 
 	virtual void SetLastState(int ls);
+
+	virtual bool GetSaveExists();
 };
 
 #endif // !GameState_H_

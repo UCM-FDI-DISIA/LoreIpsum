@@ -36,7 +36,7 @@ NetLobby::NetLobby(Uint16 port, LobbyStatusIndicator* lobbyStatus) :
 	// Non-blocking communication is the adequate one for video games!
 	// Usamos dos sockets:
 	//		Uno para el masterSocket, y actuar como servidor
-	//		Otro para almacenar la conexión con el rival, y actuar de cliente
+	//		Otro para almacenar la conexiï¿½n con el rival, y actuar de cliente
 	socketSet = SDLNet_AllocSocketSet(2);
 
 	// add the masterSocket to the set
@@ -58,28 +58,28 @@ void NetLobby::initComponent()
 
 void NetLobby::update()
 {
-	// La llamada a SDLNet_CheckSockets devuelve el número de sockets con actividad en socketSet.
-	// El 2º parámetro indica al método que debe esperar si no encuentra actividad
-	// 2º parámetro debe estar en 0 si no quieres bloquear el programa (consume más CPU)
+	// La llamada a SDLNet_CheckSockets devuelve el nï¿½mero de sockets con actividad en socketSet.
+	// El 2ï¿½ parï¿½metro indica al mï¿½todo que debe esperar si no encuentra actividad
+	// 2ï¿½ parï¿½metro debe estar en 0 si no quieres bloquear el programa (consume mï¿½s CPU)
 	if (SDLNet_CheckSockets(socketSet, 0) > 0) {
 
 		// Procesamos si hay actividad en el master socket (actuamos como servidor)
 		if (SDLNet_SocketReady(masterSocket)) {
 
-			// Indicamos al lobbyStatus que hemos recibido una invitación
+			// Indicamos al lobbyStatus que hemos recibido una invitaciï¿½n
 			statusIndicator->setStatus(LobbyStatusIndicator::InvitationReceived);
 
-			// Instanciamos panel de invitación
+			// Instanciamos panel de invitaciï¿½n
 			InstantiateInvitationPanel();
 
-			// Establecemos conexión con el cliente para enviar mensajitos
+			// Establecemos conexiï¿½n con el cliente para enviar mensajitos
 			connectToClient();
 		}
 
-		// Procesamos si hay actividad en el socket de conexión con el rival (actuamos como cliente)
+		// Procesamos si hay actividad en el socket de conexiï¿½n con el rival (actuamos como cliente)
 		if (SDLNet_SocketReady(conn)) {
 
-				// Entramos aquí si hemos enviado una invitación de conexión a otra IP
+				// Entramos aquï¿½ si hemos enviado una invitaciï¿½n de conexiï¿½n a otra IP
 			// y la otra IP nos ha mandado un mensaje de vuelta
 			// Es decir, somos clientes
 			ProcessServerMessages();
@@ -93,10 +93,10 @@ void NetLobby::SendInvitation(const char* host, const Uint16 port)
 	connectToServer(host, port);
 }
 
-// Método que usa la instancia que hace de Server. Se conecta con el cliente que lo pide
+// Mï¿½todo que usa la instancia que hace de Server. Se conecta con el cliente que lo pide
 void NetLobby::connectToClient()
 {
-	// Limpiamos el socket por si antes hubo otra conexión
+	// Limpiamos el socket por si antes hubo otra conexiï¿½n
 	conn = nullptr;
 
 	// Accept the connection (activity on master socket is always a connection request.
@@ -107,27 +107,30 @@ void NetLobby::connectToClient()
 	// add the client to the socket
 	SDLNet_TCP_AddSocket(socketSet, conn);
 
-	// Avisamos al cliente de que la conexión ha sido recibida
+	// Avisamos al cliente de que la conexiï¿½n ha sido recibida
 	NetMsgs::Msg msg(NetMsgs::_INVITATION_RECEIVED_);
 	SDLNetUtils::serializedSend(msg, conn);
 
 
 
-
-	cout << "I AM SERVER!" << endl;
+#ifdef _DEBUG
+	std::cout << "I AM SERVER!" << endl;
+#endif
 }
 
-// LLamamos al método cuando el jugador hace click en el botón para
-// mandar una invitación a una IP
-// Pasan cosas malas si la IP es incorrecta o no hay conexión :(
+// LLamamos al mï¿½todo cuando el jugador hace click en el botï¿½n para
+// mandar una invitaciï¿½n a una IP
+// Pasan cosas malas si la IP es incorrecta o no hay conexiï¿½n :(
 void NetLobby::connectToServer(const char* host, const int port)
 {
-	// Limpiamos el socket por si antes hubo otra conexión
+	// Limpiamos el socket por si antes hubo otra conexiï¿½n
 	conn = nullptr;
 
 	// fill in the address in 'ip'
 	if (SDLNet_ResolveHost(&ip, host, port) < 0) {
-		std::cout << "ERROR: Probablemente la ip esté mal";
+#ifdef _DEBUG
+		std::cout << "ERROR: Probablemente la ip estï¿½ mal";
+#endif
 		error();
 	}
 
@@ -140,23 +143,25 @@ void NetLobby::connectToServer(const char* host, const int port)
 	// add the server to the socket
 	SDLNet_TCP_AddSocket(socketSet, conn);
 
+#ifdef _DEBUG
+	std::cout << "I AM CLIENT!" << endl;
+#endif
 
-	cout << "I AM CLIENT!" << endl;
 }
 
-// Recibimos una invitación, y lanzamos un panel para que el jugador la gestione
+// Recibimos una invitaciï¿½n, y lanzamos un panel para que el jugador la gestione
 void NetLobby::InstantiateInvitationPanel()
 {
-	acceptButton = Instantiate(Vector2D(100, 530));
-	acceptButton->addComponent<TextComponent>("ACCEPT INV", Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	acceptButton = Instantiate(Vector2D(125, 530));
+	acceptButton->addComponent<TextComponent>("ACEPTAR INVITACIï¿½N", Fonts::GROTESK_32, Colors::VERDE_BENEFICIO, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	acceptButton->addComponent<BoxCollider>();
 	acceptButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	acceptButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
 	acceptButton->addComponent<Button>();
 	acceptButton->getComponent<Button>()->connectToButton([this] {AcceptConection(); });
 
-	declineButton = Instantiate(Vector2D(300, 530));
-	declineButton->addComponent<TextComponent>("DECLINE INV", Fonts::GROTESK_32, SDL_Color({ 0, 0,0 ,0 }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	declineButton = Instantiate(Vector2D(325, 530));
+	declineButton->addComponent<TextComponent>("RECHAZAR INVITACIï¿½N", Fonts::GROTESK_32, Colors::ROJO_PERJUICIO, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	declineButton->addComponent<BoxCollider>();
 	declineButton->getComponent<BoxCollider>()->setSize(Vector2D(150, 80));
 	declineButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-75, -40));
@@ -164,42 +169,42 @@ void NetLobby::InstantiateInvitationPanel()
 	declineButton->getComponent<Button>()->connectToButton([this] {DeclineConection(); });
 }
 
-// Función llamada cuando aceptamos la invitación
+// Funciï¿½n llamada cuando aceptamos la invitaciï¿½n
 void NetLobby::AcceptConection()
 {
-	// Avisamos al cliente de que hemos aceptado la invitación de juego
+	// Avisamos al cliente de que hemos aceptado la invitaciï¿½n de juego
 	NetMsgs::Msg msg(NetMsgs::_ACCEPT_CONNECTION_);
 	SDLNetUtils::serializedSend(msg, conn);
 	JumpToPregameScene(true);
 }
 
-// Función llamada cuando declinamos la invitación
+// Funciï¿½n llamada cuando declinamos la invitaciï¿½n
 void NetLobby::DeclineConection()
 {
-	// Avisamos al cliente de que hemos declinado la invitación de juego
+	// Avisamos al cliente de que hemos declinado la invitaciï¿½n de juego
 	NetMsgs::Msg msg(NetMsgs::_DECLINE_CONNECTION_);
 	SDLNetUtils::serializedSend(msg, conn);
 
-	// Cerramos la conexión con el cliente
+	// Cerramos la conexiï¿½n con el cliente
 	SDLNet_TCP_DelSocket(socketSet, conn);
 	SDLNet_TCP_Close(conn);
 	conn = nullptr;
 
-	// Eliminamos el panel de invitación
+	// Eliminamos el panel de invitaciï¿½n
 	acceptButton->setAlive(false);
 	acceptButton = nullptr;
 	declineButton->setAlive(false);
 	declineButton = nullptr;
 
-	// Indicamos al lobbyStatus que la invitación ha sido declinada
+	// Indicamos al lobbyStatus que la invitaciï¿½n ha sido declinada
 	statusIndicator->setStatus(LobbyStatusIndicator::SearchingForInvitations);
 
 
-	TuVieja("Conexión DECLINADA");
+	TuVieja("Conexiï¿½n DECLINADA");
 }
 
-// Función llamada cuando recibimos un mensaje del server
-// al que hemos enviado una invitación de juego
+// Funciï¿½n llamada cuando recibimos un mensaje del server
+// al que hemos enviado una invitaciï¿½n de juego
 void NetLobby::ProcessServerMessages()
 {
 	NetMsgs::Msg msg;
@@ -213,20 +218,20 @@ void NetLobby::ProcessServerMessages()
 		TuVieja("Mensaje : _NONE_, RECIBIDO");
 
 		// Procesamos el mensaje
-		// Habría que lanzar error
+		// Habrï¿½a que lanzar error
 
 		break;
 
 	case NetMsgs::_INVITATION_RECEIVED_:
-		TuVieja("Mensaje del server: LA INVITACIÓN HA SIDO RECIBIDA");
+		TuVieja("Mensaje del server: LA INVITACIï¿½N HA SIDO RECIBIDA");
 
-		// Indicamos al lobbyStatus que la invitación ha llegado con éxito a su destino
+		// Indicamos al lobbyStatus que la invitaciï¿½n ha llegado con ï¿½xito a su destino
 		statusIndicator->setStatus(LobbyStatusIndicator::InvitationSent);
 
 		break;
 
 	case NetMsgs::_ACCEPT_CONNECTION_:
-		TuVieja("Mensaje del server: LA CONEXIÓN HA SIDO ACEPTADA");
+		TuVieja("Mensaje del server: LA CONEXIï¿½N HA SIDO ACEPTADA");
 
 		// Pasamos a la siguiente escena
 		JumpToPregameScene(false);
@@ -234,14 +239,14 @@ void NetLobby::ProcessServerMessages()
 		break;
 
 	case NetMsgs::_DECLINE_CONNECTION_:
-		TuVieja("Mensaje del server: LA CONEXIÓN HA SIDO DECLINADA");
+		TuVieja("Mensaje del server: LA CONEXIï¿½N HA SIDO DECLINADA");
 
-		// Cerramos la conexión con el server 
+		// Cerramos la conexiï¿½n con el server 
 		SDLNet_TCP_DelSocket(socketSet, conn);
 		SDLNet_TCP_Close(conn);
 		conn = nullptr;
 
-		// Indicamos al lobbyStatus que la invitación ha sido declinada
+		// Indicamos al lobbyStatus que la invitaciï¿½n ha sido declinada
 		statusIndicator->setStatus(LobbyStatusIndicator::SearchingForInvitations);
 
 		break;
@@ -252,7 +257,7 @@ void NetLobby::ProcessServerMessages()
 
 }
 
-// La invitación ha sido aceptada, pasamos a la escena de PREGAME
+// La invitaciï¿½n ha sido aceptada, pasamos a la escena de PREGAME
 void NetLobby::JumpToPregameScene(bool isHost)
 {
 	// Guardamos el socket del rival en la clase Data par viajar a la siguiente escena

@@ -44,8 +44,11 @@ public:
 	void setOwner(Players::Owner value) { owner_ = value;}
 	Players::Owner getOwner() const { return owner_; }
 
-	// devuelve si las animaciones estan hechas
-	bool doneAnimations() { return !tween; }
+	// devuelve si las animaciones de robar estan hechas
+	bool doneDrawAnimations() { return !tweenCardRob; }
+
+	// devuelve si las animaciones de colocar estan hechas
+	bool donePosAnimations() { return !tweenCardRob; }
 
 	//para la IA
 	std::vector<Card*> getHand();
@@ -76,8 +79,14 @@ private:
 	Players::Owner owner_;
 
 	//Cosas del tween
+	// Tweens robar carta
 	std::array<tweeny::tween<float>,7 >tweenDrawCardX;
 	std::array<tweeny::tween<float>,7 >tweenDrawCardY;
+	// Tweens colocar en el tablero
+	//std::array<tweeny::tween<float>,7 >tweenPosCardX;
+	//std::array<tweeny::tween<float>,7 >tweenPosCardY;
+
 	ecs::entity_t carta;
-	bool tween = false;
+	bool tweenCardRob = false;
+	bool tweenCardPos = false;
 };

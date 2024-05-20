@@ -2,6 +2,7 @@
 
 #include "ClickDecision.h"
 
+#include "MoveOnClick.h"
 #include "../components/NextText.h"
 #include "../components/DialogueDestroyer.h"
 #include "../components/DialogueEventCollection.h"
@@ -13,31 +14,28 @@
 #include "../components/NPC.h"
 
 ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) :
-	factory()
+	parent_(parent),
+	myNpc_(nullptr),
+	scene_(scene),
+	decision_(decision),
+	click_(false),
+	collider_(nullptr)
 {
-	decision_ = decision;
-	parent_ = parent;
-	scene_ = scene;
-	click_ = false;
-
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
 ClickDecision::~ClickDecision()
 {
-	delete factory;
-	factory = nullptr;
+	//ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
+	//ih().clearFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
 
 void ClickDecision::initComponent()
 {
+	collider_ = ent_->getComponent<BoxCollider>();
 	scene_ = 0;
-
-	factory = new Factory();
-	factory->SetFactories(
-		static_cast<NPCFactory*>(new NPCFactory_V0())
-	);
+	myNpc_ = parent_->getComponent<Transform>()->getParent()->getEntity()->getComponent<Transform>()->getParent()->getEntity()->getComponent<NPC>();
 }
 
 void ClickDecision::update()
@@ -46,10 +44,13 @@ void ClickDecision::update()
 
 void ClickDecision::OnLeftClickDown()
 {
-	if (mouseRaycast() == ent_)
+	if (mouseRaycast() == ent_ && collider_->isCursorOver())
 	{
 		click_ = true;
 		TakeDecision();
+		/*const auto fondo = parent_->getComponent<Transform>()->getParent()->getParent()->getParent()->getEntity();
+		if (fondo->hasComponent<MoveOnClick>()) // PAIGRO AQUI
+			fondo->getComponent<MoveOnClick>()->getCollider()->setPosOffset(Vector2D(0, 0));*/
 	}
 }
 
@@ -63,41 +64,57 @@ void ClickDecision::TakeDecision()
 	switch (decision_)
 	{
 	case 0: // Para decir no.
-
-		TuVieja("No");
-		cancelPurchase();
-		parent_->getComponent<NextText>()->setDead(true);
-		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+		{
+			TuVieja("No");
+			cancelPurchase();
+			assert(parent_ != nullptr);
+			if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
+				parent_->getComponent<NextText>()->setDead(true);
+				parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+			}
+		}
 		break;
-
 	case 1: // Para cambiar de escena.
-
-		TuVieja("Cambio de escena");
-		parent_->getComponent<DialogueEventCollection>()->ChangeScene(scene_);
-		//abria que hacer actual node ++?¿?¿
-
-
+		{
+			TuVieja("Cambio de escena");
+			//parent_->getComponent<DialogueEventCollection>()->ChangeScene(scene_);
+			//abria que hacer actual node ++?ï¿½?ï¿½
+		}
 		break;
 	case 2: // Para confirmar compra.
-
-		purchaseCard();
-		parent_->getComponent<NextText>()->setDead(true);
-		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
-
+		{
+			purchaseCard();
+			assert(parent_ != nullptr);
+			if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
+				parent_->getComponent<NextText>()->setDead(true);
+				parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+			}
+		}
 		break;
 	case 3: // Caso aceptado
-		TuVieja("Buenos dias caso 3");
-		caseAccepted();
+		{
+			TuVieja("Buenos dias caso 3");
+			caseAccepted();
+		}
 		break;
 	case 4: // CASO DEAFULT PARA NEGAR CUALQUIER COSA
-		parent_->getComponent<NextText>()->setDead(true);
-		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+		{
+			assert(parent_ != nullptr);
+			if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
+				parent_->getComponent<NextText>()->setDead(true);
+				parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+			}
+		}
 		break;
 	case 5:
-		parent_->getComponent<DialogueEventCollection>()->ChangeScene(GameStates::LUIS);
+		{
+			//parent_->getComponent<DialogueEventCollection>()->ChangeScene(GameStates::LUIS);
+			GameStateMachine::instance()->setState(GameStates::LUIS);
+			GameStateMachine::instance()->getCurrentState()->setJ2(std::to_string(myNpc_->getID()));
+		}
 		break;
 	default:
-		TuVieja("Esta decision no existe. Añadir en ClickDecision.cpp");
+		TuVieja("Esta decision no existe. Aï¿½adir en ClickDecision.cpp");
 		break;
 	}
 	
@@ -110,22 +127,25 @@ void ClickDecision::setScene(int s)
 
 void ClickDecision::purchaseCard()
 {
-	TuVieja("Carta comprada.");
-	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
-	if (ent->hasComponent<DecisionComponent>())
-	{
-		ent->getComponent<DecisionComponent>()->setBuying(1);
+	if(click_) {
+		TuVieja("Carta comprada.");
+		ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
+		if (ent->hasComponent<DecisionComponent>())
+		{
+			ent->getComponent<DecisionComponent>()->setBuying(1);
+		}
 	}
 }
 
 void ClickDecision::cancelPurchase()
 {
-	TuVieja("Cancelar compra.");
-	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
-	if (ent->hasComponent<DecisionComponent>())
-	{
-		ent->getComponent<DecisionComponent>()->setBuying(0);
-		ent->getComponent<DecisionComponent>()->resetCardToPurchase();
+	if(click_) {
+		TuVieja("Cancelar compra.");
+		ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
+		if (ent->hasComponent<DecisionComponent>())
+		{
+			ent->getComponent<DecisionComponent>()->setBuying(0);
+		}
 	}
 }
 
@@ -134,7 +154,7 @@ void ClickDecision::caseAccepted()
 	if (click_) {
 		TuVieja("CASO ACEPTADO");
 		CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
-		caseMngr->setAccepted(true);
+		caseMngr->accept();
 
 		NPC* npc = caseMngr->caseNPC()->getComponent<NPC>();
 		npc->nextConvo();

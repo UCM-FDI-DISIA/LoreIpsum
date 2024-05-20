@@ -1,6 +1,7 @@
 #include <../pchs/pch.h>
 
 #include <iostream>
+#include <utility>
 #include "MatchManager.h"
 #include "BoardManager.h"
 #include "Manager.h"
@@ -11,27 +12,45 @@
 #include "../../components/multiplayer/NetGame.h"
 #include "game/Data.h"
 #include "../Card.h"
+#include "game/CaseManager.h"
+#include "game/components/ClickableText.h"
+#include "game/SoundManager.h"
+#include "game/components/ImageWithFrames.h"
 
 MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart,
-                           BoardManager* bm) :
+                           BoardManager* bm, std::string j2) :
 	actualState(turnStart),
 	board_(bm),
 	defaultActionPointsJ1(defaultActionPointsJ1),
 	defaultActionPointsJ2(defaultActionPointsJ2),
 	actualActionPointsJ1(defaultActionPointsJ1),
 	actualActionPointsJ2(defaultActionPointsJ2),
-	actualTurnVisual(nullptr),
+	isBoss(false),
+	j2_(std::move(j2)),
+	actualTurnVisual(nullptr),	
 	actionPointsVisualJ1(nullptr),
 	actionPointsVisualJ2(nullptr)
 {
+	for (int i = 0; i < 4; i++)
+	{
+		actionPointsJ1[i] = nullptr;
+	}
 }
 
 MatchManager::~MatchManager()
 {
+
 }
 
 void MatchManager::initComponent()
 {
+	isBoss = j2_ == "6" || j2_ == "7" || j2_ == "8";
+
+	fadeTween =
+		tweeny::from(0)
+		.to(255)
+		.during(15)
+		.via(tweeny::easing::linear);
 }
 
 void MatchManager::update()
@@ -42,7 +61,59 @@ void MatchManager::update()
 		{
 			//Finaliza la partida cuando se llena el tablero
 			setActualState(Turns::Finish);
+			board_->resetVisuals();
 		}
+	}
+
+	fadeTween.step(1);
+	if (fadeTween.progress() >= 1.0) fadeIn = false;
+	for (int i = 0; i < 4; i++)
+	{
+		if (actionPointsJ1[i] == nullptr) continue;
+
+		SpriteRenderer* spr = nullptr;
+		if (actionPointsJ1[i]->getComponent<SpriteRenderer>() != nullptr)
+			spr = actionPointsJ1[i]->getComponent<SpriteRenderer>();
+
+		if (spr == NULL || spr == nullptr) continue;
+
+		if (fadeIn)
+		{
+			if (fadeInIndexes[i])
+			{
+				if (spr->getOpacity() < 255)
+					spr->setOpacity(fadeTween.peek());
+			}
+			else spr->setOpacity(255);
+		}
+		else
+		{
+			if (fadeOutIndexes[i])
+			{
+				if (spr->getOpacity() > 0)
+					spr->setOpacity(fadeTween.peek());
+			}
+		}
+
+
+		//if (fadeOutIndexes[i]
+		//	|| fadeInIndexes[i]
+		//)
+		//{
+		//	if (fadeIn)
+		//	{
+		//		if (spr != nullptr
+		//			&& spr->getOpacity() < 255)
+		//			spr->setOpacity(fadeTween.peek());
+		//	}
+		//	else
+		//	{
+		//		if (spr != nullptr
+		//			&& spr->getOpacity() > 0)
+		//			spr->setOpacity(fadeTween.peek());
+		//	}
+		//}
+
 	}
 }
 
@@ -53,30 +124,44 @@ void MatchManager::setActualState(Turns::State newState)
 
 	switch (actualState)
 	{
-	case Turns::J1:
+	case Turns::J1: {
+
+
 #if _DEBUG
-		std::cout << "Nuevo turno: Jugador 1" << std::endl; 
+		std::cout << "Nuevo turno: Jugador 1" << std::endl;
 #endif
 		resetActualActionPoints();
+
+	}
 		break;
 	case Turns::J2:
+	{
 #if _DEBUG
 		std::cout << "Nuevo turno: Jugador 2" << std::endl;
 #endif
 		resetActualActionPoints();
+	}
 		break;
 	case Turns::Finish:
 #if _DEBUG
 		std::cout << "FIN DE LA PARTIDA" << std::endl;
 #endif
 		setWinnerOnData();
+		if (GameStateMachine::instance()->getCurrentState()->getData()->getWinner() == 2)
+		{
+			dropCard();
+			if(isBoss)
+				GameStateMachine::instance()->caseMngr()->resetCase();
+		}
 		InstantiatePanelFinPartida(GameStateMachine::instance()->getCurrentState()->getData()->getWinner());
 		break;
 	case Turns::IA:
+	{
 #if _DEBUG
 		std::cout << "Turno: IA" << std::endl;
 #endif
 		startTurnIA();
+	}
 		break;
 	case Turns::J2_MULTIPLAYER:
 #if _DEBUG
@@ -86,6 +171,10 @@ void MatchManager::setActualState(Turns::State newState)
 	default:
 		break;
 	}
+
+
+	changeMusicTurn(actualState);
+
 
 	updateVisuals();
 }
@@ -143,12 +232,44 @@ void MatchManager::updateVisuals()
 		actionPointsVisualJ2->getComponent<TextComponent>()->setTxt(
 			"Puntos de accion:\n" + std::to_string(actualActionPointsJ2));
 
+	/// ACTUALIZACION DE IMAGENES
+	lastSpentPoints = lastPointsJ1 - actualActionPointsJ1;
+	if (lastSpentPoints < 0)
+	{
+		// ha habido reseteo
+		auto pointsWon = actualActionPointsJ1 - lastPointsJ1;
+		fadeIn = true;
+		lastSpentPoints = 0;
+		resetFadeIndexes();
+		for (int i = actualActionPointsJ1; i > actualActionPointsJ1 - pointsWon; i--)
+			fadeInIndexes[i - 1] = true;
+
+		//for (int i = 0; i < 4; i++)
+		//	fadeInIndexes[i] = true;
+		startPointsOn();
+	}
+	else if (lastSpentPoints > 0)
+	{
+		// se han gastado
+		resetFadeIndexes();
+		fadeIn = false;
+		for (int i = lastPointsJ1; i > actualActionPointsJ1; i--)
+		{
+			fadeOutIndexes[i - 1] = true;
+		}
+		startPointsOff();
+	}
+	lastPointsJ1 = actualActionPointsJ1;
+
 	// Actualiza el indicador del propietario del turno actual
 	//Habría que Hacer uan diferenciación también cuando recién cambia de turno para la animación
-	std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
 	SDL_Color color = actualState == Turns::J1 ? SDL_Color({102, 255, 102, 255}) : SDL_Color({255, 102, 255, 255});
-	actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
-	actualTurnVisual->getComponent<TextComponent>()->setColor(color);
+	if (actualTurnVisual != nullptr)
+	{
+		std::string jugador = actualState == Turns::J1 ? "Jugador 1" : "Jugador 2";
+		actualTurnVisual->getComponent<TextComponent>()->setTxt("Turno de:\n" + jugador);
+		actualTurnVisual->getComponent<TextComponent>()->setColor(color);
+	}
 }
 
 void MatchManager::setIA_Manager(IA_manager* ia)
@@ -164,7 +285,22 @@ void MatchManager::setNetGame(NetGame* ng)
 void MatchManager::endTurnIA()
 {
 	setActualState(Turns::J1);
-	// Animacion gira la estatua
+	if (endTurnButton!= nullptr)
+	{
+		if (const auto iwf = endTurnButton->getComponent<ImageWithFrames>())
+		{
+			iwf->setSprite("estatua_j1", 1, 12, 1);
+		}
+	}
+}
+
+void MatchManager::resetFadeIndexes()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		fadeInIndexes[i] = false;
+		fadeOutIndexes[i] = false;
+	}
 }
 
 void MatchManager::resetActualActionPoints()
@@ -172,6 +308,13 @@ void MatchManager::resetActualActionPoints()
 	actualActionPointsJ1 = defaultActionPointsJ1;
 	actualActionPointsJ2 = defaultActionPointsJ2;
 	updateVisuals();
+}
+
+void MatchManager::dropCard()
+{
+	const int id = sdlutils().npcs().at(j2_).cardToDrop();
+	if(id != -1)
+		GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id);
 }
 
 void MatchManager::setWinnerOnData()
@@ -183,9 +326,11 @@ void MatchManager::setWinnerOnData()
 	}
 
 	// JUGADOR 1
-	if (board_->getPlayer1Points() > board_->getPlayer2Points())
+	if (board_->getPlayer1Points() > board_->getPlayer2Points()) // Gana el jugador.
 	{
 		GameStateMachine::instance()->getCurrentState()->setWinnerOnData(2);
+		GameStateMachine::instance()->getCurrentState()->setDefeatedNPC(std::stoi(j2_)); // Se supone que stoi convierte el string a int. Espero que si...
+		GameStateMachine::instance()->getCurrentState()->saveData(); // Guardar Data para que se escriba el NPC derrotado.
 	}
 
 	// JUGADOR 2
@@ -211,37 +356,40 @@ void MatchManager::InstantiatePanelFinPartida(int winner)
 	panel->setLayer(1000);
 	panel->addComponent<SpriteRenderer>("panelFinPartida");
 
-	ecs::entity_t victoryDefeatText = Instantiate(Vector2D(128, 240));
+	ecs::entity_t victoryDefeatText = Instantiate(Vector2D(sdlutils().width() - 120, 240));
 	victoryDefeatText->setLayer(1002);
-	auto text = victoryDefeatText->addComponent<TextComponent>("", Fonts::GROTESK_32, SDL_Color({0, 0, 0, 0}), 200,
+	auto text = victoryDefeatText->addComponent<TextComponent>("", Fonts::GROTESK_32, Colors::MIDNIGHT_HOLLENHAUS, 200,
 	                                                           Text::BoxPivotPoint::CenterCenter,
 	                                                           Text::TextAlignment::Center);
 
 	if (winner == 1)
 	{
 		text->setTxt("EMPATE");
-		text->setColor(SDL_Color({0, 0, 255, 0}));
+		text->setColor(Colors::AMARILLO_PIS);
 	}
 	if (winner == 2)
 	{
 		text->setTxt("VICTORIA");
-		text->setColor(SDL_Color({255, 50, 50, 0}));
+		text->setColor(Colors::VERDE_BANKIA);
 	}
 	if (winner == 3)
 	{
 		text->setTxt("DERROTA");
-		text->setColor(SDL_Color({255, 50, 50, 0}));
+		text->setColor(Colors::ROJO_HOLLENHAUS);
 	}
 
 
-	ecs::entity_t continuarButton = Instantiate(Vector2D(128, 320));
+	ecs::entity_t continuarButton = Instantiate(Vector2D(sdlutils().width() - 120, 310));
 	continuarButton->setLayer(1001);
-	continuarButton->addComponent<TextComponent>("CONTINUAR", Fonts::GROTESK_16, SDL_Color({0, 0, 0, 0}), 200,
+	continuarButton->addComponent<TextComponent>("CONTINUAR", Fonts::GROTESK_24, Colors::MIDNIGHT_HOLLENHAUS, 200,
 	                                             Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	continuarButton->addComponent<BoxCollider>();
 	continuarButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
 	continuarButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
 	continuarButton->addComponent<Button>();
+	continuarButton->addComponent<
+		ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
+
 	if (netGame == nullptr)
 	{
 		continuarButton->getComponent<Button>()->connectToButton([this]
@@ -286,4 +434,125 @@ void MatchManager::CheckNextTurnAutomatic()
 		// Si no quedan puntos de accion y no quedan jugadas disponibles, pasamos turno automáticamente
 		setActualState(netGame == nullptr ? Turns::IA : Turns::J2_MULTIPLAYER);
 	}
+}
+
+void MatchManager::checkIfAddKey(Card* c)
+{
+	for(auto& e : c->getEffectsJson())
+	{
+		const auto state = GameStateMachine::instance()->getCurrentState();
+		const int keys = state->getKeys();
+		switch (e.type())
+		{
+		case Effects::Type::Superflecha:
+			if(keys == 1)
+			{
+				state->addKey();
+			}
+			break;
+		case Effects::Type::Centro:
+			if(keys == 2)
+			{
+				state->addKey();
+			}
+			break;
+		case Effects::Type::Esquina:
+			if(keys == 3)
+			{
+				state->addKey();
+			}
+			break;
+		case Effects::Type::Block:
+			if(keys == 4)
+			{
+				state->addKey();
+			}
+			break;
+		case Effects::Type::Unblockable:
+			if(keys == 5)
+			{
+				state->addKey();
+			}
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void MatchManager::changeMusicTurn(Turns::State i)
+{
+	auto music = SoundManager::instance();
+
+	Sounds::MUSIC a = Sounds::MUSIC::BATTLE_P_M;
+	Sounds::MUSIC b = Sounds::MUSIC::BATTLE_T_M;
+
+	switch (i)
+	{
+	case Turns::J1:
+		a = Sounds::MUSIC::BATTLE_P_M;
+		b = Sounds::MUSIC::BATTLE_T_M;
+		break;
+	case Turns::J2:
+		a = Sounds::MUSIC::BATTLE_P_M;
+		b = Sounds::MUSIC::BATTLE_T_M;
+		break;
+	case Turns::Finish:
+		a = Sounds::MUSIC::BATTLE_P_M;
+		b = Sounds::MUSIC::BATTLE_T_M;
+		break;
+	case Turns::IA:
+		a = Sounds::MUSIC::BATTLE_T_M;
+		b = Sounds::MUSIC::BATTLE_P_M;
+		break;
+	case Turns::J2_MULTIPLAYER:
+		a = Sounds::MUSIC::BATTLE_T_M;
+		b = Sounds::MUSIC::BATTLE_P_M;
+		break;
+	default:
+		break;
+	}
+
+	music->changeDynamicMusic(a,b);
+
+
+}
+
+void MatchManager::turnPointsOff()
+{
+	for (auto point : actionPointsJ1)
+	{
+		if (point == nullptr) continue;
+		if (point->getComponent<SpriteRenderer>() != nullptr)
+			point->getComponent<SpriteRenderer>()->setOpacity(0);
+	}
+}
+
+void MatchManager::turnPointsOn()
+{
+	for (int i = actualActionPointsJ1; i > 0; i--)
+	{
+		if (actionPointsJ1[i - 1] == nullptr) continue; 
+		if (actionPointsJ1[i - 1]->getComponent<SpriteRenderer>() != nullptr)
+			actionPointsJ1[i - 1]->getComponent<SpriteRenderer>()->setOpacity(255);
+	}
+}
+
+void MatchManager::startPointsOn()
+{
+	turnPointsOff();
+	fadeTween =
+		tweeny::from(0)
+		.to(255)
+		.during(15)
+		.via(tweeny::easing::linear);
+}
+
+void MatchManager::startPointsOff()
+{
+	fadeTween =
+		tweeny::from(255)
+		.to(0)
+		.during(15)
+		.via(tweeny::easing::linear);
 }

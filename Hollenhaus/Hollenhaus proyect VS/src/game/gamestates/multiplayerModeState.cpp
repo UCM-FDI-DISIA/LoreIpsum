@@ -36,7 +36,6 @@ void MultiplayerModeState::render() const
 
 void MultiplayerModeState::onEnter()
 {
-	std::cout << "multiplayer " << getMoney() << std::endl;
 
 	ecs::entity_t fondo = Instantiate(Vector2D(0, 0));
 	fondo->addComponent<SpriteRenderer>("mpfondo");

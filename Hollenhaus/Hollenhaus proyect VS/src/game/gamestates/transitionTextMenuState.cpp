@@ -71,7 +71,7 @@ void TransitionTextMenuState::onEnter()
 	dineroNum = Instantiate(Vector2D(posXNums, posYTexts + sepYTexts));
 	dineroNum->addComponent<TextComponent>(std::to_string(money), font, PEARL_HOLLENHAUS, numSize, Text::BoxPivotPoint::LeftCenter, Text::TextAlignment::Left);
 	dineroNum->setLayer(1);
-	
+
 	almasText = Instantiate(Vector2D(posXTexts, posYTexts + sepYTexts * 2));
 	almasText->addComponent<TextComponent>("ALMAS: ", font, PEARL_HOLLENHAUS, textSize, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
 	almasText->setLayer(1);
@@ -85,53 +85,67 @@ void TransitionTextMenuState::onEnter()
 	chascarrillo = Instantiate(Vector2D(400, 350));
 
 	int i = rand_.nextInt(0, 10);
-
-	switch (i) 
+	switch (i)
 	{
-		case 0:
-			Ctext = "Para un economista la vida real es un caso especial.";
-			break;
-		case 1:
-			Ctext = "Le pedí a un economista su número de teléfono y me dio su estimación.";
-			break;
-		case 2:
-			Ctext = "¿Cuándo puedes decir que un economista está mintiendo? Cuando se mueven sus labios.";
-			break;
-		case 3:
-			Ctext = "¿Sabes a dónde van las pulgas cuando mueren? Al pulgatorio.";
-			break;
-		case 4:
-			Ctext = "¿Por qué los fantasmas nunca hacen la colada? Porque corren el peligro de meter en la lavadora a sus parientes.";
-			break;
-		case 5:
-			Ctext = "Van dos fantasmas y se cae el del médium.";
-			break;
-		case 6:
-			Ctext = "¿Has probado a poner el nombre completo del fantasma protagonista en el traductor de alemán?";
-			break;
-		case 7:
-			Ctext = "¿Sabías que Paul murió sacrificado por una secta?";
-			break;
-		case 8:
-			Ctext = "¿Sabías que Paul tuvo una aparición en La Nave del Misterio?";
-			break;
-		case 9:
-			Ctext = "¿Sabías que las únicas humanas de Höllenhaus que pueden ver a Paul son la tendera y la médium?";
-			break;
+	case 0:
+		Ctext = "Para un economista la vida real es un caso especial.";
+		break;
+	case 1:
+		Ctext = "Le pedí a un economista su número de teléfono y me dio su estimación.";
+		break;
+	case 2:
+		Ctext = "¿Cuándo puedes decir que un economista está mintiendo? Cuando se mueven sus labios.";
+		break;
+	case 3:
+		Ctext = "¿Sabes a dónde van las pulgas cuando mueren? Al pulgatorio.";
+		break;
+	case 4:
+		Ctext = "¿Por qué los fantasmas nunca hacen la colada? Porque corren el peligro de meter en la lavadora a sus parientes.";
+		break;
+	case 5:
+		Ctext = "Van dos fantasmas y se cae el del médium.";
+		break;
+	case 6:
+		Ctext = "¿Has probado a poner el nombre completo del fantasma protagonista en el traductor de alemán?";
+		break;
+	case 7:
+		Ctext = "¿Sabías que Paul murió sacrificado por una secta?";
+		break;
+	case 8:
+		Ctext = "¿Sabías que Paul tuvo una aparición en La Nave del Misterio?";
+		break;
+	case 9:
+		Ctext = "¿Sabías que las únicas humanas de Höllenhaus que pueden ver a Paul son la tendera y la médium?";
+		break;
+	default:
+		break;
 	}
 
 	chascarrillo->addComponent<TextComponent>(Ctext, font, PEARL_HOLLENHAUS, 600, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	chascarrillo->setLayer(1);
 
 	continuar = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 100));
-	continuar->addComponent<TextComponent>(
-		"CONTINUAR", font, PEARL_HOLLENHAUS, 
-		220, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Right);
+	continuar->addComponent<TextComponent>("CONTINUAR", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	continuar->addComponent<BoxCollider>();
 	continuar->getComponent<BoxCollider>()->setSize(Vector2D(220, 40));
 	continuar->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
-	continuar->addComponent<NPC>(1, 0); // Esto es graciosisimo
+	continuar->addComponent<NPC>(GameStates::CITY, 0); // Esto es graciosisimo
 	continuar->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
+
+	// TUTORIAL SAVE
+	GameStateMachine::instance()->setTUTORIAL_DECKBUILDING_COMPLETE(TUTORIAL_DECKBUILDING_COMPLETE());
+	GameStateMachine::instance()->setTUTORIAL_CITY_COMPLETE(TUTORIAL_CITY_COMPLETE());
+	GameStateMachine::instance()->setTUTORIAL_BOARD_COMPLETE(TUTORIAL_BOARD_COMPLETE());
+	GameStateMachine::instance()->setTUTORIAL_SHOP_COMPLETE(TUTORIAL_SHOP_COMPLETE());
+
+
+	// INES LIMPIA ESTO
+	std::cout << TUTORIAL_DECKBUILDING_COMPLETE() << std::endl;
+	std::cout << TUTORIAL_CITY_COMPLETE() << std::endl;
+	std::cout << TUTORIAL_BOARD_COMPLETE() << std::endl;
+	std::cout << TUTORIAL_SHOP_COMPLETE() << std::endl;
+
+	//GameStateMachine::instance()->getCurrentState()->saveData(); // la privacidad de la clase data, un valorant o que
 }
 
 void TransitionTextMenuState::onExit()

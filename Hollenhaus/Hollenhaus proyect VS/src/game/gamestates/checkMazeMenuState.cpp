@@ -6,6 +6,8 @@
 #include "../components/NPC.h"
 #include "game/Data.h"
 #include "game/components/Clickable.h"
+#include "../components/basics/TextComponent.h"
+
 
 CheckMazeMenuState::CheckMazeMenuState()
 {
@@ -33,7 +35,10 @@ void CheckMazeMenuState::render() const
 
 void CheckMazeMenuState::onEnter()
 {
-	std::cout << "\nENTER CHECK MAZE\n";
+
+	auto tituloText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 100));
+	tituloText->addComponent<TextComponent>("MAZO ACTUAL", Fonts::GROTESK_32, Colors::PEARL_HOLLENHAUS, 400, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	tituloText->setLayer(1);
 
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
@@ -49,7 +54,7 @@ void CheckMazeMenuState::onEnter()
 	Vector2D exitPos(10, 10);
 	exit->getComponent<Transform>()->setGlobalPos(exitPos);
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(17);
+	exit->addComponent<NPC>(GameStates::PAUSEMENU);
 	exit->setLayer(5);
 	exit->addComponent<Clickable>("boton_flecha", true);
 
@@ -58,21 +63,39 @@ void CheckMazeMenuState::onEnter()
 
 void CheckMazeMenuState::onExit()
 {
-	std::cout << "\nEXIT CHECK MAZE\n";
 	GameStateMachine::instance()->getMngr()->Free();
 }
 
 void CheckMazeMenuState::ShowMaze()
 {
 	mazeAux = GameStateMachine::instance()->getCurrentState()->getMaze();
+	int cardsPos; 
+	int i = 2;
 
-	int i = 1;
 	for (auto e : mazeAux) {
 
 		if (e != -1)
 		{
+			if(i <= 9) { cardsPos = 100; }
+			else if(i >= 10 && i <= 17)
+			{
+				if(i == 10)
+				{
+					i = 2;
+				}
+				cardsPos = 200;
+			}
+			else if(i >= 18)
+			{
+				if (i == 18)
+				{
+					i = 2;
+				}
+				cardsPos = 300;
+			}
+
 			ecs::entity_t ent = GameStateMachine::instance()->getCurrentState()->createCard
-			(e, Vector2D(i * 70, 100));
+			(e, Vector2D(i * 70, cardsPos));
 		}
 
 		i++;

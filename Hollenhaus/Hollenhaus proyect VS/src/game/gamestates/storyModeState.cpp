@@ -9,6 +9,8 @@
 #include "../components/basics/Transform.h"
 #include "game/components/Clickable.h"
 #include "game/components/ClickableText.h"
+#include "../components/Button.h"
+#include "game/Data.h"
 
 constexpr SDL_Color PEARL_HOLLENHAUS = { 226, 223, 210, 255 };
 constexpr SDL_Color PEARL_CLICK = { 250, 248, 240, 255 };
@@ -17,7 +19,7 @@ constexpr SDL_Color ROJO_HOLLENHAUS = { 148, 47, 55, 255 };
 
 StoryModeState::StoryModeState()
 {
-	
+
 }
 
 StoryModeState::~StoryModeState()
@@ -66,26 +68,45 @@ void StoryModeState::onEnter()
 	returnButton->addComponent<NPC>(GameStates::MAINMENU, NPC::Type::BUTTON, "", 0, true, true);
 	returnButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
-
 	newGameButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 320));
 	newGameButton->addComponent<TextComponent>("NUEVA PARTIDA", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	newGameButton->addComponent<BoxCollider>();
 	newGameButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	newGameButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	newGameButton->addComponent<NPC>(GameStates::TRANSITIONTEXT, 0);
+	newGameButton->addComponent<Button>();
+	newGameButton->getComponent<Button>()->connectToButton([this] { newGameStart();  });
+	//newGameButton->addComponent<NPC>(GameStates::TUTORIAL_OFFICE, 0);
 	newGameButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
+
+
 
 	continueButton = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 270));
 	continueButton->addComponent<TextComponent>("CONTINUAR", "space_grotesk_bold_32", PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	continueButton->addComponent<BoxCollider>();
 	continueButton->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	continueButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	continueButton->addComponent<NPC>(GameStates::TRANSITIONTEXT, 0);
-	continueButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
+	if (GetSaveExists())
+	{
+		continueButton->addComponent<ClickableText>(PEARL_HOLLENHAUS, PEARL_CLICK, ROJO_HOLLENHAUS);
+		continueButton->addComponent<NPC>(GameStates::TRANSITIONTEXT, 0);
+	}
+	else
+	{
+		continueButton->getComponent<TextComponent>()->setColor(SDL_Color{ 100, 100, 100, 255});
+	}
+
+
 }
 
 void StoryModeState::onExit()
 {
 	GameStateMachine::instance()->getMngr()->Free();
 
+}
+
+void StoryModeState::newGameStart()
+{
+	newGameData(); // Llama al metodo que pone el txt con mazo de inicio, dinero a 0, etc.
+	loadData();
+	GameStateMachine::instance()->setState(GameStates::CINEMATICINTRO); // Cambia al estado de tutorial.
 }

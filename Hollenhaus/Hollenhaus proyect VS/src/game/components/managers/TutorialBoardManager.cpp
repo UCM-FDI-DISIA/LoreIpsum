@@ -26,21 +26,17 @@
 #include "../../components/managers/PlayerCardsManager.h"
 #include "../../TutorialManager.h"
 
-TutorialBoardManager::TutorialBoardManager(ecs::entity_t b, ecs::entity_t t)
-{
-	base = b;
-	tutorial = t;
 
-	// ---
-	//objs.push_back(base);
-	//objs.push_back(tutorial);
+
+TutorialBoardManager::TutorialBoardManager(ecs::entity_t b, ecs::entity_t t) 
+	: TutorialBaseManager(b,t)
+{
 
 }
 
 TutorialBoardManager::~TutorialBoardManager()
 {
-	delete factory;
-	factory = nullptr;
+	;
 }
 
 void TutorialBoardManager::initComponent()
@@ -61,6 +57,8 @@ void TutorialBoardManager::initComponent()
 	image->addComponent<SpriteRenderer>("card_ejemplo");
 	image->getComponent<SpriteRenderer>()->enable(false);
 
+	
+
 }
 
 
@@ -77,36 +75,15 @@ void TutorialBoardManager::update()
 	
 }
 
-void TutorialBoardManager::nextTutorialState()
+void TutorialBoardManager::addToHand(ecs::entity_t c)
 {
-	if (!checked) {
-		nextState = tutorial->getComponent<TutorialManager>()->nextState();
+	std::vector<ecs::entity_t> v;
 
-		checked = true;
-	}
-}
+	hand.push_back(c);
 
-void TutorialBoardManager::updateTutorialState()
-{
-	currentState;
-	nextState;
+	v.push_back(c);
 
-	if (currentState != nextState) {
-		ent_->getComponent<TutorialManager>()->wait([this] 
-			{
-				setState(); });
-	}
-}
-
-bool TutorialBoardManager::actionEnded()
-{
-	return ent_->getComponent<TutorialManager>()->hasEnded();
-}
-
-
-void TutorialBoardManager::resetEnded()
-{
-	ent_->getComponent<TutorialManager>()->resetAction();
+	setLayers(v);
 }
 
 void TutorialBoardManager::setState()
@@ -185,68 +162,8 @@ void TutorialBoardManager::setState()
 	ent_->getComponent<TutorialManager>()->setCurrentTutorialState(t);
 
 	checked = false;
-}
-
-
-ecs::entity_t TutorialBoardManager::createPopUp(float x, float y, std::string popup, int convo)
-{
-	//TuVieja("Creando PopUp...");
-
-	JsonData::DialogueData dialogue = sdlutils().dialogues().at(popup);
-
-	int node = 0;
-
-	// crear dialogo del FACTORY de dialogos
-	//// Mirar comentario en el interior de la función
-	ecs::entity_t pop = factory->createDialogue(dialogue.NPCName(), convo, node,
-		{ x, y },//POS
-		{ 0.25, 0.25 }, //SIZE (poli: no cambia nada?¿)	// Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
-		5, 10, base,
-		200, dialogue.Convo(convo).isAuto(),  //LAYER
-		Fonts::GROTESK_20,	//mirar el JSON para cambiar el tamanio de texto
-		SDL_Color({ 0, 0, 0, 255 }),
-		220, //wrap length
-		Text::BoxPivotPoint::LeftTop,
-		Text::TextAlignment::Left);
-
-	return pop;
-}
-
-void TutorialBoardManager::setBase(ecs::entity_t b)
-{
-	base = b;
-}
-
-void TutorialBoardManager::setTutorial(ecs::entity_t t)
-{
-	tutorial = t;
-}
-
-void TutorialBoardManager::setObjs(std::vector<ecs::entity_t> v)
-{
-	objs = v;
-
-	setLayers(v);
 
 }
-
-void TutorialBoardManager::setLayers(std::vector<ecs::entity_t> v)
-{
-	tutorial->getComponent<TutorialManager>()->setLayers(objs);
-}
-
-void TutorialBoardManager::addToHand(ecs::entity_t c)
-{
-	std::vector<ecs::entity_t> v;
-
-	hand.push_back(c);
-
-	v.push_back(c);
-
-	setLayers(v);
-}
-
-
 
 
 void TutorialBoardManager::setINIT()
@@ -339,8 +256,6 @@ void TutorialBoardManager::setCARDIMAGE()
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
 
-
-
 void TutorialBoardManager::setDECK()
 {
 	//TuVieja("Setting DECK");
@@ -363,11 +278,19 @@ void TutorialBoardManager::setDRAWCARD()
 
 	std::vector<ecs::entity_t> v;
 
+	ecs::entity_t pop = createPopUp(525, 170, "Board Tutorial", 15);		// MISSION
+
+	objs.push_back(pop);
+
+	tutorial->getComponent<TutorialManager>()->addMission(pop);
+
 	v.push_back(deck);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+	objs.pop_back();
 
 
 	
@@ -396,6 +319,14 @@ void TutorialBoardManager::setPLACECARD()
 {
 	//TuVieja("Setting PLACE CARD");
 
+	ecs::entity_t pop = createPopUp(525, 170, "Board Tutorial", 16);		// MISSION !!!
+
+
+	objs.push_back(pop);
+
+	tutorial->getComponent<TutorialManager>()->addMission(pop);
+
+
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	std::vector<ecs::entity_t> v;
@@ -405,6 +336,8 @@ void TutorialBoardManager::setPLACECARD()
 	}
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+	objs.pop_back();
 
 }
 
@@ -447,8 +380,6 @@ void TutorialBoardManager::setACTIONPTS()
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
 }
 
-
-
 void TutorialBoardManager::setNEXTTURN()
 {
 	std::vector<ecs::entity_t> v;
@@ -469,11 +400,19 @@ void TutorialBoardManager::setPRESSNEXTTURN()
 {
 	std::vector<ecs::entity_t> v;
 
+	ecs::entity_t pop = createPopUp(525, 170, "Board Tutorial", 17);	// MISSION !!
+
+	objs.push_back(pop);
+
+	tutorial->getComponent<TutorialManager>()->addMission(pop);
+
 	v.push_back(nextTurn);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+	objs.pop_back();
 
 }
 
@@ -525,6 +464,8 @@ void TutorialBoardManager::setENDTUTORIAL()
 
 void TutorialBoardManager::setFREEDOM()
 {
-	std::cout << "LIBERTAD OMFG" << std::endl;
+	// FIN DEL TUTO
+	GameStateMachine::instance()->setTUTORIAL_BOARD_COMPLETE(true);
+
 }
 

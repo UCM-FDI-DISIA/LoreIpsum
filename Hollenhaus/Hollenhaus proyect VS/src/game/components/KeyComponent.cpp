@@ -6,7 +6,7 @@
 
 KeyComponent::KeyComponent(const int keys) :
 	addToY_(100),
-	NKeys_(keys),
+	nKeys_(keys),
 	tr_(),
 	sr_(),
 	pos_(),
@@ -18,12 +18,12 @@ KeyComponent::KeyComponent(const int keys) :
 	// Inicializacion del vector con los nombres
 	keyNames_.reserve(TOTAL_KEYS);
 
-	keyNames_.emplace_back("esquina");
-	keyNames_.emplace_back("centro");
-	keyNames_.emplace_back("unblockable");
 	keyNames_.emplace_back("flecha");
 	keyNames_.emplace_back("superflecha");
+	keyNames_.emplace_back("esquina");
+	keyNames_.emplace_back("centro");
 	keyNames_.emplace_back("block");
+	keyNames_.emplace_back("unblockable");
 }
 
 void
@@ -45,13 +45,22 @@ KeyComponent::initComponent() {
 	set();
 }
 
+void KeyComponent::newKey()
+{
+	tr_->killChildren();
+	nKeys_++;
+	pos_ = tr_->getGlobalPos() + firstOffset_;
+	set();
+	tr_->increaseLayer(ent_->getLayer());
+}
+
 void
 KeyComponent::set() {
-	for (int i = 0; i < NKeys_; ++i) {
+	for (int i = 0; i < nKeys_; ++i) {
 		ecs::entity_t e = Instantiate(pos_); // Creamos la imagen
 
 		e->getComponent<Transform>()->addParent(getEntity()->getComponent<Transform>());
-		e->getComponent<Transform>()->setGlobalScale(0.15, 0.15);
+		e->getComponent<Transform>()->setGlobalScale(0.35, 0.35);
 		e->addComponent<SpriteRenderer>(keyNames_[i]);
 
 		// Creamos el texto

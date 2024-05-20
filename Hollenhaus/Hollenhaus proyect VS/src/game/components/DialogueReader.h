@@ -19,15 +19,17 @@ public:
 	void initComponent() override;
 	void NextNode();
 
+	void destroyDialogue();
+
 private:
 	JsonData::ConvoData* convo_;
 	int actualNode_;
 	int conv;
 	std::string own;
 
-	TypeWriter* typeWriter_;
-	DialogueEventCollection* eventCollection_;
-	DialogueDestroyer* dialogueDestroyer_;
+	TypeWriter* typeWriter_ = nullptr;
+	DialogueEventCollection* eventCollection_ = nullptr;
+	DialogueDestroyer* dialogueDestroyer_ = nullptr;
 
 	void exeEvents(std::vector<JsonData::DialogueEventS> events);
 

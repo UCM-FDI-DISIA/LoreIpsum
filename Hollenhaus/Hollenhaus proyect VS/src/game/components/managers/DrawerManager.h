@@ -15,6 +15,10 @@ const int CANT_CARTAS_MOSTRADAS_CAJON = 6;
 class DrawerManager : public ComponentUpdate
 {
 private:
+	//Booleanos para colores de los botoness
+	bool limitDelante;
+	bool limitAtras;
+
 	// Cartas desbloqueadas
 	std::array<int, CARDS_IN_GAME> drawer;
 
@@ -71,7 +75,9 @@ public:
 	// ---- BOTONES ----
 	// muestra las siguientes n cartas
 	void drawerPalante();
+	bool getlimitDelante() { return limitDelante; }
 
 	// muestra las anteriores n cartas
 	void drawerPatras();
+	bool getlimitAtras() { return limitAtras; }
 };

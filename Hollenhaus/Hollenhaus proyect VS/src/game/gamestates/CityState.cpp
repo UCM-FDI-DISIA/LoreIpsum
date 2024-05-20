@@ -11,12 +11,25 @@
 #include "../factories/Factory.h"
 #include "../factories/NPCFactory_V0.h"
 #include "pauseMenuState.h"
+#include "game/CaseManager.h"
 #include "game/components/Clickable.h"
 #include "game/components/ImageWithFrames.h"
+#include "../SoundManager.h"
+
+#include "../TutorialManager.h"
+#include "../components/managers/TutorialCityManager.h"
+
 
 CityState::CityState()
 {
 	TuVieja("Loading CityState");
+	isTutorial = false;
+
+}
+
+CityState::CityState(bool t)
+{
+	isTutorial = t;
 }
 
 CityState::~CityState()
@@ -65,6 +78,7 @@ void CityState::onEnter()
 	factory->SetFactories(
 		static_cast<NPCFactory*>(new NPCFactory_V0()));
 
+	CaseManager* caseMngr = GameStateMachine::instance()->caseMngr();
 
 	/// ---- FONDO CIUDAD ----
 	auto scaleFondo = Vector2D(0.495f, 0.495f);
@@ -108,8 +122,9 @@ void CityState::onEnter()
 
 	// tamanio del collider del suelo
 	// x: el ancho de la imagen de fondo, y: alto del suelo
+	colliderSuelo->getComponent<BoxCollider>()->setPosOffset(Vector2D(sdlutils().width() / 2, 100));
 	colliderSuelo->getComponent<BoxCollider>()->setSize(
-		Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), sdlutils().height() * 2));
+		Vector2D(fondo->getComponent<SpriteRenderer>()->getTexture()->width() - sdlutils().width() * 2, sdlutils().height()));
 
 	// lo emparenta con el fondo
 	colliderSuelo->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
@@ -128,7 +143,7 @@ void CityState::onEnter()
 	fantasmiko->addComponent<BoxCollider>();
 	fantasmiko->getComponent<Transform>()->setGlobalScale(Vector2D(0.15f, 0.15f));
 	fantasmiko->setLayer(2);
-	fantasmiko->addComponent<ImageWithFrames>(fantasmiko->getComponent<SpriteRenderer>(), 1, 4);
+	fantasmiko->addComponent<ImageWithFrames>(fantasmiko->getComponent<SpriteRenderer>(), 1, 4, -1);
 
 	auto moc = fondo->getComponent<MoveOnClick>();
 	moc->registerFantasmaTrans(fantasmiko);
@@ -145,38 +160,53 @@ void CityState::onEnter()
 		.to(fanY - 10)
 		.during(60)
 		.via(tweeny::easing::sinusoidalInOut);
-	///
-
-
-
 
 	///------NPCs:
 	//----Para entrar en la oficina.
 	//factory->createNPC("El Xungo del Barrio", "npc", {0.25f, 0.25f}, {-100, 425}, 0, 3, 2, fondo);
-	factory->createNPC(0, fondo);
-	factory->createNPC(1, fondo);
-	factory->createNPC(2, fondo);
-	factory->createNPC(3, fondo);
-	factory->createNPC(4, fondo);
-	///
 
-	// --- Boton para volver al menu principal ---
-	ecs::entity_t exit = Instantiate();
-	exit->addComponent<Transform>();
-	exit->addComponent<SpriteRenderer>("boton_flecha");
-	exit->addComponent<BoxCollider>();
-	Vector2D exitPos(10, 10);
-	exit->getComponent<Transform>()->setGlobalPos(exitPos);
-	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(GameStates::MAINMENU); // Lleva al menu (0).
-	exit->setLayer(2);
-	exit->addComponent<Clickable>("boton_flecha", true);
+	// Oficina
+	ecs::entity_t ofi = factory->createNPC(0, fondo);
 
-	// SDLUTILS
-	// referencia a sdlutils
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("citytheme").play(-1);
-	sdl.soundEffects().at("citytheme").setChannelVolume(10);
+	if (GameStateMachine::instance()->TUTORIAL_SHOP_COMPLETE()) {
+		ecs::entity_t tienda = factory->createNPC(1, fondo);		// tienda
+		objs.push_back(tienda);
+	}
+	else {
+		ecs::entity_t tienda_tuto = factory->createNPC(21, fondo);		// tienda TUTO
+		objs.push_back(tienda_tuto);
+	}
+
+	// Tutorial
+	if (!GameStateMachine::instance()->TUTORIAL_BOARD_COMPLETE()) {
+		ecs::entity_t npc5 = factory->createNPC(4, fondo);		// tuto board
+		objs.push_back(npc5);
+	}
+	// CASOS
+	else {
+		if (caseMngr->accepted()) {
+			for (int i = 0; i < caseMngr->npc_n(); ++i)
+			{
+				const int id = caseMngr->npcBegin() + i;
+				if(!isDefeated(id))
+				{
+					auto npc = factory->createNPC(id, fondo);
+					objs.push_back(npc);
+				}
+			}
+		}
+	}
+
+	objs.push_back(colliderSuelo);
+	objs.push_back(ofi);
+
+	setTutorial();
+
+
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startMusic(Sounds::MUSIC::CITY_M);
+	music->startSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_STREET_SE, -1); 
 }
 
 void CityState::onExit()
@@ -189,8 +219,11 @@ void CityState::onExit()
 	setLastPaulPos(fondo->getComponent<Transform>()->getGlobalPos());
 	setLastPaulDir(fondo->getComponent<MoveOnClick>()->getDir());
 
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("citytheme").pauseChannel();
+	auto music = SoundManager::instance();
+	music->stopMusic(Sounds::CITY_M);
+	music->stopSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_STREET_SE);
+
+
 	GameStateMachine::instance()->getMngr()->Free();
 
 	delete factory;
@@ -198,6 +231,50 @@ void CityState::onExit()
 
 void CityState::onPause()
 {
-	SetLastState(1);
-	GameStateMachine::instance()->setState(17);
+	SetLastState(GameStates::CITY);
+	GameStateMachine::instance()->setState(GameStates::PAUSEMENU);
+}
+
+void CityState::setTutorial()
+{
+
+	if (isTutorial) {
+
+		// entidad tutorial para gestionar cositas
+		tutorial = Instantiate();
+
+		prepareTutorial();
+
+		tutorial->addComponent<TutorialManager>();
+		auto manager = tutorial->addComponent<TutorialCityManager>(base, tutorial);
+		GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
+
+
+		tutorial->getComponent<TutorialManager>()->startTutorial();
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::CITY);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Ciudad::CITY_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Ciudad::CITY_INIT);
+
+
+		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
+
+		tutorial->getComponent<TutorialCityManager>()->setObjs(objs);
+	}
+}
+
+void CityState::prepareTutorial()
+{
+	// base
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
+}
+
+void CityState::startTutorial(bool a)
+{
+	isTutorial = a;
 }

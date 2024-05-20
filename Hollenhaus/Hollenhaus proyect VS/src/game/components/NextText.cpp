@@ -75,13 +75,15 @@ void NextText::reactToClick()
 
 void NextText::callNextNode()
 {
-	if (typeWriter_->ended()) {
-		//TuVieja("Cambio de nodo.");
-		dialogueReader_->NextNode();
-	}
-	else {
+	if (click) {
+		if (typeWriter_->ended()) {
+			//TuVieja("Cambio de nodo.");
+			dialogueReader_->NextNode();
+		}
+		else {
 
-		typeWriter_->finishTypewrite();
+			typeWriter_->finishTypewrite();
+		}
 	}
 }
 

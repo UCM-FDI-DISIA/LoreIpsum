@@ -7,20 +7,21 @@
 #include "../components/EndTurnButton.h"
 #include "../components/Button.h"
 #include "game/components/Clickable.h"
+#include "game/components/ImageWithFrames.h"
 #include "game/components/ShineComponent.h"
 #include "game/gamestates/GameState.h"
 
 ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
 {
     ecs::entity_t keyButton = Instantiate(Vector2D(posX, posY));
-    keyButton->getComponent<Transform>()->setGlobalScale(1, 1);
+    keyButton->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
     auto sprite = keyButton->addComponent<SpriteRenderer>("leyenda_boton");
     keyButton->addComponent<BoxCollider>();
     keyButton->addComponent<Button>()->connectToButton([]
     {
     	GameStateMachine::instance()->getCurrentState()->setKey();
     });
-    keyButton->setLayer(4);
+    keyButton->setLayer(300);
     auto shine = keyButton->addComponent<ShineComponent>();
     shine->addEnt(sprite, "leyenda_boton_brilli");
 
@@ -29,14 +30,23 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
 
 ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int posY)
 {
-    ecs::entity_t endTurnButton = Instantiate(Vector2D(posX, posY - 14));  // 200, 265
-    endTurnButton->getComponent<Transform>()->setGlobalScale(1.5, 1.5);
-    //endTurnButton->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
-    endTurnButton->addComponent<SpriteRenderer>("EndTurnButton");
+    ecs::entity_t endTurnButton = Instantiate(Vector2D(posX - 100, posY - 50));  // 200, 265
+    endTurnButton->getComponent<Transform>()->setGlobalScale(0.3, 0.3);
     endTurnButton->addComponent<BoxCollider>();
-    endTurnButton->addComponent<EndTurnButton>(Turns::J1);
+    //endTurnButton->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
     endTurnButton->setLayer(4);
-    endTurnButton->addComponent<Clickable>("EndTurnButton", true);
+    endTurnButton->addComponent<SpriteRenderer>("estatua_j1");
+    endTurnButton->getComponent<SpriteRenderer>()->setOffset(-80, -70);
+    endTurnButton->getComponent<BoxCollider>()->setSize(Vector2D(220,300));
+    endTurnButton->addComponent<ImageWithFrames>(1, 12, 1, 60);
+    endTurnButton->addComponent<EndTurnButton>(Turns::J1);
+    endTurnButton->addComponent<Clickable>(SDL_Color {
+        Colors::MORADO_BERENJENA.r,
+        Colors::MORADO_BERENJENA.g,
+        Colors::MORADO_BERENJENA.b,
+        100
+        }
+    , Colors::ROJO_HOLLENHAUS);
     return endTurnButton;
 }
 
@@ -56,7 +66,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_ScoreCounter(int posX, int po
 {
     ecs::entity_t scoreVisual = Instantiate(Vector2D(posX, posY)); // 300, 350 | 300, 225
     scoreVisual->addComponent<TextComponent>("0", 
-        Fonts::GROTESK_48, color, 120,    // 102, 255, 255 | 255, 102, 255
+        Fonts::GROTESK_40, color, 200,    // 102, 255, 255 | 255, 102, 255
         Text::CenterCenter, 
         Text::Center);
     scoreVisual->setLayer(9);
@@ -81,12 +91,12 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_BackgroundBlackBox(int posX, 
 {
 
     ecs::entity_t blackBox = Instantiate(Vector2D(posX, posY)); // 600, 200
-    blackBox->addComponent<SpriteRenderer>("optfondo");
+    blackBox->addComponent<SpriteRenderer>("score_bg_v1");
 
     // Obtenemos la altura y anchura de "black_box" para definir el tama�o del sprite en pixeles
-    int textureW = blackBox->getComponent<SpriteRenderer>()->getTexture()->width();
-    int textureH = blackBox->getComponent<SpriteRenderer>()->getTexture()->height();
-    blackBox->getComponent<Transform>()->setGlobalScale(xPixelsSize / textureW, yPixelsSize / textureH);
+    //int textureW = blackBox->getComponent<SpriteRenderer>()->getTexture()->width();
+    //int textureH = blackBox->getComponent<SpriteRenderer>()->getTexture()->height();
+    blackBox->getComponent<Transform>()->setGlobalScale(1.f, 1.f);
     //blackBox->getComponent<Transform>()->getGlobalScale().set(xPixelsSize / textureW, yPixelsSize / textureH);
 
     blackBox->setLayer(1);

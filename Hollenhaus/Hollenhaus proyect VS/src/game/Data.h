@@ -17,6 +17,8 @@ MAX_CARDS_MAZE = 20, // Maximo de cartas en el mazo
 // Cantidad de cartas de la tienda. Cambiar en shopComponent tambien.
 CARDS_IN_SHOP = 4;
 
+class RandomNumberGenerator;
+
 class Data
 {
 private:
@@ -31,12 +33,12 @@ private:
 	// ---- MOVIMIENTO ----
 	// ultima pos de paul en la ciudad
 	Vector2D lastPaulPos;
-	bool lastPaulDir = false;
+	bool lastPaulDir = true;
 
 	// ---- FLUJO ----
 	int currentMoney = 0,
-		currentKeys = 0,
-		currentCase = 0,
+		currentKeys = 1,
+		currentCase = 1,
 		currentSouls = 0,
 		winner = 0,
 		lastState = 0;
@@ -51,6 +53,8 @@ private:
 
 	std::list<int> thisCaseClues; // Id de las cartas conseguidas durante el caso (deben ser aniadidas al drawer y aqui al ser conseguidass)
 
+	RandomNumberGenerator& rand_; // Para generar numeros aleatorios.
+
 	enum WINNER {
 		NONE,
 		TIE,
@@ -62,6 +66,12 @@ private:
 	TCPsocket rival;
 
 	bool isHost = false;
+
+
+	bool dbt_c = false;		// deckbuilding tutorial
+	bool ct_c = false;		// city tutorial
+	bool bt_c = false;		// battle tutorial
+	bool st_c = false;		// shop tutorial
 
 public:
 
@@ -127,6 +137,7 @@ public:
 	// ------ FLUJO ------
 	//----NPCs:
 	const std::list<int> GetDefeatedNPC(int id) { return defeatedNPCS; }
+	int getLastDefeatedNPC(); // Devuelve el ultimo NPC derrotado.
 	//----Dinero:
 	const int GetMoney() { return currentMoney; }
 	//----Leyenda:
@@ -144,6 +155,17 @@ public:
 	//----Devuelve ultimo estado antes de entrar a pausa
 	int getLastState() { return lastState; }
 
+	// ------ TUTORIAL ------
+	bool getTUTORIAL_DECKBUILDING_COMPLETE() { return dbt_c; }
+	bool getTUTORIAL_BATTLE_COMPLETE() { return bt_c; }
+	bool getTUTORIAL_CITY_COMPLETE() { return ct_c; }
+	bool getTUTORIAL_SHOP_COMPLETE() { return st_c; }
+
+	void setTUTORIAL_DECKBUILDING_COMPLETE(bool a_) {  dbt_c = a_; }
+	void setTUTORIAL_BATTLE_COMPLETE(bool a_) {  bt_c = a_; }
+	void setTUTORIAL_CITY_COMPLETE(bool a_) {  ct_c = a_; }
+	void setTUTORIAL_SHOP_COMPLETE(bool a_) {  st_c = a_; }
+	
 	// ---- CONFIGURACION ----
 	bool GetAutomaticNextTurn() { return automaticNextTurn; }
 
@@ -165,6 +187,8 @@ public:
 	void Write();
 	//------Lectura:
 	void Read();
+
+	bool SaveExists();
 
 	//------Vaciar:
 	//----Vaciado de todas las listas a la vez.
@@ -190,5 +214,6 @@ public:
 	void setIsHost(bool b);
 	bool getIsHost();
 
-
+	//------Reset:
+	void resetSave(); // Copia al save.txt un txt auxiliar (savereset.txt) donde estan los datos para una nueva partida.
 };

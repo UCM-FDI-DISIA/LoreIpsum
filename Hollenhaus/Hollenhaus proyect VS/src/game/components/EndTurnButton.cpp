@@ -22,6 +22,7 @@ void EndTurnButton::initComponent()
 {
 	tr_ = mngr_->getComponent<Transform>(ent_);
 	bc_ = mngr_->getComponent<BoxCollider>(ent_);
+	iwf_ = mngr_->getComponent<ImageWithFrames>(ent_);
 	matchManager_ = mngr_->getHandler(ecs::hdlr::MATCH_MANAGER)->getComponent<MatchManager>();
 
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { ClickButton(); });
@@ -65,7 +66,7 @@ void EndTurnButton::ClickButton()
 		if (bc_->isCursorOver() && matchManager_->getActualState() == Turns::J1) {
 			// Se pasa el turno al otro jugador
 			matchManager_->setActualState(Turns::IA);
-
+			iwf_->setSprite("estatua_j2", 1, 12, 1);
 			// TUTORIAL COSAS
 
 			int state = GameStateMachine::instance()->getCurrentStateEnum();

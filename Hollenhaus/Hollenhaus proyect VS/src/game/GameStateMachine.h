@@ -8,6 +8,7 @@
 #include <functional>
 #include "../utils/Singleton.h"
 #include "../utils/tweeny-3.2.0.h"
+#include "gamestates/GameState.h"
 
 class GameState;
 class Data;
@@ -42,13 +43,21 @@ namespace GameStates
 		OPTIONSMENU,
 		TRANSITIONTEXT,
 		CINEMATICINTRO,
+		CINEMATICOUTRO,
 		PAUSEMENU,
 		MAZEMENU,
 		CLUESMENU,
 		MULTIPLAYER_LOBBY,
 		MULTIPLAYER_PREGAME,
 		MULTIPLAYER_GAME,
-		MULTIPLAYER_END_GAME
+		MULTIPLAYER_END_GAME,
+		ENDGAME,
+		TUTORIAL_DECKBUILDING,
+		TUTORIAL_SHOP,
+		TUTORIAL_CITY,
+		TUTORIAL_OFFICE,
+		LOGOSTATE,
+		FIRST
 	};
 }
 
@@ -72,6 +81,8 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* currentState;
 
 	// Estados de juego
+	GameState* firstState;
+	GameState* logoSate;
 	GameState* mainMenuState;
 	GameState* cityState;
 	GameState* officeState;
@@ -81,6 +92,12 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* deckBuildingState;
 	GameState* tutorialState;
 	GameState* tutorialBoardState;
+	GameState* endGameState;
+	GameState* tutorialDeckbuildingState;
+	GameState* tutorialShopState;
+	GameState* tutorialOfficeState;
+	GameState* tutorialCityState;
+
 
 	// Estados de gente
 	GameState* paigroState;
@@ -94,11 +111,12 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* multiplayerModeState;
 	GameState* optionsMainMenuState;
 	GameState* cinematicIntroState;
+	GameState* cinematicOutroState;
 	GameState* transitionTextMenuState;
 	GameState* pauseMenuState;
 	GameState* checkMazeMenuState;
 	GameState* checkCluesMenuState;
-	 
+
 	// Estados auxiliares
 	GameState* movementState;
 
@@ -116,13 +134,18 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	bool toFadeOut;
 	int gameStateEnumValue;
 
+	bool dbt_c = false;
+	bool ct_c = false;
+	bool bt_c = false;
+	bool st_c = false;
+
 public:
 	ecs::Manager* getMngr()
 	{
 		return mngr_;
 	}
 
-	CaseManager* caseMngr() 
+	CaseManager* caseMngr()
 	{
 		return case_;
 	}
@@ -143,7 +166,7 @@ public:
 	void Update();
 	void Refresh();
 
-	void setState(int state, bool fadeIn = false, bool fadeOut = false)
+	void setState(int state, bool fadeIn = true, bool fadeOut = true)
 	{
 		GameState* newState = nullptr;
 
@@ -212,6 +235,9 @@ public:
 		case GameStates::CINEMATICINTRO:
 			newState = cinematicIntroState;
 			break;
+		case GameStates::CINEMATICOUTRO:
+			newState = cinematicOutroState;
+			break;
 		case GameStates::PAUSEMENU:
 			newState = pauseMenuState;
 			break;
@@ -220,6 +246,27 @@ public:
 			break;
 		case GameStates::CLUESMENU:
 			newState = checkCluesMenuState;
+			break;
+		case GameStates::ENDGAME:
+			newState = endGameState;
+			break;
+		case GameStates::TUTORIAL_DECKBUILDING:
+			newState = tutorialDeckbuildingState;
+			break;
+		case GameStates::TUTORIAL_SHOP:
+			newState = tutorialShopState;
+			break;
+		case GameStates::TUTORIAL_CITY:
+			newState = tutorialCityState;
+			break;
+		case GameStates::TUTORIAL_OFFICE:
+			newState = tutorialOfficeState;
+			break;
+		case GameStates::LOGOSTATE:
+			newState = logoSate;
+			break;
+		case GameStates::FIRST:
+			newState = firstState;
 			break;
 		default:
 			break;
@@ -240,7 +287,18 @@ public:
 
 	GameState* getCurrentState() { return currentState; }
 
-	int getCurrentStateEnum() { return gameStateEnumValue;  }
+	int getCurrentStateEnum() { return gameStateEnumValue; }
+
+
+	// TUTORIAL
+	bool TUTORIAL_DECKBUILDING_COMPLETE() { return dbt_c; }
+	void setTUTORIAL_DECKBUILDING_COMPLETE(bool a);
+	bool TUTORIAL_CITY_COMPLETE() { return ct_c; }
+	void setTUTORIAL_CITY_COMPLETE(bool a);
+	bool TUTORIAL_BOARD_COMPLETE() { return bt_c; }
+	void setTUTORIAL_BOARD_COMPLETE(bool a);
+	bool TUTORIAL_SHOP_COMPLETE() { return st_c; }
+	void setTUTORIAL_SHOP_COMPLETE(bool a);
 };
 
 // --------

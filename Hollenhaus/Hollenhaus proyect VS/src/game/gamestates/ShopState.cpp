@@ -11,6 +11,10 @@
 #include "../components/Button.h"
 #include "../components/DecisionComponent.h"
 #include "../../sdlutils/RandomNumberGenerator.h"
+#include "../components/managers/TutorialShopManager.h"
+#include "../TutorialManager.h"
+#include "../SoundManager.h"
+
 // Factorias:
 #include "../factories/Factory.h"
 #include "../factories/FakeCardFactory_v0.h"
@@ -19,6 +23,14 @@
 ShopState::ShopState() : rand_(sdlutils().rand())
 {
 	TuVieja("Loading ShopState");
+	isTutorial = false;
+
+}
+
+ShopState::ShopState(bool a) : rand_(sdlutils().rand())
+{
+
+	isTutorial = a;
 }
 
 void ShopState::update()
@@ -74,12 +86,11 @@ void ShopState::onEnter()
 	shopManager->addComponent<ShopComponent>();
 	shopManager->setLayer(1);
 
-
 	//-----Imagen de fondo:
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
-	fondo->addComponent<SpriteRenderer>("fondoTienda");
-	fondo->getComponent<Transform>()->setGlobalScale(0.475f, 0.475f);
+	fondo->addComponent<SpriteRenderer>("tienda");
+	fondo->getComponent<Transform>()->setGlobalScale(0.5f, 0.5f);
 	fondo->setLayer(0);
 
 	//-----MONEDAS:
@@ -90,49 +101,49 @@ void ShopState::onEnter()
 	ecs::entity_t carta1 = Instantiate();
 	carta1->addComponent<Transform>();
 	carta1->addComponent<BoxCollider>();
-	carta1->addComponent<SpriteRenderer>("card");
+	//carta1->addComponent<SpriteRenderer>("card");
 	carta1->addComponent<ShineComponent>();
 
-	Vector2D card1Pos(525, 80);
+	Vector2D card1Pos(490, 120);
 	carta1->getComponent<Transform>()->setGlobalPos(card1Pos);
 	carta1->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
-	carta1->setLayer(2);
+	//carta1->setLayer(2);
 
 	//----Carta2:
 	ecs::entity_t carta2 = Instantiate();
 	carta2->addComponent<Transform>();
 	carta2->addComponent<BoxCollider>();
-	carta2->addComponent<SpriteRenderer>("card");
-	carta2->addComponent<ShineComponent>();
+	//carta2->addComponent<SpriteRenderer>("card");
+	carta2->addComponent<ShineComponent>();	
 
-	Vector2D card2Pos(660, 80);
+	Vector2D card2Pos(600, 120);
 	carta2->getComponent<Transform>()->setGlobalPos(card2Pos);
 	carta2->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
-	carta2->setLayer(2);
+	//carta2->setLayer(2);
 
 	//----Carta3:
 	ecs::entity_t carta3 = Instantiate();
 	carta3->addComponent<Transform>();
 	carta3->addComponent<BoxCollider>();
-	carta3->addComponent<SpriteRenderer>("card");
+	//carta3->addComponent<SpriteRenderer>("card");
 	carta3->addComponent<ShineComponent>();
 
-	Vector2D card3Pos(525, 200);
+	Vector2D card3Pos(490, 230);
 	carta3->getComponent<Transform>()->setGlobalPos(card3Pos);
 	carta3->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
-	carta3->setLayer(2);
+	//carta3->setLayer(2);
 
 	//----Carta4:
 	ecs::entity_t carta4 = Instantiate();
 	carta4->addComponent<Transform>();
 	carta4->addComponent<BoxCollider>();
-	carta4->addComponent<SpriteRenderer>("card");
+	//carta4->addComponent<SpriteRenderer>("card");
 	carta4->addComponent<ShineComponent>();
 
-	Vector2D card4Pos(660, 200);
+	Vector2D card4Pos(600, 230);
 	carta4->getComponent<Transform>()->setGlobalPos(card4Pos);
 	carta4->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
-	carta4->setLayer(2);
+	//carta4->setLayer(2);
 
 	//------Boton para volver:
 	ecs::entity_t exitButton = Instantiate(Vector2D(20, 20));
@@ -145,10 +156,18 @@ void ShopState::onEnter()
 	exitButton->addComponent<Clickable>("boton_flecha", true);
 	exitButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
-	//------Sonido de la tienda:
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("shoptheme").play(-1);
-	sdl.soundEffects().at("shoptheme").setChannelVolume(10);
+	//objs.push_back(exitButton);
+	objs.push_back(carta1);
+	objs.push_back(carta2);
+	objs.push_back(carta3);
+	objs.push_back(carta4);
+
+	setTutorial();
+
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startMusic(Sounds::SHOP_M);
+
 }
 
 void ShopState::onExit()
@@ -159,8 +178,10 @@ void ShopState::onExit()
 	ih().clearFunction(ih().PAUSEKEY_UP, [this] { onPauseSH(); });
 
 	saveData();
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("shoptheme").pauseChannel();
+
+	auto music = SoundManager::instance();
+	music->stopMusic(Sounds::SHOP_M);
+
 	GameStateMachine::instance()->getMngr()->Free();
 
 	delete factory;
@@ -190,13 +211,13 @@ void ShopState::cardSelected(int prize)
 
 void ShopState::deSelected()
 {
-	if (mngr().getEntities(ecs::grp::COINS).capacity() == 0)
+	if (mngr().getEntities(ecs::grp::COINS).capacity() != 0)
 	{
-	for (int i = 0; i < 8; i++)
-	{
-		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda");
-	}
-	updateCoins();
+		for (int i = 0; i < mngr().getEntities(ecs::grp::COINS).size(); i++)
+		{
+			mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda_tienda");
+		}
+		updateCoins();
 	}
 }
 
@@ -204,7 +225,7 @@ void ShopState::shine(int nCoins)
 {
 	for (int i = 0; i < nCoins; i++)
 	{
-		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("monedaIlu");
+		mngr().getEntities(ecs::grp::COINS)[i]->getComponent<SpriteRenderer>()->setTexture("moneda_tienda_brilli");
 	}
 }
 #pragma endregion
@@ -230,8 +251,8 @@ ecs::entity_t ShopState::createCoin(int x, int y)
 	coin->addComponent<Transform>();
 	Vector2D coinPos(x, y);
 	coin->getComponent<Transform>()->setGlobalPos(coinPos);
-	coin->getComponent<Transform>()->setGlobalScale(0.25f, 0.25f);
-	coin->addComponent<SpriteRenderer>("moneda");
+	coin->getComponent<Transform>()->setGlobalScale(0.5f, 0.5f);
+	coin->addComponent<SpriteRenderer>("moneda_tienda");
 	coin->setLayer(4);
 
 	return coin;
@@ -252,6 +273,49 @@ void ShopState::updateCoins()
 			hideCoin(mngr().getEntities(ecs::grp::COINS)[i]);
 		}
 	}
+}
+
+void ShopState::setTutorial()
+{
+	if (isTutorial) {
+
+		// entidad tutorial para gestionar cositas
+		tutorial = Instantiate();
+
+		prepareTutorial();
+
+		tutorial->addComponent<TutorialManager>();
+		auto manager = tutorial->addComponent<TutorialShopManager>(base, tutorial);
+		GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
+
+
+		tutorial->getComponent<TutorialManager>()->startTutorial();
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::SHOP);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Tienda::SHOP_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Tienda::SHOP_INIT);
+
+		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
+
+		tutorial->getComponent<TutorialShopManager>()->setObjs(objs);
+
+	}
+}
+
+void ShopState::prepareTutorial()
+{
+	// base
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
+}
+
+void ShopState::startTutorial(bool a)
+{
+	isTutorial = a;
 }
 
 void ShopState::showCoin(ecs::entity_t coinToShow)

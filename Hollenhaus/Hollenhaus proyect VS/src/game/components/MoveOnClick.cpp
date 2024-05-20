@@ -175,8 +175,12 @@ void MoveOnClick::OnLeftClickDown()
 		onStart();
 
 		lastDir_ = dir_;
+
+#if _DEBUG
+		std::cout << "Pos inicial: " << initialPos_ << "\n";
+		std::cout << "Distancia: " << absDistance_ << "\n";
+#endif
 	}
-	else onStop();
 }
 
 void MoveOnClick::onStart()

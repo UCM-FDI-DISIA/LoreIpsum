@@ -4,20 +4,33 @@
 #include <SDL_net.h>
 
 const std::string SAVE_FILE = "./resources/saves/save.txt";
-
+const std::string RESET_FILE = "./resources/saves/savereset.txt";
+const int BASE_MAZE = 10;
+const int BASE_DRAWER = 4;
 
 //------Constructora y destructora:
-Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1})
+Data::Data() : currentMoney(1000), currentSouls(0), currentCase(0), shopCards(new int[CARDS_IN_SHOP] {-1, -1, -1, -1}), rand_(sdlutils().rand())
 {
 	//TCPsocket;
 	EmptyDrawer();
 	//Read();
 }
 Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_IN_GAME> dra, std::list<int>def)
-	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[CARDS_IN_SHOP])
+	:currentMoney(mon), currentSouls(sou), currentCase(cas), maze(maz), drawer(dra), defeatedNPCS(def), shopCards(new int[CARDS_IN_SHOP]), rand_(sdlutils().rand())
 {};
 Data::~Data() {
 	delete shopCards;
+}
+
+bool Data::SaveExists()
+{
+	std::fstream file;
+	file.open(SAVE_FILE, std::ios::in);
+
+	if (!file)
+		return false;
+
+	return true;
 };
 //------Setters:
 
@@ -66,7 +79,11 @@ void Data::SubtractCardFromMaze(int id) {
 }
 //----Cajon:
 void Data::AddCardToDrawer(int id) {
-	drawer[id] = id;
+#if _DEBUG
+	std::cout << "Added card with id: " << id << "\n";
+#endif
+	if (id != -1)
+		drawer[id] = id;
 }
 
 void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {
@@ -236,7 +253,11 @@ bool Data::shopCardsIsEmpty() {
 int Data::getShopCardById(int id) {
 	return shopCards[id];
 }
-
+//----Ultimo NPC derrotado.
+int Data::getLastDefeatedNPC()
+{
+	return defeatedNPCS.back();
+}
 //------Escribir en el archivo:
 void Data::Write() {
 	std::ofstream file;
@@ -253,6 +274,7 @@ void Data::Write() {
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
 	file << currentSouls << "\n";
+	file << lastState << "\n";
 
 	file << "Mazo_y_posiciones" << "\n";
 	//Guarda el mazo y posiciones en la pizarra
@@ -279,6 +301,16 @@ void Data::Write() {
 	for (int i = 0;i < CARDS_IN_SHOP; i++) {
 		file << shopCards[i] << "\n";
 	}
+	file << "Paul" << "\n";
+	file << lastPaulPos.getX() << "\n";
+	file << lastPaulPos.getY() << "\n";
+	file << lastPaulDir << "\n";
+	file << "Tutorial" << "\n";
+	file << dbt_c << "\n";
+	file << ct_c << "\n";
+	file << bt_c << "\n";
+	file << st_c << "\n";
+
 	file.close();
 }
 
@@ -299,7 +331,7 @@ void Data::Read() {
 
 	int number, iterations;
 
-	file >> currentMoney >> currentCase >> currentSouls;
+	file >> currentMoney >> currentCase >> currentSouls >> lastState;
 	std::string falsedades;
 	file >> falsedades;
 
@@ -358,6 +390,24 @@ void Data::Read() {
 		shopCards[i] = number;
 	}
 
+	file >> falsedades; // "Paul".
+	float posX, posY;
+	file >> posX >> posY >> lastPaulDir;
+	lastPaulPos.setX(posX);
+	lastPaulPos.setY(posY);
+
+	file >> falsedades; // Tutorial
+	bool db, city, battle, shop;
+	file >> db;
+	file >> city;
+	file >> battle;
+	file >> shop;
+
+	dbt_c = db;
+	ct_c = city;
+	bt_c = battle;
+	st_c = shop;
+
 	file.close();
 }
 
@@ -415,4 +465,102 @@ bool Data::getIsHost()
 {
 	return isHost;
 }
+#pragma endregion
+
+#pragma region Resets.
+
+void Data::resetSave()
+{
+	std::ofstream file;
+	std::ifstream file2;
+	file.open(SAVE_FILE);
+	file2.open(RESET_FILE);
+
+	if (!file.is_open())
+	{
+#ifdef _DEBUG
+		TuVieja("ERROR DE LECTURA: No se ha podido leer el archivo de guardado para reseteralo.");
+#endif
+		return;
+	}
+
+	int number, iterations;
+	std::string falsedad;
+
+
+	for (int i = 0; i < 4; i++) // Los 4 valores iniciales: dinero, caso, almas y ultimo estado.
+	{
+		file2 >> number;
+		file << number << "\n";
+	}
+
+
+	file2 >> falsedad; // "Mazo_y_posiciones".
+	file << falsedad << "\n";
+	file2 >> iterations; // Numero de cartas del mazo.
+	file << iterations << "\n";
+	for (int i = 0; i < iterations * 3; i++) // Multiplicado por 3 porque son id, posX y posY.
+	{
+		file2 >> number;
+		file << number << "\n";
+	}
+
+
+	file2 >> falsedad; // "Drawer".
+	file << falsedad << "\n";
+	file2 >> iterations; // Numero de cartas del drawer.
+	file << iterations << "\n";
+	for (int i = 0; i < iterations; i++)
+	{
+		file2 >> number;
+		file << number << "\n";
+	}
+
+
+	file2 >> iterations; // Numero de NPCs.
+	file << iterations << "\n";
+	for (int i = 0; i < iterations; i++)
+	{
+		file2 >> number;
+		file << number << "\n";
+	}
+
+
+	file2 >> iterations; // Numero de cartas de la tienda.
+	file << iterations << "\n";
+	for (int i = 0; i < iterations; i++)
+	{
+		file2 >> number;
+		file << number << "\n";
+	}
+
+
+	file2 >> falsedad; // "Paul".
+	file << falsedad << "\n";
+	file2 >> number; // PosX.
+	file << number << "\n";
+	file2 >> number; // PoxY.
+	file << number << "\n";
+	file2 >> number; // Dir.
+	file << number << "\n";
+
+	bool boolean;
+
+	file2 >> falsedad; // Tutorial
+	file << falsedad << "\n";
+	file2 >> boolean; // dbt_c
+	file << boolean << "\n";
+	file2 >> boolean; // ct_c
+	file << boolean << "\n";
+	file2 >> boolean; // bt_c
+	file << boolean << "\n";
+	file2 >> boolean; // st_c
+	file << boolean << "\n";
+
+
+
+	file.close();
+	file2.close();
+}
+
 #pragma endregion

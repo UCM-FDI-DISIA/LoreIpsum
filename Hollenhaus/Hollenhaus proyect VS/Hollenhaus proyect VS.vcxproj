@@ -45,7 +45,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pchs\pch_SDL.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="src\game\components\Animation.cpp" />
     <ClCompile Include="src\game\components\AutoDialogue.cpp" />
     <ClCompile Include="src\game\components\basics\BoxCollider.cpp" />
     <ClCompile Include="src\game\components\basics\SpriteRenderer.cpp" />
@@ -67,9 +66,17 @@
     <ClCompile Include="src\game\components\DropDetector.cpp" />
     <ClCompile Include="src\game\components\DropZone.cpp" />
     <ClCompile Include="src\game\components\EndTurnButton.cpp" />
+    <ClCompile Include="src\game\components\FadeComponent.cpp" />
     <ClCompile Include="src\game\components\GetIPv4.cpp" />
+    <ClCompile Include="src\game\components\Hover.cpp" />
     <ClCompile Include="src\game\components\ImageWithFrames.cpp" />
     <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialBaseManager.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialCityManager.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialDeckBuildingManager.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialGeneralManager.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialOfficeManager.cpp" />
+    <ClCompile Include="src\game\components\managers\TutorialShopManager.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetEndGame.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetLobby.cpp" />
     <ClCompile Include="src\game\components\multiplayer\NetPregame.cpp" />
@@ -123,10 +130,14 @@
     <ClCompile Include="src\game\gamestates\checkCluesMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\checkMazeMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\cinematicIntroState.cpp" />
+    <ClCompile Include="src\game\gamestates\cinematicOutroState.cpp" />
     <ClCompile Include="src\game\gamestates\CityState.cpp" />
     <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp" />
+    <ClCompile Include="src\game\gamestates\EndGameState.cpp" />
+    <ClCompile Include="src\game\gamestates\FirstState.cpp" />
     <ClCompile Include="src\game\gamestates\GameState.cpp" />
     <ClCompile Include="src\game\gamestates\JimboState.cpp" />
+    <ClCompile Include="src\game\gamestates\LogoState.cpp" />
     <ClCompile Include="src\game\gamestates\LuisState.cpp" />
     <ClCompile Include="src\game\gamestates\MainMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\MatchOverState.cpp" />
@@ -142,9 +153,9 @@
     <ClCompile Include="src\game\gamestates\pauseMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\SamuState.cpp" />
     <ClCompile Include="src\game\gamestates\ShopState.cpp" />
+    <ClCompile Include="src\game\gamestates\TransitionTextMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\TutorialBoardState.cpp" />
     <ClCompile Include="src\game\gamestates\storyModeState.cpp" />
-    <ClCompile Include="src\game\gamestates\transitionTextMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\tutorialState.cpp" />
     <ClCompile Include="src\game\Mouse.cpp" />
     <ClCompile Include="src\game\Data.cpp">
@@ -159,6 +170,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\game\main.cpp" />
+    <ClCompile Include="SRC\GAME\SOUNDMANAGER.CPP" />
     <ClCompile Include="src\game\TutorialManager.cpp" />
     <ClCompile Include="src\json\JSON.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
@@ -218,6 +230,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="src\game\CaseManager.h" />
     <ClInclude Include="src\game\components\Clickable.h" />
     <ClInclude Include="src\game\components\ClickableText.h" />
@@ -225,7 +238,6 @@
     <ClInclude Include="pchs\pch.h" />
     <ClInclude Include="pchs\pch_c++_basic.h" />
     <ClInclude Include="pchs\pch_SDL.h" />
-    <ClInclude Include="src\game\components\Animation.h" />
     <ClInclude Include="src\game\components\AutoDialogue.h" />
     <ClInclude Include="src\game\components\basics\BoxCollider.h" />
     <ClInclude Include="src\game\components\basics\SpriteRenderer.h" />
@@ -249,10 +261,19 @@
     <ClInclude Include="src\game\components\DragNoCombat.h" />
     <ClInclude Include="src\game\components\DropDetector.h" />
     <ClInclude Include="src\game\components\DropZone.h" />
+    <ClInclude Include="src\game\components\Dummy.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
+    <ClInclude Include="src\game\components\FadeComponent.h" />
     <ClInclude Include="src\game\components\GetIPv4.h" />
+    <ClInclude Include="src\game\components\Hover.h" />
     <ClInclude Include="src\game\components\ImageWithFrames.h" />
     <ClInclude Include="src\game\components\LobbyStatusIndicator.h" />
+    <ClInclude Include="src\game\components\managers\TutorialBaseManager.h" />
+    <ClInclude Include="src\game\components\managers\TutorialCityManager.h" />
+    <ClInclude Include="src\game\components\managers\TutorialDeckBuildingManager.h" />
+    <ClInclude Include="src\game\components\managers\TutorialGeneralManager.h" />
+    <ClInclude Include="src\game\components\managers\TutorialOfficeManager.h" />
+    <ClInclude Include="src\game\components\managers\TutorialShopManager.h" />
     <ClInclude Include="src\game\components\multiplayer\NetEndGame.h" />
     <ClInclude Include="src\game\components\multiplayer\NetLobby.h" />
     <ClInclude Include="src\game\components\multiplayer\NetPregame.h" />
@@ -297,18 +318,22 @@
     <ClInclude Include="src\game\gamestates\checkCluesMenuState.h" />
     <ClInclude Include="src\game\gamestates\checkMazeMenuState.h" />
     <ClInclude Include="src\game\gamestates\cinematicIntroState.h" />
+    <ClInclude Include="src\game\gamestates\cinematicOutroState.h" />
     <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
+    <ClInclude Include="src\game\gamestates\EndGameState.h" />
+    <ClInclude Include="src\game\gamestates\FirstState.h" />
+    <ClInclude Include="src\game\gamestates\LogoState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerEndGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h" />
+    <ClInclude Include="src\game\gamestates\TransitionTextMenuState.h" />
     <ClInclude Include="src\game\MultiplayerNamespaces.h" />
     <ClInclude Include="src\game\gamestates\TutorialBoardState.h" />
     <ClInclude Include="src\game\gamestates\multiplayerModeState.h" />
     <ClInclude Include="src\game\gamestates\optionsMainMenuState.h" />
     <ClInclude Include="src\game\gamestates\pauseMenuState.h" />
     <ClInclude Include="src\game\gamestates\storyModeState.h" />
-    <ClInclude Include="src\game\gamestates\transitionTextMenuState.h" />
     <ClInclude Include="src\game\gamestates\tutorialState.h" />
     <ClInclude Include="src\game\Namespaces.h" />
     <ClInclude Include="src\game\factories\BoardFactory.h" />
@@ -342,6 +367,7 @@
     <ClInclude Include="src\game\Game.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
     <ClInclude Include="src\game\GenID.h" />
+    <ClInclude Include="src\game\SoundManager.h" />
     <ClInclude Include="src\game\TutorialManager.h" />
     <ClInclude Include="src\json\JSON.h" />
     <ClInclude Include="src\json\JSONValue.h" />
@@ -369,6 +395,12 @@
     <None Include="resources\config\keytexts.json" />
     <None Include="resources\config\npcs.json" />
     <None Include="resources\config\resources.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hollenhaus proyect VS1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\images\LOGOS\favicon.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

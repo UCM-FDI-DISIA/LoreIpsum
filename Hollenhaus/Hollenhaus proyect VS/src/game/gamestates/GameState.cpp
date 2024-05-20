@@ -38,6 +38,10 @@ Data* GameState::data = nullptr;
 //    //ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK, [this] {PruebaInput(); });
 //}
 
+void GameState::newKey()
+{
+}
+
 //borra todas las entidades
 GameState::~GameState()
 {
@@ -80,6 +84,57 @@ void GameState::setLastPaulDir(bool dir)
 {
 	data->setPaulDir(dir);
 }
+
+void GameState::nextCase()
+{
+	data->AddCaseIndex();
+}
+
+void GameState::setDefeatedNPC(int id)
+{
+	data->AddDefeatedNPC(id);
+}
+
+bool GameState::TUTORIAL_DECKBUILDING_COMPLETE()
+{
+	return data->getTUTORIAL_DECKBUILDING_COMPLETE();
+}
+
+void GameState::setTUTORIAL_DECKBUILDING_COMPLETE(bool a)
+{
+	data->setTUTORIAL_DECKBUILDING_COMPLETE(a);
+}
+
+bool GameState::TUTORIAL_CITY_COMPLETE()
+{
+	return data->getTUTORIAL_CITY_COMPLETE();
+}
+
+void GameState::setTUTORIAL_CITY_COMPLETE(bool a)
+{
+	data->setTUTORIAL_CITY_COMPLETE(a);
+}
+
+bool GameState::TUTORIAL_BOARD_COMPLETE()
+{
+	return data->getTUTORIAL_BATTLE_COMPLETE();
+}
+
+void GameState::setTUTORIAL_BOARD_COMPLETE(bool a)
+{
+	data->setTUTORIAL_BATTLE_COMPLETE(a);
+}
+
+bool GameState::TUTORIAL_SHOP_COMPLETE()
+{
+	return data->getTUTORIAL_SHOP_COMPLETE();
+}
+
+void GameState::setTUTORIAL_SHOP_COMPLETE(bool a)
+{
+	data->setTUTORIAL_SHOP_COMPLETE(a);
+}
+
 void GameState::setSocketRival(TCPsocket _rival)
 {
 	data->setSocketRival(_rival);
@@ -120,6 +175,11 @@ void GameState::SetLastState(int ls)
 	data->setLastState(ls);
 }
 
+bool GameState::GetSaveExists()
+{
+	return data->SaveExists();
+}
+
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
 	return data->GetDrawer();
@@ -152,6 +212,11 @@ int GameState::GetLastState()
 	return data->getLastState();
 }
 
+int GameState::getLastDefeatedNPC()
+{
+	return data->getLastDefeatedNPC();
+}
+
 // para settear el mazo del data desde el estado
 void GameState::setMaze(std::list<int> mazeToSave, std::list<Vector2D> MazePosToSave)
 {
@@ -167,6 +232,15 @@ void GameState::setKey()
 {
 }
 
+void GameState::setJ2(std::string rival)
+{
+}
+
+bool GameState::isDefeated(int i)
+{
+	return data->IdIsInDefeatedNPC(i);
+}
+
 void GameState::saveData()
 {
 	data->Write();
@@ -177,10 +251,21 @@ void GameState::loadData()
 	data->Read();
 }
 
+void GameState::loadDataIfExists()
+{
+	if (GetSaveExists()) 
+		data->Read();
+}
+
+void GameState::newGameData()
+{
+	data->resetSave();
+}
+
 ecs::entity_t GameState::createCard(int id, Vector2D pos)
 {
 	// ---- CARDS ----
-	Factory *factory = new Factory();
+	Factory* factory = new Factory();
 	factory->SetFactories(static_cast<FakeCardFactory*>(new FakeCardFactory_v0()));
 
 	// Hace LA carta segun su id, en la pos que se pida
@@ -226,6 +311,7 @@ void GameState::addMoney(int money)
 
 void GameState::addKey()
 {
+	newKey();
 	data->AddKey();
 }
 
@@ -257,3 +343,5 @@ int GameState::getCurrentCase()
 {
 	return data->GetCurrentCase();
 }
+
+

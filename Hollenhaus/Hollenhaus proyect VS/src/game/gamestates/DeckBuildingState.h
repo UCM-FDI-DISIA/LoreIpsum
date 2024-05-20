@@ -15,6 +15,8 @@ class DeckBuildingState : public GameState
 public:
 
 	DeckBuildingState();		//Constructora
+	DeckBuildingState(bool t);		//Constructora
+
 	~DeckBuildingState() { }
 	void update() override;
 	void render() const override;
@@ -23,15 +25,20 @@ public:
 	void onEnter() override;
 	void onExit() override;
 
-	void onPauseDB();
-
 	void moveToPizarra(Card* card);
 	void moveToDrawer(Card* card);
 
 	ecs::entity_t createCard(int id, Vector2D pos) override;
 
+	// -------------- tutorial --------------------
+	void setTutorial();
+	void prepareTutorial();
+	void startTutorial(bool a);
+
 private:
 	ecs::entity_t rice;
+	ecs::entity_t botPatras;
+	ecs::entity_t botPalante;
 	PizarraManager* pizarra_;
 	DrawerManager* drawer_;
 	TextComponent* cantCards_;
@@ -40,6 +47,12 @@ private:
 	ecs::entity_t fbSaved;
 	tweeny::tween<int> tweenFade;
 	int fbTimer = 0;
-	bool paused;
+	bool isTutorial = false;
+
+	ecs::entity_t base;             // entidad para colocar los popups, se va moviendo segun donde los queramos
+	ecs::entity_t tutorial;
+
+	std::vector<ecs::entity_t> objs;
+
 	void resetFade();
 };

@@ -18,6 +18,7 @@
 #include "../components/managers/MatchManager.h"
 #include "../components/EndTurnButton.h"
 #include "../components/NPC.h"
+#include "../SoundManager.h"
 
 #include "../components/managers/IA_manager.h"
 
@@ -25,6 +26,7 @@
 #include "../GameStateMachine.h"
 #include "../components/managers/PlayerCardsManager.h"
 #include "game/components/Card.h"
+#include "game/components/ImageWithFrames.h"
 #include "game/components/KeyComponent.h"
 
 LuisState::LuisState() :
@@ -38,7 +40,6 @@ LuisState::LuisState() :
 
 LuisState::~LuisState()
 {
-	
 }
 
 
@@ -54,7 +55,8 @@ void LuisState::update()
 	if (moveKey_)
 	{
 		Vector2D newPos = keyTr_->getGlobalPos();
-		if(newPos.getX() >= 100) {
+		if (newPos.getX() >= 50)
+		{
 			newPos = newPos - Vector2D(10, 0);
 			keyTr_->setGlobalPos(newPos);
 		}
@@ -62,7 +64,7 @@ void LuisState::update()
 	else
 	{
 		Vector2D newPos = keyTr_->getGlobalPos();
-		if(newPos.getX() <= 800)
+		if (newPos.getX() <= 700)
 		{
 			newPos = newPos + Vector2D(10, 0);
 			keyTr_->setGlobalPos(newPos);
@@ -99,7 +101,9 @@ void LuisState::onEnter()
 	// Entidad match manager para preguntar por los turnos. La entidad es un Handler para tener acesso a ella facilmente
 	ecs::entity_t matchManager = Instantiate();
 	GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::MATCH_MANAGER, matchManager);
-	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(4, 4, Turns::J1, boardManagerComponent);
+	MatchManager* matchManagerComponent = matchManager->addComponent<MatchManager>(
+		4, 4, Turns::J1, boardManagerComponent, j2_);
+	matchManagerComponent->setBoardManager(boardManagerComponent);
 
 
 	// Drag Manager se encarga de gestionar el drag de todas las cartas
@@ -114,42 +118,55 @@ void LuisState::onEnter()
 		colliders_.push_back(c->getEntity()->getComponent<BoxCollider>());
 	colliders_.push_back(deckPlayer1->getComponent<BoxCollider>());
 
-	ecs::entity_t deckPlayer2 = factory->createDeckJ2();
+	ecs::entity_t deckPlayer2 = factory->createDeckJ2(j2_);
 
 	// Leyenda
-	for (int i = 0; i < 6; ++i)
-	{
-		addKey();
-	}
 	key_ = Instantiate(Vector2D(800, 50));
 	key_->setLayer(200);
-	key_->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
+	key_->getComponent<Transform>()->setGlobalScale(1, 1);
 	key_->addComponent<SpriteRenderer>("key");
 	key_->addComponent<KeyComponent>(getKeys());
-	keyTr_ = key_->getComponent<Transform>();
 
-	// UI 
-	ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 280);
-	//ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
 
-	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(600, 200, 200, 180);
+
+
+
+	/// UI ///
+	factory->createVisual_BackgroundFullImage();
+	/// PUNTOS DE ACCION
+	// deprecated:
+	// ecs::entity_t visual_ActionPointsJ1 = factory->createVisual_ActionPointsCounter(95, 280);
+	// deprecated:
+	// ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
+
+	auto j1Puntos = createPointsJ1();
+	auto j2Puntos = createPointsJ2();
+
+	/// BOTON END TURN
 	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 250);
 	colliders_.push_back(visual_EndTurnButton->getComponent<BoxCollider>());
+
+	/// LEYENDA
 	ecs::entity_t visual_KeyButton = factory->createVisual_KeyButton(720, 400);
-	visual_KeyButton->getComponent<Transform>()->addParent(keyTr_);
-	keyTr_->increaseLayer(key_->getLayer());
+	keyTr_ = visual_KeyButton->getComponent<Transform>();
+	key_->getComponent<Transform>()->addParent(keyTr_);
+	key_->getComponent<Transform>()->increaseLayer(key_->getLayer());
 
-	ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
+	/// TURNO Y SCORE
+	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(560, 170, 200, 180);
+	//ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
+	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(680, 233, Colors::MORADO_BERENJENA);
+	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(680, 313, Colors::MIDNIGHT_LIGHT);
 
-	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(700, 350, {102, 255, 255, 255});
-	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(700, 225, { 255, 102, 255, 255 });
 
-	ecs::entity_t visual_BackgroundBoard = factory->createVisual_BackgroundFullImage();
+
 
 
 	// Enlazado de la UI con los scripts que la controlan
-	matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
-	matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
+	//matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
+	//matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
+	matchManagerComponent->setActionPointsJ1(j1Puntos);
+	matchManagerComponent->setEndTurnButton(visual_EndTurnButton);
 	//matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
 	matchManagerComponent->updateVisuals();
 
@@ -163,18 +180,17 @@ void LuisState::onEnter()
 
 
 
-	// incicia la cancion en bucle
-	//sdl.musics().at("tryTheme").play();
-	sdlutils().soundEffects().at("battletheme").play(-1);
-	sdlutils().soundEffects().at("battletheme").setChannelVolume(30);
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startDynamicMusic(Sounds::MUSIC::BATTLE_P_M, Sounds::MUSIC::BATTLE_T_M);
 
 
-	#pragma region Seccion IA
+#pragma region Seccion IA
 
 	//crear la entidad y añadirle el componente
 	ecs::entity_t IA_controler = Instantiate();
 	IA_manager* ia_managerComponent = IA_controler->addComponent<IA_manager>();
-	
+
 	//le decimos al endTurn que existe la IA
 	visual_EndTurnButton->getComponent<EndTurnButton>()->setIA(true);
 
@@ -194,22 +210,21 @@ void LuisState::onEnter()
 	matchManagerComponent->setIA_Manager(ia_managerComponent);
 
 
-	#pragma endregion
-
+#pragma endregion
 }
 
 void LuisState::onExit()
 {
 	TuVieja("\nExit LuisState");
 
-	sdlutils().soundEffects().at("battletheme").pauseChannel();
+	auto music = SoundManager::instance();
+	music->stopDynamicMusic(Sounds::MUSIC::BATTLE_P_M, Sounds::MUSIC::BATTLE_T_M);
 
+	saveData();
 
 	delete factory;
 
 	GameStateMachine::instance()->getMngr()->Free();
-
-
 }
 
 void LuisState::setKey()
@@ -225,4 +240,76 @@ void LuisState::setKey()
 		for (const auto b : colliders_)
 			b->setPosOffset(Vector2D(0, 0));
 	}
+}
+
+void LuisState::setJ2(std::string rival)
+{
+	j2_ = rival;
+}
+
+void LuisState::newKey()
+{
+	key_->getComponent<KeyComponent>()->newKey();
+}
+
+std::array<ecs::entity_t, 4> LuisState::createPointsJ1()
+{
+	std::array<ecs::entity_t, 4> puntosJ1 =
+	{
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D())
+	};
+
+	for (auto punto : puntosJ1)
+	{
+		punto->getComponent<Transform>()->setGlobalScale(0.75f, 0.75f);
+		punto->addComponent<SpriteRenderer>("llamitas");
+		punto->addComponent<ImageWithFrames>(1, 4, -1, 500);
+		//->setCurrentCol(sdlutils().rand().nextInt(0,4);
+	}
+
+	puntosJ1[0]->getComponent<Transform>()->setGlobalPos(-48, 388);
+	puntosJ1[1]->getComponent<Transform>()->setGlobalPos(5, 320);
+	puntosJ1[2]->getComponent<Transform>()->setGlobalPos(52, 385);
+	puntosJ1[3]->getComponent<Transform>()->setGlobalPos(13, 450);
+
+	puntosJ1[0]->getComponent<ImageWithFrames>()->setCurrentCol(0);
+	puntosJ1[1]->getComponent<ImageWithFrames>()->setCurrentCol(1);
+	puntosJ1[2]->getComponent<ImageWithFrames>()->setCurrentCol(2);
+	puntosJ1[3]->getComponent<ImageWithFrames>()->setCurrentCol(3);
+
+	return puntosJ1;
+}
+
+std::array<ecs::entity_t, 4> LuisState::createPointsJ2()
+{
+	std::array<ecs::entity_t, 4> puntosJ2 =
+	{
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D()),
+		Instantiate(Vector2D())
+	};
+
+	for (auto punto : puntosJ2)
+	{
+		punto->getComponent<Transform>()->setGlobalScale(0.75f, 0.75f);
+		punto->addComponent<SpriteRenderer>("llamitas");
+		punto->addComponent<ImageWithFrames>(1, 4, -1, 500);
+		//->setCurrentCol(sdlutils().rand().nextInt(0,4);
+	}
+
+	puntosJ2[0]->getComponent<Transform>()->setGlobalPos(-15, -48);
+	puntosJ2[1]->getComponent<Transform>()->setGlobalPos(70, -48);
+	puntosJ2[2]->getComponent<Transform>()->setGlobalPos(-23, 25);
+	puntosJ2[3]->getComponent<Transform>()->setGlobalPos(50, 25);
+
+	puntosJ2[0]->getComponent<ImageWithFrames>()->setCurrentCol(3);
+	puntosJ2[1]->getComponent<ImageWithFrames>()->setCurrentCol(1);
+	puntosJ2[2]->getComponent<ImageWithFrames>()->setCurrentCol(0);
+	puntosJ2[3]->getComponent<ImageWithFrames>()->setCurrentCol(2);
+
+	return puntosJ2;
 }

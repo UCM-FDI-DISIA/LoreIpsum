@@ -79,13 +79,13 @@ ecs::entity_t Factory::createDeck()
 	return cardFactory->createDeck();
 }
 
-ecs::entity_t Factory::createDeckJ2()
+ecs::entity_t Factory::createDeckJ2(std::string j2)
 {
 	if (cardFactory == nullptr) {
 		throw "no existe cardFactory";
 	}
 
-	return cardFactory->createDeckJ2();
+	return cardFactory->createDeckJ2(j2);
 }
 
 ecs::entity_t Factory::createDeckJ2Multiplayer()
@@ -170,5 +170,5 @@ void Factory::createDecision(Vector2D pos, Vector2D size, ecs::entity_t parent, 
 	}
 
 	decisionFactory->setTextValues(fontID, color, wrapLenght, boxPivotPoint, textAlignment);
-	decisionFactory->createPopUp(pos, size, parent, layer, scene, greenDecision, redDecision); // PAIGRO POPUP
+	decisionFactory->createPopUp(pos, size, parent, layer, scene, greenDecision, redDecision);
 }

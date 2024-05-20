@@ -20,7 +20,12 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 
 TextComponent::~TextComponent()
 {
-	delete text_;
+	//if (text_ != nullptr) {
+	//	delete text_;
+	//	text_ = nullptr;
+	//}
+		
+
 }
 
 void TextComponent::initComponent()
@@ -34,16 +39,29 @@ void TextComponent::initComponent()
 
 void TextComponent::render() const
 {
+	//PROVISIONAL (vengo del futuro, no te lo vas a creer...)
+	Vector2D aux = GetRenderPosAcordingPivotPoint();
 
-	//PROVISIONAL
-	Vector2D aux  = GetRenderPosAcordingPivotPoint();
+	float sx = scale.getX();
+	float sy = scale.getY();
 
-	text_->render(aux.getX() + offset.getX(), aux.getY() + offset.getY(), alpha);
+	if (relativeToTransform)
+	{
+		sx = tr_->getGlobalScale().getX();
+		sy = tr_->getGlobalScale().getY();
+	}
+	
+	text_->render(
+		aux.getX() + offset.getX(), 
+		aux.getY() + offset.getY(),
+		sx,
+		sy,
+		alpha);
 
 #ifdef _DEBUG
-	RenderDebugRect( 0, 0, 255, 255 );
+	RenderDebugRect(0, 0, 255, 255);
 #endif // DEBUG
-	
+
 }
 
 void TextComponent::setTxt(std::string txt)
@@ -79,17 +97,21 @@ void TextComponent::SetTextAlignment(Text::TextAlignment textAlignment)
 
 void TextComponent::createTexture() {
 
-	if(text_!= nullptr)
-		delete text_;
-	
+	//if (text_ != nullptr) {
+	//	delete text_;
+	//	text_ = nullptr;
+	//}
+
+
 	std::string texto = txt_;
 	if (txt_.empty())
 		texto = " ";
 
-	// Se utiliza una nueva constructora específica para crear una textura a partir de un texto embebido en una caja
+	// Se utiliza una nueva constructora especï¿½fica para crear una textura a partir de un texto embebido en una caja
 	text_ = new Texture(sdl_.renderer(), texto, *font_, color_, wrapLenght_, textAlignment_);
 }
-
+	
+	
 Vector2D TextComponent::GetRenderPosAcordingPivotPoint() const
 {
 	float x = 0;
@@ -143,12 +165,13 @@ Vector2D TextComponent::GetRenderPosAcordingPivotPoint() const
 
 void TextComponent::RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const
 {
-	SDL_Rect textRect = {
-		(int)renderPos_.getX(),
-		(int)renderPos_.getY(),
+	Vector2D aux = GetRenderPosAcordingPivotPoint();
+	SDL_Rect textRect = build_sdlrect(
+		aux.getX() + offset.getX(), 
+		aux.getY() + offset.getY(),
 		text_->width(),
 		text_->height()
-	};
+	);
 
 	//render debug
 	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 255, 255);

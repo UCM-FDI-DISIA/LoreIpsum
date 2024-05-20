@@ -7,6 +7,7 @@
 // managers
 #include "../components/managers/Manager.h"
 #include "../components/DropZone.h"
+#include "../SoundManager.h"
 #include "../components/DragNoCombat.h"
 
 // factorias
@@ -20,6 +21,8 @@
 #include "../components/basics/TextComponent.h"
 #include "../components/Button.h"
 #include "../components/NPC.h"
+#include "../TutorialManager.h"
+#include "../components/managers/TutorialDeckBuildingManager.h"
 #include "game/components/Clickable.h"
 #include "game/components/ShineComponent.h"
 
@@ -29,6 +32,12 @@
 DeckBuildingState::DeckBuildingState()
 {
 	TuVieja("Loading DeckBuildingState");
+	isTutorial = false;
+}
+
+DeckBuildingState::DeckBuildingState(bool t)
+{
+	isTutorial = true;
 }
 
 // ---- basicos ----
@@ -43,6 +52,21 @@ void DeckBuildingState::update()
 	/// Feedback
 	tweenFade.step(1);
 	fbSaved->getComponent<TextComponent>()->setAlpha(tweenFade.peek());
+
+	//Esto probablemente sea bastante feo pero bueno es rápido
+	if (drawer_->getlimitDelante()) {
+		botPalante->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 255);	//Cambiamos el color
+	}
+	else {
+		botPalante->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 0);
+	}
+
+	if (drawer_->getlimitAtras()) {
+		botPatras->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 255);
+	}
+	else {
+		botPatras->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 0);//Color normal
+	}
 }
 
 void DeckBuildingState::render() const
@@ -58,11 +82,6 @@ void DeckBuildingState::refresh()
 // ---- ENTER ESTADO ----
 void DeckBuildingState::onEnter()
 {
-	std::cout << "\nENTER DECKBUILDING.\n";
-
-	// llamada al input
-	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPauseDB(); });
-	paused = false;
 
 	// carga el data
 	loadData();
@@ -155,7 +174,7 @@ void DeckBuildingState::onEnter()
 	int botX = 720;
 	int botY = 470;
 	int botSep = 60;
-	ecs::entity_t botPalante = Instantiate();
+	botPalante = Instantiate();
 	botPalante->addComponent<Transform>();
 	botPalante->addComponent<SpriteRenderer>("UpDrawer");
 	botPalante->addComponent<BoxCollider>();
@@ -169,7 +188,7 @@ void DeckBuildingState::onEnter()
 	botPalante->setLayer(2);
 
 	// ---- Pasar cajon atras:
-	ecs::entity_t botPatras = Instantiate();
+	botPatras = Instantiate();
 	botPatras->addComponent<Transform>();
 	botPatras->addComponent<SpriteRenderer>("DownDrawer");
 	botPatras->addComponent<BoxCollider>();
@@ -206,6 +225,12 @@ void DeckBuildingState::onEnter()
 
 	// lo guarda
 	pizarra_ = pizarra->getComponent<PizarraManager>();
+
+	objs.push_back(Confirm);
+	objs.push_back(botPalante);
+	objs.push_back(botPatras);
+	objs.push_back(exit);
+
 #pragma endregion
 
 	// ---- CAJON ----
@@ -249,60 +274,32 @@ void DeckBuildingState::onEnter()
 		.during(30)
 		.via(tweeny::easing::linear);
 
+	setTutorial();
 
-	// ---- SONIDO ----
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("deckbuilder_theme").play(-1);
-	sdl.soundEffects().at("deckbuilder_theme").setChannelVolume(10);
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startMusic(Sounds::OFFICE_M);
+	music->startSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_OFFICE_SE, -1);
+
 }
 
 // ---- EXIT ESTADO ----
 void DeckBuildingState::onExit()
 {
-	// se desuscribe al evento
-	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPauseDB(); });
-	paused = false;
-
 	// al salir del estado guardas la info
 	saveData();
 
-	// ---- SONIDO ----
-	auto& sdl = *SDLUtils::instance();
-	sdl.soundEffects().at("deckbuilder_theme").pauseChannel();
+
+	auto music = SoundManager::instance();
+	music->stopMusic(Sounds::OFFICE_M);
+	music->stopSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_OFFICE_SE);
+
+
 
 	GameStateMachine::instance()->getMngr()->Free();
 
-	std::cout << "\nEXIT DECKBUILDING.\n";
 
 	delete factory;
-}
-
-void DeckBuildingState::onPauseDB()
-{
-	if (!paused)
-	{
-		paused = true;
-
-		rice = Instantiate();
-		rice->addComponent<Transform>();
-		rice->addComponent<SpriteRenderer>("rice");
-		rice->addComponent<BoxCollider>();
-		Vector2D posRice(300, 300);
-		rice->getComponent<Transform>()->setGlobalPos(posRice);
-		rice->getComponent<Transform>()->setGlobalScale(0.5f, 0.4f);
-		rice->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-		rice->setLayer(4);
-	}
-	else if (paused && rice != nullptr)
-	{
-		paused = false;
-		rice->setAlive(false);
-	}
-
-	//SetLastState(9);
-	//pizarra_->saveMaze();
-	//drawer_->saveDrawer();
-	//GameStateMachine::instance()->setState(17);
 }
 
 #pragma region DECKBUILDING
@@ -338,6 +335,49 @@ ecs::entity_t DeckBuildingState::createCard(int id, Vector2D pos)
 	                                            card.effects());
 	return ent;
 }
+void DeckBuildingState::setTutorial()
+{
+	if (isTutorial) {
+
+		// entidad tutorial para gestionar cositas
+		tutorial = Instantiate();
+
+		prepareTutorial();
+
+		tutorial->addComponent<TutorialManager>();
+		auto manager = tutorial->addComponent<TutorialDeckBuilderManager>(base, tutorial);
+		GameStateMachine::instance()->getMngr()->setHandler(ecs::hdlr::TUTORIAL_MANAGER, tutorial);
+
+
+		tutorial->getComponent<TutorialManager>()->startTutorial();
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorial(Tutorials::DECKBUILDER);
+		tutorial->getComponent<TutorialManager>()->setCurrentTutorialState(Tutorials::Deckbuilder::DECKBUILDER_NONE);
+		tutorial->getComponent<TutorialManager>()->setNextTutorialState(Tutorials::Deckbuilder::DECKBUILDING_INIT);
+
+
+		int a = tutorial->getComponent<TutorialManager>()->getTutorialState();
+
+		tutorial->getComponent<TutorialDeckBuilderManager>()->setObjs(objs);
+
+	}
+}
+void DeckBuildingState::prepareTutorial()
+{
+	// base
+	base = Instantiate();
+	base->addComponent<Transform>();
+	//base->getComponent<Transform>()->addParent(nullptr);
+	//base->getComponent<Transform>()->getRelativeScale().set(0.25, 0.25);
+	Vector2D pos{ 200, 200 };
+	base->getComponent<Transform>()->setGlobalPos(pos);
+	base->setLayer(2);
+
+}
+void DeckBuildingState::startTutorial(bool a)
+{
+	isTutorial = a;
+}
+#pragma endregion
 
 void DeckBuildingState::resetFade()
 {

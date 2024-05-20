@@ -8,19 +8,19 @@ namespace Colors
 	/// colores
 	constexpr SDL_Color ROJO_HOLLENHAUS = {148, 47, 55, 255};
 	constexpr SDL_Color AMARILLO_PIS = {191, 180, 138, 255};
-	constexpr SDL_Color AMARILLO_ACCION = {251, 187, 118, 255 };
-		// colores de cartas del jugador
-	constexpr SDL_Color ROJO_PERJUICIO = { 232, 79, 69, 255};
-	constexpr SDL_Color BAHIA_BENEFICIO = { 44, 67, 212, 255};
+	constexpr SDL_Color AMARILLO_ACCION = {251, 187, 118, 255};
+	// colores de cartas del jugador
+	constexpr SDL_Color ROJO_PERJUICIO = {232, 79, 69, 255};
+	constexpr SDL_Color BAHIA_BENEFICIO = {44, 67, 212, 255};
 	//constexpr SDL_Color BAHIA_BENEFICIO = { 37, 56, 177, 255};
 
-		// colores de cartas del enemigo
-	constexpr SDL_Color VERDE_BENEFICIO = { 79, 218, 88, 255};
-	constexpr SDL_Color NARANJA_PERJUICIO = { 251, 142, 40, 255};
+	// colores de cartas del enemigo
+	constexpr SDL_Color VERDE_BENEFICIO = {79, 218, 88, 255};
+	constexpr SDL_Color NARANJA_PERJUICIO = {251, 142, 40, 255};
 
 	// offtopic
-	constexpr SDL_Color VERDE_BANKIA = {199,208, 19, 255};
-	constexpr SDL_Color TEAL_MIKU = { 40, 200, 200, 255};
+	constexpr SDL_Color VERDE_BANKIA = {199, 208, 19, 255};
+	constexpr SDL_Color TEAL_MIKU = {40, 200, 200, 255};
 
 	/// blancos
 	constexpr SDL_Color PEARL_HOLLENHAUS = {226, 223, 210, 255};
@@ -29,23 +29,30 @@ namespace Colors
 	constexpr SDL_Color MIDNIGHT_HOLLENHAUS = {16, 23, 32, 255}; // texto color normal
 	constexpr SDL_Color MIDNIGHT_CLICK = {49, 50, 78, 255}; // click texto color
 	constexpr SDL_Color MIDNIGHT_HOVER = {73, 21, 31, 255}; // hover texto color
+
+	/// scores
+	constexpr SDL_Color MIDNIGHT_LIGHT = {42, 71, 109, 255};
+	constexpr SDL_Color MORADO_BERENJENA = {74, 43, 124, 255};
 }
 
 namespace Fonts
 {
-	const std::string GROTESK_8 = "space_grotesk_bold_8";
-	const std::string GROTESK_16 = "space_grotesk_bold_16";
-	const std::string GROTESK_18 = "space_grotesk_bold_18";
-	const std::string GROTESK_20 = "space_grotesk_bold_20";
-	const std::string GROTESK_24 = "space_grotesk_bold_24";
-	const std::string GROTESK_32 = "space_grotesk_bold_32";
-	const std::string GROTESK_40 = "space_grotesk_bold_40";
-	const std::string GROTESK_48 = "space_grotesk_bold_48";
-	const std::string BIT_8 = "8bit_size_8";
-	const std::string BIT_16 = "8bit_size_16";
-	const std::string BIT_24 = "8bit_size_24";
-	const std::string BIT_32 = "8bit_size_32";
-	const std::string BIT_40 = "8bit_size_40";
+	const std::string GROTESK_8 = "space_grotesk_bold_8",
+	                  GROTESK_16 = "space_grotesk_bold_16",
+	                  GROTESK_18 = "space_grotesk_bold_18",
+	                  GROTESK_20 = "space_grotesk_bold_20",
+	                  GROTESK_24 = "space_grotesk_bold_24",
+	                  GROTESK_26 = "space_grotesk_bold_26",
+	                  GROTESK_28 = "space_grotesk_bold_28",
+	                  GROTESK_30 = "space_grotesk_bold_30",
+	                  GROTESK_32 = "space_grotesk_bold_32",
+	                  GROTESK_40 = "space_grotesk_bold_40",
+	                  GROTESK_48 = "space_grotesk_bold_48",
+	                  BIT_8 = "8bit_size_8",
+	                  BIT_16 = "8bit_size_16",
+	                  BIT_24 = "8bit_size_24",
+	                  BIT_32 = "8bit_size_32",
+	                  BIT_40 = "8bit_size_40";
 }
 
 namespace Cards
@@ -151,7 +158,9 @@ namespace DialogueEvents
 		// Evento para lanzar una animaci�n
 		ConfirmMatchPopUp,
 		// Evento para mostrar una ventana donde el jugador acepta o rechaza una partida inminente
-		ActionEnded
+		ActionEnded,
+		// Evento para confirmar que se haya completado una accion
+		MissionEnded
 	};
 }
 
@@ -309,9 +318,9 @@ namespace JsonData
 		NPCData();
 
 		NPCData(int id, std::string name, std::string s, std::string shine, float sx, float sy, int px, float py,
-		        float t, int scen, int lay) :
+		        float t, int scen, int lay, std::vector<CardData> d, int c) :
 			NPCID_(id), name(name), sprite(s), shineSprite(shine), scaleX(sx), scaleY(sy), posX(px), posY(py), type(t),
-			scene(scen), layer(lay)
+			scene(scen), layer(lay), deck(d), card(c)
 		{
 		};
 
@@ -324,6 +333,8 @@ namespace JsonData
 		int getType() { return type; }
 		int getScene() { return scene; }
 		int getLayer() { return layer; }
+		std::vector<CardData> npcDeck() { return deck; }
+		int cardToDrop() { return card; }
 
 	private:
 		int NPCID_;
@@ -335,6 +346,8 @@ namespace JsonData
 		int type;
 		int scene;
 		int layer;
+		std::vector<CardData> deck;
+		int card;
 	};
 
 	struct KeyData
@@ -360,6 +373,10 @@ namespace Tutorials
 	{
 		BOARD,
 		DECKBUILDER,
+		SHOP,
+		OFFICE,
+		CITY,
+		GENERAL
 	};
 
 	enum Board
@@ -388,6 +405,37 @@ namespace Tutorials
 
 	enum Deckbuilder
 	{
-		DECKBUILDER_NONE
+		DECKBUILDER_NONE,
+		DECKBUILDING_INIT,
+		DRAWER,
+		PIZARRA,
+		CARDS
+	};
+
+	enum Tienda
+	{
+		SHOP_NONE,
+		SHOP_INIT,
+		SHOW_CARDS,
+		SHOW_MONEY,
+		PURCHASE
+	};
+
+	enum Ciudad
+	{
+		CITY_NONE,
+		CITY_INIT,
+		CITY_MOVE,
+		CITY_PERSON,
+		CITY_BUILDING,
+		CITY_SHOPPING
+	};
+
+	enum Oficina
+	{
+		OFFICE_NONE,
+		OFFICE_INIT,
+		OFFICE_PHONE,
+		OFFICE_PIZARRA
 	};
 }

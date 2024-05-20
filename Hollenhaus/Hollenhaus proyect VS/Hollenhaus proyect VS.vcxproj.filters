@@ -67,6 +67,60 @@
     <Filter Include="Archivos de origen\Componentes\Multiplayer">
       <UniqueIdentifier>{209522f0-3fa3-410d-aa25-4ebc0a4f7acd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Managers\Tutorial">
+      <UniqueIdentifier>{d3eaa149-90b3-4be2-b3fb-5a58466da3e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Managers\Tutorial">
+      <UniqueIdentifier>{78d26e85-1431-4060-8a0d-4063ca704c58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\GameStates\Multiplayer">
+      <UniqueIdentifier>{211c8f73-23a1-4476-8d20-71dd1afd562c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\GameStates\Gente">
+      <UniqueIdentifier>{e1fa5a2d-febd-4e44-b72d-0528df5cda7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\GameStates\Multiplayer">
+      <UniqueIdentifier>{f3b83a84-8ae6-4bee-a53b-7d2c51b5a3e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\GameStates\Gente">
+      <UniqueIdentifier>{cf8ef935-6894-4697-9f29-f22aaea5953f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Factories\Card">
+      <UniqueIdentifier>{e085be10-ed4a-41b7-8283-85f75e8be13c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Factories\Card">
+      <UniqueIdentifier>{938f5cab-1fd6-493e-9798-9b1b1926522d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Componentes\Tutorial">
+      <UniqueIdentifier>{f0785204-a6f1-4d55-91aa-374f12967f8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Componentes\Feedback">
+      <UniqueIdentifier>{fd4dda7d-a7d6-412d-8363-aaf4d3d90e25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Componentes\Dialogues">
+      <UniqueIdentifier>{ca74fde3-92a2-48a2-943f-683d5ea4d235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Componentes\Card">
+      <UniqueIdentifier>{9f09cd9c-696e-4d29-85ea-be0c2c97bc11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Componentes\Drag">
+      <UniqueIdentifier>{4e631ddd-c481-4a91-af48-f26c9034086c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Componentes\Tutorial">
+      <UniqueIdentifier>{d085b18e-779d-4fc1-a084-546858eafe74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Componentes\Dialogues">
+      <UniqueIdentifier>{d7e819de-e07f-4467-b449-cb3dcf5a2400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Componentes\Card">
+      <UniqueIdentifier>{ac5090f6-a783-40e6-abe8-f57dd59d02ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Componentes\Drag">
+      <UniqueIdentifier>{f49494c8-c14d-4803-ae52-88ab69fef643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Componentes\Feedback">
+      <UniqueIdentifier>{c717e074-55e6-4329-b70b-9c6aaced2a4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\Game.cpp">
@@ -99,9 +153,6 @@
     <ClCompile Include="src\game\GenID.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\GenID.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\Data.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -120,38 +171,14 @@
     <ClCompile Include="src\game\gamestates\MatchOverState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\gamestates\NievesState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\gamestates\OfficeState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\gamestates\PaigroState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\gamestates\SamuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\game\gamestates\ShopState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\gamestates\AndresState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\gamestates\CityState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\gamestates\JimboState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\gamestates\LuisState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\factories\CardFactory_v0.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\factories\CardFactory_v1.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
     <ClCompile Include="src\game\factories\MatchStateUIFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
@@ -163,9 +190,6 @@
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
     <ClCompile Include="src\game\factories\BoardFactory_v0.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\factories\CardFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
     <ClCompile Include="pchs\pch_SDL.cpp">
@@ -187,30 +211,6 @@
       <Filter>Archivos de origen\Componentes\Basicos</Filter>
     </ClCompile>
     <ClCompile Include="src\game\components\NPC.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\Card.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\Cell.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\ColliderRender.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\DeckComponent.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\Drag.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\DropDetector.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\EndTurnButton.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\HandComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\components\MoveOnClick.cpp">
@@ -240,17 +240,8 @@
     <ClCompile Include="src\game\components\managers\BoardManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\DialogueReader.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\NextText.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\factories\NPCFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\AutoDialogue.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\Dialogue.cpp">
       <Filter>Archivos de origen</Filter>
@@ -258,20 +249,11 @@
     <ClCompile Include="src\game\factories\NPCFactory_V0.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\TypeWriter.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\factories\DialogueFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\ShineComponent.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\components\ShopComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp">
-      <Filter>Archivos de origen\Factories</Filter>
     </ClCompile>
     <ClCompile Include="src\game\components\managers\PizarraManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
@@ -279,29 +261,11 @@
     <ClCompile Include="src\game\gamestates\DeckBuildingState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\managers\DrawerManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\DragNoCombat.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\DropZone.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\components\Button.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\DialogueDestroyer.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\EffectCollection.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\factories\DialogueFactory_V0.cpp">
       <Filter>Archivos de origen\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\DialogueEventCollection.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\factories\DecisionFactory.cpp">
       <Filter>Archivos de origen\Factories</Filter>
@@ -312,47 +276,11 @@
     <ClCompile Include="src\game\components\managers\IA_manager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\ClickDecision.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\Animation.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\gamestates\MultiplayerLobbyState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\gamestates\MultiplayerPreGameState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\gamestates\MultiplayerGameState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\gamestates\MultiplayerEndGameState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\components\multiplayer\NetGame.cpp">
       <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
     </ClCompile>
     <ClCompile Include="src\game\components\multiplayer\NetLobby.cpp">
       <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\CopyTextComponentOnClipboardButton.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\InputForTextWritter.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\PasteOnTextComponentButton.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\SendInvitationButton.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\SendIPFromTextComponent.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\TextWritter.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="src\game\components\multiplayer\NetEndGame.cpp">
       <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
@@ -360,31 +288,16 @@
     <ClCompile Include="src\game\components\multiplayer\NetPregame.cpp">
       <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\GetIPv4.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\gamestates\TutorialBoardState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\TutorialManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\gamestates\tutorialState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\gamestates\transitionTextMenuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\game\gamestates\storyModeState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\game\gamestates\optionsMainMenuState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\gamestates\multiplayerModeState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\game\gamestates\cinematicIntroState.cpp">
@@ -399,12 +312,6 @@
     <ClCompile Include="src\game\gamestates\pauseMenuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\DialogueBoxDestroyer.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\components\managers\TutorialBoardManager.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\components\managers\AnimatorManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
@@ -414,14 +321,202 @@
     <ClCompile Include="src\game\components\KeyComponent.cpp">
       <Filter>Archivos de origen\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\components\DecisionComponent.cpp">
-      <Filter>Archivos de origen\Componentes</Filter>
+    <ClCompile Include="src\game\components\ImageWithFrames.cpp">
+      <Filter>Archivos de origen\Componentes\Basicos</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\Fade.cpp" />
-    <ClCompile Include="src\game\CaseManager.cpp" />
-    <ClCompile Include="src\game\components\Clickable.cpp" />
-    <ClCompile Include="src\game\components\ClickableText.cpp" />
-    <ClCompile Include="src\game\components\ImageWithFrames.cpp" />
+    <ClCompile Include="src\game\Fade.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\CaseManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialShopManager.cpp">
+      <Filter>Archivos de origen\Managers\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialBaseManager.cpp">
+      <Filter>Archivos de origen\Managers\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialCityManager.cpp">
+      <Filter>Archivos de origen\Managers\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialDeckBuildingManager.cpp">
+      <Filter>Archivos de origen\Managers\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialGeneralManager.cpp">
+      <Filter>Archivos de origen\Managers\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialOfficeManager.cpp">
+      <Filter>Archivos de origen\Managers\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\MultiplayerPreGameState.cpp">
+      <Filter>Archivos de origen\GameStates\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\MultiplayerEndGameState.cpp">
+      <Filter>Archivos de origen\GameStates\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\MultiplayerGameState.cpp">
+      <Filter>Archivos de origen\GameStates\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\MultiplayerLobbyState.cpp">
+      <Filter>Archivos de origen\GameStates\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\multiplayerModeState.cpp">
+      <Filter>Archivos de origen\GameStates\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\AndresState.cpp">
+      <Filter>Archivos de origen\GameStates\Gente</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\LuisState.cpp">
+      <Filter>Archivos de origen\GameStates\Gente</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\NievesState.cpp">
+      <Filter>Archivos de origen\GameStates\Gente</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\PaigroState.cpp">
+      <Filter>Archivos de origen\GameStates\Gente</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\SamuState.cpp">
+      <Filter>Archivos de origen\GameStates\Gente</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\JimboState.cpp">
+      <Filter>Archivos de origen\GameStates\Gente</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\CardFactory_v1.cpp">
+      <Filter>Archivos de origen\Factories\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\CardFactory.cpp">
+      <Filter>Archivos de origen\Factories\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\CardFactory_v0.cpp">
+      <Filter>Archivos de origen\Factories\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\FakeCardFactory_v0.cpp">
+      <Filter>Archivos de origen\Factories\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DialogueReader.cpp">
+      <Filter>Archivos de origen\Componentes\Dialogues</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DialogueBoxDestroyer.cpp">
+      <Filter>Archivos de origen\Componentes\Dialogues</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DialogueDestroyer.cpp">
+      <Filter>Archivos de origen\Componentes\Dialogues</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DialogueEventCollection.cpp">
+      <Filter>Archivos de origen\Componentes\Dialogues</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\ClickableText.cpp">
+      <Filter>Archivos de origen\Componentes\Feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Clickable.cpp">
+      <Filter>Archivos de origen\Componentes\Feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\AutoDialogue.cpp">
+      <Filter>Archivos de origen\Componentes\Dialogues</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DecisionComponent.cpp">
+      <Filter>Archivos de origen\Componentes\Dialogues</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\GetIPv4.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\ColliderRender.cpp">
+      <Filter>Archivos de origen\Componentes\Basicos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\NextText.cpp">
+      <Filter>Archivos de origen\Componentes\Dialogues</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\InputForTextWritter.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\LobbyStatusIndicator.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\CopyTextComponentOnClipboardButton.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\TypeWriter.cpp">
+      <Filter>Archivos de origen\Componentes\Dialogues</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\TutorialManager.cpp">
+      <Filter>Archivos de origen\Componentes\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\TutorialBoardManager.cpp">
+      <Filter>Archivos de origen\Componentes\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\TextWritter.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Drag.cpp">
+      <Filter>Archivos de origen\Componentes\Drag</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DragNoCombat.cpp">
+      <Filter>Archivos de origen\Componentes\Drag</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DropDetector.cpp">
+      <Filter>Archivos de origen\Componentes\Drag</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DropZone.cpp">
+      <Filter>Archivos de origen\Componentes\Drag</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Cell.cpp">
+      <Filter>Archivos de origen\Componentes\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Card.cpp">
+      <Filter>Archivos de origen\Componentes\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\DeckComponent.cpp">
+      <Filter>Archivos de origen\Componentes\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\managers\DrawerManager.cpp">
+      <Filter>Archivos de origen\Componentes\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\HandComponent.cpp">
+      <Filter>Archivos de origen\Componentes\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\PasteOnTextComponentButton.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\SendIPFromTextComponent.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\ShineComponent.cpp">
+      <Filter>Archivos de origen\Componentes\Feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\ClickDecision.cpp">
+      <Filter>Archivos de origen\Componentes\Dialogues</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\EndTurnButton.cpp">
+      <Filter>Archivos de origen\Componentes\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\EffectCollection.cpp">
+      <Filter>Archivos de origen\Componentes\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\SendInvitationButton.cpp">
+      <Filter>Archivos de origen\Componentes\Multiplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\GenID.cpp">
+      <Filter>Archivos de origen\Auxiliares</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\TransitionTextMenuState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\EndGameState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\FadeComponent.cpp">
+      <Filter>Archivos de origen\Componentes\Feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\Hover.cpp">
+      <Filter>Archivos de origen\Componentes\Feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="SRC\GAME\SOUNDMANAGER.CPP" />
+    <ClCompile Include="src\game\gamestates\cinematicOutroState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\LogoState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -493,52 +588,25 @@
     <ClInclude Include="src\game\GameStateMachine.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\gamestates\LuisState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\gamestates\MainMenuState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\game\gamestates\MatchOverState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\gamestates\NievesState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\gamestates\OfficeState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\gamestates\PaigroState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\gamestates\SamuState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\game\gamestates\ShopState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\gamestates\AndresState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\gamestates\CityState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\gamestates\JimboState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\game\factories\BoardFactory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
     <ClInclude Include="src\game\factories\BoardFactory_v0.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\factories\CardFactory.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\factories\CardFactory_v0.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\factories\CardFactory_v1.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
     <ClInclude Include="src\game\factories\MatchStateUIFactory.h">
@@ -562,28 +630,7 @@
     <ClInclude Include="src\game\components\NPC.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\Card.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\Cell.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\ColliderRender.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\DeckComponent.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\Drag.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\DropDetector.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\components\EndTurnButton.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\HandComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\MoveOnClick.h">
@@ -640,15 +687,6 @@
     <ClInclude Include="src\game\Namespaces.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\DialogueReader.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\NextText.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\AutoDialogue.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\factories\NPCFactory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
     </ClInclude>
@@ -657,9 +695,6 @@
     </ClInclude>
     <ClInclude Include="src\game\Dialogue.h">
       <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\TypeWriter.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\factories\DialogueFactory.h">
       <Filter>Archivos de encabezado\Factories</Filter>
@@ -670,37 +705,13 @@
     <ClInclude Include="src\game\components\ShopComponent.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\components\managers\PizarraManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
     <ClInclude Include="src\game\gamestates\DeckBuildingState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\managers\DrawerManager.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\factories\FakeCardFactory.h">
-      <Filter>Archivos de encabezado\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\DragNoCombat.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\DropZone.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\components\Button.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\DialogueDestroyer.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\EffectCollection.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\DialogueEventCollection.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\factories\DecisionFactory.h">
@@ -712,47 +723,11 @@
     <ClInclude Include="src\game\components\managers\IA_manager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\ClickDecision.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\Animation.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\gamestates\MultiplayerGameState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\gamestates\MultiplayerEndGameState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\components\multiplayer\NetGame.h">
       <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\multiplayer\NetLobby.h">
       <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\CopyTextComponentOnClipboardButton.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\InputForTextWritter.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\PasteOnTextComponentButton.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\SendInvitationButton.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\SendIPFromTextComponent.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\TextWritter.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\MultiplayerNamespaces.h">
       <Filter>Archivos de encabezado</Filter>
@@ -763,17 +738,8 @@
     <ClInclude Include="src\game\components\multiplayer\NetPregame.h">
       <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\GetIPv4.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\LobbyStatusIndicator.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\gamestates\TutorialBoardState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\TutorialManager.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\gamestates\checkCluesMenuState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
@@ -782,9 +748,6 @@
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\game\gamestates\cinematicIntroState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\gamestates\multiplayerModeState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\game\gamestates\optionsMainMenuState.h">
@@ -796,17 +759,8 @@
     <ClInclude Include="src\game\gamestates\storyModeState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\gamestates\transitionTextMenuState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\gamestates\tutorialState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\DialogueBoxDestroyer.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\components\managers\TutorialBoardManager.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\managers\AnimatorManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
@@ -814,18 +768,206 @@
     <ClInclude Include="pchs\pch.h">
       <Filter>Archivos de encabezado\Auxiliares</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\components\ShineComponent.h" />
+    <ClInclude Include="src\game\Fade.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\CaseManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\ImageWithFrames.h">
+      <Filter>Archivos de encabezado\Componentes\Basicos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialShopManager.h">
+      <Filter>Archivos de encabezado\Managers\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialCityManager.h">
+      <Filter>Archivos de encabezado\Managers\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialGeneralManager.h">
+      <Filter>Archivos de encabezado\Managers\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialOfficeManager.h">
+      <Filter>Archivos de encabezado\Managers\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h">
+      <Filter>Archivos de encabezado\GameStates\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\MultiplayerEndGameState.h">
+      <Filter>Archivos de encabezado\GameStates\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\MultiplayerGameState.h">
+      <Filter>Archivos de encabezado\GameStates\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h">
+      <Filter>Archivos de encabezado\GameStates\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\multiplayerModeState.h">
+      <Filter>Archivos de encabezado\GameStates\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\AndresState.h">
+      <Filter>Archivos de encabezado\GameStates\Gente</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\NievesState.h">
+      <Filter>Archivos de encabezado\GameStates\Gente</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\PaigroState.h">
+      <Filter>Archivos de encabezado\GameStates\Gente</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\SamuState.h">
+      <Filter>Archivos de encabezado\GameStates\Gente</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\LuisState.h">
+      <Filter>Archivos de encabezado\GameStates\Gente</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\JimboState.h">
+      <Filter>Archivos de encabezado\GameStates\Gente</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\FakeCardFactory.h">
+      <Filter>Archivos de encabezado\Factories\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\CardFactory.h">
+      <Filter>Archivos de encabezado\Factories\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\CardFactory_v0.h">
+      <Filter>Archivos de encabezado\Factories\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\CardFactory_v1.h">
+      <Filter>Archivos de encabezado\Factories\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\TutorialManager.h">
+      <Filter>Archivos de encabezado\Componentes\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialBaseManager.h">
+      <Filter>Archivos de encabezado\Componentes\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialBoardManager.h">
+      <Filter>Archivos de encabezado\Componentes\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\TutorialDeckBuildingManager.h">
+      <Filter>Archivos de encabezado\Componentes\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\ClickableText.h">
+      <Filter>Archivos de encabezado\Componentes\Feedback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Clickable.h">
+      <Filter>Archivos de encabezado\Componentes\Feedback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\SendInvitationButton.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\LobbyStatusIndicator.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\SendIPFromTextComponent.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\PasteOnTextComponentButton.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DialogueReader.h">
+      <Filter>Archivos de encabezado\Componentes\Dialogues</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DialogueBoxDestroyer.h">
+      <Filter>Archivos de encabezado\Componentes\Dialogues</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DialogueDestroyer.h">
+      <Filter>Archivos de encabezado\Componentes\Dialogues</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DialogueEventCollection.h">
+      <Filter>Archivos de encabezado\Componentes\Dialogues</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\GetIPv4.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\ShineComponent.h">
+      <Filter>Archivos de encabezado\Componentes\Feedback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\TypeWriter.h">
+      <Filter>Archivos de encabezado\Componentes\Dialogues</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\CopyTextComponentOnClipboardButton.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\ColliderRender.h">
+      <Filter>Archivos de encabezado\Componentes\Basicos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\AutoDialogue.h">
+      <Filter>Archivos de encabezado\Componentes\Dialogues</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\NextText.h">
+      <Filter>Archivos de encabezado\Componentes\Dialogues</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Drag.h">
+      <Filter>Archivos de encabezado\Componentes\Drag</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DragNoCombat.h">
+      <Filter>Archivos de encabezado\Componentes\Drag</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DropDetector.h">
+      <Filter>Archivos de encabezado\Componentes\Drag</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DropZone.h">
+      <Filter>Archivos de encabezado\Componentes\Drag</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\InputForTextWritter.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\TextWritter.h">
+      <Filter>Archivos de encabezado\Componentes\Multiplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\ClickDecision.h">
+      <Filter>Archivos de encabezado\Componentes\Dialogues</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Card.h">
+      <Filter>Archivos de encabezado\Componentes\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DeckComponent.h">
+      <Filter>Archivos de encabezado\Componentes\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\EffectCollection.h">
+      <Filter>Archivos de encabezado\Componentes\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\HandComponent.h">
+      <Filter>Archivos de encabezado\Componentes\Card</Filter>
+    </ClInclude>
     <ClInclude Include="src\game\components\KeyComponent.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
+      <Filter>Archivos de encabezado\Componentes\Card</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\DecisionComponent.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
+      <Filter>Archivos de encabezado\Componentes\Dialogues</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\Fade.h" />
-    <ClInclude Include="src\game\CaseManager.h" />
-    <ClInclude Include="src\game\components\Clickable.h" />
-    <ClInclude Include="src\game\components\ClickableText.h" />
-    <ClInclude Include="src\game\components\ImageWithFrames.h" />
+    <ClInclude Include="src\game\components\Cell.h">
+      <Filter>Archivos de encabezado\Componentes\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\managers\DrawerManager.h">
+      <Filter>Archivos de encabezado\Componentes\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\TransitionTextMenuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\EndGameState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Hover.h">
+      <Filter>Archivos de encabezado\Componentes\Feedback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\FadeComponent.h">
+      <Filter>Archivos de encabezado\Componentes\Feedback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\SoundManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\cinematicOutroState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\LogoState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Dummy.h" />
+    <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
@@ -846,5 +988,11 @@
     <None Include="resources\config\keytexts.json">
       <Filter>Resources</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hollenhaus proyect VS1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\images\LOGOS\favicon.ico" />
   </ItemGroup>
 </Project>

@@ -55,9 +55,9 @@ public:
     // Setters para las referencias de los elementos visuales
     void setScoreVisualJ1(ecs::entity_t visual) { scoreVisualJ1 = visual; }
     void setScoreVisualJ2(ecs::entity_t visual) { scoreVisualJ2 = visual; }
-
     // Método para actualizar el aspecto de las referencias visuales del MatchManager
     void updateVisuals();
+    void resetVisuals();
 
 
     //IA

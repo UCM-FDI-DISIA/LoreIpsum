@@ -93,7 +93,7 @@ public:
 	}
 
 	// clear the renderer with a given SDL_Color
-	inline void clearRenderer(SDL_Color bg = build_sdlcolor(0xAAAAAFF)) {
+	inline void clearRenderer(SDL_Color bg = build_sdlcolor(0x101720)) {
 		SDL_SetRenderDrawColor(renderer_, COLOREXP(bg));
 		SDL_RenderClear(renderer_);
 	}
@@ -121,6 +121,27 @@ public:
 		} else {
 			SDL_SetWindowFullscreen(window_, SDL_WINDOW_FULLSCREEN);
 		}
+	}
+
+	inline void setFullscreen()
+	{
+		auto flags = SDL_GetWindowFlags(window_);
+		if (!(flags & SDL_WINDOW_FULLSCREEN))
+			SDL_SetWindowFullscreen(window_, SDL_WINDOW_FULLSCREEN);
+	}
+
+	inline void setWindowed()
+	{
+		//auto flags = SDL_GetWindowFlags(window_);
+		//if (flags & SDL_WINDOW_FULLSCREEN)
+		SDL_SetWindowFullscreen(window_, 0);
+	}
+
+	inline void setMaximized()
+	{
+		auto flags = SDL_GetWindowFlags(window_);
+		if (!(flags & SDL_WINDOW_MAXIMIZED))
+			SDL_SetWindowFullscreen(window_, SDL_WINDOW_MAXIMIZED);
 	}
 
 // show the cursor when mouse is over the window
@@ -267,6 +288,7 @@ private:
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer
+
 };
 
 // This macro defines a compact way for using the singleton SDLUtils, instead of

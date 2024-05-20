@@ -14,7 +14,7 @@ class MatchManager : public ComponentUpdate
 {
 public:
 
-    MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm = nullptr);
+    MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart, BoardManager* bm = nullptr, std::string j2 = " ");
 
     ~MatchManager();
 
@@ -40,6 +40,9 @@ public:
     void setActualTurnVisual(ecs::entity_t visual) { actualTurnVisual = visual; }
     void setActionPointsVisualJ1(ecs::entity_t visual) { actionPointsVisualJ1 = visual; }
     void setActionPointsVisualJ2(ecs::entity_t visual) { actionPointsVisualJ2 = visual; }
+    void setActionPointsJ1(const std::array<ecs::entity_t, 4>& visual) { actionPointsJ1 = visual; }
+    void setActionPointsJ2(const std::array<ecs::entity_t, 4>& visual) { actionPointsJ2 = visual; }
+    void setEndTurnButton(ecs::entity_t visual) { endTurnButton = visual; }
 
     // Setter de la referencia al board
     void setBoardManager(BoardManager* b) { board_ = b; }
@@ -63,6 +66,11 @@ public:
 
     void SetHandComponent(HandComponent* hand) { playerJ1Hand = hand; }
 
+    void checkIfAddKey(Card* c);
+
+    // MUSICA DINAMICA
+    void changeMusicTurn(Turns::State i);
+
 private:
 
     Turns::State actualState;
@@ -78,17 +86,39 @@ private:
     int defaultActionPointsJ2;
     int actualActionPointsJ1;
     int actualActionPointsJ2;
+    void turnPointsOff();
+    void turnPointsOn();
+    void startPointsOn();
+    void startPointsOff();
+    tweeny::tween<int> fadeTween;
+    int lastPointsJ1 = 4;
+    int lastSpentPoints = 0;
+
+
+    bool isBoss;
+    std::string j2_;
 
     // Referencias a los elementos del HUD
     ecs::entity_t actualTurnVisual;
-	ecs::entity_t actionPointsVisualJ1;
-    ecs::entity_t actionPointsVisualJ2;
+	ecs::entity_t actionPointsVisualJ1; // en texto
+    ecs::entity_t actionPointsVisualJ2; //en texto
+    ecs::entity_t endTurnButton; //en texto
+
+
+    std::array<ecs::entity_t, 4> actionPointsJ1; // en imagenes
+    std::array<ecs::entity_t, 4> actionPointsJ2; // en imagenes
+    std::array<bool, 4> fadeInIndexes = { false, false, false, false };
+    std::array<bool, 4> fadeOutIndexes = { false, false, false, false };
+    void resetFadeIndexes();
+    bool fadeIn = false;
 
     IA_manager* ia_manager;
 
     NetGame* netGame = nullptr;
 
     void resetActualActionPoints();
+
+    void dropCard();
 
     // Método para pasarle el ganador al GameState y guardarlo en data.
     void setWinnerOnData();

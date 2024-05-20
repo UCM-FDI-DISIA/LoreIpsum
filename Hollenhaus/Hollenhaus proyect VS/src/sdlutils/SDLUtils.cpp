@@ -84,7 +84,6 @@ void SDLUtils::initWindow() {
 
 	// hide cursor by default
 	//hideCursor();
-
 }
 
 void SDLUtils::closeWindow() {
@@ -546,8 +545,17 @@ void SDLUtils::loadNPCs(JSONObject rootNPCSs, std::string filenameNPCs)
 					int type = npcObj["type"]->AsNumber(); // type
 					int scene = npcObj["scene"]->AsNumber(); // scene
 					int layer = npcObj["layer"]->AsNumber(); // layer
+					std::vector<JsonData::CardData> cardIds; // mazo
+					if (npcObj["deck"]->IsArray()) {
+						cardIds.reserve(npcObj["deck"]->AsArray().size());
+						for(auto& c : npcObj["deck"]->AsArray())
+						{
+							cardIds.emplace_back(cardAccessWrapper_[std::to_string((int)c->AsNumber())]);
+						}
+					}
+					int card = npcObj["card"]->AsNumber();
 
-					JsonData::NPCData info(std::stoi(id), name, sprite, shine, sX, sY, pX, pY, type, scene, layer);
+					JsonData::NPCData info(std::stoi(id), name, sprite, shine, sX, sY, pX, pY, type, scene, layer, cardIds, card);
 					JsonData::NPCData rinfo = static_cast<JsonData::NPCData>(info);
 
 #ifdef _DEBUG

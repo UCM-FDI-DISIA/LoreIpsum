@@ -38,7 +38,7 @@
 	PADDLE, \
 	TUTORIAL_MANAGER, \
 	DECISION_MANAGER, \
-    DRAG_MANAGER			// PAIGRO AQUI
+    DRAG_MANAGER			
 
 // Systems list - must have at least one element
 //

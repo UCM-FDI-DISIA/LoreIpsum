@@ -67,20 +67,25 @@ public:
 
 	// GETTERS
 	std::string getText() { return txt_; }
-	SDL_Color getColor() { return color_; }
+	Texture* getTexture() const { return text_; }
+	SDL_Color getColor() const { return color_; }
 	void setOffset(int x, int y) { offset = Vector2D(x, y); }
 	Vector2D getOffset() const { return offset; }
 	void setAlpha(int v) { alpha = v; }
 
+	void setRelativeToTransform(bool value) { relativeToTransform = true; } // si la escala depende de la del transform del padre
+	Vector2D getScale() const { return scale;}
+	void setScale(const Vector2D& s) { scale = s; }
+
 private:
 
-	Transform* tr_;
+	Transform* tr_ = nullptr;
 	SDLUtils& sdl_ = *SDLUtils::instance();
 
-	Texture* text_;
+	Texture* text_ = nullptr;
 
 	std::string txt_;
-	Font* font_;
+	Font* font_ = nullptr;
 	SDL_Color color_;
 	Uint32 wrapLenght_;
 	Text::BoxPivotPoint boxPivotPoint_;
@@ -92,6 +97,8 @@ private:
 	Vector2D offset = { 0, 0 };
 
 	int alpha = 255;
+	bool relativeToTransform = false;
+	Vector2D scale { 1, 1 };
 
 	void createTexture();
 	void RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const;

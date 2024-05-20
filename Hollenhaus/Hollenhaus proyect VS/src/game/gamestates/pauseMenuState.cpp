@@ -11,6 +11,7 @@
 #include "game/components/Clickable.h"
 #include "game/components/ClickableText.h"
 #include "../components/basics/TextComponent.h"
+#include "../components/Button.h"
 
 PauseMenuState::PauseMenuState()
 {
@@ -39,7 +40,6 @@ void PauseMenuState::refresh()
 
 void PauseMenuState::onEnter()
 {
-	std::cout << "\nENTER PAUSE.\n";
 
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onDespause(); });
@@ -50,7 +50,7 @@ void PauseMenuState::onEnter()
 	fondo->getComponent<Transform>()->setGlobalScale(100, 100);
 	fondo->setLayer(0);
 
-	//// ---- Salir:
+	// ---- Salir:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
 	exit->addComponent<SpriteRenderer>("boton_flecha");
@@ -60,7 +60,7 @@ void PauseMenuState::onEnter()
 	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	exit->addComponent<NPC>(GetLastState()); // Lleva a la oficina (2).
 	exit->setLayer(5);
-		exit->addComponent<Clickable>("boton_flecha", true);
+	exit->addComponent<Clickable>("boton_flecha", true);
 
 	auto font = "space_grotesk_bold_40";
 
@@ -88,7 +88,8 @@ void PauseMenuState::onEnter()
 	guardar->addComponent<BoxCollider>();
 	guardar->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	guardar->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
-	guardar->addComponent<NPC>(GameStates::OPTIONSMENU, 0);
+	guardar->addComponent<Button>();
+	guardar->getComponent<Button>()->connectToButton([this] { saveData(); });
 	guardar->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 
 	// main menu
@@ -119,15 +120,12 @@ void PauseMenuState::onExit()
 
 	GameStateMachine::instance()->getMngr()->Free();
 
-	std::cout << "\nEXIT PAUSE.\n";
 
 	sdlutils().virtualTimer().resume();
 }
 
 void PauseMenuState::onDespause()
 {
-	std::cout << "holaaaaa" << "\n";
-
 	GameStateMachine::instance()->setState(GetLastState());
 }
 

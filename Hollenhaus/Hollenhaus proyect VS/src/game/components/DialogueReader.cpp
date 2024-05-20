@@ -29,13 +29,15 @@ void DialogueReader::initComponent() {
 	assert(dialogueDestroyer_ != nullptr);
 
 	//convo_->Node(2);
-
+	if (convo_ == nullptr) return;
 	typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
 	exeEvents(convo_->Node(actualNode_).NodeEventsStart());
 
 }
 void DialogueReader::NextNode()
 {
+	if (ent_ == nullptr) return;
+	if (ent_->getComponent<NextText>() == nullptr) return;
 	if (!ent_->getComponent<NextText>()->isDead()) {
 
 		//std::cout << convo_->Node(actualNode_).NodeID() << std::endl;
@@ -52,6 +54,14 @@ void DialogueReader::NextNode()
 		}
 		typeWriter_->typeWrite(convo_->Node(actualNode_).Text());
 		exeEvents(convo_->Node(actualNode_).NodeEventsStart());
+	}
+}
+
+void DialogueReader::destroyDialogue()
+{
+	if (ent_->hasComponent<NextText>()) {
+		ent_->getComponent<NextText>()->setDead(true);
+		dialogueDestroyer_->destroyDialogue();
 	}
 }
 
