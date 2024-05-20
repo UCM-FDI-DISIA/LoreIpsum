@@ -13,7 +13,8 @@ void Clickable::onClickDown()
 	if (boxCol_->isCursorOver())
 	{
 		isClicked = true;
-		spriteRend_->setTexture(clickedFrame);
+		if (imageMode)
+			spriteRend_->setTexture(clickedFrame);
 	}
 }
 
@@ -22,7 +23,8 @@ void Clickable::onClickUp()
 	if (isClicked)
 	{
 		isClicked = false;
-		spriteRend_->setTexture(originalFrame);
+		if (imageMode)
+			spriteRend_->setTexture(originalFrame);
 	}
 }
 
@@ -37,21 +39,45 @@ void Clickable::initComponent()
 
 void Clickable::update()
 {
-	if (hoverFrame.empty()) return;
+	if (imageMode && hoverFrame.empty()) return;
 
 	if (!isClicked)
 	{
 		if (boxCol_->isCursorOver())
 		{
-			if (spriteRend_->getTexture() != &sdlutils().images().at(hoverFrame))
-				spriteRend_->setTexture(hoverFrame);
+			if (imageMode)
+			{
+				if (spriteRend_->getTexture() != &sdlutils().images().at(hoverFrame))
+					spriteRend_->setTexture(hoverFrame);
+			}
+			else
+			{
+				spriteRend_->setMultiplyColor(hoverColor);
+			}
 		}
 		else
 		{
-			if (spriteRend_->getTexture() != &sdlutils().images().at(originalFrame))
-				spriteRend_->setTexture(originalFrame);
+			if (imageMode)
+			{
+				if (spriteRend_->getTexture() != &sdlutils().images().at(originalFrame))
+					spriteRend_->setTexture(originalFrame);
+			}
+			else
+			{
+				spriteRend_->setMultiplyColor(originalColor);
+			}
 		}
 	}
-	else if (spriteRend_->getTexture() != &sdlutils().images().at(clickedFrame))
-		spriteRend_->setTexture(clickedFrame);
+	else if (imageMode && spriteRend_->getTexture() != &sdlutils().images().at(clickedFrame))
+	{
+		if (imageMode)
+		{
+			spriteRend_->setMultiplyColor(clickedColor);
+		}
+		else
+		{
+			spriteRend_->setTexture(clickedFrame);
+		}
+	}
+
 }

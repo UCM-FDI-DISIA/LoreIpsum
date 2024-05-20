@@ -30,7 +30,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
 
 ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int posY)
 {
-    ecs::entity_t endTurnButton = Instantiate(Vector2D(posX, posY - 50));  // 200, 265
+    ecs::entity_t endTurnButton = Instantiate(Vector2D(posX - 100, posY - 50));  // 200, 265
     endTurnButton->getComponent<Transform>()->setGlobalScale(0.3, 0.3);
     endTurnButton->addComponent<BoxCollider>();
     //endTurnButton->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
@@ -40,7 +40,7 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int 
     endTurnButton->getComponent<BoxCollider>()->setSize(Vector2D(220,300));
     endTurnButton->addComponent<ImageWithFrames>(1, 12, 1, 60);
     endTurnButton->addComponent<EndTurnButton>(Turns::J1);
-    //endTurnButton->addComponent<Clickable>("EndTurnButton", true);
+    endTurnButton->addComponent<Clickable>(Colors::MORADO_BERENJENA, Colors::ROJO_HOLLENHAUS);
     return endTurnButton;
 }
 

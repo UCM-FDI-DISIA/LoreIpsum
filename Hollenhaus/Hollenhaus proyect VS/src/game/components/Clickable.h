@@ -11,10 +11,21 @@ class Clickable : public ComponentUpdate
 	std::string clickedFrame;
 	std::string hoverFrame;
 
+	SDL_Color originalColor { 255, 255, 255, 255};
+	SDL_Color clickedColor { 255, 255, 255, 255};
+	SDL_Color hoverColor;
+
 	bool isClicked = false;
+	bool imageMode = true;
 
 public:
 	Clickable() = default;
+	Clickable(SDL_Color c1, SDL_Color c2 = { 255, 255, 255, 255}) 
+	{
+		imageMode = false;
+		hoverColor = c1;
+		clickedColor = c2;
+	}
 	Clickable(std::string first, bool hasHover = false) : originalFrame(first)
 	{
 		clickedFrame = first + "_click";
