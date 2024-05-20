@@ -211,7 +211,7 @@ void CityState::onEnter()
 	/// MUSICA
 	auto music = SoundManager::instance();
 	music->startMusic(Sounds::MUSIC::CITY_M);
-	//music->startSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_STREET_SE, -1); // INES PLACEHOLDER
+	music->startSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_STREET_SE, -1); // INES PLACEHOLDER
 }
 
 void CityState::onExit()
