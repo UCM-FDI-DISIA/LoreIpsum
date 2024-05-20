@@ -19,6 +19,8 @@ public:
 	void initComponent() override;
 	void NextNode();
 
+	void destroyDialogue();
+
 private:
 	JsonData::ConvoData* convo_;
 	int actualNode_;

@@ -25,6 +25,9 @@ public:
     void activateColliders(std::vector<ecs::entity_t> n);
     void activateAllColliders();
     void setLayers(std::vector<ecs::entity_t> n);
+    void clearAllMissions();
+    void addMission(ecs::entity_t miss);
+
 
     bool hasEnded() { return ended; }
     bool Next() { return next; }
@@ -33,6 +36,7 @@ public:
     void setCurrentTutorial(Tutorials::Tutorials t) { currtut = t; }
     void setCurrentTutorialState(int t) { currstate = t; }
     void setNextTutorialState(int t) { nextstate = t; }
+
 
     Tutorials::Tutorials getTutorial() { return currtut; }
     int getTutorialState() { return currstate; }
@@ -58,6 +62,7 @@ private:
 
     ecs::entity_t colliderWall;
     std::vector<ecs::entity_t> objs;
+    std::vector<ecs::entity_t> missions;
     std::vector<int> layers;
 
 

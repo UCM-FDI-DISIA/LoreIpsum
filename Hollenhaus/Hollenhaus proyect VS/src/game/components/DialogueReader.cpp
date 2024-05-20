@@ -57,6 +57,14 @@ void DialogueReader::NextNode()
 	}
 }
 
+void DialogueReader::destroyDialogue()
+{
+	if (ent_->hasComponent<NextText>()) {
+		ent_->getComponent<NextText>()->setDead(true);
+		dialogueDestroyer_->destroyDialogue();
+	}
+}
+
 void DialogueReader::exeEvents(std::vector<JsonData::DialogueEventS> events)
 {
 	for (auto e : events) {

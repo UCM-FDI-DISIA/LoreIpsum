@@ -2,6 +2,7 @@
 
 #include "TutorialManager.h"
 #include "../game/gamestates/TutorialBoardState.h"
+#include "../game/components/DialogueBoxDestroyer.h"
 
 TutorialManager::TutorialManager() : ended(false)
 {
@@ -37,6 +38,8 @@ void TutorialManager::update()
 void TutorialManager::actionEnded()
 {
 	ended = true;
+	clearAllMissions();
+
 
 }
 
@@ -159,4 +162,18 @@ void TutorialManager::loseCollider(BoxCollider* coll)
 void TutorialManager::returnCollider(BoxCollider* coll)
 {
 	coll->setPosOffset({0,0});
+}
+
+void TutorialManager::clearAllMissions() 
+{
+	for (int i = 0; i < missions.size(); i++) {
+		missions[i]->getComponent<DialogueBoxDestroyer>()->destroy();
+	}
+
+	missions.clear();
+}
+
+void TutorialManager::addMission(ecs::entity_t miss)
+{
+	missions.push_back(miss);
 }
