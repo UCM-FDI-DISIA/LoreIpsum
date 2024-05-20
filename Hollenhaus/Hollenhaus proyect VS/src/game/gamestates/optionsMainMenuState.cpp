@@ -52,12 +52,12 @@ void OptionsMainMenuState::onEnter()
 	fondo->getComponent<Transform>()->setGlobalScale(Vector2D(6, 6));
 	fondo->setLayer(0);
 
-	audioText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 420));
+	audioText = Instantiate(Vector2D(sdlutils().width() / 2.0f, sdlutils().height() - 420));
 	audioText->addComponent<TextComponent>("VOLUMEN", Fonts::GROTESK_32, PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	audioText->setLayer(1);
 
-	audioText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 360));
-	auto auto_text = audioText->addComponent<TextComponent>(std::to_string(music->getVolume()), Fonts::GROTESK_32, PEARL_HOLLENHAUS, 500, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
+	audioText = Instantiate(Vector2D(sdlutils().width() / 2.0f, sdlutils().height() - 360));
+	audioText->addComponent<TextComponent>(std::to_string(music->getVolume()), Fonts::GROTESK_32, PEARL_HOLLENHAUS, 500, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Left);
 	audioText->setLayer(1);
 
 	/*windowModeText->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
@@ -71,7 +71,8 @@ void OptionsMainMenuState::onEnter()
 	audioUP->addComponent<SpriteRenderer>("UpDrawer");
 	audioUP->addComponent<BoxCollider>();
 	audioUP->addComponent<Clickable>("UpDrawer", true);
-	audioUP->getComponent<Transform>()->setGlobalPos(sdlutils().width() - 225, sdlutils().height() - 400);
+	audioUP->getComponent<Transform>()->setGlobalAngle(90.0f);
+	audioUP->getComponent<Transform>()->setGlobalPos(sdlutils().width() / 2 + 50, sdlutils().height() - 400);
 	//audioUP->getComponent<Transform>()->setRelativePos(sdlutils().width(), sdlutils().height());
 	//audioUP->getComponent<Transform>()->setGlobalScale(botScale);
 	audioUP->getComponent<BoxCollider>()->setAnchoredToSprite(true);
@@ -87,7 +88,8 @@ void OptionsMainMenuState::onEnter()
 	audioDOWN->addComponent<SpriteRenderer>("DownDrawer");
 	audioDOWN->addComponent<BoxCollider>();
 	audioDOWN->addComponent<Clickable>("DownDrawer", true);
-	audioDOWN->getComponent<Transform>()->setGlobalPos(sdlutils().width() - 640, sdlutils().height() - 400);
+	audioDOWN->getComponent<Transform>()->setGlobalAngle(90.0f);
+	audioDOWN->getComponent<Transform>()->setGlobalPos(sdlutils().width() / 2.0f - audioDOWN->getComponent<SpriteRenderer>()->getImageSize().getX() - 50.0f, sdlutils().height() - 400);
 	audioDOWN->getComponent<BoxCollider>()->setAnchoredToSprite(true);
 	audioDOWN->addComponent<Button>();
 	audioDOWN->getComponent<Button>()->connectToButton([this]() {
