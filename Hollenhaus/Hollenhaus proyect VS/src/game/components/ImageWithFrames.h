@@ -9,7 +9,6 @@ class ImageWithFrames : public ComponentUpdate
 	Texture* image_ = nullptr;
 	SpriteRenderer* spriteRend_ = nullptr;
 
-	// 85 x 100
 	int currentRow_; // fila actual
 	int currentCol_; // columna actual
 
@@ -40,10 +39,11 @@ public:
 	void update() override;
 	void syncRenderer();
 
-
+	void setSprite(std::string, int = -1);
 	void setFrameSpeed(int speed) { frameSpeed = speed; }
 	void setCurrentCol(int col) { currentCol_ = col;}
 	void setCurrentRow(int row) { currentRow_ = row;}
+	void setLoops(int loop) { loops = loop; }
 
 	// Add callback
 	void addCallback(SDLEventCallback _callback);
