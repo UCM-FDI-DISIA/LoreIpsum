@@ -20,7 +20,7 @@ class IA_manager : public ComponentUpdate
 {
 public:
 
-	#pragma region Structs internos
+#pragma region Structs internos
 
 	struct CartaColocada {
 
@@ -45,8 +45,8 @@ public:
 	};
 
 	struct State {
-		
-		static IA_manager* ia_manager ;
+
+		static IA_manager* ia_manager;
 
 		//constructora(inicializa los tableros)
 		State() {
@@ -55,8 +55,8 @@ public:
 
 			//inicializacion de los tableros
 			std::vector<Card*> cards(N, nullptr);
-			std::vector<Players::Owner> owners(N,Players::NONE);
-			std::vector<bool> bools(N,false);
+			std::vector<Players::Owner> owners(N, Players::NONE);
+			std::vector<bool> bools(N, false);
 
 			for (int i = 0; i < N; i++) {
 				_boardCards.push_back(cards);
@@ -68,7 +68,7 @@ public:
 
 		~State() {
 
-			
+
 		}
 
 		//varios tableros para representar el estado 
@@ -136,13 +136,13 @@ public:
 					//incrementar el numero de cartas colocadas
 					nCartasColocadas++;
 				}
-			}		
+			}
 		}
 	};
 
-	#pragma endregion
+#pragma endregion
 
-	#pragma region Metodos Basicos
+#pragma region Metodos Basicos
 
 	IA_manager();
 	~IA_manager();
@@ -151,9 +151,9 @@ public:
 
 	void update() override;
 
-	#pragma endregion
+#pragma endregion
 
-	#pragma region Setters de referencias
+#pragma region Setters de referencias
 
 	void setMatchManager(MatchManager* matchM);
 	void setBoardManager(BoardManager* boardM);
@@ -164,7 +164,7 @@ public:
 	void setPlayerDeck(DeckComponent* playerD);
 	void setEnemyDeck(DeckComponent* enemyD);
 
-	#pragma endregion
+#pragma endregion
 
 
 	void StartTurn();
@@ -174,7 +174,7 @@ public:
 
 private:
 
-	#pragma region Internal voids
+#pragma region Internal voids
 
 	int heuristic(State* s);
 
@@ -194,11 +194,11 @@ private:
 
 	int minimax(int depth, int h, bool isPlayer, State& current_state, State*& best);
 
-	void makePlay(const InfoJugada &play);
+	void makePlay(const InfoJugada& play);
 
 #pragma endregion
 
-	#pragma region Referencias externas
+#pragma region Referencias externas
 
 	MatchManager* matchManager;
 	BoardManager* boardManager;
@@ -209,7 +209,7 @@ private:
 	DeckComponent* playerDeckCmp;
 	DeckComponent* enemyDeckCmp;
 
-	#pragma endregion
+#pragma endregion
 
 	int maxCardInHand = 6;
 
@@ -219,7 +219,18 @@ private:
 	bool makePlay_;
 	bool colocadas_;
 	uint16_t cartasColocadas_;
+	//std::list<Vector2D> cardOnBoardPos_;
 
+	// Tweens colocar en el tablero
+	std::list<Vector2D> posOnBoard;//posicon en el tablero (-1,-1) no se coloca
+	std::list<Card*> cardsToSet;
+	std::list<tweeny::tween<float>>tweenPosCardX;
+	std::list<tweeny::tween<float>>tweenPosCardY;
+
+	std::list<Vector2D>::iterator posOnBoardIt;
+	std::list<Card*>::iterator cardsIt;
+	std::list<tweeny::tween<float>>::iterator posYTweenIt;
+	std::list<tweeny::tween<float>>::iterator posXTweenIt;
 
 	//para el borrado de memoria
 	std::vector<Card*> toBeDeleted;
