@@ -229,6 +229,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="src\game\CaseManager.h" />
     <ClInclude Include="src\game\components\Clickable.h" />
     <ClInclude Include="src\game\components\ClickableText.h" />
@@ -392,6 +393,12 @@
     <None Include="resources\config\keytexts.json" />
     <None Include="resources\config\npcs.json" />
     <None Include="resources\config\resources.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hollenhaus proyect VS1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\images\LOGOS\favicon.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
