@@ -24,7 +24,8 @@ namespace Sounds {
 	enum SOUND_EFFECTS {
 		DOOR_SE,
 		CANDLE_SE,
-		AMBIENCE_STREET_SE
+		AMBIENCE_STREET_SE,
+		AMBIENCE_OFFICE_SE
 	};
 }
 
@@ -54,6 +55,7 @@ public:
 	void changeDynamicMusic(Sounds::MUSIC a, Sounds::MUSIC b);
 
 	void startSoundEffect(Sounds::SOUND_EFFECTS a, int reps = 0);
+	void stopSoundEffect(Sounds::SOUND_EFFECTS a);
 
 	// ----------
 	void startMusic(Sounds::MUSIC M);

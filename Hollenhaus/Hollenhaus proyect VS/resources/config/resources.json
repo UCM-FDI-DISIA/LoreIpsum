@@ -610,6 +610,10 @@
     {
       "id": "ambience_street_effect",
       "file": "resources/sound/sound_effects/ambience_streetSE.wav"
+    },
+    {
+      "id": "ambience_office_effect",
+      "file": "resources/sound/sound_effects/office_ambience_effect.wav"
     }
   ],
     "musics": [

@@ -27,6 +27,7 @@ void SoundManager::init()
 	sound_effect_names.push_back("door_sound_effect");
 	sound_effect_names.push_back("candle_sound_effect");
 	sound_effect_names.push_back("ambience_street_effect");
+	sound_effect_names.push_back("ambience_office_effect");
 
 	// INES AQUI CAMBIAR
 
@@ -89,8 +90,14 @@ void SoundManager::changeDynamicMusic(Sounds::MUSIC a, Sounds::MUSIC b)
 void SoundManager::startSoundEffect(Sounds::SOUND_EFFECTS a, int reps)
 {
 	auto n = sound_effect_names[a];
-	sdlutils().soundEffects().at(n).play(reps, 5+ a);
+	sdlutils().soundEffects().at(n).play(reps, a);
 
+}
+
+void SoundManager::stopSoundEffect(Sounds::SOUND_EFFECTS a)
+{
+	auto n = sound_effect_names[a];
+	sdlutils().soundEffects().at(n).pauseChannel();
 }
 
 void SoundManager::startMusic(Sounds::MUSIC m)
