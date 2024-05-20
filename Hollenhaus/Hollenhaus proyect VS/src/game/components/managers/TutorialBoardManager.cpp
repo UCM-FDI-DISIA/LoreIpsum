@@ -278,7 +278,7 @@ void TutorialBoardManager::setDRAWCARD()
 
 	std::vector<ecs::entity_t> v;
 
-	ecs::entity_t pop = createPopUp(525, 300, "Board Tutorial", 15);
+	ecs::entity_t pop = createPopUp(525, 300, "Board Tutorial", 15);		// MISSION
 
 	objs.push_back(pop);
 
@@ -319,6 +319,14 @@ void TutorialBoardManager::setPLACECARD()
 {
 	//TuVieja("Setting PLACE CARD");
 
+	ecs::entity_t pop = createPopUp(525, 300, "Board Tutorial", 16);		// MISSION !!!
+
+
+	objs.push_back(pop);
+
+	tutorial->getComponent<TutorialManager>()->addMission(pop);
+
+
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	std::vector<ecs::entity_t> v;
@@ -328,6 +336,8 @@ void TutorialBoardManager::setPLACECARD()
 	}
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+	objs.pop_back();
 
 }
 
@@ -390,11 +400,19 @@ void TutorialBoardManager::setPRESSNEXTTURN()
 {
 	std::vector<ecs::entity_t> v;
 
+	ecs::entity_t pop = createPopUp(525, 300, "Board Tutorial", 17);	// MISSION !!
+
+	objs.push_back(pop);
+
+	tutorial->getComponent<TutorialManager>()->addMission(pop);
+
 	v.push_back(nextTurn);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+	objs.pop_back();
 
 }
 
@@ -446,9 +464,6 @@ void TutorialBoardManager::setENDTUTORIAL()
 
 void TutorialBoardManager::setFREEDOM()
 {
-	std::cout << "LIBERTAD OMFG" << std::endl;
-
-
 	// FIN DEL TUTO
 	GameStateMachine::instance()->setTUTORIAL_BOARD_COMPLETE(true);
 

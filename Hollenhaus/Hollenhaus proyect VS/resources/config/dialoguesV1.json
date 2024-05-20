@@ -622,6 +622,34 @@
               ]
             }
           ]
+        },
+        {
+          "convoID": 16,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Coloca una carta en el tablero!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 17,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Pasa de turno!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
         }
       ]
     },

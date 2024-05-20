@@ -169,6 +169,8 @@ void TutorialManager::clearAllMissions()
 	for (int i = 0; i < missions.size(); i++) {
 		missions[i]->getComponent<DialogueBoxDestroyer>()->destroy();
 	}
+
+	missions.clear();
 }
 
 void TutorialManager::addMission(ecs::entity_t miss)
