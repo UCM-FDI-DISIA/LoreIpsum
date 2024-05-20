@@ -40,7 +40,6 @@ void PauseMenuState::refresh()
 
 void PauseMenuState::onEnter()
 {
-	std::cout << "\nENTER PAUSE.\n";
 
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onDespause(); });
@@ -121,7 +120,6 @@ void PauseMenuState::onExit()
 
 	GameStateMachine::instance()->getMngr()->Free();
 
-	std::cout << "\nEXIT PAUSE.\n";
 
 	sdlutils().virtualTimer().resume();
 }

@@ -35,7 +35,6 @@ void CheckMazeMenuState::render() const
 
 void CheckMazeMenuState::onEnter()
 {
-	std::cout << "\nENTER CHECK MAZE\n";
 
 	auto tituloText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 100));
 	tituloText->addComponent<TextComponent>("MAZO ACTUAL", Fonts::GROTESK_32, Colors::PEARL_HOLLENHAUS, 400, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
@@ -64,7 +63,6 @@ void CheckMazeMenuState::onEnter()
 
 void CheckMazeMenuState::onExit()
 {
-	std::cout << "\nEXIT CHECK MAZE\n";
 	GameStateMachine::instance()->getMngr()->Free();
 }
 

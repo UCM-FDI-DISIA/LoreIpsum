@@ -82,7 +82,6 @@ void DeckBuildingState::refresh()
 // ---- ENTER ESTADO ----
 void DeckBuildingState::onEnter()
 {
-	std::cout << "\nENTER DECKBUILDING.\n";
 
 	// carga el data
 	loadData();
@@ -299,7 +298,6 @@ void DeckBuildingState::onExit()
 
 	GameStateMachine::instance()->getMngr()->Free();
 
-	std::cout << "\nEXIT DECKBUILDING.\n";
 
 	delete factory;
 }

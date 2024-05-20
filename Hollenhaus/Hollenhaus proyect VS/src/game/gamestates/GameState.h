@@ -127,6 +127,8 @@ public:
 	virtual std::vector<int> getMazeRival();
 
 	virtual void SetLastState(int ls);
+
+	virtual bool GetSaveExists();
 };
 
 #endif // !GameState_H_

@@ -41,7 +41,6 @@ void OptionsMainMenuState::render() const
 
 void OptionsMainMenuState::onEnter()
 {
-	std::cout << "opciones " << std::endl;
 
 	music = SoundManager::instance();
 
