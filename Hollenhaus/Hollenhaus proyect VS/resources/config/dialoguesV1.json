@@ -1032,7 +1032,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Puedes dejar tus monedas aqui, no te preocupes, yo te las guardo mientras miras...",
+              "text": "Puedes dejar tus monedas aqui, no te preocupes, yo te las guardo mientras miras.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1102,7 +1102,7 @@
             },
             {
               "nodeID": 1,
-              "text": "asi se resaltaran las monedas que se gastara, si es que la compras...",
+              "text": "asi se resaltaran las monedas que se gastara, si es que la compras.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [

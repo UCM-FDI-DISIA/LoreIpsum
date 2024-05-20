@@ -52,8 +52,6 @@ void TutorialShopManager::setState()
 	ent_->getComponent<TutorialManager>()->activateColliders(objs);
 	image->getComponent<SpriteRenderer>()->enable(false);
 
-
-
 	switch (t)
 	{
 	case Tutorials::Tienda::SHOP_INIT:
