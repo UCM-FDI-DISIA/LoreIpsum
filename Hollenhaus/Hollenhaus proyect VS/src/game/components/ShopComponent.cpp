@@ -161,7 +161,7 @@ void ShopComponent::buyCard()
 		if (buttonClicked != nullptr)
 		{
 			auto card = buttonClicked->getEntity(); // Carta pulsada.
-			int id = card->getComponent<Card>()->getID(); // Id de la carta.
+			int id = card->getComponent<Card>()->getID(); // Id de la carta
 			int index = searchIndexById(id); // Indice de la carta en shopCards, shopCardspositions y shopCardsPrize.
 			//------Esto para confirmar la compra.
 			if (money >= shopCardsPrize[index] && !cardIsBought(id))
@@ -178,7 +178,8 @@ void ShopComponent::purchaseCard()
 	int id = handler->getComponent<DecisionComponent>()->getCardToPurchase();
 	int index = searchIndexById(id);
 
-	GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al cajon.
+	if(id != -1)
+		GameStateMachine::instance()->getCurrentState()->addCardToDrawer(id); // Metemos la carta al cajon.
 
 	money -= shopCardsPrize[index]; // Restamos el dinero.
 
