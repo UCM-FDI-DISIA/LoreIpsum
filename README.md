@@ -268,6 +268,7 @@ La IA a la que se enfrentaban los jugadores tenía siempre las mismas cartas, y 
 
 3. ### Resultados de la encuesta <a name="id1"></a>
 _Datos sobre los encuestados:_
+
 ![](/docs/QA/ch1.png)
 ![](/docs/QA/ch2.png)
 ![](/docs/QA/ch3.png)
@@ -275,6 +276,7 @@ _Datos sobre los encuestados:_
 ![](/docs/QA/ch5.png)
 
 _Datos sobre el juego:_
+
 ![](/docs/GA/ch6.png)
 ![](/docs/QA/ch7.png)
 ![](/docs/QA/ch8.png)
