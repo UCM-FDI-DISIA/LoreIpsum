@@ -13,12 +13,12 @@
 #include "../factories/NPCFactory_V0.h"
 #include "../components/NPC.h"
 
-ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
+ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) :
+	parent_(parent),
+	myNpc_(nullptr),
+	scene_(scene),
+	decision_(decision)
 {
-	decision_ = decision;
-	parent_ = parent;
-	assert(parent_ != nullptr);
-	scene_ = scene;
 	click_ = false;
 
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
@@ -68,7 +68,9 @@ void ClickDecision::TakeDecision()
 		cancelPurchase();
 		assert(parent_ != nullptr);
 		if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
-			parent_->getComponent<NextText>()->setDead(true);
+			auto a = parent_->getComponent<NextText>();
+			if(a != nullptr)
+				parent_->getComponent<NextText>()->setDead(true);
 			parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
 		}
 		break;
@@ -85,8 +87,12 @@ void ClickDecision::TakeDecision()
 
 		purchaseCard();
 		assert(parent_ != nullptr);
-		parent_->getComponent<NextText>()->setDead(true);
-		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+		if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
+			auto a = parent_->getComponent<NextText>();
+			if (a != nullptr)
+				parent_->getComponent<NextText>()->setDead(true);
+			parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+		}
 
 		break;
 	case 3: // Caso aceptado
