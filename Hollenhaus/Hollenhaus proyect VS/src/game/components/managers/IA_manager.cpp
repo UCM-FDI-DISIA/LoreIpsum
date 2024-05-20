@@ -128,6 +128,10 @@ void IA_manager::update() {
 				}
 
 			}
+			else
+			{
+				colocadas_ = true;
+			}
 
 #pragma endregion
 

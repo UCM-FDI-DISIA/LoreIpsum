@@ -187,9 +187,12 @@ void CityState::onEnter()
 		if (caseMngr->accepted()) {
 			for (int i = 0; i < caseMngr->npc_n(); ++i)
 			{
-				auto npc = factory->createNPC(caseMngr->npcBegin() + i, fondo);
-				objs.push_back(npc);
-
+				const int id = caseMngr->npcBegin() + i;
+				if(!isDefeated(id))
+				{
+					auto npc = factory->createNPC(id, fondo);
+					objs.push_back(npc);
+				}
 			}
 		}
 	}

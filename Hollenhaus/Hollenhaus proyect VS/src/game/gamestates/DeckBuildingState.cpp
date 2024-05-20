@@ -82,7 +82,6 @@ void DeckBuildingState::refresh()
 // ---- ENTER ESTADO ----
 void DeckBuildingState::onEnter()
 {
-	std::cout << "\nENTER DECKBUILDING.\n";
 
 	// carga el data
 	loadData();
