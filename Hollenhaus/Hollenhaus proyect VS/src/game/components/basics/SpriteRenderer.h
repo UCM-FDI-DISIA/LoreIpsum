@@ -75,6 +75,7 @@ public:
 	void setRows(int n) { nRows = n; }
 	void setCols(int n) { nCols = n; }
 	void setOffset(float x, float y) { offset = { x, y };}
+	std::string getTextID() const { return textID_; }
 
 private:
 

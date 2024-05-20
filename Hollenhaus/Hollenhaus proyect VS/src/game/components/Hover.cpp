@@ -3,6 +3,9 @@
 
 #include "basics/TextComponent.h"
 
+constexpr int EFFECT_OFFSET_X = 25,
+              EFFECT_OFFSET_Y = 20;
+
 void Hover::initComponent()
 {
 	tr = getEntity()->getComponent<Transform>();
@@ -91,34 +94,24 @@ void Hover::updateEveryComponent()
 		const auto texto = child->getEntity()->getComponent<TextComponent>();
 		if (texto != nullptr)
 		{
-			texto->setOffset(
-				hoverTweenX.peek(),
-				hoverTweenY.peek()
-			);
+			int x = 0, y = 0;
+			if (texto->getText().at(0) == '+'
+				|| texto->getText().at(0) == '-') // XXDDDDDDDDDDD
+			{
+				x = EFFECT_OFFSET_X;
+				y = EFFECT_OFFSET_Y;
+			}
+			texto->setOffset(hoverTweenX.peek() + x, hoverTweenY.peek() + y);
 		}
 
 		// si es imagen, puede tener texto
 		const auto imagen = child->getEntity()->getComponent<SpriteRenderer>();
 		if (imagen != nullptr)
 		{
-			imagen->setOffset(
-				hoverTweenX.peek(),
-				hoverTweenY.peek()
-			);
-
-			// los efectos tienen un texto adherido
-			for (const auto nieto : child->getChildren())
-			{
-				// si es texto
-				const auto texto = child->getEntity()->getComponent<TextComponent>();
-				if (texto != nullptr)
-				{
-					texto->setOffset(
-						hoverTweenX.peek(),
-						hoverTweenY.peek()
-					);
-				}
-			}
+			if (imagen->getTextID() == "card_sombra")
+				imagen->setOffset(hoverTweenX.peek() - 2, hoverTweenY.peek() - 2);
+			else
+				imagen->setOffset(hoverTweenX.peek(), hoverTweenY.peek());
 		}
 	}
 }
@@ -136,27 +129,26 @@ void Hover::resetEveryComponent()
 	{
 		// si es texto
 		const auto texto = child->getEntity()->getComponent<TextComponent>();
+		int x = 0, y = 0;
 		if (texto != nullptr)
 		{
-			texto->setOffset(
-				0, 0
-			);
+			if (texto->getText().at(0) == '+'
+				|| texto->getText().at(0) == '-') // XXDDDDDDDDDDD
+			{
+				x = EFFECT_OFFSET_X;
+				y = EFFECT_OFFSET_Y;
+			}
+			texto->setOffset(x, y);
 		}
 
 		// si es imagen, puede tener texto
 		const auto imagen = child->getEntity()->getComponent<SpriteRenderer>();
 		if (imagen != nullptr)
 		{
-			imagen->setOffset(0, 0);
-
-			// los efectos tienen un texto adherido
-			for (const auto nieto : child->getChildren())
-			{
-				// si es texto
-				const auto texto = child->getEntity()->getComponent<TextComponent>();
-				if (texto != nullptr)
-					texto->setOffset(0, 0);
-			}
+			if (imagen->getTextID() == "card_sombra")
+				imagen->setOffset(-2, -2);
+			else
+				imagen->setOffset(0, 0);
 		}
 	}
 }
