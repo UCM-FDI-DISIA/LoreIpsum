@@ -12,8 +12,7 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 	wrapLenght_(wrapLenght),
 	boxPivotPoint_(boxPivotPoint),
 	textAlignment_(textAlignment),
-	txt_(txt),
-	onDialog(false)
+	txt_(txt)
 {
 
 	createTexture();
@@ -21,8 +20,11 @@ TextComponent::TextComponent(std::string txt, std::string fontID, SDL_Color colo
 
 TextComponent::~TextComponent()
 {
-	if (!onDialog)
+	if (text_ != nullptr) {
 		delete text_;
+		text_ = nullptr;
+	}
+		
 
 }
 
@@ -93,30 +95,19 @@ void TextComponent::SetTextAlignment(Text::TextAlignment textAlignment)
 	// No hace falta crear textura nueva
 }
 
-void TextComponent::setTxtDialogue(std::string txt)
-{
-	for (auto e : sdl_.Items) {
-		if (e.t == txt) {
-			text_ = e.text_;
-			onDialog = true;
-		}
-
-	}
-
-}
 void TextComponent::createTexture() {
 
-	if (text_ != nullptr && !onDialog)
+	if (text_ != nullptr) {
 		delete text_;
-
-	onDialog = false;
+		text_ = nullptr;
+	}
 
 
 	std::string texto = txt_;
 	if (txt_.empty())
 		texto = " ";
 
-		// Se utiliza una nueva constructora espec�fica para crear una textura a partir de un texto embebido en una caja
+	// Se utiliza una nueva constructora espec�fica para crear una textura a partir de un texto embebido en una caja
 	text_ = new Texture(sdl_.renderer(), texto, *font_, color_, wrapLenght_, textAlignment_);
 }
 	

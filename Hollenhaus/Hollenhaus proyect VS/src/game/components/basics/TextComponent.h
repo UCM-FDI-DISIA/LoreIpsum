@@ -73,8 +73,6 @@ public:
 	Vector2D getOffset() const { return offset; }
 	void setAlpha(int v) { alpha = v; }
 
-	void setTxtDialogue(std::string txt);
-	bool onDialog;
 	void setRelativeToTransform(bool value) { relativeToTransform = true; } // si la escala depende de la del transform del padre
 	Vector2D getScale() const { return scale;}
 	void setScale(const Vector2D& s) { scale = s; }
