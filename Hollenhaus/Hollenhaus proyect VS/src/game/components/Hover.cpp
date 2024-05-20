@@ -109,6 +109,8 @@ void Hover::updateEveryComponent()
 	// textos
 	for (const auto child : getEntity()->getComponent<Transform>()->getChildren())
 	{
+		auto factor = 140;
+
 		// si es texto
 		const auto texto = child->getEntity()->getComponent<TextComponent>();
 		if (texto != nullptr)
@@ -118,18 +120,20 @@ void Hover::updateEveryComponent()
 				|| texto->getText().at(0) == '-') // XXDDDDDDDDDDD
 			{
 				// es el texto del efecto
-				x = 0;
-				y = 0;
+				x = factor / 2 * scaleTween.peek() - factor / 2 * iniScale.getX();
+				y = factor * scaleTween.peek() - factor * iniScale.getX();
 			}
 			else
 			{
 				// si no, son el coste y el valor
 				if (texto->getEntity()->getComponent<Dummy>() != nullptr)
-				{ // es el valor
-					y = 50 * 1/scaleTween.peek();
+				{
+					// es el valor
+					y = factor * scaleTween.peek() - factor * iniScale.getX();
 				}
 				else
-				{ // es el coste
+				{
+					// es el coste
 				}
 			}
 			texto->setOffset(hoverTweenX.peek() + x, hoverTweenY.peek() + y);
@@ -147,8 +151,11 @@ void Hover::updateEveryComponent()
 			}
 			else
 			{
+				factor = 100;
 				// si no es la sombra, es la imagen de efecto
-				imagen->setOffset(hoverTweenX.peek(), hoverTweenY.peek());
+				auto x = factor / 2 * scaleTween.peek() - factor / 2 * iniScale.getX();
+				auto y = factor * scaleTween.peek() - factor * iniScale.getX();
+				imagen->setOffset(x +  hoverTweenX.peek(), y + hoverTweenY.peek());
 			}
 		}
 	}

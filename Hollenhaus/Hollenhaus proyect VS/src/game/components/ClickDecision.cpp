@@ -46,9 +46,9 @@ void ClickDecision::OnLeftClickDown()
 	{
 		click_ = true;
 		TakeDecision();
-		const auto fondo = parent_->getComponent<Transform>()->getParent()->getParent()->getParent()->getEntity();
-		if (fondo->hasComponent<MoveOnClick>())
-			fondo->getComponent<MoveOnClick>()->getCollider()->setPosOffset(Vector2D(0, 0));
+		/*const auto fondo = parent_->getComponent<Transform>()->getParent()->getParent()->getParent()->getEntity();
+		if (fondo->hasComponent<MoveOnClick>()) // PAIGRO AQUI
+			fondo->getComponent<MoveOnClick>()->getCollider()->setPosOffset(Vector2D(0, 0));*/
 	}
 }
 
