@@ -2,12 +2,12 @@
 #include "ImageWithFrames.h"
 #include "../../sdlutils/SDLUtils.h"
 
-ImageWithFrames::ImageWithFrames(int rows, int cols, int lups = -1, int speed)
+ImageWithFrames::ImageWithFrames(int rows, int cols, int lups, int speed)
 	: currentRow_(0), currentCol_(0), nRows_(rows), nCols_(cols), frameSpeed(speed), loops(lups), callbacksExecuted(false)
 {
 }
 
-ImageWithFrames::ImageWithFrames(SpriteRenderer* img, int rows, int cols, int lups = -1, int speed) :
+ImageWithFrames::ImageWithFrames(SpriteRenderer* img, int rows, int cols, int lups, int speed) :
 	spriteRend_(img),
 	currentRow_(0),
 	currentCol_(0),
@@ -73,11 +73,13 @@ void ImageWithFrames::syncRenderer()
 	spriteRend_->setSourceRect(srce);
 }
 
-void ImageWithFrames::setSprite(std::string newSprite, int loop)
+void ImageWithFrames::setSprite(std::string newSprite, int rows, int cols, int loop)
 {
 	spriteRend_->setTexture(newSprite);
-	nRows_ = 0;
-	nCols_ = 0;
+	currentRow_ = 0;
+	currentRow_= 0;
+	nRows_ = rows;
+	nCols_ = cols;
 	loops = loop;
 	spriteRend_->setAnimated(true);
 	image_ = spriteRend_->getTexture();
@@ -89,7 +91,7 @@ void ImageWithFrames::setSprite(std::string newSprite, int loop)
 	spriteRend_->setRows(nRows_);
 	spriteRend_->setCols(nCols_);
 
-	syncRenderer();
+	//syncRenderer();
 }
 
 void ImageWithFrames::addCallback(SDLEventCallback _callback)
