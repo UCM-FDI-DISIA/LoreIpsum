@@ -89,8 +89,7 @@ public:
 	{
 		SDL_Rect dest = {x, y, width_, height_};
 
-		if (alpha != 255)
-			applyOpacity(alpha);
+		applyOpacity(alpha);
 		render(dest);
 	}
 
@@ -99,8 +98,7 @@ public:
 	{
 		SDL_Rect src = {0, 0, width_, height_};
 
-		if (alpha != 255)
-			applyOpacity(alpha);
+		applyOpacity(alpha);
 		render(src, dest);
 	}
 
@@ -142,8 +140,7 @@ public:
 		const SDL_Rect dest = build_sdlrect(x, y, width_ * mulScaleX, height_ * mulScaleY);
 		const SDL_Rect src = build_sdlrect(0, 0, width_, height_);
 
-		if (alpha != 255)
-			applyOpacity(alpha);
+		applyOpacity(alpha);
 
 		render(src, dest);
 	}
@@ -155,8 +152,7 @@ public:
 	{
 		const SDL_Rect dest = build_sdlrect(x, y, width_ * mulScaleX / nCols, height_ * mulScaleY / nRows);
 
-		if (alpha != 255)
-			applyOpacity(alpha);
+		applyOpacity(alpha);
 
 		multiplyColor(color.r, color.g, color.b, color.a);
 
