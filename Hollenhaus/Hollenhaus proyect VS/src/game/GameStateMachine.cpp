@@ -233,6 +233,42 @@ void GameStateMachine::initFade()
 	if (!toFadeIn && toFadeOut) fadetween.backward();
 }
 
+void GameStateMachine::setTUTORIAL_DECKBUILDING_COMPLETE(bool a)
+{
+	dbt_c = a;
+
+	// GUARDA EN EL SAVE
+	currentState->setTUTORIAL_DECKBUILDING_COMPLETE(a);
+	currentState->saveData();
+}
+
+void GameStateMachine::setTUTORIAL_CITY_COMPLETE(bool a)
+{
+	ct_c = a;
+
+	// GUARDA EN EL SAVE
+	currentState->setTUTORIAL_CITY_COMPLETE(a);
+	currentState->saveData();
+}
+
+void GameStateMachine::setTUTORIAL_BOARD_COMPLETE(bool a)
+{
+	bt_c = a;
+
+	// GUARDA EN EL SAVE
+	currentState->setTUTORIAL_BOARD_COMPLETE(a);
+	currentState->saveData();
+}
+
+void GameStateMachine::setTUTORIAL_SHOP_COMPLETE(bool a)
+{
+	st_c = a;
+
+	// GUARDA EN EL SAVE
+	currentState->setTUTORIAL_SHOP_COMPLETE(a);
+	currentState->saveData();
+}
+
 
 void GameStateMachine::changeState()
 {

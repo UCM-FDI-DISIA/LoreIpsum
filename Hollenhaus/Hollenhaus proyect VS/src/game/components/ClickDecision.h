@@ -37,8 +37,8 @@ public:
 private:
     void caseAccepted();
 
-    ecs::entity_t parent_ = nullptr;
-    NPC* myNpc_ = nullptr;
+    ecs::entity_t parent_;
+    NPC* myNpc_;
     int scene_;
 
     int decision_;

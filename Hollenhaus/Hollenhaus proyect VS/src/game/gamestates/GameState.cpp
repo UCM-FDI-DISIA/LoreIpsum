@@ -95,6 +95,46 @@ void GameState::setDefeatedNPC(int id)
 	data->AddDefeatedNPC(id);
 }
 
+bool GameState::TUTORIAL_DECKBUILDING_COMPLETE()
+{
+	return data->getTUTORIAL_DECKBUILDING_COMPLETE();
+}
+
+void GameState::setTUTORIAL_DECKBUILDING_COMPLETE(bool a)
+{
+	data->setTUTORIAL_DECKBUILDING_COMPLETE(a);
+}
+
+bool GameState::TUTORIAL_CITY_COMPLETE()
+{
+	return data->getTUTORIAL_CITY_COMPLETE();
+}
+
+void GameState::setTUTORIAL_CITY_COMPLETE(bool a)
+{
+	data->setTUTORIAL_CITY_COMPLETE(a);
+}
+
+bool GameState::TUTORIAL_BOARD_COMPLETE()
+{
+	return data->getTUTORIAL_BATTLE_COMPLETE();
+}
+
+void GameState::setTUTORIAL_BOARD_COMPLETE(bool a)
+{
+	data->setTUTORIAL_BATTLE_COMPLETE(a);
+}
+
+bool GameState::TUTORIAL_SHOP_COMPLETE()
+{
+	return data->getTUTORIAL_SHOP_COMPLETE();
+}
+
+void GameState::setTUTORIAL_SHOP_COMPLETE(bool a)
+{
+	data->setTUTORIAL_SHOP_COMPLETE(a);
+}
+
 void GameState::setSocketRival(TCPsocket _rival)
 {
 	data->setSocketRival(_rival);

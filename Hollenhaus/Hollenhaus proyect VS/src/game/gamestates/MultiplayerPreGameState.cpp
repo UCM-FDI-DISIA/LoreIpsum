@@ -49,13 +49,13 @@ void MultiplayerPreGameState::onEnter()
 	);
 
 	// Botón para setear tu mazo en Data
-	ecs::entity_t setMazeButton = Instantiate(Vector2D(400, 300));
-	setMazeButton->addComponent<TextComponent>("ELEGIR MAZO", Fonts::GROTESK_32, Colors::PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
-	setMazeButton->addComponent<BoxCollider>();
-	setMazeButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
-	setMazeButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
-	setMazeButton->addComponent<Button>();
-	setMazeButton->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
+	//ecs::entity_t setMazeButton = Instantiate(Vector2D(400, 300));
+	//setMazeButton->addComponent<TextComponent>("ELEGIR MAZO", Fonts::GROTESK_32, Colors::PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	//setMazeButton->addComponent<BoxCollider>();
+	//setMazeButton->getComponent<BoxCollider>()->setSize(Vector2D(200, 40));
+	//setMazeButton->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
+	//setMazeButton->addComponent<Button>();
+	//setMazeButton->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 	//setMazeButton->getComponent<Button>()->connectToButton([this] {AcceptConection(); });
 
 
