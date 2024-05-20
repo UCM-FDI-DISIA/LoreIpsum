@@ -169,7 +169,7 @@ void TutorialBoardState::setBoard()
 	//ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(680, 233, Colors::MORADO_BERENJENA);
 	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(680, 313, Colors::MIDNIGHT_LIGHT);
-
+	matchManagerComponent->setEndTurnButton(visual_EndTurnButton);
 
 	// Enlazado de la UI con los scripts que la controlan
 	//matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
