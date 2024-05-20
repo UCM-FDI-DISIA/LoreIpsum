@@ -298,7 +298,6 @@ void DeckBuildingState::onExit()
 
 	GameStateMachine::instance()->getMngr()->Free();
 
-	std::cout << "\nEXIT DECKBUILDING.\n";
 
 	delete factory;
 }
