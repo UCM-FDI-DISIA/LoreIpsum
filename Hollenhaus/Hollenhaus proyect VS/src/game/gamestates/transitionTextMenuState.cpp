@@ -84,7 +84,7 @@ void TransitionTextMenuState::onEnter()
 
 	chascarrillo = Instantiate(Vector2D(400, 350));
 
-	int i = rand_.nextInt(0, 11);
+	int i = rand_.nextInt(0, 10);
 	switch (i)
 	{
 	case 0:
@@ -116,9 +116,6 @@ void TransitionTextMenuState::onEnter()
 		break;
 	case 9:
 		Ctext = "¿Sabías que las únicas humanas de Höllenhaus que pueden ver a Paul son la tendera y la médium?";
-		break;
-	case 10:
-		Ctext = "Fallasustos3000 was here.";
 		break;
 	default:
 		break;
