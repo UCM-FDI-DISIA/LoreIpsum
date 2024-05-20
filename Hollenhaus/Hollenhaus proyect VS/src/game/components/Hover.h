@@ -23,7 +23,6 @@ class Hover : public ComponentUpdate
 	/// component access
 	SpriteRenderer* spr = nullptr;
 	Transform* tr = nullptr;
-	BoxCollider* bc = nullptr;
 	HandComponent* hc = nullptr;
 
 	/// tweeny
@@ -39,6 +38,7 @@ class Hover : public ComponentUpdate
 	bool outoHover = false;
 	int hoverSpeed = HOVER_SPEED;
 	bool isOnHand = false;
+	bool hasClicked = false;
 
 	void resetTweensForward();
 	void resetTweensBackward();
@@ -62,5 +62,6 @@ public:
 	void update() override;
 	void setOnHand(bool value) { isOnHand = value; }
 	void setHandComponent(HandComponent* h) { hc = h; }
-	void setIniPos(Vector2D v) { iniPos = v; }
+	void setIniPos(const Vector2D& v) { iniPos = v; }
+	void setIniScale(const Vector2D& v) { iniScale = v; }
 };

@@ -45,7 +45,7 @@ ecs::entity_t CardFactory_v1::createCard(int id, Vector2D pos, int cost, int val
 	if (!bocarriba)
 		addDeckImageChild(card);
 
-	card->addComponent<Hover>();
+	card->addComponent<Hover>()->setIniScale(Vector2D(cardScale,cardScale));
 
 	return card;
 }

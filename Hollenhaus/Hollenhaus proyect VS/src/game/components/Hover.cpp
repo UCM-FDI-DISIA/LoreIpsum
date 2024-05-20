@@ -10,11 +10,9 @@ void Hover::initComponent()
 {
 	tr = getEntity()->getComponent<Transform>();
 	spr = getEntity()->getComponent<SpriteRenderer>();
-	bc = getEntity()->getComponent<BoxCollider>();
 
 	assert(tr != nullptr);
 	assert(spr != nullptr);
-	assert(bc != nullptr);
 
 	iniScale = tr->getGlobalScale();
 	iniPos = tr->getGlobalPos();
@@ -37,32 +35,26 @@ void Hover::update()
 	hoverTweenY.step(1);
 
 	if (!isOnHand) return;
-	std::cout << ih().mouseButtonEvent();
-	if (ih().isKeyDown(SDL_MOUSEBUTTONDOWN))
+	if (ih().mouseButtonDownEvent()) hasClicked = true;
+	if (ih().mouseButtonUpEvent()) hasClicked = false;
+	if (hasClicked)
 	{
 		onHoverExit();
 		return;
 	}
 
 	const auto currTime = sdlutils().virtualTimer().currTime();
-	//if (bc->isCursorOver() && !intoHover)
 	if (mouseRaycast() == ent_)
-	{
-		if (!intoHover)
-		{
-			if (hoverTimer + hoverActivationSpeed <= currTime)
-			{
+	{ // si el raton esta dentro de la carta
+		if (!intoHover) // si no esta entrando en hover ya
+			if (hoverTimer + hoverActivationSpeed <= currTime) // si ha pasado sufi tiempo
 				onHoverEnter();
-			}
-		}
 	}
 	else
-	{
+	{ // si sale el raton de la carta
 		hoverTimer = currTime; // se resetea el contador
-		if (intoHover)
-		{
+		if (intoHover) // out of hover
 			onHoverExit();
-		}
 	}
 
 	if (intoHover)
@@ -120,7 +112,7 @@ void Hover::updateEveryComponent()
 				y = EFFECT_OFFSET_Y;
 			}
 			texto->setOffset(hoverTweenX.peek() + x, hoverTweenY.peek() + y);
-			texto->setScale(Vector2D(hoverScale, hoverScale));
+			texto->setScale(Vector2D(10, 10));
 		}
 
 		// si es imagen, puede tener texto
