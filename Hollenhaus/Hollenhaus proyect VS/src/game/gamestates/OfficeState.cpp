@@ -119,7 +119,7 @@ void OfficeState::onEnter()
 		npc = factory->createNPC(caso, fondo);
 
 	caseManager->addNPC(npc);
-	objs.push_back(npc);
+	//objs.push_back(npc);
 
 	//Idea para los casos:
 	// - En dialoguesV1.json meter el texto de los casos que queremos que se diga. Como Caso0, Caso1, etc.
@@ -131,6 +131,9 @@ void OfficeState::onEnter()
 	objs.push_back(exit);
 
 	
+	if (!GameStateMachine::instance()->TUTORIAL_BOARD_COMPLETE()) {
+		npc->getComponent<BoxCollider>()->setPosOffset({1000,1000});
+	}
 
 	setTutorial();
 
