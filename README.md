@@ -268,8 +268,17 @@ La IA a la que se enfrentaban los jugadores tenía siempre las mismas cartas, y 
 
 3. ### Resultados de la encuesta <a name="id1"></a>
 _Datos sobre los encuestados:_
-
+![](/docs/GQ/ch1.png)
+![](/docs/GQ/ch2.png)
+![](/docs/GQ/ch3.png)
+![](/docs/GQ/ch4.png)
+![](/docs/GQ/ch5.png)
 _Datos sobre el juego:_
+![](/docs/GQ/ch6.png)
+![](/docs/GQ/ch7.png)
+![](/docs/GQ/ch8.png)
+![](/docs/GQ/ch9.png)
+![](/docs/GQ/ch10.png)
 
 4. ### Resultados observados por el equipo <a name="id1"></a>
 De los datos obtenidos de los gráficos, comentarios y respuestas libres de las encuestas y nuestra propia observación durante la misma podemos concluir diferentes cosas:
@@ -285,8 +294,8 @@ De los datos obtenidos de los gráficos, comentarios y respuestas libres de las 
 Para solucionar todas estas cosas hicimos bastantes implementaciones, algunas pensadas antes del QA y otras nuevas:
 - Dificultad con las reglas:
   - Implementación de un tutorial obligatorio cuando empiezas una nueva partida, el tutorial incluye:
-    - Cómo funcionan los casos.
-    - Cómo funciona el deckBuilding
+    - Cómo funcionan los casos
+    - Cómo funciona el deck-building
     - Cómo funciona la partida de cartas
     - Cómo funciona la tienda
   - Esto también ayudará a que los jugadores sepan que estas funcionalidades existen.
