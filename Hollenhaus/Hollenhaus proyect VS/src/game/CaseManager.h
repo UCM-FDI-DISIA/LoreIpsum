@@ -30,6 +30,6 @@ private:
 	int initialNpc_;
 	int case_;
 
-	std::vector<std::vector<int>> shopCards_ { {20, 27, 31, 33}, {13, 21, 28, 48}, {44, 45, 46, 47} };
+	std::vector<std::vector<int>> shopCards_{{20, 27, 31, 33}, {13, 21, 28, 48}, {44, 45, 46, 47} };
 };
 
