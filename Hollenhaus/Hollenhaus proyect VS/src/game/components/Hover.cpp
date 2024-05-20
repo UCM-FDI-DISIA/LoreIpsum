@@ -14,7 +14,7 @@ void Hover::initComponent()
 	assert(tr != nullptr);
 	assert(spr != nullptr);
 
-	iniScale = tr->getGlobalScale();
+	//iniScale = tr->getGlobalScale();
 	iniPos = tr->getGlobalPos();
 	iniLayer = getEntity()->getLayer();
 	hoverScale = HOVER_SCALE;
@@ -43,7 +43,10 @@ void Hover::update()
 	if (ih().mouseButtonUpEvent()) hasClicked = false;
 	if (hasClicked)
 	{
-		onHoverExit();
+		intoHover = false;
+		outoHover = false;
+		tr->setGlobalScale(iniScale);
+		resetEveryComponent();
 		return;
 	}
 
@@ -63,7 +66,7 @@ void Hover::update()
 			onHoverExit();
 	}
 
-	if (intoHover)
+	if (intoHover || outoHover)
 	{
 		updateEveryComponent();
 	}
@@ -83,20 +86,17 @@ void Hover::onHoverExit()
 	intoHover = false;
 	outoHover = true;
 	tr->setGlobalScale(iniScale);
-	resetEveryComponent();
-	//resetTweensBackward();
+	//resetEveryComponent();
+	resetTweensBackward();
+	updateEveryComponent();
 }
 
 void Hover::updateEveryComponent()
 {
-	if ((hoverTweenX.peek() < -1000000) || (hoverTweenX.peek() > 1000000)) return; // XDDXDDDX
-	//if ((hoverTweenY.peek() < -1000000) || (hoverTweenY.peek() > 1000000)) outside = true; // XDDXDDDX
-	//if ((scaleTween.peek() < -1000000) || (scaleTween.peek() > 1000000)) outside = true; // XDDXDDDX
-	//
-	//if (checkTweenConstraints()) return;
+	if (checkTweenConstraints()) return;
 
-	//std::cout << hoverTweenX.peek() << std::endl;
-	std::cout << scaleTween.peek() << std::endl;
+	std::cout << hoverTweenX.peek() << std::endl;
+	//std::cout << scaleTween.peek() << std::endl;
 
 	// fondo de la carta
 	spr->setOffset(
@@ -104,13 +104,6 @@ void Hover::updateEveryComponent()
 		hoverTweenY.peek()
 	);
 	//tr->setGlobalScale(scaleTween.peek(), scaleTween.peek());
-
-
-	//escala
-	//getEntity()->getComponent<Transform>()->setGlobalScale(hoverScale, hoverScale);
-
-	//layer creo que no hace falta
-	//getEntity()->setEveryLayer(2);
 
 	// textos
 	for (const auto child : getEntity()->getComponent<Transform>()->getChildren())
@@ -252,4 +245,8 @@ void Hover::resetTweensBackward() /// *********
 		.to(iniScale.getX())
 		.during(hoverSpeed)
 		.via(tweeny::easing::sinusoidalInOut);
+
+	hoverTweenX.seek(0);
+	hoverTweenY.seek(0);
+	scaleTween.seek(0);
 }

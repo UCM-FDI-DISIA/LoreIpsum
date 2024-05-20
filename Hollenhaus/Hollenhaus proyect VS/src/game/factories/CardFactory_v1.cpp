@@ -328,7 +328,7 @@ void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 	                                        Text::CenterCenter, Text::Center);
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
 	textoCoste->getComponent<Transform>()->getRelativePos().set(posX, 11);
-	textoCoste->getComponent<Transform>()->setGlobalScale(10, 10); // esta linea aporta 0 porque es una fuente
+	//textoCoste->getComponent<Transform>()->setGlobalScale(10, 10); // esta linea aporta 0 porque es una fuente
 	//textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
 
 

@@ -3,10 +3,10 @@
 #include "HandComponent.h"
 
 constexpr int HOVER_SPEED = 30,
-              HOVER_TIMER = 500,
+              HOVER_TIMER = 750,
               HOVER_LAYER = 999;
-constexpr float HOVER_SCALE = 1.4;
-const Vector2D HOVER_OFFSET = {-50, -300};
+constexpr float HOVER_SCALE = 1.4f;
+const Vector2D HOVER_OFFSET = {-50, -120};
 
 class Hover : public ComponentUpdate
 {

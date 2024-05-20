@@ -42,6 +42,7 @@ void HandComponent::addCard(ecs::entity_t card)
 	if (auto* hover = card->getComponent<Hover>())
 	{
 		hover->setOnHand(true);
+		hover->setIniScale(Vector2D(cardScale_,cardScale_));
 		hover->setOnHand(this);
 	}
 
@@ -180,6 +181,7 @@ void HandComponent::update()
 				if (auto* hover = cardsInHand_[i]->getComponent<Hover>())
 				{
 					hover->setOnHand(true);
+					hover->setIniScale(Vector2D(cardScale_,cardScale_));
 					hover->setIniPos(cardsInHand_[i]->getComponent<Transform>()->getGlobalPos());
 				}
 				cardsInPos++;
