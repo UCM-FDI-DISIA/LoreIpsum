@@ -84,41 +84,38 @@ void TransitionTextMenuState::onEnter()
 
 	chascarrillo = Instantiate(Vector2D(400, 350));
 
-	int i = rand_.nextInt(0, 11);
+	int i = rand_.nextInt(0, 10);
 	switch (i)
 	{
 	case 0:
 		Ctext = "Para un economista la vida real es un caso especial.";
 		break;
 	case 1:
-		Ctext = "Le pedí a un economista su número de teléfono y me dio su estimación.";
+		Ctext = "Le pedÃ­ a un economista su nÃºmero de telÃ©fono y me dio su estimaciÃ³n.";
 		break;
 	case 2:
-		Ctext = "¿Cuándo puedes decir que un economista está mintiendo? Cuando se mueven sus labios.";
+		Ctext = "Â¿CuÃ¡ndo puedes decir que un economista estÃ¡ mintiendo? Cuando se mueven sus labios.";
 		break;
 	case 3:
-		Ctext = "¿Sabes a dónde van las pulgas cuando mueren? Al pulgatorio.";
+		Ctext = "Â¿Sabes a dÃ³nde van las pulgas cuando mueren? Al pulgatorio.";
 		break;
 	case 4:
-		Ctext = "¿Por qué los fantasmas nunca hacen la colada? Porque corren el peligro de meter en la lavadora a sus parientes.";
+		Ctext = "Â¿Por quÃ© los fantasmas nunca hacen la colada? Porque corren el peligro de meter en la lavadora a sus parientes.";
 		break;
 	case 5:
-		Ctext = "Van dos fantasmas y se cae el del médium.";
+		Ctext = "Van dos fantasmas y se cae el del mÃ©dium.";
 		break;
 	case 6:
-		Ctext = "¿Has probado a poner el nombre completo del fantasma protagonista en el traductor de alemán?";
+		Ctext = "Â¿Has probado a poner el nombre completo del fantasma protagonista en el traductor de alemÃ¡n?";
 		break;
 	case 7:
-		Ctext = "¿Sabías que Paul murió sacrificado por una secta?";
+		Ctext = "Â¿SabÃ­as que Paul muriÃ³ sacrificado por una secta?";
 		break;
 	case 8:
-		Ctext = "¿Sabías que Paul tuvo una aparición en La Nave del Misterio?";
+		Ctext = "Â¿SabÃ­as que Paul tuvo una apariciÃ³n en La Nave del Misterio?";
 		break;
 	case 9:
-		Ctext = "¿Sabías que las únicas humanas de Höllenhaus que pueden ver a Paul son la tendera y la médium?";
-		break;
-	case 10:
-		Ctext = "Fallasustos3000 was here.";
+		Ctext = "Â¿SabÃ­as que las Ãºnicas humanas de Hollenhaus que pueden ver a Paul son la tendera y la mÃ©dium?";
 		break;
 	default:
 		break;
