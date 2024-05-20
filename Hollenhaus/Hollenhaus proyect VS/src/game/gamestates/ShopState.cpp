@@ -166,7 +166,7 @@ void ShopState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startMusic(Musics::SHOP_M);
+	music->startMusic(Sounds::SHOP_M);
 
 }
 
@@ -180,7 +180,7 @@ void ShopState::onExit()
 	saveData();
 
 	auto music = SoundManager::instance();
-	music->stopMusic(Musics::SHOP_M);
+	music->stopMusic(Sounds::SHOP_M);
 
 	GameStateMachine::instance()->getMngr()->Free();
 

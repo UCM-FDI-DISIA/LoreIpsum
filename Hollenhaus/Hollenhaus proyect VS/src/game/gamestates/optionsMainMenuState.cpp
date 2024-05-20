@@ -45,7 +45,7 @@ void OptionsMainMenuState::onEnter()
 
 	music = SoundManager::instance();
 
-	music->startMusic(Musics::MUSIC::OFFICE_M);
+	music->startMusic(Sounds::MUSIC::OFFICE_M);
 
 	ecs::entity_t fondo = Instantiate(Vector2D(0, 0));
 	fondo->addComponent<SpriteRenderer>("optfondo");
@@ -134,7 +134,7 @@ void OptionsMainMenuState::onEnter()
 
 void OptionsMainMenuState::onExit()
 {
-	music->stopMusic(Musics::MUSIC::OFFICE_M);
+	music->stopMusic(Sounds::MUSIC::OFFICE_M);
 
 
 	GameStateMachine::instance()->getMngr()->Free();

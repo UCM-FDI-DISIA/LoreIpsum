@@ -4,6 +4,8 @@
 #include "../components/ImageWithFrames.h"
 #include "../components/basics/Transform.h"
 #include "cinematicIntroState.h"
+#include "../SoundManager.h"
+
 
 CinematicIntroState::CinematicIntroState()
 {
@@ -42,11 +44,20 @@ void CinematicIntroState::onEnter()
 		{
 			GameStateMachine::instance()->setState(GameStates::TUTORIAL_OFFICE, true, true);
 		});
+
+
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_OFFICE_SE, -1);
 }
 
 void CinematicIntroState::onExit()
 {
 	TuVieja("\nExit CinematicIntroState");
+
+
+	auto music = SoundManager::instance();
+	music->stopSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_OFFICE_SE);
 
 	GameStateMachine::instance()->getMngr()->Free();
 }

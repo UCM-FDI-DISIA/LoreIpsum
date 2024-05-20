@@ -122,7 +122,7 @@ void CityState::onEnter()
 
 	// tamanio del collider del suelo
 	// x: el ancho de la imagen de fondo, y: alto del suelo
-	colliderSuelo->getComponent<BoxCollider>()->setPosOffset(Vector2D(sdlutils().width() / 2, 0));
+	colliderSuelo->getComponent<BoxCollider>()->setPosOffset(Vector2D(sdlutils().width() / 2, 100));
 	colliderSuelo->getComponent<BoxCollider>()->setSize(
 		Vector2D(fondo->getComponent<SpriteRenderer>()->getTexture()->width() - sdlutils().width() * 2, sdlutils().height()));
 
@@ -202,7 +202,8 @@ void CityState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startMusic(Musics::CITY_M);
+	music->startMusic(Sounds::MUSIC::CITY_M);
+	music->startSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_STREET_SE, -1); 
 }
 
 void CityState::onExit()
@@ -216,7 +217,9 @@ void CityState::onExit()
 	setLastPaulDir(fondo->getComponent<MoveOnClick>()->getDir());
 
 	auto music = SoundManager::instance();
-	music->stopMusic(Musics::CITY_M);
+	music->stopMusic(Sounds::CITY_M);
+	music->stopSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_STREET_SE);
+
 
 	GameStateMachine::instance()->getMngr()->Free();
 

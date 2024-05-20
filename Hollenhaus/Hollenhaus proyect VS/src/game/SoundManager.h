@@ -5,7 +5,7 @@
 
 
 
-namespace Musics {
+namespace Sounds {
 	enum MUSIC {
 		OFFICE_M,
 		BATTLE_P_M,
@@ -19,6 +19,13 @@ namespace Musics {
 		OFFICE_C,
 		BATTLE_P_C,
 		BATTLE_T_C
+	};
+
+	enum SOUND_EFFECTS {
+		DOOR_SE,
+		CANDLE_SE,
+		AMBIENCE_STREET_SE,
+		AMBIENCE_OFFICE_SE
 	};
 }
 
@@ -41,16 +48,20 @@ public:
 	int getVolume() { return master_volume; };
 
 	// volumen especifico para canales
-	void ChannelVolume(Musics::MUSIC channel, int v);
+	void ChannelVolume(Sounds::MUSIC channel, int v);
 
-	void startDynamicMusic(Musics::MUSIC a, Musics::MUSIC b);
-	void stopDynamicMusic(Musics::MUSIC a, Musics::MUSIC b);
-	void changeDynamicMusic(Musics::MUSIC a, Musics::MUSIC b);
+	void startDynamicMusic(Sounds::MUSIC a, Sounds::MUSIC b);
+	void stopDynamicMusic(Sounds::MUSIC a, Sounds::MUSIC b);
+	void changeDynamicMusic(Sounds::MUSIC a, Sounds::MUSIC b);
+
+	void startSoundEffect(Sounds::SOUND_EFFECTS a, int reps = 0);
+	void stopSoundEffect(Sounds::SOUND_EFFECTS a);
 
 	// ----------
-	void startMusic(Musics::MUSIC M);
-	void stopMusic(Musics::MUSIC m);
+	void startMusic(Sounds::MUSIC M);
+	void stopMusic(Sounds::MUSIC m);
 
 	std::vector<std::string> music_names;
+	std::vector<std::string> sound_effect_names;
 	int master_volume;
 };

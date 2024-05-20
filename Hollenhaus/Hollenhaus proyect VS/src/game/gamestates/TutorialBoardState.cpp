@@ -75,13 +75,13 @@ void TutorialBoardState::onEnter()
 
 
 	auto music = SoundManager::instance();
-	music->startDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
+	music->startDynamicMusic(Sounds::MUSIC::BATTLE_P_M, Sounds::MUSIC::BATTLE_T_M);
 }
 
 void TutorialBoardState::onExit()
 {
 	auto music = SoundManager::instance();
-	music->stopDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
+	music->stopDynamicMusic(Sounds::MUSIC::BATTLE_P_M, Sounds::MUSIC::BATTLE_T_M);
 
 
 	tutorial->getComponent<TutorialManager>()->endTutorial();
@@ -187,7 +187,7 @@ void TutorialBoardState::setBoard()
 
 
 	auto music = SoundManager::instance();
-	music->startDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
+	music->startDynamicMusic(Sounds::MUSIC::BATTLE_P_M, Sounds::MUSIC::BATTLE_T_M);
 
 
 #pragma region Seccion IA
