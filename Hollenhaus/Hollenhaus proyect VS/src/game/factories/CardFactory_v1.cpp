@@ -303,7 +303,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 			auto valueEntText = Instantiate(Vector2D());
 			valueEntText->setLayer(card->getLastLayer());
 			valueEntText->getComponent<Transform>()->addParent(card->getComponent<Transform>());
-			valueEntText->getComponent<Transform>()->getRelativePos().set(20, 30);
+			valueEntText->getComponent<Transform>()->getRelativePos().set(40, 70);
 			auto valueChange = valueEntText->addComponent<TextComponent>(
 				valueText, Fonts::GROTESK_26, color, 100);
 			//valueChange->setOffset(25, 20);
@@ -315,7 +315,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 {
 	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
-	auto posX = 7;
+	auto posX = 6;
 
 	// Texto blanco para el valor
 	auto t1 = textoValor->addComponent<TextComponent>(std::to_string(value),

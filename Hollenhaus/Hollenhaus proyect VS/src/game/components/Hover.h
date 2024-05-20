@@ -6,7 +6,7 @@ constexpr int HOVER_SPEED = 30,
               HOVER_TIMER = 750,
               HOVER_LAYER = 999;
 constexpr float HOVER_SCALE = 1.4f;
-const Vector2D HOVER_OFFSET = {-50, -120};
+const Vector2D HOVER_OFFSET = {-70, -200};
 
 class Hover : public ComponentUpdate
 {

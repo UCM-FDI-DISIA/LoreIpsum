@@ -10,6 +10,7 @@
 #include "Hover.h"
 #include "basics/TextComponent.h"
 #include "managers/DragManager.h"
+#include "Dummy.h"
 
 HandComponent::HandComponent() :
 	transform_(), lastCardAdded_(nullptr)
@@ -233,9 +234,20 @@ void HandComponent::removeCard(ecs::entity_t card)
 				auto texto = child->getEntity()->getComponent<TextComponent>();
 				if (texto != nullptr)
 				{
-					texto->setFont(Fonts::GROTESK_16);
+					int side = 0;
+					if (child->getEntity()->getComponent<Dummy>())
+						side = 2;
+
+					texto->setFont(Fonts::GROTESK_28);
 					child->getRelativePos().set(
-						child->getRelativePos().getX(),
+						child->getRelativePos().getX() - 2,
+						child->getRelativePos().getY() - child->getRelativePos().getY() / 6.25 - side
+					);
+				}
+				if (auto imagen = child->getEntity()->getComponent<SpriteRenderer>() != nullptr)
+				{
+					child->getRelativePos().set(
+						child->getRelativePos().getX() - 2,
 						child->getRelativePos().getY() - child->getRelativePos().getY() / 6.25
 					);
 				}

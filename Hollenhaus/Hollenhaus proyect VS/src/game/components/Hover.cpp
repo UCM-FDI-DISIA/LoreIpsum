@@ -118,19 +118,18 @@ void Hover::updateEveryComponent()
 				|| texto->getText().at(0) == '-') // XXDDDDDDDDDDD
 			{
 				// es el texto del efecto
-				x = EFFECT_OFFSET_X;
-				y = EFFECT_OFFSET_Y;
+				x = 0;
+				y = 0;
 			}
 			else
 			{
 				// si no, son el coste y el valor
 				if (texto->getEntity()->getComponent<Dummy>() != nullptr)
 				{ // es el valor
-					
+					y = 50 * 1/scaleTween.peek();
 				}
 				else
 				{ // es el coste
-					
 				}
 			}
 			texto->setOffset(hoverTweenX.peek() + x, hoverTweenY.peek() + y);
@@ -175,14 +174,13 @@ void Hover::resetEveryComponent()
 				|| texto->getText().at(0) == '-') // XXDDDDDDDDDDD
 			{
 				// es el texto del efecto
-				x = EFFECT_OFFSET_X;
-				y = EFFECT_OFFSET_Y;
+				x = 0;
+				y = 0;
 			}
 			else
 			{
 			}
 			texto->setOffset(x, y);
-			texto->setScale(Vector2D(1, 1));
 		}
 
 		// si es imagen, puede tener texto
