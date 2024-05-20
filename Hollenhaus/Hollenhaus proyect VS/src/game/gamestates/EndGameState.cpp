@@ -30,6 +30,10 @@ void EndGameState::refresh()
 void EndGameState::onEnter()
 {
 	std::cout << "\nENTER ENDGAME.\n";
+
+	// llamada al input
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { onSkip(); });
+
 	// creditos
 	auto eCin = Instantiate(Vector2D());
 
@@ -48,5 +52,14 @@ void EndGameState::onEnter()
 void EndGameState::onExit()
 {
 	std::cout << "\nEXIT ENDGAME.\n";
+
+	// se desuscribe al evento de click izq
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { onSkip(); });
+
 	GameStateMachine::instance()->getMngr()->Free();
+}
+
+void EndGameState::onSkip()
+{
+	GameStateMachine::instance()->setState(GameStates::MAINMENU, true, true);
 }

@@ -31,6 +31,9 @@ void CinematicOutroState::render() const
 
 void CinematicOutroState::onEnter()
 {
+	// llamada al input
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { onSkip(); });
+
 	TuVieja("\nEnter CinematicOutroState");
 	auto eCin = Instantiate(Vector2D());
 
@@ -55,8 +58,16 @@ void CinematicOutroState::onExit()
 {
 	TuVieja("\nExit CinematicOutroState");
 
+	// se desuscribe al evento de click izq
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { onSkip(); });
+
 	auto music = SoundManager::instance();
 	music->stopSoundEffect(Sounds::SOUND_EFFECTS::CANDLE_SE);
 
 	GameStateMachine::instance()->getMngr()->Free();
+}
+
+void CinematicOutroState::onSkip()
+{
+	GameStateMachine::instance()->setState(GameStates::ENDGAME, true, true);
 }
