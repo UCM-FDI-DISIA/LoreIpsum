@@ -423,6 +423,10 @@
     {
       "id": "nosotros",
       "file": "resources/images/LOGOS/NOSOTROS.png"
+    },
+    {
+      "id": "no_card",
+      "file": "resources/images/card_obtained.png"
     }
   ],
     "fonts": [
