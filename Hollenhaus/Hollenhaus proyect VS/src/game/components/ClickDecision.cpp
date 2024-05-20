@@ -17,10 +17,10 @@ ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) :
 	parent_(parent),
 	myNpc_(nullptr),
 	scene_(scene),
-	decision_(decision)
+	decision_(decision),
+	click_(false),
+	collider_(nullptr)
 {
-	click_ = false;
-
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
 }
@@ -33,6 +33,7 @@ ClickDecision::~ClickDecision()
 
 void ClickDecision::initComponent()
 {
+	collider_ = ent_->getComponent<BoxCollider>();
 	scene_ = 0;
 	myNpc_ = parent_->getComponent<Transform>()->getParent()->getEntity()->getComponent<Transform>()->getParent()->getEntity()->getComponent<NPC>();
 }
@@ -43,7 +44,7 @@ void ClickDecision::update()
 
 void ClickDecision::OnLeftClickDown()
 {
-	if (mouseRaycast() == ent_)
+	if (mouseRaycast() == ent_ && collider_->isCursorOver())
 	{
 		click_ = true;
 		TakeDecision();
@@ -63,50 +64,54 @@ void ClickDecision::TakeDecision()
 	switch (decision_)
 	{
 	case 0: // Para decir no.
-
-		TuVieja("No");
-		cancelPurchase();
-		assert(parent_ != nullptr);
-		if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
-			auto a = parent_->getComponent<NextText>();
-			if(a != nullptr)
+		{
+			TuVieja("No");
+			cancelPurchase();
+			assert(parent_ != nullptr);
+			if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
 				parent_->getComponent<NextText>()->setDead(true);
-			parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+				parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+			}
 		}
 		break;
-
 	case 1: // Para cambiar de escena.
-
-		TuVieja("Cambio de escena");
-		//parent_->getComponent<DialogueEventCollection>()->ChangeScene(scene_);
-		//abria que hacer actual node ++?�?�
-
-
+		{
+			TuVieja("Cambio de escena");
+			//parent_->getComponent<DialogueEventCollection>()->ChangeScene(scene_);
+			//abria que hacer actual node ++?�?�
+		}
 		break;
 	case 2: // Para confirmar compra.
-
-		purchaseCard();
-		assert(parent_ != nullptr);
-		if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
-			auto a = parent_->getComponent<NextText>();
-			if (a != nullptr)
+		{
+			purchaseCard();
+			assert(parent_ != nullptr);
+			if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
 				parent_->getComponent<NextText>()->setDead(true);
-			parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+				parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+			}
 		}
-
 		break;
 	case 3: // Caso aceptado
-		TuVieja("Buenos dias caso 3");
-		caseAccepted();
+		{
+			TuVieja("Buenos dias caso 3");
+			caseAccepted();
+		}
 		break;
 	case 4: // CASO DEAFULT PARA NEGAR CUALQUIER COSA
-		parent_->getComponent<NextText>()->setDead(true);
-		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+		{
+			assert(parent_ != nullptr);
+			if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
+				parent_->getComponent<NextText>()->setDead(true);
+				parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+			}
+		}
 		break;
 	case 5:
-		//parent_->getComponent<DialogueEventCollection>()->ChangeScene(GameStates::LUIS);
-		GameStateMachine::instance()->setState(GameStates::LUIS);
-		GameStateMachine::instance()->getCurrentState()->setJ2(std::to_string(myNpc_->getID()));
+		{
+			//parent_->getComponent<DialogueEventCollection>()->ChangeScene(GameStates::LUIS);
+			GameStateMachine::instance()->setState(GameStates::LUIS);
+			GameStateMachine::instance()->getCurrentState()->setJ2(std::to_string(myNpc_->getID()));
+		}
 		break;
 	default:
 		TuVieja("Esta decision no existe. A�adir en ClickDecision.cpp");
@@ -140,7 +145,6 @@ void ClickDecision::cancelPurchase()
 		if (ent->hasComponent<DecisionComponent>())
 		{
 			ent->getComponent<DecisionComponent>()->setBuying(0);
-			ent->getComponent<DecisionComponent>()->resetCardToPurchase();
 		}
 	}
 }

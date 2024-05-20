@@ -42,7 +42,7 @@ public:
 	{
 		if (texture_ != nullptr)
 		{
-			SDL_DestroyTexture(texture_); // delete the SDL texture
+			//SDL_DestroyTexture(texture_); // delete the SDL texture
 			texture_ = nullptr;
 		}
 	}

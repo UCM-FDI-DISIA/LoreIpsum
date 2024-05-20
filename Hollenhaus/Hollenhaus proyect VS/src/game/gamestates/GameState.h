@@ -74,9 +74,11 @@ public:
 	virtual void setKey();
 
 	virtual void setJ2(std::string rival);
+	virtual bool isDefeated(int i);
 
 	virtual void saveData();
 	virtual void loadData();
+	virtual void loadDataIfExists();
 	virtual void newGameData();
 
 	// ---- crea carta ----
@@ -126,6 +128,8 @@ public:
 	virtual std::vector<int> getMazeRival();
 
 	virtual void SetLastState(int ls);
+
+	virtual bool GetSaveExists();
 };
 
 #endif // !GameState_H_

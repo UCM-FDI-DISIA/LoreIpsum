@@ -1,5 +1,7 @@
 #include <../pchs/pch.h>
 #include "EndGameState.h"
+#include "../components/basics/SpriteRenderer.h"
+#include "../components/ImageWithFrames.h"
 
 
 EndGameState::EndGameState()
@@ -28,23 +30,36 @@ void EndGameState::refresh()
 void EndGameState::onEnter()
 {
 	std::cout << "\nENTER ENDGAME.\n";
+
+	// llamada al input
+	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { onSkip(); });
+
 	// creditos
-	/*auto eCin = Instantiate(Vector2D());
+	auto eCin = Instantiate(Vector2D());
 
 	auto eCinTr = eCin->addComponent<Transform>();
 	eCinTr->setGlobalPos(0, 0);
-	eCinTr->setGlobalScale(0.5f, 0.5f);
-	auto eCinSr = eCin->addComponent<SpriteRenderer>("transicion_puerta");
-	auto eCinIwf = eCin->addComponent<ImageWithFrames>(eCinSr, 1, 10, 1);
+	eCinTr->setGlobalScale(1, 1);
+	auto eCinSr = eCin->addComponent<SpriteRenderer>("credits");
+	auto eCinIwf = eCin->addComponent<ImageWithFrames>(eCinSr, 12, 13, 1);
 
 	eCinIwf->addCallback([this]
 		{
-		});*/
-	GameStateMachine::instance()->setState(GameStates::MAINMENU, true, true);
+			GameStateMachine::instance()->setState(GameStates::MAINMENU, true, true);
+		});
 }
 
 void EndGameState::onExit()
 {
 	std::cout << "\nEXIT ENDGAME.\n";
+
+	// se desuscribe al evento de click izq
+	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { onSkip(); });
+
 	GameStateMachine::instance()->getMngr()->Free();
+}
+
+void EndGameState::onSkip()
+{
+	GameStateMachine::instance()->setState(GameStates::MAINMENU, true, true);
 }

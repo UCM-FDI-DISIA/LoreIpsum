@@ -12,6 +12,7 @@
 #include "gamestates/DeckBuildingState.h"
 #include "gamestates/tutorialState.h"
 #include "gamestates/cinematicIntroState.h"
+#include "gamestates/FirstState.h"
 #include "gamestates/cinematicOutroState.h"
 
 #include "gamestates/SamuState.h"
@@ -44,6 +45,7 @@
 #include "Fade.h"
 #include "CaseManager.h"
 #include "gamestates/EndGameState.h"
+#include "gamestates/FirstState.h"
 #include "gamestates/LogoState.h"
 
 constexpr Uint8 FADE_SPEED = 30;
@@ -76,6 +78,7 @@ GameStateMachine::GameStateMachine()
 	endGameState = new EndGameState();
 
 	// Estados de menuses
+	firstState = new FirstState();
 	logoSate = new LogoState();
 	mainMenuState = new MainMenuState();
 	storyModeState = new StoryModeState();
@@ -111,11 +114,11 @@ GameStateMachine::GameStateMachine()
 	//currentState = new MainMenuState();
 	// tutorialDeckbuildingState
 
-	currentState = logoSate;
+	currentState = firstState;
 
 	// settea la data en el current state para acceder a ella desde cualquier estado
 	currentState->setData(new Data());
-	currentState->loadData();
+	currentState->loadDataIfExists();
 }
 
 // destructor

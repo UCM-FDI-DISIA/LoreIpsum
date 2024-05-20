@@ -33,9 +33,6 @@ void DialogueDestroyer::update()
 		//ent->getComponent<TutorialManager>()->tutorialActionEnded(Tutorials::Tutorials::BOARD, Tutorials::Board::PRESS_NEXT_TURN);
 	}
 
-	if (object->getComponent<FadeComponent>()->getFadeOut()) {
-		std::cout << object->getComponent<FadeComponent>()->getProgress() << std::endl;
-	}
 }
 
 void DialogueDestroyer::destroyDialogue()

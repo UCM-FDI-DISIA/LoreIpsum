@@ -75,13 +75,13 @@ void TutorialBoardState::onEnter()
 
 
 	auto music = SoundManager::instance();
-	music->startDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
+	music->startDynamicMusic(Sounds::MUSIC::BATTLE_P_M, Sounds::MUSIC::BATTLE_T_M);
 }
 
 void TutorialBoardState::onExit()
 {
 	auto music = SoundManager::instance();
-	music->stopDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
+	music->stopDynamicMusic(Sounds::MUSIC::BATTLE_P_M, Sounds::MUSIC::BATTLE_T_M);
 
 
 	tutorial->getComponent<TutorialManager>()->endTutorial();
@@ -169,7 +169,7 @@ void TutorialBoardState::setBoard()
 	//ecs::entity_t visual_PlayerTurnIndicator = factory->createVisual_PlayerTurnIndicator(700, 325);
 	ecs::entity_t visual_ScoreCounterJ2 = factory->createVisual_ScoreCounter(680, 233, Colors::MORADO_BERENJENA);
 	ecs::entity_t visual_ScoreCounterJ1 = factory->createVisual_ScoreCounter(680, 313, Colors::MIDNIGHT_LIGHT);
-
+	matchManagerComponent->setEndTurnButton(visual_EndTurnButton);
 
 	// Enlazado de la UI con los scripts que la controlan
 	//matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
@@ -180,6 +180,7 @@ void TutorialBoardState::setBoard()
 	boardManagerComponent->setScoreVisualJ1(visual_ScoreCounterJ1);
 	boardManagerComponent->setScoreVisualJ2(visual_ScoreCounterJ2);
 	boardManagerComponent->updateVisuals();
+	matchManagerComponent->setActionPointsJ1(j1Puntos);
 
 
 	// Seteamos la mano de J1 en el matchManager
@@ -187,7 +188,7 @@ void TutorialBoardState::setBoard()
 
 
 	auto music = SoundManager::instance();
-	music->startDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
+	music->startDynamicMusic(Sounds::MUSIC::BATTLE_P_M, Sounds::MUSIC::BATTLE_T_M);
 
 
 #pragma region Seccion IA

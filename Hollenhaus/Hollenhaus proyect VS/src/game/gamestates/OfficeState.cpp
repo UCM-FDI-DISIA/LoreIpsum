@@ -49,7 +49,6 @@ void OfficeState::refresh()
 
 void OfficeState::onEnter()
 {
-	std::cout << "\nENTER OFFICE.\n";
 
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onPauseOF(); });
@@ -120,7 +119,7 @@ void OfficeState::onEnter()
 		npc = factory->createNPC(caso, fondo);
 
 	caseManager->addNPC(npc);
-	objs.push_back(npc);
+	//objs.push_back(npc);
 
 	//Idea para los casos:
 	// - En dialoguesV1.json meter el texto de los casos que queremos que se diga. Como Caso0, Caso1, etc.
@@ -132,24 +131,29 @@ void OfficeState::onEnter()
 	objs.push_back(exit);
 
 	
+	if (!GameStateMachine::instance()->TUTORIAL_BOARD_COMPLETE()) {
+		npc->getComponent<BoxCollider>()->setPosOffset({1000,1000});
+	}
 
 	setTutorial();
 
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startMusic(Musics::OFFICE_M);
+	music->startMusic(Sounds::OFFICE_M);
+	music->startSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_OFFICE_SE, -1);
 }
 
 void OfficeState::onExit()
 {
-	std::cout << "\nEXIT OFFICE.\n";
 
 	// se desuscribe al evento
 	ih().clearFunction(ih().PAUSEKEY_DOWN, [this] { onPauseOF(); });
 
 	auto music = SoundManager::instance();
-	music->stopMusic(Musics::OFFICE_M);
+	music->stopMusic(Sounds::OFFICE_M);
+	music->stopSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_OFFICE_SE);
+
 
 	GameStateMachine::instance()->getMngr()->Free();
 

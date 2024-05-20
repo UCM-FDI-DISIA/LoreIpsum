@@ -20,6 +20,17 @@ Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_I
 {};
 Data::~Data() {
 	delete shopCards;
+}
+
+bool Data::SaveExists()
+{
+	std::fstream file;
+	file.open(SAVE_FILE, std::ios::in);
+
+	if (!file)
+		return false;
+
+	return true;
 };
 //------Setters:
 
@@ -71,8 +82,8 @@ void Data::AddCardToDrawer(int id) {
 #if _DEBUG
 	std::cout << "Added card with id: " << id << "\n";
 #endif
-
-	drawer[id] = id;
+	if (id != -1)
+		drawer[id] = id;
 }
 
 void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {
@@ -259,10 +270,6 @@ void Data::Write() {
 #endif
 		return;
 	}
-	else
-	{
-		std::cout << "\nBUENOS DIAS PARTIDA GUARDADA WRITE EN SAVE.\n";
-	}
 
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
@@ -320,10 +327,6 @@ void Data::Read() {
 		TuVieja("ERROR DE ESCRITURA: No se ha podido abrir el archivo de guardado.");
 #endif
 		return;
-	}
-	else
-	{
-		std::cout << "\nBUENOS DIAS LECTURA DEL SAVE.\n";
 	}
 
 	int number, iterations;
@@ -479,10 +482,6 @@ void Data::resetSave()
 		TuVieja("ERROR DE LECTURA: No se ha podido leer el archivo de guardado para reseteralo.");
 #endif
 		return;
-	}
-	else
-	{
-		std::cout << "\nBUENOS DIAS NUEVA PARTIDA RESET DEL SAVE.\n";
 	}
 
 	int number, iterations;

@@ -82,7 +82,6 @@ void DeckBuildingState::refresh()
 // ---- ENTER ESTADO ----
 void DeckBuildingState::onEnter()
 {
-	std::cout << "\nENTER DECKBUILDING.\n";
 
 	// carga el data
 	loadData();
@@ -279,7 +278,9 @@ void DeckBuildingState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startMusic(Musics::OFFICE_M);
+	music->startMusic(Sounds::OFFICE_M);
+	music->startSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_OFFICE_SE, -1);
+
 }
 
 // ---- EXIT ESTADO ----
@@ -290,12 +291,13 @@ void DeckBuildingState::onExit()
 
 
 	auto music = SoundManager::instance();
-	music->stopMusic(Musics::OFFICE_M);
+	music->stopMusic(Sounds::OFFICE_M);
+	music->stopSoundEffect(Sounds::SOUND_EFFECTS::AMBIENCE_OFFICE_SE);
+
 
 
 	GameStateMachine::instance()->getMngr()->Free();
 
-	std::cout << "\nEXIT DECKBUILDING.\n";
 
 	delete factory;
 }
