@@ -102,6 +102,16 @@ public:
 	virtual void nextCase();
 	virtual void setDefeatedNPC(int id); // Para guardar en Data el id del ultimo NPC derrotado.
 
+	// TUTORIALES
+	virtual bool TUTORIAL_DECKBUILDING_COMPLETE();
+	virtual void setTUTORIAL_DECKBUILDING_COMPLETE(bool a);
+	virtual bool TUTORIAL_CITY_COMPLETE();
+	virtual void setTUTORIAL_CITY_COMPLETE(bool a);
+	virtual bool TUTORIAL_BOARD_COMPLETE();
+	virtual void setTUTORIAL_BOARD_COMPLETE(bool a);
+	virtual bool TUTORIAL_SHOP_COMPLETE();
+	virtual void setTUTORIAL_SHOP_COMPLETE(bool a);
+
 	//MULTIPLAYER
 
 	virtual void setSocketRival(TCPsocket _rival);
