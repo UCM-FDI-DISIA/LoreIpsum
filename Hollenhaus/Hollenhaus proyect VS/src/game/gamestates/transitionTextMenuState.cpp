@@ -129,8 +129,23 @@ void TransitionTextMenuState::onEnter()
 	continuar->addComponent<BoxCollider>();
 	continuar->getComponent<BoxCollider>()->setSize(Vector2D(220, 40));
 	continuar->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
-	continuar->addComponent<NPC>(1, 0); // Esto es graciosisimo
+	continuar->addComponent<NPC>(GameStates::CITY, 0); // Esto es graciosisimo
 	continuar->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
+
+	// TUTORIAL SAVE
+	GameStateMachine::instance()->setTUTORIAL_DECKBUILDING_COMPLETE(TUTORIAL_DECKBUILDING_COMPLETE());
+	GameStateMachine::instance()->setTUTORIAL_CITY_COMPLETE(TUTORIAL_CITY_COMPLETE());
+	GameStateMachine::instance()->setTUTORIAL_BOARD_COMPLETE(TUTORIAL_BOARD_COMPLETE());
+	GameStateMachine::instance()->setTUTORIAL_SHOP_COMPLETE(TUTORIAL_SHOP_COMPLETE());
+
+
+	// INES LIMPIA ESTO
+	std::cout << TUTORIAL_DECKBUILDING_COMPLETE() << std::endl;
+	std::cout << TUTORIAL_CITY_COMPLETE() << std::endl;
+	std::cout << TUTORIAL_BOARD_COMPLETE() << std::endl;
+	std::cout << TUTORIAL_SHOP_COMPLETE() << std::endl;
+
+	//GameStateMachine::instance()->getCurrentState()->saveData(); // la privacidad de la clase data, un valorant o que
 }
 
 void TransitionTextMenuState::onExit()

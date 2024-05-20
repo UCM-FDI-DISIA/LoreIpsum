@@ -298,6 +298,12 @@ void Data::Write() {
 	file << lastPaulPos.getX() << "\n";
 	file << lastPaulPos.getY() << "\n";
 	file << lastPaulDir << "\n";
+	file << "Tutorial" << "\n";
+	file << dbt_c << "\n";
+	file << ct_c << "\n";
+	file << bt_c << "\n";
+	file << st_c << "\n";
+
 	file.close();
 }
 
@@ -386,6 +392,18 @@ void Data::Read() {
 	file >> posX >> posY >> lastPaulDir;
 	lastPaulPos.setX(posX);
 	lastPaulPos.setY(posY);
+
+	file >> falsedades; // Tutorial
+	bool db, city, battle, shop;
+	file >> db;
+	file >> city;
+	file >> battle;
+	file >> shop;
+
+	dbt_c = db;
+	ct_c = city;
+	bt_c = battle;
+	st_c = shop;
 
 	file.close();
 }
@@ -526,6 +544,21 @@ void Data::resetSave()
 	file << number << "\n";
 	file2 >> number; // Dir.
 	file << number << "\n";
+
+	bool boolean;
+
+	file2 >> falsedad; // Tutorial
+	file << falsedad << "\n";
+	file2 >> boolean; // dbt_c
+	file << boolean << "\n";
+	file2 >> boolean; // ct_c
+	file << boolean << "\n";
+	file2 >> boolean; // bt_c
+	file << boolean << "\n";
+	file2 >> boolean; // st_c
+	file << boolean << "\n";
+
+
 
 	file.close();
 	file2.close();

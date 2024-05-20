@@ -287,13 +287,13 @@ public:
 
 	// TUTORIAL
 	bool TUTORIAL_DECKBUILDING_COMPLETE() { return dbt_c; }
-	void setTUTORIAL_DECKBUILDING_COMPLETE(bool a) { dbt_c = a; }
+	void setTUTORIAL_DECKBUILDING_COMPLETE(bool a);
 	bool TUTORIAL_CITY_COMPLETE() { return ct_c; }
-	void setTUTORIAL_CITY_COMPLETE(bool a) { ct_c = a; }
+	void setTUTORIAL_CITY_COMPLETE(bool a);
 	bool TUTORIAL_BOARD_COMPLETE() { return bt_c; }
-	void setTUTORIAL_BOARD_COMPLETE(bool a) { bt_c = a; }
+	void setTUTORIAL_BOARD_COMPLETE(bool a);
 	bool TUTORIAL_SHOP_COMPLETE() { return st_c; }
-	void setTUTORIAL_SHOP_COMPLETE(bool a) { st_c = a; }
+	void setTUTORIAL_SHOP_COMPLETE(bool a);
 
 };
 
