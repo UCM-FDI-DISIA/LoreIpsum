@@ -33,4 +33,6 @@ private:
     void setMOVE();
 
     void setBUILDING();
+
+    void setSHOPPING();
 };
