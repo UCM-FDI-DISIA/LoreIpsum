@@ -145,7 +145,7 @@ void LuisState::onEnter()
 	// ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
 
 	auto j1Puntos = createPointsJ1();
-	auto j2Puntos = createPointsJ2();
+	createPointsJ2();
 
 	/// BOTON END TURN
 	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 250);
