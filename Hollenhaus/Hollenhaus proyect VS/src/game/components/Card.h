@@ -45,6 +45,7 @@ public:
 		return *(effectIt);
 	}
 	int getEffectSize() const { return effects.size(); }
+	std::vector<JsonData::CardEffect> getEffectsJson() { return effectsJSON; }
 
 	// setters
 	void setCost(int v) { cost = v; }

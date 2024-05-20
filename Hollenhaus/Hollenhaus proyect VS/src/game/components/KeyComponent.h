@@ -22,12 +22,14 @@ public:
 
     void initComponent() override;
 
+    void newKey();
+
 private:
     void set();
 
     int addToY_;
 
-    int NKeys_;
+    int nKeys_;
 
     // Vector de nombres de iconos
     std::vector<std::string> keyNames_;

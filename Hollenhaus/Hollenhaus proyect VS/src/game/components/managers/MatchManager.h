@@ -65,6 +65,8 @@ public:
 
     void SetHandComponent(HandComponent* hand) { playerJ1Hand = hand; }
 
+    void checkIfAddKey(Card* c);
+
     // MUSICA DINAMICA
     void changeMusicTurn(Turns::State i);
 
