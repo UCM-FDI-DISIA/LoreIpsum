@@ -400,6 +400,17 @@ void Data::Read() {
 	file.close();
 }
 
+bool Data::SaveExists()
+{
+	std::ofstream file;
+	file.open(SAVE_FILE);
+
+	if (!file.is_open())
+		return false;
+
+	return true;
+}
+
 //------Vaciar:
 void Data::EmptyLists() {
 	EmptyMaze();

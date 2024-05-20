@@ -38,7 +38,6 @@ void MatchOverState::refresh()
 
 void MatchOverState::onEnter()
 {
-	std::cout << "\nENTER MATCHOVER.\n";
 
 	//------FakeCards:
 	factory = new Factory();
@@ -65,7 +64,6 @@ void MatchOverState::onEnter()
 void MatchOverState::onExit()
 {
 	saveData();
-	std::cout << "\nEXIT MATCHOVER.\n";
 	GameStateMachine::instance()->getMngr()->Free();
 }
 

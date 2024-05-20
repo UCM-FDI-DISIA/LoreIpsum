@@ -96,9 +96,6 @@ void Hover::updateEveryComponent()
 {
 	if (checkTweenConstraints()) return;
 
-	std::cout << hoverTweenX.peek() << std::endl;
-	//std::cout << scaleTween.peek() << std::endl;
-
 	// fondo de la carta
 	spr->setOffset(
 		hoverTweenX.peek(),

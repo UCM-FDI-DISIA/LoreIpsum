@@ -93,7 +93,6 @@ void MainMenuState::onEnter()
 }
 
 void MainMenuState::onExit() {
-	std::cout << "\nEXIT MENU.\n";
 
 	Vector2D globalPos(-380.0f, 0);
 	setLastPaulPos(globalPos);
