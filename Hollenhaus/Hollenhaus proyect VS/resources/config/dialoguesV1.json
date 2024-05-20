@@ -1506,7 +1506,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Se comenta por la facultad de filosofia que quien llame a este numero puede pedir un favor a un fantasma",
+              "text": "Se comenta por la facultad de filosofia que quien llame a este numero,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1514,7 +1514,7 @@
             },
             {
               "nodeID": 2,
-              "text": "como una especie de sicario del susto, que triste que tengamos que escondernos, verdad?...",
+              "text": "puede pedir un favor a un fantasma",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1522,7 +1522,7 @@
             },
             {
               "nodeID": 3,
-              "text": "Hola? No te preocupes puedes hablar sin tapujos estamos entre companyeros de lucha...",
+              "text": "como una especie de sicario del susto, que triste que tengamos que escondernos, verdad?...",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1530,6 +1530,14 @@
             },
             {
               "nodeID": 4,
+              "text": "Hola? No te preocupes puedes hablar sin tapujos estamos entre companyeros de lucha...",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 5,
               "text": "Esta bien, mantente en silencio, no esta el horno para bollos.",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1542,7 +1550,7 @@
               ]
             },
             {
-              "nodeID": 5,
+              "nodeID": 6,
               "text": "Llamo porque tengo un objetivo, un cerdo fascista que...",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1550,7 +1558,7 @@
               ]
             },
             {
-              "nodeID": 6,
+              "nodeID": 7,
               "text": "Ni siquiera te vas a alegrar de que tenga un objetivo? Nada? Ninguna reaccion?...",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1558,7 +1566,7 @@
               ]
             },
             {
-              "nodeID": 7,
+              "nodeID": 8,
               "text": "Sin rodeos, eh? Egbert Schwarz, profesor de filosofia de segundo,",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1566,7 +1574,7 @@
               ]
             },
             {
-              "nodeID": 8,
+              "nodeID": 9,
               "text": "muy fanatico del trabajo de Heidegger, ya me entiendes",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1574,16 +1582,8 @@
               ]
             },
             {
-              "nodeID": 9,
-              "text": "Le puedes asustar con la promesa de una nacion libre y socialista, con la liberacion del pueblo obrero",
-              "eventStart": 0,
-              "eventFinish": 0,
-              "events": [
-              ]
-            },
-            {
               "nodeID": 10,
-              "text": "o con el gluten, es celiaco.",
+              "text": "Le puedes asustar con la promesa de una nacion libre y socialista,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1591,7 +1591,7 @@
             },
             {
               "nodeID": 11,
-              "text": "Si es verdad eso que dicen de que hay que pagar la contratacion en alma",
+              "text": "con la liberacion del pueblo obrero",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1599,6 +1599,22 @@
             },
             {
               "nodeID": 12,
+              "text": "o con el gluten, es celiaco.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 13,
+              "text": "Si es verdad eso que dicen de que hay que pagar la contratacion en alma",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 14,
               "text": "estoy deseando que la liberes de la subyugacion de mi cuerpo, a no ser que sea metaforico",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1607,7 +1623,7 @@
               ]
             },
             {
-              "nodeID": 13,
+              "nodeID": 15,
               "text": "que entonces no la liberes de nada. Larga vida al pueblo. *Cuelga*",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1622,7 +1638,7 @@
               ]
             },
             {
-              "nodeID": 14,
+              "nodeID": 16,
               "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1740,7 +1756,7 @@
             },
             {
               "nodeID": 8,
-              "text": "Neumann debe estar aterrado del buen gusto y del criterio artistico, debe ser la unica explicacion.",
+              "text": "Neumann debe estar aterrado del buen gusto y del criterio artistico,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1748,6 +1764,14 @@
             },
             {
               "nodeID": 9,
+              "text": "debe ser la unica explicacion.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 10,
               "text": "Y encima se esta tirando a mi mujer. *Cuelga*",
               "eventStart": 0,
               "eventFinish": 0,
@@ -1762,7 +1786,7 @@
               ]
             },
             {
-              "nodeID": 13,
+              "nodeID": 11,
               "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
