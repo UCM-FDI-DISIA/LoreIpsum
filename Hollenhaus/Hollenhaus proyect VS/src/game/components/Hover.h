@@ -4,9 +4,9 @@
 
 constexpr int HOVER_SPEED = 30,
               HOVER_TIMER = 500,
-              HOVER_SCALE = 1.5,
               HOVER_LAYER = 999;
-const Vector2D HOVER_OFFSET = {-50, -150};
+constexpr float HOVER_SCALE = 1.4;
+const Vector2D HOVER_OFFSET = {-50, -300};
 
 class Hover : public ComponentUpdate
 {
@@ -28,6 +28,7 @@ class Hover : public ComponentUpdate
 	/// tweeny
 	tweeny::tween<float> hoverTweenX;
 	tweeny::tween<float> hoverTweenY;
+	tweeny::tween<float> scaleTween;
 
 	/// timer
 	int hoverTimer = 0;
@@ -48,6 +49,8 @@ class Hover : public ComponentUpdate
 
 	void updateEveryComponent();
 	void resetEveryComponent();
+
+	bool checkTweenConstraints();
 public:
 	Hover() = default;
 

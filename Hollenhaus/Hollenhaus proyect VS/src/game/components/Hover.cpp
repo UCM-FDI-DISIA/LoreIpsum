@@ -17,13 +17,15 @@ void Hover::initComponent()
 	iniScale = tr->getGlobalScale();
 	iniPos = tr->getGlobalPos();
 	iniLayer = getEntity()->getLayer();
+	hoverScale = HOVER_SCALE;
 
 	for (const auto child : getEntity()->getComponent<Transform>()->getChildren())
 	{
 		// si es texto
 		const auto texto = child->getEntity()->getComponent<TextComponent>();
 		if (texto != nullptr)
-			{}
+		{
+		}
 	}
 
 	resetTweensForward();
@@ -31,10 +33,12 @@ void Hover::initComponent()
 
 void Hover::update()
 {
+	if (!isOnHand) return;
+
 	hoverTweenX.step(1);
 	hoverTweenY.step(1);
+	scaleTween.step(1);
 
-	if (!isOnHand) return;
 	if (ih().mouseButtonDownEvent()) hasClicked = true;
 	if (ih().mouseButtonUpEvent()) hasClicked = false;
 	if (hasClicked)
@@ -45,13 +49,15 @@ void Hover::update()
 
 	const auto currTime = sdlutils().virtualTimer().currTime();
 	if (mouseRaycast() == ent_)
-	{ // si el raton esta dentro de la carta
+	{
+		// si el raton esta dentro de la carta
 		if (!intoHover) // si no esta entrando en hover ya
 			if (hoverTimer + hoverActivationSpeed <= currTime) // si ha pasado sufi tiempo
 				onHoverEnter();
 	}
 	else
-	{ // si sale el raton de la carta
+	{
+		// si sale el raton de la carta
 		hoverTimer = currTime; // se resetea el contador
 		if (intoHover) // out of hover
 			onHoverExit();
@@ -68,8 +74,8 @@ void Hover::onHoverEnter()
 	iniScale = tr->getGlobalScale();
 	intoHover = true;
 	outoHover = false;
-	tr->setGlobalScale(hoverScale, hoverScale);
-	/// ...
+	//tr->setGlobalScale(hoverScale, hoverScale);
+	resetTweensForward();
 }
 
 void Hover::onHoverExit()
@@ -78,19 +84,28 @@ void Hover::onHoverExit()
 	outoHover = true;
 	tr->setGlobalScale(iniScale);
 	resetEveryComponent();
-
-	/// ...
+	//resetTweensBackward();
 }
 
 void Hover::updateEveryComponent()
 {
+	if ((hoverTweenX.peek() < -1000000) || (hoverTweenX.peek() > 1000000)) return; // XDDXDDDX
+	//if ((hoverTweenY.peek() < -1000000) || (hoverTweenY.peek() > 1000000)) outside = true; // XDDXDDDX
+	//if ((scaleTween.peek() < -1000000) || (scaleTween.peek() > 1000000)) outside = true; // XDDXDDDX
+	//
+	//if (checkTweenConstraints()) return;
+
+	//std::cout << hoverTweenX.peek() << std::endl;
+	std::cout << scaleTween.peek() << std::endl;
+
 	// fondo de la carta
 	spr->setOffset(
 		hoverTweenX.peek(),
 		hoverTweenY.peek()
 	);
+	//tr->setGlobalScale(scaleTween.peek(), scaleTween.peek());
 
-	
+
 	//escala
 	//getEntity()->getComponent<Transform>()->setGlobalScale(hoverScale, hoverScale);
 
@@ -108,21 +123,32 @@ void Hover::updateEveryComponent()
 			if (texto->getText().at(0) == '+'
 				|| texto->getText().at(0) == '-') // XXDDDDDDDDDDD
 			{
+				// es el texto del efecto
 				x = EFFECT_OFFSET_X;
 				y = EFFECT_OFFSET_Y;
 			}
+			else
+			{
+				// si no, son el coste y el valor
+			}
 			texto->setOffset(hoverTweenX.peek() + x, hoverTweenY.peek() + y);
-			texto->setScale(Vector2D(10, 10));
+			texto->setScale(Vector2D(hoverScale, hoverScale));
 		}
 
-		// si es imagen, puede tener texto
+		// si es imagen
 		const auto imagen = child->getEntity()->getComponent<SpriteRenderer>();
 		if (imagen != nullptr)
 		{
 			if (imagen->getTextID() == "card_sombra")
+			{
+				// si es la sombra
 				imagen->setOffset(hoverTweenX.peek() - 2, hoverTweenY.peek() - 2);
+			}
 			else
+			{
+				// si no es la sombra, es la imagen de efecto
 				imagen->setOffset(hoverTweenX.peek(), hoverTweenY.peek());
+			}
 		}
 	}
 }
@@ -146,8 +172,12 @@ void Hover::resetEveryComponent()
 			if (texto->getText().at(0) == '+'
 				|| texto->getText().at(0) == '-') // XXDDDDDDDDDDD
 			{
+				// es el texto del efecto
 				x = EFFECT_OFFSET_X;
 				y = EFFECT_OFFSET_Y;
+			}
+			else
+			{
 			}
 			texto->setOffset(x, y);
 			texto->setScale(Vector2D(1, 1));
@@ -158,11 +188,26 @@ void Hover::resetEveryComponent()
 		if (imagen != nullptr)
 		{
 			if (imagen->getTextID() == "card_sombra")
+			{
+				// si es la sombra
 				imagen->setOffset(-2, -2);
+			}
 			else
+			{
+				// si no, es la imagen de efecto
 				imagen->setOffset(0, 0);
+			}
 		}
 	}
+}
+
+bool Hover::checkTweenConstraints()
+{
+	bool outside = false;
+	if ((hoverTweenX.peek() < -1000000) || (hoverTweenX.peek() > 1000000)) outside = true; // XDDXDDDX
+	if ((hoverTweenY.peek() < -1000000) || (hoverTweenY.peek() > 1000000)) outside = true; // XDDXDDDX
+	if ((scaleTween.peek() < -1000000) || (scaleTween.peek() > 1000000)) outside = true; // XDDXDDDX
+	return outside;
 }
 
 
@@ -179,6 +224,12 @@ void Hover::resetTweensForward()
 		.to(hoverOffset.getY())
 		.during(hoverSpeed)
 		.via(tweeny::easing::sinusoidalInOut);
+
+	scaleTween =
+		tweeny::from(iniScale.getX())
+		.to(hoverScale)
+		.during(hoverSpeed)
+		.via(tweeny::easing::sinusoidalInOut);
 }
 
 void Hover::resetTweensBackward() /// *********
@@ -193,6 +244,12 @@ void Hover::resetTweensBackward() /// *********
 	hoverTweenY =
 		tweeny::from(hoverTweenY.peek())
 		.to(0.f)
+		.during(hoverSpeed)
+		.via(tweeny::easing::sinusoidalInOut);
+
+	scaleTween =
+		tweeny::from(scaleTween.peek())
+		.to(iniScale.getX())
 		.during(hoverSpeed)
 		.via(tweeny::easing::sinusoidalInOut);
 }
