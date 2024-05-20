@@ -53,7 +53,7 @@ void MatchOverState::onEnter()
 	{
 		continuar->addComponent<NPC>(GameStates::CINEMATICOUTRO, 0); // Esto es graciosisimo
 	}
-	else 
+	else
 	{
 		continuar->addComponent<NPC>(GameStates::CITY, 0); // Esto es graciosisimo
 	}
@@ -106,7 +106,7 @@ void MatchOverState::setWindow(int lastWinner)
 
 		if (id != -1)
 		{
-			auto card = createCard(id, Vector2D(500, 230));
+			auto card = createCard(id, Vector2D(520, 240));
 		}
 		break;
 	case 3: // Caso si gana el NPC o tatotista:
@@ -122,7 +122,8 @@ void MatchOverState::setWindow(int lastWinner)
 
 	//------Carta del fondo.
 	ecs::entity_t noCard = Instantiate(Vector2D());
-	noCard->getComponent<Transform>()->setGlobalPos(500, 230);
+	noCard->getComponent<Transform>()->setGlobalPos(520, 240);
+	noCard->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
 	noCard->addComponent<SpriteRenderer>("no_card");
 	noCard->setLayer(0);
 	//------Texto fin batalla/caso:
