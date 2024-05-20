@@ -30,7 +30,7 @@ void CinematicOutroState::render() const
 void CinematicOutroState::onEnter()
 {
 	TuVieja("\nEnter CinematicOutroState");
-	auto eCin = Instantiate(Vector2D());
+	/*auto eCin = Instantiate(Vector2D());
 
 	auto eCinTr = eCin->addComponent<Transform>();
 	eCinTr->setGlobalPos(0, 0);
@@ -40,8 +40,8 @@ void CinematicOutroState::onEnter()
 
 	eCinIwf->addCallback([this]
 		{
-			GameStateMachine::instance()->setState(GameStates::MAINMENU, true, true);
-		});
+		});*/
+			GameStateMachine::instance()->setState(GameStates::ENDGAME, true, true);
 }
 
 void CinematicOutroState::onExit()

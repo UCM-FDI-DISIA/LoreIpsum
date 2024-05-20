@@ -51,7 +51,7 @@ void MatchOverState::onEnter()
 	continuar->getComponent<BoxCollider>()->setPosOffset(Vector2D(-100, -20));
 	if (j2_ == "8")
 	{
-		continuar->addComponent<NPC>(GameStates::ENDGAME, 0); // Esto es graciosisimo
+		continuar->addComponent<NPC>(GameStates::CINEMATICOUTRO, 0); // Esto es graciosisimo
 	}
 	else 
 	{

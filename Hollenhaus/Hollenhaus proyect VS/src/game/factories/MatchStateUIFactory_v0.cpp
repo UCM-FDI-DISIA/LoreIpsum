@@ -13,14 +13,14 @@
 ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
 {
     ecs::entity_t keyButton = Instantiate(Vector2D(posX, posY));
-    keyButton->getComponent<Transform>()->setGlobalScale(1, 1);
+    keyButton->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
     auto sprite = keyButton->addComponent<SpriteRenderer>("leyenda_boton");
     keyButton->addComponent<BoxCollider>();
     keyButton->addComponent<Button>()->connectToButton([]
     {
     	GameStateMachine::instance()->getCurrentState()->setKey();
     });
-    keyButton->setLayer(4);
+    keyButton->setLayer(300);
     auto shine = keyButton->addComponent<ShineComponent>();
     shine->addEnt(sprite, "leyenda_boton_brilli");
 

@@ -25,6 +25,8 @@ protected:
 	//LAS ENTIDADES NO! SE CREAN EN LA CONSTRUCTORA SE CREAN EN EL ONENTER Y SE ELIMINAN EN EL ONEXIT 
 	GameState() {}; // constructoras de clases abstractas no deberian ser publicas
 
+	virtual void newKey();
+
 public:
 	virtual ~GameState();		//Destructora
 
