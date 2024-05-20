@@ -52,6 +52,21 @@ void DeckBuildingState::update()
 	/// Feedback
 	tweenFade.step(1);
 	fbSaved->getComponent<TextComponent>()->setAlpha(tweenFade.peek());
+
+	//Esto probablemente sea bastante feo pero bueno es rápido
+	if (drawer_->getlimitDelante()) {
+		botPalante->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 255);	//Cambiamos el color
+	}
+	else {
+		botPalante->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 0);
+	}
+
+	if (drawer_->getlimitAtras()) {
+		botPatras->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 255);
+	}
+	else {
+		botPatras->getComponent<SpriteRenderer>()->setMultiplyColor(0, 0, 0, 0);//Color normal
+	}
 }
 
 void DeckBuildingState::render() const
@@ -160,7 +175,7 @@ void DeckBuildingState::onEnter()
 	int botX = 720;
 	int botY = 470;
 	int botSep = 60;
-	ecs::entity_t botPalante = Instantiate();
+	botPalante = Instantiate();
 	botPalante->addComponent<Transform>();
 	botPalante->addComponent<SpriteRenderer>("UpDrawer");
 	botPalante->addComponent<BoxCollider>();
@@ -174,7 +189,7 @@ void DeckBuildingState::onEnter()
 	botPalante->setLayer(2);
 
 	// ---- Pasar cajon atras:
-	ecs::entity_t botPatras = Instantiate();
+	botPatras = Instantiate();
 	botPatras->addComponent<Transform>();
 	botPatras->addComponent<SpriteRenderer>("DownDrawer");
 	botPatras->addComponent<BoxCollider>();
