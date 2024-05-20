@@ -91,7 +91,8 @@ void ImageWithFrames::setSprite(std::string newSprite, int rows, int cols, int l
 	spriteRend_->setRows(nRows_);
 	spriteRend_->setCols(nCols_);
 
-	//syncRenderer();
+	syncRenderer();
+	spriteRend_->render();
 }
 
 void ImageWithFrames::addCallback(SDLEventCallback _callback)
