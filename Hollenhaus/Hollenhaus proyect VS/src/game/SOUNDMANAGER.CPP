@@ -26,6 +26,7 @@ void SoundManager::init()
 
 	sound_effect_names.push_back("door_sound_effect");
 	sound_effect_names.push_back("candle_sound_effect");
+	sound_effect_names.push_back("ambience_street_effect");
 
 	// INES AQUI CAMBIAR
 
