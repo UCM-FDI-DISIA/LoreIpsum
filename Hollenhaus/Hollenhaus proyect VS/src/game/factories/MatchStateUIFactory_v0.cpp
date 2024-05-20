@@ -40,7 +40,13 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int 
     endTurnButton->getComponent<BoxCollider>()->setSize(Vector2D(220,300));
     endTurnButton->addComponent<ImageWithFrames>(1, 12, 1, 60);
     endTurnButton->addComponent<EndTurnButton>(Turns::J1);
-    endTurnButton->addComponent<Clickable>(Colors::MORADO_BERENJENA, Colors::ROJO_HOLLENHAUS);
+    endTurnButton->addComponent<Clickable>(SDL_Color {
+        Colors::MORADO_BERENJENA.r,
+        Colors::MORADO_BERENJENA.g,
+        Colors::MORADO_BERENJENA.b,
+        100
+        }
+    , Colors::ROJO_HOLLENHAUS);
     return endTurnButton;
 }
 

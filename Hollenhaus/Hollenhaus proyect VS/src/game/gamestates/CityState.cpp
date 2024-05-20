@@ -168,9 +168,6 @@ void CityState::onEnter()
 	// Oficina
 	ecs::entity_t ofi = factory->createNPC(0, fondo);
 
-	ecs::entity_t wanda = factory->createNPC(9, fondo);		// tienda
-	objs.push_back(wanda);
-
 	if (GameStateMachine::instance()->TUTORIAL_SHOP_COMPLETE()) {
 		ecs::entity_t tienda = factory->createNPC(1, fondo);		// tienda
 		objs.push_back(tienda);
@@ -196,11 +193,6 @@ void CityState::onEnter()
 			}
 		}
 	}
-
-	// Npcs de caso
-	//objs.push_back(npc1);
-	/*objs.push_back(npc2);
-	objs.push_back(npc4);*/
 
 	objs.push_back(colliderSuelo);
 	objs.push_back(ofi);

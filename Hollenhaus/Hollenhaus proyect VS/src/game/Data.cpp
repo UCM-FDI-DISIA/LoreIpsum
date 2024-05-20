@@ -71,8 +71,8 @@ void Data::AddCardToDrawer(int id) {
 #if _DEBUG
 	std::cout << "Added card with id: " << id << "\n";
 #endif
-
-	drawer[id] = id;
+	if (id != -1)
+		drawer[id] = id;
 }
 
 void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {

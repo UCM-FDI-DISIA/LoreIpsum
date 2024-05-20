@@ -435,6 +435,18 @@
     {
       "id": "no_card",
       "file": "resources/images/card_obtained.png"
+    },
+    {
+      "id": "outro",
+      "file": "resources/images/cinem.png"
+    },
+    {
+      "id": "intro",
+      "file": "resources/images/cinem_intro.png"
+    },
+    {
+      "id": "credits",
+      "file": "resources/images/credits_cinem.png"
     }
   ],
   "fonts": [
