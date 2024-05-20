@@ -104,5 +104,4 @@ void TutorialOfficeManager::setPIZARRA()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
-
 }
