@@ -44,6 +44,6 @@ private:
     int decision_;
     bool click_;
 
-    BoxCollider* collider_ = nullptr;
+    BoxCollider* collider_;
 };
 
