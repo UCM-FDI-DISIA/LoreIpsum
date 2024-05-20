@@ -20,6 +20,17 @@ Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_I
 {};
 Data::~Data() {
 	delete shopCards;
+}
+
+bool Data::SaveExists()
+{
+	std::fstream file;
+	file.open(SAVE_FILE, std::ios::in);
+
+	if (!file)
+		return false;
+
+	return true;
 };
 //------Setters:
 
@@ -398,17 +409,6 @@ void Data::Read() {
 	st_c = shop;
 
 	file.close();
-}
-
-bool Data::SaveExists()
-{
-	std::fstream file;
-	file.open(SAVE_FILE, std::ios::in);
-
-	if (!file)
-		return false;
-
-	return true;
 }
 
 //------Vaciar:
