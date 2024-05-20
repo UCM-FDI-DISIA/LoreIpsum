@@ -231,6 +231,11 @@ void GameState::setJ2(std::string rival)
 {
 }
 
+bool GameState::isDefeated(int i)
+{
+	return data->IdIsInDefeatedNPC(i);
+}
+
 void GameState::saveData()
 {
 	data->Write();

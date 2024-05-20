@@ -134,7 +134,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Bienvenido a las partidas de cartas.",
+              "text": "Bienvenido a las partidas de cartas",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -142,7 +142,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Aqui podras conseguir dinero con el que podras comprar nuevas cartas en la tienda.",
+              "text": "Ganando estas podras conseguir dinero y cartas nuevas",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -150,7 +150,7 @@
             },
             {
               "nodeID": 2,
-              "text": "Pero empecemos desde el principio.",
+              "text": "Pero empecemos desde el principio",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -169,7 +169,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Esto es una carta.",
+              "text": "Esto es una carta",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -177,7 +177,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Las cartas guardan informacion.",
+              "text": "Las cartas guardan informacion",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -266,7 +266,7 @@
             },
             {
               "nodeID": 2,
-              "text": "Sigue jugando y descubriras todos los efectos!",
+              "text": "Sigue jugando y descubriras todos los efectos",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -293,7 +293,7 @@
             },
             {
               "nodeID": 1,
-              "text": "El mazo se compone de las cartas que tu quieras. Desde tu oficina lo puedes modificar.",
+              "text": "El mazo se compone de las cartas que tu quieras",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -301,7 +301,7 @@
             },
             {
               "nodeID": 2,
-              "text": "Desde tu oficina lo puedes modificar.",
+              "text": "Puedes modificarlo desde tu oficina",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -309,7 +309,7 @@
             },
             {
               "nodeID": 3,
-              "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
+              "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -317,7 +317,7 @@
             },
             {
               "nodeID": 4,
-              "text": "Roba una carta de tu mazo para tenerla en tu mano.",
+              "text": "Roba una carta de tu mazo para tenerla en tu mano",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -336,7 +336,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Bien hecho!",
+              "text": "Bien hecho",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -344,7 +344,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Solo podras usar cartas que tienes en tu mano",
+              "text": "Solo podras usar las cartas que tienes en tu mano",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -352,7 +352,7 @@
             },
             {
               "nodeID": 2,
-              "text": "Para usarlas tendras que colocar la carta en una de las celdas del tablero.",
+              "text": "Para usarlas tendras que colocarlas en las celdas del tablero",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -360,7 +360,7 @@
             },
             {
               "nodeID": 3,
-              "text": "Prueba a arrastrar la carta a una celda!",
+              "text": "Prueba a arrastrar la carta a una celda",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -387,7 +387,7 @@
             },
             {
               "nodeID": 1,
-              "text": "El jugador que tenga mas puntos al llenarse el tablero gana!",
+              "text": "El jugador que tenga mas puntos al llenarse el tablero gana",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -395,7 +395,7 @@
             },
             {
               "nodeID": 2,
-              "text": "Suerte!",
+              "text": "Mucha suerte...",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -414,7 +414,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Completar distintas acciones supondra un coste.",
+              "text": "Completar distintas acciones supone su coste",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -430,7 +430,7 @@
             },
             {
               "nodeID": 2,
-              "text": "Colocar una carta en el tablero dependera de cada carta.",
+              "text": "El coste para jugar cada carta es variable",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -438,7 +438,7 @@
             },
             {
               "nodeID": 3,
-              "text": "Este coste se puede ver en la esquina superior derecha de cada carta.",
+              "text": "Este coste se puede ver en la esquina superior derecha de cada carta",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -457,7 +457,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Cuando no puedas hacer mas acciones pulsa el boton de Siguiente Turno.",
+              "text": "Cuando no puedas hacer mas acciones pulsa la estatuilla de turnos",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -465,7 +465,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Esto le dara la oportunidad a tu enemigo de jugar sus cartas.",
+              "text": "Esto le da la oportunidad a tu enemigo de jugar sus cartas",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -484,7 +484,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Ya no tenemos nada mas que hacer",
+              "text": "Creo que ya has aprendido todo",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -492,7 +492,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Pulsa el boton a la izquierda del tablero para pasar de turno",
+              "text": "Pasa de turno, a ver que pasa",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -531,7 +531,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Hmm, nuestro oponentees bueno",
+              "text": "Parece que nuestro oponente es bueno",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -539,7 +539,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Haz tu mejor jugada!",
+              "text": "Haz tu mejor jugada",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -577,7 +577,7 @@
             },
             {
               "nodeID": 3,
-              "text": "Nadie se salva del poder de las cartas!",
+              "text": "Nadie se salva del poder de las cartas",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -596,7 +596,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Veo que lo pillas rapido!",
+              "text": "Veo que lo pillas rapido",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -623,7 +623,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Roba una carta!",
+              "text": "Roba una carta",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -637,7 +637,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Coloca una carta en el tablero!",
+              "text": "Coloca una carta en el tablero",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -651,7 +651,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Pasa de turno!",
+              "text": "Pasa de turno",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -670,7 +670,7 @@
           "nodes": [
             {
               "nodeID": "0",
-              "text": "Has terminado de mirar?",
+              "text": "Parece que ya has acabado de mirar",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -685,7 +685,7 @@
             },
             {
               "nodeID": "1",
-              "text": "Seguro que quieres comprar esta carta?",
+              "text": "Tienes cara de querer llevarte esa carta",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -836,7 +836,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Bienvenido a su organizador de casos.",
+              "text": "Bienvenido a su organizador de casos",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -844,7 +844,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Consta de su pizarra y sus cajones.",
+              "text": "Consta de su corcho y sus cajones",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -863,7 +863,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Estos son sus cajones.",
+              "text": "Estos son sus cajones",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -871,7 +871,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Puede navegar entre ellos con las flechas a su derecha.",
+              "text": "Puede abrirlos y cerrarlos con las flechas de la derecha",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -879,7 +879,7 @@
             },
             {
               "nodeID": 2,
-              "text": "En los cajones se encuentran todas las cartas que vaya consiguiendo.",
+              "text": "En los cajones se encuentran todas las cartas que vaya consiguiendo",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -887,7 +887,7 @@
             },
             {
               "nodeID": 3,
-              "text": "Ya sea derrotando enemigos o adquiriendolas en la tienda.",
+              "text": "Ya sea derrotando enemigos o adquiriendolas en la tienda",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -906,7 +906,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Esta es su pizarra.",
+              "text": "Este es su corcho",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -914,7 +914,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Aqui estan las cartas que forman el mazo con usted luche.",
+              "text": "Aqui estan las cartas que forman su mazo",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -922,7 +922,7 @@
             },
             {
               "nodeID": 2,
-              "text": "Puede tener un minimo de 10 cartas en tu mazo.",
+              "text": "Puede tener un minimo de 10 cartas",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -930,7 +930,7 @@
             },
             {
               "nodeID": 3,
-              "text": "Y hasta un maximo de 20.",
+              "text": "Y hasta un maximo de 20",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -938,7 +938,7 @@
             },
             {
               "nodeID": 4,
-              "text": "Con el boton de abajo a la izquierda puede guardar su mazo.",
+              "text": "Con el boton de abajo a la izquierda puede guardar su mazo",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -946,7 +946,7 @@
             },
             {
               "nodeID": 5,
-              "text": "No se olvides de hacerlo antes de salir porque no se guarda automaticamente.",
+              "text": "No te olvides de hacerlo antes de salir",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -965,7 +965,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Ahora que hemos visto las partes. Vamos a ver lo que puede hacer.",
+              "text": "Veamos que se puede hacer",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -973,7 +973,7 @@
             },
             {
               "nodeID": 0,
-              "text": "Puede mover cartas de los cajones a la pizarra y viceversa.",
+              "text": "Puede mover cartas de los cajones a la pizarra y viceversa",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -981,7 +981,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Ahora cree el mazo que mas le guste y a jugar.",
+              "text": "Ahora cree el mazo que mas le guste y a jugar",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1005,7 +1005,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Sea bienvenido a mi santeria.",
+              "text": "Sea bienvenido a mi santeria",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1013,7 +1013,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Aqui encontraras articulos esotericos de toda clase.",
+              "text": "Aqui encontraras articulos esotericos de toda clase",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1032,7 +1032,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Puede dejar sus monedas aqui, no se preocupe, yo se las guardo mientras mira.",
+              "text": "Puede dejar sus monedas aqui, no se preocupe, yo se las guardo mientras mira",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1051,7 +1051,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Dejeme que le ensenye algo. Creo que le interesara.",
+              "text": "Dejeme que le muestre algo, creo que le va a interesar",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1059,7 +1059,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Son estas cartas que tengo aqui.",
+              "text": "Son estas cartas que tengo aqui",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1067,7 +1067,7 @@
             },
             {
               "nodeID": 2,
-              "text": "De la mejor calidad.",
+              "text": "De la mejor calidad",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1075,7 +1075,7 @@
             },
             {
               "nodeID": 3,
-              "text": "Le interesan verdad.",
+              "text": "Seguro que le gustan",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1095,7 +1095,7 @@
 
             {
               "nodeID": 0,
-              "text": "Cuando desee una carta, haga click sobre ella y se resaltaran las monedas que le costaran.",
+              "text": "Cuando desee una carta, haga click sobre ella y se resaltaran las monedas que le costaran",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1103,7 +1103,7 @@
             },
             {
               "nodeID": 1,
-              "text": "No le molesto mas, mire lo que quiera y si tiene alguna duda aqui me tiene.",
+              "text": "No le molesto mas, mire lo que quiera y si tiene alguna duda aqui me tiene",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1127,7 +1127,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Humilde ciudad, le gusta?",
+              "text": "Humilde ciudad",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1165,7 +1165,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Para hablar con la gente, pulse sobre ellos. Puede ganar experiencia en combate si es que le retan.",
+              "text": "Para hablar con la gente, pulse sobre ellos, puede conseguir beneficios en combate si es que le retan.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1184,7 +1184,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Si quiere volver a su oficina, pulse sobre el edificio. Le invito tambien a visitar otros lugares.",
+              "text": "Si quiere volver a su oficina, pulse sobre el edificio, le invito tambien a visitar otros lugares",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1204,7 +1204,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Al este de la ciudad, se encuentra la santeria, donde podra usted comprar nuevas cartas.",
+              "text": "Al este de la ciudad, se encuentra la santeria, donde comprar nuevas cartas",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1228,14 +1228,14 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Sea usted bienvenido a su nueva oficina!",
+              "text": "Sea usted bienvenido a su nueva oficina",
               "eventStart": 0,
               "eventFinish": 0,
               "events": []
             },
             {
               "nodeID": 1,
-              "text": "Aqui podra gestionar sus llamadas, y organizar sus cartas.",
+              "text": "Aqui podra gestionar sus llamadas, y organizar sus cartas",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1261,7 +1261,7 @@
             },
             {
               "nodeID": 1,
-              "text": "y recibira un caso a resolver.",
+              "text": "y recibira un caso a resolver",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1269,7 +1269,7 @@
             },
             {
               "nodeID": 2,
-              "text": "Cuando se vea preparado, podra llamar a la medium desde el telefono, y asi, canalizar su ataque.",
+              "text": "Cuando se vea preparado, podra llamar a la medium desde el telefono, y canalizar su ataque",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1288,14 +1288,14 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Tambien tiene a su disposicion la pizarra.",
+              "text": "Tambien tiene a su disposicion la pizarra",
               "eventStart": 0,
               "eventFinish": 0,
               "events": []
             },
             {
               "nodeID": 1,
-              "text": "Si pulsa en ella, accedera a la gestion de sus cartas, podra modificar su mazo como desee.",
+              "text": "Si pulsa en ella, accedera a la gestion de sus cartas, podra modificar su mazo como desee",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1427,7 +1427,7 @@
             },
             {
               "nodeID": 12,
-              "text": "*Deberia aceptar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1441,7 +1441,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Tarotisa: una vieja divorciada? interesante",
+              "text": "Una vieja divorciada? Interesante.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1592,7 +1592,7 @@
             },
             {
               "nodeID": 13,
-              "text": "*Deberia aceptar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1606,7 +1606,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Tarotisa: Tom y Jerry eh?",
+              "text": "Tom y Jerry, eh?",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1732,7 +1732,7 @@
             },
             {
               "nodeID": 13,
-              "text": "*Deberia aceptar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1746,7 +1746,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Tarotisa: nunca me gusto el cine",
+              "text": "Nunca me gusto el cine...",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1788,7 +1788,7 @@
             },
             {
               "nodeID": 1,
-              "text": "conozco a que horas peleaban, cuando se iba ella con el amante",
+              "text": "Yo conozco a que horas peleaban, cuando se iba ella con el amante,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1819,7 +1819,7 @@
             },
             {
               "nodeID": 4,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1838,7 +1838,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Soy Norbert, el abogado (el que tengo aqui colgado)",
+              "text": "Soy Norbert, el abogado, no tengo nada colgado,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1846,7 +1846,7 @@
             },
             {
               "nodeID": 1,
-              "text": "y definitivamente tendria que haber estudiado otra rama de la abogacia.",
+              "text": "y definitivamente tendria que haber estudiado otra rama de la abogacia...",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1869,7 +1869,7 @@
             },
             {
               "nodeID": 3,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1888,7 +1888,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Paz y amor! Soy Zelig, el amante de ella",
+              "text": "Paz y amor... Soy Zelig, el amante de ella,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1896,7 +1896,7 @@
             },
             {
               "nodeID": 1,
-              "text": "ya sabes lo que dicen, haz el amor no la guerra jejeJehghCOF COF",
+              "text": "ya sabes lo que dicen, haz el amor no la guerra jejeJehgh COF COFF",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1911,7 +1911,7 @@
             },
             {
               "nodeID": 2,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1930,7 +1930,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Gretchen, la revolucionaria, para servirte a ti y a la causa del pueblo",
+              "text": "Gretchen, la revolucionaria, para servirte a ti y a la causa del pueblo,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1938,7 +1938,7 @@
             },
             {
               "nodeID": 1,
-              "text": "soy la delegada uno de la clase",
+              "text": "soy la delegada de la clase",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1946,7 +1946,7 @@
             },
             {
               "nodeID": 2,
-              "text": "asi que tengo informacion personal de Egbert de mis reuniones con el",
+              "text": "asi que tengo informacion personal de Egbert de mis reuniones con el,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1969,7 +1969,7 @@
             },
             {
               "nodeID": 4,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -1988,7 +1988,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Saludos, soy Schmetterling, la conserje de la facultad",
+              "text": "Saludos, soy Schmetterling, la conserje de la facultad,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2011,7 +2011,7 @@
             },
             {
               "nodeID": 2,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2030,7 +2030,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Buenas tardes, soy Frederika, la conservadora",
+              "text": "Buenas tardes, soy Frederika, la conservadora,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2046,7 +2046,7 @@
             },
             {
               "nodeID": 2,
-              "text": "es un hombre inteligente y con una labia y saber estar envidiable",
+              "text": "es un hombre inteligente, con una labia y un saber estar envidiable",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2069,7 +2069,7 @@
             },
             {
               "nodeID": 4,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2088,7 +2088,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Encantado, me llamo Ritter y soy el decano de la facultad de filosofia de la universidad nacional",
+              "text": "Encantado, me llamo Ritter y soy el decano de la facultad de filosofia de la universidad nacional,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2111,7 +2111,7 @@
             },
             {
               "nodeID": 2,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2130,7 +2130,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Hola, soy Anna la mayor fan de Neumann",
+              "text": "Hola, soy Anna la mayor fan de Neumann,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2138,7 +2138,7 @@
             },
             {
               "nodeID": 1,
-              "text": "presidenta del club de fans de la ciudad a mucha honra, que necesitas saber de el?",
+              "text": "presidenta del club de fans de la ciudad a mucha honra, que necesitas saber de el,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2161,7 +2161,7 @@
             },
             {
               "nodeID": 3,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2180,7 +2180,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Ey, soy Bertram, el representante de Neumann",
+              "text": "Ey, soy Bertram, el representante de Neumann,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2203,7 +2203,7 @@
             },
             {
               "nodeID": 2,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2253,7 +2253,7 @@
             },
             {
               "nodeID": 3,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2272,7 +2272,7 @@
           "nodes": [
             {
               "nodeID": 0,
-              "text": "Ya debes de saber quien soy, Dagna, la critica de cine del periodico mas vendido",
+              "text": "Ya debes de saber quien soy, Dagna, la critica de cine del periodico mas vendido.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2280,7 +2280,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Neumann nos paga mucho dinero y nosotros hacemos nuestro trabajo, asi es el mercado",
+              "text": "Neumann nos paga mucho dinero y nosotros hacemos nuestro trabajo, asi es el mercado...",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2295,7 +2295,7 @@
             },
             {
               "nodeID": 2,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2322,7 +2322,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Que como es trabajar con Neumann?",
+              "text": "Que como es trabajar con Neumann,",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -2353,7 +2353,7 @@
             },
             {
               "nodeID": 4,
-              "text": "*Deberia investigar?*",
+              "text": "*Esto me interesa...*",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
