@@ -13,11 +13,12 @@
 #include "../factories/NPCFactory_V0.h"
 #include "../components/NPC.h"
 
-ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene)
+ClickDecision::ClickDecision(int decision, ecs::entity_t parent, int scene) :
+	parent_(parent),
+	myNpc_(nullptr),
+	scene_(scene),
+	decision_(decision)
 {
-	decision_ = decision;
-	parent_ = parent;
-	scene_ = scene;
 	click_ = false;
 
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
@@ -65,14 +66,19 @@ void ClickDecision::TakeDecision()
 
 		TuVieja("No");
 		cancelPurchase();
-		parent_->getComponent<NextText>()->setDead(true);
-		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+		assert(parent_ != nullptr);
+		if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
+			auto a = parent_->getComponent<NextText>();
+			if(a != nullptr)
+				parent_->getComponent<NextText>()->setDead(true);
+			parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+		}
 		break;
 
 	case 1: // Para cambiar de escena.
 
 		TuVieja("Cambio de escena");
-		parent_->getComponent<DialogueEventCollection>()->ChangeScene(scene_);
+		//parent_->getComponent<DialogueEventCollection>()->ChangeScene(scene_);
 		//abria que hacer actual node ++?�?�
 
 
@@ -80,8 +86,13 @@ void ClickDecision::TakeDecision()
 	case 2: // Para confirmar compra.
 
 		purchaseCard();
-		parent_->getComponent<NextText>()->setDead(true);
-		parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+		assert(parent_ != nullptr);
+		if (parent_ != nullptr && parent_->hasComponent<NextText>()) {
+			auto a = parent_->getComponent<NextText>();
+			if (a != nullptr)
+				parent_->getComponent<NextText>()->setDead(true);
+			parent_->getComponent<DialogueDestroyer>()->destroyDialogue();
+		}
 
 		break;
 	case 3: // Caso aceptado
@@ -111,22 +122,26 @@ void ClickDecision::setScene(int s)
 
 void ClickDecision::purchaseCard()
 {
-	TuVieja("Carta comprada.");
-	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
-	if (ent->hasComponent<DecisionComponent>())
-	{
-		ent->getComponent<DecisionComponent>()->setBuying(1);
+	if(click_) {
+		TuVieja("Carta comprada.");
+		ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
+		if (ent->hasComponent<DecisionComponent>())
+		{
+			ent->getComponent<DecisionComponent>()->setBuying(1);
+		}
 	}
 }
 
 void ClickDecision::cancelPurchase()
 {
-	TuVieja("Cancelar compra.");
-	ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
-	if (ent->hasComponent<DecisionComponent>())
-	{
-		ent->getComponent<DecisionComponent>()->setBuying(0);
-		ent->getComponent<DecisionComponent>()->resetCardToPurchase();
+	if(click_) {
+		TuVieja("Cancelar compra.");
+		ecs::entity_t ent = GameStateMachine::instance()->getMngr()->getHandler(ecs::hdlr::DECISION_MANAGER);
+		if (ent->hasComponent<DecisionComponent>())
+		{
+			ent->getComponent<DecisionComponent>()->setBuying(0);
+			ent->getComponent<DecisionComponent>()->resetCardToPurchase();
+		}
 	}
 }
 

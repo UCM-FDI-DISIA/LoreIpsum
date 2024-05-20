@@ -15,6 +15,7 @@
 #include "game/CaseManager.h"
 #include "game/components/ClickableText.h"
 #include "game/SoundManager.h"
+#include "game/components/ImageWithFrames.h"
 
 MatchManager::MatchManager(int defaultActionPointsJ1, int defaultActionPointsJ2, Turns::State turnStart,
                            BoardManager* bm, std::string j2) :
@@ -284,7 +285,13 @@ void MatchManager::setNetGame(NetGame* ng)
 void MatchManager::endTurnIA()
 {
 	setActualState(Turns::J1);
-	// Animacion gira la estatua
+	if (endTurnButton!= nullptr)
+	{
+		if (const auto iwf = endTurnButton->getComponent<ImageWithFrames>())
+		{
+			iwf->setSprite("estatua_j1", 1, 12, 1);
+		}
+	}
 }
 
 void MatchManager::resetFadeIndexes()

@@ -7,6 +7,7 @@
 #include "../components/EndTurnButton.h"
 #include "../components/Button.h"
 #include "game/components/Clickable.h"
+#include "game/components/ImageWithFrames.h"
 #include "game/components/ShineComponent.h"
 #include "game/gamestates/GameState.h"
 
@@ -29,14 +30,17 @@ ecs::entity_t MatchStateUIFactory_v0::createVisual_KeyButton(int posX, int posY)
 
 ecs::entity_t MatchStateUIFactory_v0::createVisual_NextTurnButton(int posX, int posY)
 {
-    ecs::entity_t endTurnButton = Instantiate(Vector2D(posX, posY - 14));  // 200, 265
-    endTurnButton->getComponent<Transform>()->setGlobalScale(1.5, 1.5);
-    //endTurnButton->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
-    endTurnButton->addComponent<SpriteRenderer>("EndTurnButton");
+    ecs::entity_t endTurnButton = Instantiate(Vector2D(posX - 100, posY - 50));  // 200, 265
+    endTurnButton->getComponent<Transform>()->setGlobalScale(0.3, 0.3);
     endTurnButton->addComponent<BoxCollider>();
-    endTurnButton->addComponent<EndTurnButton>(Turns::J1);
+    //endTurnButton->getComponent<Transform>()->getGlobalScale().set(1.2, 1.2);
     endTurnButton->setLayer(4);
-    endTurnButton->addComponent<Clickable>("EndTurnButton", true);
+    endTurnButton->addComponent<SpriteRenderer>("estatua_j1");
+    endTurnButton->getComponent<SpriteRenderer>()->setOffset(-80, -70);
+    endTurnButton->getComponent<BoxCollider>()->setSize(Vector2D(220,300));
+    endTurnButton->addComponent<ImageWithFrames>(1, 12, 1, 60);
+    endTurnButton->addComponent<EndTurnButton>(Turns::J1);
+    endTurnButton->addComponent<Clickable>(Colors::MORADO_BERENJENA, Colors::ROJO_HOLLENHAUS);
     return endTurnButton;
 }
 

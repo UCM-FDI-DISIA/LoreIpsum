@@ -181,7 +181,6 @@ void MoveOnClick::OnLeftClickDown()
 		std::cout << "Distancia: " << absDistance_ << "\n";
 #endif
 	}
-	else onStop();
 }
 
 void MoveOnClick::onStart()

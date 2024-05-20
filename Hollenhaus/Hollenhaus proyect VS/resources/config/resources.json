@@ -313,6 +313,14 @@
       "file": "resources/images/score_bg_v1.png"
     },
     {
+      "id": "estatua_j2",
+      "file": "resources/images/figura_turno_arriba.png"
+    },
+    {
+      "id": "estatua_j1",
+      "file": "resources/images/figura_turno_abajo.png"
+    },
+    {
       "id": "tienda",
       "file": "resources/images/tienda_background.png"
     },

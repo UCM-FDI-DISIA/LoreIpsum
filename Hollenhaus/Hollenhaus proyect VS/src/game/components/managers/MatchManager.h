@@ -42,6 +42,7 @@ public:
     void setActionPointsVisualJ2(ecs::entity_t visual) { actionPointsVisualJ2 = visual; }
     void setActionPointsJ1(const std::array<ecs::entity_t, 4>& visual) { actionPointsJ1 = visual; }
     void setActionPointsJ2(const std::array<ecs::entity_t, 4>& visual) { actionPointsJ2 = visual; }
+    void setEndTurnButton(ecs::entity_t visual) { endTurnButton = visual; }
 
     // Setter de la referencia al board
     void setBoardManager(BoardManager* b) { board_ = b; }
@@ -101,6 +102,7 @@ private:
     ecs::entity_t actualTurnVisual;
 	ecs::entity_t actionPointsVisualJ1; // en texto
     ecs::entity_t actionPointsVisualJ2; //en texto
+    ecs::entity_t endTurnButton; //en texto
 
 
     std::array<ecs::entity_t, 4> actionPointsJ1; // en imagenes
