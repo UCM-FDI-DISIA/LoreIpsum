@@ -180,6 +180,7 @@ void TutorialBoardState::setBoard()
 	boardManagerComponent->setScoreVisualJ1(visual_ScoreCounterJ1);
 	boardManagerComponent->setScoreVisualJ2(visual_ScoreCounterJ2);
 	boardManagerComponent->updateVisuals();
+	matchManagerComponent->setActionPointsJ1(j1Puntos);
 
 
 	// Seteamos la mano de J1 en el matchManager
