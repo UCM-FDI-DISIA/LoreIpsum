@@ -34,6 +34,8 @@ public:
 		fanTrans = entity->getComponent<Transform>();
 	}
 
+	BoxCollider* getCollider() const { return myBoxCollider_; }
+
 private:
 	// collider y transform del fondo
 	BoxCollider* myBoxCollider_;

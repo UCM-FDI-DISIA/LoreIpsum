@@ -2,6 +2,7 @@
 
 #include "ClickDecision.h"
 
+#include "MoveOnClick.h"
 #include "../components/NextText.h"
 #include "../components/DialogueDestroyer.h"
 #include "../components/DialogueEventCollection.h"
@@ -45,6 +46,9 @@ void ClickDecision::OnLeftClickDown()
 	{
 		click_ = true;
 		TakeDecision();
+		const auto fondo = parent_->getComponent<Transform>()->getParent()->getParent()->getParent()->getEntity();
+		if (fondo->hasComponent<MoveOnClick>())
+			fondo->getComponent<MoveOnClick>()->getCollider()->setPosOffset(Vector2D(0, 0));
 	}
 }
 
