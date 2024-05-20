@@ -159,7 +159,6 @@ void CityState::onEnter()
 		.to(fanY - 10)
 		.during(60)
 		.via(tweeny::easing::sinusoidalInOut);
-	///
 
 	///------NPCs:
 	//----Para entrar en la oficina.
@@ -197,27 +196,11 @@ void CityState::onEnter()
 		}
 	}
 
-
-
 	// Npcs de caso
-
-
-	// --- Boton para volver al menu principal ---
-	ecs::entity_t exit = Instantiate();
-	exit->addComponent<Transform>();
-	exit->addComponent<SpriteRenderer>("boton_flecha");
-	exit->addComponent<BoxCollider>();
-	Vector2D exitPos(10, 10);
-	exit->getComponent<Transform>()->setGlobalPos(exitPos);
-	exit->getComponent<BoxCollider>()->setAnchoredToSprite(true);
-	exit->addComponent<NPC>(GameStates::MAINMENU); // Lleva al menu (0).
-	exit->setLayer(2);
-	exit->addComponent<Clickable>("boton_flecha", true);
-
-
 	//objs.push_back(npc1);
 	/*objs.push_back(npc2);
 	objs.push_back(npc4);*/
+
 	objs.push_back(colliderSuelo);
 	objs.push_back(ofi);
 
@@ -227,8 +210,6 @@ void CityState::onEnter()
 	/// MUSICA
 	auto music = SoundManager::instance();
 	music->startMusic(Musics::CITY_M);
-
-
 }
 
 void CityState::onExit()
@@ -252,7 +233,7 @@ void CityState::onExit()
 void CityState::onPause()
 {
 	SetLastState(1);
-	GameStateMachine::instance()->setState(17);
+	GameStateMachine::instance()->setState(GameStates::PAUSEMENU);
 }
 
 void CityState::setTutorial()
