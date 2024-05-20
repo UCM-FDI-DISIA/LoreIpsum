@@ -122,8 +122,9 @@ void CityState::onEnter()
 
 	// tamanio del collider del suelo
 	// x: el ancho de la imagen de fondo, y: alto del suelo
+	colliderSuelo->getComponent<BoxCollider>()->setPosOffset(Vector2D(sdlutils().width() / 2, 0));
 	colliderSuelo->getComponent<BoxCollider>()->setSize(
-		Vector2D((fondo->getComponent<SpriteRenderer>()->getTexture()->width()), sdlutils().height() * 2));
+		Vector2D(fondo->getComponent<SpriteRenderer>()->getTexture()->width() - sdlutils().width() * 2, sdlutils().height()));
 
 	// lo emparenta con el fondo
 	colliderSuelo->getComponent<Transform>()->addParent(fondo->getComponent<Transform>());
