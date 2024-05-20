@@ -435,6 +435,10 @@
     {
       "id": "no_card",
       "file": "resources/images/card_obtained.png"
+    },
+    {
+      "id": "outro",
+      "file": "resources/images/cinem.png"
     }
   ],
     "fonts": [

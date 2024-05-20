@@ -41,6 +41,8 @@ void ImageWithFrames::initComponent()
 
 void ImageWithFrames::update()
 {
+
+	syncRenderer();
 	if (sdlutils().currRealTime() > frameTimer + frameSpeed && (loops > 0 || loops == -1))
 	{
 		frameTimer = sdlutils().currRealTime();
@@ -53,7 +55,6 @@ void ImageWithFrames::update()
 		if (loops != -1 && ((currentCol_ + 1) * (currentRow_ + 1) >= nCols_ * nRows_))
 			loops--;
 	}
-	syncRenderer();
 
 	// Si ha terminado todas los loops que debe hacer ejecuta el callback
 	if (loops <= 0 && loops != -1 && !callbacksExecuted) {
@@ -77,7 +78,7 @@ void ImageWithFrames::setSprite(std::string newSprite, int rows, int cols, int l
 {
 	spriteRend_->setTexture(newSprite);
 	currentRow_ = 0;
-	currentRow_= 0;
+	currentCol_ = 0;
 	nRows_ = rows;
 	nCols_ = cols;
 	loops = loop;
