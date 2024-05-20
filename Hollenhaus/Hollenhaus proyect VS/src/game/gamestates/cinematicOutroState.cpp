@@ -4,6 +4,8 @@
 #include "../components/ImageWithFrames.h"
 #include "../components/basics/Transform.h"
 #include "CinematicOutroState.h"
+#include "../SoundManager.h"
+
 
 CinematicOutroState::CinematicOutroState()
 {
@@ -42,11 +44,19 @@ void CinematicOutroState::onEnter()
 		{
 			GameStateMachine::instance()->setState(GameStates::ENDGAME, true, true);
 		});
+
+
+	/// MUSICA
+	auto music = SoundManager::instance();
+	music->startSoundEffect(Sounds::SOUND_EFFECTS::CANDLE_SE, -1);
 }
 
 void CinematicOutroState::onExit()
 {
 	TuVieja("\nExit CinematicOutroState");
+
+	auto music = SoundManager::instance();
+	music->stopSoundEffect(Sounds::SOUND_EFFECTS::CANDLE_SE);
 
 	GameStateMachine::instance()->getMngr()->Free();
 }

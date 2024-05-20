@@ -111,7 +111,7 @@ GameStateMachine::GameStateMachine()
 	//currentState = new MainMenuState();
 	// tutorialDeckbuildingState
 
-	currentState = logoSate;
+	currentState = logoSate; // logoState
 
 	// settea la data en el current state para acceder a ella desde cualquier estado
 	currentState->setData(new Data());
