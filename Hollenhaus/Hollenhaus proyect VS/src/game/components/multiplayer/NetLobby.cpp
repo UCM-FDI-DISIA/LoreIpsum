@@ -127,7 +127,9 @@ void NetLobby::connectToServer(const char* host, const int port)
 
 	// fill in the address in 'ip'
 	if (SDLNet_ResolveHost(&ip, host, port) < 0) {
+#ifdef _DEBUG
 		std::cout << "ERROR: Probablemente la ip esté mal";
+#endif
 		error();
 	}
 
@@ -140,8 +142,10 @@ void NetLobby::connectToServer(const char* host, const int port)
 	// add the server to the socket
 	SDLNet_TCP_AddSocket(socketSet, conn);
 
+#ifdef _DEBUG
+	scout << "I AM CLIENT!" << endl;
+#endif
 
-	cout << "I AM CLIENT!" << endl;
 }
 
 // Recibimos una invitación, y lanzamos un panel para que el jugador la gestione
