@@ -2,6 +2,7 @@
 #include "Hover.h"
 
 #include "basics/TextComponent.h"
+#include "Dummy.h"
 
 constexpr int EFFECT_OFFSET_X = 25,
               EFFECT_OFFSET_Y = 20;
@@ -85,7 +86,7 @@ void Hover::onHoverExit()
 {
 	intoHover = false;
 	outoHover = true;
-	tr->setGlobalScale(iniScale);
+	//tr->setGlobalScale(iniScale);
 	//resetEveryComponent();
 	resetTweensBackward();
 	updateEveryComponent();
@@ -103,7 +104,7 @@ void Hover::updateEveryComponent()
 		hoverTweenX.peek(),
 		hoverTweenY.peek()
 	);
-	//tr->setGlobalScale(scaleTween.peek(), scaleTween.peek());
+	tr->setGlobalScale(scaleTween.peek(), scaleTween.peek());
 
 	// textos
 	for (const auto child : getEntity()->getComponent<Transform>()->getChildren())
@@ -123,9 +124,17 @@ void Hover::updateEveryComponent()
 			else
 			{
 				// si no, son el coste y el valor
+				if (texto->getEntity()->getComponent<Dummy>() != nullptr)
+				{ // es el valor
+					
+				}
+				else
+				{ // es el coste
+					
+				}
 			}
 			texto->setOffset(hoverTweenX.peek() + x, hoverTweenY.peek() + y);
-			texto->setScale(Vector2D(hoverScale, hoverScale));
+			//texto->setScale(Vector2D(hoverScale, hoverScale));
 		}
 
 		// si es imagen
@@ -199,7 +208,7 @@ bool Hover::checkTweenConstraints()
 	bool outside = false;
 	if ((hoverTweenX.peek() < -1000000) || (hoverTweenX.peek() > 1000000)) outside = true; // XDDXDDDX
 	if ((hoverTweenY.peek() < -1000000) || (hoverTweenY.peek() > 1000000)) outside = true; // XDDXDDDX
-	if ((scaleTween.peek() < -1000000) || (scaleTween.peek() > 1000000)) outside = true; // XDDXDDDX
+	if ((scaleTween.peek() < 0.5) || (scaleTween.peek() > 1000000)) outside = true; // XDDXDDDX
 	return outside;
 }
 

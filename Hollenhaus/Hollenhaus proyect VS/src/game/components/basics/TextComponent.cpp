@@ -40,8 +40,8 @@ void TextComponent::render() const
 	//PROVISIONAL (vengo del futuro, no te lo vas a creer...)
 	Vector2D aux = GetRenderPosAcordingPivotPoint();
 
-	int sx = scale.getX();
-	int sy = scale.getY();
+	float sx = scale.getX();
+	float sy = scale.getY();
 
 	if (relativeToTransform)
 	{
@@ -174,12 +174,13 @@ Vector2D TextComponent::GetRenderPosAcordingPivotPoint() const
 
 void TextComponent::RenderDebugRect(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const
 {
-	SDL_Rect textRect = {
-		(int)renderPos_.getX(),
-		(int)renderPos_.getY(),
+	Vector2D aux = GetRenderPosAcordingPivotPoint();
+	SDL_Rect textRect = build_sdlrect(
+		aux.getX() + offset.getX(), 
+		aux.getY() + offset.getY(),
 		text_->width(),
 		text_->height()
-	};
+	);
 
 	//render debug
 	SDL_SetRenderDrawColor(sdlutils().renderer(), 0, 0, 255, 255);

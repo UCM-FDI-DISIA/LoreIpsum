@@ -14,6 +14,7 @@
 
 #include "../EffectCollection.h"
 #include "../gamestates/GameState.h"
+#include "game/components/Dummy.h"
 #include "game/components/Hover.h"
 #include "game/components/ShineComponent.h"
 
@@ -40,12 +41,12 @@ ecs::entity_t CardFactory_v1::createCard(int id, Vector2D pos, int cost, int val
 
 	addInfo(card, cost, value, effects, !bocarriba);
 
-	addShadow(0,0,1, card->getComponent<Transform>());
+	addShadow(0, 0, 1, card->getComponent<Transform>());
 
 	if (!bocarriba)
 		addDeckImageChild(card);
 
-	card->addComponent<Hover>()->setIniScale(Vector2D(cardScale,cardScale));
+	card->addComponent<Hover>()->setIniScale(Vector2D(cardScale, cardScale));
 
 	return card;
 }
@@ -131,7 +132,7 @@ ecs::entity_t CardFactory_v1::createDeckJ2(std::string j2)
 {
 	int initX = 600;
 	int initY = -12;
-	
+
 	ecs::entity_t hand = createHandJ2();
 
 	Vector2D deckPos(initX, initY);
@@ -152,7 +153,6 @@ ecs::entity_t CardFactory_v1::createDeckJ2(std::string j2)
 	cardsOnDeck = rivalDeck.size();
 	for (int i = 0; i < cardsOnDeck; i++)
 	{
-
 		auto card = rivalDeck[i];
 		// importantisimo que en el resources.json los ids sean "0", "1"... es ridiculo e ineficiente pero simplifica
 		ecs::entity_t ent = createCard(
@@ -299,9 +299,15 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 					color = Colors::VERDE_BENEFICIO;
 			}
 
-			auto valueChange = effectImage->addComponent<TextComponent>(valueText,
-			                                                            Fonts::GROTESK_18, color, 100);
-			valueChange->setOffset(25, 20);
+
+			auto valueEntText = Instantiate(Vector2D());
+			valueEntText->setLayer(card->getLastLayer());
+			valueEntText->getComponent<Transform>()->addParent(card->getComponent<Transform>());
+			valueEntText->getComponent<Transform>()->getRelativePos().set(20, 30);
+			auto valueChange = valueEntText->addComponent<TextComponent>(
+				valueText, Fonts::GROTESK_26, color, 100);
+			//valueChange->setOffset(25, 20);
+			valueChange->setRelativeToTransform(true);
 		}
 	}
 }
@@ -309,28 +315,32 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 void CardFactory_v1::addValueCostTexts(ecs::entity_t card, int value, int cost)
 {
 	ecs::entity_t textoValor = Instantiate(Vector2D(0, 0));
-	auto posX = 10;
+	auto posX = 7;
 
 	// Texto blanco para el valor
-	textoValor->addComponent<TextComponent>(std::to_string(value), Fonts::GROTESK_16,
-	                                        Colors::PEARL_HOLLENHAUS, 100,
-	                                        Text::CenterCenter, Text::Center);
+	auto t1 = textoValor->addComponent<TextComponent>(std::to_string(value),
+	                                                  Fonts::GROTESK_26,
+	                                                  Colors::PEARL_HOLLENHAUS, 100,
+	                                                  Text::LeftTop, Text::Left);
 
 	textoValor->getComponent<Transform>()->addParent(card->getComponent<Transform>());
-	textoValor->getComponent<Transform>()->getRelativePos().set(posX, 104);
+	textoValor->getComponent<Transform>()->getRelativePos().set(posX, 92);
 	textoValor->setLayer(card->getLastLayer());
+	textoValor->addComponent<Dummy>();
 
 
 	ecs::entity_t textoCoste = Instantiate(Vector2D(0, 0));
 	// Texto amarillo para el coste
-	textoCoste->addComponent<TextComponent>(std::to_string(cost), Fonts::GROTESK_16,
-	                                        Colors::AMARILLO_PIS, 100,
-	                                        Text::CenterCenter, Text::Center);
+	auto t2 = textoCoste->addComponent<TextComponent>(std::to_string(cost),
+	                                                  Fonts::GROTESK_26,
+	                                                  Colors::AMARILLO_PIS, 100,
+	                                                  Text::LeftTop, Text::Left);
 	textoCoste->getComponent<Transform>()->addParent(card->getComponent<Transform>());
-	textoCoste->getComponent<Transform>()->getRelativePos().set(posX, 11);
+	textoCoste->getComponent<Transform>()->getRelativePos().set(posX, 1);
 	//textoCoste->getComponent<Transform>()->setGlobalScale(10, 10); // esta linea aporta 0 porque es una fuente
 	//textoCoste->getComponent<Transform>()->getRelativeScale().set(10, 10);
-
+	t1->setRelativeToTransform(true);
+	t2->setRelativeToTransform(true);
 
 	textoCoste->setLayer(card->getLastLayer());
 }
@@ -396,7 +406,8 @@ void CardFactory_v1::addDeckImageChild(ecs::entity_t card)
 	/*deckImage->addComponent<BoxCollider>()->setAnchoredToSprite(true);
 	deckImage->addComponent<ShineComponent>();
 	deckImage->getComponent<ShineComponent>()->addEnt(deckImage->getComponent<SpriteRenderer>(), "reverseCard_brilli");
-	*/deckImage->setLayer(card->getLastLayer() + 1);
+	*/
+	deckImage->setLayer(card->getLastLayer() + 1);
 }
 
 void CardFactory_v1::addDeckShadow(int x, int y, int layer)
@@ -414,7 +425,7 @@ void CardFactory_v1::addShadow(int x, int y, int layer, Transform* parent)
 	auto shadow = Instantiate(Vector2D(x, y));
 	auto newPos = parent->getGlobalPos();
 	shadow->getComponent<Transform>()->setGlobalPos(newPos.getX() + 4, newPos.getY() + 4);
-	shadow->getComponent<Transform>()->setRelativePos(0,0);
+	shadow->getComponent<Transform>()->setRelativePos(0, 0);
 	shadow->addComponent<SpriteRenderer>("card_sombra")->setOffset(-2, -2);
 	shadow->getComponent<Transform>()->addParent(parent);
 	shadow->setLayer(layer);

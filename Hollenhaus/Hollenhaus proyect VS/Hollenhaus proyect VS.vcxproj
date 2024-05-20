@@ -259,6 +259,7 @@
     <ClInclude Include="src\game\components\DragNoCombat.h" />
     <ClInclude Include="src\game\components\DropDetector.h" />
     <ClInclude Include="src\game\components\DropZone.h" />
+    <ClInclude Include="src\game\components\Dummy.h" />
     <ClInclude Include="src\game\components\EndTurnButton.h" />
     <ClInclude Include="src\game\components\FadeComponent.h" />
     <ClInclude Include="src\game\components\GetIPv4.h" />
