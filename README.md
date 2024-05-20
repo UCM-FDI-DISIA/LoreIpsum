@@ -268,17 +268,18 @@ La IA a la que se enfrentaban los jugadores tenía siempre las mismas cartas, y 
 
 3. ### Resultados de la encuesta <a name="id1"></a>
 _Datos sobre los encuestados:_
-![](/docs/GQ/ch1.png)
-![](/docs/GQ/ch2.png)
-![](/docs/GQ/ch3.png)
-![](/docs/GQ/ch4.png)
-![](/docs/GQ/ch5.png)
+![](/docs/QA/ch1.png)
+![](/docs/QA/ch2.png)
+![](/docs/QA/ch3.png)
+![](/docs/QA/ch4.png)
+![](/docs/QA/ch5.png)
+
 _Datos sobre el juego:_
-![](/docs/GQ/ch6.png)
-![](/docs/GQ/ch7.png)
-![](/docs/GQ/ch8.png)
-![](/docs/GQ/ch9.png)
-![](/docs/GQ/ch10.png)
+![](/docs/GA/ch6.png)
+![](/docs/QA/ch7.png)
+![](/docs/QA/ch8.png)
+![](/docs/QA/ch9.png)
+![](/docs/QA/ch10.png)
 
 4. ### Resultados observados por el equipo <a name="id1"></a>
 De los datos obtenidos de los gráficos, comentarios y respuestas libres de las encuestas y nuestra propia observación durante la misma podemos concluir diferentes cosas:
