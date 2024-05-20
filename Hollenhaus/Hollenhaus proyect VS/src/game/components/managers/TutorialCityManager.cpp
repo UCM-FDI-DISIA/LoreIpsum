@@ -63,6 +63,9 @@ void TutorialCityManager::setState()
 	case Tutorials::Ciudad::CITY_BUILDING:
 		setBUILDING();
 		break;
+	case Tutorials::Ciudad::CITY_SHOPPING:
+		setSHOPPING();
+		break;
 	default:
 		break;
 	}
@@ -76,7 +79,7 @@ void TutorialCityManager::setState()
 
 void TutorialCityManager::setINIT()
 {
-	createPopUp(250, 250, "City Tutorial", 0, base);
+	createPopUp(250, 150, "City Tutorial", 0, base);
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
@@ -86,7 +89,7 @@ void TutorialCityManager::setINIT()
 
 void TutorialCityManager::setINTERACTION()
 {
-	createPopUp(250, 250, "City Tutorial", 2, base);
+	createPopUp(500, 150, "City Tutorial", 2, base);
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
@@ -96,7 +99,7 @@ void TutorialCityManager::setINTERACTION()
 
 void TutorialCityManager::setMOVE()
 {
-	createPopUp(250, 250, "City Tutorial", 1, base);
+	createPopUp(250, 150, "City Tutorial", 1, base);
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
@@ -106,7 +109,17 @@ void TutorialCityManager::setMOVE()
 
 void TutorialCityManager::setBUILDING()
 {
-	createPopUp(250, 250, "City Tutorial", 3, base);
+	createPopUp(25, 100, "City Tutorial", 3, base);
+	std::vector<ecs::entity_t> v;
+
+	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
+
+	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+}
+
+void TutorialCityManager::setSHOPPING()
+{
+	createPopUp(500, 150, "City Tutorial", 4, base);
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
