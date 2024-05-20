@@ -76,7 +76,7 @@ void TutorialOfficeManager::setState()
 
 void TutorialOfficeManager::setINIT()
 {
-	createPopUp(250, 250, "Office Tutorial", 0, base);
+	createPopUp(250, 150, "Office Tutorial", 0, base);
 	std::vector<ecs::entity_t> v;
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
