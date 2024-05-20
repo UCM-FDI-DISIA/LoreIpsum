@@ -158,7 +158,9 @@ namespace DialogueEvents
 		// Evento para lanzar una animaci�n
 		ConfirmMatchPopUp,
 		// Evento para mostrar una ventana donde el jugador acepta o rechaza una partida inminente
-		ActionEnded
+		ActionEnded,
+		// Evento para confirmar que se haya completado una accion
+		MissionEnded
 	};
 }
 
@@ -425,7 +427,8 @@ namespace Tutorials
 		CITY_INIT,
 		CITY_MOVE,
 		CITY_PERSON,
-		CITY_BUILDING
+		CITY_BUILDING,
+		CITY_SHOPPING
 	};
 
 	enum Oficina

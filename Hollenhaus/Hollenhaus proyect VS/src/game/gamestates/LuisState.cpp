@@ -55,7 +55,7 @@ void LuisState::update()
 	if (moveKey_)
 	{
 		Vector2D newPos = keyTr_->getGlobalPos();
-		if (newPos.getX() >= 100)
+		if (newPos.getX() >= 50)
 		{
 			newPos = newPos - Vector2D(10, 0);
 			keyTr_->setGlobalPos(newPos);
@@ -64,7 +64,7 @@ void LuisState::update()
 	else
 	{
 		Vector2D newPos = keyTr_->getGlobalPos();
-		if (newPos.getX() <= 800)
+		if (newPos.getX() <= 700)
 		{
 			newPos = newPos + Vector2D(10, 0);
 			keyTr_->setGlobalPos(newPos);
@@ -121,16 +121,11 @@ void LuisState::onEnter()
 	ecs::entity_t deckPlayer2 = factory->createDeckJ2(j2_);
 
 	// Leyenda
-	/*for (int i = 0; i < 6; ++i)
-	{
-		addKey();
-	}*/
 	key_ = Instantiate(Vector2D(800, 50));
 	key_->setLayer(200);
-	key_->getComponent<Transform>()->setGlobalScale(0.5, 0.5);
+	key_->getComponent<Transform>()->setGlobalScale(1, 1);
 	key_->addComponent<SpriteRenderer>("key");
 	key_->addComponent<KeyComponent>(getKeys());
-	keyTr_ = key_->getComponent<Transform>();
 
 
 
@@ -153,8 +148,9 @@ void LuisState::onEnter()
 
 	/// LEYENDA
 	ecs::entity_t visual_KeyButton = factory->createVisual_KeyButton(720, 400);
-	visual_KeyButton->getComponent<Transform>()->addParent(keyTr_);
-	keyTr_->increaseLayer(key_->getLayer());
+	keyTr_ = visual_KeyButton->getComponent<Transform>();
+	key_->getComponent<Transform>()->addParent(keyTr_);
+	key_->getComponent<Transform>()->increaseLayer(key_->getLayer());
 
 	/// TURNO Y SCORE
 	ecs::entity_t visual_BoardInfoBG = factory->createVisual_BackgroundBlackBox(560, 170, 200, 180);
@@ -248,6 +244,11 @@ void LuisState::setKey()
 void LuisState::setJ2(std::string rival)
 {
 	j2_ = rival;
+}
+
+void LuisState::newKey()
+{
+	key_->getComponent<KeyComponent>()->newKey();
 }
 
 std::array<ecs::entity_t, 4> LuisState::createPointsJ1()

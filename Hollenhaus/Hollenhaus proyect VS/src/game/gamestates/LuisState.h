@@ -24,6 +24,7 @@ public:
 
     void setKey() override;
     void setJ2(std::string rival) override;
+    void newKey() override;
 
 private:
     std::array<ecs::entity_t, 4>  createPointsJ1();

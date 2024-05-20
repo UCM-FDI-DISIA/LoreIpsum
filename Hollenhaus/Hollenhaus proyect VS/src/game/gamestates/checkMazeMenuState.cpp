@@ -6,6 +6,8 @@
 #include "../components/NPC.h"
 #include "game/Data.h"
 #include "game/components/Clickable.h"
+#include "../components/basics/TextComponent.h"
+
 
 CheckMazeMenuState::CheckMazeMenuState()
 {
@@ -34,6 +36,10 @@ void CheckMazeMenuState::render() const
 void CheckMazeMenuState::onEnter()
 {
 	std::cout << "\nENTER CHECK MAZE\n";
+
+	auto tituloText = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 100));
+	tituloText->addComponent<TextComponent>("MAZO ACTUAL", Fonts::GROTESK_32, Colors::PEARL_HOLLENHAUS, 400, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	tituloText->setLayer(1);
 
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();

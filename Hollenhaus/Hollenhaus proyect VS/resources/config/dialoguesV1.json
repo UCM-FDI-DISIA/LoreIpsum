@@ -142,7 +142,7 @@
             },
             {
               "nodeID": 1,
-              "text": "Con las partidas de cartas podras conseguir dinero con el que podras comprar nuevas cartas en la tienda.",
+              "text": "Aqui podras conseguir dinero con el que podras comprar nuevas cartas en la tienda.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -249,7 +249,7 @@
           "autoConvo": false,
           "nodes": [
             {
-              "nodeID": 4,
+              "nodeID": 0,
               "text": "En el centro de la carta se encuentra un pictograma que indica el efecto que posee",
               "eventStart": 0,
               "eventFinish": 0,
@@ -257,7 +257,7 @@
               ]
             },
             {
-              "nodeID": 5,
+              "nodeID": 1,
               "text": "Ademas de sumar un valor, las cartas aplicaran un efecto al tablero",
               "eventStart": 0,
               "eventFinish": 0,
@@ -265,7 +265,7 @@
               ]
             },
             {
-              "nodeID": 6,
+              "nodeID": 2,
               "text": "Sigue jugando y descubriras todos los efectos!",
               "eventStart": 0,
               "eventFinish": 0,
@@ -301,7 +301,7 @@
             },
             {
               "nodeID": 2,
-              "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
+              "text": "Desde tu oficina lo puedes modificar.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
@@ -309,6 +309,14 @@
             },
             {
               "nodeID": 3,
+              "text": "Prueba a hacer combinaciones mas tarde, igual sale algo curioso.",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            },
+            {
+              "nodeID": 4,
               "text": "Roba una carta de tu mazo para tenerla en tu mano.",
               "eventStart": 0,
               "eventFinish": 0,
@@ -605,6 +613,48 @@
                   "type": 4,
                   "scene": 0
                 }
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 15,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Roba una carta!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 16,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Coloca una carta en el tablero!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
+        },
+        {
+          "convoID": 17,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Pasa de turno!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
               ]
             }
           ]
@@ -1138,11 +1188,23 @@
               "eventStart": 0,
               "eventFinish": 0,
               "events": [
+                {
+                  "timing": 1,
+                  "type": 4,
+                  "scene": 0
+                }
               ]
-            },
+            }
+
+          ]
+        },
+        {
+          "convoID": 4,
+          "autoConvo": false,
+          "nodes": [
             {
-              "nodeID": 1,
-              "text": "Al este de la ciudad, se encuentra la tienda, donde podra usted comprar nuevas cartas.",
+              "nodeID": 0,
+              "text": "Al este de la ciudad, se encuentra la santeria, donde podra usted comprar nuevas cartas.",
               "eventStart": 0,
               "eventFinish": 0,
               "events": [

@@ -429,6 +429,50 @@ void MatchManager::CheckNextTurnAutomatic()
 	}
 }
 
+void MatchManager::checkIfAddKey(Card* c)
+{
+	for(auto& e : c->getEffectsJson())
+	{
+		const auto state = GameStateMachine::instance()->getCurrentState();
+		const int keys = state->getKeys();
+		switch (e.type())
+		{
+		case Effects::Type::Superflecha:
+			if(keys == 1)
+			{
+				state->addKey();
+			}
+			break;
+		case Effects::Type::Centro:
+			if(keys == 2)
+			{
+				state->addKey();
+			}
+			break;
+		case Effects::Type::Esquina:
+			if(keys == 3)
+			{
+				state->addKey();
+			}
+			break;
+		case Effects::Type::Block:
+			if(keys == 4)
+			{
+				state->addKey();
+			}
+			break;
+		case Effects::Type::Unblockable:
+			if(keys == 5)
+			{
+				state->addKey();
+			}
+			break;
+		default:
+			break;
+		}
+	}
+}
+
 void MatchManager::changeMusicTurn(Turns::State i)
 {
 	auto music = SoundManager::instance();

@@ -38,6 +38,10 @@ Data* GameState::data = nullptr;
 //    //ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK, [this] {PruebaInput(); });
 //}
 
+void GameState::newKey()
+{
+}
+
 //borra todas las entidades
 GameState::~GameState()
 {
@@ -251,6 +255,7 @@ void GameState::addMoney(int money)
 
 void GameState::addKey()
 {
+	newKey();
 	data->AddKey();
 }
 
