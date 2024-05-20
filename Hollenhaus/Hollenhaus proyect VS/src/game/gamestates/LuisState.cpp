@@ -140,7 +140,7 @@ void LuisState::onEnter()
 	// ecs::entity_t visual_ActionPointsJ2 = factory->createVisual_ActionPointsCounter(100, 100);
 
 	auto j1Puntos = createPointsJ1();
-	createPointsJ2();
+	auto j2Puntos = createPointsJ2();
 
 	/// BOTON END TURN
 	ecs::entity_t visual_EndTurnButton = factory->createVisual_EndTurnButton(170, 250);
@@ -166,6 +166,7 @@ void LuisState::onEnter()
 	//matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
 	//matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
 	matchManagerComponent->setActionPointsJ1(j1Puntos);
+	matchManagerComponent->setEndTurnButton(visual_EndTurnButton);
 	//matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
 	matchManagerComponent->updateVisuals();
 

@@ -4,6 +4,7 @@
 #include <game/checkML.h>
 
 #include "ComponentUpdate.h"
+#include "ImageWithFrames.h"
 #include "managers/MatchManager.h"
 
 class Transform;
@@ -32,6 +33,7 @@ private:
 
     Transform* tr_;
     BoxCollider* bc_;
+    ImageWithFrames* iwf_;
 
     MatchManager* matchManager_;
 
