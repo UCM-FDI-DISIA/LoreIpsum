@@ -156,8 +156,8 @@ void OfficeState::onExit()
 
 void OfficeState::onPauseOF()
 {
-	SetLastState(2);
-	GameStateMachine::instance()->setState(17);
+	SetLastState(GameStates::OFFICE);
+	GameStateMachine::instance()->setState(GameStates::PAUSEMENU);
 }
 
 void OfficeState::setTutorial()

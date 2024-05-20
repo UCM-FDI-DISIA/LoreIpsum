@@ -42,8 +42,6 @@ void PauseMenuState::onEnter()
 {
 	std::cout << "\nENTER PAUSE.\n";
 
-	//SetLastState(GameStates::PAUSEMENU);
-
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onDespause(); });
 
@@ -53,7 +51,7 @@ void PauseMenuState::onEnter()
 	fondo->getComponent<Transform>()->setGlobalScale(100, 100);
 	fondo->setLayer(0);
 
-	//// ---- Salir:
+	// ---- Salir:
 	ecs::entity_t exit = Instantiate();
 	exit->addComponent<Transform>();
 	exit->addComponent<SpriteRenderer>("boton_flecha");
@@ -130,8 +128,6 @@ void PauseMenuState::onExit()
 
 void PauseMenuState::onDespause()
 {
-	std::cout << "holaaaaa" << "\n";
-
 	GameStateMachine::instance()->setState(GetLastState());
 }
 

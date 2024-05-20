@@ -232,7 +232,7 @@ void CityState::onExit()
 
 void CityState::onPause()
 {
-	SetLastState(1);
+	SetLastState(GameStates::CITY);
 	GameStateMachine::instance()->setState(GameStates::PAUSEMENU);
 }
 
