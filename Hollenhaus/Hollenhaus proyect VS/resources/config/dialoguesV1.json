@@ -608,6 +608,20 @@
               ]
             }
           ]
+        },
+        {
+          "convoID": 15,
+          "autoConvo": false,
+          "nodes": [
+            {
+              "nodeID": 0,
+              "text": "Roba una carta!",
+              "eventStart": 0,
+              "eventFinish": 0,
+              "events": [
+              ]
+            }
+          ]
         }
       ]
     },

@@ -278,11 +278,19 @@ void TutorialBoardManager::setDRAWCARD()
 
 	std::vector<ecs::entity_t> v;
 
+	ecs::entity_t pop = createPopUp(525, 300, "Board Tutorial", 15);
+
+	objs.push_back(pop);
+
+	tutorial->getComponent<TutorialManager>()->addMission(pop);
+
 	v.push_back(deck);
 
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->activateColliders(v);
+
+	objs.pop_back();
 
 
 	
