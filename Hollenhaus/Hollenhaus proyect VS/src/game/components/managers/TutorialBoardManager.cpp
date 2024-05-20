@@ -176,6 +176,9 @@ void TutorialBoardManager::setINIT()
 	tutorial->getComponent<TutorialManager>()->deactivateColliders(objs);
 
 	tutorial->getComponent<TutorialManager>()->setColliderWall(v, base);
+
+	GameStateMachine::instance()->setTUTORIAL_BOARD_COMPLETE(true);
+
 }
 
 void TutorialBoardManager::setCARD()
