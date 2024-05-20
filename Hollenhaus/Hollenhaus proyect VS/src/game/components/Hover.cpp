@@ -23,6 +23,7 @@ void Hover::initComponent()
 void Hover::update()
 {
 	if (!isOnHand) return;
+	if (ih().keyDownEvent()) return;
 
 	const auto currTime = sdlutils().virtualTimer().currTime();
 	//if (bc->isCursorOver() && !intoHover)
@@ -42,13 +43,17 @@ void Hover::update()
 		if (intoHover)
 		{
 			onHoverExit();
+			resetEveryComponent();
 		}
 	}
 
 	hoverTweenX.step(1);
 	hoverTweenY.step(1);
 
-	updateEveryComponent();
+	if (intoHover)
+	{
+		updateEveryComponent();
+	}
 }
 
 void Hover::onHoverEnter()
@@ -67,42 +72,107 @@ void Hover::onHoverExit()
 
 void Hover::updateEveryComponent()
 {
-	//std::cout << hoverTweenX.peek() << std::endl;
-	//std::cout << hoverTweenY.peek() << std::endl;
+	// fondo de la carta
+	spr->setOffset(
+		hoverTweenX.peek(),
+		hoverTweenY.peek()
+	);
 
-	//spr->setOffset(
-	//	hoverTweenX.peek(),
-	//	hoverTweenY.peek()
-	//);
-
+	//escala
 	//getEntity()->getComponent<Transform>()->setGlobalScale(hoverScale, hoverScale);
+
+	//layer creo que no hace falta
 	//getEntity()->setEveryLayer(2);
-	// ajusta tambien los textos
-	//for (auto child : getEntity()->getComponent<Transform>()->getChildren())
-	//{
-	//	auto texto = child->getEntity()->getComponent<TextComponent>();
-	//	if (texto != nullptr)
-	//	{
-	//		child->getRelativePos().set(
-	//			child->getRelativePos().getX(),
-	//			child->getRelativePos().getY() - child->getRelativePos().getY() / 6.25
-	//		);
-	//	}
-	//}
+
+	// textos
+	for (const auto child : getEntity()->getComponent<Transform>()->getChildren())
+	{
+		// si es texto
+		const auto texto = child->getEntity()->getComponent<TextComponent>();
+		if (texto != nullptr)
+		{
+			texto->setOffset(
+				hoverTweenX.peek(),
+				hoverTweenY.peek()
+			);
+		}
+
+		// si es imagen, puede tener texto
+		const auto imagen = child->getEntity()->getComponent<SpriteRenderer>();
+		if (imagen != nullptr)
+		{
+			imagen->setOffset(
+				hoverTweenX.peek(),
+				hoverTweenY.peek()
+			);
+
+			// los efectos tienen un texto adherido
+			for (const auto nieto : child->getChildren())
+			{
+				// si es texto
+				const auto texto = child->getEntity()->getComponent<TextComponent>();
+				if (texto != nullptr)
+				{
+					texto->setOffset(
+						hoverTweenX.peek(),
+						hoverTweenY.peek()
+					);
+				}
+			}
+		}
+	}
+}
+
+void Hover::resetEveryComponent()
+{
+	// fondo de la carta
+	spr->setOffset(
+		0,
+		0
+	);
+
+	// textos
+	for (const auto child : getEntity()->getComponent<Transform>()->getChildren())
+	{
+		// si es texto
+		const auto texto = child->getEntity()->getComponent<TextComponent>();
+		if (texto != nullptr)
+		{
+			texto->setOffset(
+				0, 0
+			);
+		}
+
+		// si es imagen, puede tener texto
+		const auto imagen = child->getEntity()->getComponent<SpriteRenderer>();
+		if (imagen != nullptr)
+		{
+			imagen->setOffset(0, 0);
+
+			// los efectos tienen un texto adherido
+			for (const auto nieto : child->getChildren())
+			{
+				// si es texto
+				const auto texto = child->getEntity()->getComponent<TextComponent>();
+				if (texto != nullptr)
+					texto->setOffset(0, 0);
+			}
+		}
+	}
 }
 
 
 void Hover::resetTweensForward()
 {
 	hoverTweenX =
-		tweeny::from(iniPos.getX())
-		.to(iniPos.getX() + hoverOffset.getX())
+		tweeny::from(0.f)
+		.to(hoverOffset.getX())
 		.during(hoverSpeed)
 		.via(tweeny::easing::sinusoidalInOut);
 
 	hoverTweenY =
-		tweeny::from(iniPos.getY())
-		.to(iniPos.getY() + hoverOffset.getY())
+		tweeny::from(0.f)
+		.to(hoverOffset.getY())
 		.during(hoverSpeed)
 		.via(tweeny::easing::sinusoidalInOut);
 }
@@ -112,13 +182,13 @@ void Hover::resetTweensBackward() /// *********
 	// de vuelta de la posicion que sea a la inical
 	hoverTweenX =
 		tweeny::from(hoverTweenX.peek())
-		.to(iniPos.getX())
+		.to(0.f)
 		.during(hoverSpeed)
 		.via(tweeny::easing::sinusoidalInOut);
 
 	hoverTweenY =
 		tweeny::from(hoverTweenY.peek())
-		.to(iniPos.getY())
+		.to(0.f)
 		.during(hoverSpeed)
 		.via(tweeny::easing::sinusoidalInOut);
 }

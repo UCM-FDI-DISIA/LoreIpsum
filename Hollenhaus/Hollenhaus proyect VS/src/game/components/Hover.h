@@ -47,6 +47,7 @@ class Hover : public ComponentUpdate
 	void onHoverExit();
 
 	void updateEveryComponent();
+	void resetEveryComponent();
 public:
 	Hover() = default;
 
