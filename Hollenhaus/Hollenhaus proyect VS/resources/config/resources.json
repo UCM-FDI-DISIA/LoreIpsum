@@ -419,6 +419,10 @@
     {
       "id": "zelig_brilli",
       "file": "resources/images/hollenhaus_pers/hollenhaus_pers_brilli/zelig_b.png"
+    },
+    {
+      "id": "nosotros",
+      "file": "resources/images/LOGOS/NOSOTROS.png"
     }
   ],
     "fonts": [

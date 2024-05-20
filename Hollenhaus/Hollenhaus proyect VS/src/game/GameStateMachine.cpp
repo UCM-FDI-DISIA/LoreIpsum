@@ -44,6 +44,7 @@
 #include "Fade.h"
 #include "CaseManager.h"
 #include "gamestates/EndGameState.h"
+#include "gamestates/LogoState.h"
 
 constexpr Uint8 FADE_SPEED = 30;
 
@@ -75,6 +76,7 @@ GameStateMachine::GameStateMachine()
 	endGameState = new EndGameState();
 
 	// Estados de menuses
+	logoSate = new LogoState();
 	mainMenuState = new MainMenuState();
 	storyModeState = new StoryModeState();
 	multiplayerModeState = new MultiplayerModeState();
@@ -109,7 +111,7 @@ GameStateMachine::GameStateMachine()
 	//currentState = new MainMenuState();
 	// tutorialDeckbuildingState
 
-	currentState = mainMenuState;
+	currentState = logoSate;
 
 	// settea la data en el current state para acceder a ella desde cualquier estado
 	currentState->setData(new Data());
@@ -134,6 +136,7 @@ GameStateMachine::~GameStateMachine()
 	delete tutorialOfficeState;
 	delete tutorialShopState;
 
+	delete logoSate;
 	delete mainMenuState;
 	delete storyModeState;
 	delete multiplayerModeState;

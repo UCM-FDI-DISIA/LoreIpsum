@@ -514,6 +514,7 @@
     <ClCompile Include="src\game\gamestates\cinematicOutroState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\gamestates\LogoState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -960,6 +961,7 @@
     <ClInclude Include="src\game\gamestates\cinematicOutroState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\gamestates\LogoState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">

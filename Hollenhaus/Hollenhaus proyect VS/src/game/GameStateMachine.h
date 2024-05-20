@@ -55,7 +55,8 @@ namespace GameStates
 		TUTORIAL_DECKBUILDING,
 		TUTORIAL_SHOP,
 		TUTORIAL_CITY,
-		TUTORIAL_OFFICE
+		TUTORIAL_OFFICE,
+		LOGOSTATE
 	};
 }
 
@@ -79,6 +80,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* currentState;
 
 	// Estados de juego
+	GameState* logoSate;
 	GameState* mainMenuState;
 	GameState* cityState;
 	GameState* officeState;
@@ -257,6 +259,9 @@ public:
 			break;
 		case GameStates::TUTORIAL_OFFICE:
 			newState = tutorialOfficeState;
+			break;
+		case GameStates::LOGOSTATE:
+			newState = logoSate;
 			break;
 		default:
 			break;

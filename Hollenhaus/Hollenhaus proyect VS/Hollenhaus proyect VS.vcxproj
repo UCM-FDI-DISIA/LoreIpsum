@@ -136,6 +136,7 @@
     <ClCompile Include="src\game\gamestates\EndGameState.cpp" />
     <ClCompile Include="src\game\gamestates\GameState.cpp" />
     <ClCompile Include="src\game\gamestates\JimboState.cpp" />
+    <ClCompile Include="src\game\gamestates\LogoState.cpp" />
     <ClCompile Include="src\game\gamestates\LuisState.cpp" />
     <ClCompile Include="src\game\gamestates\MainMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\MatchOverState.cpp" />
@@ -317,6 +318,7 @@
     <ClInclude Include="src\game\gamestates\cinematicOutroState.h" />
     <ClInclude Include="src\game\gamestates\DeckBuildingState.h" />
     <ClInclude Include="src\game\gamestates\EndGameState.h" />
+    <ClInclude Include="src\game\gamestates\LogoState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerEndGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
