@@ -81,6 +81,8 @@ public:
 	virtual void loadDataIfExists();
 	virtual void newGameData();
 
+	virtual void resetShop();
+
 	// ---- crea carta ----
 	virtual ecs::entity_t createCard(int id, Vector2D pos);
 

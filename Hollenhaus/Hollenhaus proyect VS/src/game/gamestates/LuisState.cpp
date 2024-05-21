@@ -166,6 +166,7 @@ void LuisState::onEnter()
 	//matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
 	//matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
 	matchManagerComponent->setActionPointsJ1(j1Puntos);
+	matchManagerComponent->setActionPointsJ2(j2Puntos);
 	matchManagerComponent->setEndTurnButton(visual_EndTurnButton);
 	//matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
 	matchManagerComponent->updateVisuals();

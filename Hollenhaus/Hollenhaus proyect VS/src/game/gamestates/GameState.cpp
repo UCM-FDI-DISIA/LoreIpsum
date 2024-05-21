@@ -262,6 +262,11 @@ void GameState::newGameData()
 	data->resetSave();
 }
 
+void GameState::resetShop()
+{
+	data->resetShopCards();
+}
+
 ecs::entity_t GameState::createCard(int id, Vector2D pos)
 {
 	// ---- CARDS ----
