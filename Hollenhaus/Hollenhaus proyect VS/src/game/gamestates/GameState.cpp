@@ -11,6 +11,7 @@
 // factorias
 #include "../factories/Factory.h"
 #include "../factories/FakeCardFactory_v0.h"
+#include "game/CaseManager.h"
 
 // DECLARAR LAS VARIABLES ESTATICAS
 Data* GameState::data = nullptr;
@@ -253,8 +254,11 @@ void GameState::loadData()
 
 void GameState::loadDataIfExists()
 {
-	if (GetSaveExists()) 
+	if (GetSaveExists())
+	{
 		data->Read();
+		GameStateMachine::instance()->caseMngr()->init();
+	}
 }
 
 void GameState::newGameData()
