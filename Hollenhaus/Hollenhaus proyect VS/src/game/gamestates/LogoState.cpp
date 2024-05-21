@@ -29,7 +29,7 @@ void LogoState::refresh()
 void LogoState::onEnter()
 {
 	currentTime_ = sdlutils().currRealTime();
-	logo_ = Instantiate(Vector2D((sdlutils().width() / 2) - 125, (sdlutils().height() / 2) - 150));
+	logo_ = Instantiate(Vector2D((sdlutils().width() / 2) - 120, (sdlutils().height() / 2) - 160));
 	logo_->addComponent<SpriteRenderer>("nosotros");
 }
 

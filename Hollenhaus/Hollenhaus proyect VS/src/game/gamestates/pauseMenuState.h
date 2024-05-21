@@ -25,7 +25,7 @@ public:
     int previousState;
 
     void onDespause();
-
+    void resetFade();
     void exitGame();
 
     ecs::entity_t mirarMazo;
@@ -33,5 +33,7 @@ public:
     ecs::entity_t guardar;
     ecs::entity_t mainmenu;
     ecs::entity_t salir;
+    ecs::entity_t fbSaved;
+	tweeny::tween<int> tweenFade;
 };
 

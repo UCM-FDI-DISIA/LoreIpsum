@@ -42,6 +42,7 @@ private:
 		currentSouls = 0,
 		winner = 0,
 		lastState = 0;
+	bool caseAccepted = false;
 
 	// ---- CONFIGURACION DEL JUEGO ----
 	bool automaticNextTurn = true;
@@ -115,6 +116,8 @@ public:
 	// 
 	void setLastState(int ls);
 
+	void setAccepted(bool b);
+
 	// ---- CONFIGURACION ----
 	void SetAutomaticNextTurn(bool b);
 
@@ -155,6 +158,8 @@ public:
 	int getShopCardById(int id);
 	//----Devuelve ultimo estado antes de entrar a pausa
 	int getLastState() { return lastState; }
+
+	bool getAccepted();
 
 	// ------ TUTORIAL ------
 	bool getTUTORIAL_DECKBUILDING_COMPLETE() { return dbt_c; }

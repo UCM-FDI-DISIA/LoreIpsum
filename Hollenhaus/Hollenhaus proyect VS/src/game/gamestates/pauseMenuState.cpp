@@ -18,14 +18,17 @@ PauseMenuState::PauseMenuState()
 	TuVieja("Loading PauseMenuState");
 }
 
-PauseMenuState::~PauseMenuState() 
+PauseMenuState::~PauseMenuState()
 {
-
 }
 
 void PauseMenuState::update()
 {
 	GameState::update();
+
+	/// Feedback
+	tweenFade.step(1);
+	fbSaved->getComponent<TextComponent>()->setAlpha(tweenFade.peek());
 }
 
 void PauseMenuState::render() const
@@ -40,15 +43,8 @@ void PauseMenuState::refresh()
 
 void PauseMenuState::onEnter()
 {
-
 	// llamada al input
 	ih().insertFunction(ih().PAUSEKEY_DOWN, [this] { onDespause(); });
-
-	ecs::entity_t fondo = Instantiate();
-	fondo->addComponent<Transform>();
-	fondo->addComponent<SpriteRenderer>("optfondo");
-	fondo->getComponent<Transform>()->setGlobalScale(100, 100);
-	fondo->setLayer(0);
 
 	// ---- Salir:
 	ecs::entity_t exit = Instantiate();
@@ -66,7 +62,8 @@ void PauseMenuState::onEnter()
 
 	// mirar mazo
 	mirarMazo = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 400));
-	mirarMazo->addComponent<TextComponent>("MIRAR MAZO", "space_grotesk_bold_32", Colors::PEARL_HOLLENHAUS, 300, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	mirarMazo->addComponent<TextComponent>("MIRAR MAZO", "space_grotesk_bold_32", Colors::PEARL_HOLLENHAUS, 300,
+	                                       Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	mirarMazo->addComponent<BoxCollider>();
 	mirarMazo->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	mirarMazo->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
@@ -75,7 +72,8 @@ void PauseMenuState::onEnter()
 
 	// opciones
 	options = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 360));
-	options->addComponent<TextComponent>("OPCIONES", "space_grotesk_bold_32", Colors::PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	options->addComponent<TextComponent>("OPCIONES", "space_grotesk_bold_32", Colors::PEARL_HOLLENHAUS, 200,
+	                                     Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	options->addComponent<BoxCollider>();
 	options->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	options->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
@@ -84,17 +82,19 @@ void PauseMenuState::onEnter()
 
 	// guardar
 	guardar = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 320));
-	guardar->addComponent<TextComponent>("GUARDAR", "space_grotesk_bold_32", Colors::PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	guardar->addComponent<TextComponent>("GUARDAR", "space_grotesk_bold_32", Colors::PEARL_HOLLENHAUS, 200,
+	                                     Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	guardar->addComponent<BoxCollider>();
 	guardar->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	guardar->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	guardar->addComponent<Button>();
-	guardar->getComponent<Button>()->connectToButton([this] { saveData(); });
+	guardar->getComponent<Button>()->connectToButton([this] { saveData(); resetFade(); });
 	guardar->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 
 	// main menu
 	mainmenu = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 280));
-	mainmenu->addComponent<TextComponent>("VOLVER AL MENÚ", "space_grotesk_bold_32", Colors::PEARL_HOLLENHAUS, 400, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	mainmenu->addComponent<TextComponent>("VOLVER AL MENÚ", "space_grotesk_bold_32", Colors::PEARL_HOLLENHAUS, 400,
+	                                      Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	mainmenu->addComponent<BoxCollider>();
 	mainmenu->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	mainmenu->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
@@ -103,12 +103,32 @@ void PauseMenuState::onEnter()
 
 	// salir
 	salir = Instantiate(Vector2D(sdlutils().width() - 400, sdlutils().height() - 240));
-	salir->addComponent<TextComponent>("SALIR", "space_grotesk_bold_32", Colors::PEARL_HOLLENHAUS, 200, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	salir->addComponent<TextComponent>("SALIR", "space_grotesk_bold_32", Colors::PEARL_HOLLENHAUS, 200,
+	                                   Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	salir->addComponent<BoxCollider>();
 	salir->getComponent<BoxCollider>()->setSize(Vector2D(300, 40));
 	salir->getComponent<BoxCollider>()->setPosOffset(Vector2D(-150, -20));
 	salir->addComponent<ClickableText>(Colors::PEARL_HOLLENHAUS, Colors::PEARL_CLICK, Colors::ROJO_HOLLENHAUS);
 	ih().insertFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
+
+
+	/// Feedback guardado
+	fbSaved = Instantiate(Vector2D());
+	auto fbTrans = fbSaved->getComponent<Transform>();
+	fbTrans->setGlobalPos(20, sdlutils().height() - 30);
+	fbSaved->addComponent<TextComponent>(
+		"Partida guardada", Fonts::GROTESK_32,
+		Colors::PEARL_HOLLENHAUS, 500,
+		Text::BoxPivotPoint::LeftCenter, Text::TextAlignment::Left
+	);
+	fbSaved->setLayer(10);
+
+	tweenFade = // dummy declaration
+		tweeny::from(0)
+		.to(0)
+		.during(30)
+		.via(tweeny::easing::linear);
+
 
 	sdlutils().virtualTimer().pause();
 }
@@ -127,6 +147,19 @@ void PauseMenuState::onExit()
 void PauseMenuState::onDespause()
 {
 	GameStateMachine::instance()->setState(GetLastState());
+}
+
+void PauseMenuState::resetFade()
+{
+	tweenFade =
+		tweeny::from(0)
+		.to(255)
+		.during(30)
+		.to(255)
+		.during(60)
+		.to(0)
+		.during(30)
+		.via(tweeny::easing::linear);
 }
 
 void PauseMenuState::exitGame()

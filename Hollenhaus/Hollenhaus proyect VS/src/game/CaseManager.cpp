@@ -4,10 +4,10 @@
 CaseManager::CaseManager() :
 	npc_(),
 	accepted_(false),
-	npcCounter_(),
-	initialNpc_(),
+	initialNpc_(9),
 	case_(1)
 {
+	npcCounter_ = case_ + 2;
 }
 
 CaseManager::~CaseManager()
@@ -22,6 +22,8 @@ void CaseManager::update()
 void CaseManager::init()
 {
 	case_ = GameStateMachine::instance()->getCurrentState()->getCurrentCase();
+	accepted_ = GameStateMachine::instance()->getCurrentState()->getAccepted();
+
 	npcCounter_ = case_ + 2;
 
 	if (case_ == 1)
@@ -45,6 +47,7 @@ bool CaseManager::accepted()
 void CaseManager::accept()
 {
 	accepted_ = true;
+	GameStateMachine::instance()->getCurrentState()->setAccepted(accepted_);
 }
 
 void CaseManager::resetCase()
@@ -52,6 +55,7 @@ void CaseManager::resetCase()
 	initialNpc_ += npcCounter_;
 	npcCounter_++;
 	accepted_ = false;
+	GameStateMachine::instance()->getCurrentState()->setAccepted(accepted_);
 	GameStateMachine::instance()->getCurrentState()->nextCase();
 	GameStateMachine::instance()->getCurrentState()->resetShop();
 	++case_;

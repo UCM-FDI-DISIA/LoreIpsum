@@ -41,6 +41,7 @@ namespace Fonts
 	                  GROTESK_16 = "space_grotesk_bold_16",
 	                  GROTESK_18 = "space_grotesk_bold_18",
 	                  GROTESK_20 = "space_grotesk_bold_20",
+	                  GROTESK_22 = "space_grotesk_bold_22",
 	                  GROTESK_24 = "space_grotesk_bold_24",
 	                  GROTESK_26 = "space_grotesk_bold_26",
 	                  GROTESK_28 = "space_grotesk_bold_28",

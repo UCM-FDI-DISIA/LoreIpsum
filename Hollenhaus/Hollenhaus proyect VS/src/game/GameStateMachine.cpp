@@ -52,11 +52,11 @@ constexpr Uint8 FADE_SPEED = 30;
 
 void GameStateMachine::init()
 {
+	currentState->loadDataIfExists();
 	//Estado incial
 	pushState(currentState);
 
 	initFade();
-	case_->init();
 }
 
 //constructor
@@ -118,7 +118,6 @@ GameStateMachine::GameStateMachine()
 
 	// settea la data en el current state para acceder a ella desde cualquier estado
 	currentState->setData(new Data());
-	currentState->loadDataIfExists();
 }
 
 // destructor

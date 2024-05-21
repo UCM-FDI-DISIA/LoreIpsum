@@ -191,6 +191,11 @@ void Data::setLastState(int ls)
 	lastState = ls;
 }
 
+void Data::setAccepted(bool b)
+{
+	caseAccepted = b;
+}
+
 void Data::SetAutomaticNextTurn(bool b)
 {
 	automaticNextTurn = b;
@@ -261,6 +266,12 @@ bool Data::shopCardsIsEmpty() {
 int Data::getShopCardById(int id) {
 	return shopCards[id];
 }
+
+bool Data::getAccepted()
+{
+	return caseAccepted;
+}
+
 //----Ultimo NPC derrotado.
 int Data::getLastDefeatedNPC()
 {
@@ -283,6 +294,9 @@ void Data::Write() {
 	file << currentCase << "\n";
 	file << currentSouls << "\n";
 	file << lastState << "\n";
+
+	// Caso aceptado
+	file << caseAccepted << "\n";
 
 	file << "Mazo_y_posiciones" << "\n";
 	//Guarda el mazo y posiciones en la pizarra
@@ -342,7 +356,7 @@ void Data::Read() {
 
 	int number, iterations;
 
-	file >> currentMoney >> currentCase >> currentSouls >> lastState;
+	file >> currentMoney >> currentCase >> currentSouls >> lastState >> caseAccepted;
 	std::string falsedades;
 	file >> falsedades;
 
@@ -509,6 +523,9 @@ void Data::resetSave()
 		file << number << "\n";
 	}
 
+	bool accepted;
+	file2 >> accepted;
+	file << accepted << "\n";
 
 	file2 >> falsedad; // "Mazo_y_posiciones".
 	file << falsedad << "\n";

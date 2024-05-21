@@ -45,7 +45,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 
 	text->addComponent<DialogueDestroyer>(parent);
 	TextComponent* tc = text->addComponent<TextComponent>(
-		" ", fontID, color, wrapLenght, 
+		" ", fontID, color, wrapLenght,  // +35
 		boxPivotPoint, textAlignment);
 
 	// Podria hacer llorar a un matematico con esto pero funciona
@@ -54,7 +54,8 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	auto diff = dialogueWidth - textWidth;
 	auto marginX = diff / 2;
 
-	auto margin = Vector2D(marginX * tr->getGlobalScale().getX() - 10, 50 * tr->getGlobalScale().getY());
+	// -20
+	auto margin = Vector2D(marginX * tr->getGlobalScale().getX() - 10, 50 * tr->getGlobalScale().getY() + 4);
 	localPos = localPos + margin;
 	textTR->setGlobalPos(localPos);
 

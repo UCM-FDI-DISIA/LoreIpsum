@@ -11,6 +11,7 @@
 // factorias
 #include "../factories/Factory.h"
 #include "../factories/FakeCardFactory_v0.h"
+#include "game/CaseManager.h"
 
 // DECLARAR LAS VARIABLES ESTATICAS
 Data* GameState::data = nullptr;
@@ -253,8 +254,11 @@ void GameState::loadData()
 
 void GameState::loadDataIfExists()
 {
-	if (GetSaveExists()) 
+	if (GetSaveExists())
+	{
 		data->Read();
+		GameStateMachine::instance()->caseMngr()->init();
+	}
 }
 
 void GameState::newGameData()
@@ -265,6 +269,16 @@ void GameState::newGameData()
 void GameState::resetShop()
 {
 	data->resetShopCards();
+}
+
+void GameState::setAccepted(bool b)
+{
+	data->setAccepted(b);
+}
+
+bool GameState::getAccepted()
+{
+	return data->getAccepted();
 }
 
 ecs::entity_t GameState::createCard(int id, Vector2D pos)
