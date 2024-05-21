@@ -395,6 +395,7 @@ void MatchManager::InstantiatePanelFinPartida(int winner)
 		continuarButton->getComponent<Button>()->connectToButton([this]
 		{
 			GameStateMachine::instance()->setState(GameStates::MATCHOVER);
+			GameStateMachine::instance()->getCurrentState()->setJ2(j2_);
 		});
 	}
 	else
