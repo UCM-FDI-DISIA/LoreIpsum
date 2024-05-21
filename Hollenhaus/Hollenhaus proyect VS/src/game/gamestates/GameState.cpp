@@ -267,6 +267,16 @@ void GameState::resetShop()
 	data->resetShopCards();
 }
 
+void GameState::setAccepted(bool b)
+{
+	data->setAccepted(b);
+}
+
+bool GameState::getAccepted()
+{
+	return data->getAccepted();
+}
+
 ecs::entity_t GameState::createCard(int id, Vector2D pos)
 {
 	// ---- CARDS ----

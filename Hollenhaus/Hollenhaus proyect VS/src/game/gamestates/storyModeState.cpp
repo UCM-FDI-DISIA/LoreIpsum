@@ -109,6 +109,5 @@ void StoryModeState::newGameStart()
 {
 	newGameData(); // Llama al metodo que pone el txt con mazo de inicio, dinero a 0, etc.
 	loadData();
-	GameStateMachine::instance()->caseMngr()->init();
 	GameStateMachine::instance()->setState(GameStates::CINEMATICINTRO); // Cambia al estado de tutorial.
 }

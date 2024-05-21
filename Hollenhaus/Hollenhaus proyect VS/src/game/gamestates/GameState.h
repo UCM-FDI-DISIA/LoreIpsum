@@ -83,6 +83,10 @@ public:
 
 	virtual void resetShop();
 
+	virtual void setAccepted(bool b);
+
+	virtual bool getAccepted();
+
 	// ---- crea carta ----
 	virtual ecs::entity_t createCard(int id, Vector2D pos);
 

@@ -2,6 +2,7 @@
 1
 0
 0
+0
 Mazo_y_posiciones
 10
 0
