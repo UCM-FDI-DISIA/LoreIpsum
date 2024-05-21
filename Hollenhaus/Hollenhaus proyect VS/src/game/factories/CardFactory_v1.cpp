@@ -251,20 +251,15 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 	for (int i = 0; i < effects.size(); i++)
 	{
 		effectImage = Instantiate(Vector2D(0, 0));
-
 		efectID = efectsIdsNames[effects[i].type()];
-
 		effectImage->addComponent<SpriteRenderer>(efectID);
-
-
 		effectImage->getComponent<Transform>()->addParent(card->getComponent<Transform>());
-
 		effectImage->getComponent<Transform>()->setGlobalScale(scale, scale);
 		Vector2D gpos(initialX + ((i % nCols) * offSetX), initialY + ((i / nCols) * offSetY));
-
 		effectImage->getComponent<Transform>()->getRelativePos().set(gpos);
-
 		effectImage->setLayer(card->getLastLayer());
+
+
 
 
 		//si es una flecha, girarla
@@ -275,7 +270,7 @@ void CardFactory_v1::addEffectsImages(ecs::entity_t card, std::vector<JsonData::
 				dir == Effects::Right ? 90.f : dir == Effects::Down ? 180.f : dir == Effects::Left ? 270 : 0;
 		}
 
-		//poner el simbolo del valor
+		// si tiene valor numerico
 		if (effects[i].value() != 0)
 		{
 			std::string valueText = effects[i].value() < 0 ? "" : "+";
