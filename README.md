@@ -52,6 +52,7 @@
 ![Batalla](/docs/GDD/images/captura03.png)
 ![Oficina](/docs/GDD/images/captura04.png)
 ![Deckbuilding](/docs/GDD/images/captura05.png)
+![Tienda](/docs/GDD/images/captura06.png)
 ### Página
 Enlace a la [página web](https://ucm-fdi-disia.github.io/LoreIpsum/)
 ## Presentaciones
