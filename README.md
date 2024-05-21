@@ -1,5 +1,5 @@
 <h1 align="center"><b>HÖLLENHAUS</b></h1>
-<h3 align="center"><b>Lore Ipsum</b></h1>
+<h3 align="center"><b>LoreIpsum</b></h1>
 
 ## Índice
 - [Proyecto](#Proyecto)
