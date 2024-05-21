@@ -196,6 +196,14 @@ void Data::SetAutomaticNextTurn(bool b)
 	automaticNextTurn = b;
 }
 
+void Data::resetShopCards()
+{
+	for(int i = 0; i < CARDS_IN_SHOP; ++i)
+	{
+		shopCards[i] = -1;
+	}
+}
+
 //------Busqueda:
 
 // ------ DECKBUILDING ------

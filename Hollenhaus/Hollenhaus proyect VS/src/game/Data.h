@@ -118,6 +118,7 @@ public:
 	// ---- CONFIGURACION ----
 	void SetAutomaticNextTurn(bool b);
 
+	void resetShopCards();
 
 	// ---- Getters ----
 	#pragma region GETTERS
