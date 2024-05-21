@@ -13,14 +13,6 @@
       "file": "resources/images/pagina_leyenda.png"
     },
     {
-      "id": "board",
-      "file": "resources/images/board4.png"
-    },
-    {
-      "id": "board5",
-      "file": "resources/images/board5.png"
-    },
-    {
       "id": "board6",
       "file": "resources/images/board8.png"
     },
@@ -37,16 +29,8 @@
       "file": "resources/images/farolaslejos.png"
     },
     {
-      "id": "ambasfarolas",
-      "file": "resources/images/ambasfarolas.png"
-    },
-    {
       "id": "edificios",
       "file": "resources/images/edificios.png"
-    },
-    {
-      "id": "ciudadcompleta",
-      "file": "resources/images/ciudadcompleta.png"
     },
     {
       "id": "EndTurnButton",

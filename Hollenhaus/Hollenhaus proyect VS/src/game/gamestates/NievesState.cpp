@@ -83,7 +83,7 @@ void NievesState::onEnter()
 	background->addComponent<Transform>();
 	background->getComponent<Transform>()->setGlobalScale(0.5f, 0.5f);
 	//background->getComponent<Transform>()->getGlobalScale().set(0.5, 0.5);
-	background->addComponent<SpriteRenderer>("board");
+	background->addComponent<SpriteRenderer>("board6");
 	background->setLayer(-1);
 
 	// Texto de prueba
