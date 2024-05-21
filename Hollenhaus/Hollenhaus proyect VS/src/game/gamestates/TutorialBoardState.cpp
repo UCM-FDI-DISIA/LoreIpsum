@@ -181,6 +181,7 @@ void TutorialBoardState::setBoard()
 	boardManagerComponent->setScoreVisualJ2(visual_ScoreCounterJ2);
 	boardManagerComponent->updateVisuals();
 	matchManagerComponent->setActionPointsJ1(j1Puntos);
+	matchManagerComponent->setActionPointsJ2(j2Puntos);
 
 
 	// Seteamos la mano de J1 en el matchManager
