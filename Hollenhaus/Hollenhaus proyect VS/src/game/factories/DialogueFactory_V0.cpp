@@ -46,7 +46,7 @@ ecs::entity_t DialogueFactory_V0::createDialogue(std::string id, int convo, int 
 	text->addComponent<DialogueDestroyer>(parent);
 	TextComponent* tc = text->addComponent<TextComponent>(
 		" ", fontID, color, wrapLenght, 
-		boxPivotPoint, Text::Center);
+		boxPivotPoint, textAlignment);
 
 	// Podria hacer llorar a un matematico con esto pero funciona
 	auto dialogueWidth = sr->getTexture()->width() * tr->getGlobalScale().getX();
