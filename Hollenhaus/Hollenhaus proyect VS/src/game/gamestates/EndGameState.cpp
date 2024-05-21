@@ -29,8 +29,6 @@ void EndGameState::refresh()
 
 void EndGameState::onEnter()
 {
-	std::cout << "\nENTER ENDGAME.\n";
-
 	// llamada al input
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { onSkip(); });
 
@@ -45,14 +43,12 @@ void EndGameState::onEnter()
 
 	eCinIwf->addCallback([this]
 		{
-			GameStateMachine::instance()->setState(GameStates::MAINMENU, true, true);
+			GameStateMachine::instance()->setState(GameStates::LOGOSTATE, true, true);
 		});
 }
 
 void EndGameState::onExit()
 {
-	std::cout << "\nEXIT ENDGAME.\n";
-
 	// se desuscribe al evento de click izq
 	ih().clearFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { onSkip(); });
 
@@ -61,5 +57,5 @@ void EndGameState::onExit()
 
 void EndGameState::onSkip()
 {
-	GameStateMachine::instance()->setState(GameStates::MAINMENU, true, true);
+	GameStateMachine::instance()->setState(GameStates::LOGOSTATE, true, true);
 }
