@@ -10,6 +10,7 @@
 #include "game/components/Clickable.h"
 #include "game/components/ClickableText.h"
 #include "../components/Button.h"
+#include "game/CaseManager.h"
 #include "game/Data.h"
 
 constexpr SDL_Color PEARL_HOLLENHAUS = { 226, 223, 210, 255 };
@@ -108,5 +109,6 @@ void StoryModeState::newGameStart()
 {
 	newGameData(); // Llama al metodo que pone el txt con mazo de inicio, dinero a 0, etc.
 	loadData();
+	GameStateMachine::instance()->caseMngr()->init();
 	GameStateMachine::instance()->setState(GameStates::CINEMATICINTRO); // Cambia al estado de tutorial.
 }
