@@ -122,12 +122,7 @@ ecs::entity_t TutorialBaseManager::createPopUp(float x, float y, std::string pop
 ecs::entity_t TutorialBaseManager::createPopUp(float x, float y, std::string popup, int convo, ecs::entity_t b)
 {
 	JsonData::DialogueData dialogue = sdlutils().dialogues().at(popup);
-
 	int node = 0;
-
-	factory;
-
-	base;
 
 	// crear dialogo del FACTORY de dialogos
 	//// Mirar comentario en el interior de la función
@@ -136,9 +131,9 @@ ecs::entity_t TutorialBaseManager::createPopUp(float x, float y, std::string pop
 		{ 1, 1 }, //SIZE // Luis: Dentro de createDialogue, size depende del tamaó del sprite, y no es parametrizable
 		2, 10, b,
 		200, dialogue.Convo(convo).isAuto(),  //LAYER
-		Fonts::GROTESK_24,	//mirar el JSON para cambiar el tamanio de texto
-		SDL_Color({ 0, 0, 0, 255 }),
-		220, //wrap length
+		Fonts::GROTESK_22,	//mirar el JSON para cambiar el tamanio de texto
+		Colors::MIDNIGHT_HOLLENHAUS,
+		240, //wrap length
 		Text::BoxPivotPoint::LeftTop,
 		Text::TextAlignment::Left);
 
