@@ -310,6 +310,9 @@ void Data::Write() {
 	file << ct_c << "\n";
 	file << bt_c << "\n";
 	file << st_c << "\n";
+	// Leyenda
+	file << "Leyenda" << "\n";
+	file << currentKeys << "\n";
 
 	file.close();
 }
@@ -407,6 +410,10 @@ void Data::Read() {
 	ct_c = city;
 	bt_c = battle;
 	st_c = shop;
+	file >> falsedades; // Leyenda
+	int keys;
+	file >> keys;
+	currentKeys = keys;
 
 	file.close();
 }
@@ -557,7 +564,12 @@ void Data::resetSave()
 	file2 >> boolean; // st_c
 	file << boolean << "\n";
 
+	int key;
 
+	file2 >> falsedad; // Leyenda
+	file << falsedad << "\n";
+	file2 >> key;
+	file << key << "\n";
 
 	file.close();
 	file2.close();
