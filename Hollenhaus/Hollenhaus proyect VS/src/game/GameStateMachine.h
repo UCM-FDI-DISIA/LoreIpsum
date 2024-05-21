@@ -56,7 +56,8 @@ namespace GameStates
 		TUTORIAL_SHOP,
 		TUTORIAL_CITY,
 		TUTORIAL_OFFICE,
-		LOGOSTATE
+		LOGOSTATE,
+		FIRST
 	};
 }
 
@@ -80,6 +81,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* currentState;
 
 	// Estados de juego
+	GameState* firstState;
 	GameState* logoSate;
 	GameState* mainMenuState;
 	GameState* cityState;
@@ -263,6 +265,9 @@ public:
 		case GameStates::LOGOSTATE:
 			newState = logoSate;
 			break;
+		case GameStates::FIRST:
+			newState = firstState;
+			break;
 		default:
 			break;
 		}
@@ -294,7 +299,6 @@ public:
 	void setTUTORIAL_BOARD_COMPLETE(bool a);
 	bool TUTORIAL_SHOP_COMPLETE() { return st_c; }
 	void setTUTORIAL_SHOP_COMPLETE(bool a);
-
 };
 
 // --------

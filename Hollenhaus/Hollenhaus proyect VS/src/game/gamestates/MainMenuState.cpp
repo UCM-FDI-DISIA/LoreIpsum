@@ -89,11 +89,10 @@ void MainMenuState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startMusic(Musics::MAIN_MENU_M);
+	music->startMusic(Sounds::MAIN_MENU_M);
 }
 
 void MainMenuState::onExit() {
-	std::cout << "\nEXIT MENU.\n";
 
 	Vector2D globalPos(-380.0f, 0);
 	setLastPaulPos(globalPos);
@@ -101,7 +100,7 @@ void MainMenuState::onExit() {
 	ih().clearFunction(InputHandler::MOUSE_LEFT_CLICK_DOWN, [this] { exitGame(); });
 
 	auto music = SoundManager::instance();
-	music->stopMusic(Musics::MAIN_MENU_M);
+	music->stopMusic(Sounds::MAIN_MENU_M);
 
 	GameStateMachine::instance()->getMngr()->Free();
 }

@@ -53,6 +53,7 @@ void CaseManager::resetCase()
 	npcCounter_++;
 	accepted_ = false;
 	GameStateMachine::instance()->getCurrentState()->nextCase();
+	GameStateMachine::instance()->getCurrentState()->resetShop();
 	++case_;
 }
 

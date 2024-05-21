@@ -118,6 +118,7 @@ public:
 	// ---- CONFIGURACION ----
 	void SetAutomaticNextTurn(bool b);
 
+	void resetShopCards();
 
 	// ---- Getters ----
 	#pragma region GETTERS
@@ -187,6 +188,8 @@ public:
 	void Write();
 	//------Lectura:
 	void Read();
+
+	bool SaveExists();
 
 	//------Vaciar:
 	//----Vaciado de todas las listas a la vez.

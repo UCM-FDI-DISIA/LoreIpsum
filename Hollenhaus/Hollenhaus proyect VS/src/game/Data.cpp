@@ -20,6 +20,17 @@ Data::Data(int mon, int cas, int sou, std::list<int>maz, std::array<int, CARDS_I
 {};
 Data::~Data() {
 	delete shopCards;
+}
+
+bool Data::SaveExists()
+{
+	std::fstream file;
+	file.open(SAVE_FILE, std::ios::in);
+
+	if (!file)
+		return false;
+
+	return true;
 };
 //------Setters:
 
@@ -71,8 +82,8 @@ void Data::AddCardToDrawer(int id) {
 #if _DEBUG
 	std::cout << "Added card with id: " << id << "\n";
 #endif
-
-	drawer[id] = id;
+	if (id != -1)
+		drawer[id] = id;
 }
 
 void Data::SetNewDrawer(std::array<int, CARDS_IN_GAME> newDrawer) {
@@ -185,6 +196,14 @@ void Data::SetAutomaticNextTurn(bool b)
 	automaticNextTurn = b;
 }
 
+void Data::resetShopCards()
+{
+	for(int i = 0; i < CARDS_IN_SHOP; ++i)
+	{
+		shopCards[i] = -1;
+	}
+}
+
 //------Busqueda:
 
 // ------ DECKBUILDING ------
@@ -259,10 +278,6 @@ void Data::Write() {
 #endif
 		return;
 	}
-	else
-	{
-		std::cout << "\nBUENOS DIAS PARTIDA GUARDADA WRITE EN SAVE.\n";
-	}
 
 	file << currentMoney << "\n";
 	file << currentCase << "\n";
@@ -303,6 +318,9 @@ void Data::Write() {
 	file << ct_c << "\n";
 	file << bt_c << "\n";
 	file << st_c << "\n";
+	// Leyenda
+	file << "Leyenda" << "\n";
+	file << currentKeys << "\n";
 
 	file.close();
 }
@@ -320,10 +338,6 @@ void Data::Read() {
 		TuVieja("ERROR DE ESCRITURA: No se ha podido abrir el archivo de guardado.");
 #endif
 		return;
-	}
-	else
-	{
-		std::cout << "\nBUENOS DIAS LECTURA DEL SAVE.\n";
 	}
 
 	int number, iterations;
@@ -404,6 +418,10 @@ void Data::Read() {
 	ct_c = city;
 	bt_c = battle;
 	st_c = shop;
+	file >> falsedades; // Leyenda
+	int keys;
+	file >> keys;
+	currentKeys = keys;
 
 	file.close();
 }
@@ -480,10 +498,6 @@ void Data::resetSave()
 #endif
 		return;
 	}
-	else
-	{
-		std::cout << "\nBUENOS DIAS NUEVA PARTIDA RESET DEL SAVE.\n";
-	}
 
 	int number, iterations;
 	std::string falsedad;
@@ -558,7 +572,12 @@ void Data::resetSave()
 	file2 >> boolean; // st_c
 	file << boolean << "\n";
 
+	int key;
 
+	file2 >> falsedad; // Leyenda
+	file << falsedad << "\n";
+	file2 >> key;
+	file << key << "\n";
 
 	file.close();
 	file2.close();

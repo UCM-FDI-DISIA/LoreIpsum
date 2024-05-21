@@ -395,6 +395,7 @@ void MatchManager::InstantiatePanelFinPartida(int winner)
 		continuarButton->getComponent<Button>()->connectToButton([this]
 		{
 			GameStateMachine::instance()->setState(GameStates::MATCHOVER);
+			GameStateMachine::instance()->getCurrentState()->setJ2(j2_);
 		});
 	}
 	else
@@ -484,30 +485,30 @@ void MatchManager::changeMusicTurn(Turns::State i)
 {
 	auto music = SoundManager::instance();
 
-	Musics::MUSIC a = Musics::MUSIC::BATTLE_P_M;
-	Musics::MUSIC b = Musics::MUSIC::BATTLE_T_M;
+	Sounds::MUSIC a = Sounds::MUSIC::BATTLE_P_M;
+	Sounds::MUSIC b = Sounds::MUSIC::BATTLE_T_M;
 
 	switch (i)
 	{
 	case Turns::J1:
-		a = Musics::MUSIC::BATTLE_P_M;
-		b = Musics::MUSIC::BATTLE_T_M;
+		a = Sounds::MUSIC::BATTLE_P_M;
+		b = Sounds::MUSIC::BATTLE_T_M;
 		break;
 	case Turns::J2:
-		a = Musics::MUSIC::BATTLE_P_M;
-		b = Musics::MUSIC::BATTLE_T_M;
+		a = Sounds::MUSIC::BATTLE_P_M;
+		b = Sounds::MUSIC::BATTLE_T_M;
 		break;
 	case Turns::Finish:
-		a = Musics::MUSIC::BATTLE_P_M;
-		b = Musics::MUSIC::BATTLE_T_M;
+		a = Sounds::MUSIC::BATTLE_P_M;
+		b = Sounds::MUSIC::BATTLE_T_M;
 		break;
 	case Turns::IA:
-		a = Musics::MUSIC::BATTLE_T_M;
-		b = Musics::MUSIC::BATTLE_P_M;
+		a = Sounds::MUSIC::BATTLE_T_M;
+		b = Sounds::MUSIC::BATTLE_P_M;
 		break;
 	case Turns::J2_MULTIPLAYER:
-		a = Musics::MUSIC::BATTLE_T_M;
-		b = Musics::MUSIC::BATTLE_P_M;
+		a = Sounds::MUSIC::BATTLE_T_M;
+		b = Sounds::MUSIC::BATTLE_P_M;
 		break;
 	default:
 		break;

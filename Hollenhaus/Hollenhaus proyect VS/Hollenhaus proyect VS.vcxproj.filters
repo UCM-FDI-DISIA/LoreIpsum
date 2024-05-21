@@ -966,6 +966,8 @@
     <ClInclude Include="src\game\gamestates\LogoState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\components\Dummy.h" />
+    <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">
@@ -986,5 +988,11 @@
     <None Include="resources\config\keytexts.json">
       <Filter>Resources</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hollenhaus proyect VS1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\images\LOGOS\favicon.ico" />
   </ItemGroup>
 </Project>

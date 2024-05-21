@@ -52,6 +52,7 @@
 ![Batalla](/docs/GDD/images/captura03.png)
 ![Oficina](/docs/GDD/images/captura04.png)
 ![Deckbuilding](/docs/GDD/images/captura05.png)
+![Tienda](/docs/GDD/images/captura06.png)
 ### Página
 Enlace a la [página web](https://ucm-fdi-disia.github.io/LoreIpsum/)
 ## Presentaciones
@@ -269,7 +270,19 @@ La IA a la que se enfrentaban los jugadores tenía siempre las mismas cartas, y 
 3. ### Resultados de la encuesta <a name="id1"></a>
 _Datos sobre los encuestados:_
 
+![](/docs/QA/ch1.png)
+![](/docs/QA/ch2.png)
+![](/docs/QA/ch3.png)
+![](/docs/QA/ch4.png)
+![](/docs/QA/ch5.png)
+
 _Datos sobre el juego:_
+
+![](/docs/QA/ch6.png)
+![](/docs/QA/ch7.png)
+![](/docs/QA/ch8.png)
+![](/docs/QA/ch9.png)
+![](/docs/QA/ch10.png)
 
 4. ### Resultados observados por el equipo <a name="id1"></a>
 De los datos obtenidos de los gráficos, comentarios y respuestas libres de las encuestas y nuestra propia observación durante la misma podemos concluir diferentes cosas:
@@ -285,8 +298,8 @@ De los datos obtenidos de los gráficos, comentarios y respuestas libres de las 
 Para solucionar todas estas cosas hicimos bastantes implementaciones, algunas pensadas antes del QA y otras nuevas:
 - Dificultad con las reglas:
   - Implementación de un tutorial obligatorio cuando empiezas una nueva partida, el tutorial incluye:
-    - Cómo funcionan los casos.
-    - Cómo funciona el deckBuilding
+    - Cómo funcionan los casos
+    - Cómo funciona el deck-building
     - Cómo funciona la partida de cartas
     - Cómo funciona la tienda
   - Esto también ayudará a que los jugadores sepan que estas funcionalidades existen.

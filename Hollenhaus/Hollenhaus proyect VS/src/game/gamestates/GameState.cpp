@@ -175,6 +175,11 @@ void GameState::SetLastState(int ls)
 	data->setLastState(ls);
 }
 
+bool GameState::GetSaveExists()
+{
+	return data->SaveExists();
+}
+
 std::array<int, CARDS_IN_GAME> GameState::getDrawer()
 {
 	return data->GetDrawer();
@@ -231,6 +236,11 @@ void GameState::setJ2(std::string rival)
 {
 }
 
+bool GameState::isDefeated(int i)
+{
+	return data->IdIsInDefeatedNPC(i);
+}
+
 void GameState::saveData()
 {
 	data->Write();
@@ -241,9 +251,20 @@ void GameState::loadData()
 	data->Read();
 }
 
+void GameState::loadDataIfExists()
+{
+	if (GetSaveExists()) 
+		data->Read();
+}
+
 void GameState::newGameData()
 {
 	data->resetSave();
+}
+
+void GameState::resetShop()
+{
+	data->resetShopCards();
 }
 
 ecs::entity_t GameState::createCard(int id, Vector2D pos)

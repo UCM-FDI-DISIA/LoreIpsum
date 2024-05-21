@@ -20,8 +20,8 @@ KeyComponent::KeyComponent(const int keys) :
 
 	keyNames_.emplace_back("flecha");
 	keyNames_.emplace_back("superflecha");
-	keyNames_.emplace_back("esquina");
 	keyNames_.emplace_back("centro");
+	keyNames_.emplace_back("esquina");
 	keyNames_.emplace_back("block");
 	keyNames_.emplace_back("unblockable");
 }

@@ -166,6 +166,7 @@ void LuisState::onEnter()
 	//matchManagerComponent->setActualTurnVisual(visual_PlayerTurnIndicator);
 	//matchManagerComponent->setActionPointsVisualJ1(visual_ActionPointsJ1);
 	matchManagerComponent->setActionPointsJ1(j1Puntos);
+	matchManagerComponent->setActionPointsJ2(j2Puntos);
 	matchManagerComponent->setEndTurnButton(visual_EndTurnButton);
 	//matchManagerComponent->setActionPointsVisualJ2(visual_ActionPointsJ2);
 	matchManagerComponent->updateVisuals();
@@ -182,7 +183,7 @@ void LuisState::onEnter()
 
 	/// MUSICA
 	auto music = SoundManager::instance();
-	music->startDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
+	music->startDynamicMusic(Sounds::MUSIC::BATTLE_P_M, Sounds::MUSIC::BATTLE_T_M);
 
 
 #pragma region Seccion IA
@@ -218,7 +219,7 @@ void LuisState::onExit()
 	TuVieja("\nExit LuisState");
 
 	auto music = SoundManager::instance();
-	music->stopDynamicMusic(Musics::MUSIC::BATTLE_P_M, Musics::MUSIC::BATTLE_T_M);
+	music->stopDynamicMusic(Sounds::MUSIC::BATTLE_P_M, Sounds::MUSIC::BATTLE_T_M);
 
 	saveData();
 
