@@ -298,11 +298,11 @@
     },
     {
       "id": "estatua_j2",
-      "file": "resources/images/figura_turno_arriba.png"
+      "file": "resources/images/fantasma_caminando.png"
     },
     {
       "id": "estatua_j1",
-      "file": "resources/images/figura_turno_abajo.png"
+      "file": "resources/images/fantasma_caminando.png"
     },
     {
       "id": "tienda",
@@ -422,15 +422,15 @@
     },
     {
       "id": "outro",
-      "file": "resources/images/cinem.png"
+      "file": "resources/images/fantasma_caminando.png"
     },
     {
       "id": "intro",
-      "file": "resources/images/cinem_intro.png"
+      "file": "resources/images/fantasma_caminando.png"
     },
     {
       "id": "credits",
-      "file": "resources/images/credits_cinem.png"
+      "file": "resources/images/fantasma_caminando.png"
     }
   ],
   "fonts": [
