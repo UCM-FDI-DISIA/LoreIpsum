@@ -429,6 +429,14 @@
       "file": "resources/images/fantasma_caminando.png"
     },
     {
+      "id": "puertaCasino",
+      "file": "resources/images/casinoDoor.png"
+    },
+    {
+      "id": "puertaCasinoShiny",
+      "file": "resources/images/casinoDoor_shiny.png"
+    },
+    {
       "id": "credits",
       "file": "resources/images/fantasma_caminando.png"
     }

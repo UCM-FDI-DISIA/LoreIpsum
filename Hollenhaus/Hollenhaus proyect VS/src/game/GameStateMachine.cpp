@@ -14,6 +14,7 @@
 #include "gamestates/cinematicIntroState.h"
 #include "gamestates/FirstState.h"
 #include "gamestates/cinematicOutroState.h"
+#include "gamestates/CasinoState.h"
 
 #include "gamestates/SamuState.h"
 #include "gamestates/JimboState.h"
@@ -109,6 +110,8 @@ GameStateMachine::GameStateMachine()
 	multiplayerGameState = new MultiplayerGameState();
 	multiplayerEndGameState = new MultiplayerEndGameState();
 
+	//extra
+	casinoState = new CasinoState();
 
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();
@@ -161,6 +164,7 @@ GameStateMachine::~GameStateMachine()
 	delete multiplayerPreGameState;
 	delete multiplayerGameState;
 	delete multiplayerEndGameState;
+	delete casinoState;
 	delete currentState->getData();
 	currentState->setData(nullptr);
 

@@ -127,6 +127,7 @@
     <ClCompile Include="src\game\factories\NPCFactory_V0.cpp" />
     <ClCompile Include="src\game\Fade.cpp" />
     <ClCompile Include="src\game\gamestates\AndresState.cpp" />
+    <ClCompile Include="src\game\gamestates\CasinoState.cpp" />
     <ClCompile Include="src\game\gamestates\checkCluesMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\checkMazeMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\cinematicIntroState.cpp" />
@@ -315,6 +316,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\game\Fade.h" />
+    <ClInclude Include="src\game\gamestates\CasinoState.h" />
     <ClInclude Include="src\game\gamestates\checkCluesMenuState.h" />
     <ClInclude Include="src\game\gamestates\checkMazeMenuState.h" />
     <ClInclude Include="src\game\gamestates\cinematicIntroState.h" />
