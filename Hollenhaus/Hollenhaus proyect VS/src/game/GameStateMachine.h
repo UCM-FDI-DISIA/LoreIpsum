@@ -58,7 +58,8 @@ namespace GameStates
 		TUTORIAL_OFFICE,
 		LOGOSTATE,
 		FIRST,
-		CASINO
+		CASINO,
+		SOLITAIRE
 	};
 }
 
@@ -126,6 +127,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* multiplayerGameState;
 	GameState* multiplayerEndGameState;
 	GameState* casinoState;
+	GameState* solitaireState;
 
 	/// FADE IN-OUT
 	//ecs::entity_t fade;

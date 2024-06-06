@@ -521,6 +521,9 @@
     <ClCompile Include="src\game\gamestates\CasinoState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\gamestates\Solitaire.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -974,6 +977,9 @@
     <ClInclude Include="resource1.h" />
     <ClInclude Include="src\game\gamestates\FirstState.h" />
     <ClInclude Include="src\game\gamestates\CasinoState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\Solitaire.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
   </ItemGroup>

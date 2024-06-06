@@ -15,6 +15,7 @@
 #include "gamestates/FirstState.h"
 #include "gamestates/cinematicOutroState.h"
 #include "gamestates/CasinoState.h"
+#include "gamestates/Solitaire.h"
 
 #include "gamestates/SamuState.h"
 #include "gamestates/JimboState.h"
@@ -112,6 +113,7 @@ GameStateMachine::GameStateMachine()
 
 	//extra
 	casinoState = new CasinoState();
+	solitaireState = new Solitaire();
 
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();
@@ -165,6 +167,7 @@ GameStateMachine::~GameStateMachine()
 	delete multiplayerGameState;
 	delete multiplayerEndGameState;
 	delete casinoState;
+	delete solitaireState;
 	delete currentState->getData();
 	currentState->setData(nullptr);
 
