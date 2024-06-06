@@ -13,3 +13,28 @@
 #include "../factories/Factory.h"
 #include "../factories/FakeCardFactory_v0.h"
 #include "game/components/Clickable.h"
+
+CasinoState::CasinoState()
+{
+
+}
+
+void CasinoState::update()
+{
+}
+
+void CasinoState::render() const
+{
+}
+
+void CasinoState::refresh()
+{
+}
+
+void CasinoState::onEnter()
+{
+}
+
+void CasinoState::onExit()
+{
+}
