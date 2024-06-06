@@ -11,7 +11,7 @@
 
 // Factorias:
 #include "../factories/Factory.h"
-#include "../factories/FakeCardFactory_v0.h"
+#include "../factories/NPCFactory_V0.h"
 #include "game/components/Clickable.h"
 
 CasinoState::CasinoState()
@@ -21,18 +21,36 @@ CasinoState::CasinoState()
 
 void CasinoState::update()
 {
+	GameState::update();
+
 }
 
 void CasinoState::render() const
 {
+	GameState::render();
+
 }
 
 void CasinoState::refresh()
 {
+	GameState::refresh();
+
 }
 
 void CasinoState::onEnter()
 {
+	factory = new Factory();
+	factory->SetFactories(
+		static_cast<NPCFactory*>(new NPCFactory_V0()));
+	//-----Imagen de fondo:
+	ecs::entity_t fondo = Instantiate();
+	fondo->addComponent<Transform>();
+	fondo->addComponent<SpriteRenderer>("casino");
+	fondo->getComponent<Transform>()->setGlobalScale(0.70f, 0.70f);
+	fondo->setLayer(0);
+
+	ecs::entity_t croupier = factory->createNPC(23, fondo);
+
 }
 
 void CasinoState::onExit()

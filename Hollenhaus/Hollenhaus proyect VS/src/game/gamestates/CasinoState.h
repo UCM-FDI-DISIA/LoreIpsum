@@ -4,6 +4,7 @@
 
 #include "GameState.h"
 #include <vector>
+class Factory;
 
 class CasinoState : public GameState
 {
@@ -22,5 +23,6 @@ public:
 
 private:
 	
+	Factory* factory;
 
 };

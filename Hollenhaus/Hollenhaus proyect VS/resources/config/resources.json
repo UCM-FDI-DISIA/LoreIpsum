@@ -437,6 +437,18 @@
       "file": "resources/images/casinoDoor_shiny.png"
     },
     {
+      "id": "casino",
+      "file": "resources/images/casino.png"
+    },
+    {
+      "id": "croupier",
+      "file": "resources/images/croupier.png"
+    },
+    {
+      "id": "croupierShiny",
+      "file": "resources/images/croupierShiny.png"
+    },
+    {
       "id": "credits",
       "file": "resources/images/fantasma_caminando.png"
     }
