@@ -449,6 +449,10 @@
       "file": "resources/images/croupierShiny.png"
     },
     {
+      "id": "greenTable",
+      "file": "resources/images/greenTable.png"
+    },
+    {
       "id": "credits",
       "file": "resources/images/fantasma_caminando.png"
     }

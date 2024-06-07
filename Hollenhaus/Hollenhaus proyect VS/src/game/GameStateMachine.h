@@ -275,6 +275,9 @@ public:
 		case GameStates::CASINO:
 			newState = casinoState;
 			break;
+		case GameStates::SOLITAIRE:
+			newState = casinoState;
+			break;
 		default:
 			break;
 		}

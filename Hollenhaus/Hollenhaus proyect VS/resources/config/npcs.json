@@ -386,21 +386,6 @@
         "layer": 1,
         "deck": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
         "card": -1
-      },
-      {
-        "npcID": "23",
-        "name": "Croupier",
-        "sprite": "croupier",
-        "shine": "croupierShiny",
-        "scaleX": 0.95,
-        "scaleY": 0.95,
-        "posX": 920,
-        "posY": 230,
-        "type": 0,
-        "scene": 33,
-        "layer": 1,
-        "deck": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-        "card": -1
       }
     ]
 
