@@ -17,7 +17,7 @@ ecs::entity_t NPCFactory_V0::createNPC(JsonData::NPCData info, ecs::entity_t par
 	npc->getComponent<Transform>()->addParent(parent->getComponent<Transform>());
 	npc->getComponent<Transform>()->getRelativeScale().set(info.getScale().getX(), info.getScale().getY());
 	Vector2D pos;
-	if(info.getSprite() != "tfno"){
+	if(info.getSprite() != "tfno" && info.getSprite() != "croupier") {
 		pos = { GameStateMachine::instance()->getCurrentState()->getLastPaulPos().getX() + info.getPos().getX(), info.getPos().getY() };
 	}
 	else {

@@ -39,19 +39,19 @@ void CasinoState::refresh()
 
 void CasinoState::onEnter()
 {
+	
 	factory = new Factory();
 	factory->SetFactories(
 		static_cast<NPCFactory*>(new NPCFactory_V0()));
+
+	//-----Imagen de fondo:
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
-	/*
-	
-	//-----Imagen de fondo:
 	fondo->addComponent<SpriteRenderer>("casino");
 	fondo->getComponent<Transform>()->setGlobalScale(0.70f, 0.70f);
 	fondo->setLayer(0);
-	*/
-
+	
+	//-----Croupier
 	ecs::entity_t croupier = factory->createNPC(23, fondo);
 
 	//------Boton para volver:
@@ -75,5 +75,4 @@ void CasinoState::onExit()
 
 	GameStateMachine::instance()->getMngr()->Free();
 
-	delete factory;
 }
