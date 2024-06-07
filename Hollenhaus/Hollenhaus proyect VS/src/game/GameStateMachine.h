@@ -276,7 +276,7 @@ public:
 			newState = casinoState;
 			break;
 		case GameStates::SOLITAIRE:
-			newState = casinoState;
+			newState = solitaireState;
 			break;
 		default:
 			break;

@@ -75,4 +75,6 @@ void CasinoState::onExit()
 
 	GameStateMachine::instance()->getMngr()->Free();
 
+	delete factory;
+
 }
