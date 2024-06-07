@@ -43,7 +43,7 @@ void Solitaire::onEnter()
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("greenTable");
-	fondo->getComponent<Transform>()->setGlobalScale(0.70f, 0.70f);
+	fondo->getComponent<Transform>()->setGlobalScale(1.0f, 1.0f);
 	fondo->setLayer(0);
 
 	
