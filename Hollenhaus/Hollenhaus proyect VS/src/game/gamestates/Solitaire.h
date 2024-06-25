@@ -5,6 +5,8 @@
 #include "GameState.h"
 #include <vector>
 class Factory;
+class SolCardFactory;
+
 
 class Solitaire : public GameState
 {
@@ -24,5 +26,5 @@ public:
 private:
 
 	Factory* factory;
-
+	SolCardFactory* solCardFactory;
 };

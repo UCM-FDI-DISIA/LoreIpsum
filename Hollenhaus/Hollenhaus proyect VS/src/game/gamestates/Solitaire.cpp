@@ -11,6 +11,7 @@
 
 // Factorias:
 #include "../factories/Factory.h"
+#include "../factories/SolCardFactory.h"
 #include "../factories/NPCFactory_V0.h"
 #include "game/components/Clickable.h"
 
@@ -41,17 +42,21 @@ void Solitaire::refresh()
 
 void Solitaire::onEnter()
 {
-	
+	solCardFactory = new SolCardFactory();
+
+
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("greenTable");
 	fondo->getComponent<Transform>()->setGlobalScale(1.0f, 1.0f);
 	fondo->setLayer(0);
 
+	solCardFactory->CreateCard();
 	
 
 }
 
 void Solitaire::onExit()
 {
+	delete solCardFactory;
 }

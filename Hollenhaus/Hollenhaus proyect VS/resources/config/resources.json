@@ -453,6 +453,26 @@
       "file": "resources/images/greenTable.png"
     },
     {
+      "id": "solitaireCard",
+      "file": "resources/images/Solitaire/card.png"
+    },
+    {
+      "id": "clubs",
+      "file": "resources/images/Solitaire/clubs.png"
+    },
+    {
+      "id": "diamonts",
+      "file": "resources/images/Solitaire/diamonts.png"
+    },
+    {
+      "id": "hearts",
+      "file": "resources/images/Solitaire/hearts.png"
+    },
+    {
+      "id": "spades",
+      "file": "resources/images/Solitaire/spades.png"
+    },
+    {
       "id": "credits",
       "file": "resources/images/fantasma_caminando.png"
     }
