@@ -18,6 +18,8 @@ ecs::entity_t SolCardFactory::CreateCard()
 
 	//añadir componentes
 	newCard->addComponent<SpriteRenderer>("solitaireCard");
+	newCard->addComponent<BoxCollider>();
+	newCard->addComponent<SpriteRenderer>("solitaireCard");
 
 
 	//set layer && size
@@ -31,7 +33,7 @@ ecs::entity_t SolCardFactory::CreateCard()
 
 	iconBig->addComponent<SpriteRenderer>("spades");
 	iconBig->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
-	iconBig->setLayer(cardLayer);
+	iconBig->setLayer(iconsLayer);
 
 
 	return newCard;
