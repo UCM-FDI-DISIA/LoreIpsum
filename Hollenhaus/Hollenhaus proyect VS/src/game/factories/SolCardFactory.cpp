@@ -13,23 +13,25 @@ SolCardFactory::~SolCardFactory()
 
 ecs::entity_t SolCardFactory::CreateCard()
 {
-
+	//crear la carta
 	ecs::entity_t newCard = Instantiate(Vector2D(0,0));
 
+	//añadir componentes
 	newCard->addComponent<SpriteRenderer>("solitaireCard");
 
-	newCard->setLayer(2);
+
+	//set layer && size
+	newCard->setLayer(cardLayer);
+	newCard->getComponent<Transform>()->setGlobalScale(cardScale.getX(),cardScale.getY());
 
 
-	newCard->getComponent<Transform>()->setGlobalScale(1,1);
 
-	auto icon = Instantiate(Vector2D(3,35));
+	//crear los hijos de la carta
+	auto iconBig = Instantiate(iconBigOffset);
 
-	icon->addComponent<SpriteRenderer>("spades");
-	icon->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
-	icon->setLayer(3);
-
-
+	iconBig->addComponent<SpriteRenderer>("spades");
+	iconBig->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
+	iconBig->setLayer(cardLayer);
 
 
 	return newCard;
