@@ -14,6 +14,8 @@
 #include "../factories/NPCFactory_V0.h"
 #include "game/components/Clickable.h"
 
+
+
 Solitaire::Solitaire()
 {
 
