@@ -1,5 +1,6 @@
 #include "..\pchs\pch.h"
 #include "../components/basics/TextComponent.h"
+#include "../components/SolCardComponent.h"
 #include "SolCardFactory.h"
 
 //#include <game/components/basics/SpriteRenderer.h>
@@ -20,7 +21,7 @@ ecs::entity_t SolCardFactory::CreateCard()
 	//añadir componentes
 	newCard->addComponent<SpriteRenderer>("solitaireCard");
 	newCard->addComponent<BoxCollider>();
-	//falta el componente de SolCardComponent
+	newCard->addComponent<SolCardComponent>();
 
 
 	//set layer && size
@@ -44,7 +45,7 @@ ecs::entity_t SolCardFactory::CreateCard()
 	iconSmall->setLayer(iconsLayer);
 
 	auto cardNumber = Instantiate(Vector2D(100, 550));
-	cardNumber->addComponent<TextComponent>(std::to_string(money) + " DM", Fonts::GROTESK_32, SDL_Color({ Colors::MIDNIGHT_HOLLENHAUS }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	cardNumber->addComponent<TextComponent>();
 	cardNumber->setLayer(10);
 
 	return newCard;
