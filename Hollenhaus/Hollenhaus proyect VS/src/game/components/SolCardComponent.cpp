@@ -13,6 +13,12 @@ SolCardComponent::SolCardComponent()
 
 }
 
+SolCardComponent::SolCardComponent(int num, int t, bool b)
+	:number(num), bocabajo(b)
+{ 
+	myType = (tipo)t;
+}
+
 SolCardComponent::~SolCardComponent()
 {
 	

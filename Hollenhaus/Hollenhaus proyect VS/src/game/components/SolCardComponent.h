@@ -9,6 +9,7 @@ class SolCardComponent : public ComponentUpdate
 public:
 
 	SolCardComponent();
+	SolCardComponent(int, int, bool); 
 	~SolCardComponent();
 
 	void initComponent() override;
@@ -24,8 +25,15 @@ private:
 	// enum de tipo (palo)
 	enum tipo { spades, clubs, hearts, diamonds };
 
+	tipo myType;
+
 	//si esta bocabajo o no
 	bool bocabajo = false;
+
+	//getters
+	int getNumber() const { return number; }
+	//int getTipo() const { return ; }
+	bool getBocabajo() const { return bocabajo; }
 
 };
 
