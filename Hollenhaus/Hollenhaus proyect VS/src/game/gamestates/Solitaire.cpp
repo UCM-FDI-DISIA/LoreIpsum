@@ -45,7 +45,6 @@ void Solitaire::onEnter()
 {
 	solCardFactory = new SolCardFactory();
 
-
 	ecs::entity_t fondo = Instantiate();
 	fondo->addComponent<Transform>();
 	fondo->addComponent<SpriteRenderer>("greenTable");
@@ -53,8 +52,6 @@ void Solitaire::onEnter()
 	fondo->setLayer(0);
 
 	solCardFactory->CreateCard(13, SolCardComponent::clubs, false);
-	
-
 }
 
 void Solitaire::onExit()

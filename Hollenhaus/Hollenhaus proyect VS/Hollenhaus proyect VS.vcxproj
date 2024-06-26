@@ -102,6 +102,7 @@
     <ClCompile Include="src\game\components\PasteOnTextComponentButton.cpp" />
     <ClCompile Include="src\game\components\SendInvitationButton.cpp" />
     <ClCompile Include="src\game\components\SolCardComponent.cpp" />
+    <ClCompile Include="src\game\components\SolDragComponent.cpp" />
     <ClCompile Include="src\game\components\TextWritter.cpp" />
     <ClCompile Include="src\game\components\TypeWriter.cpp" />
     <ClCompile Include="src\game\Dialogue.cpp" />
@@ -305,6 +306,7 @@
     <ClInclude Include="src\game\components\ShineComponent.h" />
     <ClInclude Include="src\game\components\ShopComponent.h" />
     <ClInclude Include="src\game\components\SolCardComponent.h" />
+    <ClInclude Include="src\game\components\SolDragComponent.h" />
     <ClInclude Include="src\game\components\TextWritter.h" />
     <ClInclude Include="src\game\components\TypeWriter.h" />
     <ClInclude Include="src\game\Dialogue.h" />
