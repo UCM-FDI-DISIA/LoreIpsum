@@ -3,6 +3,7 @@
 #include "Solitaire.h"
 #include "../components/managers/Manager.h"
 #include "../components/ShineComponent.h"
+#include "../components/SolCardComponent.h"
 #include "../components/NPC.h"
 #include "../GameStateMachine.h"
 #include "../components/Button.h"
@@ -51,7 +52,7 @@ void Solitaire::onEnter()
 	fondo->getComponent<Transform>()->setGlobalScale(1.0f, 1.0f);
 	fondo->setLayer(0);
 
-	solCardFactory->CreateCard(1, 3, false);
+	solCardFactory->CreateCard(13, SolCardComponent::clubs, false);
 	
 
 }

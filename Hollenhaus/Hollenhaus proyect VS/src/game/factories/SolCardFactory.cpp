@@ -71,8 +71,40 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo)
 	iconSmall->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
 	iconSmall->setLayer(iconsLayer);
 
-	auto cardNumber = Instantiate(Vector2D(100, 550));
-	//cardNumber->addComponent<TextComponent>();
+	auto cardNumber = Instantiate(numberOffset); //numero de la carta
+	switch (tipo) {
+	case 0:
+		col = { 0, 0, 0 };
+		break;
+	case 1:
+		col = { 0, 0, 0 };
+		break;
+	case 2:
+		col = { 202, 7, 7 };
+		break;
+	case 3:
+		col = { 202, 7, 7 };
+		break;
+	}
+
+	switch (num) {
+	case 0:
+		textoCarta = "A";
+		break;
+	case 11:
+		textoCarta = "J";
+		break;
+	case 12:
+		textoCarta = "Q";
+		break;
+	case 13:
+		textoCarta = "K";
+		break;
+	default:
+		textoCarta = std::to_string(num);
+		break;
+	}
+	cardNumber->addComponent<TextComponent>(textoCarta, Fonts::GROTESK_32, col, 20, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	cardNumber->setLayer(iconsLayer);
 
 	return newCard;

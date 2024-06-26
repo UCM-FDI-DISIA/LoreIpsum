@@ -24,6 +24,10 @@ private:
 
 	Vector2D iconBigOffset = Vector2D(-2, 29);
 	Vector2D iconSmallOffset = Vector2D(50, 2);
+	Vector2D numberOffset = Vector2D(20, 15);
+
+	SDL_Color col; //color del numero de la carta
+	std::string textoCarta; //numero o letra que va a ir en la carta
 
 
 };
