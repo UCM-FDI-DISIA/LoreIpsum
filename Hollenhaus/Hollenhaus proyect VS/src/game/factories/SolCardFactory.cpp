@@ -19,6 +19,7 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo)
 	ecs::entity_t newCard = Instantiate(Vector2D(0,0));
 
 	//añadir componentes
+
 	newCard->addComponent<SpriteRenderer>("solitaireCard");
 	newCard->addComponent<BoxCollider>();
 	newCard->addComponent<SolCardComponent>();
@@ -30,6 +31,16 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo)
 
 
 	//hijos de la carta
+
+	auto reverse = Instantiate();
+	reverse->addComponent<SpriteRenderer>("solitaireReverseCard");
+	reverse->getComponent<Transform>()->setGlobalScale(reverseScale.getX(), reverseScale.getY());
+	reverse->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
+	if (bocabajo) {
+		reverse->setLayer(reverseLayer);
+	}
+	else { reverse->setLayer(0); }
+
 	auto iconBig = Instantiate(iconBigOffset); //icono grande
 	switch (tipo)
 	{

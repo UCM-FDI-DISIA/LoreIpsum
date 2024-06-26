@@ -473,6 +473,10 @@
       "file": "resources/images/Solitaire/spades.png"
     },
     {
+      "id": "solitaireReverseCard",
+      "file": "resources/images/Solitaire/SolReverse.png"
+    },
+    {
       "id": "credits",
       "file": "resources/images/fantasma_caminando.png"
     }
