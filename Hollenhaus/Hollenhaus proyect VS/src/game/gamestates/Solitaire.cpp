@@ -51,7 +51,7 @@ void Solitaire::onEnter()
 	fondo->getComponent<Transform>()->setGlobalScale(1.0f, 1.0f);
 	fondo->setLayer(0);
 
-	solCardFactory->CreateCard();
+	solCardFactory->CreateCard(1, 3, false);
 	
 
 }

@@ -11,7 +11,7 @@ public:
 	SolCardFactory();
 	~SolCardFactory();
 
-	ecs::entity_t CreateCard();
+	ecs::entity_t CreateCard(int, int, bool);
 
 private:
 
