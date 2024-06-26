@@ -533,6 +533,9 @@
     <ClCompile Include="src\game\factories\SolCardFactory.cpp">
       <Filter>Archivos de origen\Factories\Solitaire</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\SolCardComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\Game.h">
@@ -993,6 +996,9 @@
     </ClInclude>
     <ClInclude Include="src\game\factories\SolCardFactory.h">
       <Filter>Archivos de encabezado\Factories\Solitaire</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\SolCardComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

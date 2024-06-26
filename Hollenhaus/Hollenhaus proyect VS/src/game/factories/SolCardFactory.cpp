@@ -1,4 +1,5 @@
 #include "..\pchs\pch.h"
+#include "../components/basics/TextComponent.h"
 #include "SolCardFactory.h"
 
 //#include <game/components/basics/SpriteRenderer.h>
@@ -41,6 +42,10 @@ ecs::entity_t SolCardFactory::CreateCard()
 	iconSmall->getComponent<Transform>()->setGlobalScale(iconSmallScale.getX(), iconSmallScale.getY());
 	iconSmall->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
 	iconSmall->setLayer(iconsLayer);
+
+	auto cardNumber = Instantiate(Vector2D(100, 550));
+	cardNumber->addComponent<TextComponent>(std::to_string(money) + " DM", Fonts::GROTESK_32, SDL_Color({ Colors::MIDNIGHT_HOLLENHAUS }), 150, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	cardNumber->setLayer(10);
 
 	return newCard;
 }
