@@ -127,6 +127,7 @@ GameStateMachine::~GameStateMachine()
 	delete fade_;
 	delete case_;
 
+	delete firstState;
 	delete cityState;
 	delete officeState;
 	delete shopState;

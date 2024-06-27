@@ -102,6 +102,8 @@ bool BoxCollider::isCursorOver() {
 	
 	SDL_Rect mouseRect = build_sdlrect(mousePos, 1, 1);
 
+	if (collider_.w <= 0) return false;
+
 	return SDL_HasIntersection(&collider_, &mouseRect);
 }
 
