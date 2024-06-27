@@ -16,10 +16,6 @@ public:
     void initComponent() override;
     void update() override;
 
-
-    bool isDraggable() const { return draggable; }
-    void setDraggable(bool value) { draggable = value; }
-
 private:
 
     Transform* dragTransform;
@@ -30,7 +26,5 @@ private:
 
     void OnLeftClickDown();
     void OnLeftClickUp();
-
-    bool draggable = true;
 
 };

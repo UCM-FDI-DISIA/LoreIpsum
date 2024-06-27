@@ -40,9 +40,7 @@ void SolDragComponent::update()
 		Vector2D posAct = (mousePos - initialMousePos) + initialTransformPosWithOffSet;
 
 		dragTransform->setGlobalPos(posAct);
-
 	}
-
 }
 
 void SolDragComponent::OnLeftClickDown()
@@ -51,7 +49,8 @@ void SolDragComponent::OnLeftClickDown()
 
 	auto card = mouseRaycast(ecs::grp::SOLITAIRECARDS);
 
-	if (card != nullptr && draggable)
+	// si hay carta y no esta bocabajo
+	if (card != nullptr && !card->getComponent<SolCardComponent>()->getFaceDown())
 	{
 		//se guarda la posicion/ transform de como estaba la carta
 		dragTransform = card->getComponent<Transform>();
@@ -71,24 +70,12 @@ void SolDragComponent::OnLeftClickUp()
 	//si, si la tenemos, verificamos colisiones con el grupo DropDetector
 	if (dragTransform != nullptr) {
 
-		auto drop = mouseRaycast(ecs::grp::DROPS);
+		auto drop = mouseRaycast(ecs::grp::SOLITAIRECARDS);
 
-		auto dropDetector = ((drop != nullptr) ? drop->getComponent<DropDetector>() : nullptr);
-
-		//si tenemos una colision con el drop detector, cambiamos la posicion de la carta por la que guarde el drop
-		if (drop != nullptr &&
-			!dropDetector->isOcuped())
+		//si puedo dejar la carta encima de otra carta
+		if (false)
 		{
-			//coloca la carta en la celda y la quita del mazo
-			//dragTransform->getEntity()->getComponent<CardStateManager>()->putOnBoard(); asi se hace en el otro 
-
-			//la celda esta ocupada
-			dropDetector->setOcuped(true);
-
-			//mandar la info al tablero
-			//putCardOnBoard(dragTransform->getEntity(), dropDetector); asi se hace en el otro
-
-
+			//colocar en la posicion correspondiente
 		}
 		else 
 		{

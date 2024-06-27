@@ -18,6 +18,8 @@ public:
 
 	// enum de tipo (palo)
 	enum tipo { spades, clubs, hearts, diamonds };
+
+	bool getFaceDown() { return bocabajo; };
 	
 private:
 	

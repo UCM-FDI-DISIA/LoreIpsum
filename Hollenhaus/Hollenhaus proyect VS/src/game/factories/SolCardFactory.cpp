@@ -16,7 +16,7 @@ SolCardFactory::~SolCardFactory()
 ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo)
 {
 	//crear la carta
-	ecs::entity_t newCard = Instantiate(Vector2D(0,0));
+	ecs::entity_t newCard = Instantiate(Vector2D(0,0), ecs::grp::SOLITAIRECARDS);
 
 	//añadir componentes
 
@@ -42,58 +42,47 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo)
 	else { reverse->setLayer(0); }
 
 	auto iconBig = Instantiate(iconBigOffset); //icono grande
-	switch (tipo)
-	{
-		case 0:
-		iconBig->addComponent<SpriteRenderer>("spades");
-		break;
-		case 1:
-		iconBig->addComponent<SpriteRenderer>("clubs");
-		break;
-		case 2:
-		iconBig->addComponent<SpriteRenderer>("hearts");
-		break;
-		case 3:
-		iconBig->addComponent<SpriteRenderer>("diamonds");
-		break;
-	}
 	iconBig->getComponent<Transform>()->setGlobalScale(iconBigScale.getX(), iconBigScale.getY());
 	iconBig->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
 	iconBig->setLayer(iconsLayer);
 	
 	auto iconSmall = Instantiate(iconSmallOffset); //icono pequenio
-
-	switch (tipo)
-	{
-	case 0:
-		iconSmall->addComponent<SpriteRenderer>("spades");
-		break;
-	case 1:
-		iconSmall->addComponent<SpriteRenderer>("clubs");
-		break;
-	case 2:
-		iconSmall->addComponent<SpriteRenderer>("hearts");
-		break;
-	case 3:
-		iconSmall->addComponent<SpriteRenderer>("diamonds");
-		break;
-	}
 	iconSmall->getComponent<Transform>()->setGlobalScale(iconSmallScale.getX(), iconSmallScale.getY());
 	iconSmall->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
 	iconSmall->setLayer(iconsLayer);
 
+	switch (tipo)
+	{
+	case SolCardComponent::spades:
+		iconSmall->addComponent<SpriteRenderer>("spades");
+		iconBig->addComponent<SpriteRenderer>("spades");
+		break;
+	case SolCardComponent::clubs:
+		iconSmall->addComponent<SpriteRenderer>("clubs");
+		iconBig->addComponent<SpriteRenderer>("clubs");
+		break;
+	case SolCardComponent::hearts:
+		iconSmall->addComponent<SpriteRenderer>("hearts");
+		iconBig->addComponent<SpriteRenderer>("hearts");
+		break;
+	case SolCardComponent::diamonds:
+		iconSmall->addComponent<SpriteRenderer>("diamonds");
+		iconBig->addComponent<SpriteRenderer>("diamonds");
+		break;
+	}
+
 	auto cardNumber = Instantiate(numberOffset); //numero de la carta
 	switch (tipo) {
-	case 0:
+	case SolCardComponent::spades:
 		col = { 0, 0, 0 };
 		break;
-	case 1:
+	case SolCardComponent::clubs:
 		col = { 0, 0, 0 };
 		break;
-	case 2:
+	case SolCardComponent::hearts:
 		col = { 202, 7, 7 };
 		break;
-	case 3:
+	case SolCardComponent::diamonds:
 		col = { 202, 7, 7 };
 		break;
 	}
@@ -116,6 +105,7 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo)
 		break;
 	}
 	cardNumber->addComponent<TextComponent>(textoCarta, Fonts::GROTESK_32, col, 20, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	cardNumber->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
 	cardNumber->setLayer(iconsLayer);
 
 	return newCard;
