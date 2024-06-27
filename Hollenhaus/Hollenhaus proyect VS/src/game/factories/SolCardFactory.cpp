@@ -118,5 +118,8 @@ ecs::entity_t SolCardFactory::CreateCasillaDcha(int tipo, Vector2D pos)
 
 	newCasilla->getComponent<Transform>()->setGlobalScale(0.7, 1);
 
+	newCasilla->addComponent<SolCardComponent>(0, tipo, false, cardLayer);
+
+
 	return newCasilla;
 }

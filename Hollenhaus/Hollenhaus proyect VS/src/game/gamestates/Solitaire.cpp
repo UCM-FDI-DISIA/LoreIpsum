@@ -63,10 +63,10 @@ void Solitaire::onEnter()
 	solCardFactory->CreateCard(8, SolCardComponent::hearts, false, Vector2D(550, 10));
 
 
-	solCardFactory->CreateCasillaDcha(0, Vector2D(695, 35));
-	solCardFactory->CreateCasillaDcha(1, Vector2D(695, 175));
-	solCardFactory->CreateCasillaDcha(2, Vector2D(695, 323));
-	solCardFactory->CreateCasillaDcha(3, Vector2D(695, 465));
+	solCardFactory->CreateCasillaDcha(2, Vector2D(695, 35));
+	solCardFactory->CreateCasillaDcha(3, Vector2D(695, 175));
+	solCardFactory->CreateCasillaDcha(1, Vector2D(695, 323));
+	solCardFactory->CreateCasillaDcha(0, Vector2D(695, 465));
 
 	ecs::entity_t dragManager = Instantiate();
 	dragManager->addComponent<SolDragComponent>();
