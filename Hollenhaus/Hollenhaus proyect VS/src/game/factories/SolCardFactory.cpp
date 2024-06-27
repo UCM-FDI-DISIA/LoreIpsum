@@ -13,26 +13,25 @@ SolCardFactory::~SolCardFactory()
 {
 }
 
-ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo)
+ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo, Vector2D pos)
 {
 	//crear la carta
-	ecs::entity_t newCard = Instantiate(Vector2D(0,0), ecs::grp::SOLITAIRECARDS);
+	ecs::entity_t newCard = Instantiate(pos, ecs::grp::SOLITAIRECARDS);
 
 	//añadir componentes
 
 	newCard->addComponent<SpriteRenderer>("solitaireCard");
 	newCard->addComponent<BoxCollider>();
-	newCard->addComponent<SolCardComponent>();
-
 
 	//set layer && size
 	newCard->setLayer(cardLayer);
 	newCard->getComponent<Transform>()->setGlobalScale(cardScale.getX(),cardScale.getY());
 
+	newCard->addComponent<SolCardComponent>(num, tipo, bocabajo, cardLayer);
 
 	//hijos de la carta
 
-	auto reverse = Instantiate();
+	auto reverse = Instantiate(pos);
 	reverse->addComponent<SpriteRenderer>("solitaireReverseCard");
 	reverse->getComponent<Transform>()->setGlobalScale(reverseScale.getX(), reverseScale.getY());
 	reverse->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
@@ -41,12 +40,12 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo)
 	}
 	else { reverse->setLayer(0); }
 
-	auto iconBig = Instantiate(iconBigOffset); //icono grande
+	auto iconBig = Instantiate(pos + iconBigOffset); //icono grande
 	iconBig->getComponent<Transform>()->setGlobalScale(iconBigScale.getX(), iconBigScale.getY());
 	iconBig->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
 	iconBig->setLayer(iconsLayer);
 	
-	auto iconSmall = Instantiate(iconSmallOffset); //icono pequenio
+	auto iconSmall = Instantiate(pos + iconSmallOffset); //icono pequenio
 	iconSmall->getComponent<Transform>()->setGlobalScale(iconSmallScale.getX(), iconSmallScale.getY());
 	iconSmall->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
 	iconSmall->setLayer(iconsLayer);
@@ -71,7 +70,7 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo)
 		break;
 	}
 
-	auto cardNumber = Instantiate(numberOffset); //numero de la carta
+	auto cardNumber = Instantiate(pos + numberOffset); //numero de la carta
 	switch (tipo) {
 	case SolCardComponent::spades:
 		col = { 0, 0, 0 };

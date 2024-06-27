@@ -55,7 +55,10 @@ void Solitaire::onEnter()
 	fondo->setLayer(0);
 
 	//creacion de las cartas
-	solCardFactory->CreateCard(13, SolCardComponent::clubs, false);
+	solCardFactory->CreateCard(2, SolCardComponent::clubs, false, Vector2D(0,0));
+	solCardFactory->CreateCard(3, SolCardComponent::hearts, false, Vector2D(100, 0));
+	solCardFactory->CreateCard(4, SolCardComponent::spades, false, Vector2D(200, 0));
+	solCardFactory->CreateCard(7, SolCardComponent::diamonds, false, Vector2D(300, 0));
 
 	ecs::entity_t dragManager = Instantiate();
 	dragManager->addComponent<SolDragComponent>();
