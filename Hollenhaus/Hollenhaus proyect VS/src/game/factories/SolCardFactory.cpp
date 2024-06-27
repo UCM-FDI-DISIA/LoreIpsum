@@ -87,7 +87,7 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo, Vecto
 	}
 
 	switch (num) {
-	case 0:
+	case 1:
 		textoCarta = "A";
 		break;
 	case 11:
