@@ -18,7 +18,7 @@ private:
 	Vector2D cardScale = Vector2D(0.7, 0.7);
 	Vector2D iconBigScale = Vector2D(0.7, 0.7);
 	Vector2D iconSmallScale = Vector2D(0.35, 0.35);
-	Vector2D reverseScale = Vector2D(0.7, 0.7);
+	Vector2D reverseScale = Vector2D(1, 1);
 
 	int cardLayer = 1;
 	int iconsLayer = 2; //debe ser mayor que cardLayer
