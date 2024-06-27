@@ -67,7 +67,7 @@ void SolDragComponent::OnLeftClickUp()
 {
 	//si no tenemos carta drageada, no hacemos nada
 
-	//si, si la tenemos, verificamos colisiones con el grupo DropDetector
+	//si si la tenemos, verificamos colisiones con el grupo DropDetector
 	if (dragTransform != nullptr) {
 
 		auto carta = mouseRaycast(ecs::grp::SOLITAIRECARDS); //carta sobre la que se suelta

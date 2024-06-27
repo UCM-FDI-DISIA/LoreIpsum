@@ -109,3 +109,14 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo, Vecto
 
 	return newCard;
 }
+
+ecs::entity_t SolCardFactory::CreateCasillaDcha(int tipo, Vector2D pos)
+{
+	ecs::entity_t newCasilla = Instantiate(pos, ecs::grp::SOLITAIRERIGHTCELL);
+
+	newCasilla->addComponent<BoxCollider>();
+
+	newCasilla->getComponent<Transform>()->setGlobalScale(0.7, 1);
+
+	return newCasilla;
+}

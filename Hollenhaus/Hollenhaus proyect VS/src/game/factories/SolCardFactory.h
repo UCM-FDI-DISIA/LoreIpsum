@@ -13,6 +13,8 @@ public:
 
 	ecs::entity_t CreateCard(int, int, bool, Vector2D);
 
+	ecs::entity_t CreateCasillaDcha(int, Vector2D);
+
 private:
 
 	Vector2D cardScale = Vector2D(0.8, 0.8);

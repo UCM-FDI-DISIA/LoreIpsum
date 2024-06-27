@@ -30,7 +30,8 @@
 	DROPS, \
 	COINS, \
 	DROPZONE,\
-	SOLITAIRECARDS
+	SOLITAIRECARDS,\
+	SOLITAIRERIGHTCELL
 
 // Handlers list - must have at least one element
 //
