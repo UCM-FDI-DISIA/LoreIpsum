@@ -21,11 +21,10 @@ public:
 	
 private:
 	
+	tipo myType; // variable de tipo tipo
+
 	// numero de la carta (1-13)
 	int number;
-
-
-	tipo myType;
 
 	//si esta bocabajo o no
 	bool bocabajo = false;

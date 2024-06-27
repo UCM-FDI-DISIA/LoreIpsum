@@ -29,7 +29,8 @@
 	CARDS, \
 	DROPS, \
 	COINS, \
-	DROPZONE
+	DROPZONE,\
+	SOLITAIRECARDS
 
 // Handlers list - must have at least one element
 //
