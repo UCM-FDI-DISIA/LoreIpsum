@@ -55,6 +55,12 @@ void Solitaire::onEnter()
 	fondo->setLayer(0);
 
 	//creacion de las cartas
+
+	for (int i = 0; i < 37; i++) {
+		// hay 37 cartas bocabajo a la izquierda
+	}
+
+	//y quince cartas en el medio 
 	solCardFactory->CreateCard(2, SolCardComponent::clubs, true, Vector2D(15,10));
 	solCardFactory->CreateCard(3, SolCardComponent::hearts, false, Vector2D(150, 10));
 	solCardFactory->CreateCard(4, SolCardComponent::spades, false, Vector2D(250, 10));
@@ -62,7 +68,7 @@ void Solitaire::onEnter()
 	solCardFactory->CreateCard(1, SolCardComponent::clubs, false, Vector2D(450, 10));
 	solCardFactory->CreateCard(8, SolCardComponent::hearts, false, Vector2D(550, 10));
 
-
+	//casillas de la derecha 
 	solCardFactory->CreateCasillaDcha(2, Vector2D(695, 35));
 	solCardFactory->CreateCasillaDcha(3, Vector2D(695, 175));
 	solCardFactory->CreateCasillaDcha(1, Vector2D(695, 323));
