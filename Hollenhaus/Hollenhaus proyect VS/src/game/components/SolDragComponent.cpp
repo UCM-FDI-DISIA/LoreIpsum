@@ -72,14 +72,17 @@ void SolDragComponent::OnLeftClickUp()
 	//si si la tenemos, verificamos colisiones con el grupo DropDetector
 	if (dragTransform != nullptr) {
 
+		//guardamos la layer de la carta en mano, y la colocamos atras, para q no afecte al raycast
 		auto dragLayer = dragTransform->getEntity()->getLayer();
-
 		dragTransform->getEntity()->setLayer(-1);
 
+		//raycast para ver si hemos tocado alguna carta/ casilla
 		auto carta = mouseRaycast(ecs::grp::SOLITAIRECARDS); //carta sobre la que se suelta
 		auto casilla = mouseRaycast(ecs::grp::SOLITAIRERIGHTCELL); //casilla sobre la que se suelta
 
+		//resetear la layer
 		dragTransform->getEntity()->setLayer(dragLayer);
+
 
 		auto cartaAgarrada = dragTransform->getEntity()->getComponent<SolCardComponent>(); //carta que tengo en la mano
 		SolCardComponent::tipo tCartaAgarrada = cartaAgarrada->getTipo();
@@ -91,34 +94,51 @@ void SolDragComponent::OnLeftClickUp()
 
 			if (carta != nullptr && carta->getComponent<Transform>() != dragTransform) //si hay casilla y carta
 			{
-				if (carta->getComponent<SolCardComponent>()->getStacked()) 
+				if ((carta->getComponent<SolCardComponent>()->getTipo() == cartaAgarrada->getTipo()) &&
+					(carta->getComponent<SolCardComponent>()->getNumber() == cartaAgarrada->getNumber() - 1)) //mismo tipo y la de la mano es justo la siguiente mayor
 				{
-					if ((carta->getComponent<SolCardComponent>()->getTipo() == cartaAgarrada->getTipo()) &&
-						(carta->getComponent<SolCardComponent>()->getNumber() == cartaAgarrada->getNumber() - 1)) 
-					{
-						auto newPos = carta->getComponent<Transform>()->getGlobalPos();
-						dragTransform->getEntity()->getComponent<Transform>()->setGlobalPos(newPos);
-						dragTransform->getEntity()->getComponent<SolCardComponent>()->setLayer(carta->getLayer() + 2);
-						cartaAgarrada->setStacked(true);
-						resetParent(dragTransform);
-						cartaAgarrada->setCardOnBottom(nullptr);
+					//colocar la carta
+					auto newPos = carta->getComponent<Transform>()->getGlobalPos();
+					dragTransform->setGlobalPos(newPos);
+
+					//ajustar la layer para que este encima
+					dragTransform->getEntity()->getComponent<SolCardComponent>()->setLayer(carta->getLayer() + 2);
+
+					//la carta que antes tenia abajo deja de tener a esta encima
+					if (cartaAgarrada->getCardOnBottom() != nullptr) {
+						cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
 					}
-					else
-					{
-						//si no, devolvemos la carta a su posicion inicial
-						dragTransform->setGlobalPos(initialTransformPos);
-					}
+
+					//esta carta, tiene a la carta de la mesa abajo, a lo mejor hay q cambiar nullptr por carta
+					cartaAgarrada->setCardOnBottom(nullptr);
+
+
+					//resetear los  hijos
+					resetParent(dragTransform);
 				}
+				else
+				{
+					//si no, devolvemos la carta a su posicion inicial
+					dragTransform->setGlobalPos(initialTransformPos);
+				}
+
 			}
 			else // casilla y no carta
 			{
-				if (tCasilla == cartaAgarrada->getTipo() && cartaAgarrada->getNumber() == 1)
+				if (tCasilla == cartaAgarrada->getTipo() && cartaAgarrada->getNumber() == 1)//si es un AS del tipo de la casilla
 				{
+					//colocar carta
 					auto newPos = casilla->getComponent<Transform>()->getGlobalPos();
-					dragTransform->getEntity()->getComponent<Transform>()->setGlobalPos(newPos);
-					dragTransform->getEntity()->getComponent<SolCardComponent>()->setLayer(carta->getLayer() + 1);
-					cartaAgarrada->setStacked(true);
-					resetParent(dragTransform);
+					dragTransform->setGlobalPos(newPos);
+
+					//dragTransform->getEntity()->getComponent<SolCardComponent>()->setLayer(carta->getLayer() + 1);
+
+					//la carta que antes tenia abajo deja de tener a esta encima
+					if (cartaAgarrada->getCardOnBottom() != nullptr) {
+						cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
+					}
+
+					//el as no tiene a nadie abajo
 					cartaAgarrada->setCardOnBottom(nullptr);
 				}
 				else
@@ -130,7 +150,6 @@ void SolDragComponent::OnLeftClickUp()
 		}
 		else if (carta != nullptr) //solo carta
 		{
-			auto cartaEncima = carta->getComponent<SolCardComponent>()->getCardOnTop(); //carta encima de la carta sobre la que se suelta
 
 			SolCardComponent::tipo tCartaMesa = carta->getComponent<SolCardComponent>()->getTipo();
 
@@ -141,15 +160,33 @@ void SolDragComponent::OnLeftClickUp()
 					((tCartaAgarrada == SolCardComponent::hearts || tCartaAgarrada == SolCardComponent::diamonds) &&
 						(tCartaMesa == SolCardComponent::spades || tCartaMesa == SolCardComponent::clubs)));
 
+
+			bool noCartaEncima = carta->getComponent<SolCardComponent>()->getCardOnTop() == nullptr; //carta encima de la carta sobre la que se suelta
 			//si puedo dejar la carta encima de otra carta
-			if ((cartaEncima == nullptr && (carta->getComponent<SolCardComponent>()->getNumber() == cartaAgarrada->getNumber() + 1) && distintoColor && !carta->getComponent<SolCardComponent>()->getStacked()))
+			if ((noCartaEncima &&
+				(carta->getComponent<SolCardComponent>()->getNumber() == cartaAgarrada->getNumber() + 1) &&
+				distintoColor))
 			{
+				//colocar carta
 				auto newPos = carta->getComponent<Transform>()->getGlobalPos() + cartaAgarrada->getOffset();
 				dragTransform->getEntity()->getComponent<Transform>()->setGlobalPos(newPos);
-				dragTransform->getEntity()->getComponent<SolCardComponent>()->setLayer(carta->getLayer() + 1);
-				resetParent(dragTransform);
+
+				//ajustar layer
+				dragTransform->getEntity()->getComponent<SolCardComponent>()->setLayer(carta->getLayer() + 2);
+
+				//la carta que antes tenia abajo deja de tener a esta encima
+				if (cartaAgarrada->getCardOnBottom() != nullptr) {
+					cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
+				}
+
+				//nueva carta abajo
+				cartaAgarrada->setCardOnBottom(carta->getComponent<SolCardComponent>());
+
+				//la carta de abajo tiene a esta encima
 				carta->getComponent<SolCardComponent>()->setCardOnTop(cartaAgarrada);
-				cartaAgarrada->setCardOnBottom(nullptr);
+
+				//para las cartas de encima
+				resetParent(dragTransform);
 			}
 			else
 			{
@@ -157,7 +194,7 @@ void SolDragComponent::OnLeftClickUp()
 				dragTransform->setGlobalPos(initialTransformPos);
 			}
 		}
-		else 
+		else
 		{
 			//si no, devolvemos la carta a su posicion inicial
 			dragTransform->setGlobalPos(initialTransformPos);
@@ -165,11 +202,12 @@ void SolDragComponent::OnLeftClickUp()
 
 
 
+		//en cualquier caso, ya no tenemos carta drageada
+		resetParent(dragTransform);
+		dragTransform = nullptr;
 	}
 
-	//en cualquier caso, ya no tenemos carta drageada
-	resetParent(dragTransform);
-	dragTransform = nullptr;
+
 
 }
 
@@ -177,10 +215,10 @@ void SolDragComponent::makeTopCardsChildren(Transform* parent)
 {
 	auto cardComp = parent->getEntity()->getComponent<SolCardComponent>();
 
-	while (cardComp->getCardOnTop() != nullptr) 
+	while (cardComp->getCardOnTop() != nullptr)
 	{
 		cardComp->getCardOnTop()->getEntity()->getComponent<Transform>()->addParent(parent);
-		cardComp->getCardOnTop()->getEntity()->getComponent<Transform>()->setGlobalScale(0.8,0.8);
+		cardComp->getCardOnTop()->getEntity()->getComponent<Transform>()->setGlobalScale(0.8, 0.8);
 		cardComp = cardComp->getCardOnTop();
 	}
 
