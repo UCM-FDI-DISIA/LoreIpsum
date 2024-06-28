@@ -32,6 +32,8 @@ private:
     void makeTopCardsChildren(Transform* t);
     void resetParent(Transform* t);
 
+    void setLayerTopCards(Transform* t, int layer);
 
+    void resetLayerTopCards(Transform* t, int layer);
 
 };

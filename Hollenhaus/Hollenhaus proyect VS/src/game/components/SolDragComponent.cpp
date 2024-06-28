@@ -74,15 +74,15 @@ void SolDragComponent::OnLeftClickUp()
 
 		//guardamos la layer de la carta en mano, y la colocamos atras, para q no afecte al raycast
 		auto dragLayer = dragTransform->getEntity()->getLayer();
-		dragTransform->getEntity()->setLayer(-1);
+
+		setLayerTopCards(dragTransform, -10);
 
 		//raycast para ver si hemos tocado alguna carta/ casilla
 		auto carta = mouseRaycast(ecs::grp::SOLITAIRECARDS); //carta sobre la que se suelta
 		auto casilla = mouseRaycast(ecs::grp::SOLITAIRERIGHTCELL); //casilla sobre la que se suelta
 
 		//resetear la layer
-		dragTransform->getEntity()->setLayer(dragLayer);
-
+		resetLayerTopCards(dragTransform, dragLayer);
 
 		auto cartaAgarrada = dragTransform->getEntity()->getComponent<SolCardComponent>(); //carta que tengo en la mano
 		SolCardComponent::tipo tCartaAgarrada = cartaAgarrada->getTipo();
@@ -171,8 +171,36 @@ void SolDragComponent::OnLeftClickUp()
 				auto newPos = carta->getComponent<Transform>()->getGlobalPos() + cartaAgarrada->getOffset();
 				dragTransform->getEntity()->getComponent<Transform>()->setGlobalPos(newPos);
 
+				//colocar cartas hijas
+
+				//actualizar la nueva posicion
+				newPos = Vector2D(newPos.getX(), newPos.getY() + cartaAgarrada->getOffset().getY());
+
+				auto cartaSig = cartaAgarrada->getCardOnTop();
+
+				while (cartaSig != nullptr) {
+					cartaSig->getEntity()->getComponent<Transform>()->setGlobalPos(newPos);
+
+					cartaSig = cartaSig->getCardOnTop();
+					newPos = Vector2D(newPos.getX(), newPos.getY() + cartaAgarrada->getOffset().getY());
+				}
+
 				//ajustar layer
-				dragTransform->getEntity()->getComponent<SolCardComponent>()->setLayer(carta->getLayer() + 2);
+				auto newLayer = carta->getLayer() + 2;
+
+				dragTransform->getEntity()->getComponent<SolCardComponent>()->setLayer(newLayer);
+				newLayer += 2;
+				//ajustar layer hijas
+
+				cartaSig = cartaAgarrada->getCardOnTop();
+
+				while (cartaSig != nullptr) {
+					cartaSig->setLayer(newLayer);
+
+					cartaSig = cartaSig->getCardOnTop();
+					newLayer += 2;
+				}
+
 
 				//la carta que antes tenia abajo deja de tener a esta encima
 				if (cartaAgarrada->getCardOnBottom() != nullptr) {
@@ -233,5 +261,36 @@ void SolDragComponent::resetParent(Transform* parent)
 		cardComp->getCardOnTop()->getEntity()->getComponent<Transform>()->removeParent();
 		cardComp->getCardOnTop()->getEntity()->getComponent<Transform>()->setGlobalScale(0.8, 0.8);
 		cardComp = cardComp->getCardOnTop();
+	}
+}
+
+void SolDragComponent::setLayerTopCards(Transform* parent, int layer)
+{
+	auto cardComp = parent->getEntity()->getComponent<SolCardComponent>();
+
+	parent->getEntity()->getComponent<SolCardComponent>()->setLayer(layer);
+
+	while (cardComp->getCardOnTop() != nullptr)
+	{
+		cardComp->getCardOnTop()->setLayer(layer);
+		cardComp = cardComp->getCardOnTop();
+	}
+}
+
+void SolDragComponent::resetLayerTopCards(Transform* parent, int layer)
+{
+	auto cardComp = parent->getEntity()->getComponent<SolCardComponent>();
+
+	auto currLayer = layer;
+
+	parent->getEntity()->getComponent<SolCardComponent>()->setLayer(layer);
+	currLayer += 2;
+
+
+	while (cardComp->getCardOnTop() != nullptr)
+	{
+		cardComp->getCardOnTop()->setLayer(currLayer);
+		cardComp = cardComp->getCardOnTop();
+		currLayer += 2;
 	}
 }

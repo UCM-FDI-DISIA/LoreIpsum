@@ -40,6 +40,7 @@ void SolCardComponent::setLayer(int newLayer)
 	{
 		for (const auto child : getEntity()->getComponent<Transform>()->getChildren())
 		{ 
+			if (child->getEntity()->getComponent<SolCardComponent>() != nullptr) continue;
 			// para cada hijo
 			if (child->getEntity()->getLayer() == (getEntity()->getLayer() - 1)) {
 				child->getEntity()->changeLayer(newLayer - 1);
