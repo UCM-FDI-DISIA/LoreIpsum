@@ -29,4 +29,7 @@ private:
     void OnLeftClickDown();
     void OnLeftClickUp();
 
+    void makeTopCardsChildren(Transform* t);
+    void resetParent(Transform* t);
+
 };
