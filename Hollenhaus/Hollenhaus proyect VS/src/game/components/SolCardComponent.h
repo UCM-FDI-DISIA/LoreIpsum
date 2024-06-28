@@ -22,6 +22,11 @@ public:
 	//getters
 	bool getFaceDown() { return bocabajo; };
 
+	bool getStacked() { return stacked; };
+	void setStacked(bool s) {
+		stacked = s;
+	}
+
 	SolCardComponent* getCardOnTop() { return cardOnTop; };
 	void setCardOnTop(SolCardComponent* newCardOnTop) 
 	{ 
@@ -54,6 +59,9 @@ private:
 
 	//si esta bocabajo o no
 	bool bocabajo = false;
+
+	// si esta en los mazos de la derecha
+	bool stacked = false;
 
 	SolCardComponent* cardOnTop = nullptr; // puntero a si tiene una carta encima 
 

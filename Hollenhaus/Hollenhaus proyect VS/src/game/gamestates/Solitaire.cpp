@@ -61,8 +61,9 @@ void Solitaire::onEnter()
 	}
 
 	//y quince cartas en el medio 
-	solCardFactory->CreateCard(2, SolCardComponent::clubs, true, Vector2D(15,10));
+	solCardFactory->CreateCard(5, SolCardComponent::clubs, true, Vector2D(15,10));
 	solCardFactory->CreateCard(3, SolCardComponent::hearts, false, Vector2D(150, 10));
+	solCardFactory->CreateCard(2, SolCardComponent::clubs, false, Vector2D(150, 30));
 	solCardFactory->CreateCard(4, SolCardComponent::spades, false, Vector2D(250, 10));
 	solCardFactory->CreateCard(12, SolCardComponent::diamonds, false, Vector2D(350, 10));
 	solCardFactory->CreateCard(1, SolCardComponent::clubs, false, Vector2D(450, 10));
