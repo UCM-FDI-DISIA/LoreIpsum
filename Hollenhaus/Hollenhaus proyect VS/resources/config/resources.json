@@ -477,6 +477,18 @@
       "file": "resources/images/Solitaire/SolReverse.png"
     },
     {
+      "id": "betText",
+      "file": "resources/images/Solitaire/DecisionBet.png"
+    },
+    {
+      "id": "yes",
+      "file": "resources/images/Solitaire/yes.png"
+    },
+    {
+      "id": "no",
+      "file": "resources/images/Solitaire/no.png"
+    },
+    {
       "id": "credits",
       "file": "resources/images/fantasma_caminando.png"
     }

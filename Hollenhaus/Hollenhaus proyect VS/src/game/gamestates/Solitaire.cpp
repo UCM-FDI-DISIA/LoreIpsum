@@ -54,6 +54,32 @@ void Solitaire::onEnter()
 	fondo->getComponent<Transform>()->setGlobalScale(1.0f, 1.0f);
 	fondo->setLayer(0);
 
+	ecs::entity_t betText = Instantiate();
+	betText->addComponent<Transform>();
+	betText->addComponent<BoxCollider>();
+	betText->getComponent<Transform>()->setRelativePos(100, 100);
+	betText->addComponent<SpriteRenderer>("betText");
+	betText->getComponent<Transform>()->setGlobalScale(1.0f, 1.0f);
+	betText->setLayer(4);
+
+	ecs::entity_t yes = Instantiate();
+	yes->addComponent<Transform>()->addParent(betText->getComponent<Transform>());
+	yes->addComponent<BoxCollider>();
+	//yes->getComponent<BoxCollider>()->setSize(Vector2D(45,45)); ajustar esto somehow
+	yes->addComponent<SpriteRenderer>("yes");
+	yes->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
+	yes->getComponent<Transform>()->setRelativePos(100, 100);
+	yes->setLayer(5);
+
+	ecs::entity_t no = Instantiate();
+	no->addComponent<Transform>()->addParent(betText->getComponent<Transform>());
+	no->addComponent<BoxCollider>();
+	//no->getComponent<BoxCollider>()->setSize(Vector2D(45,45)); ajustar esto somehow
+	no->addComponent<SpriteRenderer>("no");
+	no->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
+	no->getComponent<Transform>()->setRelativePos(150, 150);
+	no->setLayer(5);
+
 	//creacion de las cartas
 
 	for (int i = 0; i < 37; i++) {
