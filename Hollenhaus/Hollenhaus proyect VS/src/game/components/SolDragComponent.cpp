@@ -106,6 +106,15 @@ void SolDragComponent::OnLeftClickUp()
 
 					//la carta que antes tenia abajo deja de tener a esta encima
 					if (cartaAgarrada->getCardOnBottom() != nullptr) {
+
+						//si la de abajo estaba bocabajo
+						if (cartaAgarrada->getCardOnBottom()->getFaceDown()) {
+
+							cartaAgarrada->getCardOnBottom()->setFaceDown(false);
+
+							cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer());
+						}
+
 						cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
 					}
 
@@ -135,6 +144,15 @@ void SolDragComponent::OnLeftClickUp()
 
 					//la carta que antes tenia abajo deja de tener a esta encima
 					if (cartaAgarrada->getCardOnBottom() != nullptr) {
+
+						//si la de abajo estaba bocabajo
+						if (cartaAgarrada->getCardOnBottom()->getFaceDown()) {
+
+							cartaAgarrada->getCardOnBottom()->setFaceDown(false);
+
+							cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer());
+						}
+
 						cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
 					}
 
@@ -204,6 +222,15 @@ void SolDragComponent::OnLeftClickUp()
 
 				//la carta que antes tenia abajo deja de tener a esta encima
 				if (cartaAgarrada->getCardOnBottom() != nullptr) {
+
+					//si la de abajo estaba bocabajo
+					if (cartaAgarrada->getCardOnBottom()->getFaceDown()) {
+
+						cartaAgarrada->getCardOnBottom()->setFaceDown(false);
+
+						cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer());
+					}
+
 					cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
 				}
 

@@ -23,6 +23,9 @@ public:
 
 private:
 
+	//ini && fin, inclusive
+	void setCardsReferences(std::vector<SolCardComponent*>& cards, int ini,int fin);
+
 	Vector2D cardScale = Vector2D(0.8, 0.8);
 	Vector2D iconBigScale = Vector2D(0.8, 0.8);
 	Vector2D iconSmallScale = Vector2D(0.4, 0.4);
@@ -40,7 +43,7 @@ private:
 
 	//creacion de las cartas del tablero
 
-	Vector2D startPosCardsOnBoard = Vector2D(100, 100);
+	Vector2D startPosCardsOnBoard = Vector2D(100, 20);
 
 	float boardCardsOffsetX = 100;
 	float boardCardsOffsetY = 20;

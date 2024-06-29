@@ -91,8 +91,10 @@ void Solitaire::onEnter()
 	//y quince cartas en el medio 
 	std::vector<int> indices{
 
-		27,15,6,9,32,
-		43,50,18,23,7,
+		28,
+		18,1,
+		9,32,43,
+		50,18,3,7,
 		29,33,51,3,11
 	};
 

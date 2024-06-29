@@ -156,8 +156,24 @@ void SolCardFactory::createCardsBoard(std::vector<int> indices)
 
 			layerAct += 2;
 		}
-
 	}
 
+
+	setCardsReferences(cardsCmps, 0, 0);
+	setCardsReferences(cardsCmps, 1, 2);
+	setCardsReferences(cardsCmps, 3, 5);
+	setCardsReferences(cardsCmps, 6, 9);
+	setCardsReferences(cardsCmps, 10, 14);
 	
+}
+
+void SolCardFactory::setCardsReferences(std::vector<SolCardComponent*>& cards, int ini, int fin)
+{
+
+	if (ini >= fin) return;
+
+	for (int i = ini; i < fin; i++) {
+		cards[i]->setCardOnTop(cards[i+1]);
+		cards[i+1]->setCardOnBottom(cards[i]);
+	}
 }

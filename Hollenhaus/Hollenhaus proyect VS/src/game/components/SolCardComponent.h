@@ -21,6 +21,7 @@ public:
 
 	//getters
 	bool getFaceDown() { return bocabajo; };
+	void setFaceDown(bool b) {  bocabajo = b; };
 
 	bool getStacked() { return stacked; };
 	void setStacked(bool s) {
