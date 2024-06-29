@@ -17,7 +17,7 @@
 #include "../factories/NPCFactory_V0.h"
 #include "game/components/Clickable.h"
 
-
+#include <algorithm>    // std::random_shuffle
 
 Solitaire::Solitaire()
 {
@@ -95,10 +95,19 @@ void Solitaire::onEnter()
 		18,1,
 		9,32,43,
 		50,18,3,7,
-		29,33,51,3,11
+		29,33,51,3,34
 	};
 
-	solCardFactory->createCardsBoard(indices);
+	std::vector<int> indicesAleatorios;
+
+	for (int i = 0; i < 52; i++)
+		indicesAleatorios.push_back(i);
+
+	std::random_device rd;
+	std::mt19937 g(rd());
+
+	std::shuffle(indicesAleatorios.begin(), indicesAleatorios.end(),g);
+	solCardFactory->createCardsBoard(indicesAleatorios);
 	/*
 	solCardFactory->CreateCard(5, SolCardComponent::clubs, true, Vector2D(15,10));
 	solCardFactory->CreateCard(3, SolCardComponent::hearts, false, Vector2D(150, 10));

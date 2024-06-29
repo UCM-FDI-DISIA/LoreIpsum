@@ -112,7 +112,7 @@ void SolDragComponent::OnLeftClickUp()
 
 							cartaAgarrada->getCardOnBottom()->setFaceDown(false);
 
-							cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer());
+							cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer() + 2);
 						}
 
 						cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
@@ -150,7 +150,7 @@ void SolDragComponent::OnLeftClickUp()
 
 							cartaAgarrada->getCardOnBottom()->setFaceDown(false);
 
-							cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer());
+							cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer() + 2);
 						}
 
 						cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
@@ -228,7 +228,7 @@ void SolDragComponent::OnLeftClickUp()
 
 						cartaAgarrada->getCardOnBottom()->setFaceDown(false);
 
-						cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer());
+						cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer()+5  );
 					}
 
 					cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
