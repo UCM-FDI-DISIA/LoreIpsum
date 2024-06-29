@@ -36,20 +36,43 @@ void SolCardComponent::update()
 
 void SolCardComponent::setLayer(int newLayer)
 {
-	if (getEntity()->getComponent<Transform>() != nullptr)
-	{
-		for (const auto child : getEntity()->getComponent<Transform>()->getChildren())
-		{ 
-			if (child->getEntity()->getComponent<SolCardComponent>() != nullptr) continue;
-			// para cada hijo
-			if (child->getEntity()->getLayer() == (getEntity()->getLayer() - 1)) {
-				child->getEntity()->changeLayer(newLayer - 1);
-			}
-			else {
-				child->getEntity()->changeLayer(newLayer + 1);
+	if (!bocabajo) {
+		if (getEntity()->getComponent<Transform>() != nullptr)
+		{
+			for (const auto child : getEntity()->getComponent<Transform>()->getChildren())
+			{
+				if (child->getEntity()->getComponent<SolCardComponent>() != nullptr) continue;
+				// para cada hijo
+				if (child->getEntity()->getComponent<SpriteRenderer>() != nullptr &&   
+					child->getEntity()->getComponent<SpriteRenderer>()->getTextID() == "solitaireReverseCard") {
+					child->getEntity()->changeLayer(newLayer - 1);
+				}
+				else {
+					child->getEntity()->changeLayer(newLayer + 1);
+				}
 			}
 		}
+		getEntity()->changeLayer(newLayer);
 	}
-	getEntity()->changeLayer(newLayer);
+	else {
+		if (getEntity()->getComponent<Transform>() != nullptr)
+		{
+			for (const auto child : getEntity()->getComponent<Transform>()->getChildren())
+			{
+				if (child->getEntity()->getComponent<SolCardComponent>() != nullptr) continue;
+
+				// para cada hijo
+				if (child->getEntity()->getComponent<SpriteRenderer>() != nullptr &&
+					child->getEntity()->getComponent<SpriteRenderer>()->getTextID() == "solitaireReverseCard") {
+					child->getEntity()->changeLayer(newLayer + 1);
+				}
+				else {
+					child->getEntity()->changeLayer(newLayer - 1);
+				}
+			}
+		}
+		getEntity()->changeLayer(newLayer -1);
+	}
+	
 }
 

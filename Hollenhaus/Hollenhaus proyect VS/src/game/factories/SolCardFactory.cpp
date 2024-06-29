@@ -136,16 +136,27 @@ void SolCardFactory::createCardsBoard(std::vector<int> indices)
 
 	auto posAct = startPosCardsOnBoard;
 
+	int layerAct = 0;
+
 	for (int i = 0; i < 15; i++) {
 
 		if ((i == 0 || i == 2 || i == 5 || i == 9 || i == 14)) {
 			cardsCmps[i] = CreateCardByIndex(indices[i],false, posAct)->getComponent<SolCardComponent>();
+			cardsCmps[i]->setLayer(layerAct);
+
 			posAct = Vector2D(posAct.getX() + boardCardsOffsetX, startPosCardsOnBoard.getY());
+
+			layerAct = 0;
 		}
 		else {
 			cardsCmps[i] = CreateCardByIndex(indices[i], true, posAct)->getComponent<SolCardComponent>();
+			cardsCmps[i]->setLayer(layerAct);
+
 			posAct = Vector2D(posAct.getX() , posAct.getY() + boardCardsOffsetY);
+
+			layerAct += 2;
 		}
+
 	}
 
 	
