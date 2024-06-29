@@ -54,10 +54,11 @@ void Solitaire::onEnter()
 	fondo->getComponent<Transform>()->setGlobalScale(1.0f, 1.0f);
 	fondo->setLayer(0);
 
+	/*
 	ecs::entity_t betText = Instantiate();
 	betText->addComponent<Transform>();
 	betText->addComponent<BoxCollider>();
-	betText->getComponent<Transform>()->setRelativePos(100, 100);
+	betText->getComponent<Transform>()->setGlobalPos(100, 100);
 	betText->addComponent<SpriteRenderer>("betText");
 	betText->getComponent<Transform>()->setGlobalScale(1.0f, 1.0f);
 	betText->setLayer(4);
@@ -79,6 +80,7 @@ void Solitaire::onEnter()
 	no->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	no->getComponent<Transform>()->setRelativePos(150, 150);
 	no->setLayer(5);
+	*/
 
 	//creacion de las cartas
 
@@ -87,6 +89,15 @@ void Solitaire::onEnter()
 	}
 
 	//y quince cartas en el medio 
+	std::vector<int> indices{
+
+		27,15,6,9,32,
+		43,50,18,23,7,
+		29,33,51,3,11
+	};
+
+	solCardFactory->createCardsBoard(indices);
+	/*
 	solCardFactory->CreateCard(5, SolCardComponent::clubs, true, Vector2D(15,10));
 	solCardFactory->CreateCard(3, SolCardComponent::hearts, false, Vector2D(150, 10));
 	solCardFactory->CreateCard(2, SolCardComponent::clubs, false, Vector2D(150, 30));
@@ -94,6 +105,7 @@ void Solitaire::onEnter()
 	solCardFactory->CreateCard(12, SolCardComponent::diamonds, false, Vector2D(350, 10));
 	solCardFactory->CreateCard(1, SolCardComponent::clubs, false, Vector2D(450, 10));
 	solCardFactory->CreateCard(8, SolCardComponent::hearts, false, Vector2D(550, 10));
+	*/
 
 	//casillas de la derecha 
 	solCardFactory->CreateCasillaDcha(2, Vector2D(695, 35));

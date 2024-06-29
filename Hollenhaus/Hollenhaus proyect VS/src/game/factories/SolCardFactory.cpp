@@ -110,6 +110,11 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo, Vecto
 	return newCard;
 }
 
+ecs::entity_t SolCardFactory::CreateCardByIndex(int index, bool bocabajo, Vector2D pos)
+{
+	return CreateCard(index%13+1,index/13,bocabajo,pos);
+}
+
 ecs::entity_t SolCardFactory::CreateCasillaDcha(int tipo, Vector2D pos)
 {
 	ecs::entity_t newCasilla = Instantiate(pos, ecs::grp::SOLITAIRERIGHTCELL);
@@ -122,4 +127,26 @@ ecs::entity_t SolCardFactory::CreateCasillaDcha(int tipo, Vector2D pos)
 
 
 	return newCasilla;
+}
+
+void SolCardFactory::createCardsBoard(std::vector<int> indices)
+{
+	std::vector<SolCardComponent*> cardsCmps(15);
+
+
+	auto posAct = startPosCardsOnBoard;
+
+	for (int i = 0; i < 15; i++) {
+
+		if ((i == 0 || i == 2 || i == 5 || i == 9 || i == 14)) {
+			cardsCmps[i] = CreateCardByIndex(indices[i],false, posAct)->getComponent<SolCardComponent>();
+			posAct = Vector2D(posAct.getX() + boardCardsOffsetX, startPosCardsOnBoard.getY());
+		}
+		else {
+			cardsCmps[i] = CreateCardByIndex(indices[i], true, posAct)->getComponent<SolCardComponent>();
+			posAct = Vector2D(posAct.getX() , posAct.getY() + boardCardsOffsetY);
+		}
+	}
+
+	
 }

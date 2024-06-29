@@ -13,7 +13,13 @@ public:
 
 	ecs::entity_t CreateCard(int, int, bool, Vector2D);
 
+	//crea una carta con un indice 1-52
+
+	ecs::entity_t CreateCardByIndex(int, bool, Vector2D);
+
 	ecs::entity_t CreateCasillaDcha(int, Vector2D);
+
+	void createCardsBoard(std::vector<int> indices);
 
 private:
 
@@ -31,4 +37,11 @@ private:
 
 	SDL_Color col; //color del numero de la carta
 	std::string textoCarta; //numero o letra que va a ir en la carta
+
+	//creacion de las cartas del tablero
+
+	Vector2D startPosCardsOnBoard = Vector2D(100, 100);
+
+	float boardCardsOffsetX = 100;
+	float boardCardsOffsetY = 20;
 };
