@@ -67,7 +67,7 @@ void CasinoState::onEnter()
 	exitButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
 	ecs::entity_t money = Instantiate(Vector2D(400, 30));
-	money->addComponent<TextComponent>(std::to_string(getMoney()), "8bit_size_40", SDL_Color({255, 255, 255, 255}), 350,
+	money->addComponent<TextComponent>(("Money: " + std::to_string(getMoney())), "8bit_size_40", SDL_Color({0, 0, 0, 255}), 350,
 		Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	money->setLayer(1);
 }

@@ -18,7 +18,7 @@ public:
 
 private:
 
-    
+    int nCardsUncovered;
 
     Transform* dragTransform;
 
@@ -35,5 +35,8 @@ private:
     void setLayerTopCards(Transform* t, int layer);
 
     void resetLayerTopCards(Transform* t, int layer);
+
+    void showLeftCards(ecs::entity_t card, std::vector<ecs::entity_t> c);
+
 
 };

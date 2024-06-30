@@ -25,7 +25,7 @@ void SolDragComponent::initComponent()
 {
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_DOWN, [this] { OnLeftClickDown(); });
 	ih().insertFunction(ih().MOUSE_LEFT_CLICK_UP, [this] { OnLeftClickUp(); });
-
+	nCardsUncovered = 0;
 	dragTransform = nullptr;
 }
 
@@ -45,6 +45,8 @@ void SolDragComponent::update()
 
 void SolDragComponent::OnLeftClickDown()
 {
+	std::vector<ecs::entity_t> cardsCmpsUncovered(37); // vector de cartas del monton que se van sacando a al izqda
+
 	//buscar una colision con una entidad del grupo carta
 
 	auto card = mouseRaycast(ecs::grp::SOLITAIRECARDS);
@@ -66,8 +68,9 @@ void SolDragComponent::OnLeftClickDown()
 	else if (card != nullptr && card->getComponent<SolCardComponent>()->getFaceDown() 
 		&& card->getComponent<SolCardComponent>()->getLeftDeck()) // si hay carta, esta bocabajo y es del mazo de la izquierda
 	{
-		card->getComponent<Transform>()->setGlobalPos(20, card->getComponent<Transform>()->getGlobalPos().getY() + 100);
-		card->getComponent<SolCardComponent>()->setFaceDown(false);
+		nCardsUncovered++;
+		cardsCmpsUncovered.push_back(card);
+		showLeftCards(card,cardsCmpsUncovered);
 	}
 }
 
@@ -325,5 +328,14 @@ void SolDragComponent::resetLayerTopCards(Transform* parent, int layer)
 		cardComp->getCardOnTop()->setLayer(currLayer);
 		cardComp = cardComp->getCardOnTop();
 		currLayer += 2;
+	}
+}
+
+void SolDragComponent::showLeftCards(ecs::entity_t card, std::vector<ecs::entity_t> c)
+{
+	for (int i = 0; i < nCardsUncovered; i++) {
+
+		c[i]->getComponent<SolCardComponent>()->setFaceDown(false);
+		c[i]->getComponent<Transform>()->setGlobalPos(15, card->getComponent<Transform>()->getGlobalPos().getY() + 100);
 	}
 }
