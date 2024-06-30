@@ -21,6 +21,12 @@ public:
 
 	void createCardsBoard(std::vector<int> indices);
 
+	void number10Execption(int tipo, Vector2D pos, ecs::entity_t card);
+
+	Vector2D startPosCardsOnBoard = Vector2D(100, 20);
+
+	float boardCardsOffsetX = 100;
+	float boardCardsOffsetY = 20;
 private:
 
 	//ini && fin, inclusive
@@ -43,8 +49,4 @@ private:
 
 	//creacion de las cartas del tablero
 
-	Vector2D startPosCardsOnBoard = Vector2D(100, 20);
-
-	float boardCardsOffsetX = 100;
-	float boardCardsOffsetY = 20;
 };

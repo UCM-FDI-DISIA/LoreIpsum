@@ -22,6 +22,9 @@ public:
 	//getters
 	bool getFaceDown() { return bocabajo; };
 	void setFaceDown(bool b) {  bocabajo = b; };
+	
+	bool getLeftDeck() { return leftDeck; };
+	void setLeftDeck(bool b) { leftDeck = b; };
 
 	bool getStacked() { return stacked; };
 	void setStacked(bool s) {
@@ -63,6 +66,9 @@ private:
 
 	// si esta en los mazos de la derecha
 	bool stacked = false;
+
+	// si esta en el mazo de la izquierda
+	bool leftDeck = false;
 
 	SolCardComponent* cardOnTop = nullptr; // puntero a si tiene una carta encima 
 

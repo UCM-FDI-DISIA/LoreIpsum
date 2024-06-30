@@ -90,6 +90,10 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo, Vecto
 	case 1:
 		textoCarta = "A";
 		break;
+	case 10:
+		textoCarta = " ";
+		number10Execption(tipo, pos, newCard); // como el 10 no cabe he hecho este metodo que pone una foto de un 10 con el color adecuado
+		break;
 	case 11:
 		textoCarta = "J";
 		break;
@@ -106,7 +110,7 @@ ecs::entity_t SolCardFactory::CreateCard(int num, int tipo, bool bocabajo, Vecto
 	cardNumber->addComponent<TextComponent>(textoCarta, Fonts::GROTESK_32, col, 20, Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
 	cardNumber->getComponent<Transform>()->addParent(newCard->getComponent<Transform>());
 	cardNumber->setLayer(iconsLayer);
-
+	
 	return newCard;
 }
 
@@ -131,8 +135,7 @@ ecs::entity_t SolCardFactory::CreateCasillaDcha(int tipo, Vector2D pos)
 
 void SolCardFactory::createCardsBoard(std::vector<int> indices)
 {
-	std::vector<SolCardComponent*> cardsCmps(15);
-
+	std::vector<SolCardComponent*> cardsCmps(52);
 
 	auto posAct = startPosCardsOnBoard;
 
@@ -158,13 +161,38 @@ void SolCardFactory::createCardsBoard(std::vector<int> indices)
 		}
 	}
 
-
 	setCardsReferences(cardsCmps, 0, 0);
 	setCardsReferences(cardsCmps, 1, 2);
 	setCardsReferences(cardsCmps, 3, 5);
 	setCardsReferences(cardsCmps, 6, 9);
 	setCardsReferences(cardsCmps, 10, 14);
+
+	for (int j = 15; j < 52; j++) {
+
+		cardsCmps[j] = CreateCardByIndex(indices[j], true, Vector2D(15,20))->getComponent<SolCardComponent>();
+		cardsCmps[j]->setLayer(layerAct);
+
+		posAct = Vector2D(posAct.getX(), posAct.getY() + boardCardsOffsetY);
+
+		cardsCmps[j]->setLeftDeck(true);
+
+		layerAct += 2;
+	}
 	
+}
+
+void SolCardFactory::number10Execption(int tipo, Vector2D pos, ecs::entity_t card)
+{
+	auto num = Instantiate(Vector2D(pos.getX() + 6, pos.getY() + 6)); 
+	num->getComponent<Transform>()->setGlobalScale(iconSmallScale.getX() + 0.3, iconSmallScale.getY() + 0.3);
+	num->getComponent<Transform>()->addParent(card->getComponent<Transform>());
+	num->setLayer(iconsLayer);
+	if (tipo == SolCardComponent::clubs || tipo == SolCardComponent::spades) {
+		num->addComponent<SpriteRenderer>("black10");
+	}
+	else {
+		num->addComponent<SpriteRenderer>("red10");
+	}
 }
 
 void SolCardFactory::setCardsReferences(std::vector<SolCardComponent*>& cards, int ini, int fin)

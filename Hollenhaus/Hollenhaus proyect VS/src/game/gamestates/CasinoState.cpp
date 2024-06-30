@@ -3,6 +3,7 @@
 #include "CasinoState.h"
 #include "../components/managers/Manager.h"
 #include "../components/ShineComponent.h"
+#include "../components/basics/TextComponent.h"
 #include "../components/NPC.h"
 #include "../GameStateMachine.h"
 #include "../components/Button.h"
@@ -65,6 +66,10 @@ void CasinoState::onEnter()
 	exitButton->addComponent<Clickable>("boton_flecha", true);
 	exitButton->getComponent<Transform>()->setGlobalPos(10, 10);
 
+	ecs::entity_t money = Instantiate(Vector2D(400, 30));
+	money->addComponent<TextComponent>(std::to_string(getMoney()), "8bit_size_40", SDL_Color({255, 255, 255, 255}), 350,
+		Text::BoxPivotPoint::CenterCenter, Text::TextAlignment::Center);
+	money->setLayer(1);
 }
 
 void CasinoState::onExit()

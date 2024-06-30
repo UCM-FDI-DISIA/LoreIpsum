@@ -63,6 +63,12 @@ void SolDragComponent::OnLeftClickDown()
 
 		makeTopCardsChildren(dragTransform);
 	}
+	else if (card != nullptr && card->getComponent<SolCardComponent>()->getFaceDown() 
+		&& card->getComponent<SolCardComponent>()->getLeftDeck()) // si hay carta, esta bocabajo y es del mazo de la izquierda
+	{
+		card->getComponent<Transform>()->setGlobalPos(20, card->getComponent<Transform>()->getGlobalPos().getY() + 100);
+		card->getComponent<SolCardComponent>()->setFaceDown(false);
+	}
 }
 
 void SolDragComponent::OnLeftClickUp()

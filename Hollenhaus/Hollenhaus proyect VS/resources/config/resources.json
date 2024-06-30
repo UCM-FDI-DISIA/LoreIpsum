@@ -489,6 +489,14 @@
       "file": "resources/images/Solitaire/no.png"
     },
     {
+      "id": "red10",
+      "file": "resources/images/Solitaire/red10.png"
+    },
+    {
+      "id": "black10",
+      "file": "resources/images/Solitaire/black10.png"
+    },
+    {
       "id": "credits",
       "file": "resources/images/fantasma_caminando.png"
     }

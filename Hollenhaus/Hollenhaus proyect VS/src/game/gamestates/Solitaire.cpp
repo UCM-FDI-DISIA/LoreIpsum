@@ -55,32 +55,51 @@ void Solitaire::onEnter()
 	fondo->setLayer(0);
 
 	/*
+	
 	ecs::entity_t betText = Instantiate();
 	betText->addComponent<Transform>();
 	betText->addComponent<BoxCollider>();
 	betText->getComponent<Transform>()->setGlobalPos(100, 100);
 	betText->addComponent<SpriteRenderer>("betText");
 	betText->getComponent<Transform>()->setGlobalScale(1.0f, 1.0f);
+	betText->getComponent<Transform>()->setGlobalPos(200, 200);
 	betText->setLayer(4);
-
+	
 	ecs::entity_t yes = Instantiate();
 	yes->addComponent<Transform>()->addParent(betText->getComponent<Transform>());
 	yes->addComponent<BoxCollider>();
-	//yes->getComponent<BoxCollider>()->setSize(Vector2D(45,45)); ajustar esto somehow
+	yes->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	yes->addComponent<Button>();
+	yes->getComponent<Button>()->connectToButton([this] {  });
 	yes->addComponent<SpriteRenderer>("yes");
 	yes->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	yes->getComponent<Transform>()->setRelativePos(100, 100);
+	//yes->getComponent<Transform>()->setGlobalPos(200, 200);
 	yes->setLayer(5);
 
 	ecs::entity_t no = Instantiate();
 	no->addComponent<Transform>()->addParent(betText->getComponent<Transform>());
 	no->addComponent<BoxCollider>();
-	//no->getComponent<BoxCollider>()->setSize(Vector2D(45,45)); ajustar esto somehow
+	no->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	no->addComponent<Button>();
+	no->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(32); });
 	no->addComponent<SpriteRenderer>("no");
 	no->getComponent<Transform>()->setGlobalScale(0.6f, 0.6f);
 	no->getComponent<Transform>()->setRelativePos(150, 150);
 	no->setLayer(5);
+	//no->getComponent<Transform>()->setGlobalPos(10, 500);
 	*/
+
+	
+	ecs::entity_t exitButton = Instantiate(Vector2D(20, 20));
+	exitButton->addComponent<Transform>();
+	exitButton->addComponent<SpriteRenderer>("boton_flecha");
+	exitButton->addComponent<BoxCollider>();
+	exitButton->getComponent<BoxCollider>()->setAnchoredToSprite(true);
+	exitButton->addComponent<Button>();
+	exitButton->getComponent<Button>()->connectToButton([this] {GameStateMachine::instance()->setState(32); addMoney(-50); });
+	exitButton->addComponent<Clickable>("boton_flecha", true);
+	exitButton->getComponent<Transform>()->setGlobalPos(10, 500);
 
 	//creacion de las cartas
 
@@ -126,9 +145,16 @@ void Solitaire::onEnter()
 
 	ecs::entity_t dragManager = Instantiate();
 	dragManager->addComponent<SolDragComponent>();
+
 }
 
 void Solitaire::onExit()
 {
+	std::cout << "\nEXIT SOLITAIRE.";
+
+	saveData();
+
+	GameStateMachine::instance()->getMngr()->Free();
+
 	delete solCardFactory;
 }
