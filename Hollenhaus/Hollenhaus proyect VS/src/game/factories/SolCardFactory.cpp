@@ -133,6 +133,20 @@ ecs::entity_t SolCardFactory::CreateCasillaDcha(int tipo, Vector2D pos)
 	return newCasilla;
 }
 
+ecs::entity_t SolCardFactory::CreateCasillaIzqda(int tipo, Vector2D pos)
+{
+	ecs::entity_t newCasilla = Instantiate(pos, ecs::grp::SOLITAIRELEFTCELL);
+
+	newCasilla->addComponent<BoxCollider>();
+
+	newCasilla->getComponent<Transform>()->setGlobalScale(0.7, 1);
+
+	newCasilla->addComponent<SolCardComponent>(0, tipo, false, cardLayer);
+
+
+	return newCasilla;
+}
+
 void SolCardFactory::createCardsBoard(std::vector<int> indices)
 {
 	std::vector<SolCardComponent*> cardsCmps(52);

@@ -106,6 +106,10 @@ void Solitaire::onEnter()
 	solCardFactory->CreateCasillaDcha(1, Vector2D(695, 323));
 	solCardFactory->CreateCasillaDcha(0, Vector2D(695, 465));
 
+	//casilla de la izquierda para apilar cartas
+	solCardFactory->CreateCasillaIzqda(0, Vector2D(10, 130));
+
+
 	ecs::entity_t dragManager = Instantiate();
 	dragManager->addComponent<SolDragComponent>();
 
