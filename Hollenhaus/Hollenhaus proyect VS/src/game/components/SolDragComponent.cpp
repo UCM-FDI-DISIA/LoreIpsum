@@ -326,7 +326,67 @@ void SolDragComponent::OnLeftClickUp()
 			}
 		}
 
+		if (casillaIzq != nullptr) 
+		{
 
+			if (carta != nullptr && carta->getComponent<SolCardComponent>()->getLeftDeck() && carta->getComponent<SolCardComponent>()->getFaceDown()) //si hay casilla y carta
+			{
+				//colocar la carta
+				auto newPos = casillaIzq->getComponent<Transform>()->getGlobalPos();
+				dragTransform->setGlobalPos(newPos);
+				cartaAgarrada->setFaceDown(false);
+
+				//ajustar la layer para que este encima
+				dragTransform->getEntity()->getComponent<SolCardComponent>()->setLayer(carta->getLayer() + 2);
+
+				//la carta que antes tenia abajo deja de tener a esta encima
+				if (cartaAgarrada->getCardOnBottom() != nullptr) {
+
+					//si la de abajo estaba bocabajo
+					if (cartaAgarrada->getCardOnBottom()->getFaceDown()) {
+
+						cartaAgarrada->getCardOnBottom()->setFaceDown(false);
+
+						cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer() + 2);
+					}
+
+					cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
+					if (cartaAgarrada->getLeftDeck())cartaAgarrada->setLeftDeck(false);
+				}
+
+				//esta carta, tiene a la carta de la mesa abajo, a lo mejor hay q cambiar nullptr por carta
+				cartaAgarrada->setCardOnBottom(nullptr);
+
+				//resetear los  hijos
+				resetParent(dragTransform);
+					
+			}
+
+		}
+		else if (carta != nullptr)// casilla y no carta
+		{
+				
+			//colocar carta
+			auto newPos = casillaIzq->getComponent<Transform>()->getGlobalPos();
+			dragTransform->setGlobalPos(newPos);
+			cartaAgarrada->setFaceDown(false);
+
+			//la carta que antes tenia abajo deja de tener a esta encima
+			if (cartaAgarrada->getCardOnBottom() != nullptr) {
+
+				cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
+			}
+			if (cartaAgarrada->getLeftDeck())cartaAgarrada->setLeftDeck(false);
+
+			//el as no tiene a nadie abajo
+			cartaAgarrada->setCardOnBottom(nullptr);
+			
+		}
+		else
+		{
+			dragTransform->setGlobalPos(initialTransformPos);
+		
+		}
 
 		//en cualquier caso, ya no tenemos carta drageada
 		resetParent(dragTransform);
