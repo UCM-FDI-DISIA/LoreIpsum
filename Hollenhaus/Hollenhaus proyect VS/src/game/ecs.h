@@ -31,8 +31,7 @@
 	COINS, \
 	DROPZONE,\
 	SOLITAIRECARDS,\
-	SOLITAIRERIGHTCELL,\
-	SOLITAIRELEFTCELL
+	SOLITAIRERIGHTCELL
 
 // Handlers list - must have at least one element
 //
