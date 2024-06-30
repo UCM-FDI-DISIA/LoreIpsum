@@ -19,6 +19,8 @@ public:
 
 	ecs::entity_t CreateCasillaDcha(int, Vector2D);
 
+	ecs::entity_t CreateCasillaIzqda(int, Vector2D);
+
 	void createCardsBoard(std::vector<int> indices);
 
 	void number10Execption(int tipo, Vector2D pos, ecs::entity_t card);

@@ -52,7 +52,7 @@ void SolDragComponent::OnLeftClickDown()
 	auto card = mouseRaycast(ecs::grp::SOLITAIRECARDS);
 
 	// si hay carta y no esta bocabajo
-	if (card != nullptr && !card->getComponent<SolCardComponent>()->getFaceDown())
+	if (card != nullptr && !card->getComponent<SolCardComponent>()->getFaceDown() ||(card->getComponent<SolCardComponent>()->getFaceDown() && card->getComponent<SolCardComponent>()->getLeftDeck()) )
 	{
 
 		//se guarda la posicion/ transform de como estaba la carta
@@ -65,12 +65,8 @@ void SolDragComponent::OnLeftClickDown()
 
 		makeTopCardsChildren(dragTransform);
 	}
-	else if (card != nullptr && card->getComponent<SolCardComponent>()->getFaceDown() 
-		&& card->getComponent<SolCardComponent>()->getLeftDeck()) // si hay carta, esta bocabajo y es del mazo de la izquierda
-	{
-		nCardsUncovered++;
-		cardsCmpsUncovered.push_back(card);
-		showLeftCards(card,cardsCmpsUncovered);
+	else {
+
 	}
 }
 
@@ -89,6 +85,7 @@ void SolDragComponent::OnLeftClickUp()
 		//raycast para ver si hemos tocado alguna carta/ casilla
 		auto carta = mouseRaycast(ecs::grp::SOLITAIRECARDS); //carta sobre la que se suelta
 		auto casilla = mouseRaycast(ecs::grp::SOLITAIRERIGHTCELL); //casilla sobre la que se suelta
+		auto casillaIzq = mouseRaycast(ecs::grp::SOLITAIRELEFTCELL); //casilla sobre la que se suelta
 
 		//resetear la layer
 		resetLayerTopCards(dragTransform, dragLayer);
@@ -101,7 +98,7 @@ void SolDragComponent::OnLeftClickUp()
 
 			SolCardComponent::tipo tCasilla = casilla->getComponent<SolCardComponent>()->getTipo();
 
-			if (carta != nullptr && carta->getComponent<Transform>() != dragTransform) //si hay casilla y carta
+			if (carta != nullptr && carta->getComponent<Transform>() != dragTransform ) //si hay casilla y carta
 			{
 				if ((carta->getComponent<SolCardComponent>()->getTipo() == cartaAgarrada->getTipo()) &&
 					(carta->getComponent<SolCardComponent>()->getNumber() == cartaAgarrada->getNumber() - 1)) //mismo tipo y la de la mano es justo la siguiente mayor
@@ -125,6 +122,7 @@ void SolDragComponent::OnLeftClickUp()
 						}
 
 						cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
+						if (cartaAgarrada->getLeftDeck())cartaAgarrada->setLeftDeck(false);
 					}
 
 					//esta carta, tiene a la carta de la mesa abajo, a lo mejor hay q cambiar nullptr por carta
@@ -137,13 +135,30 @@ void SolDragComponent::OnLeftClickUp()
 				else
 				{
 					//si no, devolvemos la carta a su posicion inicial
-					dragTransform->setGlobalPos(initialTransformPos);
+					if (cartaAgarrada->getNumber() == 13) {
+						if (cartaAgarrada->getCardOnBottom() != nullptr) {
+
+							//si la de abajo estaba bocabajo
+							if (cartaAgarrada->getCardOnBottom()->getFaceDown()) {
+
+								cartaAgarrada->getCardOnBottom()->setFaceDown(false);
+
+								cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer() + 5);
+							}
+
+							cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
+						}
+
+					}
+					else {
+						dragTransform->setGlobalPos(initialTransformPos);
+					}
 				}
 
 			}
 			else // casilla y no carta
 			{
-				if (tCasilla == cartaAgarrada->getTipo() && cartaAgarrada->getNumber() == 1)//si es un AS del tipo de la casilla
+				if (tCasilla == cartaAgarrada->getTipo() && cartaAgarrada->getNumber() == 1 )//si es un AS del tipo de la casilla
 				{
 					//colocar carta
 					auto newPos = casilla->getComponent<Transform>()->getGlobalPos();
@@ -164,14 +179,30 @@ void SolDragComponent::OnLeftClickUp()
 
 						cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
 					}
+					if (cartaAgarrada->getLeftDeck())cartaAgarrada->setLeftDeck(false);
 
 					//el as no tiene a nadie abajo
 					cartaAgarrada->setCardOnBottom(nullptr);
 				}
 				else
 				{
-					//si no, devolvemos la carta a su posicion inicial
-					dragTransform->setGlobalPos(initialTransformPos);
+					if (cartaAgarrada->getNumber() == 13) {
+						if (cartaAgarrada->getCardOnBottom() != nullptr) {
+
+							//si la de abajo estaba bocabajo
+							if (cartaAgarrada->getCardOnBottom()->getFaceDown()) {
+
+								cartaAgarrada->getCardOnBottom()->setFaceDown(false);
+
+								cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer() + 5);
+							}
+
+							cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
+						}
+					}
+					else {
+						dragTransform->setGlobalPos(initialTransformPos);
+					}
 				}
 			}
 		}
@@ -197,6 +228,7 @@ void SolDragComponent::OnLeftClickUp()
 				//colocar carta
 				auto newPos = carta->getComponent<Transform>()->getGlobalPos() + cartaAgarrada->getOffset();
 				dragTransform->getEntity()->getComponent<Transform>()->setGlobalPos(newPos);
+				if (cartaAgarrada->getLeftDeck())cartaAgarrada->setLeftDeck(false);
 
 				//colocar cartas hijas
 
@@ -254,14 +286,44 @@ void SolDragComponent::OnLeftClickUp()
 			}
 			else
 			{
-				//si no, devolvemos la carta a su posicion inicial
-				dragTransform->setGlobalPos(initialTransformPos);
+				if (cartaAgarrada->getNumber() == 13) {
+					if (cartaAgarrada->getCardOnBottom() != nullptr) {
+
+						//si la de abajo estaba bocabajo
+						if (cartaAgarrada->getCardOnBottom()->getFaceDown()) {
+
+							cartaAgarrada->getCardOnBottom()->setFaceDown(false);
+
+							cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer() + 5);
+						}
+
+						cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
+					}
+				}
+				else {
+					dragTransform->setGlobalPos(initialTransformPos);
+				}
 			}
 		}
 		else
 		{
-			//si no, devolvemos la carta a su posicion inicial
-			dragTransform->setGlobalPos(initialTransformPos);
+			if (cartaAgarrada->getNumber() == 13) {
+				if (cartaAgarrada->getCardOnBottom() != nullptr) {
+
+					//si la de abajo estaba bocabajo
+					if (cartaAgarrada->getCardOnBottom()->getFaceDown()) {
+
+						cartaAgarrada->getCardOnBottom()->setFaceDown(false);
+
+						cartaAgarrada->getCardOnBottom()->setLayer(cartaAgarrada->getCardOnBottom()->getLayer() + 5);
+					}
+
+					cartaAgarrada->getCardOnBottom()->setCardOnTop(nullptr);
+				}
+			}
+			else {
+				dragTransform->setGlobalPos(initialTransformPos);
+			}
 		}
 
 
