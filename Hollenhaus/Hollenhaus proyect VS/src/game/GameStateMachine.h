@@ -59,7 +59,8 @@ namespace GameStates
 		LOGOSTATE,
 		FIRST,
 		CASINO,
-		SOLITAIRE
+		SOLITAIRE,
+		SOLITAIREQUESTION
 	};
 }
 
@@ -128,6 +129,7 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* multiplayerEndGameState;
 	GameState* casinoState;
 	GameState* solitaireState;
+	GameState* solitaireQuestionState;
 
 	/// FADE IN-OUT
 	//ecs::entity_t fade;
@@ -277,6 +279,9 @@ public:
 			break;
 		case GameStates::SOLITAIRE:
 			newState = solitaireState;
+			break;
+		case GameStates::SOLITAIREQUESTION:
+			newState = solitaireQuestionState;
 			break;
 		default:
 			break;
