@@ -168,6 +168,8 @@ void CityState::onEnter()
 	// Oficina
 	ecs::entity_t ofi = factory->createNPC(0, fondo);
 
+	ecs::entity_t casino = factory->createNPC(22, fondo);
+
 	if (GameStateMachine::instance()->TUTORIAL_SHOP_COMPLETE()) {
 		ecs::entity_t tienda = factory->createNPC(1, fondo);		// tienda
 		objs.push_back(tienda);

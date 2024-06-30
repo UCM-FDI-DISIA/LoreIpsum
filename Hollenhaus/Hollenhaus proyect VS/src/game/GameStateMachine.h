@@ -57,7 +57,10 @@ namespace GameStates
 		TUTORIAL_CITY,
 		TUTORIAL_OFFICE,
 		LOGOSTATE,
-		FIRST
+		FIRST,
+		CASINO,
+		SOLITAIRE,
+		SOLITAIREQUESTION
 	};
 }
 
@@ -124,6 +127,9 @@ class GameStateMachine : public Singleton<GameStateMachine>
 	GameState* multiplayerPreGameState;
 	GameState* multiplayerGameState;
 	GameState* multiplayerEndGameState;
+	GameState* casinoState;
+	GameState* solitaireState;
+	GameState* solitaireQuestionState;
 
 	/// FADE IN-OUT
 	//ecs::entity_t fade;
@@ -267,6 +273,15 @@ public:
 			break;
 		case GameStates::FIRST:
 			newState = firstState;
+			break;
+		case GameStates::CASINO:
+			newState = casinoState;
+			break;
+		case GameStates::SOLITAIRE:
+			newState = solitaireState;
+			break;
+		case GameStates::SOLITAIREQUESTION:
+			newState = solitaireQuestionState;
 			break;
 		default:
 			break;

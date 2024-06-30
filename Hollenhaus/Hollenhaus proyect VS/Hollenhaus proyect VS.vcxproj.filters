@@ -121,6 +121,12 @@
     <Filter Include="Archivos de origen\Componentes\Feedback">
       <UniqueIdentifier>{c717e074-55e6-4329-b70b-9c6aaced2a4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Factories\Solitaire">
+      <UniqueIdentifier>{e401db1c-719c-4540-bc90-9aa64ce64923}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Factories\Solitaire">
+      <UniqueIdentifier>{d0a0d45c-02ca-40cd-9959-a3f49ec5dcd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\Game.cpp">
@@ -515,6 +521,25 @@
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\game\gamestates\LogoState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\FirstState.cpp" />
+    <ClCompile Include="src\game\gamestates\CasinoState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\Solitaire.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\factories\SolCardFactory.cpp">
+      <Filter>Archivos de origen\Factories\Solitaire</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\SolCardComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\SolDragComponent.cpp">
+      <Filter>Archivos de origen\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\gamestates\SolitaireQuestion.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
@@ -968,6 +993,25 @@
     </ClInclude>
     <ClInclude Include="src\game\components\Dummy.h" />
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="src\game\gamestates\FirstState.h" />
+    <ClInclude Include="src\game\gamestates\CasinoState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\Solitaire.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\factories\SolCardFactory.h">
+      <Filter>Archivos de encabezado\Factories\Solitaire</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\SolCardComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\SolDragComponent.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\gamestates\SolitaireQuestion.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\cards.json">

@@ -14,6 +14,9 @@
 #include "gamestates/cinematicIntroState.h"
 #include "gamestates/FirstState.h"
 #include "gamestates/cinematicOutroState.h"
+#include "gamestates/CasinoState.h"
+#include "gamestates/Solitaire.h"
+#include "gamestates/SolitaireQuestion.h"
 
 #include "gamestates/SamuState.h"
 #include "gamestates/JimboState.h"
@@ -109,12 +112,16 @@ GameStateMachine::GameStateMachine()
 	multiplayerGameState = new MultiplayerGameState();
 	multiplayerEndGameState = new MultiplayerEndGameState();
 
+	//extra
+	casinoState = new CasinoState();
+	solitaireState = new Solitaire();
+	solitaireQuestionState = new SolitaireQuestion();
 
 	// Ponemos el estado actual
 	//currentState = new MainMenuState();
 	// tutorialDeckbuildingState
 
-	currentState = firstState;
+	currentState = casinoState;
 
 	// settea la data en el current state para acceder a ella desde cualquier estado
 	currentState->setData(new Data());
@@ -161,6 +168,9 @@ GameStateMachine::~GameStateMachine()
 	delete multiplayerPreGameState;
 	delete multiplayerGameState;
 	delete multiplayerEndGameState;
+	delete casinoState;
+	delete solitaireState;
+	delete solitaireQuestionState;
 	delete currentState->getData();
 	currentState->setData(nullptr);
 

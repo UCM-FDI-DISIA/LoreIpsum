@@ -101,6 +101,8 @@
     <ClCompile Include="src\game\components\NPC.cpp" />
     <ClCompile Include="src\game\components\PasteOnTextComponentButton.cpp" />
     <ClCompile Include="src\game\components\SendInvitationButton.cpp" />
+    <ClCompile Include="src\game\components\SolCardComponent.cpp" />
+    <ClCompile Include="src\game\components\SolDragComponent.cpp" />
     <ClCompile Include="src\game\components\TextWritter.cpp" />
     <ClCompile Include="src\game\components\TypeWriter.cpp" />
     <ClCompile Include="src\game\Dialogue.cpp" />
@@ -125,8 +127,10 @@
     <ClCompile Include="src\game\factories\MatchStateUIFactory_v0.cpp" />
     <ClCompile Include="src\game\factories\NPCFactory.cpp" />
     <ClCompile Include="src\game\factories\NPCFactory_V0.cpp" />
+    <ClCompile Include="src\game\factories\SolCardFactory.cpp" />
     <ClCompile Include="src\game\Fade.cpp" />
     <ClCompile Include="src\game\gamestates\AndresState.cpp" />
+    <ClCompile Include="src\game\gamestates\CasinoState.cpp" />
     <ClCompile Include="src\game\gamestates\checkCluesMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\checkMazeMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\cinematicIntroState.cpp" />
@@ -153,6 +157,8 @@
     <ClCompile Include="src\game\gamestates\pauseMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\SamuState.cpp" />
     <ClCompile Include="src\game\gamestates\ShopState.cpp" />
+    <ClCompile Include="src\game\gamestates\Solitaire.cpp" />
+    <ClCompile Include="src\game\gamestates\SolitaireQuestion.cpp" />
     <ClCompile Include="src\game\gamestates\TransitionTextMenuState.cpp" />
     <ClCompile Include="src\game\gamestates\TutorialBoardState.cpp" />
     <ClCompile Include="src\game\gamestates\storyModeState.cpp" />
@@ -300,6 +306,8 @@
     <ClInclude Include="src\game\components\SendInvitationButton.h" />
     <ClInclude Include="src\game\components\ShineComponent.h" />
     <ClInclude Include="src\game\components\ShopComponent.h" />
+    <ClInclude Include="src\game\components\SolCardComponent.h" />
+    <ClInclude Include="src\game\components\SolDragComponent.h" />
     <ClInclude Include="src\game\components\TextWritter.h" />
     <ClInclude Include="src\game\components\TypeWriter.h" />
     <ClInclude Include="src\game\Dialogue.h" />
@@ -314,7 +322,9 @@
     <ClInclude Include="src\game\factories\FakeCardFactory_v0.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="src\game\factories\SolCardFactory.h" />
     <ClInclude Include="src\game\Fade.h" />
+    <ClInclude Include="src\game\gamestates\CasinoState.h" />
     <ClInclude Include="src\game\gamestates\checkCluesMenuState.h" />
     <ClInclude Include="src\game\gamestates\checkMazeMenuState.h" />
     <ClInclude Include="src\game\gamestates\cinematicIntroState.h" />
@@ -327,6 +337,8 @@
     <ClInclude Include="src\game\gamestates\MultiplayerGameState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerLobbyState.h" />
     <ClInclude Include="src\game\gamestates\MultiplayerPreGameState.h" />
+    <ClInclude Include="src\game\gamestates\Solitaire.h" />
+    <ClInclude Include="src\game\gamestates\SolitaireQuestion.h" />
     <ClInclude Include="src\game\gamestates\TransitionTextMenuState.h" />
     <ClInclude Include="src\game\MultiplayerNamespaces.h" />
     <ClInclude Include="src\game\gamestates\TutorialBoardState.h" />
